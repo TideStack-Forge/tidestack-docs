@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/error-code.schema.json",
+  "title": "错误码",
+  "description": "TideStack metadata schema for error-code. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+      "code",
+      "title",
+      "defaultMessageTemplate"
+    ],
+    "properties": {
+      "code": {
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      },
+      "defaultMessageTemplate": {
+        "type": "string"
+      },
+      "bizCode": {
+        "type": "string"
+      },
+      "category": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "enabled": {
+        "type": "boolean"
+      }
+    }
+  }
+}

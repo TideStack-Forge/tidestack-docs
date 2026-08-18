@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/authority.schema.json",
+  "title": "权限项模型",
+  "description": "TideStack metadata schema for authority. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fullName",
+    "title"
+  ],
+  "properties": {
+    "fullName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uiViews": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "menuItems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

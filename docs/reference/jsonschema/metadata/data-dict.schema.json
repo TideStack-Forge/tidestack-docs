@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/data-dict.schema.json",
+  "title": "数据字典",
+  "description": "TideStack metadata schema for data-dict. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title",
+    "type",
+    "treeMode",
+    "items"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "editable": {
+      "type": "boolean"
+    },
+    "treeMode": {
+      "type": "boolean"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "code",
+          "label"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "parent": {
+            "type": "string"
+          },
+          "children": {
+            "type": "array"
+          },
+          "extraProps": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

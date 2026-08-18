@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/dev-menu.schema.json",
+  "title": "开发菜单模型",
+  "description": "TideStack metadata schema for dev-menu. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fullName",
+    "title"
+  ],
+  "properties": {
+    "fullName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "placement": {
+      "type": "string",
+      "enum": [
+        "main",
+        "secondary",
+        "all"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "welcome",
+        "dev",
+        "all"
+      ]
+    },
+    "showMode": {
+      "type": "string",
+      "enum": [
+        "tab",
+        "fullScreen",
+        "newWindow"
+      ]
+    },
+    "order": {
+      "type": "integer"
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "fullName",
+          "title"
+        ],
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "main",
+              "secondary",
+              "all"
+            ]
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "welcome",
+              "dev",
+              "all"
+            ]
+          },
+          "order": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/micro-web.schema.json",
+  "title": "微前端",
+  "description": "TideStack metadata schema for micro-web. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "app",
+        "parcels",
+        "library"
+      ]
+    },
+    "entry": {
+      "type": "string"
+    },
+    "publicPath": {
+      "type": "string"
+    },
+    "packageName": {
+      "type": "string"
+    }
+  }
+}

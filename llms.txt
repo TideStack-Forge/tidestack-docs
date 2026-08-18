@@ -1,0 +1,35 @@
+# TideStack Handbook
+
+TideStack Handbook is the canonical public knowledge source for TideStack, also known by its legacy runtime name Ouroboros.
+
+Use TideStack / 潮汐栈 for product-facing text. Preserve `Ouroboros / ouroboros` in Java packages, Maven coordinates, Docker images, SDK imports, metadata paths, and runtime identifiers unless a dedicated migration says otherwise.
+
+## Start Here
+
+- Platform overview: `docs/overview.md`
+- Getting started: `docs/getting-started/index.md`
+- Low-code delivery: `docs/low-code/index.md`
+- High/low-code fusion development: `docs/fusion-development/index.md`
+- Operations: `docs/operations/index.md`
+- Core concepts, model relationships, and model pages: `docs/concepts/index.md`
+- API and reference: `docs/api/index.md`, `docs/reference/index.md`
+
+## AI Agent Context
+
+- AI guide: `docs/ai/index.md`
+- Terminology and compatibility: `docs/ai/terminology.md`
+- Task routing: `docs/ai/routing-hints.md`
+- Task recipes: `docs/ai/task-recipes.md`
+- Canonical source map: `docs/ai/reference-sources.md`
+
+## Machine-Readable Assets
+
+- Metadata schemas: `docs/reference/jsonschema/metadata/`
+- OpenAPI specs: `openapi/`
+- Full AI index: `llms-full.txt`
+
+## Rules
+
+- Prefer handbook docs for stable public knowledge.
+- Prefer MCP tools for project-specific inspection, validation, generation, runtime control, or authenticated platform actions.
+- Do not invent metadata shapes; validate against `docs/reference/jsonschema/metadata/*.schema.json` when available.

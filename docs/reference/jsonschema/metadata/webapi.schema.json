@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/webapi.schema.json",
+  "title": "WebAPI 模型",
+  "description": "TideStack metadata schema for webapi. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "method",
+    "path"
+  ],
+  "properties": {
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "public",
+        "open",
+        "internal"
+      ]
+    },
+    "handlerType": {
+      "type": "string",
+      "enum": [
+        "RequestMapping",
+        "RouterFunction",
+        "LogicFlow"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "operationId": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parameters": {
+      "type": "array"
+    },
+    "requestBody": {
+      "type": "object"
+    },
+    "responses": {
+      "type": "object"
+    },
+    "deprecated": {
+      "type": "boolean"
+    },
+    "security": {
+      "type": "array"
+    },
+    "servers": {
+      "type": "array"
+    },
+    "externalDocs": {
+      "type": "object"
+    },
+    "extraProps": {
+      "type": "object"
+    }
+  }
+}

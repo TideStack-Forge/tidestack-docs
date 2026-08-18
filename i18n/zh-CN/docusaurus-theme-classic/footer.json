@@ -1,0 +1,26 @@
+{
+  "link.title.开始浏览": {
+    "message": "开始浏览",
+    "description": "The title of the footer links column with title=开始浏览 in the footer"
+  },
+  "link.item.label.快速上手": {
+    "message": "快速上手",
+    "description": "The label of footer link with label=快速上手 linking to /docs/getting-started"
+  },
+  "link.item.label.低代码开发": {
+    "message": "低代码开发",
+    "description": "The label of footer link with label=低代码开发 linking to /docs/low-code"
+  },
+  "link.item.label.融合开发": {
+    "message": "融合开发",
+    "description": "The label of footer link with label=融合开发 linking to /docs/fusion-development"
+  },
+  "link.item.label.运维管理": {
+    "message": "运维管理",
+    "description": "The label of footer link with label=运维管理 linking to /docs/operations"
+  },
+  "copyright": {
+    "message": "Copyright © 2023 Xinpai",
+    "description": "The footer copyright"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/position.schema.json",
+  "title": "岗位定义",
+  "description": "TideStack metadata schema for position. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "key",
+    "name"
+  ],
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

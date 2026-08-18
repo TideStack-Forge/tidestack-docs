@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.guideSidebar.category.快速上手": {
+    "message": "快速上手",
+    "description": "The label for category 快速上手 in sidebar guideSidebar"
+  },
+  "sidebar.guideSidebar.category.开发教程": {
+    "message": "开发教程",
+    "description": "The label for category 开发教程 in sidebar guideSidebar"
+  },
+  "sidebar.guideSidebar.category.通用模块": {
+    "message": "通用模块",
+    "description": "The label for category 通用模块 in sidebar guideSidebar"
+  },
+  "sidebar.guideSidebar.category.高级": {
+    "message": "高级",
+    "description": "The label for category 高级 in sidebar guideSidebar"
+  },
+  "sidebar.guideSidebar.category.扩展前端": {
+    "message": "扩展前端",
+    "description": "The label for category 扩展前端 in sidebar guideSidebar"
+  },
+  "sidebar.guideSidebar.category.扩展后端": {
+    "message": "扩展后端",
+    "description": "The label for category 扩展后端 in sidebar guideSidebar"
+  }
+}

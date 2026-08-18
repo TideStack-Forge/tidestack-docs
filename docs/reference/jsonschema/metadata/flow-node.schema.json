@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/flow-node.schema.json",
+  "title": "逻辑流节点",
+  "description": "TideStack metadata schema for flow-node. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "type",
+    "label"
+  ],
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "iconBg": {
+      "type": "string"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isTerminal": {
+      "type": "boolean"
+    },
+    "terminalKind": {
+      "type": "string"
+    },
+    "editorCapabilities": {
+      "type": "object"
+    },
+    "scaffold": {
+      "type": "object"
+    },
+    "portRules": {
+      "type": "object"
+    },
+    "properties": {
+      "type": "array"
+    },
+    "svgs": {
+      "type": "object"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

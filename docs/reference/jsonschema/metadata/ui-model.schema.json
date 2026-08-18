@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/ui-model.schema.json",
+  "title": "UI 模型",
+  "description": "TideStack metadata schema for ui-model. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "path",
+    "type",
+    "title"
+  ],
+  "properties": {
+    "path": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

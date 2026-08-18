@@ -1,0 +1,71 @@
+services:
+  ouroboros-develop:
+    image: registry.cn-hangzhou.aliyuncs.com/ouroboros/ouroboros-develop:${OUROBOROS_VERSION:?Set OUROBOROS_VERSION in .env}${ARCH_AFFIX:-}
+    container_name: ouroboros-develop
+    ports:
+      - "${PLATFORM_PORT:-80}:80"
+      - "127.0.0.1:${DEBUG_PORT:-15005}:5005"
+    volumes:
+      - ./:/app/deploy
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: Asia/Shanghai
+      DEBUG: "false"
+      HOST_WORKSPACE_PATH: ${HOST_WORKSPACE_PATH}
+      SPRING_DATASOURCE_TYPE: com.alibaba.druid.pool.DruidDataSource
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_DATASOURCE_URL: jdbc:mysql://ouroboros-dev-db:3306/ouroboros-develop?useUnicode=true&characterEncoding=utf-8&nullCatalogMeansCurrent=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      SPRING_DATASOURCE_MIGRATION_STRATEGY: AUTO
+      SPRING_RABBITMQ_HOST: ouroboros-rabbitmq
+      SPRING_RABBITMQ_PORT: "5672"
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER:?Set RABBITMQ_DEFAULT_USER in .env}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS:?Set RABBITMQ_DEFAULT_PASS in .env}
+      OUROBOROS_DEV_CONTAINER_DOCKERAPI_HOST: unix:///var/run/docker.sock
+    networks:
+      - ouroboros-dev
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - ouroboros-dev-db
+      - ouroboros-rabbitmq
+    restart: unless-stopped
+
+  ouroboros-dev-db:
+    image: registry.cn-hangzhou.aliyuncs.com/ouroboros/mysql-server:8.0${ARCH_AFFIX:-}
+    container_name: ouroboros-dev-db
+    ports:
+      - "127.0.0.1:${MYSQL_PORT:-13306}:3306"
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_DATABASE: ouroboros-develop
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_ROOT_HOST: 172.20.88.%
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - ouroboros-dev
+    restart: unless-stopped
+
+  ouroboros-rabbitmq:
+    image: registry.cn-hangzhou.aliyuncs.com/ouroboros/rabbitmq:3-management${ARCH_AFFIX:-}
+    container_name: ouroboros-rabbitmq
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+      - "127.0.0.1:15692:15692"
+    environment:
+      TZ: Asia/Shanghai
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:?Set RABBITMQ_DEFAULT_USER in .env}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:?Set RABBITMQ_DEFAULT_PASS in .env}
+    networks:
+      - ouroboros-dev
+    restart: unless-stopped
+
+networks:
+  ouroboros-dev:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.88.0/24

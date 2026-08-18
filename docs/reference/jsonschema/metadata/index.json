@@ -1,0 +1,223 @@
+{
+  "source": "bundled-handbook-docs",
+  "count": 31,
+  "entries": [
+    {
+      "type": "authority",
+      "displayName": "权限项模型",
+      "fileSuffix": ".authority.json",
+      "schema": "authority.schema.json",
+      "path": "docs/reference/jsonschema/metadata/authority.schema.json"
+    },
+    {
+      "type": "menu",
+      "displayName": "菜单模型",
+      "fileSuffix": ".menu.json",
+      "schema": "menu.schema.json",
+      "path": "docs/reference/jsonschema/metadata/menu.schema.json"
+    },
+    {
+      "type": "dev-menu",
+      "displayName": "开发菜单模型",
+      "fileSuffix": ".dev-menu.json",
+      "schema": "dev-menu.schema.json",
+      "path": "docs/reference/jsonschema/metadata/dev-menu.schema.json"
+    },
+    {
+      "type": "ui-model",
+      "displayName": "UI 模型",
+      "fileSuffix": ".ui-model.json",
+      "schema": "ui-model.schema.json",
+      "path": "docs/reference/jsonschema/metadata/ui-model.schema.json"
+    },
+    {
+      "type": "ui-schema",
+      "displayName": "UI Schema",
+      "fileSuffix": ".ui-schema.json",
+      "schema": "ui-schema.schema.json",
+      "path": "docs/reference/jsonschema/metadata/ui-schema.schema.json"
+    },
+    {
+      "type": "business",
+      "displayName": "业务模型",
+      "fileSuffix": ".business.json",
+      "schema": "business.schema.json",
+      "path": "docs/reference/jsonschema/metadata/business.schema.json"
+    },
+    {
+      "type": "logicflow",
+      "displayName": "逻辑流模型",
+      "fileSuffix": ".logicflow.json",
+      "schema": "logicflow.schema.json",
+      "path": "docs/reference/jsonschema/metadata/logicflow.schema.json"
+    },
+    {
+      "type": "approval-workflow",
+      "displayName": "审批流",
+      "fileSuffix": ".workflow.json",
+      "schema": "approval-workflow.schema.json",
+      "path": "docs/reference/jsonschema/metadata/approval-workflow.schema.json"
+    },
+    {
+      "type": "field-type",
+      "displayName": "字段类型",
+      "fileSuffix": ".field-type.json",
+      "schema": "field-type.schema.json",
+      "path": "docs/reference/jsonschema/metadata/field-type.schema.json"
+    },
+    {
+      "type": "flow-node",
+      "displayName": "逻辑流节点",
+      "fileSuffix": ".flow-node.json",
+      "schema": "flow-node.schema.json",
+      "path": "docs/reference/jsonschema/metadata/flow-node.schema.json"
+    },
+    {
+      "type": "widget",
+      "displayName": "组件定义",
+      "fileSuffix": ".widget.json",
+      "schema": "widget.schema.json",
+      "path": "docs/reference/jsonschema/metadata/widget.schema.json"
+    },
+    {
+      "type": "micro-web",
+      "displayName": "微前端",
+      "fileSuffix": ".micro-web.json",
+      "schema": "micro-web.schema.json",
+      "path": "docs/reference/jsonschema/metadata/micro-web.schema.json"
+    },
+    {
+      "type": "rpc",
+      "displayName": "RPC 模型",
+      "fileSuffix": ".rpc.json",
+      "schema": "rpc.schema.json",
+      "path": "docs/reference/jsonschema/metadata/rpc.schema.json"
+    },
+    {
+      "type": "rpc-auth",
+      "displayName": "RPC 认证",
+      "fileSuffix": ".rpc.auth.json",
+      "schema": "rpc-auth.schema.json",
+      "path": "docs/reference/jsonschema/metadata/rpc-auth.schema.json"
+    },
+    {
+      "type": "webapi",
+      "displayName": "WebAPI 模型",
+      "fileSuffix": ".webapi.json",
+      "schema": "webapi.schema.json",
+      "path": "docs/reference/jsonschema/metadata/webapi.schema.json"
+    },
+    {
+      "type": "notification",
+      "displayName": "通知模板",
+      "fileSuffix": ".notification.json",
+      "schema": "notification.schema.json",
+      "path": "docs/reference/jsonschema/metadata/notification.schema.json"
+    },
+    {
+      "type": "business-log",
+      "displayName": "业务日志模板",
+      "fileSuffix": ".business-log.json",
+      "schema": "business-log.schema.json",
+      "path": "docs/reference/jsonschema/metadata/business-log.schema.json"
+    },
+    {
+      "type": "data-init",
+      "displayName": "数据初始化",
+      "fileSuffix": ".data-init.json",
+      "schema": "data-init.schema.json",
+      "path": "docs/reference/jsonschema/metadata/data-init.schema.json"
+    },
+    {
+      "type": "mq",
+      "displayName": "MQ 绑定",
+      "fileSuffix": ".mq.json",
+      "schema": "mq.schema.json",
+      "path": "docs/reference/jsonschema/metadata/mq.schema.json"
+    },
+    {
+      "type": "schedule",
+      "displayName": "定时任务",
+      "fileSuffix": ".schedule.json",
+      "schema": "schedule.schema.json",
+      "path": "docs/reference/jsonschema/metadata/schedule.schema.json"
+    },
+    {
+      "type": "i18n",
+      "displayName": "国际化语言包",
+      "fileSuffix": ".i18n.json",
+      "schema": "i18n.schema.json",
+      "path": "docs/reference/jsonschema/metadata/i18n.schema.json"
+    },
+    {
+      "type": "data-dict",
+      "displayName": "数据字典",
+      "fileSuffix": ".dict.json",
+      "schema": "data-dict.schema.json",
+      "path": "docs/reference/jsonschema/metadata/data-dict.schema.json"
+    },
+    {
+      "type": "position",
+      "displayName": "岗位定义",
+      "fileSuffix": ".position.json",
+      "schema": "position.schema.json",
+      "path": "docs/reference/jsonschema/metadata/position.schema.json"
+    },
+    {
+      "type": "error-code",
+      "displayName": "错误码",
+      "fileSuffix": null,
+      "schema": "error-code.schema.json",
+      "path": "docs/reference/jsonschema/metadata/error-code.schema.json"
+    },
+    {
+      "type": "app-metadata",
+      "displayName": "应用元数据",
+      "fileSuffix": null,
+      "schema": "app-metadata.schema.json",
+      "path": "docs/reference/jsonschema/metadata/app-metadata.schema.json"
+    },
+    {
+      "type": "modules-diff",
+      "displayName": "模块树 Diff",
+      "fileSuffix": null,
+      "schema": "modules-diff.schema.json",
+      "path": "docs/reference/jsonschema/metadata/modules-diff.schema.json"
+    },
+    {
+      "type": "app-module",
+      "displayName": "应用模块",
+      "fileSuffix": null,
+      "schema": "app-module.schema.json",
+      "path": "docs/reference/jsonschema/metadata/app-module.schema.json"
+    },
+    {
+      "type": "configuration",
+      "displayName": "配置项",
+      "fileSuffix": null,
+      "schema": "configuration.schema.json",
+      "path": "docs/reference/jsonschema/metadata/configuration.schema.json"
+    },
+    {
+      "type": "configuration-group",
+      "displayName": "配置分组",
+      "fileSuffix": null,
+      "schema": "configuration-group.schema.json",
+      "path": "docs/reference/jsonschema/metadata/configuration-group.schema.json"
+    },
+    {
+      "type": "configuration-item",
+      "displayName": "配置项",
+      "fileSuffix": ".config.json",
+      "schema": "configuration-item.schema.json",
+      "path": "docs/reference/jsonschema/metadata/configuration-item.schema.json"
+    },
+    {
+      "type": "configuration-group-item",
+      "displayName": "配置分组",
+      "fileSuffix": ".config-group.json",
+      "schema": "configuration-group-item.schema.json",
+      "path": "docs/reference/jsonschema/metadata/configuration-group-item.schema.json"
+    }
+  ]
+}

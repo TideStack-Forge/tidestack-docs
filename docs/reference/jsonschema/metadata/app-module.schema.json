@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/app-module.schema.json",
+  "title": "应用模块",
+  "description": "TideStack metadata schema for app-module. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+      "fullName",
+      "title"
+    ],
+    "properties": {
+      "fullName": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "icon": {
+        "type": "string"
+      },
+      "order": {
+        "type": "integer"
+      },
+      "menu": {
+        "type": "string"
+      },
+      "subMenus": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "authorities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/business-log.schema.json",
+  "title": "业务日志模板",
+  "description": "TideStack metadata schema for business-log. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "httpMethod",
+    "url"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "httpMethod": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "moduleName": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string"
+    },
+    "businessKeyName": {
+      "type": "string"
+    },
+    "summaryTemplate": {
+      "type": "string"
+    },
+    "sensitiveFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "shouldSaveResponseBody": {
+      "type": "boolean"
+    }
+  }
+}

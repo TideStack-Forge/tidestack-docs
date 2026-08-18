@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/widget.schema.json",
+  "title": "组件定义",
+  "description": "TideStack metadata schema for widget. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title"
+  ],
+  "properties": {
+    "scene": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "allowHeader": {
+      "type": "boolean"
+    },
+    "allowFooter": {
+      "type": "boolean"
+    },
+    "sizeConstraints": {
+      "type": "object"
+    },
+    "defaultSize": {
+      "type": "object"
+    },
+    "defaultConfig": {
+      "type": "object"
+    },
+    "defaultStyleConfig": {
+      "type": "object"
+    },
+    "configFormItems": {
+      "type": "array"
+    },
+    "thumbSchema": {
+      "type": "object"
+    },
+    "exampleData": {
+      "type": "object"
+    },
+    "configDialogSize": {
+      "type": "string"
+    }
+  }
+}

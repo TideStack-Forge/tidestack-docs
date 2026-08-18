@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/business.schema.json",
+  "title": "业务模型",
+  "description": "TideStack metadata schema for business. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "modelType",
+    "name",
+    "title"
+  ],
+  "properties": {
+    "formatVersion": {
+      "type": "string"
+    },
+    "modelType": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "isAttachment": {
+      "type": "boolean"
+    },
+    "fields": {
+      "type": "array"
+    },
+    "relations": {
+      "type": "array"
+    },
+    "features": {
+      "type": "object"
+    },
+    "apis": {
+      "type": "object"
+    },
+    "views": {
+      "type": "object"
+    },
+    "workflow": {
+      "type": "object"
+    },
+    "accessControl": {
+      "type": "object"
+    },
+    "custom": {
+      "type": "array"
+    },
+    "enableArchiveDelete": {
+      "type": "boolean"
+    },
+    "enableScd2History": {
+      "type": "boolean"
+    }
+  }
+}

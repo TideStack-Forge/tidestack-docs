@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/logicflow.schema.json",
+  "title": "逻辑流模型",
+  "description": "TideStack metadata schema for logicflow. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "entryNode": {
+      "type": "string"
+    },
+    "exitNode": {
+      "type": "string"
+    },
+    "errorEntryNode": {
+      "type": "string"
+    },
+    "inputDataType": {
+      "type": "string"
+    },
+    "outputDataType": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array"
+    },
+    "connections": {
+      "type": "array"
+    },
+    "nodePositions": {
+      "type": "object"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    }
+  }
+}

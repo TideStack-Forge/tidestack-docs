@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/configuration-item.schema.json",
+  "title": "配置项",
+  "description": "TideStack metadata schema for configuration-item. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "key",
+    "label",
+    "valueType"
+  ],
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "modifiable": {
+      "type": "boolean"
+    },
+    "nullable": {
+      "type": "boolean"
+    },
+    "valueType": {
+      "type": "string",
+      "enum": [
+        "int",
+        "long",
+        "float",
+        "double",
+        "boolean",
+        "string",
+        "object",
+        "map",
+        "list",
+        "array"
+      ]
+    },
+    "defaultValue": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "object",
+        "array",
+        "null"
+      ]
+    },
+    "groupPath": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "frontend",
+        "backend"
+      ]
+    },
+    "obsolete": {
+      "type": "boolean"
+    },
+    "obsoleteCause": {
+      "type": "string"
+    },
+    "editorSchema": {
+      "type": "object"
+    }
+  }
+}

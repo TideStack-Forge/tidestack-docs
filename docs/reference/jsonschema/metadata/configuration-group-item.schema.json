@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/configuration-group-item.schema.json",
+  "title": "配置分组",
+  "description": "TideStack metadata schema for configuration-group-item. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "path",
+    "title"
+  ],
+  "properties": {
+    "path": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

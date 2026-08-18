@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/notification.schema.json",
+  "title": "通知模板",
+  "description": "TideStack metadata schema for notification. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "payloadSchema": {
+      "type": "object"
+    },
+    "channel": {
+      "type": "object"
+    }
+  }
+}

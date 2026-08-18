@@ -1,0 +1,34 @@
+{
+  "title": {
+    "message": "潮汐栈",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "潮汐栈",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.快速上手": {
+    "message": "快速上手",
+    "description": "Navbar item with label 快速上手"
+  },
+  "item.label.低代码开发": {
+    "message": "低代码开发",
+    "description": "Navbar item with label 低代码开发"
+  },
+  "item.label.融合开发": {
+    "message": "融合开发",
+    "description": "Navbar item with label 融合开发"
+  },
+  "item.label.运维管理": {
+    "message": "运维管理",
+    "description": "Navbar item with label 运维管理"
+  },
+  "item.label.核心概念": {
+    "message": "核心概念",
+    "description": "Navbar item with label 核心概念"
+  },
+  "item.label.参考资料": {
+    "message": "参考资料",
+    "description": "Navbar item with label 参考资料"
+  }
+}

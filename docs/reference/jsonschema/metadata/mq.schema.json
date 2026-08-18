@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/mq.schema.json",
+  "title": "MQ 绑定",
+  "description": "TideStack metadata schema for mq. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "bindingType",
+    "bindingName",
+    "destination"
+  ],
+  "properties": {
+    "bindingType": {
+      "type": "string",
+      "enum": [
+        "producer",
+        "consumer"
+      ]
+    },
+    "bindingName": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "binder": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "broadcast": {
+      "type": "boolean"
+    },
+    "routingKey": {
+      "type": "string"
+    },
+    "flowName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

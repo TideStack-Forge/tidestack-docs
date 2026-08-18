@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/modules-diff.schema.json",
+  "title": "模块树 Diff",
+  "description": "TideStack metadata schema for modules-diff. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+      "diffType",
+      "fullName"
+    ],
+    "properties": {
+      "diffType": {
+        "type": "string",
+        "enum": [
+          "add",
+          "remove",
+          "modify"
+        ]
+      },
+      "fullName": {
+        "type": "string"
+      },
+      "parent": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "icon": {
+        "type": "string"
+      },
+      "order": {
+        "type": "integer"
+      },
+      "menu": {
+        "type": "string"
+      },
+      "subMenus": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "authorities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

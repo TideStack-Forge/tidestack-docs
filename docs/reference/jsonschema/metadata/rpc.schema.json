@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/rpc.schema.json",
+  "title": "RPC 模型",
+  "description": "TideStack metadata schema for rpc. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title",
+    "type"
+  ],
+  "properties": {
+    "group": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "authCredential": {
+      "type": "string"
+    },
+    "request": {
+      "type": "object"
+    }
+  }
+}

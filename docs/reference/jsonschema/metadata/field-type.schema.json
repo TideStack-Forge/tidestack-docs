@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/field-type.schema.json",
+  "title": "字段类型",
+  "description": "TideStack metadata schema for field-type. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "label"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "isPrimaryKeyType": {
+      "type": "boolean"
+    },
+    "primaryKeyGenerator": {
+      "type": "string"
+    },
+    "dataType": {
+      "type": "object"
+    },
+    "ui": {
+      "type": "object"
+    },
+    "validations": {
+      "type": "object"
+    },
+    "validationErrors": {
+      "type": "object"
+    },
+    "paramsUiSchema": {
+      "type": "array"
+    },
+    "defaultParams": {
+      "type": "object"
+    }
+  }
+}

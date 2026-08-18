@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/approval-workflow.schema.json",
+  "title": "审批流",
+  "description": "TideStack metadata schema for approval-workflow. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "formatVersion",
+    "name",
+    "title",
+    "version",
+    "enabled",
+    "form",
+    "nodes",
+    "edges"
+  ],
+  "properties": {
+    "formatVersion": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "form": {
+      "type": "object"
+    },
+    "notification": {
+      "type": "object"
+    },
+    "editorLayout": {
+      "type": "object"
+    },
+    "nodes": {
+      "type": "array"
+    },
+    "edges": {
+      "type": "array"
+    }
+  }
+}

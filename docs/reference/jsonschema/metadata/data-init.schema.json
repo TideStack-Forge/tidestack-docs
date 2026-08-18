@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/data-init.schema.json",
+  "title": "数据初始化",
+  "description": "TideStack metadata schema for data-init. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "blocks"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "id",
+          "targetModel",
+          "matchFields"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "targetModel": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "matchFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}

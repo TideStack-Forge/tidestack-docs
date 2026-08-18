@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/schedule.schema.json",
+  "title": "定时任务",
+  "description": "TideStack metadata schema for schedule. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "cron",
+    "flowName"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "cron": {
+      "type": "string"
+    },
+    "flowName": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

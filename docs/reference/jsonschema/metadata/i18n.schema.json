@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/i18n.schema.json",
+  "title": "国际化语言包",
+  "description": "TideStack metadata schema for i18n. Legacy runtime packaging may still use Ouroboros paths.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "locale",
+    "name",
+    "messages"
+  ],
+  "properties": {
+    "locale": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "isDefault": {
+      "type": "boolean"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "LTR",
+        "RTL"
+      ]
+    },
+    "timestamp": {
+      "type": "integer"
+    },
+    "messages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
