@@ -1,0 +1,53 @@
+# TideStack Handbook Full AI Index
+
+This file is the expanded AI routing index for TideStack Handbook. It is intentionally concise and points to source documents instead of duplicating them.
+
+## Identity And Compatibility
+
+- Product name: TideStack / 潮汐栈.
+- Legacy runtime name: Ouroboros / ouroboros.
+- Preserve legacy identifiers in `com.ouroboros`, `META-INF/ouroboros`, `ouroboros-sdk`, `ouroboros-develop`, `ouroboros-mothership`, Maven coordinates, Docker image names, existing metadata paths, and public runtime contracts.
+- Read `docs/ai/terminology.md` before renaming, publishing docs, generating code, or interpreting old user prompts.
+
+## Human Documentation Routes
+
+- First-time setup and first app: `docs/getting-started/index.md`.
+- Low-code delivery with built-in platform capabilities: `docs/low-code/index.md`.
+- Fusion development with frontend/backend extension points: `docs/fusion-development/index.md`.
+- Deployment, release, backup, monitoring, and troubleshooting: `docs/operations/index.md`.
+- Conceptual model map and model responsibilities: `docs/concepts/index.md`.
+- Supporting metadata resources: `docs/concepts/supporting-resources/index.md`.
+- API, SDK, DSL, Web API, and capability map: `docs/api/index.md`, `docs/reference/index.md`.
+- Common troubleshooting questions: `docs/faq/index.md`.
+
+## Agent-Specific Routes
+
+- Start with `docs/ai/index.md` for the agent contract.
+- Use `docs/ai/routing-hints.md` to choose the minimum relevant handbook section.
+- Use `docs/ai/task-recipes.md` for common development tasks and validation expectations.
+- Use `docs/ai/reference-sources.md` to identify canonical files, generated artifacts, and MCP resource/tool boundaries.
+
+## Metadata And Schema Routes
+
+- Metadata source convention: `src/main/metadata/` packaged to `META-INF/ouroboros/metadata/` unless a specific runtime contract states otherwise.
+- Public bundled schemas: `docs/reference/jsonschema/metadata/*.schema.json`.
+- Schema index: `docs/reference/jsonschema/metadata/index.json`.
+- Handbook must be self-contained after publication; do not rely on monorepo paths outside this repository.
+
+## MCP Boundary
+
+- Expose handbook files and generated schemas as MCP resources.
+- Expose validation, generation, project scanning, template creation, runtime startup, and platform UI automation as MCP tools.
+- Do not copy long handbook prose into tool descriptions; tools should point to the resource URI or source document.
+
+## Context7 Boundary
+
+- Context7 should index stable public Markdown, schema, OpenAPI, and examples.
+- Keep headings stable and examples small enough to retrieve independently.
+- Avoid hiding essential reference material only inside interactive UI pages.
+
+## Validation Expectations
+
+- For handbook structure changes: run `npm run check:structure`.
+- For site publication: run `npm run build`.
+- For metadata schema changes: update `docs/reference/jsonschema/metadata/`, then rerun `npm run check:structure`.

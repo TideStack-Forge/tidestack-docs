@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://localhost/blog</id>
+    <title>潮汐栈 Blog</title>
+    <updated>2023-11-10T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="http://localhost/blog"/>
+    <subtitle>潮汐栈 Blog</subtitle>
+    <icon>http://localhost/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[欢迎使用潮汐栈]]></title>
+        <id>http://localhost/blog/2023/11/10/hello</id>
+        <link href="http://localhost/blog/2023/11/10/hello"/>
+        <updated>2023-11-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[潮汐栈是一套面向业务应用构建的低代码与融合开发平台，这里会持续发布产品动态、能力更新和实践文章。]]></summary>
+        <content type="html"><![CDATA[<p>潮汐栈是一套面向业务应用构建的低代码与融合开发平台，这里会持续发布产品动态、能力更新和实践文章。</p>
+<p>如果你是第一次接触潮汐栈，建议先从手册里的“快速上手”开始，再根据角色进入“低代码开发”“融合开发”或“运维管理”章节。</p>]]></content>
+        <author>
+            <name>Song Mingxu</name>
+            <email>song.mingxu@foxmail.com</email>
+            <uri>https://github.com/BeMxself</uri>
+        </author>
+        <category label="欢迎" term="欢迎"/>
+        <category label="hello" term="hello"/>
+        <category label="潮汐栈" term="潮汐栈"/>
+    </entry>
+</feed>

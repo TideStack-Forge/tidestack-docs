@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktidestack_handbook=globalThis.webpackChunktidestack_handbook||[]).push([[8947],{56600(e){e.exports=JSON.parse('{"authors":[{"name":"Song Mingxu","title":"\u67b6\u6784\u5e08","email":"song.mingxu@foxmail.com","url":"https://github.com/BeMxself","imageURL":"https://github.com/BeMxself.png","key":"BeMxself","page":null,"count":1}]}')}}]);

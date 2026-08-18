@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktidestack_handbook=globalThis.webpackChunktidestack_handbook||[]).push([[8121],{68070(l){l.exports=JSON.parse('{"tags":[{"label":"\u6b22\u8fce","permalink":"/blog/tags/\u6b22\u8fce","count":1},{"label":"hello","permalink":"/blog/tags/hello","count":1},{"label":"\u6f6e\u6c50\u6808","permalink":"/blog/tags/\u6f6e\u6c50\u6808","count":1}]}')}}]);
