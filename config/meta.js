@@ -3,7 +3,7 @@ const docsSiteUrl =
   process.env.DEPLOY_PRIME_URL ||
   process.env.URL ||
   (process.env.GITHUB_REPOSITORY_OWNER
-    ? `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io`
+    ? 'https://docs.tidestack.dev'
     : null) ||
   'http://localhost'
 
