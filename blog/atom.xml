@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost/blog</id>
+    <id>https://docs.tidestack.dev/blog</id>
     <title>潮汐栈 Blog</title>
     <updated>2023-11-10T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost/blog"/>
+    <link rel="alternate" href="https://docs.tidestack.dev/blog"/>
     <subtitle>潮汐栈 Blog</subtitle>
-    <icon>http://localhost/img/favicon.ico</icon>
+    <icon>https://docs.tidestack.dev/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[欢迎使用潮汐栈]]></title>
-        <id>http://localhost/blog/2023/11/10/hello</id>
-        <link href="http://localhost/blog/2023/11/10/hello"/>
+        <id>https://docs.tidestack.dev/blog/2023/11/10/hello</id>
+        <link href="https://docs.tidestack.dev/blog/2023/11/10/hello"/>
         <updated>2023-11-10T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[潮汐栈是一套面向业务应用构建的低代码与融合开发平台，这里会持续发布产品动态、能力更新和实践文章。]]></summary>
         <content type="html"><![CDATA[<p>潮汐栈是一套面向业务应用构建的低代码与融合开发平台，这里会持续发布产品动态、能力更新和实践文章。</p>

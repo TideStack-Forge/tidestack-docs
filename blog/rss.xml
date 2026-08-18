@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>潮汐栈 Blog</title>
-        <link>http://localhost/blog</link>
+        <link>https://docs.tidestack.dev/blog</link>
         <description>潮汐栈 Blog</description>
         <lastBuildDate>Fri, 10 Nov 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,8 +10,8 @@
         <language>zh-CN</language>
         <item>
             <title><![CDATA[欢迎使用潮汐栈]]></title>
-            <link>http://localhost/blog/2023/11/10/hello</link>
-            <guid>http://localhost/blog/2023/11/10/hello</guid>
+            <link>https://docs.tidestack.dev/blog/2023/11/10/hello</link>
+            <guid>https://docs.tidestack.dev/blog/2023/11/10/hello</guid>
             <pubDate>Fri, 10 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[潮汐栈是一套面向业务应用构建的低代码与融合开发平台，这里会持续发布产品动态、能力更新和实践文章。]]></description>
             <content:encoded><![CDATA[<p>潮汐栈是一套面向业务应用构建的低代码与融合开发平台，这里会持续发布产品动态、能力更新和实践文章。</p>
