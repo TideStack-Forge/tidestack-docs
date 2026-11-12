@@ -18,9 +18,5 @@
   "link.item.label.运维管理": {
     "message": "运维管理",
     "description": "The label of footer link with label=运维管理 linking to /docs/operations"
-  },
-  "copyright": {
-    "message": "Copyright © 2023 Xinpai",
-    "description": "The footer copyright"
   }
 }

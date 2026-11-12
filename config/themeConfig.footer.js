@@ -1,5 +1,3 @@
-import { fullMeta as meta } from './meta.js'
-
 const footer = {
   style: 'dark',
   links: [
@@ -42,7 +40,7 @@ const footer = {
       ],
     },
   ],
-  copyright: `Copyright © ${new Date().getFullYear()} ${meta.organizationName}`,
+  copyright: `Copyright © ${new Date().getFullYear()} TideStack`,
 }
 
 export default footer
