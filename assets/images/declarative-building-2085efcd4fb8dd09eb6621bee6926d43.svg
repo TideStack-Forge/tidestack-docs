@@ -1,0 +1,53 @@
+<svg viewBox="0 0 1200 520" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="title">命令式编程与声明式开发的关注点</title>
+  <desc id="desc">命令式编程要求开发者逐步说明怎么做，声明式开发让开发者描述业务对象、规则和能力目标，由平台解释模型并完成通用实现。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#687386"/></marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#0b63ce"/></marker>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+      .panel-title{font-size:22px;font-weight:650;fill:#0b1f3a;text-anchor:middle}
+      .focus{font-size:18px;font-weight:650;text-anchor:middle}
+      .item{font-size:16px;font-weight:600;fill:#264a73;text-anchor:middle}
+      .sub{font-size:14px;fill:#52657f;text-anchor:middle}
+      .step-no{font-size:14px;font-weight:700;fill:#fff;text-anchor:middle}
+      .edge{fill:none;stroke:#687386;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="520" fill="#fff"/>
+
+  <rect x="50" y="70" width="470" height="390" rx="14" fill="#f8fafc" stroke="#a8b1c0" stroke-width="2"/>
+  <text x="285" y="112" class="panel-title">命令式编程</text>
+  <text x="285" y="144" class="focus" fill="#596779">关注“怎么做”</text>
+  <g>
+    <rect x="105" y="175" width="360" height="52" rx="8" fill="#fff" stroke="#a8b1c0"/>
+    <circle cx="135" cy="201" r="15" fill="#687386"/><text x="135" y="206" class="step-no">1</text><text x="285" y="207" class="item">读取数据</text>
+    <path d="M285 227V243" class="edge"/>
+    <rect x="105" y="247" width="360" height="52" rx="8" fill="#fff" stroke="#a8b1c0"/>
+    <circle cx="135" cy="273" r="15" fill="#687386"/><text x="135" y="278" class="step-no">2</text><text x="285" y="279" class="item">判断条件</text>
+    <path d="M285 299V315" class="edge"/>
+    <rect x="105" y="319" width="360" height="52" rx="8" fill="#fff" stroke="#a8b1c0"/>
+    <circle cx="135" cy="345" r="15" fill="#687386"/><text x="135" y="350" class="step-no">3</text><text x="285" y="351" class="item">调用处理</text>
+    <path d="M285 371V387" class="edge"/>
+    <rect x="105" y="391" width="360" height="52" rx="8" fill="#fff" stroke="#a8b1c0"/>
+    <circle cx="135" cy="417" r="15" fill="#687386"/><text x="135" y="422" class="step-no">4</text><text x="285" y="423" class="item">检查权限</text>
+  </g>
+
+  <path d="M535 264H650" fill="none" stroke="#0b63ce" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  <text x="593" y="240" class="sub" fill="#0b63ce">关注点上移</text>
+  <text x="593" y="286" class="sub">从技术步骤</text>
+  <text x="593" y="307" class="sub">回到业务意图</text>
+
+  <rect x="670" y="70" width="480" height="390" rx="14" fill="#edf5ff" stroke="#0b63ce" stroke-width="2.5"/>
+  <text x="910" y="112" class="panel-title">声明式开发</text>
+  <text x="910" y="144" class="focus" fill="#0b63ce">关注“做什么”</text>
+  <rect x="715" y="177" width="120" height="82" rx="9" fill="#fff" stroke="#7aa7de"/><text x="775" y="211" class="item">业务对象</text><text x="775" y="235" class="sub">属性与关系</text>
+  <rect x="850" y="177" width="120" height="82" rx="9" fill="#fff" stroke="#7aa7de"/><text x="910" y="211" class="item">业务规则</text><text x="910" y="235" class="sub">条件与约束</text>
+  <rect x="985" y="177" width="120" height="82" rx="9" fill="#fff" stroke="#7aa7de"/><text x="1045" y="211" class="item">能力目标</text><text x="1045" y="235" class="sub">页面与流程</text>
+  <path d="M775 259V300M910 259V300M1045 259V300" fill="none" stroke="#0b63ce" stroke-width="2"/>
+  <path d="M775 300H1045" fill="none" stroke="#0b63ce" stroke-width="2"/>
+  <path d="M910 300V326" fill="none" stroke="#0b63ce" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="745" y="330" width="330" height="94" rx="10" fill="#f0faf7" stroke="#54a89b" stroke-width="2"/>
+  <text x="910" y="367" class="item" fill="#285d54">平台解释结构化模型</text>
+  <text x="910" y="395" class="sub">完成通用的数据、页面、接口、流程与权限实现</text>
+</svg>

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/flow-node.schema.json",
+  "title": "逻辑流节点类型定义",
+  "description": "描述逻辑流设计器中的节点类型，包括外观、配置属性、端口规则和实例脚手架；流程中的节点实例由 logicflow Schema 描述。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "type",
+    "label"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "节点类型标识，应与运行时注册的节点实现对应。"
+    },
+    "label": {
+      "type": "string",
+      "description": "界面中展示的名称。"
+    },
+    "icon": {
+      "type": "string",
+      "description": "前端显示使用的图标标识。"
+    },
+    "iconBg": {
+      "type": "string",
+      "description": "节点图标背景色配置。"
+    },
+    "iconColor": {
+      "type": "string",
+      "description": "节点图标颜色配置。"
+    },
+    "group": {
+      "type": "string",
+      "description": "节点在设计器面板中的分组。"
+    },
+    "shape": {
+      "type": "string",
+      "description": "节点在画布中的形状配置。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    },
+    "isTerminal": {
+      "type": "boolean",
+      "description": "是否将该节点类型标记为流程终端。"
+    },
+    "terminalKind": {
+      "type": "string",
+      "description": "终端节点的类别标识，由设计器和节点语义解释。"
+    },
+    "editorCapabilities": {
+      "type": "object",
+      "description": "节点在编辑器中支持的能力配置。"
+    },
+    "scaffold": {
+      "type": "object",
+      "description": "创建该类节点实例时使用的初始配置。"
+    },
+    "portRules": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "按规则名组织的端口配置对象。"
+    },
+    "properties": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "节点配置属性的编辑定义列表。"
+    },
+    "svgs": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "按名称索引的 SVG 字符串，用于节点外观展示。"
+    },
+    "order": {
+      "type": "integer",
+      "description": "用于同类条目排序的数值。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-logicflow/ouroboros-logicflow-authoring/src/main/java/com/ouroboros/logicflow/authoring/model/NodeDefine.java"
+}

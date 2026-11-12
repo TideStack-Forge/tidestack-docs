@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/field-type.schema.json",
+  "title": "字段类型定义",
+  "description": "定义可复用的业务字段类型，包含底层数据类型、界面配置、校验规则及参数编辑方式。业务字段通过类型名称引用它。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "label"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "字段类型的名称，供业务模型字段的 type 引用。"
+    },
+    "label": {
+      "type": "string",
+      "description": "字段类型在开发界面中的显示名称。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    },
+    "order": {
+      "type": "integer",
+      "description": "用于同类条目排序的数值。"
+    },
+    "isPrimaryKeyType": {
+      "type": "boolean",
+      "description": "该字段类型是否可作为主键类型使用。"
+    },
+    "primaryKeyGenerator": {
+      "type": "string",
+      "description": "该类型使用的主键生成器标识。"
+    },
+    "dataType": {
+      "type": "object",
+      "description": "底层数据类型及其参数配置。"
+    },
+    "ui": {
+      "type": "object",
+      "description": "该字段类型的输入和显示等 UI 配置。"
+    },
+    "validations": {
+      "type": "object",
+      "description": "该字段类型提供的校验规则配置。"
+    },
+    "validationErrors": {
+      "type": "object",
+      "description": "校验失败时使用的错误消息配置。"
+    },
+    "paramsUiSchema": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "编辑字段类型参数时展示的组件配置列表。"
+    },
+    "defaultParams": {
+      "type": "object",
+      "description": "使用该字段类型时的缺省参数。"
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "APP",
+        "DEV_BUILTIN",
+        "RUNTIME_EXTEND",
+        "JAR",
+        "DEFAULT",
+        null
+      ],
+      "readOnly": true,
+      "description": "由加载器标记的来源：APP、DEV_BUILTIN、RUNTIME_EXTEND、JAR 或 DEFAULT。"
+    },
+    "sourceLocation": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "readOnly": true,
+      "description": "由加载器记录的来源位置，供追踪定义来源。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-field-type/ouroboros-field-type-core/src/main/java/com/ouroboros/fieldtype/FieldTypeDefinition.java; core/ouroboros-field-type/ouroboros-field-type-core/src/main/java/com/ouroboros/fieldtype/FieldTypeDefinitionSource.java"
+}

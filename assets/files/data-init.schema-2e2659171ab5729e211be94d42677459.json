@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/data-init.schema.json",
+  "title": "数据初始化计划",
+  "description": "声明一组可按版本执行的数据初始化块；每个块指定目标数据模型、匹配字段和待初始化记录。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "blocks"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "\\S",
+      "description": "初始化计划的非空白标识。"
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "default",
+      "description": "计划版本，省略、空白或 null 时按 default 处理。"
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "id",
+          "targetModel",
+          "matchFields"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "\\S",
+            "description": "初始化块在计划中的非空白标识。"
+          },
+          "targetModel": {
+            "type": "string",
+            "pattern": "\\S",
+            "description": "初始化记录写入的目标数据模型名称。"
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "该初始化块的版本；省略、空白或 null 时保持为空。"
+          },
+          "matchFields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\S"
+            },
+            "minItems": 1,
+            "description": "匹配已有记录的字段名称列表，至少一项；空白字段无效，重复字段由代码去重。"
+          },
+          "records": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "title": "初始化记录",
+              "description": "按目标模型的字段名称提供一条记录的值；字段是否存在及值是否合法由数据模型校验。"
+            },
+            "default": [],
+            "description": "要初始化的记录对象列表，每个对象按字段名提供值；省略或 null 时按空列表处理。"
+          }
+        },
+        "title": "数据初始化块",
+        "description": "定义一个目标模型的数据初始化批次，平台使用 matchFields 识别已有记录。"
+      },
+      "minItems": 1,
+      "description": "初始化块列表，至少包含一个块。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-data/ouroboros-data-initialization-core/src/main/java/com/ouroboros/data/initialization/DataInitializationPlan.java; core/ouroboros-data/ouroboros-data-initialization-core/src/main/java/com/ouroboros/data/initialization/InitializationBlock.java"
+}

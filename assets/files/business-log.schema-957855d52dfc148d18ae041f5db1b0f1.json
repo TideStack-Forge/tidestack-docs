@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/business-log.schema.json",
+  "title": "业务日志模板",
+  "description": "将 HTTP 操作映射为业务日志，配置模块、操作、业务键、摘要及脱敏和响应保存策略。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "httpMethod",
+    "url"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "日志模板在开发态的稳定标识。"
+    },
+    "httpMethod": {
+      "type": "string",
+      "description": "该日志模板匹配的 HTTP 方法。"
+    },
+    "url": {
+      "type": "string",
+      "description": "该日志模板匹配的请求 URL 配置。"
+    },
+    "moduleName": {
+      "type": "string",
+      "description": "日志所属业务模块名称。"
+    },
+    "operation": {
+      "type": "string",
+      "description": "日志记录的业务操作名称。"
+    },
+    "level": {
+      "type": "string",
+      "description": "业务日志级别配置。"
+    },
+    "businessKeyName": {
+      "type": "string",
+      "description": "业务键的名称配置，用于关联操作涉及的业务对象。"
+    },
+    "summaryTemplate": {
+      "type": "string",
+      "description": "生成业务日志摘要的模板。"
+    },
+    "sensitiveFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "需要脱敏处理的字段名称列表。"
+    },
+    "shouldSaveResponseBody": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "是否在日志中保存响应体；未设置时交由运行时策略处理。"
+    }
+  },
+  "$comment": "Source: ability/ouroboros-business-log/ouroboros-business-log-core/src/main/java/com/ouroboros/businesslog/DefaultBusinessOperationTemplate.java"
+}

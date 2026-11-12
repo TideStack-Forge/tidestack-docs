@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1504" width="1280" height="1504" role="img" aria-labelledby="row-and-column-access-control-title row-and-column-access-control-desc" id="row-and-column-access-control-root">
+<title id="row-and-column-access-control-title">行级与列级数据访问控制</title>
+<desc id="row-and-column-access-control-desc">角色授权分别解析为行级条件与字段集合，同一权限的多个角色取并集，委托凭据再限制其范围，数据模型访问控制插件据此约束查询、统计、写入与删除。</desc>
+<defs>
+      <style>#row-and-column-access-control-root { font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif; }
+      #row-and-column-access-control-root .diagram-container { width:100%;overflow-x:auto }
+      @media print {
+#row-and-column-access-control-root .diagram-container { overflow-x:visible }
+}
+      #row-and-column-access-control-root text { font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif }</style><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="row-and-column-access-control-a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="row-and-column-access-control-a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+</defs>
+<rect width="1280" height="1504" fill="white"/>
+<rect x="32" y="192" width="1216" height="608" rx="8" fill="#f5f1fc" fill-opacity="0.55" stroke="#b3a0d6" stroke-width="1"/>
+<text x="52" y="222" font-size="18" font-weight="600" fill="#63448e">本次操作的数据访问约束</text>
+<rect x="56" y="248" width="560" height="328" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="76" y="278" font-size="18" font-weight="600" fill="#204f86">行级范围</text>
+<rect x="664" y="248" width="560" height="328" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="684" y="278" font-size="18" font-weight="600" fill="#216149">列级字段</text>
+<path d="M320 76L368 76" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M896 76L848 76" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M492 136L492.0 162.0Q492 168 486.0 168.0L334.0 168.0Q328 168 328.0 174.0L328 280" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M724 136L724.0 162.0Q724 168 730.0 168.0L938.0 168.0Q944 168 944.0 174.0L944 280" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M328 392L328 416" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M944 392L944 416" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M328 560L328 600" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M944 560L944 600" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M328 760L328 856" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M952 760L952 856" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a71839a)"/>
+<path d="M640 1320L768 1320" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#row-and-column-access-control-a627ba4)"/>
+<g data-node="identity"><rect x="32" y="24" width="280" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="172.0" y="60.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">当前身份与操作</text>
+<text x="172.0" y="87.0" font-size="18" fill="#52657f" text-anchor="middle">用户、角色与凭据</text>
+<text x="172.0" y="114.0" font-size="18" fill="#52657f" text-anchor="middle">目标模型及操作权限</text>
+</g>
+<g data-node="decision"><rect x="376" y="24" width="464" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="608.0" y="73.5" font-size="22" font-weight="600" fill="#63448e" text-anchor="middle">匹配目标操作权限</text>
+<text x="608.0" y="100.5" font-size="18" fill="#52657f" text-anchor="middle">只读取授予本次操作权限的角色配置</text>
+</g>
+<g data-node="grants"><rect x="904" y="24" width="344" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="1076.0" y="60.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">权限定义与角色授权</text>
+<text x="1076.0" y="87.0" font-size="18" fill="#52657f" text-anchor="middle">可控制的字段与筛选维度</text>
+<text x="1076.0" y="114.0" font-size="18" fill="#52657f" text-anchor="middle">角色授予的字段与数据范围</text>
+</g>
+<g data-node="row-resolve"><rect x="80" y="288" width="512" height="96" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="336.0" y="319.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">单个角色：解析筛选参数</text>
+<text x="336.0" y="346.0" font-size="18" fill="#52657f" text-anchor="middle">固定取值／当前员工、部门、公司等范围</text>
+<text x="336.0" y="373.0" font-size="18" fill="#52657f" text-anchor="middle">过滤器解析取值，各维度条件通过 AND 组合</text>
+</g>
+<g data-node="field-resolve"><rect x="688" y="288" width="512" height="96" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="944.0" y="319.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">单个角色：解析字段配置</text>
+<text x="944.0" y="346.0" font-size="18" fill="#52657f" text-anchor="middle">按权限定义区分公共字段与受控字段</text>
+<text x="944.0" y="373.0" font-size="18" fill="#52657f" text-anchor="middle">公共字段与获准的受控字段组成允许集</text>
+</g>
+<g data-node="rows"><rect x="80" y="424" width="512" height="128" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="336.0" y="457.5" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">行约束 · RowConstraint</text>
+<text x="336.0" y="484.5" font-size="18" fill="#52657f" text-anchor="middle">ALL：全部记录　｜　FILTER：条件范围</text>
+<text x="336.0" y="511.5" font-size="18" fill="#52657f" text-anchor="middle">NONE：无可访问记录</text>
+<text x="336.0" y="538.5" font-size="18" fill="#52657f" text-anchor="middle">示例：部门 = A</text>
+</g>
+<g data-node="fields"><rect x="688" y="424" width="512" height="128" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="944.0" y="457.5" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">字段约束 · FieldConstraint</text>
+<text x="944.0" y="484.5" font-size="18" fill="#52657f" text-anchor="middle">ALL：全部字段，可带排除字段</text>
+<text x="944.0" y="511.5" font-size="18" fill="#52657f" text-anchor="middle">ONLY：指定字段　｜　NONE：无可用字段</text>
+<text x="944.0" y="538.5" font-size="18" fill="#52657f" text-anchor="middle">示例：编号、部门、名称</text>
+</g>
+<g data-node="combine"><rect x="96" y="608" width="1088" height="144" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="640.0" y="650.5" font-size="22" font-weight="600" fill="#63448e" text-anchor="middle">按同一操作权限组合行、列约束</text>
+<text x="640.0" y="677.5" font-size="18" fill="#52657f" text-anchor="middle">多个角色：行范围取 OR，字段集合取并集</text>
+<text x="640.0" y="704.5" font-size="18" fill="#52657f" text-anchor="middle">使用委托凭据时：再与凭据的行范围、字段集合分别取交集</text>
+<text x="640.0" y="731.5" font-size="18" fill="#52657f" text-anchor="middle">无操作授权、凭据未包含目标权限等情况，直接拒绝</text>
+</g>
+<g data-node="read"><rect x="32" y="864" width="592" height="216" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="328.0" y="925.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">查询与统计</text>
+<text x="328.0" y="954.0" font-size="20" fill="#52657f" text-anchor="middle">业务筛选条件 AND 行级条件</text>
+<text x="328.0" y="983.0" font-size="20" fill="#52657f" text-anchor="middle">通配查询只选择获准字段</text>
+<text x="328.0" y="1012.0" font-size="20" fill="#52657f" text-anchor="middle">筛选、排序、分组等引用的字段逐项校验</text>
+<text x="328.0" y="1041.0" font-size="20" fill="#52657f" text-anchor="middle">显式请求未授权字段时拒绝执行</text>
+</g>
+<g data-node="write"><rect x="656" y="864" width="592" height="216" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="952.0" y="925.0" font-size="22" font-weight="600" fill="#216149" text-anchor="middle">写入与删除</text>
+<text x="952.0" y="954.0" font-size="20" fill="#52657f" text-anchor="middle">新增：检查写入字段与新记录范围</text>
+<text x="952.0" y="983.0" font-size="20" fill="#52657f" text-anchor="middle">更新：限定目标行，检查写入字段</text>
+<text x="952.0" y="1012.0" font-size="20" fill="#52657f" text-anchor="middle">修改受控维度时，新值仍须满足行级条件</text>
+<text x="952.0" y="1041.0" font-size="20" fill="#52657f" text-anchor="middle">删除：只作用于获准的数据行</text>
+</g>
+<text x="640" y="832" font-size="18" fill="#52657f" text-anchor="middle" font-weight="600">数据模型访问控制插件执行约束</text>
+<text x="952" y="1112" font-size="18" fill="#8c453b" text-anchor="middle">越权字段或不满足行级条件的写入会被拒绝</text>
+<text x="32" y="1160" font-size="20" fill="#52657f" text-anchor="start" font-weight="600">查询效果示例：仅允许 A 部门，且仅允许读取“编号、部门、名称”三个字段。</text>
+<text x="32" y="1200" font-size="20" fill="#52657f" text-anchor="start" font-weight="600">原始数据（示意）</text>
+<text x="784" y="1200" font-size="20" fill="#204f86" text-anchor="start" font-weight="600">本次查询返回的数据</text>
+<text x="704" y="1272" font-size="18" fill="#52657f" text-anchor="middle">按行筛选</text>
+<text x="704" y="1300" font-size="18" fill="#52657f" text-anchor="middle">按列选择</text>
+<text x="1016" y="1412" font-size="18" fill="#204f86" text-anchor="middle">B 部门记录、金额字段均不返回</text>
+<text x="32" y="1472" font-size="18" fill="#52657f" text-anchor="start">控制在后端数据访问时执行；前端隐藏字段或按钮用于界面呈现，不能替代授权检查。</text>
+<rect x="32" y="1224" width="148" height="40" fill="#eef2f7" stroke="#b3bfce" stroke-width="1"/>
+<text x="106.0" y="1251" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="600">编号</text>
+<rect x="180" y="1224" width="148" height="40" fill="#eef2f7" stroke="#b3bfce" stroke-width="1"/>
+<text x="254.0" y="1251" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="600">部门</text>
+<rect x="328" y="1224" width="148" height="40" fill="#eef2f7" stroke="#b3bfce" stroke-width="1"/>
+<text x="402.0" y="1251" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="600">名称</text>
+<rect x="476" y="1224" width="148" height="40" fill="#eef2f7" stroke="#b3bfce" stroke-width="1"/>
+<text x="550.0" y="1251" text-anchor="middle" fill="#43546c" font-size="20" font-weight="600">金额</text>
+<rect x="32" y="1264" width="148" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="106.0" y="1291" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="400">01</text>
+<rect x="180" y="1264" width="148" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="254.0" y="1291" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="400">A</text>
+<rect x="328" y="1264" width="148" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="402.0" y="1291" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="400">记录甲</text>
+<rect x="476" y="1264" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="550.0" y="1291" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">100</text>
+<rect x="32" y="1304" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="106.0" y="1331" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">02</text>
+<rect x="180" y="1304" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="254.0" y="1331" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">B</text>
+<rect x="328" y="1304" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="402.0" y="1331" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">记录乙</text>
+<rect x="476" y="1304" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="550.0" y="1331" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">200</text>
+<rect x="32" y="1344" width="148" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="106.0" y="1371" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="400">03</text>
+<rect x="180" y="1344" width="148" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="254.0" y="1371" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="400">A</text>
+<rect x="328" y="1344" width="148" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="402.0" y="1371" text-anchor="middle" fill="#2d3e55" font-size="20" font-weight="400">记录丙</text>
+<rect x="476" y="1344" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="550.0" y="1371" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">300</text>
+<rect x="32" y="1384" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="106.0" y="1411" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">04</text>
+<rect x="180" y="1384" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="254.0" y="1411" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">B</text>
+<rect x="328" y="1384" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="402.0" y="1411" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">记录丁</text>
+<rect x="476" y="1384" width="148" height="40" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1"/>
+<text x="550.0" y="1411" text-anchor="middle" fill="#43546c" font-size="20" font-weight="400">400</text>
+<rect x="784" y="1224" width="128" height="40" fill="#eef5ff" stroke="#b3bfce" stroke-width="1"/>
+<text x="848.0" y="1251" text-anchor="middle" fill="#204f86" font-size="20" font-weight="600">编号</text>
+<rect x="912" y="1224" width="128" height="40" fill="#eef5ff" stroke="#b3bfce" stroke-width="1"/>
+<text x="976.0" y="1251" text-anchor="middle" fill="#204f86" font-size="20" font-weight="600">部门</text>
+<rect x="1040" y="1224" width="208" height="40" fill="#eef5ff" stroke="#b3bfce" stroke-width="1"/>
+<text x="1144.0" y="1251" text-anchor="middle" fill="#204f86" font-size="20" font-weight="600">名称</text>
+<rect x="784" y="1264" width="128" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="848.0" y="1291" text-anchor="middle" fill="#204f86" font-size="20" font-weight="400">01</text>
+<rect x="912" y="1264" width="128" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="976.0" y="1291" text-anchor="middle" fill="#204f86" font-size="20" font-weight="400">A</text>
+<rect x="1040" y="1264" width="208" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="1144.0" y="1291" text-anchor="middle" fill="#204f86" font-size="20" font-weight="400">记录甲</text>
+<rect x="784" y="1304" width="128" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="848.0" y="1331" text-anchor="middle" fill="#204f86" font-size="20" font-weight="400">03</text>
+<rect x="912" y="1304" width="128" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="976.0" y="1331" text-anchor="middle" fill="#204f86" font-size="20" font-weight="400">A</text>
+<rect x="1040" y="1304" width="208" height="40" fill="#ffffff" stroke="#b3bfce" stroke-width="1"/>
+<text x="1144.0" y="1331" text-anchor="middle" fill="#204f86" font-size="20" font-weight="400">记录丙</text>
+</svg>

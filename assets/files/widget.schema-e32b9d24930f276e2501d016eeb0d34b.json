@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/widget.schema.json",
+  "title": "组件定义",
+  "description": "定义可在工作台或仪表盘中使用的组件，提供尺寸约束、缺省配置、配置表单和渲染模板；组件实例引用此定义。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title"
+  ],
+  "properties": {
+    "scene": {
+      "type": "string",
+      "description": "组件所属的使用场景标识。"
+    },
+    "name": {
+      "type": "string",
+      "description": "组件定义的名称，供组件实例引用。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    },
+    "category": {
+      "type": "string",
+      "description": "组件在组件库中的分类。"
+    },
+    "allowHeader": {
+      "type": "boolean",
+      "description": "是否允许组件显示头部。"
+    },
+    "allowFooter": {
+      "type": "boolean",
+      "description": "是否允许组件显示底部。"
+    },
+    "sizeConstraints": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/sizeConstraints"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "组件可使用的最小和最大网格尺寸。"
+    },
+    "defaultSize": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/gridSize"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "新建组件实例时的缺省网格尺寸。"
+    },
+    "defaultConfig": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/config"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "新建组件实例时的缺省业务和显示配置。"
+    },
+    "defaultStyleConfig": {
+      "type": "object",
+      "description": "组件实例的缺省样式配置。"
+    },
+    "configFormItems": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "UI 组件类型，由前端组件注册机制解析，如 page、form、input-text。"
+          },
+          "name": {
+            "type": "string",
+            "description": "组件绑定的数据字段名，表单组件通常用它读取和写入表单数据。"
+          },
+          "id": {
+            "type": "string",
+            "description": "组件标识，供组件定位或交互引用。"
+          },
+          "className": {
+            "type": [
+              "string",
+              "object",
+              "null"
+            ],
+            "description": "组件样式类；可使用类名字符串或按条件启用类名的对象。"
+          },
+          "visible": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "组件是否可见。"
+          },
+          "hidden": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "组件是否隐藏。"
+          },
+          "visibleOn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "决定组件可见性的前端表达式。"
+          },
+          "hiddenOn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "决定组件隐藏状态的前端表达式。"
+          }
+        },
+        "description": "UI 组件节点；组件专有属性、表达式及 title/body 等内容由组件定义。"
+      },
+      "description": "编辑组件配置时使用的 UI Schema 表单组件列表。"
+    },
+    "thumbSchema": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "UI 组件类型，由前端组件注册机制解析，如 page、form、input-text。"
+        },
+        "name": {
+          "type": "string",
+          "description": "组件绑定的数据字段名，表单组件通常用它读取和写入表单数据。"
+        },
+        "id": {
+          "type": "string",
+          "description": "组件标识，供组件定位或交互引用。"
+        },
+        "className": {
+          "type": [
+            "string",
+            "object",
+            "null"
+          ],
+          "description": "组件样式类；可使用类名字符串或按条件启用类名的对象。"
+        },
+        "visible": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "组件是否可见。"
+        },
+        "hidden": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "组件是否隐藏。"
+        },
+        "visibleOn": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "决定组件可见性的前端表达式。"
+        },
+        "hiddenOn": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "决定组件隐藏状态的前端表达式。"
+        }
+      },
+      "description": "展示组件缩略预览时使用的 UI Schema。"
+    },
+    "exampleData": {
+      "type": "object",
+      "description": "组件预览或配置展示使用的示例数据。"
+    },
+    "configDialogSize": {
+      "type": "string",
+      "description": "组件配置对话框的尺寸标识。"
+    },
+    "schemaTpl": {
+      "description": "生成组件渲染 Schema 的模板，可为任意 JSON 值，由组件模板机制解释。"
+    }
+  },
+  "$defs": {
+    "gridSize": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "cols": {
+          "type": "integer",
+          "description": "组件占用的网格列数。"
+        },
+        "rows": {
+          "type": "integer",
+          "description": "组件占用的网格行数。"
+        }
+      },
+      "title": "组件网格尺寸",
+      "description": "以列数和行数描述组件在网格布局中占用的空间。"
+    },
+    "sizeConstraints": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "min": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/gridSize"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "允许的最小网格尺寸。"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/gridSize"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "允许的最大网格尺寸。"
+        }
+      },
+      "title": "组件尺寸约束",
+      "description": "配置组件允许的最小和最大网格尺寸。"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "header": {
+          "description": "组件头部内容配置，可为任意 JSON 值，由组件解释。"
+        },
+        "showHeader": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否显示组件头部。"
+        },
+        "showFooter": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否显示组件底部。"
+        }
+      },
+      "title": "组件缺省配置",
+      "description": "组件实例的缺省标题和显示设置；组件专有配置通过扩展属性平铺。"
+    }
+  },
+  "$comment": "Source: ability/ouroboros-widget/ouroboros-widget-core/src/main/java/com/ouroboros/widget/WidgetDefinition.java; ability/ouroboros-widget/ouroboros-widget-core/src/main/java/com/ouroboros/widget/GridSize.java; ability/ouroboros-widget/ouroboros-widget-core/src/main/java/com/ouroboros/widget/WidgetConfig.java"
+}

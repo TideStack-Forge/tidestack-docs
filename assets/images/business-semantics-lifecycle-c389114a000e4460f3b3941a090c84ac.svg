@@ -1,0 +1,68 @@
+<svg viewBox="0 0 1500 940" role="img" aria-labelledby="semantics-title semantics-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="semantics-title">业务语义、投影模型与应用生命周期</title>
+  <desc id="semantics-desc">业务模型位于圆心，业务与治理要素组成内环，数据、页面、接口、流程、导航和权限等投影模型组成中环，需求到运行反馈的应用生命周期组成外环。</desc>
+  <defs>
+    <marker id="cycle-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8f9baa"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .pill { fill: #fff; stroke-width: 1.5; }
+      .pill-text { fill: #39475a; font-size: 16px; font-weight: 650; text-anchor: middle; }
+      .model-text { fill: #264a73; font-size: 15px; text-anchor: middle; }
+      .inner-text { fill: #5f420f; font-size: 15px; text-anchor: middle; }
+      .legend-title { font-size: 17px; font-weight: 650; }
+      .legend-text { fill: #52657f; font-size: 14px; }
+    </style>
+  </defs>
+  <rect width="1500" height="940" fill="#fff"/>
+  <circle cx="750" cy="470" r="425" fill="#f8fafc" stroke="#7aa7de" stroke-width="2.5"/>
+  <circle cx="750" cy="470" r="290" fill="#edf5ff" stroke="#0b63ce" stroke-width="2"/>
+  <circle cx="750" cy="470" r="170" fill="#fff8ec" stroke="#d29a47" stroke-width="2"/>
+  <circle cx="750" cy="470" r="90" fill="#ddf3ec" stroke="#0f766e" stroke-width="2.5"/>
+
+  <path d="M1085 275L1160 166H1200" fill="none" stroke="#7aa7de" stroke-width="1"/>
+  <path d="M1000 360L1160 386H1200" fill="none" stroke="#0b63ce" stroke-width="1"/>
+  <path d="M875 540L1160 636H1200" fill="none" stroke="#d29a47" stroke-width="1"/>
+
+  <text x="750" y="461" fill="#0b1f3a" font-size="22" font-weight="650" text-anchor="middle">业务模型</text>
+  <text x="750" y="490" fill="#285d54" font-size="15" text-anchor="middle">业务语义与治理边界</text>
+
+  <g><rect class="pill" x="850" y="409" width="56" height="38" rx="19" stroke="#ddb66f"/><text x="878" y="434" class="inner-text">属性</text></g>
+  <g><rect class="pill" x="594" y="409" width="56" height="38" rx="19" stroke="#ddb66f"/><text x="622" y="434" class="inner-text">事件</text></g>
+  <g><rect class="pill" x="797" y="560" width="64" height="38" rx="19" stroke="#ddb66f"/><text x="829" y="585" class="inner-text">关系</text></g>
+  <g><rect class="pill" x="639" y="560" width="64" height="38" rx="19" stroke="#ddb66f"/><text x="671" y="585" class="inner-text">动作</text></g>
+  <g><rect class="pill" x="698" y="316" width="104" height="38" rx="19" stroke="#ddb66f"/><text x="750" y="341" class="inner-text">访问权限</text></g>
+
+  <g><rect class="pill" x="529" y="284" width="110" height="40" rx="20" stroke="#7aa7de"/><text x="584" y="310" class="model-text">数据模型</text></g>
+  <g><rect class="pill" x="675" y="215" width="150" height="40" rx="20" stroke="#7aa7de"/><text x="750" y="241" class="model-text">UI / UI Schema</text></g>
+  <g><rect class="pill" x="866" y="284" width="100" height="40" rx="20" stroke="#7aa7de"/><text x="916" y="310" class="model-text">WebAPI</text></g>
+  <g><rect class="pill" x="935" y="450" width="100" height="40" rx="20" stroke="#7aa7de"/><text x="985" y="476" class="model-text">逻辑流</text></g>
+  <g><rect class="pill" x="866" y="616" width="100" height="40" rx="20" stroke="#7aa7de"/><text x="916" y="642" class="model-text">审批流</text></g>
+  <g><rect class="pill" x="695" y="685" width="110" height="40" rx="20" stroke="#7aa7de"/><text x="750" y="711" class="model-text">菜单模型</text></g>
+  <g><rect class="pill" x="529" y="616" width="110" height="40" rx="20" stroke="#7aa7de"/><text x="584" y="642" class="model-text">权限模型</text></g>
+  <g><rect class="pill" x="470" y="450" width="90" height="40" rx="20" stroke="#7aa7de"/><text x="515" y="476" class="model-text">RPC</text></g>
+
+  <path d="M813.823 115.703A360 360 0 0 1 970.231 185.222" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M1032.467 246.813A360 360 0 0 1 1108.299 435.043" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M1108.299 504.957A360 360 0 0 1 1032.467 693.187" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M970.231 754.778A360 360 0 0 1 813.823 824.297" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M686.177 824.297A360 360 0 0 1 529.769 754.778" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M467.533 693.187A360 360 0 0 1 391.701 504.957" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M391.701 435.043A360 360 0 0 1 467.533 246.813" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+  <path d="M529.769 185.222A360 360 0 0 1 686.177 115.703" fill="none" stroke="#8f9baa" stroke-width="1.2" marker-end="url(#cycle-arrow)"/>
+
+  <g><rect class="pill" x="700" y="89" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="750" y="116" class="pill-text">需求</text></g>
+  <g><rect class="pill" x="955" y="194" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="1005" y="221" class="pill-text">建模</text></g>
+  <g><rect class="pill" x="1060" y="449" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="1110" y="476" class="pill-text">构建</text></g>
+  <g><rect class="pill" x="955" y="704" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="1005" y="731" class="pill-text">验证</text></g>
+  <g><rect class="pill" x="700" y="809" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="750" y="836" class="pill-text">交付</text></g>
+  <g><rect class="pill" x="445" y="704" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="495" y="731" class="pill-text">运行</text></g>
+  <g><rect class="pill" x="340" y="449" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="390" y="476" class="pill-text">反馈</text></g>
+  <g><rect class="pill" x="445" y="194" width="100" height="42" rx="21" stroke="#8b95a7"/><text x="495" y="221" class="pill-text">演进</text></g>
+
+  <text x="1210" y="144" fill="#52657f" class="legend-title">应用生命周期</text>
+  <text x="1210" y="174" class="legend-text">需求进入建模，模型经过构建、验证和交付进入运行，</text><text x="1210" y="197" class="legend-text">运行反馈推动下一轮演进。</text>
+  <text x="1210" y="364" fill="#0b63ce" class="legend-title">投影模型</text>
+  <text x="1210" y="394" class="legend-text">分别承接数据、页面、接口、流程、集成、</text><text x="1210" y="417" class="legend-text">导航与权限职责。</text>
+  <text x="1210" y="614" fill="#b45309" class="legend-title">业务与治理要素</text>
+  <text x="1210" y="644" class="legend-text">定义对象的属性、关系、动作和事件，</text><text x="1210" y="667" class="legend-text">以及谁可以访问。</text>
+</svg>

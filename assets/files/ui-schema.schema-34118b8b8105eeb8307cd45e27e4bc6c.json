@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/ui-schema.schema.json",
+  "title": "UI Schema",
+  "description": "直接交给前端渲染的组件 JSON，可为对象或数组，无需 name/schema 外层包装。组件专有属性和动态表达式由前端组件解释。",
+  "additionalProperties": true,
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "UI 组件类型，由前端组件注册机制解析，如 page、form、input-text。"
+    },
+    "name": {
+      "type": "string",
+      "description": "组件绑定的数据字段名，表单组件通常用它读取和写入表单数据。"
+    },
+    "id": {
+      "type": "string",
+      "description": "组件标识，供组件定位或交互引用。"
+    },
+    "className": {
+      "type": [
+        "string",
+        "object",
+        "null"
+      ],
+      "description": "组件样式类；可使用类名字符串或按条件启用类名的对象。"
+    },
+    "visible": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "组件是否可见。"
+    },
+    "hidden": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "组件是否隐藏。"
+    },
+    "visibleOn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "决定组件可见性的前端表达式。"
+    },
+    "hiddenOn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "决定组件隐藏状态的前端表达式。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-ui-model/ouroboros-ui-model-schema/src/main/java/com/ouroboros/uischema/JarUISchemaProvider.java; core/ouroboros-ui-model/ouroboros-ui-model-schema/src/main/java/com/ouroboros/uischema/schema/SchemaNode.java"
+}

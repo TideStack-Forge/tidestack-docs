@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1600 1298" role="img" aria-labelledby="deployment-and-isolation-title deployment-and-isolation-desc">
+<title id="deployment-and-isolation-title">部署结构与环境隔离</title>
+<desc id="deployment-and-isolation-desc">开发环境中的平台通过 Docker 或 Kubernetes 后端管理开发助手和测试实例，工作区与数据独立持久化；目标应用环境加载自己的应用定义并独立处理业务，部署可采用进程、容器或集群编排。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a9474b1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9474b1"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a57b33"/></marker>
+</defs>
+<rect width="1600" height="1370" fill="white"/>
+
+<rect x="40" y="96" width="720" height="824" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1" stroke-dasharray="6 5"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#204f86">开发与验证环境：平台、调试资源及开发数据</text>
+<rect x="840" y="96" width="720" height="824" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1" stroke-dasharray="6 5"/>
+<text x="860" y="126" font-size="18" font-weight="600" fill="#216149">应用运行环境：独立入口、配置及业务数据</text>
+<rect x="40" y="1008" width="1520" height="252" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="60" y="1038" font-size="18" font-weight="600" fill="#43546c">载体与放置方式</text>
+<path d="M220 264L220 328" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M368 408L432 408" fill="none" stroke="#9474b1" stroke-width="1.5" marker-end="url(#a9474b1)"/>
+<path d="M520 488L520.0 518.0Q520 524 514.0 524.0L226.0 524.0Q220 524 220.0 530.0L220 564" fill="none" stroke="#9474b1" stroke-width="1.5" marker-end="url(#a9474b1)"/>
+<path d="M640 488L640 564" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M220 692L220 760" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M496 692L496.0 718.0Q496 724 490.0 724.0L314.0 724.0Q308 724 308.0 730.0L308 760" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M640 692L640 760" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1200 264L1200 328" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M1020 488L1020 564" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1380 488L1380 564" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1020 692L1020 760" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1380 692L1380 760" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<g data-node="dev-entry"><rect x="80" y="164" width="280" height="92" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="220.0" y="207.5" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">平台访问入口</text>
+<text x="220.0" y="232.5" font-size="16" fill="#52657f" text-anchor="middle">HTTP／WebSocket</text>
+</g>
+<g data-node="app-entry"><rect x="880" y="164" width="640" height="92" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1200.0" y="207.5" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">应用访问入口</text>
+<text x="1200.0" y="232.5" font-size="16" fill="#52657f" text-anchor="middle">HTTP／WebSocket；按环境设置域名与 TLS</text>
+</g>
+<g data-node="develop"><rect x="80" y="336" width="280" height="144" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="220.0" y="393.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">开发平台运行单元</text>
+<text x="220.0" y="418.0" font-size="16" fill="#52657f" text-anchor="middle">Nginx＋Spring Boot</text>
+<text x="220.0" y="443.0" font-size="16" fill="#52657f" text-anchor="middle">开发服务与统一运行能力</text>
+</g>
+<g data-node="backend"><rect x="440" y="336" width="280" height="144" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="580.0" y="393.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">调试运行后端</text>
+<text x="580.0" y="418.0" font-size="16" fill="#52657f" text-anchor="middle">Docker Engine API</text>
+<text x="580.0" y="443.0" font-size="16" fill="#52657f" text-anchor="middle">或 Kubernetes API</text>
+</g>
+<g data-node="helper"><rect x="80" y="572" width="280" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="220.0" y="613.5" font-size="19" font-weight="600" fill="#63448e" text-anchor="middle">开发助手容器／Pod</text>
+<text x="220.0" y="637.5" font-size="15" fill="#52657f" text-anchor="middle">加载扩展及依赖</text>
+<text x="220.0" y="661.5" font-size="15" fill="#52657f" text-anchor="middle">发现扩展元数据</text>
+</g>
+<g data-node="test"><rect x="440" y="572" width="280" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="580.0" y="613.5" font-size="19" font-weight="600" fill="#216149" text-anchor="middle">测试实例容器／Pod</text>
+<text x="580.0" y="637.5" font-size="15" fill="#52657f" text-anchor="middle">统一运行时基座</text>
+<text x="580.0" y="661.5" font-size="15" fill="#52657f" text-anchor="middle">加载当前应用与测试配置</text>
+</g>
+<g data-node="dev-volume"><rect x="80" y="768" width="280" height="120" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="220.0" y="801.5" font-size="19" font-weight="600" fill="#805719" text-anchor="middle">平台与调试工作区</text>
+<text x="220.0" y="825.5" font-size="15" fill="#52657f" text-anchor="middle">宿主目录或共享 PVC</text>
+<text x="220.0" y="849.5" font-size="15" fill="#52657f" text-anchor="middle">按应用与 profile 划分运行目录</text>
+<text x="220.0" y="873.5" font-size="15" fill="#52657f" text-anchor="middle">平台、助手与测试目录分别管理</text>
+</g>
+<g data-node="dev-data"><rect x="440" y="768" width="280" height="120" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="580.0" y="813.5" font-size="19" font-weight="600" fill="#805719" text-anchor="middle">开发数据与测试数据</text>
+<text x="580.0" y="837.5" font-size="15" fill="#52657f" text-anchor="middle">按环境分别连接数据库</text>
+<text x="580.0" y="861.5" font-size="15" fill="#52657f" text-anchor="middle">日志、文件及中间件独立配置</text>
+</g>
+<g data-node="runtime"><rect x="880" y="336" width="640" height="144" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1200.0" y="392.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">应用运行单元</text>
+<text x="1200.0" y="418.5" font-size="17" fill="#52657f" text-anchor="middle">Nginx 静态服务／反向代理＋后端基座</text>
+<text x="1200.0" y="444.5" font-size="17" fill="#52657f" text-anchor="middle">应用定义与业务插件按目标环境装配</text>
+</g>
+<g data-node="app-files"><rect x="880" y="572" width="280" height="112" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1020.0" y="613.5" font-size="19" font-weight="600" fill="#805719" text-anchor="middle">应用与实例文件</text>
+<text x="1020.0" y="637.5" font-size="15" fill="#52657f" text-anchor="middle">应用元数据、扩展与资源</text>
+<text x="1020.0" y="661.5" font-size="15" fill="#52657f" text-anchor="middle">实例配置、日志及上传目录</text>
+</g>
+<g data-node="app-data"><rect x="1240" y="572" width="280" height="112" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1380.0" y="613.5" font-size="19" font-weight="600" fill="#805719" text-anchor="middle">业务数据与外部依赖</text>
+<text x="1380.0" y="637.5" font-size="15" fill="#52657f" text-anchor="middle">关系数据库及文件存储</text>
+<text x="1380.0" y="661.5" font-size="15" fill="#52657f" text-anchor="middle">按需接入 Redis、消息队列</text>
+</g>
+<g data-node="persistence"><rect x="880" y="768" width="640" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="1200.0" y="817.5" font-size="20" font-weight="600" fill="#43546c" text-anchor="middle">目标环境持久化与运维</text>
+<text x="1200.0" y="842.5" font-size="16" fill="#52657f" text-anchor="middle">数据卷、备份与凭据独立管理；更新进程保留持久化数据</text>
+</g>
+<g data-node="native"><rect x="80" y="1072" width="440" height="140" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="300.0" y="1127.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">原生部署</text>
+<text x="300.0" y="1152.0" font-size="16" fill="#52657f" text-anchor="middle">主机／虚拟机：JVM 进程＋静态服务</text>
+<text x="300.0" y="1177.0" font-size="16" fill="#52657f" text-anchor="middle">应用目录与外部依赖独立配置</text>
+</g>
+<g data-node="docker"><rect x="560" y="1072" width="440" height="140" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="780.0" y="1127.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">容器部署</text>
+<text x="780.0" y="1152.0" font-size="16" fill="#52657f" text-anchor="middle">Docker：镜像运行＋容器网络</text>
+<text x="780.0" y="1177.0" font-size="16" fill="#52657f" text-anchor="middle">工作区与运行数据挂载到持久卷</text>
+</g>
+<g data-node="k8s"><rect x="1040" y="1072" width="480" height="140" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1280.0" y="1127.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">云原生部署</text>
+<text x="1280.0" y="1152.0" font-size="16" fill="#52657f" text-anchor="middle">集群：Deployment／Pod＋Service</text>
+<text x="1280.0" y="1177.0" font-size="16" fill="#52657f" text-anchor="middle">按需 Ingress；共享工作区使用 PVC</text>
+</g>
+<rect x="252.0" y="282" width="136" height="25" rx="3" fill="white"/><text x="320" y="300" fill="#627ba4" font-size="16" text-anchor="middle">HTTP／WebSocket</text>
+<rect x="380.0" y="376" width="40" height="25" rx="3" fill="white"/><text x="400" y="394" fill="#9474b1" font-size="16" text-anchor="middle">API</text>
+<rect x="296.0" y="492" width="96" height="25" rx="3" fill="white"/><text x="344" y="510" fill="#9474b1" font-size="16" text-anchor="middle">创建与启停</text>
+<rect x="640.0" y="520" width="96" height="25" rx="3" fill="white"/><text x="688" y="538" fill="#43816c" font-size="16" text-anchor="middle">创建与启停</text>
+<rect x="236.0" y="716" width="48" height="25" rx="3" fill="white"/><text x="260" y="734" fill="#a57b33" font-size="16" text-anchor="middle">挂载</text>
+<rect x="368.0" y="692" width="48" height="25" rx="3" fill="white"/><text x="392" y="710" fill="#a57b33" font-size="16" text-anchor="middle">挂载</text>
+<rect x="644.0" y="716" width="80" height="25" rx="3" fill="white"/><text x="684" y="734" fill="#a57b33" font-size="16" text-anchor="middle">数据连接</text>
+<rect x="1232.0" y="282" width="136" height="25" rx="3" fill="white"/><text x="1300" y="300" fill="#43816c" font-size="16" text-anchor="middle">HTTP／WebSocket</text>
+<rect x="1044.0" y="518" width="96" height="25" rx="3" fill="white"/><text x="1092" y="536" fill="#a57b33" font-size="16" text-anchor="middle">加载／读写</text>
+<rect x="1400.0" y="518" width="80" height="25" rx="3" fill="white"/><text x="1440" y="536" fill="#a57b33" font-size="16" text-anchor="middle">服务连接</text>
+<rect x="1044.0" y="716" width="64" height="25" rx="3" fill="white"/><text x="1076" y="734" fill="#a57b33" font-size="16" text-anchor="middle">持久卷</text>
+<rect x="1408.0" y="716" width="80" height="25" rx="3" fill="white"/><text x="1448" y="734" fill="#a57b33" font-size="16" text-anchor="middle">独立存储</text>
+<text x="1200" y="904" font-size="17" fill="#216149" text-anchor="middle">业务请求在应用环境内完成处理</text>
+<text x="800" y="970" font-size="20" fill="#52657f" text-anchor="middle" font-weight="600">部署载体：同一应用可以按目标环境选择以下形态</text>
+<text x="800" y="1304" font-size="17" fill="#52657f" text-anchor="middle">Kubernetes 后端可创建调试资源；平台与正式应用的集群安装编排由部署方准备。</text>
+<text x="800" y="1336" font-size="17" fill="#52657f" text-anchor="middle">示意图不限定主机数量或副本数；开发数据、测试数据与正式业务数据分别管理。</text>
+</svg>

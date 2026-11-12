@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 116 1400 1184" role="img" aria-labelledby="authorization-path-title authorization-path-desc">
+<title id="authorization-path-title">身份与访问控制</title>
+<desc id="authorization-path-desc">请求建立身份和凭据上下文，用户角色权限先并集；委托凭据再与授权范围取交集并校验目标资源，判定结果用于接口、业务操作与行列权限控制。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="aa36e66" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a36e66"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs>
+<rect width="1400" height="1300" fill="white"/>
+
+<path d="M368 196L552 196" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M552 228L462.0 228.0Q456 228 456.0 234.0L456.0 322.0Q456 328 450.0 328.0L226.0 328.0Q220 328 220.0 334.0L220 372" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M700 260L700 372" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1180 260L1180 372" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M220 500L220.0 558.0Q220 564 226.0 564.0L494.0 564.0Q500 564 500.0 570.0L500 612" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M700 500L700 612" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1180 500L1180.0 558.0Q1180 564 1174.0 564.0L906.0 564.0Q900 564 900.0 570.0L900 612" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M500 772L500.0 838.0Q500 844 494.0 844.0L266.0 844.0Q260 844 260.0 850.0L260 908" fill="none" stroke="#a36e66" stroke-width="1.5" marker-end="url(#aa36e66)"/>
+<path d="M900 772L900 908" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M592 968L526.0 968.0Q520 968 520.0 974.0L520.0 1074.0Q520 1080 514.0 1080.0L266.0 1080.0Q260 1080 260.0 1086.0L260 1124" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M704 1028L704 1124" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M960 1028L960 1124" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1216 1028L1216 1124" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<g data-node="request"><rect x="80" y="140" width="280" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="220.0" y="194.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">请求与令牌</text>
+<text x="220.0" y="218.0" font-size="15" fill="#52657f" text-anchor="middle">HTTP／WebSocket 身份凭据</text>
+</g>
+<g data-node="identity"><rect x="560" y="140" width="280" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="700.0" y="194.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">身份与凭据上下文</text>
+<text x="700.0" y="218.0" font-size="15" fill="#52657f" text-anchor="middle">用户身份、角色与凭据类型</text>
+</g>
+<g data-node="target"><rect x="1040" y="140" width="280" height="112" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1180.0" y="194.0" font-size="20" font-weight="600" fill="#805719" text-anchor="middle">目标权限资源</text>
+<text x="1180.0" y="218.0" font-size="15" fill="#52657f" text-anchor="middle">页面／接口／动作／数据</text>
+</g>
+<g data-node="roles"><rect x="80" y="380" width="280" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="220.0" y="434.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">角色授权集合</text>
+<text x="220.0" y="458.0" font-size="15" fill="#52657f" text-anchor="middle">多个角色授予的权限先并集</text>
+</g>
+<g data-node="credentials"><rect x="560" y="380" width="280" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="700.0" y="422.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">凭据类型与范围</text>
+<text x="700.0" y="446.0" font-size="15" fill="#52657f" text-anchor="middle">平台会话</text>
+<text x="700.0" y="470.0" font-size="15" fill="#52657f" text-anchor="middle">委托凭据及其授权范围</text>
+</g>
+<g data-node="rules"><rect x="1040" y="380" width="280" height="112" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1180.0" y="434.0" font-size="20" font-weight="600" fill="#805719" text-anchor="middle">目标资源约束</text>
+<text x="1180.0" y="458.0" font-size="15" fill="#52657f" text-anchor="middle">资源一致性／是否允许委托</text>
+</g>
+<g data-node="evaluation"><rect x="420" y="620" width="560" height="144" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="700.0" y="663.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">统一授权判定</text>
+<text x="700.0" y="689.5" font-size="17" fill="#52657f" text-anchor="middle">角色权限先并集</text>
+<text x="700.0" y="715.5" font-size="17" fill="#52657f" text-anchor="middle">委托凭据再与授权范围取交集</text>
+<text x="700.0" y="741.5" font-size="17" fill="#52657f" text-anchor="middle">平台会话采用用户角色授权</text>
+</g>
+<g data-node="denied"><rect x="80" y="916" width="360" height="104" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="260.0" y="966.0" font-size="20" font-weight="600" fill="#8c453b" text-anchor="middle">拒绝访问</text>
+<text x="260.0" y="990.0" font-size="15" fill="#52657f" text-anchor="middle">无权限／凭据无效／超出范围</text>
+</g>
+<g data-node="allowed"><rect x="600" y="916" width="720" height="104" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="960.0" y="965.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">访问许可与数据控制参数</text>
+<text x="960.0" y="991.0" font-size="17" fill="#52657f" text-anchor="middle">允许的操作、行级过滤条件与列级字段权限</text>
+</g>
+<g data-node="menu"><rect x="80" y="1132" width="360" height="96" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="260.0" y="1177.5" font-size="19" font-weight="600" fill="#204f86" text-anchor="middle">菜单与页面入口</text>
+<text x="260.0" y="1201.5" font-size="15" fill="#52657f" text-anchor="middle">按可见权限组织导航</text>
+</g>
+<g data-node="api"><rect x="600" y="1132" width="208" height="96" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="704.0" y="1177.0" font-size="18" font-weight="600" fill="#216149" text-anchor="middle">接口与业务动作</text>
+<text x="704.0" y="1201.0" font-size="15" fill="#52657f" text-anchor="middle">后端授权检查</text>
+</g>
+<g data-node="data"><rect x="856" y="1132" width="208" height="96" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="960.0" y="1177.0" font-size="18" font-weight="600" fill="#216149" text-anchor="middle">数据查询</text>
+<text x="960.0" y="1201.0" font-size="15" fill="#52657f" text-anchor="middle">行级条件过滤</text>
+</g>
+<g data-node="fields"><rect x="1112" y="1132" width="208" height="96" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1216.0" y="1177.0" font-size="18" font-weight="600" fill="#216149" text-anchor="middle">字段读写与输出</text>
+<text x="1216.0" y="1201.0" font-size="15" fill="#52657f" text-anchor="middle">列级字段权限</text>
+</g>
+<rect x="396.0" y="164" width="128" height="25" rx="3" fill="white"/><text x="460" y="182" fill="#71839a" font-size="16" text-anchor="middle">认证与身份解析</text>
+<rect x="296.0" y="812" width="128" height="25" rx="3" fill="white"/><text x="360" y="830" fill="#a36e66" font-size="16" text-anchor="middle">不满足授权条件</text>
+<rect x="952.0" y="826" width="112" height="25" rx="3" fill="white"/><text x="1008" y="844" fill="#43816c" font-size="16" text-anchor="middle">满足授权条件</text>
+<text x="700" y="1272" font-size="17" fill="#52657f" text-anchor="middle">菜单可见性控制入口展示；接口、业务动作与数据访问仍在各自层次执行权限检查。</text>
+</svg>

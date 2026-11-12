@@ -1,0 +1,861 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/webapi.schema.json",
+  "title": "WebAPI 模型",
+  "description": "定义对外 HTTP 接口的访问范围、处理实现及 OpenAPI 契约。处理实现可为 Spring 映射、路由函数、逻辑流或业务动作。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "method",
+    "path"
+  ],
+  "properties": {
+    "method": {
+      "type": "string",
+      "description": "接口的 HTTP 方法，如 GET、POST、PUT、DELETE。"
+    },
+    "path": {
+      "type": "string",
+      "description": "接口的访问路径，可包含由接口实现解释的路径参数。"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "public",
+        "open",
+        "internal"
+      ],
+      "description": "接口访问范围：public、open 或 internal，由平台安全机制执行相应策略。"
+    },
+    "handlerType": {
+      "type": "string",
+      "enum": [
+        "RequestMapping",
+        "RouterFunction",
+        "LogicFlow",
+        "BusinessAction"
+      ],
+      "description": "请求处理实现类型：RequestMapping、RouterFunction、LogicFlow 或 BusinessAction。"
+    },
+    "summary": {
+      "type": "string",
+      "description": "接口用途的简短摘要。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    },
+    "operationId": {
+      "type": "string",
+      "description": "接口操作的标识，供 OpenAPI 文档和相关工具引用。"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "对接口进行分组或分类的标签列表。"
+    },
+    "parameters": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/parameter"
+      },
+      "description": "接口的路径、查询、请求头或 Cookie 参数定义列表。"
+    },
+    "requestBody": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/requestBody"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "接口请求体的媒体类型、内容结构和必填要求。"
+    },
+    "responses": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/response"
+      },
+      "description": "按 HTTP 响应码或 default 等键索引的响应定义。"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "是否将该接口标记为已弃用。"
+    },
+    "security": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "接口的安全方案要求列表；每个对象将方案名称映射为权限范围字符串列表。"
+    },
+    "servers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/server"
+      },
+      "description": "接口适用的服务地址定义列表。"
+    },
+    "externalDocs": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/externalDocs"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "该接口的外部文档说明和链接。"
+    }
+  },
+  "$defs": {
+    "parameter": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "参数名称，应与接口使用的参数名一致。"
+        },
+        "in": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "path",
+            "query",
+            "header",
+            "cookie",
+            null
+          ],
+          "description": "参数位置：path、query、header 或 cookie。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "请求中是否必须提供该参数。"
+        },
+        "deprecated": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否已弃用该参数。"
+        },
+        "allowEmptyValue": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否允许空参数值，由接口及 OpenAPI 使用方解释。"
+        },
+        "schema": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/schema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "参数值的数据结构定义。"
+        },
+        "example": {
+          "description": "该参数的一个示例值。"
+        },
+        "examples": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/example"
+          },
+          "description": "按示例名称索引的示例定义。"
+        }
+      },
+      "title": "OpenAPI 参数",
+      "description": "声明一个非请求体参数的位置、名称、结构与示例。"
+    },
+    "requestBody": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "content": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/mediaType"
+          },
+          "description": "按媒体类型索引的内容定义，如 application/json。"
+        },
+        "required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "请求是否必须携带请求体。"
+        }
+      },
+      "title": "OpenAPI 请求体",
+      "description": "按媒体类型描述接口请求体的结构、示例及必填要求。"
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "headers": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/header"
+          },
+          "description": "按响应头名称索引的响应头定义。"
+        },
+        "content": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/mediaType"
+          },
+          "description": "按媒体类型索引的响应内容定义。"
+        },
+        "links": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/link"
+          },
+          "description": "按链接名称索引的后续操作关联。"
+        }
+      },
+      "title": "OpenAPI 响应",
+      "description": "描述一个 HTTP 响应的说明、响应头、媒体类型及相关操作链接。"
+    },
+    "mediaType": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "schema": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/schema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "该媒体类型承载数据的结构定义。"
+        },
+        "example": {
+          "description": "该内容的一个示例值。"
+        },
+        "examples": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/example"
+          },
+          "description": "按示例名称索引的示例定义。"
+        },
+        "encoding": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/encoding"
+          },
+          "description": "按字段名称索引的编码配置。"
+        }
+      },
+      "title": "OpenAPI 媒体类型内容",
+      "description": "描述特定媒体类型下的结构、示例与编码配置。"
+    },
+    "example": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "summary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "示例的简短说明。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "value": {
+          "description": "内联示例值，可为任意 JSON 值。"
+        },
+        "externalValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "包含示例内容的外部地址。"
+        }
+      },
+      "title": "OpenAPI 示例",
+      "description": "为参数或内容提供具名示例，可内联 JSON 值或引用外部示例地址。"
+    },
+    "header": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否要求提供该响应头。"
+        },
+        "deprecated": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否已弃用该响应头。"
+        },
+        "schema": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/schema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "响应头值的数据结构定义。"
+        },
+        "example": {
+          "description": "响应头值的一个示例。"
+        },
+        "examples": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/example"
+          },
+          "description": "按示例名称索引的示例定义。"
+        }
+      },
+      "title": "OpenAPI 响应头",
+      "description": "描述一个响应头的结构、必填标记和示例。"
+    },
+    "encoding": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "contentType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "该字段使用的媒体类型。"
+        },
+        "headers": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/header"
+          },
+          "description": "该字段编码涉及的头部定义。"
+        },
+        "style": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "参数或字段的序列化风格。"
+        },
+        "explode": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否将数组或对象拆分为多个参数项。"
+        },
+        "allowReserved": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "序列化值中是否允许保留字符。"
+        }
+      },
+      "title": "OpenAPI 编码配置",
+      "description": "定义媒体类型中某个字段的内容类型、响应头和参数编码方式。"
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "operationRef": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "被关联操作的文档引用地址。"
+        },
+        "operationId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "被关联操作的 operationId。"
+        },
+        "parameters": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "提供给被关联操作的参数映射。"
+        },
+        "requestBody": {
+          "description": "提供给被关联操作的请求体配置。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "server": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/server"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "被关联操作使用的服务地址定义。"
+        }
+      },
+      "title": "OpenAPI 操作链接",
+      "description": "描述如何从当前响应关联到另一个接口操作，并提供参数和服务地址。"
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "服务 URL，可包含由 variables 提供定义的模板变量。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "variables": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/serverVariable"
+          },
+          "description": "按 URL 模板变量名称索引的变量定义。"
+        }
+      },
+      "title": "OpenAPI 服务地址",
+      "description": "定义接口服务的 URL 模板及其变量。"
+    },
+    "serverVariable": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "enum": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "该模板变量允许选择的字符串值列表。"
+        },
+        "default": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "该模板变量的缺省字符串值。"
+        }
+      },
+      "title": "OpenAPI 服务地址变量",
+      "description": "定义服务 URL 模板变量的缺省值、可选值和说明。"
+    },
+    "externalDocs": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "外部文档的访问地址。"
+        }
+      },
+      "title": "OpenAPI 外部文档",
+      "description": "为接口提供可继续查阅的文档地址及说明。"
+    },
+    "schema": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "format": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "数据格式标识，如 date、date-time、uuid，由契约使用方解释。"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "数据结构的简短标题。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "nullable": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "OpenAPI 3.0 风格的可空标记。"
+        },
+        "readOnly": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "将该数据标记为只读，供契约使用方解释。"
+        },
+        "writeOnly": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "将该数据标记为只写，供契约使用方解释。"
+        },
+        "example": {
+          "description": "该数据结构的示例值。"
+        },
+        "deprecated": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否标记该数据结构为已弃用。"
+        },
+        "properties": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/schema"
+          },
+          "description": "按属性名称索引的子数据结构定义。"
+        },
+        "required": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "对象中必须出现的属性名称列表。"
+        },
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/schema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "数组元素的数据结构定义。"
+        },
+        "minimum": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "数值允许的最小值，包含边界。"
+        },
+        "maximum": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "数值允许的最大值，包含边界。"
+        },
+        "minLength": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "字符串允许的最小长度。"
+        },
+        "maxLength": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "字符串允许的最大长度。"
+        },
+        "pattern": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "字符串需要满足的正则表达式。"
+        },
+        "minItems": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "数组允许的最少元素数。"
+        },
+        "maxItems": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "数组允许的最多元素数。"
+        },
+        "uniqueItems": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "数组元素是否必须互不重复。"
+        },
+        "oneOf": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/schema"
+          },
+          "description": "数据必须且只能匹配其中一个子结构。"
+        },
+        "anyOf": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/schema"
+          },
+          "description": "数据必须匹配其中至少一个子结构。"
+        },
+        "allOf": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/schema"
+          },
+          "description": "数据必须匹配所有子结构。"
+        },
+        "not": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/schema"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "数据不得匹配的子结构。"
+        },
+        "additionalProperties": {
+          "description": "对象额外属性的处理配置，可为布尔值或结构定义，由接口契约机制解释。"
+        },
+        "multipleOf": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "数值必须为其整数倍的基数。"
+        },
+        "exclusiveMinimum": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "数值必须严格大于的下界。"
+        },
+        "exclusiveMaximum": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "数值必须严格小于的上界。"
+        },
+        "minProperties": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "对象允许的最少属性数。"
+        },
+        "maxProperties": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "对象允许的最多属性数。"
+        },
+        "default": {
+          "description": "该数据结构的缺省值说明；Schema 校验本身不会自动填入该值。"
+        },
+        "enum": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {},
+          "description": "允许出现的 JSON 值列表。"
+        },
+        "const": {
+          "description": "数据必须等于的固定 JSON 值。"
+        },
+        "$ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "被引用数据结构的 URI 或文档内片段引用。"
+        },
+        "type": {
+          "type": [
+            "string",
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "数据类型名称或联合类型数组，如 string 或 [string, null]。"
+        }
+      },
+      "title": "OpenAPI 数据结构",
+      "description": "描述参数或消息的数据结构，兼容当前 SchemaModel 支持的 OpenAPI 与 JSON Schema 关键字；该对象是接口契约中的数据定义。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/SimpleWebAPIModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/HandlerType.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/ParameterModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/SchemaModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/RequestBodyModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/ResponseModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/SecurityRequirementModel.java"
+}

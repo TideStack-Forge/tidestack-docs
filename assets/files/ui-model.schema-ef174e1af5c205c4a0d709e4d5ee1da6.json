@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/ui-model.schema.json",
+  "title": "UI 模型",
+  "description": "定义可访问的 UI 页面入口；path 标识页面，type 选择页面实现，具体页面配置通过扩展属性提供。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "path",
+    "type",
+    "title"
+  ],
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "页面的访问路径及 UI 模型标识。"
+    },
+    "type": {
+      "type": "string",
+      "description": "UI 页面实现类型，由平台对应的 UI 模型实现解析。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "icon": {
+      "type": "string",
+      "description": "前端显示使用的图标标识。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-ui-model/ouroboros-ui-model-core/src/main/java/com/ouroboros/uimodel/SimpleUIModel.java"
+}

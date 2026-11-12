@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/notification.schema.json",
+  "title": "通知模板",
+  "description": "声明一个通知模板的名称、启用状态、输入负载结构和各渠道配置；具体消息构造与发送由通知机制完成。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "通知模板的名称，供审批通知或代码调用引用。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "isEnabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否启用该定义。"
+    },
+    "payloadSchema": {
+      "type": "object",
+      "description": "用 JSON Schema 对象描述通知模板接收的负载结构。"
+    },
+    "channel": {
+      "type": "object",
+      "description": "按通知渠道组织的模板配置，具体内容由渠道实现解释。"
+    }
+  },
+  "$comment": "Source: ability/ouroboros-notification/ouroboros-notification-core/src/main/java/com/ouroboros/notification/template/DefaultNotificationTemplate.java"
+}

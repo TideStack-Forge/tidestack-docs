@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/menu.schema.json",
+  "title": "菜单模型",
+  "description": "定义应用菜单的标识、目标页面、展示位置和打开方式，可由应用模块引用并受权限项控制。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fullName",
+    "title"
+  ],
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "description": "菜单完整标识，用于菜单引用及模块关联。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "点击菜单后访问的页面地址或路由。"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "前端显示使用的图标标识。"
+    },
+    "placement": {
+      "type": "string",
+      "enum": [
+        "main",
+        "secondary",
+        "all"
+      ],
+      "default": "main",
+      "description": "菜单展示位置：main 为主菜单，secondary 为次级菜单，all 为两处展示；缺省 main。"
+    },
+    "showMode": {
+      "type": "string",
+      "enum": [
+        "tab",
+        "fullScreen",
+        "newWindow"
+      ],
+      "description": "页面打开方式：tab 为标签页，fullScreen 为全屏，newWindow 为新窗口。"
+    },
+    "order": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "用于同类条目排序的数值。"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "main",
+        "secondary",
+        "all"
+      ],
+      "default": "main",
+      "description": "placement 的反序列化别名；新资源优先使用 placement。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/BaseMenuModel.java; core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/MenuModel.java; core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/MenuModelShowModeEnum.java"
+}

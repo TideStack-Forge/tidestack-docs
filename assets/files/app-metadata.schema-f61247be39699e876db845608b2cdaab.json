@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/app-metadata.schema.json",
+  "title": "应用元数据",
+  "description": "app.metadata.json 使用的应用基本信息，配置应用名称、品牌展示、首页、主题及登录页和导航微前端。",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "应用名称或应用标识。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    },
+    "icon": {
+      "type": "string",
+      "description": "前端显示使用的图标标识。"
+    },
+    "logo": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "应用展示使用的 Logo 地址或资源标识。"
+    },
+    "homePage": {
+      "type": "string",
+      "description": "应用首页的页面路径配置。"
+    },
+    "defaultTheme": {
+      "type": "string",
+      "default": "dark",
+      "description": "应用缺省主题，未设置时为 dark。"
+    },
+    "custom": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "loginMicroWeb": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "应用登录页使用的微前端名称。"
+        },
+        "topBarMicroWeb": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "应用顶部栏使用的微前端名称。"
+        },
+        "sideBarMicroWeb": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "应用侧边栏使用的微前端名称。"
+        }
+      },
+      "description": "为应用登录页、顶部栏和侧边栏引用对应微前端；值可为空。",
+      "title": "应用界面微前端配置"
+    }
+  },
+  "$comment": "Source: libs/common/common-app/src/main/java/com/ouroboros/model/AppInfo.java"
+}

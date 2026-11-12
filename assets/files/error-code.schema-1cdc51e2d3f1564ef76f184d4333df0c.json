@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/error-code.schema.json",
+  "title": "错误码定义数组",
+  "description": "error-codes.error.json 使用的错误码列表；每项声明错误编号、标题及缺省消息模板。",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+      "code",
+      "title",
+      "defaultMessageTemplate"
+    ],
+    "properties": {
+      "code": {
+        "type": "integer",
+        "description": "错误的整数编号。"
+      },
+      "title": {
+        "type": "string",
+        "description": "供开发界面或页面展示的标题。"
+      },
+      "defaultMessageTemplate": {
+        "type": "string",
+        "description": "生成缺省错误消息的模板。"
+      },
+      "bizCode": {
+        "type": "string",
+        "description": "业务错误的字符串标识。"
+      },
+      "category": {
+        "type": "string",
+        "description": "错误所属分类。"
+      },
+      "description": {
+        "type": "string",
+        "description": "说明该定义的用途、业务含义或使用条件。"
+      },
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否启用此错误码定义，缺省 true。"
+      }
+    },
+    "title": "错误码定义",
+    "description": "为一个平台或业务错误提供编号、展示信息、分类及启用状态。"
+  },
+  "$comment": "Source: core/ouroboros-error-code/ouroboros-error-code-core/src/main/java/com/ouroboros/errorcode/model/ErrorCodeDefinition.java"
+}

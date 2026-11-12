@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/data-dict.schema.json",
+  "title": "数据字典",
+  "description": "声明一个可复用的数据字典及其字典项。treeMode 决定加载为平面字典或树形字典，供表单和业务字段引用。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name",
+    "title",
+    "type",
+    "treeMode",
+    "items"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "字典名称，供字段和界面配置引用。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "type": {
+      "type": "string",
+      "description": "字典类型标识，由数据字典机制解释。"
+    },
+    "group": {
+      "type": "string",
+      "description": "字典所属分组。"
+    },
+    "editable": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否允许编辑字典，缺省 false。"
+    },
+    "treeMode": {
+      "type": "boolean",
+      "description": "是否采用树形字典；加载器据此选择平面或树形实现，必须显式提供。"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      },
+      "description": "字典项列表；树形模式的项可继续包含 children。"
+    },
+    "multiTenant": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否将字典标记为多租户字典，缺省 false。"
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "code",
+        "label"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "字典项编码，业务数据通常保存此值。"
+        },
+        "label": {
+          "type": "string",
+          "description": "字典项在界面上展示的名称。"
+        },
+        "order": {
+          "type": "integer",
+          "description": "用于同类条目排序的数值。"
+        },
+        "parent": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "树形字典项的父项编码。"
+        },
+        "children": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/item"
+          },
+          "description": "树形字典的子项列表，子项遵循同一结构。"
+        },
+        "extraProps": {
+          "type": "object",
+          "description": "字典项的附加属性对象，供使用方按约定读取。"
+        }
+      },
+      "title": "数据字典项",
+      "description": "定义一个字典编码及显示名称；树形字典通过 parent 和 children 表达层级。"
+    }
+  },
+  "$comment": "Source: ability/ouroboros-data-dict/ouroboros-data-dict-core/src/main/java/com/ouroboros/data/dict/pojo/AbstractDataDict.java; ability/ouroboros-data-dict/ouroboros-data-dict-core/src/main/java/com/ouroboros/data/dict/pojo/FlatDataDictItem.java; ability/ouroboros-data-dict/ouroboros-data-dict-core/src/main/java/com/ouroboros/data/dict/pojo/TreeDataDictItem.java; ability/ouroboros-data-dict/ouroboros-data-dict-core/src/main/java/com/ouroboros/data/dict/serializer/DataDictDeserializer.java"
+}

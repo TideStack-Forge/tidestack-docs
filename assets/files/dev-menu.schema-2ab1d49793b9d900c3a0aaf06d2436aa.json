@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/dev-menu.schema.json",
+  "title": "开发菜单模型",
+  "description": "定义开发平台中的菜单入口，可按开发阶段显示，并通过 children 递归组织子菜单。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fullName",
+    "title"
+  ],
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "description": "菜单完整标识，用于菜单引用及模块关联。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "点击菜单后访问的页面地址或路由。"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "前端显示使用的图标标识。"
+    },
+    "placement": {
+      "type": "string",
+      "enum": [
+        "main",
+        "secondary",
+        "all"
+      ],
+      "default": "main",
+      "description": "菜单展示位置：main 为主菜单，secondary 为次级菜单，all 为两处展示；缺省 main。"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "welcome",
+        "dev",
+        "all"
+      ],
+      "description": "菜单适用阶段：welcome 为欢迎阶段，dev 为开发阶段，all 为所有阶段。"
+    },
+    "showMode": {
+      "type": "string",
+      "enum": [
+        "tab",
+        "fullScreen",
+        "newWindow"
+      ],
+      "description": "页面打开方式：tab 为标签页，fullScreen 为全屏，newWindow 为新窗口。"
+    },
+    "order": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "用于同类条目排序的数值。"
+    },
+    "children": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#"
+      },
+      "description": "子开发菜单列表，每个子项遵循相同的菜单定义，可继续嵌套。"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "main",
+        "secondary",
+        "all"
+      ],
+      "default": "main",
+      "description": "placement 的反序列化别名；新资源优先使用 placement。"
+    }
+  },
+  "$comment": "Source: dev-module/ouroboros-dev-app-management/src/main/java/com/ouroboros/dev/app/model/DevMenuModel.java; core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/MenuModel.java; core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/MenuModelShowModeEnum.java"
+}

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1400 1168" role="img" aria-labelledby="development-debug-sequence-title development-debug-sequence-desc">
+<title id="development-debug-sequence-title">开发与联调协作</title>
+<desc id="development-debug-sequence-desc">开发助手按需刷新扩展元数据并发布到平台缓存，编辑查询读取已有快照；开发服务校验保存应用定义，再管理测试实例并接收状态与日志。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="ac2cad6" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#c2cad6"/></marker>
+<marker id="a9474b1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9474b1"/></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs>
+<rect width="1400" height="1240" fill="white"/>
+
+<path d="M140 180L140 1160" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M420 180L420 1160" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M700 180L700 1160" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M980 180L980 1160" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M1260 180L1260 1160" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M428 252L972 252" fill="none" stroke="#9474b1" stroke-width="1.5" marker-end="url(#a9474b1)"/>
+<path d="M972 312L428 312" fill="none" stroke="#9474b1" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a9474b1)"/>
+<path d="M148 420L412 420" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M412 484L148 484" fill="none" stroke="#627ba4" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a627ba4)"/>
+<path d="M148 548L412 548" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M428 612L692 612" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M692 676L428 676" fill="none" stroke="#627ba4" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a627ba4)"/>
+<path d="M412 740L148 740" fill="none" stroke="#627ba4" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a627ba4)"/>
+<path d="M148 846L412 846" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M428 906L692 906" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M428 966L1252 966" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M1252 1026L428 1026" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<path d="M412 1086L148 1086" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<g data-node="actor0"><rect x="32" y="96" width="216" height="76" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="140.0" y="132.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">开发工作区</text>
+<text x="140.0" y="156.0" font-size="15" fill="#52657f" text-anchor="middle">建模与调试界面</text>
+</g>
+<g data-node="actor1"><rect x="312" y="96" width="216" height="76" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="420.0" y="132.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">开发服务</text>
+<text x="420.0" y="156.0" font-size="15" fill="#52657f" text-anchor="middle">模型开发／实例管理</text>
+</g>
+<g data-node="actor2"><rect x="592" y="96" width="216" height="76" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="700.0" y="132.0" font-size="20" font-weight="600" fill="#805719" text-anchor="middle">应用工作区</text>
+<text x="700.0" y="156.0" font-size="15" fill="#52657f" text-anchor="middle">定义、资源与依赖</text>
+</g>
+<g data-node="actor3"><rect x="872" y="96" width="216" height="76" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="980.0" y="132.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">开发助手</text>
+<text x="980.0" y="156.0" font-size="15" fill="#52657f" text-anchor="middle">扩展元数据发现</text>
+</g>
+<g data-node="actor4"><rect x="1152" y="96" width="216" height="76" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1260.0" y="132.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">测试实例</text>
+<text x="1260.0" y="156.0" font-size="15" fill="#52657f" text-anchor="middle">统一运行时基座</text>
+</g>
+<rect x="620.0" y="220" width="160" height="25" rx="3" fill="white"/><text x="700.0" y="238" fill="#9474b1" font-size="16" text-anchor="middle">发出元数据刷新命令</text>
+<rect x="564.0" y="280" width="272" height="25" rx="3" fill="white"/><text x="700.0" y="298" fill="#9474b1" font-size="16" text-anchor="middle">发布元数据快照（平台校验并缓存）</text>
+<rect x="200.0" y="388" width="160" height="25" rx="3" fill="white"/><text x="280.0" y="406" fill="#627ba4" font-size="16" text-anchor="middle">读取模型与编辑信息</text>
+<rect x="152.0" y="452" width="256" height="25" rx="3" fill="white"/><text x="280.0" y="470" fill="#627ba4" font-size="16" text-anchor="middle">结合现有快照返回模型与类型信息</text>
+<rect x="224.0" y="516" width="112" height="25" rx="3" fill="white"/><text x="280.0" y="534" fill="#627ba4" font-size="16" text-anchor="middle">保存模型定义</text>
+<rect x="496.0" y="580" width="128" height="25" rx="3" fill="white"/><text x="560.0" y="598" fill="#627ba4" font-size="16" text-anchor="middle">校验后写入定义</text>
+<rect x="504.0" y="644" width="112" height="25" rx="3" fill="white"/><text x="560.0" y="662" fill="#627ba4" font-size="16" text-anchor="middle">返回保存结果</text>
+<rect x="224.0" y="708" width="112" height="25" rx="3" fill="white"/><text x="280.0" y="726" fill="#627ba4" font-size="16" text-anchor="middle">更新编辑状态</text>
+<rect x="216.0" y="814" width="128" height="25" rx="3" fill="white"/><text x="280.0" y="832" fill="#43816c" font-size="16" text-anchor="middle">启动或刷新测试</text>
+<rect x="488.0" y="874" width="144" height="25" rx="3" fill="white"/><text x="560.0" y="892" fill="#43816c" font-size="16" text-anchor="middle">准备工作区与依赖</text>
+<rect x="752.0" y="934" width="176" height="25" rx="3" fill="white"/><text x="840.0" y="952" fill="#43816c" font-size="16" text-anchor="middle">创建／复用并加载应用</text>
+<rect x="760.0" y="994" width="160" height="25" rx="3" fill="white"/><text x="840.0" y="1012" fill="#43816c" font-size="16" text-anchor="middle">回传状态与运行日志</text>
+<rect x="224.0" y="1054" width="112" height="25" rx="3" fill="white"/><text x="280.0" y="1072" fill="#43816c" font-size="16" text-anchor="middle">展示测试反馈</text>
+<text x="40" y="218" font-size="18" fill="#52657f" text-anchor="start" font-weight="600">扩展发现（按需）</text>
+<text x="40" y="382" font-size="18" fill="#52657f" text-anchor="start" font-weight="600">模型读取与保存</text>
+<text x="40" y="812" font-size="18" fill="#52657f" text-anchor="start" font-weight="600">测试与反馈</text>
+<text x="700" y="1204" font-size="17" fill="#52657f" text-anchor="middle">扩展发现与编辑读取分别进行；测试时的刷新或重启遵循各模型与代码扩展的加载契约。</text>
+</svg>

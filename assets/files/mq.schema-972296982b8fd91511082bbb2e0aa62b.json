@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/mq.schema.json",
+  "title": "消息队列绑定",
+  "description": "声明消息生产者或消费者与队列目标的绑定。消费者可关联逻辑流，其他连接和渠道配置由消息绑定实现解释。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "bindingType",
+    "bindingName",
+    "destination"
+  ],
+  "properties": {
+    "bindingType": {
+      "type": "string",
+      "enum": [
+        "producer",
+        "consumer"
+      ],
+      "description": "绑定类型：producer 为生产者，consumer 为消费者。"
+    },
+    "bindingName": {
+      "type": "string",
+      "description": "绑定的名称，供消息发送或消费配置引用。"
+    },
+    "destination": {
+      "type": "string",
+      "description": "消息绑定的目标主题或队列标识，由所选 binder 解释。"
+    },
+    "binder": {
+      "type": "string",
+      "description": "消息中间件绑定器的名称或类型配置。"
+    },
+    "group": {
+      "type": "string",
+      "description": "消费者组配置，用于组织消费实例。"
+    },
+    "contentType": {
+      "type": "string",
+      "description": "消息内容的媒体类型配置。"
+    },
+    "broadcast": {
+      "type": "boolean",
+      "description": "是否采用广播方式的绑定配置，由消息实现解释。"
+    },
+    "routingKey": {
+      "type": "string",
+      "description": "消息路由键配置。"
+    },
+    "flowName": {
+      "type": "string",
+      "description": "消费者处理消息时调用的逻辑流名称；生产者不读取此字段。"
+    },
+    "description": {
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    }
+  },
+  "$comment": "Source: ability/ouroboros-message-queue/ouroboros-message-queue-core/src/main/java/com/ouroboros/mq/binding/MQBindingProperties.java"
+}

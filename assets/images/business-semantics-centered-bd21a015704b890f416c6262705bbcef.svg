@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1200 520" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="title">以业务语义为中心</title>
+  <desc id="desc">业务对象的属性、关系、动作、事件、视图和访问权限汇入业务模型，业务模型再连接数据、页面、接口、流程和权限等运行模型。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#687386"/></marker>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+      .title{font-size:20px;font-weight:650;fill:#0b1f3a;text-anchor:middle}.sub{font-size:14px;fill:#52657f;text-anchor:middle}.label{font-size:16px;font-weight:600;fill:#264a73;text-anchor:middle}.edge{fill:none;stroke:#687386;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="520" fill="#fff"/>
+  <rect x="40" y="110" width="250" height="300" rx="12" fill="#fff8ec" stroke="#d29a47" stroke-width="2"/>
+  <text x="165" y="150" class="title">业务对象</text>
+  <g class="label"><rect x="68" y="180" width="90" height="44" rx="22" fill="#fff" stroke="#ddb66f"/><text x="113" y="208">属性</text><rect x="174" y="180" width="90" height="44" rx="22" fill="#fff" stroke="#ddb66f"/><text x="219" y="208">关系</text><rect x="68" y="245" width="90" height="44" rx="22" fill="#fff" stroke="#ddb66f"/><text x="113" y="273">动作</text><rect x="174" y="245" width="90" height="44" rx="22" fill="#fff" stroke="#ddb66f"/><text x="219" y="273">事件</text><rect x="68" y="310" width="90" height="44" rx="22" fill="#fff" stroke="#ddb66f"/><text x="113" y="338">视图</text><rect x="174" y="310" width="90" height="44" rx="22" fill="#fff" stroke="#ddb66f"/><text x="219" y="338">访问权限</text></g>
+  <path d="M290 260H430" class="edge"/><text x="360" y="242" class="sub">组织业务语义</text>
+  <rect x="430" y="155" width="300" height="210" rx="18" fill="#ddf3ec" stroke="#0f766e" stroke-width="2.5"/>
+  <text x="580" y="235" class="title" font-size="26">业务模型</text><text x="580" y="270" class="sub">完整业务定义</text><text x="580" y="300" class="sub">所有运行模型共同的语义来源</text>
+  <path d="M730 260H850" class="edge"/><text x="790" y="242" class="sub">投影与关联</text>
+  <rect x="850" y="70" width="310" height="380" rx="12" fill="#f3f7fd" stroke="#7aa7de" stroke-width="2"/>
+  <text x="1005" y="110" class="title">运行模型</text>
+  <g class="label"><rect x="890" y="140" width="105" height="48" rx="8" fill="#fff" stroke="#7aa7de"/><text x="943" y="170">数据</text><rect x="1015" y="140" width="105" height="48" rx="8" fill="#fff" stroke="#54a89b"/><text x="1068" y="170">页面</text><rect x="890" y="215" width="105" height="48" rx="8" fill="#fff" stroke="#7aa7de"/><text x="943" y="245">接口</text><rect x="1015" y="215" width="105" height="48" rx="8" fill="#fff" stroke="#54a89b"/><text x="1068" y="245">流程</text><rect x="890" y="290" width="105" height="48" rx="8" fill="#fff" stroke="#7c3aed"/><text x="943" y="320">导航</text><rect x="1015" y="290" width="105" height="48" rx="8" fill="#fff" stroke="#b45309"/><text x="1068" y="320">权限</text></g>
+  <text x="1005" y="385" class="sub">分别承担具体运行职责</text><text x="1005" y="412" class="sub">并可追溯到同一份业务定义</text>
+</svg>

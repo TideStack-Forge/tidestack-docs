@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/micro-web.schema.json",
+  "title": "微前端定义",
+  "description": "定义可被平台加载的微前端页面、视图或服务及其入口和包位置，可由 UI 模型引用。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "微前端的名称，供 UI 模型和应用配置引用。"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "app",
+        "parcels",
+        "library"
+      ],
+      "default": "app",
+      "description": "标准类型：app 为页面，parcels 为视图，library 为服务；缺省 app，未知旧值在当前代码中回退为 app。"
+    },
+    "entry": {
+      "type": "string",
+      "description": "微前端加载入口地址。"
+    },
+    "publicPath": {
+      "type": "string",
+      "description": "微前端静态资源使用的公共路径。"
+    },
+    "packageName": {
+      "type": "string",
+      "description": "JAR 微前端资源中使用的包名称。"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "说明该定义的用途、业务含义或使用条件。"
+    },
+    "packagePath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "工作区微前端资源使用的包路径。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-ui-model/ouroboros-ui-model-microweb/src/main/java/com/ouroboros/uimodel/microweb/JarMicroWebModelProvider.java; core/ouroboros-ui-model/ouroboros-ui-model-microweb-dev/src/main/java/com/ouroboros/uimodel/dev/microweb/model/LowCodeMicroWebModel.java; core/ouroboros-ui-model/ouroboros-ui-model-microweb-lowcode/src/main/java/com/ouroboros/uimodel/microweb/lowcode/LowcodeMicroWebModelProvider.java"
+}

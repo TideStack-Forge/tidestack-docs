@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/authority.schema.json",
+  "title": "权限项模型",
+  "description": "定义一个可授予主体的权限项，并关联受其控制的 API、UI 视图和菜单。访问控制定义描述可配置的字段范围与数据筛选条件。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fullName",
+    "title"
+  ],
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "description": "权限项完整标识，授权配置及运行时权限检查以此名称引用。"
+    },
+    "title": {
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "该权限项关联的 API 标识列表。"
+    },
+    "uiViews": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "该权限项关联的 UI 视图标识列表。"
+    },
+    "menuItems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "该权限项关联的菜单项标识列表。"
+    },
+    "delegable": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否允许委派该权限项，缺省为 false。"
+    },
+    "accessControlDefine": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/accessControl"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "该权限项允许配置的字段访问范围和行级筛选条件。"
+    }
+  },
+  "$defs": {
+    "accessControl": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "canControlFields": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否支持配置字段访问范围，未设置时按 false 处理。"
+        },
+        "fieldSelectionRequired": {
+          "type": "boolean",
+          "default": false,
+          "description": "授权配置是否要求选择字段范围。"
+        },
+        "commonFields": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/field"
+          },
+          "description": "权限配置中列出的通用字段定义。"
+        },
+        "controlledFields": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/field"
+          },
+          "description": "可纳入字段访问控制的字段定义。"
+        },
+        "filterDefine": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/filter"
+          },
+          "description": "可用于配置行级访问范围的筛选条件定义。"
+        }
+      },
+      "title": "访问控制定义",
+      "description": "描述授予权限时可选择的字段及可填写的数据筛选条件；实际访问范围仍由平台权限链路执行。"
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "被控制字段的逻辑名称。"
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "字段在权限配置界面中的显示名称。"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "字段类型标识，用于解释该字段的数据或交互方式。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        }
+      },
+      "title": "访问控制字段",
+      "description": "权限配置界面使用的字段说明，用名称关联被控制的业务字段。"
+    },
+    "filter": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "筛选参数的数据类型标识。"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "筛选项标识，在权限筛选配置中引用。"
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "筛选项在权限配置界面的显示名称。"
+        },
+        "originalFieldType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "来源业务字段的字段类型标识。"
+        },
+        "settingSchema": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "UI 组件类型，由前端组件注册机制解析，如 page、form、input-text。"
+              },
+              "name": {
+                "type": "string",
+                "description": "组件绑定的数据字段名，表单组件通常用它读取和写入表单数据。"
+              },
+              "id": {
+                "type": "string",
+                "description": "组件标识，供组件定位或交互引用。"
+              },
+              "className": {
+                "type": [
+                  "string",
+                  "object",
+                  "null"
+                ],
+                "description": "组件样式类；可使用类名字符串或按条件启用类名的对象。"
+              },
+              "visible": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "组件是否可见。"
+              },
+              "hidden": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "组件是否隐藏。"
+              },
+              "visibleOn": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "决定组件可见性的前端表达式。"
+              },
+              "hiddenOn": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "决定组件隐藏状态的前端表达式。"
+              }
+            },
+            "description": "UI 组件节点；组件专有属性、表达式及 title/body 等内容由组件定义。"
+          },
+          "description": "配置筛选参数时展示的 UI Schema 组件列表。"
+        },
+        "originalFieldName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "来源业务字段名称，对应 Java getOriginalFieldName 属性。"
+        }
+      },
+      "title": "访问控制筛选项",
+      "description": "定义一个可填写的权限筛选参数及其设置界面，供平台构造数据访问过滤条件。"
+    }
+  },
+  "$comment": "Source: security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/authority/BaseAuthority.java; security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/authority/accesscontrol/SimpleAccessControlDefine.java; security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/authority/accesscontrol/SimpleAccessControlFilterDefine.java"
+}

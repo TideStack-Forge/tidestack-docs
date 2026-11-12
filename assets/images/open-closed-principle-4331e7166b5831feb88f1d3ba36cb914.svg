@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="open-closed-principle-title open-closed-principle-desc" id="open-closed-principle-root">
+<title id="open-closed-principle-title">开闭原则</title>
+<desc id="open-closed-principle-desc">保留原有功能定义，以独立定制副本按规则覆盖生效；版本升级更新原定义，定制内容独立保留。</desc>
+<defs>
+      <style>#open-closed-principle-root { font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif; }
+      #open-closed-principle-root .diagram-container { max-width:100%;overflow-x:auto }
+      @media print {
+#open-closed-principle-root .diagram-container { overflow:visible }
+}</style><marker id="open-closed-principle-open-closed-principle-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" fill="#71839a"/></marker></defs>
+<rect width="1200" height="480" fill="#fff"/>
+<path d="M284 176L284 256" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#open-closed-principle-open-closed-principle-arrow)"/>
+<path d="M916 176L916 256" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#open-closed-principle-open-closed-principle-arrow)"/>
+<g data-node="original" data-parent="1"><rect x="40" y="56" width="488" height="112" rx="8" fill="#edf5ff" stroke="#8eb7e9" stroke-width="1.5"/>
+<text x="284" y="108" fill="#1d4f91" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">原有功能定义</text>
+<text x="284" y="140" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">随产品版本持续演进</text></g>
+<g data-node="customization" data-parent="1"><rect x="672" y="56" width="488" height="112" rx="8" fill="#fff8ec" stroke="#dfb570" stroke-width="1.5"/>
+<text x="916" y="108" fill="#7b4c17" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">定制副本</text>
+<text x="916" y="140" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">不同阶段的差异独立保存</text></g>
+<g data-node="effective" data-parent="1"><rect x="40" y="264" width="1120" height="112" rx="8" fill="#f0fdfa" stroke="#73cfc2" stroke-width="1.5"/>
+<text x="600" y="316" fill="#0f655d" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">当前生效功能</text>
+<text x="600" y="348" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">定制副本按规则覆盖，未定制部分继续复用</text></g>
+<text x="600" y="444" fill="#52657f" font-size="20" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">升级更新原定义，定制副本独立保留并继续按覆盖规则生效</text>
+</svg>
