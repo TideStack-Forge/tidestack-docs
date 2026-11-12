@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="task-scheduling" name="任务调度">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1400" pageHeight="978">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="input" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef5ff;strokeColor=#8eafe0;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="24" width="1320" height="244" />
+        </mxCell>
+        <mxCell id="input-title" value="任务定义与提交入口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="34" width="1280" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="260" y="228" />
+            <mxPoint as="targetPoint" x="260" y="360" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="700" y="228" />
+            <mxPoint as="targetPoint" x="700" y="360" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1160" y="228" />
+            <mxPoint as="targetPoint" x="888" y="424" />
+            <Array as="points">
+              <mxPoint x="1160" y="424" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43818d;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="260" y="488" />
+            <mxPoint as="targetPoint" x="260" y="580" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="448" y="650" />
+            <mxPoint as="targetPoint" x="632" y="650" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="888" y="650" />
+            <mxPoint as="targetPoint" x="1032" y="650" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cron" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="92" width="360" height="128" />
+        </mxCell>
+        <mxCell id="cron-heading" value="计划任务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="117" width="344" height="34" />
+        </mxCell>
+        <mxCell id="cron-line0" value="启动时加载计划任务定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="148" width="344" height="29" />
+        </mxCell>
+        <mxCell id="cron-line1" value="Cron、目标逻辑流与上下文" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="174" width="344" height="29" />
+        </mxCell>
+        <mxCell id="once" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="520" y="92" width="360" height="128" />
+        </mxCell>
+        <mxCell id="once-heading" value="一次性／延迟任务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="528" y="117" width="344" height="34" />
+        </mxCell>
+        <mxCell id="once-line0" value="业务代码或脚本提交" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="528" y="148" width="344" height="29" />
+        </mxCell>
+        <mxCell id="once-line1" value="指定执行时间或延迟时长" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="528" y="174" width="344" height="29" />
+        </mxCell>
+        <mxCell id="control" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1000" y="92" width="320" height="128" />
+        </mxCell>
+        <mxCell id="control-heading" value="任务管理" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1008" y="130" width="304" height="34" />
+        </mxCell>
+        <mxCell id="control-line0" value="注册、取消与状态查询" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1008" y="161" width="304" height="29" />
+        </mxCell>
+        <mxCell id="scheduler" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="368" width="800" height="112" />
+        </mxCell>
+        <mxCell id="scheduler-heading" value="统一调度器 Scheduler" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="396.5" width="784" height="36" />
+        </mxCell>
+        <mxCell id="scheduler-line0" value="scheduleCron／scheduleOnce／cancel／isScheduled" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="429.5" width="784" height="30" />
+        </mxCell>
+        <mxCell id="quartz" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="588" width="360" height="124" />
+        </mxCell>
+        <mxCell id="quartz-heading" value="Quartz 调度实现" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="611" width="344" height="34" />
+        </mxCell>
+        <mxCell id="quartz-line0" value="JobDetail、Trigger 与触发时间" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="642" width="344" height="29" />
+        </mxCell>
+        <mxCell id="quartz-line1" value="按任务标识管理注册" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="668" width="344" height="29" />
+        </mxCell>
+        <mxCell id="job" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="640" y="588" width="240" height="124" />
+        </mxCell>
+        <mxCell id="job-heading" value="LogicFlowJob" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="625" width="224" height="33" />
+        </mxCell>
+        <mxCell id="job-line0" value="绑定逻辑流与上下文" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="655" width="224" height="28" />
+        </mxCell>
+        <mxCell id="flow" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1040" y="588" width="280" height="124" />
+        </mxCell>
+        <mxCell id="flow-heading" value="逻辑流执行入口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="612.5" width="264" height="33" />
+        </mxCell>
+        <mxCell id="flow-line0" value="执行本次业务处理" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="642.5" width="264" height="28" />
+        </mxCell>
+        <mxCell id="flow-line1" value="由逻辑流协调内部节点" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="667.5" width="264" height="28" />
+        </mxCell>
+        <mxCell id="scope" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="804" width="1240" height="96" />
+        </mxCell>
+        <mxCell id="scope-heading" value="时间调度与流程执行各自分工" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="825.5" width="1224" height="34" />
+        </mxCell>
+        <mxCell id="scope-line0" value="调度器决定何时触发；逻辑流引擎负责本次运行中的节点编排与执行。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="856.5" width="1224" height="30" />
+        </mxCell>
+        <mxCell id="edge-label0" value="注册 Cron" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#71839a;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="296.0" y="284" width="88" height="28" />
+        </mxCell>
+        <mxCell id="edge-label1" value="注册一次任务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#71839a;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="732.0" y="284" width="112" height="28" />
+        </mxCell>
+        <mxCell id="edge-label2" value="控制与查询" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#71839a;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1112.0" y="304" width="96" height="28" />
+        </mxCell>
+        <mxCell id="edge-label3" value="创建／维护触发器" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43818d;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="312.0" y="520" width="144" height="28" />
+        </mxCell>
+        <mxCell id="edge-label4" value="到时触发" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43816c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="500.0" y="616" width="80" height="28" />
+        </mxCell>
+        <mxCell id="edge-label5" value="执行" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43816c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="936.0" y="616" width="48" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="计划任务变更通过调度接口维护；任务注册、取消与运行状态遵循相应调度实现的契约。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360.5" y="925" width="679" height="29" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

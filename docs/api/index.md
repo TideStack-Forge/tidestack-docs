@@ -5,50 +5,33 @@ sidebar_position: 1
 
 # API 参考
 
-适用对象：已经确定自己要查哪类技术对象、接口或上下文的开发者。
+本区收录后端运行时接口、前端 SDK 和基座内建组件的参数、行为与示例。
 
-这里收录潮汐栈的查阅型技术资料，重点是“按对象、能力和规范查资料”，而不是带你走完整业务交付流程。
+除专题另有版本声明外，本区内容适用于 `2.0.0-rc.1-SNAPSHOT`；专题有独立声明时以专题为准。代码中的 `Ouroboros / ouroboros` 名称保留实际技术标识。
 
-文档中的产品名称统一使用“潮汐栈”，但涉及实际代码、包名、SDK 名称时，仍会保留 `Ouroboros / ouroboros` 这类技术标识。
+## 后端 API
 
-除专题另有版本声明外，本区内容适用于 `2.0.0-rc.1-SNAPSHOT`；专题有独立声明时以专题为准。
+| 专题 | 查阅内容 |
+| --- | --- |
+| [表达式上下文](./backend/expression-context/) | `${...}` 可访问的对象、工具与编号生成器 |
+| [脚本上下文](./backend/script-context/) | 脚本中的认证、组织、模型、日志与配置对象 |
+| [数据模型 API](./backend/data-model/) | 模型获取、元数据、字段和数据读写接口 |
+| [查询 DSL](./backend/data-query-dsl/) | 增删改查结构、筛选条件、分页、排序与关联 |
+| [Java API](./backend/java-api/) | 工具类、认证信息与组织实体接口 |
 
-## 你通常会来这里查什么
+表达式和脚本可直接使用其上下文中的对象；Java 扩展按类型导入或注入。模型读写需检查 `Try` 的结果，示例中的模型名与资源名替换为应用实际定义。运行环境见 [后端 API 总览](./backend/)。
 
-| 当前问题                                     | 推荐入口                                             |
-| -------------------------------------------- | ---------------------------------------------------- |
-| 想查脚本里能直接用哪些对象和方法             | [脚本上下文](./backend/script-context/)              |
-| 想查 `${...}` 表达式里能直接用哪些变量和工具 | [表达式上下文](./backend/expression-context/)        |
-| 想查数据模型、查询 DSL 和后端运行时对象      | [后端 API](./backend/)                               |
-| 想查微前端 SDK、初始化方式和前端能力         | [前端 API](./frontend/)                              |
-| 想统一接口命名、状态码和响应结构约定         | [Web API 规范](./web-api-spec/)                      |
-| 想先看“平台到底已经有哪些能力”               | [平台能力地图](../reference/platform-capability-map) |
+## 前端 API
 
-## 后端
+| 专题 | 查阅内容 |
+| --- | --- |
+| [SDK 初始化方法](./frontend/sdk/initialization-methods/) | 微前端、布局组件和组件库的初始化入口与生命周期 |
+| [SDK 运行时方法](./frontend/sdk/completion-methods/) | 导航、弹层、事件、请求、认证与实时通信 |
+| [菜单扩展 API](./frontend/sdk/menu-extension/) | 菜单树、菜单徽标与用户菜单注册 |
+| [基座内建组件](./frontend/buildin-comps/) | AMIS 组件、业务选择器、编辑器、动作与表达式函数 |
 
-- [数据模型](./backend/data-model/)
-- [查询 DSL](./backend/data-query-dsl/)
-- [表达式上下文](./backend/expression-context/)
-- [脚本上下文](./backend/script-context/)
-- [Java API](./backend/java-api/)
+微前端从 `ouroboros-sdk` 导入方法，AMIS 页面通过 `type/actionType` 声明组件与动作。运行时 API 在页面挂载后使用，监听和订阅在卸载时清理。接口分类见 [前端 API 总览](./frontend/)。
 
-## 前端
+## 相关规范
 
-- [内置组件](./frontend/buildin-comps/)
-- [SDK 自动补全方法](./frontend/sdk/completion-methods/)
-
-## 规范
-
-- [Web API 规范](./web-api-spec/)
-
-## 当前覆盖重点
-
-- 后端：数据模型、查询 DSL、表达式上下文、脚本上下文、Java API
-- 前端：基座内建组件、微前端 SDK 初始化与补全方法
-- 规范：Web API 风格约定
-
-## 使用建议
-
-- 如果你还不确定该看哪一类资料，先回到 [参考资料](../reference/)
-- 如果你现在需要的是操作流程，而不是接口细节，请优先看 [低代码开发](../low-code/) 或 [融合开发](../fusion-development/)
-- 如果你需要先统一模型和术语，再回来查接口，请先看 [核心概念](../concepts/)
+[WebAPI 规范](./web-api-spec/) 约定 HTTP 接口风格；[JSON Schema](../reference/jsonschema/) 收录元数据资源的结构。其他查阅入口见 [参考资料](../reference/)。

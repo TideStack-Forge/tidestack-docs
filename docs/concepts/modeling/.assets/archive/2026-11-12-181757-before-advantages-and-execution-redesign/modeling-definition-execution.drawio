@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="modeling-definition-execution" name="从声明式定义到应用运行">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="600">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cell-1" value="从声明式定义到应用运行" style="text;html=0;fillColor=none;strokeColor=none;fontSize=26;fontColor=#0B1F3A;fontStyle=1;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="26" width="868" height="34" />
+        </mxCell>
+        <mxCell id="cell-2" value="定义保存业务意图，模型组织语义，执行引擎提供通用实现" style="text;html=0;fillColor=none;strokeColor=none;fontSize=18;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="74" width="868" height="26" />
+        </mxCell>
+        <mxCell id="metadata-model" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=0;exitX=1.0;exitY=0.5294117647058824;entryX=0.0;entryY=0.5294117647058824;" source="metadata" target="model">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="272" y="248" />
+            <mxPoint as="targetPoint" x="360" y="248" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="model-engine" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=0;exitX=1.0;exitY=0.5294117647058824;entryX=0.0;entryY=0.5294117647058824;" source="model" target="engine">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="600" y="248" />
+            <mxPoint as="targetPoint" x="688" y="248" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="engine-result" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=0;exitX=0.48333333333333334;exitY=1.0;entryX=0.48333333333333334;entryY=0.0;" source="engine" target="result">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="804" y="312" />
+            <mxPoint as="targetPoint" x="804" y="400" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="code-engine" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=1;exitX=1.0;exitY=0.42857142857142855;entryX=0.0;entryY=0.8235294117647058;" source="code" target="engine">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="516" y="448" />
+            <mxPoint as="targetPoint" x="688" y="288" />
+            <Array as="points">
+              <mxPoint x="640" y="448" />
+              <mxPoint x="640" y="288" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="metadata" value="&lt;b&gt;元数据&lt;/b&gt;&lt;br&gt;结构化的模型定义&lt;br&gt;文件或受管存储" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#88B2E5;fontColor=#174C88;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="176" width="240" height="136" />
+        </mxCell>
+        <mxCell id="model" value="&lt;b&gt;运行模型&lt;/b&gt;&lt;br&gt;具有语义的模型对象&lt;br&gt;标识、关系与约束" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#88B2E5;fontColor=#174C88;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="360" y="176" width="240" height="136" />
+        </mxCell>
+        <mxCell id="engine" value="&lt;b&gt;执行引擎&lt;/b&gt;&lt;br&gt;读取模型契约&lt;br&gt;处理请求与业务行为" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EFFAF6;strokeColor=#70B9A3;fontColor=#235D4A;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="688" y="176" width="240" height="136" />
+        </mxCell>
+        <mxCell id="code" value="&lt;b&gt;代码扩展&lt;/b&gt;&lt;br&gt;按扩展契约接入" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF8EC;strokeColor=#D8AA60;fontColor=#79521F;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="308" y="400" width="208" height="112" />
+        </mxCell>
+        <mxCell id="result" value="&lt;b&gt;应用能力&lt;/b&gt;&lt;br&gt;页面、数据与业务服务" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EFFAF6;strokeColor=#70B9A3;fontColor=#235D4A;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="688" y="400" width="240" height="112" />
+        </mxCell>
+        <mxCell id="cell-8" value="构建" style="text;html=0;fillColor=none;strokeColor=none;fontSize=17;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="284" y="207" width="616" height="25" />
+        </mxCell>
+        <mxCell id="cell-9" value="解释" style="text;html=0;fillColor=none;strokeColor=none;fontSize=17;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="612" y="207" width="288" height="25" />
+        </mxCell>
+        <mxCell id="cell-10" value="执行" style="text;html=0;fillColor=none;strokeColor=none;fontSize=17;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="828" y="359" width="72" height="25" />
+        </mxCell>
+        <mxCell id="cell-11" value="接入" style="text;html=0;fillColor=none;strokeColor=none;fontSize=17;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="548" y="407" width="352" height="25" />
+        </mxCell>
+        <mxCell id="cell-12" value="修改定义与修改执行实现各有职责，生效方式由具体模型的生命周期决定" style="text;html=0;fillColor=none;strokeColor=none;fontSize=18;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="550" width="868" height="26" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

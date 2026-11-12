@@ -1,0 +1,122 @@
+.trigger {
+  cursor: zoom-in;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+}
+
+.dialog {
+  width: 96vw;
+  max-width: none;
+  height: 94dvh;
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  box-shadow: var(--ifm-global-shadow-tl);
+  overflow: hidden;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 65%);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header,
+.toolbar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.header {
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.layout button,
+.toolbar a {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.layout button:hover,
+.toolbar a:hover {
+  background: var(--ifm-color-emphasis-200);
+  text-decoration: none;
+}
+
+.toolbar {
+  flex-wrap: wrap;
+}
+
+.toolbar output {
+  min-width: 3.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  margin-left: auto;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.8rem;
+}
+
+.viewport {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--ifm-color-emphasis-100);
+  cursor: grab;
+  touch-action: none;
+}
+
+.viewport:active {
+  cursor: grabbing;
+}
+
+.image {
+  display: block;
+  max-width: none;
+  background: white;
+}
+
+.loading {
+  margin: auto;
+}
+
+@media (max-width: 600px) {
+  .hint {
+    display: none;
+  }
+
+  .header,
+  .toolbar {
+    padding: 0.5rem;
+  }
+}

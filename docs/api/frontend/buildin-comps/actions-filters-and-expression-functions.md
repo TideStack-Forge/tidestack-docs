@@ -4,175 +4,35 @@ sidebar_position: 4
 
 # 动作、过滤器与表达式函数
 
-适用对象：想在 Schema 层直接调用平台扩展动作、过滤器和表达式函数的开发者。
+在 AMIS Schema 的 `onEvent.<事件>.actions` 中声明动作，动作参数放入 `args`。下面的页面路径和权限名需要在应用中预先定义。
 
-## 使用场景
+## 标签页动作
 
-- 你想在事件动作里直接打开标签页、对话框或发布事件
-- 你想在数据映射阶段补充轻量加工
-- 你想在表达式里直接判断权限
+| `actionType` | `args` |
+| --- | --- |
+| `openTab` | `url`、`title?`、`params?`、`reloadOnReceive?`、`receiveActions?`、`isFixed?` |
+| `openOrSwitchTab` | 同上，另支持 `replaceCurrentTab`、`closeOtherTabs`、`includeFixedTabs` |
+| `sendToOpenerTab` | `msg`：回传数据 |
+| `updateTabTitle` | `title` |
+| `closeCurrentTab` / `closeTab` | `tabId?`、`result?`、`allowFixedTabClose?` |
+| `closeOtherTabs` | `tabId?`、`includeFixedTabs?` |
 
-## 事件动作
-
-### 打开一个对话框式模态框
-
-通过配置 `actionType: 'openDialog'` 实现。
-
-**动作属性（args）**
-
-| 属性名     | 类型    | 默认值               | 说明                                             |
-| ---------- | ------- | -------------------- | ------------------------------------------------ |
-| url        | string  |                      | 页面地址                                         |
-| size       | string  | `md`                 | 指定 Dialog 大小，支持: xs、sm、md、lg、xl、full |
-| width      | string  |                      | 指定 Dialog 宽度                                 |
-| showFooter | boolean | `false`              | 是否显示底部按                                   |
-| title      | string  | `页面地址的默认标题` | 标题                                             |
-
-### 打开一个抽屉式模态框
-
-通过配置 `actionType: 'openDrawer'` 实现。
-
-**动作属性（args）**
-
-| 属性名     | 类型    | 默认值               | 说明                                             |
-| ---------- | ------- | -------------------- | ------------------------------------------------ |
-| url        | string  |                      | 页面地址                                         |
-| size       | string  | `md`                 | 指定 Drawer 大小，支持: xs、sm、md、lg、xl       |
-| direction  | string  | `right`              | 指定 Drawer 方向，支持: left、right、top、bottom |
-| showFooter | boolean | `false`              | 是否显示底部按钮                                 |
-| title      | string  | `页面地址的默认标题` | 标题                                             |
-
-### 关闭模态框
-
-通过配置 `actionType: 'closeModal'` 实现。
-
-**动作属性（args）**
-
-| 属性名 | 类型              | 默认值  | 说明             |
-| ------ | ----------------- | ------- | ---------------- |
-| result | object \| boolean | `false` | 模态框间通信信息 |
-
-### 打开新的标签页
-
-通过配置 `actionType: 'openTab'` 实现。
-
-**动作属性（args）**
-
-| 属性名          | 类型   | 默认值 | 说明           |
-| --------------- | ------ | ------ | -------------- |
-| url             | string |        | 要打开的网址   |
-| title           | string |        | 标签页的标题   |
-| reloadOnReceive | string |        | 重新加载页面   |
-| params          | object |        | url 的查询参数 |
-
-### 打开新的标签页或切换到已打开的标签页
-
-通过配置 `actionType: 'openOrSwitchTab'` 实现。
-
-**动作属性（args）**
-
-| 属性名          | 类型   | 默认值 | 说明           |
-| --------------- | ------ | ------ | -------------- |
-| url             | string |        | 要打开的网址   |
-| title           | string |        | 标签页的标题   |
-| reloadOnReceive | string |        | 重新加载页面   |
-| params          | object |        | url 的查询参数 |
-
-### 向打开当前 activeTab 页的调用者发送消息
-
-通过配置 `actionType: 'sendToOpenerTab'` 实现。
-
-**动作属性（args）**
-
-| 属性名 | 类型   | 默认值 | 说明     |
-| ------ | ------ | ------ | -------- |
-| msg    | object |        | 通信信息 |
-
-### 更新标签页标题
-
-通过配置 `actionType: 'updateTabTitle'` 实现。
-
-**动作属性（args）**
-
-| 属性名 | 类型   | 默认值 | 说明 |
-| ------ | ------ | ------ | ---- |
-| title  | string |        | 标题 |
-
-### 关闭除选中项以外的其他标签页
-
-通过配置 `actionType: 'closeOtherTabs'` 实现。
-
-### 关闭标签页
-
-通过配置 `actionType: 'closeCurrentTab'` 或 `actionType: 'closeTab'` 实现。
-
-**动作属性（args）**
-
-| 属性名 | 类型   | 默认值            | 说明              |
-| ------ | ------ | ----------------- | ----------------- |
-| id     | string | `当前标签页的 id` | 要关闭的标签页 ID |
-| result | object |                   | 标签页间通信信息  |
-
-### 发布指定的事件
-
-通过配置 `actionType: 'publish'`实现。
-
-**动作属性（args）**
-
-| 属性名    | 类型   | 默认值 | 说明     |
-| --------- | ------ | ------ | -------- |
-| eventName | string |        | 事件名   |
-| eventData | object |        | 事件数据 |
-| options   | object |        | 回放配置 |
-
-更详细参数信息参考 [事件、Schema 与组件注册](../sdk/completion-methods/events-schema-and-component-registration) 中的 `EventBus.publish(...)` 相关说明。
-
-#### 基本使用
-
-动作配置可以通过 `args: {动作配置项名称: xxx}`来配置具体的参数，详细请查看[事件动作](https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/event-action)。
-
-例如：
+`params` 是查询参数对象；`reloadOnReceive` 是布尔值，默认 `false`。关闭动作省略 `tabId` 时操作当前页，固定标签页默认保留。
 
 ```json
 {
-  "actionType": "openTab",
-  "args": {
-    "url": ""
-  }
-}
-```
-
-## 数据映射过滤器
-
-### 动态添加属性
-
-数组中的每个元素上动态添加属性。
-
-- key: 对象键值
-- value: 对象的值
-
-```js
-${xxx | addAttribute[:key][:value]}
-```
-
-## 表达式函数
-
-### 判断是否存在某权限的能力
-
-#### 基本使用
-
-```js
-{
   "type": "button",
-  "label": "查看是否存在权限",
-  "level": "primary",
+  "label": "查看订单",
   "onEvent": {
     "click": {
       "actions": [
         {
-          "actionType": "toast",
+          "actionType": "openTab",
           "args": {
-            "msg": "${hasAuth('权限标识')}"
+            "url": "/orders/detail",
+            "title": "订单详情",
+            "params": { "id": "${id}" },
+            "reloadOnReceive": true
           }
         }
       ]
@@ -181,8 +41,112 @@ ${xxx | addAttribute[:key][:value]}
 }
 ```
 
-#### 参数说明
+详情页保存成功后，用以下动作回传结果并关闭：
 
-| 参数名  | 说明     |
-| ------- | -------- |
-| authKey | 权限标识 |
+```json
+{
+  "actionType": "closeCurrentTab",
+  "args": { "result": { "saved": true, "id": "${id}" } }
+}
+```
+
+需要继续保留详情页时，用 `sendToOpenerTab`，参数为 `args.msg`。JavaScript 对应方法见 [导航、标签页与弹层](../sdk/completion-methods/navigation-and-tabs-and-dialogs)。
+
+## 对话框与抽屉
+
+Schema 使用 AMIS 的 `dialog` / `drawer` 动作，配置分别放在 `dialog` / `drawer` 中。平台允许内容通过 `url` 加载已有页面，或通过 `schemaId` 加载 UI Schema。
+
+```json
+{
+  "type": "button",
+  "label": "编辑订单",
+  "actionType": "dialog",
+  "dialog": {
+    "title": "编辑订单",
+    "size": "lg",
+    "url": "/orders/edit?id=${id}"
+  }
+}
+```
+
+抽屉示例：
+
+```json
+{
+  "type": "button",
+  "label": "查看订单",
+  "actionType": "drawer",
+  "drawer": {
+    "title": "订单详情",
+    "position": "right",
+    "schemaId": "/orders/detail"
+  }
+}
+```
+
+内联内容使用 `body`，确认和取消使用弹层自身的按钮。SDK 中打开弹层的方法名为 `openDialog/openDrawer`，Schema 的动作类型使用 `dialog/drawer`。
+
+## 发布事件与菜单徽标
+
+| 动作 | 参数 |
+| --- | --- |
+| `publish` | `eventName`、`eventData`、可选 `options` |
+| `setMenuBadge` | `fullName`、`badge`；`badge: null` 清除 |
+
+```json
+{
+  "type": "button",
+  "label": "通知订单更新",
+  "onEvent": {
+    "click": {
+      "actions": [
+        { "actionType": "publish", "args": { "eventName": "orders:saved", "eventData": { "id": "${id}" } } },
+        { "actionType": "setMenuBadge", "args": { "fullName": "orders.list", "badge": { "type": "dot" } } }
+      ]
+    }
+  }
+}
+```
+
+事件监听与回放见 [EventBus](../sdk/completion-methods/events-schema-and-component-registration#eventbus)，徽标类型见 [菜单扩展 API](../sdk/menu-extension/)。
+
+## addAttribute / addProps 过滤器
+
+两个名称等价，向对象或对象数组的每个元素添加属性，并返回新对象。参数按键值成对传入；同名属性覆盖原值。
+
+```text
+${fields | addAttribute:type:field}
+```
+
+输入：
+
+```json
+[{ "name": "code", "label": "订单号" }]
+```
+
+输出：
+
+```json
+[{ "name": "code", "label": "订单号", "type": "field" }]
+```
+
+也可以传多个键值对，或一个属性对象。标量和嵌套数组元素保持原值；复杂业务计算应放在脚本、接口或前端代码中。
+
+## hasAuth 表达式函数
+
+`hasAuth('权限标识')` 返回布尔值，可用于 `visibleOn` 或 `disabledOn`：
+
+```json
+{
+  "type": "button",
+  "label": "审核",
+  "visibleOn": "${hasAuth('orders.approve')}",
+  "onEvent": {
+    "click": {
+      "actions": [{ "actionType": "toast", "args": { "msg": "请选择待审核订单" } }]
+    }
+  }
+}
+```
+
+前端判断控制交互展示，审核接口仍须执行服务端授权。权限配置见 [权限与访问控制](../../../fusion-development/authority-subject-and-access-control-design)。

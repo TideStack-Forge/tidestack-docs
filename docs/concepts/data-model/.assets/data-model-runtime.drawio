@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="data-model-runtime" name="从模型定义到数据访问">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="784">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="station" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f7fa;strokeColor=#b3bfce;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="488" width="880" height="136" />
+        </mxCell>
+        <mxCell id="station-title" value="数据站 DataStation" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#43546c;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="498" width="840" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="168" y="160" />
+            <mxPoint as="targetPoint" x="400" y="224" />
+            <Array as="points">
+              <mxPoint x="168" y="192" />
+              <mxPoint x="400" y="192" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="480" y="160" />
+            <mxPoint as="targetPoint" x="480" y="224" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="792" y="160" />
+            <mxPoint as="targetPoint" x="560" y="224" />
+            <Array as="points">
+              <mxPoint x="792" y="208" />
+              <mxPoint x="560" y="208" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="480" y="304" />
+            <mxPoint as="targetPoint" x="480" y="352" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="480" y="432" />
+            <mxPoint as="targetPoint" x="228" y="536" />
+            <Array as="points">
+              <mxPoint x="480" y="456" />
+              <mxPoint x="228" y="456" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="392" y="568" />
+            <mxPoint as="targetPoint" x="568" y="568" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="732" y="600" />
+            <mxPoint as="targetPoint" x="732" y="680" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="business" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="88" width="256" height="72" />
+        </mxCell>
+        <mxCell id="business-heading" value="业务模型投影" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="100.0" width="240" height="32" />
+        </mxCell>
+        <mxCell id="business-line0" value="数据字段 · 关联 · 存储配置" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="129.0" width="240" height="27" />
+        </mxCell>
+        <mxCell id="java" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="352" y="88" width="256" height="72" />
+        </mxCell>
+        <mxCell id="java-heading" value="Java 类型定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360" y="100.0" width="240" height="32" />
+        </mxCell>
+        <mxCell id="java-line0" value="注解声明 → 元数据编译" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360" y="129.0" width="240" height="27" />
+        </mxCell>
+        <mxCell id="provider" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="664" y="88" width="256" height="72" />
+        </mxCell>
+        <mxCell id="provider-heading" value="扩展元数据" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="672" y="100.0" width="240" height="32" />
+        </mxCell>
+        <mxCell id="provider-line0" value="已注册的元数据提供者" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="672" y="129.0" width="240" height="27" />
+        </mxCell>
+        <mxCell id="metadata" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="352" y="224" width="256" height="80" />
+        </mxCell>
+        <mxCell id="metadata-heading" value="数据模型元数据" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360" y="239.5" width="240" height="32" />
+        </mxCell>
+        <mxCell id="metadata-line0" value="DataModelMeta" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360" y="268.5" width="240" height="28" />
+        </mxCell>
+        <mxCell id="decoration" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="352" y="352" width="256" height="80" />
+        </mxCell>
+        <mxCell id="decoration-heading" value="装饰与运行规则装配" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360" y="368.5" width="240" height="31" />
+        </mxCell>
+        <mxCell id="decoration-line0" value="补充字段 · 校验 · 挂载插件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="360" y="396.5" width="240" height="27" />
+        </mxCell>
+        <mxCell id="runtime" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="536" width="328" height="64" />
+        </mxCell>
+        <mxCell id="runtime-heading" value="运行时模型 DataModel" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="72" y="544.5" width="312" height="31" />
+        </mxCell>
+        <mxCell id="runtime-line0" value="字段校验 · 关联编排 · 插件链" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="72" y="572.5" width="312" height="27" />
+        </mxCell>
+        <mxCell id="adapter" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="568" y="536" width="328" height="64" />
+        </mxCell>
+        <mxCell id="adapter-heading" value="数据适配器 DataAdapter" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="576" y="545.0" width="312" height="30" />
+        </mxCell>
+        <mxCell id="adapter-line0" value="查询转译 · 数据源访问" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="576" y="572.0" width="312" height="27" />
+        </mxCell>
+        <mxCell id="storage" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="568" y="680" width="328" height="64" />
+        </mxCell>
+        <mxCell id="storage-heading" value="实际存储" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="576" y="688.0" width="312" height="32" />
+        </mxCell>
+        <mxCell id="storage-line0" value="SQL 数据源中的表、列与记录等" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="576" y="717.0" width="312" height="27" />
+        </mxCell>
+        <mxCell id="edge-label5" value="数据操作" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#627ba4;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440.0" y="528" width="80" height="28" />
+        </mxCell>
+        <mxCell id="edge-label6" value="读写" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#71839a;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="752.0" y="632" width="48" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="从模型定义到数据访问" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="40" y="14" width="256" height="36" />
+        </mxCell>
+        <mxCell id="note-1" value="调用入口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#43546c;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="40" y="685" width="84" height="29" />
+        </mxCell>
+        <mxCell id="note-2" value="逻辑流、脚本和 Java 代码" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="40" y="714" width="217.6" height="28" />
+        </mxCell>
+        <mxCell id="note-3" value="均通过运行时模型读写数据。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="40" y="740" width="224" height="28" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,87 +1,43 @@
 # JsonBag
 
-`JsonBag` 是一个轻量的 JSON 包装器，用来统一容纳三类值：
+用同一类型承载 JSON 对象、数组或标量，导入 `com.ouroboros.util.JsonBag`。结构确定时可以直接使用 Map 或 List。
 
-- 对象：`Map<String, Object>`
-- 数组：`List<Object>`
-- 标量：字符串、数字、布尔值或 `null`
+## 创建和读取
 
-Maven 包：`com.ouroboros:ouroboros-util`
-
-Java 包：`com.ouroboros.util`
-
-## 什么时候看这页
-
-- 你拿到的 JSON 结构不稳定，可能是对象、数组或单值
-- 你不想先写很多 `instanceof`
-- 你要按 key 或 index 统一读写弱结构数据
-
-## 创建方式
-
-| 方法 | 说明 |
-| ---- | ---- |
-| `JsonBag.of(Object value)` | 根据传入值自动包成对象、数组或标量 |
-| `JsonBag.empty()` | 创建一个空包，内部值为 `null`，不是空对象也不是空数组 |
-
-## 类型判断
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `isNull()` | `Boolean` | 当前内容是否为空 |
-| `isList()` | `Boolean` | 当前内容是否为数组 |
-| `isMap()` | `Boolean` | 当前内容是否为对象 |
-| `isValue()` | `Boolean` | 当前内容是否为单值 |
-
-## 获取底层值
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getList()` | `List<Object>` | 读取底层数组 |
-| `getMap()` | `Map<String, Object>` | 读取底层对象 |
-| `get()` | `Object` | 读取底层标量值 |
-
-## 按 key / index 读写
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `get(String key)` | `Object?` | 对象按 key 取值；数组时若 key 是数字字符串也会按 index 读 |
-| `get(int index)` | `Object?` | 数组按下标取值；对象时会尝试把 index 转成字符串 key |
-| `put(String key, Object value)` | `Object?` | 对象按 key 写值；数组时可传数字字符串 |
-| `put(int index, Object value)` | `Object?` | 数组按下标写值，内部复用 `Lists.setValue` |
-| `remove(String key)` | `Object?` | 对象按 key 删除；数组时支持数字字符串 |
-| `remove(int index)` | `Object?` | 数组按下标删除；对象时会按字符串 key 删除 |
-
-这意味着它在对象和数组场景下都支持一种“尽量统一”的访问方式。
-
-## 常见使用方式
-
-### 结构未知时先包一层
+| 方法 | 返回值 / 行为 |
+| --- | --- |
+| `JsonBag.of(Object value)` | 包装 Map、List 或标量，不复制原数据 |
+| `JsonBag.empty()` | 内容为 `null` 的包 |
+| `isMap()` / `isList()` / `isValue()` / `isNull()` | 判断内容类型 |
+| `getMap()` / `getList()` | 对应底层集合，不匹配时为 `null` |
+| `get()` | 底层标量；对象和数组使用各自 getter |
+| `get(String key)` / `get(int index)` | 按键或下标读取 |
 
 ```java
-JsonBag bag = Json.toJsonBag(rawJson);
+import com.ouroboros.util.Json;
+
+var bag = Json.tryToJsonBag("{\"status\":\"OPEN\"}").get();
 if (bag.isMap()) {
-  var status = bag.get("status");
+    Object status = bag.get("status");
 }
 ```
 
-### 把数组和对象都按统一方式处理
+`empty()` 不表示空对象或空数组；读取 JSON 字符串应使用 `Json.tryToJsonBag`，直接 `JsonBag.of("{}")` 包装的是字符串。
 
-比如配置值有时是数组、有时是对象时，可以先统一走 `JsonBag`，再分流判断。
+## 修改
 
-## 使用提醒
+`put(key/index, value)` 和 `remove(key/index)` 直接修改底层集合。对数组使用数字字符串键，如 `"1"`，等同于下标 `1`；对象上的整数下标转换为字符串键。
 
-- `put(...)`、`remove(...)` 会直接修改底层 `Map` / `List`，不是返回新对象。
-- 对数组调用 `get("1")`、`put("1", value)` 这类数字字符串 key，会被当成下标处理。
-- 对列表传入非数字字符串 key 时，不会自动转换，通常直接返回 `null`。
-- `JsonBag.empty()` 表示“空值包”，不是空 `Map` 或空 `List`。
+```java
+import java.util.ArrayList;
+import java.util.List;
+import com.ouroboros.util.JsonBag;
 
-## 使用建议
+var data = new ArrayList<Object>(List.of("first"));
+var bag = JsonBag.of(data);
+bag.put(2, "third");
+// data 变为 ["first", null, "third"]
+Object missing = bag.get(10); // null
+```
 
-- 结构不确定时，先 `isMap()` / `isList()` 再做进一步处理
-- 需要“对象与数组混用”的弱结构适配时，`JsonBag` 会比直接操作 `Map` / `List` 更顺手
-- 如果你已经明确数据一定是对象或一定是数组，直接用原生 `Map` / `List` 往往更简单
-
-## 下一步看哪里
-
-- 想看 JSON 解析入口：看 [Json](../json/)
-- 想看 List 工具：看 [Lists](../lists/)
+写入需要可变 Map/List；使用 `Map.of` 或 `List.of` 包装的不可变集合仍不可修改。数组的非数字字符串键不执行读写，通常返回 `null`。更多列表操作见 [Lists](../lists/)。

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1440 840" role="img" aria-labelledby="diagram-title diagram-desc" xmlns="http://www.w3.org/2000/svg" id="business-model-topology-root">
+      <title id="diagram-title">业务模型与运行模型的关系</title>
+      <desc id="diagram-desc">前端的 UI Schema、UI 模型和菜单位于上方，后端的数据模型、逻辑流和 WebAPI 位于下方。业务模型居中，分别投影到六类运行模型；模块树位于右上方，组织菜单并归集权限；右侧权限模型控制菜单、页面和 API。连线采用无交叉的正交布局。</desc>
+      <defs>
+      <style>#business-model-topology-root .diagram-container { width: 100%; overflow-x: auto; }
+      #business-model-topology-root text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      #business-model-topology-root .node-title { fill: #0b1f3a; font-size: 22px; font-weight: 600; text-anchor: middle; }
+      #business-model-topology-root .node-subtitle { fill: #52657f; font-size: 15px; text-anchor: middle; }
+      #business-model-topology-root .edge-label { font-size: 16px; font-weight: 500; text-anchor: middle; }</style>
+        <marker id="business-model-topology-arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#0b63ce"/></marker>
+        <marker id="business-model-topology-arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#0f766e"/></marker>
+        <marker id="business-model-topology-arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b45309"/></marker>
+        <marker id="business-model-topology-arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#7c3aed"/></marker>
+        <marker id="business-model-topology-arrow-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#264a73"/></marker>
+      </defs>
+      <rect width="1440" height="840" fill="#fff"/>
+      <rect x="40" y="120" width="920" height="125" rx="8" fill="#f6fbf9" stroke="#d6e9e3"/>
+      <rect x="40" y="680" width="920" height="125" rx="8" fill="#f5f8fd" stroke="#d8e3f1"/>
+      <text x="40" y="104" fill="#0f655d" font-size="16" font-weight="600">前端 · 页面与导航</text>
+      <text x="40" y="664" fill="#1d4f91" font-size="16" font-weight="600">后端 · 接口、逻辑与数据</text>
+      <text x="40" y="38" fill="#52657f" font-size="15">蓝色虚线表示业务模型的投影关系</text>
+
+      <!-- 先画连线，再画标签与节点；各条关系使用独立端口。 -->
+      <path data-edge-id="projection-ui" d="M490 400 L490 220" fill="none" stroke="#0b63ce" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#business-model-topology-arrow-blue)"/>
+      <path data-edge-id="projection-menu" d="M650 400 L650 328 Q650 320 658 320 L792 320 Q800 320 800 312 L800 220" fill="none" stroke="#0b63ce" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#business-model-topology-arrow-blue)"/>
+      <path data-edge-id="projection-data" d="M460 500 L460 562 Q460 570 452 570 L173 570 Q165 570 165 578 L165 700" fill="none" stroke="#0b63ce" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#business-model-topology-arrow-blue)"/>
+      <path data-edge-id="projection-logic" d="M555 500 L555 700" fill="none" stroke="#0b63ce" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#business-model-topology-arrow-blue)"/>
+      <path data-edge-id="projection-webapi" d="M670 500 L670 592 Q670 600 678 600 L792 600 Q800 600 800 608 L800 700" fill="none" stroke="#0b63ce" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#business-model-topology-arrow-blue)"/>
+      <path data-edge-id="projection-authority" d="M730 450 L1100 450" fill="none" stroke="#0b63ce" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#business-model-topology-arrow-blue)"/>
+      <path data-edge-id="ui-schema-ui" d="M260 180 L400 180" fill="none" stroke="#0f766e" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-green)"/>
+      <path data-edge-id="menu-ui" d="M740 180 L590 180" fill="none" stroke="#0f766e" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-green)"/>
+      <path data-edge-id="module-menu" d="M1100 180 L930 180" fill="none" stroke="#b45309" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-orange)"/>
+      <path data-edge-id="module-authority" d="M1220 220 L1220 410" fill="none" stroke="#b45309" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-orange)"/>
+      <path data-edge-id="authority-menu" d="M1140 410 L1140 288 Q1140 280 1132 280 L888 280 Q880 280 880 272 L880 220" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-purple)"/>
+      <path data-edge-id="authority-ui" d="M1290 440 L1332 440 Q1340 440 1340 432 L1340 68 Q1340 60 1332 60 L558 60 Q550 60 550 68 L550 140" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-purple)"/>
+      <path data-edge-id="authority-webapi" d="M1160 490 L1160 632 Q1160 640 1152 640 L908 640 Q900 640 900 648 L900 700" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-purple)"/>
+      <path data-edge-id="webapi-logic" d="M740 740 L590 740" fill="none" stroke="#264a73" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-navy)"/>
+      <path data-edge-id="logic-data" d="M400 740 L260 740" fill="none" stroke="#264a73" stroke-width="1.6" marker-end="url(#business-model-topology-arrow-navy)"/>
+      <g><rect x="428" y="301" width="48" height="23" rx="3" fill="#fff"/><text x="452" y="317" class="edge-label" fill="#0b63ce">投影</text></g>
+      <g><rect x="700" y="291" width="48" height="23" rx="3" fill="#fff"/><text x="724" y="307" class="edge-label" fill="#0b63ce">投影</text></g>
+      <g><rect x="288" y="541" width="48" height="23" rx="3" fill="#fff"/><text x="312" y="557" class="edge-label" fill="#0b63ce">投影</text></g>
+      <g><rect x="569" y="629" width="48" height="23" rx="3" fill="#fff"/><text x="593" y="645" class="edge-label" fill="#0b63ce">投影</text></g>
+      <g><rect x="709" y="571" width="48" height="23" rx="3" fill="#fff"/><text x="733" y="587" class="edge-label" fill="#0b63ce">投影</text></g>
+      <g><rect x="891" y="421" width="48" height="23" rx="3" fill="#fff"/><text x="915" y="437" class="edge-label" fill="#0b63ce">投影</text></g>
+      <g><rect x="290" y="151" width="80" height="23" rx="3" fill="#fff"/><text x="330" y="167" class="edge-label" fill="#0f766e">实现页面</text></g>
+      <g><rect x="609" y="151" width="112" height="23" rx="3" fill="#fff"/><text x="665" y="167" class="edge-label" fill="#0f766e">URL 指向页面</text></g>
+      <g><rect x="975" y="151" width="80" height="23" rx="3" fill="#fff"/><text x="1015" y="167" class="edge-label" fill="#b45309">组织菜单</text></g>
+      <g><rect x="1232" y="306" width="80" height="23" rx="3" fill="#fff"/><text x="1272" y="322" class="edge-label" fill="#b45309">归集权限</text></g>
+      <g><rect x="943" y="251" width="128" height="23" rx="3" fill="#fff"/><text x="1007" y="267" class="edge-label" fill="#7c3aed">控制入口可见性</text></g>
+      <g><rect x="914" y="31" width="112" height="23" rx="3" fill="#fff"/><text x="970" y="47" class="edge-label" fill="#7c3aed">控制页面访问</text></g>
+      <g><rect x="970" y="611" width="120" height="23" rx="3" fill="#fff"/><text x="1030" y="627" class="edge-label" fill="#7c3aed">控制 API 调用</text></g>
+      <g><rect x="617" y="711" width="96" height="23" rx="3" fill="#fff"/><text x="665" y="727" class="edge-label" fill="#264a73">绑定处理器</text></g>
+      <g><rect x="278" y="711" width="104" height="23" rx="3" fill="#fff"/><text x="330" y="727" class="edge-label" fill="#264a73">查询 / 写入</text></g>
+
+      <g data-node-id="ui-schema"><rect x="70" y="140" width="190" height="80" rx="8" fill="#f0faf7" stroke="#54a89b" stroke-width="1.5"/><text x="165" y="174" class="node-title">UI Schema</text><text x="165" y="200" class="node-subtitle">描述页面内容与交互</text></g>
+      <g data-node-id="ui-model"><rect x="400" y="140" width="190" height="80" rx="8" fill="#fff" stroke="#54a89b" stroke-width="1.5"/><text x="495" y="174" class="node-title">UI 模型</text><text x="495" y="200" class="node-subtitle">定义页面与实现方式</text></g>
+      <g data-node-id="menu-model"><rect x="740" y="140" width="190" height="80" rx="8" fill="#fff" stroke="#54a89b" stroke-width="1.5"/><text x="835" y="174" class="node-title">菜单模型</text><text x="835" y="200" class="node-subtitle">提供运行态入口</text></g>
+      <g data-node-id="module-tree"><rect x="1100" y="140" width="190" height="80" rx="8" fill="#fff7ed" stroke="#b45309" stroke-width="1.5"/><text x="1195" y="174" class="node-title">模块树</text><text x="1195" y="200" class="node-subtitle">组织运行态功能结构</text></g>
+      <g data-node-id="business-model"><rect x="430" y="400" width="300" height="100" rx="8" fill="#eaf3ff" stroke="#0b63ce" stroke-width="2.2"/><text x="580" y="441" class="node-title">业务模型</text><text x="580" y="472" class="node-subtitle">业务对象、字段、关系、视图与操作</text></g>
+      <g data-node-id="authority-model"><rect x="1100" y="410" width="190" height="80" rx="8" fill="#f7f3ff" stroke="#9b7bdd" stroke-width="1.5"/><text x="1195" y="444" class="node-title">权限模型</text><text x="1195" y="470" class="node-subtitle">定义可访问的资源</text></g>
+      <g data-node-id="data-model"><rect x="70" y="700" width="190" height="80" rx="8" fill="#fff" stroke="#7aa7de" stroke-width="1.5"/><text x="165" y="734" class="node-title">数据模型</text><text x="165" y="760" class="node-subtitle">字段、关系与记录</text></g>
+      <g data-node-id="logic-model"><rect x="400" y="700" width="190" height="80" rx="8" fill="#fff" stroke="#7aa7de" stroke-width="1.5"/><text x="495" y="734" class="node-title">逻辑流</text><text x="495" y="760" class="node-subtitle">执行业务处理</text></g>
+      <g data-node-id="webapi-model"><rect x="740" y="700" width="190" height="80" rx="8" fill="#fff" stroke="#7aa7de" stroke-width="1.5"/><text x="835" y="734" class="node-title">WebAPI 模型</text><text x="835" y="760" class="node-subtitle">定义 HTTP 接口</text></g>
+    </svg>

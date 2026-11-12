@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="metadata-assembly" name="元数据装配与模型生效">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1600" pageHeight="1148">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="embedded-layer" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f7fa;strokeColor=#b3bfce;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="768" width="744" height="256" />
+        </mxCell>
+        <mxCell id="embedded-layer-title" value="内嵌基础定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#43546c;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="778" width="704" height="30" />
+        </mxCell>
+        <mxCell id="app-layer" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#fff7e9;strokeColor=#d4ad69;dashed=0;">
+          <mxGeometry as="geometry" x="808" y="768" width="364" height="256" />
+        </mxCell>
+        <mxCell id="app-layer-title" value="应用定制" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#805719;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="828" y="778" width="324" height="30" />
+        </mxCell>
+        <mxCell id="runtime-layer" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef9fb;strokeColor=#7fb9c3;dashed=0;">
+          <mxGeometry as="geometry" x="1196" y="768" width="364" height="256" />
+        </mxCell>
+        <mxCell id="runtime-layer-title" value="运行时定制" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#245e69;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1216" y="778" width="324" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="800" y="568" />
+            <mxPoint as="targetPoint" x="800" y="512" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="800" y="384" />
+            <mxPoint as="targetPoint" x="400" y="328" />
+            <Array as="points">
+              <mxPoint x="800" y="352" />
+              <mxPoint x="400" y="352" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="728" y="264" />
+            <mxPoint as="targetPoint" x="872" y="264" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="400" y="200" />
+            <mxPoint as="targetPoint" x="600" y="144" />
+            <Array as="points">
+              <mxPoint x="400" y="168" />
+              <mxPoint x="600" y="168" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1528" y="264" />
+            <mxPoint as="targetPoint" x="1248" y="448" />
+            <Array as="points">
+              <mxPoint x="1560" y="264" />
+              <mxPoint x="1560" y="448" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="232" y="816" />
+            <mxPoint as="targetPoint" x="440" y="696" />
+            <Array as="points">
+              <mxPoint x="232" y="728" />
+              <mxPoint x="440" y="728" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="592" y="816" />
+            <mxPoint as="targetPoint" x="680" y="696" />
+            <Array as="points">
+              <mxPoint x="592" y="744" />
+              <mxPoint x="680" y="744" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="990" y="816" />
+            <mxPoint as="targetPoint" x="920" y="696" />
+            <Array as="points">
+              <mxPoint x="990" y="744" />
+              <mxPoint x="920" y="744" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1378" y="816" />
+            <mxPoint as="targetPoint" x="1160" y="696" />
+            <Array as="points">
+              <mxPoint x="1378" y="728" />
+              <mxPoint x="1160" y="728" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#a57b33;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="200" y="1064" />
+            <mxPoint as="targetPoint" x="1496" y="1064" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="registration" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="360" y="24" width="880" height="112" />
+        </mxCell>
+        <mxCell id="registration-heading" value="接入运行环境" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=25;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="368" y="51.5" width="864" height="37" />
+        </mxCell>
+        <mxCell id="registration-line0" value="注册页面路由与接口，初始化执行契约和数据服务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="368" y="85.5" width="864" height="31" />
+        </mxCell>
+        <mxCell id="models" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="208" width="640" height="112" />
+        </mxCell>
+        <mxCell id="models-heading" value="模型构建" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="236" width="624" height="36" />
+        </mxCell>
+        <mxCell id="models-line0" value="构建该类型的运行时模型对象" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="269" width="624" height="31" />
+        </mxCell>
+        <mxCell id="projection" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="880" y="208" width="640" height="112" />
+        </mxCell>
+        <mxCell id="projection-heading" value="业务模型投射" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="888" y="236" width="624" height="36" />
+        </mxCell>
+        <mxCell id="projection-line0" value="形成数据、UI、接口、权限等相关模型定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="888" y="269" width="624" height="31" />
+        </mxCell>
+        <mxCell id="effective" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="360" y="392" width="880" height="112" />
+        </mxCell>
+        <mxCell id="effective-heading" value="确定生效定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="368" y="420" width="864" height="36" />
+        </mxCell>
+        <mxCell id="effective-line0" value="按模型标识执行内容合并，或选择高优先级的完整定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="368" y="453" width="864" height="31" />
+        </mxCell>
+        <mxCell id="providers" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="360" y="576" width="880" height="112" />
+        </mxCell>
+        <mxCell id="providers-heading" value="按模型类型读取与解析" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="368" y="604.5" width="864" height="36" />
+        </mxCell>
+        <mxCell id="providers-line0" value="文件加载器、资源扫描和数据库提供者读取各自支持的来源" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="368" y="637.5" width="864" height="30" />
+        </mxCell>
+        <mxCell id="embedded" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="824" width="336" height="112" />
+        </mxCell>
+        <mxCell id="embedded-heading" value="程序内嵌资源" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="72" y="854" width="320" height="34" />
+        </mxCell>
+        <mxCell id="embedded-line0" value="基座与程序随包提供的模型文件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="72" y="885" width="320" height="29" />
+        </mxCell>
+        <mxCell id="plugin" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="424" y="824" width="336" height="112" />
+        </mxCell>
+        <mxCell id="plugin-heading" value="插件内嵌资源" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="432" y="854" width="320" height="34" />
+        </mxCell>
+        <mxCell id="plugin-line0" value="插件随 JAR 交付的模型文件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="432" y="885" width="320" height="29" />
+        </mxCell>
+        <mxCell id="app" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="832" y="824" width="316" height="112" />
+        </mxCell>
+        <mxCell id="app-heading" value="应用元数据目录" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="840" y="854" width="300" height="34" />
+        </mxCell>
+        <mxCell id="app-line0" value="随应用维护和交付的定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="840" y="885" width="300" height="29" />
+        </mxCell>
+        <mxCell id="db" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1220" y="824" width="316" height="112" />
+        </mxCell>
+        <mxCell id="db-heading" value="数据库" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1228" y="854" width="300" height="34" />
+        </mxCell>
+        <mxCell id="db-line0" value="受管的运行时模型定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1228" y="885" width="300" height="29" />
+        </mxCell>
+        <mxCell id="edge-label2" value="业务模型" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#9577b5;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="760.0" y="228" width="80" height="28" />
+        </mxCell>
+        <mxCell id="edge-label4" value="参与目标模型装配" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#9577b5;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1328.0" y="408" width="144" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="二者同属 Classpath 来源，内部顺序由资源加载规则确定" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="191.20000000000002" y="966" width="441.59999999999997" height="28" />
+        </mxCell>
+        <mxCell id="note-1" value="例如应用 Schema 文件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="890.2" y="965" width="199.6" height="29" />
+        </mxCell>
+        <mxCell id="note-2" value="仅用于支持此来源的模型" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1276.5" y="965" width="203" height="29" />
+        </mxCell>
+        <mxCell id="note-3" value="低" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="63.0" y="1050" width="34" height="30" />
+        </mxCell>
+        <mxCell id="note-4" value="高" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1523.0" y="1050" width="34" height="30" />
+        </mxCell>
+        <mxCell id="note-5" value="来源优先级示例：UI Schema 为数据库 ＞ 应用目录 ＞ 内嵌 Schema；其他模型见下文规则。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="419.6" y="1080" width="800.8" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

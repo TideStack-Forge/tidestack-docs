@@ -1,0 +1,33 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>模型随应用一起演进</title><style>body{margin:0;background:#fff;font-family:-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif}.diagram-container{width:100%;max-width:100%;overflow-x:auto}svg{display:block;width:100%;min-width:960px;height:auto}@media print{.diagram-container{overflow-x:visible}svg{min-width:0}}</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="modeling-evolution-title modeling-evolution-desc">
+<title id="modeling-evolution-title">模型随应用一起演进</title>
+<desc id="modeling-evolution-desc">开发阶段维护并验证模型定义，交付时保存模型和扩展的确定状态，运行时加载执行，验证与使用反馈推动下一轮调整。</desc>
+<defs><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#7B8DA4"/></marker></defs>
+<rect width="960" height="600" fill="#FFFFFF"/>
+<text x="32" y="52" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#0B1F3A">模型随应用一起演进</text>
+<text x="32" y="92" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#52657F">模型定义在开发、交付与运行之间保持可识别、可比较</text>
+<path d="M272 276 L360 276" fill="none" stroke="#7B8DA4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M600 276 L688 276" fill="none" stroke="#7B8DA4" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M808 380 L808 480 Q808 488 800 488 L160 488 Q152 488 152 480 L152 380" fill="none" stroke="#7B8DA4" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<g data-node="design"><rect x="32" y="172" width="240" height="208" rx="8" fill="#EDF5FF" stroke="#88B2E5" stroke-width="1.5"/>
+<text x="52" y="208" fill="#174C88" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">开发与验证</text>
+<text x="52" y="240" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">定义业务语义</text>
+<text x="52" y="266" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">检查结构与引用</text>
+<text x="52" y="292" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">验证页面和业务行为</text>
+</g>
+<g data-node="delivery"><rect x="360" y="172" width="240" height="208" rx="8" fill="#FFF8EC" stroke="#D8AA60" stroke-width="1.5"/>
+<text x="380" y="208" fill="#79521F" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">版本与交付</text>
+<text x="380" y="240" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">保存定义与代码扩展</text>
+<text x="380" y="266" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">比较本次变更</text>
+<text x="380" y="292" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">形成可交付的应用状态</text>
+</g>
+<g data-node="running"><rect x="688" y="172" width="240" height="208" rx="8" fill="#EFFAF6" stroke="#70B9A3" stroke-width="1.5"/>
+<text x="708" y="208" fill="#235D4A" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">加载与运行</text>
+<text x="708" y="240" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">按来源装配模型</text>
+<text x="708" y="266" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">执行业务请求</text>
+<text x="708" y="292" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">按契约刷新定义</text>
+</g>
+<text x="284" y="252" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">交付</text>
+<text x="612" y="252" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">装载</text>
+<text x="388" y="468" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#52657F">验证与使用反馈</text>
+<text x="32" y="568" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#52657F">模型变更与代码变更采用不同的生效方式，刷新能力由各模型分别提供</text>
+</svg></main></body></html>

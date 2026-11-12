@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="26.0.9" type="device">
+  <diagram id="model-relations-events" name="业务动作实现、业务事件与订阅处理">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="912">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="business" value="&lt;b&gt;业务模型内定义&lt;/b&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#79A6DE;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="24" y="24" width="912" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" source="action" target="event-def" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" source="subscription" target="event-def" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" source="action" target="logic" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.35714285714285715;exitY=1.0;entryX=0.35714285714285715;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" source="action" target="handler" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.8214285714285714;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="216" y="264" />
+              <mxPoint x="480" y="264" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" source="logic" target="fact" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="144" y="632" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" source="handler" target="fact" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" source="event-def" target="fact" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.75;entryX=1.0;entryY=0.25;exitPerimeter=0;entryPerimeter=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="648" y="152" />
+              <mxPoint x="648" y="608" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" source="subscription" target="delivery" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" source="fact" target="delivery" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.75;entryX=0.0;entryY=0.75;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" source="delivery" target="target-action" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.25;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="728" />
+              <mxPoint x="480" y="728" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-10" source="delivery" target="listener" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#667C96;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.42857142857142855;exitY=1.0;entryX=0.42857142857142855;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label-0" value="声明可产生" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="264.0" y="92" width="96" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-1" value="订阅事件" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="92" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-2" value="绑定实现" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="140.0" y="254" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-3" value="绑定实现" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="308.0" y="228" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-4" value="产生事件" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="216.0" y="596" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-5" value="产生事件" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="508.0" y="510" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-6" value="约束事件内容" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="524.0" y="490" width="112" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-7" value="匹配订阅" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="840.0" y="382" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-8" value="提交后投递" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="600.0" y="620" width="96" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-9" value="调用动作" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="576.0" y="692" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="label-10" value="通知监听器" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontColor=#52657F;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="832.0" y="718" width="96" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="action" value="&lt;b&gt;动作定义&lt;/b&gt;&lt;br&gt;输入、条件与实现绑定" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#79A6DE;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="32" y="80" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="event-def" value="&lt;b&gt;事件定义&lt;/b&gt;&lt;br&gt;业务事实与载荷契约" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#79A6DE;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="368" y="80" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="subscription" value="&lt;b&gt;事件订阅定义&lt;/b&gt;&lt;br&gt;事件过滤与后续处理" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#79A6DE;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="704" y="80" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="logic" value="&lt;b&gt;逻辑流实现&lt;/b&gt;&lt;br&gt;通过业务事件节点产生事件" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F4F0FC;strokeColor=#B39CD6;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="32" y="344" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="handler" value="&lt;b&gt;代码处理器实现&lt;/b&gt;&lt;br&gt;通过统一事件入口产生事件" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F4F0FC;strokeColor=#B39CD6;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="368" y="344" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="fact" value="&lt;b&gt;业务事件事实&lt;/b&gt;&lt;br&gt;与业务数据在同一事务记录" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF7E6;strokeColor=#D4B16A;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="368" y="584" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="delivery" value="&lt;b&gt;订阅投递&lt;/b&gt;&lt;br&gt;事务回滚时不投递" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF8F4;strokeColor=#77B6A2;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="704" y="584" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="target-action" value="&lt;b&gt;目标业务动作&lt;/b&gt;&lt;br&gt;执行后续业务处理" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF8F4;strokeColor=#77B6A2;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="368" y="784" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="listener" value="&lt;b&gt;事件监听器&lt;/b&gt;&lt;br&gt;执行注册的订阅处理" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF8F4;strokeColor=#77B6A2;strokeWidth=1.2;fontColor=#0B1F3A;fontFamily=Helvetica;fontSize=18;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="704" y="784" width="224" height="96" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

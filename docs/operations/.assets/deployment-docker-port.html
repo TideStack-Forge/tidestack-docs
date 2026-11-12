@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docker Compose · 单服务器部署</title><style>body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.frame{max-width:1600px;min-width:0;margin:auto}.diagram-container{width:100%;overflow-x:auto}.diagram-container svg{display:block;width:100%;min-width:1600px;height:auto}@media print{.diagram-container{overflow-x:visible}.diagram-container svg{min-width:0}}</style></head><body><main class="frame"><div class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-docker-port-title deployment-docker-port-desc">
+<title id="deployment-docker-port-title">Docker Compose · 单服务器部署</title>
+<desc id="deployment-docker-port-desc">平台、依赖与动态运行实例同机；临时端口入口；该宿主机为共同故障域；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}</style>
+<marker id="deployment-docker-port-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43546c"/></marker>
+<marker id="deployment-docker-port-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#577dab"/></marker>
+<marker id="deployment-docker-port-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs><rect width="1600" height="1520" fill="#fff"/>
+<text x="40" y="52" font-size="28" font-weight="600" fill="#33455e">Docker Compose · 单服务器部署</text>
+<text x="40" y="84" font-size="14" font-weight="400" fill="#596b83">平台、依赖与动态运行实例同机；临时端口入口；该宿主机为共同故障域</text>
+<rect x="40" y="104" width="16" height="16" rx="3" fill="#eef5ff" stroke="#8eafe0"/>
+<text x="64" y="117" font-size="12" font-weight="400" fill="#33455e">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="3" fill="#eaf6f4" stroke="#8ebeb3"/>
+<text x="284" y="117" font-size="12" font-weight="400" fill="#33455e">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="3" fill="#edf5eb" stroke="#a4be97"/>
+<text x="504" y="117" font-size="12" font-weight="400" fill="#33455e">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="3" fill="#fff5e7" stroke="#d5b78b"/>
+<text x="724" y="117" font-size="12" font-weight="400" fill="#33455e">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="3" fill="#f4f6f9" stroke="#b3bfce"/>
+<text x="944" y="117" font-size="12" font-weight="400" fill="#33455e">外部 / 基础设施</text>
+<g data-zone="host"><rect x="328" y="152" width="1232" height="924" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="352" y="184" font-size="14" font-weight="600" fill="#33455e">Docker 宿主机 ×1</text>
+<text x="352" y="208" font-size="12" font-weight="400" fill="#596b83">CPU / 内存 / 磁盘：按并行实例与数据容量规划</text>
+</g>
+<g data-zone="network"><rect x="352" y="404" width="1184" height="448" rx="8" fill="#f7faff" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="600" y="436" font-size="14" font-weight="600" fill="#33455e">本机 bridge 网络</text>
+<text x="600" y="460" font-size="12" font-weight="400" fill="#596b83">ouroboros-dev</text>
+</g>
+<path data-edge="0" d="M280 292 L376 292" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-port-traffic)"/>
+<path data-edge="1" d="M488 376 L488 512" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-port-traffic)"/>
+<path data-edge="2" d="M776 320 L936 320 Q944 320 944 328 L944 512" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-port-traffic)"/>
+<path d="M934 456 C934 442 954 442 954 456" fill="none" stroke="#fff" stroke-width="7"/>
+<path data-edge="3" d="M704 560 L728 560 Q736 560 736 552 L736 464 Q736 456 744 456 L934 456 C934 442 954 442 954 456 L1272 456 Q1280 456 1280 448 L1280 376" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-port-control)"/>
+<path data-edge="4" d="M376 612 L368 612 Q360 612 360 620 L360 984 Q360 992 368 992 L376 992" fill="none" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-port-storage)"/>
+<g data-edge-label="0"><rect x="306" y="252" width="44" height="24" rx="3" fill="#fff"/><text x="328" y="268" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">HTTP</text></g>
+<g data-edge-label="1"><rect x="501" y="440" width="70" height="24" rx="3" fill="#fff"/><text x="536" y="456" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">平台 :80</text></g>
+<g data-edge-label="2"><rect x="925" y="272" width="70" height="24" rx="3" fill="#fff"/><text x="960" y="288" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">应用 :80</text></g>
+<g data-edge-label="3"><rect x="947.5" y="476" width="121" height="24" rx="3" fill="#fff"/><text x="1008" y="492" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">Unix Socket API</text></g>
+<g data-node="browser"><rect x="40" y="224" width="240" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="40" y="248" width="4" height="24" fill="#b3bfce"/>
+<rect x="192" y="244" width="64" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="224.0" y="260" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">用户网络</text>
+<text x="64" y="264" font-size="16" font-weight="600" fill="#52657f">用户浏览器</text>
+<text x="64" y="300" font-size="12" font-weight="400" fill="#596b83">平台地址 / 应用地址</text>
+</g>
+<g data-node="ports"><rect x="376" y="248" width="400" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="376" y="272" width="4" height="24" fill="#b3bfce"/>
+<rect x="717" y="268" width="35" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="734.5" y="284" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">×1</text>
+<text x="400" y="288" font-size="16" font-weight="600" fill="#52657f">宿主机端口映射</text>
+<text x="400" y="324" font-size="12" font-weight="400" fill="#596b83">平台 ${PLATFORM_PORT} → 容器 80</text>
+<text x="400" y="348" font-size="12" font-weight="400" fill="#596b83">测试应用 p → 容器 80</text>
+</g>
+<g data-node="engine"><rect x="1144" y="248" width="368" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="1144" y="272" width="4" height="24" fill="#b3bfce"/>
+<rect x="1453" y="268" width="35" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="1470.5" y="284" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">×1</text>
+<text x="1168" y="288" font-size="16" font-weight="600" fill="#52657f">Docker Engine</text>
+<text x="1168" y="324" font-size="12" font-weight="400" fill="#596b83">/var/run/docker.sock</text>
+<text x="1168" y="348" font-size="12" font-weight="400" fill="#596b83">本机容器生命周期管理</text>
+</g>
+<g data-node="platform"><rect x="376" y="512" width="328" height="128" rx="6" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.5"/>
+<rect x="376" y="536" width="4" height="24" fill="#8eafe0"/>
+<rect x="645" y="532" width="35" height="22" rx="3" fill="#fff" stroke="#8eafe0"/><text x="662.5" y="548" font-size="12" font-weight="400" fill="#204f86" text-anchor="middle">×1</text>
+<text x="400" y="552" font-size="16" font-weight="600" fill="#204f86">开发平台</text>
+<text x="400" y="588" font-size="12" font-weight="400" fill="#596b83">ouroboros-develop:&lt;v&gt;</text>
+<text x="400" y="612" font-size="12" font-weight="400" fill="#596b83">Nginx :80 / Java :8080</text>
+</g>
+<g data-node="apps"><rect x="776" y="512" width="336" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="776" y="536" width="4" height="24" fill="#8ebeb3"/>
+<rect x="1039" y="532" width="49" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="1063.5" y="548" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">N ×1</text>
+<text x="800" y="552" font-size="16" font-weight="600" fill="#28675b">测试应用</text>
+<text x="800" y="588" font-size="12" font-weight="400" fill="#596b83">ouroboros-mothership:&lt;v&gt;</text>
+<text x="800" y="612" font-size="12" font-weight="400" fill="#596b83">每个应用 / 环境一个容器</text>
+</g>
+<g data-node="helpers"><rect x="1176" y="512" width="336" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="1176" y="536" width="4" height="24" fill="#8ebeb3"/>
+<rect x="1422" y="532" width="66" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="1455.0" y="548" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">按需 ×1</text>
+<text x="1200" y="552" font-size="16" font-weight="600" fill="#28675b">开发助手</text>
+<text x="1200" y="588" font-size="12" font-weight="400" fill="#596b83">ouroboros-mothership:&lt;v&gt;</text>
+<text x="1200" y="612" font-size="12" font-weight="400" fill="#596b83">INTERNAL_ONLY / 无公开 Web 入口</text>
+</g>
+<g data-node="mysql"><rect x="376" y="716" width="328" height="96" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="376" y="740" width="4" height="24" fill="#a4be97"/>
+<rect x="645" y="736" width="35" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="662.5" y="752" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">×1</text>
+<text x="400" y="756" font-size="16" font-weight="600" fill="#42663a">MySQL 8.0</text>
+<text x="400" y="784" font-size="12" font-weight="400" fill="#596b83">平台库 + 测试业务库 / TCP :3306</text>
+</g>
+<g data-node="mq"><rect x="776" y="716" width="336" height="96" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="776" y="740" width="4" height="24" fill="#d5b78b"/>
+<rect x="1053" y="736" width="35" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="1070.5" y="752" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×1</text>
+<text x="800" y="756" font-size="16" font-weight="600" fill="#805d2e">RabbitMQ 3-management</text>
+<text x="800" y="784" font-size="12" font-weight="400" fill="#596b83">AMQP :5672 / 内部消息与命令</text>
+</g>
+<g data-node="files"><rect x="376" y="920" width="736" height="128" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="376" y="944" width="4" height="24" fill="#a4be97"/>
+<rect x="1024" y="940" width="64" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1056.0" y="956" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">本机磁盘</text>
+<text x="400" y="960" font-size="16" font-weight="600" fill="#42663a">宿主机持久化目录</text>
+<text x="400" y="996" font-size="12" font-weight="400" fill="#596b83">部署目录 → 平台 /app/deploy；workspace/run → 实例 /app/deploy</text>
+<text x="400" y="1020" font-size="12" font-weight="400" fill="#596b83">mysql-data → MySQL 数据；上传 / 文档 / 日志按实际目录持久化</text>
+</g>
+<g data-node="mqdata"><rect x="1176" y="920" width="336" height="128" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="1176" y="944" width="4" height="24" fill="#a4be97"/>
+<rect x="1436" y="940" width="52" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1462.0" y="956" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">需补齐</text>
+<text x="1200" y="960" font-size="16" font-weight="600" fill="#42663a">RabbitMQ 数据</text>
+<text x="1200" y="996" font-size="12" font-weight="400" fill="#596b83">长期运行补数据卷或改外部服务</text>
+<text x="1200" y="1020" font-size="12" font-weight="400" fill="#596b83">原始 Compose 未固定数据卷</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="6" fill="#fff" stroke="#b3bfce"/>
+<text x="64" y="1196" font-size="14" font-weight="600" fill="#33455e">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" fill="#33455e">平台 / 测试应用 / 助手 → MySQL</text>
+<text x="368" y="1236" font-size="12" font-weight="400" fill="#596b83">TCP :3306；按各自数据源账号与数据库连接</text>
+<line x1="64" y1="1246" x2="992" y2="1246" stroke="#edf0f4"/>
+<text x="64" y="1268" font-size="12" font-weight="600" fill="#33455e">平台 / 测试应用 / 助手 → RabbitMQ</text>
+<text x="368" y="1268" font-size="12" font-weight="400" fill="#596b83">AMQP :5672；实例可使用专用 MQ 连接</text>
+<line x1="64" y1="1278" x2="992" y2="1278" stroke="#edf0f4"/>
+<text x="64" y="1300" font-size="12" font-weight="600" fill="#33455e">平台 → Docker Engine</text>
+<text x="368" y="1300" font-size="12" font-weight="400" fill="#596b83">Unix Socket /var/run/docker.sock；创建、查询、停止容器</text>
+<line x1="64" y1="1310" x2="992" y2="1310" stroke="#edf0f4"/>
+<text x="64" y="1332" font-size="12" font-weight="600" fill="#33455e">平台与实例 → 文件系统</text>
+<text x="368" y="1332" font-size="12" font-weight="400" fill="#596b83">HOST_WORKSPACE_PATH 与平台工作区对应同一份文件</text>
+<line x1="64" y1="1342" x2="992" y2="1342" stroke="#edf0f4"/>
+<text x="64" y="1364" font-size="12" font-weight="600" fill="#33455e">用户入口与管理端口</text>
+<text x="368" y="1364" font-size="12" font-weight="400" fill="#596b83">仅发布平台与测试入口；DB / MQ 管理端口示例绑定宿主机回环</text>
+<rect x="1040" y="1160" width="520" height="248" rx="6" fill="#fff9f0" stroke="#d5b78b"/>
+<text x="1064" y="1196" font-size="14" font-weight="600" fill="#33455e">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" fill="#805d2e">平台 ×1；测试应用 / 助手按需，每个实例 ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" fill="#805d2e">平台、MySQL、RabbitMQ 均为单实例</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" fill="#805d2e">宿主机与本机磁盘是共同单点</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" fill="#805d2e">原始 Compose 未设置容器 CPU / 内存上限</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" fill="#805d2e">容量与持久化补齐后再用于团队长期运行</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" stroke="#b3bfce"/>
+<line x1="40" y1="1468" x2="80" y2="1468" stroke="#43546c" stroke-width="2"/><text x="92" y="1473" font-size="12" font-weight="400" fill="#33455e">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5"/><text x="372" y="1473" font-size="12" font-weight="400" fill="#33455e">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5"/><text x="620" y="1473" font-size="12" font-weight="400" fill="#33455e">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" fill="#596b83">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg></div></main></body></html>

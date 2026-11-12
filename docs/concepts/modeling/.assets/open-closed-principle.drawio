@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="open-closed-principle" name="开闭原则">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="480">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" parent="1" source="original" target="effective" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.21785714285714286;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" parent="1" source="customization" target="effective" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.7821428571428571;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="original" value="&lt;b&gt;原有功能定义&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;随产品版本持续演进&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="56" width="488" height="112" />
+        </mxCell>
+        <mxCell id="customization" value="&lt;b&gt;定制副本&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;不同阶段的差异独立保存&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="672" y="56" width="488" height="112" />
+        </mxCell>
+        <mxCell id="effective" value="&lt;b&gt;当前生效功能&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;定制副本按规则覆盖，未定制部分继续复用&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="264" width="1120" height="112" />
+        </mxCell>
+        <mxCell id="note-0" value="升级更新原定义，定制副本独立保留并继续按覆盖规则生效" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=20;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40.0" y="424" width="1120" height="28" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

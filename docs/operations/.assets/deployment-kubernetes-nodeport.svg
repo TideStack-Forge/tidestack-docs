@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-kubernetes-nodeport-title deployment-kubernetes-nodeport-desc" id="deployment-kubernetes-nodeport-root">
+<title id="deployment-kubernetes-nodeport-title">Kubernetes · NodePort 入口与落位</title>
+<desc id="deployment-kubernetes-nodeport-desc">局部展开：平台在集群外；测试实例单副本；完整依赖与容量要求见 Kubernetes 部署主图；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs>
+      <style>#deployment-kubernetes-nodeport-root { font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+      #deployment-kubernetes-nodeport-root .diagram-container { width:100%;overflow-x:auto }
+      #deployment-kubernetes-nodeport-root .diagram-container svg { display:block;width:100%;min-width:1600px;height:auto }
+      @media print {
+#deployment-kubernetes-nodeport-root .diagram-container { overflow-x:visible }
+      #deployment-kubernetes-nodeport-root .diagram-container svg { min-width:0 }
+}
+      #deployment-kubernetes-nodeport-root text { font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif }</style><style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}</style>
+<marker id="deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43546c"/></marker>
+<marker id="deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#577dab"/></marker>
+<marker id="deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs><rect width="1600" height="1520" fill="#fff"/>
+<text x="40" y="52" font-size="28" font-weight="600" fill="#33455e">Kubernetes · NodePort 入口与落位</text>
+<text x="40" y="84" font-size="14" font-weight="400" fill="#596b83">局部展开：平台在集群外；测试实例单副本；完整依赖与容量要求见 Kubernetes 部署主图</text>
+<rect x="40" y="104" width="16" height="16" rx="3" fill="#eef5ff" stroke="#8eafe0"/>
+<text x="64" y="117" font-size="12" font-weight="400" fill="#33455e">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="3" fill="#eaf6f4" stroke="#8ebeb3"/>
+<text x="284" y="117" font-size="12" font-weight="400" fill="#33455e">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="3" fill="#edf5eb" stroke="#a4be97"/>
+<text x="504" y="117" font-size="12" font-weight="400" fill="#33455e">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="3" fill="#fff5e7" stroke="#d5b78b"/>
+<text x="724" y="117" font-size="12" font-weight="400" fill="#33455e">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="3" fill="#f4f6f9" stroke="#b3bfce"/>
+<text x="944" y="117" font-size="12" font-weight="400" fill="#33455e">外部 / 基础设施</text>
+<g data-zone="a"><rect x="40" y="420" width="400" height="656" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="64" y="452" font-size="14" font-weight="600" fill="#33455e">集群外平台主机 ×1</text>
+<text x="64" y="476" font-size="12" font-weight="400" fill="#596b83">实际平台端口与共享目录由部署配置确定</text>
+</g>
+<g data-zone="cluster"><rect x="480" y="152" width="1080" height="924" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="504" y="184" font-size="14" font-weight="600" fill="#33455e">Kubernetes 集群 · 工作节点池 ×M（按实际配置）</text>
+<text x="504" y="208" font-size="12" font-weight="400" fill="#596b83">NodePort 可达节点与转发行为还取决于集群网络及 Service 设置</text>
+</g>
+<g data-zone="namespace"><rect x="504" y="448" width="1032" height="416" rx="8" fill="#f7faff" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="1512" y="480" font-size="14" font-weight="600" fill="#33455e" text-anchor="end">运行命名空间 · 示例 tidestack-dev</text>
+<text x="1512" y="504" font-size="12" font-weight="400" fill="#596b83" text-anchor="end">Service / PVC 为逻辑资源；API Server 位于控制平面</text>
+</g>
+<path data-edge="0" d="M360 336 L360 532" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-traffic)"/>
+<path data-edge="1" d="M440 280 L744 280 Q752 280 752 288 L752 532" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-traffic)"/>
+<path d="M742 408 C742 394 762 394 762 408" fill="none" stroke="#fff" stroke-width="7"/>
+<path data-edge="2" d="M416 596 L448 596 Q456 596 456 588 L456 416 Q456 408 464 408 L742 408 C742 394 762 394 762 408 L1312 408 Q1320 408 1320 400 L1320 376" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-control)"/>
+<path data-edge="3" d="M952 612 L1080 612" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-nodeport-deployment-kubernetes-nodeport-traffic)"/>
+<g data-edge-label="0"><rect x="233" y="488" width="94" height="24" rx="3" fill="#fff"/><text x="280" y="504" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">平台主机端口</text></g>
+<g data-edge-label="1"><rect x="782" y="332" width="100" height="24" rx="3" fill="#fff"/><text x="832" y="348" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">TCP NodeIP:p</text></g>
+<g data-edge-label="2"><rect x="968.5" y="372" width="79" height="24" rx="3" fill="#fff"/><text x="1008" y="388" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">HTTPS API</text></g>
+<g data-edge-label="3"><rect x="983.5" y="568" width="65" height="24" rx="3" fill="#fff"/><text x="1016" y="584" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">TCP :80</text></g>
+<g data-node="browser"><rect x="40" y="208" width="400" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="40" y="232" width="4" height="24" fill="#b3bfce"/>
+<rect x="352" y="228" width="64" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="384.0" y="244" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">用户网络</text>
+<text x="64" y="248" font-size="16" font-weight="600" fill="#52657f">用户浏览器</text>
+<text x="64" y="284" font-size="12" font-weight="400" fill="#596b83">平台主机地址 / 可达 NodeIP:NodePort</text>
+</g>
+<g data-node="platform"><rect x="64" y="532" width="352" height="128" rx="6" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.5"/>
+<rect x="64" y="556" width="4" height="24" fill="#8eafe0"/>
+<rect x="357" y="552" width="35" height="22" rx="3" fill="#fff" stroke="#8eafe0"/><text x="374.5" y="568" font-size="12" font-weight="400" fill="#204f86" text-anchor="middle">×1</text>
+<text x="88" y="572" font-size="16" font-weight="600" fill="#204f86">开发平台</text>
+<text x="88" y="608" font-size="12" font-weight="400" fill="#596b83">ouroboros-develop:&lt;v&gt;</text>
+<text x="88" y="632" font-size="12" font-weight="400" fill="#596b83">KubernetesClient + RBAC</text>
+</g>
+<g data-node="api"><rect x="1128" y="248" width="384" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="1128" y="272" width="4" height="24" fill="#b3bfce"/>
+<rect x="1436" y="268" width="52" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="1462.0" y="284" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">按集群</text>
+<text x="1152" y="288" font-size="16" font-weight="600" fill="#52657f">API Server</text>
+<text x="1152" y="324" font-size="12" font-weight="400" fill="#596b83">HTTPS / 集群 API Endpoint</text>
+</g>
+<g data-node="service"><rect x="552" y="532" width="400" height="128" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="552" y="556" width="4" height="24" fill="#d5b78b"/>
+<rect x="850" y="552" width="78" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="889.0" y="568" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">每实例 ×1</text>
+<text x="576" y="572" font-size="16" font-weight="600" fill="#805d2e">NodePort Service</text>
+<text x="576" y="608" font-size="12" font-weight="400" fill="#596b83">虚拟资源：NodeIP:p → Service :80</text>
+<text x="576" y="632" font-size="12" font-weight="400" fill="#596b83">p 由当前实现计算并显式指定</text>
+</g>
+<g data-node="pod"><rect x="1080" y="532" width="432" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="1080" y="556" width="4" height="24" fill="#8ebeb3"/>
+<rect x="1410" y="552" width="78" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="1449.0" y="568" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">每实例 ×1</text>
+<text x="1104" y="572" font-size="16" font-weight="600" fill="#28675b">测试应用 Pod</text>
+<text x="1104" y="608" font-size="12" font-weight="400" fill="#596b83">Deployment replicas=1</text>
+<text x="1104" y="632" font-size="12" font-weight="400" fill="#596b83">ouroboros-mothership:&lt;v&gt; / :80</text>
+</g>
+<g data-node="pvc"><rect x="552" y="744" width="960" height="96" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="552" y="768" width="4" height="24" fill="#a4be97"/>
+<rect x="1424" y="764" width="64" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1456.0" y="780" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">逻辑资源</text>
+<text x="576" y="784" font-size="16" font-weight="600" fill="#42663a">实例共享 PVC</text>
+<text x="576" y="812" font-size="12" font-weight="400" fill="#596b83">PVC → PV / 底层共享存储；平台挂载同一份存储；不把 PVC 视作物理磁盘</text>
+</g>
+<g data-node="dependencies"><rect x="552" y="924" width="960" height="96" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="552" y="948" width="4" height="24" fill="#b3bfce"/>
+<rect x="1436" y="944" width="52" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="1462.0" y="960" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">见主图</text>
+<text x="576" y="964" font-size="16" font-weight="600" fill="#52657f">依赖落位沿用主图</text>
+<text x="576" y="992" font-size="12" font-weight="400" fill="#596b83">MySQL / RabbitMQ 从 Pod 可达；共享存储也从集群外平台可达；外置或集群内位置需明确</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="6" fill="#fff" stroke="#b3bfce"/>
+<text x="64" y="1196" font-size="14" font-weight="600" fill="#33455e">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" fill="#33455e">用户 → 节点地址与 NodePort</text>
+<text x="368" y="1236" font-size="12" font-weight="400" fill="#596b83">NodeIP:p → Service → Pod :80；p 不沿用 Docker 端口范围</text>
+<line x1="64" y1="1246" x2="992" y2="1246" stroke="#edf0f4"/>
+<text x="64" y="1268" font-size="12" font-weight="600" fill="#33455e">平台 → API Server</text>
+<text x="368" y="1268" font-size="12" font-weight="400" fill="#596b83">平台自己的客户端与身份；运维终端 kubectl 可用不能代替验证</text>
+<line x1="64" y1="1278" x2="992" y2="1278" stroke="#edf0f4"/>
+<text x="64" y="1300" font-size="12" font-weight="600" fill="#33455e">平台与 Pod → 共享存储</text>
+<text x="368" y="1300" font-size="12" font-weight="400" fill="#596b83">平台写入 mounted-workspace-root；Pod 通过 PVC / subPath 读取</text>
+<line x1="64" y1="1310" x2="992" y2="1310" stroke="#edf0f4"/>
+<text x="64" y="1332" font-size="12" font-weight="600" fill="#33455e">Pod → 数据库 / MQ</text>
+<text x="368" y="1332" font-size="12" font-weight="400" fill="#596b83">按主图实际落位开放 TCP :3306 / AMQP :5672</text>
+<line x1="64" y1="1342" x2="992" y2="1342" stroke="#edf0f4"/>
+<text x="64" y="1364" font-size="12" font-weight="600" fill="#33455e">返回地址限制</text>
+<text x="368" y="1364" font-size="12" font-weight="400" fill="#596b83">当前状态投影返回 127.0.0.1:p；远程用户需使用可达节点地址</text>
+<rect x="1040" y="1160" width="520" height="248" rx="6" fill="#fff9f0" stroke="#d5b78b"/>
+<text x="1064" y="1196" font-size="14" font-weight="600" fill="#33455e">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" fill="#805d2e">测试实例 Deployment ×1，Pod ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" fill="#805d2e">节点池 ×M 不代表实例副本数为 M</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" fill="#805d2e">Service 是逻辑入口，不独占服务器</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" fill="#805d2e">单 Pod、平台及共享存储需识别故障影响</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" fill="#805d2e">节点资源、Pod limits 与 NodePort 占用待核对</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" stroke="#b3bfce"/>
+<line x1="40" y1="1468" x2="80" y2="1468" stroke="#43546c" stroke-width="2"/><text x="92" y="1473" font-size="12" font-weight="400" fill="#33455e">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5"/><text x="372" y="1473" font-size="12" font-weight="400" fill="#33455e">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5"/><text x="620" y="1473" font-size="12" font-weight="400" fill="#33455e">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" fill="#596b83">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg>

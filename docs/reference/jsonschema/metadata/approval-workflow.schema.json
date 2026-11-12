@@ -1,53 +1,833 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/approval-workflow.schema.json",
-  "title": "审批流",
-  "description": "TideStack metadata schema for approval-workflow. Legacy runtime packaging may still use Ouroboros paths.",
-  "type": "object",
-  "additionalProperties": true,
-  "required": [
-    "formatVersion",
-    "name",
-    "title",
-    "version",
-    "enabled",
-    "form",
-    "nodes",
-    "edges"
+  "title": "审批流元数据",
+  "description": "描述审批流的静态定义或包含 flowDefinition 的文档包装；静态格式版本为 1，运行态 V1/V2 由平台 codec 转换。",
+  "anyOf": [
+    {
+      "$ref": "#/$defs/definition"
+    },
+    {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "flowDefinition"
+      ],
+      "properties": {
+        "flowDefinition": {
+          "$ref": "#/$defs/definition",
+          "description": "当前文档承载的审批流静态定义。"
+        }
+      },
+      "title": "审批流文档包装",
+      "description": "使用 flowDefinition 属性承载审批流静态定义的文档形式，平台 codec 读取内部定义。"
+    }
   ],
-  "properties": {
-    "formatVersion": {
-      "type": "integer"
-    },
-    "name": {
-      "type": "string"
-    },
-    "title": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "version": {
-      "type": "integer"
-    },
-    "enabled": {
-      "type": "boolean"
+  "$defs": {
+    "definition": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "form"
+      ],
+      "properties": {
+        "formatVersion": {
+          "type": "integer",
+          "const": 1,
+          "default": 1,
+          "description": "静态元数据格式版本，当前仅支持整数 1，缺省 1；不是运行态图格式版本。"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "审批流定义的稳定名称。"
+        },
+        "title": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "label": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "title 的反序列化别名。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "description": "审批流定义的业务版本号，必须为正整数，缺省 1。"
+        },
+        "enabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": true,
+          "description": "是否启用该审批流定义，缺省 true。"
+        },
+        "isEnabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "enabled 的反序列化别名。"
+        },
+        "form": {
+          "$ref": "#/$defs/form",
+          "description": "该审批流绑定的业务表单类型和标识。"
+        },
+        "notification": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/notification"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "任务及审批实例生命周期使用的通知模板引用。"
+        },
+        "editorLayout": {
+          "description": "编辑器布局的原始 JSON，由对应流程设计器解释。"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          },
+          "default": [],
+          "description": "审批流节点列表。"
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          },
+          "default": [],
+          "description": "审批流节点之间的有向连线列表。"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "title"
+          ]
+        },
+        {
+          "required": [
+            "label"
+          ]
+        }
+      ],
+      "title": "审批流静态定义",
+      "description": "定义审批流的身份、表单绑定、节点、连线及通知模板；缺省版本和启用状态由元数据类型提供。"
     },
     "form": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "formType"
+      ],
+      "properties": {
+        "formType": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "表单类型标识，由对应表单集成实现解释。"
+        },
+        "formId": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "该表单类型中的表单标识。"
+        },
+        "formKey": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "formId 的反序列化别名。"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "formId"
+          ]
+        },
+        {
+          "required": [
+            "formKey"
+          ]
+        }
+      ],
+      "title": "审批表单绑定",
+      "description": "指定审批实例使用的表单类型和表单标识。"
     },
     "notification": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "taskCreatedTemplate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "任务创建时使用的通知模板名称。"
+        },
+        "taskTimeoutRemindTemplate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "任务超时提醒使用的通知模板名称。"
+        },
+        "instanceCompletedTemplate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "审批实例完成时使用的通知模板名称。"
+        },
+        "instanceRejectedTemplate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "审批实例被拒绝时使用的通知模板名称。"
+        }
+      },
+      "title": "审批通知配置",
+      "description": "按任务和实例生命周期事件引用已定义的通知模板。"
     },
-    "editorLayout": {
-      "type": "object"
+    "node": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "节点类型，如 StartNode、ApprovalNode、EndNode；兼容相应中文旧名称，也可由 SPI 提供扩展类型。"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "节点的显示名称。"
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "节点在流程图中的标识，edges 的 sourceId 和 targetId 引用此值。"
+        },
+        "candidates": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/candidate"
+          },
+          "description": "该节点的候选处理人规则列表。"
+        },
+        "permission": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/permission"
+          },
+          "description": "节点对各表单字段的可见、可写和必填权限设置。"
+        },
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "旧节点结构中的后继节点标识，由兼容转换逻辑处理。"
+        },
+        "notify": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "该节点是否启用通知。"
+        },
+        "subType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "审批节点子类型：单签或会签。"
+        },
+        "actions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "该审批节点允许的操作标识列表。"
+        },
+        "timeout": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/timeout"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "节点超时设置。"
+        },
+        "noCandidateMode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "approved",
+            "rejected",
+            "reAssignUser",
+            null
+          ],
+          "description": "无候选人时的处理策略：approved 为通过，rejected 为拒绝，reAssignUser 为转交指定用户。"
+        },
+        "reAssignUsers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "无候选人并选择重新分配策略时使用的用户标识列表。"
+        },
+        "allowRejectToSelf": {
+          "type": "boolean",
+          "description": "是否允许驳回到当前处理人自身，缺省 true。"
+        },
+        "multipleMode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "会签节点的处理方式配置。"
+        },
+        "percentage": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "会签节点使用的通过比例配置。"
+        },
+        "rejectAction": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "会签或子流程的拒绝操作配置，由相应节点实现解释。"
+        },
+        "subFlowKey": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "子流程节点引用的审批流定义标识。"
+        },
+        "inParameters": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/ioParameter"
+          },
+          "description": "进入子流程时的参数映射列表。"
+        },
+        "outParameters": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/ioParameter"
+          },
+          "description": "子流程结束时的输出参数映射列表。"
+        },
+        "notice": {
+          "description": "通知节点的通知配置 JSON。"
+        },
+        "channel": {
+          "description": "通知节点的渠道配置 JSON。"
+        },
+        "content": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "通知节点的内容文本。"
+        },
+        "outcome": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "结束节点表示的流程结果配置。"
+        },
+        "nodeBranches": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/nodeBranch"
+          },
+          "description": "旧分流节点的分支配置列表，由兼容节点结构使用。"
+        },
+        "logic": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "旧分流节点的逻辑配置。"
+        },
+        "joinType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "合并节点的合并策略标识。"
+        },
+        "splitType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "网关节点的分流策略标识。"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "ApprovalNode",
+                  "审批节点"
+                ],
+                "description": "节点类型，如 StartNode、ApprovalNode、EndNode；兼容相应中文旧名称，也可由 SPI 提供扩展类型。"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "subType"
+            ],
+            "properties": {
+              "subType": {
+                "type": "string",
+                "enum": [
+                  "单签",
+                  "会签"
+                ],
+                "description": "审批节点子类型：单签或会签。"
+              }
+            }
+          }
+        }
+      ],
+      "title": "审批流节点",
+      "description": "描述一个审批流节点；type 选择内置或 SPI 扩展实现，不同类型读取各自的配置。当前图结构使用 edges 表达节点连线。"
     },
-    "nodes": {
-      "type": "array"
+    "permission": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "表单字段的名称。"
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "界面中展示的名称。"
+        },
+        "visible": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "该字段在节点表单中是否可见。"
+        },
+        "writable": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "该字段在节点表单中是否允许修改。"
+        },
+        "required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "该字段在节点表单中是否必填。"
+        }
+      },
+      "title": "节点表单字段权限",
+      "description": "控制审批节点中单个表单字段的可见性、可编辑性和必填要求。"
     },
-    "edges": {
-      "type": "array"
+    "candidate": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "候选人规则类型，如 User、Role、Position、Starter、FormField、UserSelect，也支持 SPI 扩展。"
+        },
+        "users": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "User 规则引用的用户标识列表。"
+        },
+        "roles": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Role 规则引用的角色标识列表。"
+        },
+        "positions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Position 规则引用的岗位标识列表。"
+        },
+        "isChecked": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Starter 规则中是否勾选发起人。"
+        },
+        "field": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "FormField 规则读取处理人标识的表单字段。"
+        },
+        "mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "single",
+            "multiple",
+            null
+          ],
+          "description": "UserSelect 规则的选择模式：single 为单选，multiple 为多选。"
+        },
+        "candidateRange": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "ROLE",
+            "POSITION",
+            "DEPARTMENT",
+            "FORM_FIELD",
+            null
+          ],
+          "description": "UserSelect 的选择范围类型配置；ROLE、POSITION、DEPARTMENT、FORM_FIELD 的成员资格数据源为预留接入点。"
+        },
+        "allowOverride": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否允许发起人覆盖该节点的审批人，缺省 false。"
+        }
+      },
+      "title": "审批候选人规则",
+      "description": "描述用户、角色、岗位、发起人、表单字段或自选处理人规则；type 决定哪些配置生效。"
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "连线在流程图中的标识。"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "SEQUENCE",
+            "BRANCH",
+            "CONTINUE",
+            null
+          ],
+          "description": "连线类型：SEQUENCE 为当前顺序连线；BRANCH 和 CONTINUE 为已弃用的兼容值。"
+        },
+        "sourceId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "源节点的 id。"
+        },
+        "targetId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "目标节点的 id。"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "兼容旧分支名称的显示信息，不用于判断当前图的路由语义。"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "该连线的条件定义。"
+        },
+        "order": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "路由选择时使用的连线顺序配置。"
+        }
+      },
+      "title": "审批流连线",
+      "description": "用源节点标识和目标节点标识连接流程图；条件及顺序供流程路由使用。"
+    },
+    "condition": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/compareCondition"
+        },
+        {
+          "$ref": "#/$defs/combinationCondition"
+        }
+      ],
+      "title": "审批流条件",
+      "description": "可使用单项比较条件或递归组合条件，供路由和分支配置解释。"
+    },
+    "compareCondition": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "left",
+        "op"
+      ],
+      "properties": {
+        "left": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "左值数据来源类型。"
+            },
+            "field": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "左值读取的字段名称。"
+            }
+          },
+          "description": "说明比较条件从何种数据源读取哪个字段。",
+          "title": "审批条件左值"
+        },
+        "op": {
+          "type": "string",
+          "description": "比较操作符标识，由审批条件实现解析。"
+        },
+        "right": {
+          "description": "比较条件的右值，可为任意 JSON 值，具体含义由操作符解释。"
+        }
+      },
+      "title": "审批比较条件",
+      "description": "对指定字段和右值应用操作符，构成单个审批路由条件。"
+    },
+    "combinationCondition": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "conjunction",
+        "children"
+      ],
+      "properties": {
+        "conjunction": {
+          "type": "string",
+          "description": "子条件之间的逻辑连接方式配置。"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/condition"
+          },
+          "description": "参与组合的子条件列表。"
+        }
+      },
+      "title": "审批组合条件",
+      "description": "用逻辑连接方式组合多个子条件；子条件仍可继续嵌套。"
+    },
+    "timeout": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "duration": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "节点允许的处理时长配置，由审批超时机制解析。"
+        },
+        "action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "超时后执行的操作标识。"
+        },
+        "transferTo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "超时操作需要转交时的目标标识。"
+        }
+      },
+      "title": "审批节点超时设置",
+      "description": "描述节点超时时长、超时动作及转交对象。"
+    },
+    "ioParameter": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "参数值的来源配置。"
+        },
+        "sourceExpression": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "从来源中计算或提取参数值的表达式。"
+        },
+        "target": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "接收该参数值的目标变量名称。"
+        }
+      },
+      "title": "子流程参数映射",
+      "description": "指定子流程调用前后一个参数的来源、表达式及目标变量。"
+    },
+    "nodeBranch": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "分支显示名称。"
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "分支的标识。"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "进入该分支的条件定义。"
+        },
+        "first": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "该分支第一个节点的标识。"
+        }
+      },
+      "title": "旧审批分支定义",
+      "description": "保留旧分流节点的分支标识、条件和首节点信息，供兼容转换使用。"
     }
-  }
+  },
+  "$comment": "Source: core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/metadata/ApprovalWorkflowDefinitionMetadata.java; core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/metadata/ApprovalWorkflowDefinitionMetadataCodec.java; core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/FlowNode.java; core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/v2/FlowEdgeV2.java; core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/Candidate.java"
 }

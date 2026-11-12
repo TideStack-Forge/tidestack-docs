@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 784" width="960" height="784" role="img" aria-labelledby="data-model-runtime-title data-model-runtime-desc" id="data-model-runtime-root">
+<title id="data-model-runtime-title">从模型定义到数据访问</title>
+<desc id="data-model-runtime-desc">业务模型投影、Java 类型定义和扩展提供的数据模型元数据，经装饰与规则装配构建运行时模型，在数据站中通过适配器访问实际存储。</desc>
+<defs>
+      <style>#data-model-runtime-root .diagram-container { width:100%;overflow-x:auto }
+      #data-model-runtime-root text { font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif }</style><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="data-model-runtime-a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="data-model-runtime-a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="data-model-runtime-a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
+<marker id="data-model-runtime-a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+</defs>
+<rect width="960" height="784" fill="white"/>
+<rect x="40" y="488" width="880" height="136" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="60" y="518" font-size="18" font-weight="600" fill="#43546c">数据站 DataStation</text>
+<path d="M168 160L168.0 186.0Q168 192 174.0 192.0L394.0 192.0Q400 192 400.0 198.0L400 224" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#data-model-runtime-a627ba4)"/>
+<path d="M480 160L480 224" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#data-model-runtime-a43816c)"/>
+<path d="M792 160L792.0 202.0Q792 208 786.0 208.0L566.0 208.0Q560 208 560.0 214.0L560 224" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#data-model-runtime-a9577b5)"/>
+<path d="M480 304L480 352" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#data-model-runtime-a627ba4)"/>
+<path d="M480 432L480.0 450.0Q480 456 474.0 456.0L234.0 456.0Q228 456 228.0 462.0L228 536" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#data-model-runtime-a9577b5)"/>
+<path d="M392 568L568 568" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#data-model-runtime-a627ba4)"/>
+<path d="M732 600L732 680" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#data-model-runtime-a71839a)"/>
+<g data-node="business"><rect x="40" y="88" width="256" height="72" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="168.0" y="122.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">业务模型投影</text>
+<text x="168.0" y="146.0" font-size="15" fill="#52657f" text-anchor="middle">数据字段 · 关联 · 存储配置</text>
+</g>
+<g data-node="java"><rect x="352" y="88" width="256" height="72" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="480.0" y="122.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">Java 类型定义</text>
+<text x="480.0" y="146.0" font-size="15" fill="#52657f" text-anchor="middle">注解声明 → 元数据编译</text>
+</g>
+<g data-node="provider"><rect x="664" y="88" width="256" height="72" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="792.0" y="122.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">扩展元数据</text>
+<text x="792.0" y="146.0" font-size="15" fill="#52657f" text-anchor="middle">已注册的元数据提供者</text>
+</g>
+<g data-node="metadata"><rect x="352" y="224" width="256" height="80" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="480.0" y="261.5" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">数据模型元数据</text>
+<text x="480.0" y="286.5" font-size="16" fill="#52657f" text-anchor="middle">DataModelMeta</text>
+</g>
+<g data-node="decoration"><rect x="352" y="352" width="256" height="80" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="480.0" y="389.5" font-size="19" font-weight="600" fill="#63448e" text-anchor="middle">装饰与运行规则装配</text>
+<text x="480.0" y="413.5" font-size="15" fill="#52657f" text-anchor="middle">补充字段 · 校验 · 挂载插件</text>
+</g>
+<g data-node="runtime"><rect x="64" y="536" width="328" height="64" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="228.0" y="565.5" font-size="19" font-weight="600" fill="#204f86" text-anchor="middle">运行时模型 DataModel</text>
+<text x="228.0" y="589.5" font-size="15" fill="#52657f" text-anchor="middle">字段校验 · 关联编排 · 插件链</text>
+</g>
+<g data-node="adapter"><rect x="568" y="536" width="328" height="64" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="732.0" y="565.0" font-size="18" font-weight="600" fill="#245e69" text-anchor="middle">数据适配器 DataAdapter</text>
+<text x="732.0" y="589.0" font-size="15" fill="#52657f" text-anchor="middle">查询转译 · 数据源访问</text>
+</g>
+<g data-node="storage"><rect x="568" y="680" width="328" height="64" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="732.0" y="710.0" font-size="20" font-weight="600" fill="#805719" text-anchor="middle">实际存储</text>
+<text x="732.0" y="734.0" font-size="15" fill="#52657f" text-anchor="middle">SQL 数据源中的表、列与记录等</text>
+</g>
+<rect x="440.0" y="530" width="80" height="25" rx="3" fill="white"/><text x="480" y="548" fill="#627ba4" font-size="16" text-anchor="middle">数据操作</text>
+<rect x="752.0" y="634" width="48" height="25" rx="3" fill="white"/><text x="776" y="652" fill="#71839a" font-size="16" text-anchor="middle">读写</text>
+<text x="40" y="40" font-size="24" fill="#204f86" text-anchor="start" font-weight="600">从模型定义到数据访问</text>
+<text x="40" y="704" font-size="17" fill="#43546c" text-anchor="start" font-weight="600">调用入口</text>
+<text x="40" y="732" font-size="16" fill="#52657f" text-anchor="start">逻辑流、脚本和 Java 代码</text>
+<text x="40" y="758" font-size="16" fill="#52657f" text-anchor="start">均通过运行时模型读写数据。</text>
+</svg>

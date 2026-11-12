@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="pareto-principle" name="聚焦业务价值（二八原则）">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="480">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="general" value="&lt;b&gt;约 80% 的一般性需求&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;低代码：在适合建模、配置和复用的范围内解决&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="104" width="880" height="100" />
+        </mxCell>
+        <mxCell id="special" value="&lt;b&gt;约 20% 的需求&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;代码：补足特殊需求&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="940" y="104" width="220" height="100" />
+        </mxCell>
+        <mxCell id="common-effort" value="&lt;b&gt;约 20% 的精力&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;搭建通用功能&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="300" width="220" height="100" />
+        </mxCell>
+        <mxCell id="value-effort" value="&lt;b&gt;约 80% 的精力&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;深入约 20% 的高价值功能&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="280" y="300" width="880" height="100" />
+        </mxCell>
+        <mxCell id="note-0" value="开发方式：低代码解决一般性需求，代码承接复杂与特殊需求" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=20;align=left;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="48" width="1120" height="28" />
+        </mxCell>
+        <mxCell id="note-1" value="精力分配：快速搭建通用功能，把主要精力投入高价值业务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=20;align=left;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="244" width="1120" height="28" />
+        </mxCell>
+        <mxCell id="note-2" value="二八表达开发取舍，具体比例依项目特点分配" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=18;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40.0" y="430" width="1120" height="26" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

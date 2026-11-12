@@ -11,7 +11,7 @@ sidebar_position: 2
 
 | 你要完成的任务 | 使用能力 | 操作指南 |
 | --- | --- | --- |
-| 创建应用 | 应用管理 | [创建第一个应用](../getting-started/create-first-application) |
+| 创建应用 | 应用管理 | [快速上手](../getting-started/#创建客户管理应用) |
 | 定义业务对象和字段 | 业务模型 | [业务模型](../guide/tutorial/business-model/) |
 | 配置列表、表单和详情 | 业务模型视图、UI Schema | [开发业务模型](../guide/tutorial/business-model/develop-business-model/) |
 | 快速创建轻量采集页面 | 动态表单 | [页面交付方案](./page-delivery-with-dynamic-forms-and-ui-schema#创建动态表单) |
@@ -29,8 +29,8 @@ sidebar_position: 2
 
 1. 明确业务对象、使用角色和关键动作。
 2. 创建应用和业务模型。
-3. 使用自动视图跑通新建、查询、详情和编辑。
-4. 使用逻辑流或审批流承接关键动作。
+3. 配置标准列表和表单，跑通新建、查询、详情和编辑。
+4. 在行为契约中定义需要复用的业务动作与事件，使用逻辑流、后端 Handler 或审批流承接处理。
 5. 配置入口权限、数据范围和通知。
 6. 验证数据源、外部接口、任务和消息等集成链路。
 7. 保存并提交全部变更，发布版本并创建运行实例。

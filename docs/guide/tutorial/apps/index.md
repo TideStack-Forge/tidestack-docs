@@ -6,7 +6,7 @@ sidebar_position: 1
 
 潮汐栈支持多人在线同时开发多个应用，因此平台提供了应用管理功能，用于创建和管理应用。
 
-首次创建应用时，按 [创建第一个应用](../../../getting-started/create-first-application) 完成可运行的最小闭环；本页用于查询应用管理界面的详细操作。
+首次创建应用时，按 [快速上手](../../../getting-started/#创建客户管理应用) 完成可运行的最小闭环；本页用于查询应用管理界面的详细操作。
 
 ## 你通常会在这里完成什么
 
@@ -42,7 +42,7 @@ sidebar_position: 1
 
 ![打开应用](.assets/open-app-1.png)
 
-打开应用后，默认会进入 `业务模型` 管理界面：
+打开应用后，默认会进入 **应用开发看板**（`/dev/{appName}/dashboard`，菜单 `order` 0；`业务模型` 的 order 为 20，排在其后）：
 
 ![进入应用](.assets/open-app-2.png)
 

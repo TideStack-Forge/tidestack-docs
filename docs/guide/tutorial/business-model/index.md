@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 
 # 业务模型
 
-> 详情请参考核心概念中的 [业务模型](/docs/concepts/business-model/)。
+> 详情请参考概念与设计中的 [业务模型](/docs/concepts/business-model/)。
 
 业务模型是应用的**核心模块**，用于定义业务功能，包括实体、属性、关系、操作、视图、菜单和权限等。
 
@@ -98,7 +98,7 @@ toc_max_heading_level: 4
 
 #### 投射模型
 
-关于业务模型的投射模型概念，请参考 **核心概念** 中的 [业务模型](/docs/concepts/business-model/)。
+关于业务模型的投射模型概念，请参考 **概念与设计** 中的 [业务模型](/docs/concepts/business-model/)。
 
 ![查看模型 - 投射模型](.assets/show-model-03.png)
 

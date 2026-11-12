@@ -1,43 +1,75 @@
 ---
-title: 任务配方
-sidebar_position: 4
+title: 任务执行与验收
+sidebar_position: 3
 ---
 
-# 任务配方
+# 任务执行与验收
 
-这些配方给 AI Agent 提供最小上下文读取顺序和验收口径。执行时仍以当前仓库文件和测试为准。
+按[任务路由](./routing-hints.md)选好文档后，使用本页组织实施和验收。执行前确认目标版本与工作区，读取项目约定和已有实现；完成时分别报告已修改、已验证与尚未验证的内容。
 
 ## 创建一个低代码业务功能
 
-1. 读 `docs/low-code/from-requirement-to-delivery.md`。
-2. 按对象、页面、流程、权限、集成拆解。
-3. 需要 metadata 时查 `docs/reference/jsonschema/metadata/` 和对应概念页。
-4. 验收：业务入口、权限、页面、数据、流程和发布路径都能闭环。
+需要提供：业务对象、操作角色、关键动作、字段约束，以及是否需要审批或外部集成。
 
-## 创建融合开发扩展
+1. 阅读[从需求到交付](../low-code/from-requirement-to-delivery.md)和[业务模型](../concepts/business-model/index.md)，确定对象、字段、关系、视图与行为契约。
+2. 优先在业务模型中配置标准能力。对需要投影的页面、接口和数据结构，检查投影结果，避免重复维护同一能力的下游定义。
+3. 按动作性质选择表达式、脚本、逻辑流或审批流；需要代码时再进入正式扩展点。
+4. 配置菜单、角色、页面、接口和数据范围权限，在调试实例中验证。
 
-1. 读 `docs/fusion-development/when-to-use-code.md` 判断边界。
-2. 读 `docs/fusion-development/extension-points.md` 选择正式扩展点。
-3. 前端读 `docs/fusion-development/frontend-extension-paths.md`；后端读 `docs/fusion-development/backend-extension-packages.md`。
-4. 验收：没有绕过主运行链路，扩展点注册、metadata、测试和回滚说明齐全。
+验收：普通业务账号能从入口完成创建、查询和关键业务动作；无权限账号不能通过页面或直接调用接口越权；失败场景有可定位的错误。需要发布时，继续执行[应用发布与回滚](../operations/application-release-and-rollback.md)，记录实际发布的版本和运行实例。
 
-## 查 API 或 SDK 用法
+## 编写或修改元数据
 
-1. 读 `docs/api/index.md` 定位类别。
-2. 后端查 `docs/api/backend/`，前端查 `docs/api/frontend/`。
-3. 涉及旧标识时读 `docs/ai/terminology.md`。
-4. 验收：示例中的包名、导入名、路径和版本与当前代码一致。
+需要提供：目标模块、元数据类型、平台版本和相关资源定义。
 
-## 校验 metadata 文件
+1. 按[模型资源与打包](../guide/advance/authoring-metadata-conventions/index.md)确认目录、后缀和固定文件名。模块自带元数据在 `src/main/metadata/` 中维护，由构建打包到 `META-INF/ouroboros/metadata/`。
+2. 从 Handbook 仓库的 `docs/reference/jsonschema/metadata/index.json` 查找类型对应的 Schema。固定文件按类型或文件名识别，不只依赖后缀。
+3. 使用项目已有校验器检查 JSON 结构，再核对目标版本的字段和跨资源引用。公开 Schema 的覆盖范围见[知识来源与工具边界](./reference-sources.md)。
+4. 按项目构建与加载方式确认资源已打包、生效，并通过实际入口验证行为。
 
-1. 根据文件后缀识别类型。
-2. 使用 `docs/reference/jsonschema/metadata/<type>.schema.json` 校验 JSON 结构。
-3. 再检查跨资源引用，例如菜单 URL、权限 `uiViews`、UI Model path、API route。
-4. 验收：schema 通过，引用目标真实存在，运行时标识未被错误改名。
+重点核对以下关系：
 
-## 设计 MCP 能力
+| 引用关系 | 检查内容 |
+| --- | --- |
+| 菜单 → 页面 | URL 与目标 UI 模型的路由一致 |
+| UI 模型 → 页面实现 | 引用的 UI Schema 或微前端真实存在 |
+| 页面 → 接口 | 请求路径、方法、参数与目标接口契约一致 |
+| 权限 → 受控资源 | 菜单、页面和 API 的授权覆盖了预期访问范围 |
+| Action → 实现 | 逻辑流或后端 Handler 与动作输入输出契约一致 |
 
-1. 读 `docs/ai/reference-sources.md` 区分 resources 和 tools。
-2. resources 暴露 handbook、schema、OpenAPI、项目索引等只读上下文。
-3. tools 执行校验、生成、扫描、联调和平台控制。
-4. 验收：工具输入有 JSON Schema，副作用有 dry-run/确认/审计，长文档不复制进 tool description。
+验收：结构校验、引用检查和运行验证分别有结果。JSON 可以解析、Schema 校验通过或构建成功，都不能单独证明业务功能已生效。
+
+## 完成一次融合开发任务
+
+需要提供：业务行为、现有模型与实现、目标版本及工作区、允许修改的范围和验收数据。完整示例见 [用 AI 完成功能开发](../fusion-development/ai-assisted-development.md)。
+
+1. 按 [从需求确定实现范围](../fusion-development/when-to-use-code.md) 读取已有业务模型、动作、页面、流程和接口，列出可复用能力及必要改动。
+2. 根据业务契约修改模型、配置、Schema 或流程，核对下游投影和跨资源引用。
+3. 需要新增程序能力时，在 [平台扩展点总表](../fusion-development/extension-points.md) 选择正式入口。前端按 [前端开发](../fusion-development/frontend-extension-paths.md) 实现；后端按 [创建后端扩展包](../fusion-development/backend-extension-packages.md) 实现并注册。
+4. 根据变更执行结构与引用检查、相关行为测试、构建和加载验证，再通过真实页面、业务动作及直接 API 请求验证结果。
+5. 将失败步骤、输入、响应和日志反馈给 AI，修正对应资产后复验，交付实际改动和检查记录。
+
+后端需要远程断点调试时，按 [本地 IDE 与线上平台联调](../fusion-development/local-ide-and-platform-debugging.md) 核对应用、profile、实例和产物。交付前按 [开发平台辅助能力](../fusion-development/development-platform-support-capabilities.md) 确认环境、数据源及配套版本。
+
+验收：模型与实现共同完成约定业务，正常、失败和无权限场景均有实际结果；新增扩展在目标应用中被发现和使用。交接要求见 [任务协作与交付验收](../fusion-development/high-low-code-collaboration.md)。
+
+## 查询 API 或编写调用示例
+
+需要提供：平台或 SDK 版本、调用位置、目标操作和预期结果。
+
+1. 从[API 参考](../api/index.md)定位 SDK、Java API、DSL、脚本或表达式上下文。
+2. 核对专题版本，以及目标项目中的依赖、签名、导入名和返回类型。
+3. 使用真实包名和运行时路径编写最小示例；兼容命名见[术语与兼容命名](./terminology.md)。
+
+验收：示例能在目标环境编译或运行，实际输入输出符合契约。仅查阅文档时，交付应注明来源与适用版本，不标记为运行验证通过。
+
+## 排查功能未生效或运行异常
+
+需要提供：目标版本、发生问题的应用与实例、复现步骤、预期与实际结果，以及相关日志。
+
+1. 根据[任务路由](./routing-hints.md)定位所属模型或扩展机制，先建立可重复的失败场景。
+2. 按定义、打包、加载、注册、调用的顺序收集证据，区分未提交、未发布、实例未更新和实现错误。
+3. 结合[故障排查](../operations/troubleshooting.md)和当前环境已有工具读取状态，定位最先偏离预期的环节。
+4. 在问题所属的机制内做最小修复，复验原失败场景与相邻正常场景。
+
+验收：记录复现条件、根因、修改位置和复验结果。没有目标环境、日志或执行权限时，给出待执行的检查步骤与缺失证据，不声称故障已修复。

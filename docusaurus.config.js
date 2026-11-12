@@ -11,6 +11,7 @@ import markdown from './config/markdown.js'
 import blog from './config/presets.blog.js'
 import docs from './config/presets.docs.js'
 import vscodeLsEsmAliasPlugin from './config/plugins/vscode-ls-esm-alias.js'
+import externalSvgImagesPlugin from './config/plugins/external-svg-images.js'
 
 import themeConfig from './config/themeConfig.js'
 
@@ -33,7 +34,7 @@ const config = {
     ],
   ],
 
-  plugins: [vscodeLsEsmAliasPlugin],
+  plugins: [vscodeLsEsmAliasPlugin, externalSvgImagesPlugin],
   themeConfig,
   markdown,
   themes: [

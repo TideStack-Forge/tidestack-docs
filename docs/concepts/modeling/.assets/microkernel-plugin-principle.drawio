@@ -1,0 +1,41 @@
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="microkernel-plugin-principle" name="微核心与插件化">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="480">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="core" value="&lt;b&gt;微核心&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;稳定契约与必要运行机制&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="176" width="416" height="128" />
+        </mxCell>
+        <mxCell id="plugin-a" value="&lt;b&gt;业务能力插件&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;独立实现与演进&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="584" y="40" width="576" height="112" />
+        </mxCell>
+        <mxCell id="plugin-b" value="&lt;b&gt;界面能力插件&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;通过扩展点接入&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="584" y="184" width="576" height="112" />
+        </mxCell>
+        <mxCell id="plugin-c" value="&lt;b&gt;集成能力插件&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;按应用需要组合与装配&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="584" y="328" width="576" height="112" />
+        </mxCell>
+        <mxCell id="core-contract-0" parent="1" source="core" target="plugin-a" edge="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;exitX=1;exitY=0.21875;entryX=0;entryY=0.5;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="496" y="204" />
+              <mxPoint x="496" y="96" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="core-contract-1" parent="1" source="core" target="plugin-b" edge="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="core-contract-2" parent="1" source="core" target="plugin-c" edge="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;exitX=1;exitY=0.78125;entryX=0;entryY=0.5;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="544" y="276" />
+              <mxPoint x="544" y="384" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

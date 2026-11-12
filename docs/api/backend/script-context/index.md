@@ -1,325 +1,190 @@
 ---
 sidebar_position: 3
+title: 脚本上下文
 ---
 
 # 脚本上下文
 
-这页收录的是脚本运行时可直接使用的对象与工具。当前平台脚本主要支持 JavaScript（GraalVM）和 Groovy，两者共享同一套上下文注入机制。
+业务脚本支持 JavaScript 和 Groovy，可直接调用下表中的全局对象。下面的业务处理示例使用 Groovy；模型名、配置键、通知模板和逻辑流名称须在目标应用中存在。
 
-## 什么时候看这页
+## 全局对象速查
 
-- 你在写完整脚本，而不是只写一段 `${...}` 表达式
-- 你想确认脚本里怎么拿当前用户、组织、数据模型或日志对象
-- 你需要判断某个能力是不是平台已经注入到了脚本环境里
-- 你在排查“脚本里为什么拿不到某个对象”
+| 对象 | 用途 | 可用条件 |
+| --- | --- | --- |
+| `logger` / `console` | 输出日志，两个名称等价 | 基础脚本能力 |
+| `Dates`、`Converter`、`Maps` | 日期、转换和 Map 工具 | 基础脚本能力 |
+| `AuthenticationHolder`、`AuthContext` | 当前认证、用户和数据权限 | 认证能力 |
+| `OrganizationHolder` / `OrganizationContext` | 当前员工、部门和公司，两个名称等价 | 组织能力 |
+| `DataModelCenter` | 按名称获取模型 | 数据模型能力 |
+| `codeGen` | 生成、预览编码 | 编码生成能力 |
+| `BeanFactory`、`Exceptions` | 调用已有服务、抛出标准异常 | 应用运行时 |
+| `Config` | 读取配置值 | 配置能力 |
+| `NotificationDispatcher` | 发送通知 | 通知能力 |
+| `Scheduler` | 创建和取消调度任务 | 计划任务能力 |
 
-如果你写的是 `${...}` 形式的表达式，而不是脚本，请优先看 [表达式上下文](../expression-context/)。
-
-## 先判断该看这页还是别的页
-
-| 当前问题                                                     | 优先去看哪里                                        |
-| ------------------------------------------------------------ | --------------------------------------------------- |
-| 我在写完整脚本，需要多步逻辑、变量、日志和运行时对象         | 这页                                                |
-| 我写的是字段默认值、规则表达式或模板里的 `${...}`            | [表达式上下文](../expression-context/)              |
-| 我想查 `Dates`、`Converter`、`Maps` 的完整方法               | [Java API](../java-api/)                            |
-| 我想给脚本环境新增一个全局对象                               | [扩展脚本](../../../guide/advance/extend-backend/extend-script/) |
-| 我只是想学什么时候该用脚本                                   | [脚本教程](../../../guide/tutorial/script/)         |
-
-## 先理解脚本上下文是怎么来的
-
-脚本上下文不是一张固定清单，而是脚本引擎在 `AbstractScriptEngine` 里把多个 `ScriptContextContributor` 的 `getBindings()` 结果聚合后的只读 `Map`。
-
-这意味着两件事：
-
-1. 业务里最常见的对象会比较稳定，例如认证、组织、日志、基础工具类、编码生成器
-2. 部分对象会跟已启用的能力模块有关，例如配置、通知、调度
-
-还有两点在当前代码里也很明确：
-
-1. 同名全局对象会优先覆盖脚本入参中的同名 key
-2. 脚本拿到的上下文是只读的，不能直接在上下文 map 上做 `put` / `remove`
-
-如果你在某个环境里拿不到某个对象，先确认对应能力模块是否已经引入并启用。
-
-## 当前代码里可确认的注入来源
-
-下面这张表只列当前代码里已经能直接确认的默认注入源：
-
-| 来源模块 | 注入对象 | 说明 |
-| -------- | -------- | ---- |
-| `common-script` | `logger` / `console` | 日志适配器 |
-| `common-script` | `Dates` / `Converter` / `Maps` | 默认直接注入的三个基础工具类 |
-| `web-security-runtime` | `AuthenticationHolder` / `AuthContext` | 认证与访问控制上下文 |
-| `organization-structure-runtime` | `OrganizationHolder` / `OrganizationContext` | 组织上下文，两个名字指向同一个对象 |
-| `data-runtime` | `DataModelCenter` | 运行时按名称获取数据模型 |
-| `data-pkgen-coding` | `codeGen` | 编码生成器 |
-| `app-runtime` | `BeanFactory` / `Exceptions` | Spring Bean 访问与标准异常抛出 |
-| `configuration-runtime` | `Config` | 配置能力启用后出现 |
-| `notification-runtime` | `NotificationDispatcher` | 通知能力启用后出现 |
-| `scheduler-runtime` | `Scheduler` | 调度能力启用后出现 |
-
-## 高频对象速览
-
-| 名称                                        | 用途                               | 说明 |
-| ------------------------------------------- | ---------------------------------- | ---- |
-| `AuthenticationHolder`                      | 读取当前认证信息                   | 偏底层，适合直接拿认证对象或 principal |
-| `AuthContext`                               | 读取当前用户与数据权限             | 面向业务脚本更顺手 |
-| `OrganizationHolder` / `OrganizationContext` | 读取当前员工、部门、公司           | 两个名字指向同一对象 |
-| `DataModelCenter`                           | 按模型名获取数据模型               | 适合脚本里动态拿模型 |
-| `Dates` / `Converter` / `Maps`              | 调用通用工具类                     | 直接使用静态方法 |
-| `logger` / `console`                        | 输出日志                           | 两个名字等价 |
-| `codeGen`                                   | 生成或预览编码                     | 与表达式上下文里的 `codeGen` 是同一能力 |
-| `BeanFactory`                               | 获取 Spring Bean                   | 适合临时接入已有服务 |
-| `Exceptions`                                | 主动抛出校验、业务、平台、内部异常 | 适合脚本提前终止 |
-
-## 按能力模块追加的对象
-
-| 名称                     | 什么时候会出现               | 用途 |
-| ------------------------ | ---------------------------- | ---- |
-| `Config`                 | 当前运行时启用了配置能力     | 读取配置项 |
-| `NotificationDispatcher` | 当前运行时启用了通知能力     | 按员工或地址发送通知 |
-| `Scheduler`              | 当前运行时启用了计划任务能力 | 在脚本中创建或取消调度任务 |
+业务入参由脚本调用方提供，`record`、`amount` 等名称并非固定全局变量。自定义入参应避开上表名称，同名时平台对象优先。上下文映射只读，不支持通过 `put/remove` 增删全局对象。
 
 ## AuthenticationHolder / AuthContext {#authenticationholder}
 
-这两组对象都和当前登录态有关，但侧重点不一样：
+| 调用 | 返回值 | 说明 |
+| --- | --- | --- |
+| `AuthenticationHolder.getAuthentication()` | [OuroborosAuthentication](../java-api/entity/ouroboros-authentication/) | 当前认证对象；无登录态时为匿名认证 |
+| `AuthenticationHolder.getPrincipal()` | `String` | 当前认证主体，匿名时通常为 `anonymousUser` |
+| `AuthenticationHolder.getCurrentUserIdentity()` | `String` | 当前主体标识 |
+| `AuthContext.getUserId()` | `String` | 当前用户标识 |
+| `AuthContext.getUserDetail()` | `User?` | 当前用户详情 |
+| `AuthContext.getAuthorizationDecision()` | `AccessControlParams` | 当前权限判定结果 |
+| `AuthContext.getAuthorizationDecision(String authKey)` | `AccessControlParams` | 指定权限点的判定结果 |
+| `AuthContext.getAccessControlParams(...)` | `AccessControlParams` | 对应 `getAuthorizationDecision(...)` 的兼容名称 |
+| `AuthContext.getAllowedFields()` / `getDisallowedFields()` | `List<String>` | 允许或禁止访问的字段 |
+| `AuthContext.getFilters()` | `Map<String, Object>` | 数据权限过滤条件 |
 
-- `AuthenticationHolder`：偏底层，直接暴露认证对象和 principal
-- `AuthContext`：偏业务读取，直接拿用户详情和数据权限参数
-
-### AuthenticationHolder
-
-| 方法                                                  | 返回值类型                                                              | 说明 |
-| ----------------------------------------------------- | ----------------------------------------------------------------------- | ---- |
-| `getAuthentication()`                                 | [OuroborosAuthentication](../java-api/entity/ouroboros-authentication/) | 获取完整认证对象 |
-| `getPrincipal()`                                      | `String`                                                                | 获取当前认证主体 |
-| `getCurrentUserIdentity()`                            | `String`                                                                | 与 `getPrincipal()` 等价 |
-
-返回值说明：
-
-- 已认证时，`getAuthentication()` 返回当前认证对象
-- 未认证时，返回匿名认证对象
-- `getPrincipal()` 在未认证场景下通常会得到 `anonymousUser`
-
-### AuthContext
-
-| 方法                                   | 返回值类型             | 说明 |
-| -------------------------------------- | ---------------------- | ---- |
-| `getUserId()`                          | `String`               | 获取当前认证主体标识，通常也是用户 ID |
-| `getUserDetail()`                      | `User?`                | 获取当前用户详情 |
-| `getAccessControlParams()`             | `AccessControlParams`  | 获取当前请求的数据权限参数 |
-| `getAccessControlParams(String authKey)` | `AccessControlParams` | 获取指定权限点的数据权限参数 |
-| `getAllowedFields()`                   | `List<String>`         | 获取允许访问的字段列表 |
-| `getDisallowedFields()`                | `List<String>`         | 获取禁止访问的字段列表 |
-| `getFilters()`                         | `Map<String, Object>`  | 获取数据过滤条件 |
-
-如果你在脚本里要处理“当前用户能看什么、要附加什么数据过滤条件”，优先从 `AuthContext` 下手会比直接啃认证对象更顺。
-
-```javascript
-var userId = AuthContext.getUserId()
-var filters = AuthContext.getFilters()
-logger.info('current user={}, filters={}', userId, filters)
+```groovy
+def operatorId = AuthContext.getUserId()
+logger.info('开始处理订单，操作人={}', operatorId)
 ```
 
-如果你需要进一步理解这些访问控制参数是怎么来的，可以继续看 [权限与访问控制](../../../guide/advance/authority-and-access-control)。
+读取这些信息不等于自动完成接口授权。接口和业务动作仍需配置相应权限，参见 [权限与访问控制](../../../fusion-development/authority-subject-and-access-control-design)。
 
 ## OrganizationHolder / OrganizationContext {#organizationholder}
 
-`OrganizationHolder` 和 `OrganizationContext` 指向同一个对象，用来读取当前请求关联的组织上下文。
+| 方法 | 返回值 |
+| --- | --- |
+| `getEmployee()` / `getEmployeeId()` | [Employee](../java-api/entity/employee/)? / `String?` |
+| `getDepartment()` / `getDepartmentId()` | [Department](../java-api/entity/department/)? / `String?` |
+| `getCompany()` / `getCompanyId()` | [Company](../java-api/entity/company/)? / `String?` |
 
-| 方法                 | 返回值类型                          | 说明 |
-| -------------------- | ----------------------------------- | ---- |
-| `getEmployee()`      | [Employee](../java-api/entity/employee/)? | 获取当前员工对象 |
-| `getEmployeeId()`    | `String?`                           | 获取当前员工 ID |
-| `getDepartment()`    | [Department](../java-api/entity/department/)? | 获取当前部门对象 |
-| `getDepartmentId()`  | `String?`                           | 获取当前部门 ID |
-| `getCompany()`       | [Company](../java-api/entity/company/)? | 获取当前公司对象 |
-| `getCompanyId()`     | `String?`                           | 获取当前公司 ID |
+未绑定对应组织信息时返回 `null`。
 
-如果当前请求还没有建立员工、部门或公司上下文，这些方法会返回 `null`。
-
-```javascript
-var employee = OrganizationHolder.getEmployee()
-if (employee == null) {
-  Exceptions.business('当前上下文没有绑定员工信息')
+```groovy
+def employeeId = OrganizationHolder.getEmployeeId()
+if (employeeId == null) {
+    Exceptions.business('当前用户尚未绑定员工')
 }
 ```
 
 ## DataModelCenter
 
-数据模型中心用于按名称获取运行时数据模型。
+`get(String name)` 返回 [DataModel](../data-model/data-model/)，找不到时返回 `null`。可使用模型全名 `crm.Order`，或使用带数据站前缀的 `main:crm.Order` 区分同名模型。
 
-| 方法          | 返回值类型             | 说明 |
-| ------------- | ---------------------- | ---- |
-| `get(String name)` | [DataModel](../data-model/data-model/)? | 获取指定名称的数据模型 |
-
-返回值说明：
-
-- 找到模型时返回 `DataModel`
-- 找不到时返回 `null`
-
-在当前代码里，`DataModelCenter.refresh()` 会同时注册两类 key：
-
-- `模型全名`
-- `数据站名:模型全名`
-
-所以如果同名模型来自多个数据站，脚本里更稳妥的写法通常是显式带上数据站名前缀。
-
-这类用法适合“模型名在运行时才确定”的脚本。如果你只是想理解模型本身，建议再看 [数据模型 API](../data-model/) 和 [DataModel 接口](../data-model/data-model/)。
-
-## Dates / Converter / Maps
-
-当前默认脚本环境直接注入的工具类只有这三个，它们本质上都是 Java 静态工具类：
-
-- `Dates`：日期和时间工具，见 [Dates 工具类](../java-api/util/dates/)
-- `Converter`：类型转换工具，见 [Converter 工具类](../java-api/util/converter/)
-- `Maps`：Map 处理工具，见 [Maps 工具类](../java-api/util/maps/)
-
-如果你开始在脚本里反复写日期格式化、类型判断或 Map 清洗逻辑，优先先看一眼这些工具类，通常不需要自己再造一套。
-
-像 [Lists](../java-api/util/lists/)、[Json](../java-api/util/json/)、[JsonBag](../java-api/util/json-bag/)、[Paths](../java-api/util/paths/) 这些工具类，当前代码里并不会默认作为脚本全局对象注入，但在后端 Java 代码里同样很常用。
-
-## logger / console
-
-`logger` 和 `console` 是同一个日志适配器，只是提供了两种更顺手的命名方式。
-
-| 方法族           | 说明 |
-| ---------------- | ---- |
-| `log(...)`       | 与 `info(...)` 等价 |
-| `info(...)`      | 输出信息日志 |
-| `warn(...)`      | 输出警告日志 |
-| `error(...)`     | 输出错误日志 |
-| `debug(...)`     | 输出调试日志 |
-| `trace(...)`     | 输出跟踪日志 |
-
-这些方法支持常见的 SLF4J 风格重载，例如：
-
-- `logger.info("message")`
-- `logger.info("id={}", id)`
-- `logger.error("failed", throwable)`
-
-```javascript
-logger.info('start handle record={}', recordId)
-console.warn('payload is empty, skip send')
+```groovy
+def orders = DataModelCenter.get('main:crm.Order')
+if (orders == null) {
+    Exceptions.business('订单模型不可用')
+}
+def rows = orders.query([
+    select: ['id', 'amount'],
+    where: [status: 'OPEN'],
+    order: [id: 'ASC'],
+    skip: 0,
+    limit: 20
+]).get()
+logger.info('读取到 {} 条订单', rows.size())
+rows
 ```
+
+读写方法返回 `Try`。示例用 `.get()` 取值，失败时会抛出原异常；不要忽略返回值后继续执行。查询语法见 [查询 DSL](../data-query-dsl/)。
+
+## 工具与日志
+
+`Dates`、`Converter` 和 `Maps` 可直接使用，无需导入。其他 [Java 工具类](../java-api/) 并非默认脚本全局对象。
+
+```groovy
+def pageSize = Converter.toInteger('20')
+def payload = [status: 'OPEN', pageSize: pageSize]
+logger.info('查询参数={}', payload)
+```
+
+`logger` / `console` 支持 `trace`、`debug`、`info`、`warn`、`error`；`log` 等同于 `info`。支持 `{}` 参数占位符和异常参数。日志中避免输出口令、令牌和完整个人信息。
 
 ## codeGen
 
-`codeGen` 用来在脚本里生成或预览编码值，和 [表达式上下文](../expression-context/#codegen) 中的是同一能力。
+`get(template[, context])` 生成并消耗序列号，`peek(template[, context])` 仅预览。模板语法见 [编码生成器](../expression-context/#codegen)。
 
-| 方法                                        | 返回值类型 | 说明 |
-| ------------------------------------------- | ---------- | ---- |
-| `get(String codeTemplate)`                  | `String?`  | 获取下一个编码值 |
-| `get(String codeTemplate, Map context)`     | `String?`  | 带上下文获取下一个编码值 |
-| `peek(String codeTemplate)`                 | `String?`  | 预览下一个编码值，不递增 |
-| `peek(String codeTemplate, Map context)`    | `String?`  | 带上下文预览下一个编码值 |
-
-例子：
-
-```javascript
-var code = codeGen.get('PREFIX-{yyyyMMdd}-<0001>', record)
+```groovy
+def orderCode = codeGen.get('ORD-{yyyyMMdd}-<0001>')
+if (orderCode == null) {
+    Exceptions.business('编码生成器不可用')
+}
 ```
-
-如果你主要是在字段默认值或模板表达式里用它，直接看 [表达式上下文](../expression-context/#codegen) 会更顺。
-
-## BeanFactory
-
-`BeanFactory` 用来从脚本里获取 Spring Bean。
-
-| 方法                    | 返回值类型 | 说明 |
-| ----------------------- | ---------- | ---- |
-| `get(String beanName)`  | `Object?`  | 安全获取 Bean；找不到时返回 `null` |
-| `getBean(...)`          | `Object`   | 标准 Spring `BeanFactory` 行为；找不到会抛异常 |
-
-使用建议：
-
-- 脚本偶尔需要接入已有服务时，可以用 `BeanFactory`
-- 如果某个 Bean 被大量脚本反复直接调用，更推荐把它封装成稳定的脚本上下文对象
-
-更多方法请参考 [Spring BeanFactory 官方文档](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html)。
 
 ## Exceptions
 
-`Exceptions` 用来在脚本中主动终止流程并抛出平台标准异常。
+| 方法 | 用途 |
+| --- | --- |
+| `validation(String message)` | 输入校验失败 |
+| `validation(Map<String, String> errors)` | 按字段返回校验错误 |
+| `business(...)` / `throwBusiness(...)` | 业务条件不满足 |
+| `platform(...)` / `throwPlatform(...)` | 平台能力执行失败 |
+| `internal(...)` / `throwInternal(...)` | 内部处理失败 |
 
-| 方法族                                            | 说明 |
-| ------------------------------------------------- | ---- |
-| `validation(String message)`                      | 抛出校验异常 |
-| `validation(Map<String, String> errors)`          | 按字段错误集合抛出校验异常 |
-| `business(...)` / `throwBusiness(...)`           | 抛出业务异常 |
-| `platform(...)` / `throwPlatform(...)`           | 抛出平台异常 |
-| `internal(...)` / `throwInternal(...)`           | 抛出内部异常 |
+这些方法抛出异常并终止当前脚本。例如，调用方传入 `amount` 后：
 
-说明：
-
-- `throwBusiness` / `throwPlatform` / `throwInternal` 只是同义别名
-- `business` 更适合脚本主动拦截业务规则
-- `platform` 和 `internal` 更适合表示平台运行错误，而不是普通业务校验
-
-```javascript
-if (amount <= 0) {
-  Exceptions.validation('金额必须大于 0')
-}
-
-if (!hasPermission) {
-  Exceptions.business('当前用户没有该操作权限')
+```groovy
+if (amount == null || amount <= 0) {
+    Exceptions.validation([amount: '金额必须大于 0'])
 }
 ```
 
+## BeanFactory
+
+`get(String beanName)` 获取服务，找不到时返回 `null`；`getBean(...)` 使用标准 Spring 语义，找不到会抛出异常。只调用已经安装并公开给应用使用的服务。
+
+```groovy
+def service = BeanFactory.get('orderExportService')
+if (service == null) {
+    Exceptions.business('请先安装订单导出扩展')
+}
+// 后续调用以该服务公开的方法签名为准。
+```
+
+需要稳定复用的脚本接口时，见 [扩展脚本](../../../guide/advance/extend-backend/extend-script/)。
+
 ## Config
 
-如果当前运行时启用了配置能力，脚本里还会额外拿到 `Config`。
+`get(String key)` 读取配置，找不到时返回 `null`。
 
-| 方法          | 返回值类型 | 说明 |
-| ------------- | ---------- | ---- |
-| `get(String key)` | `Object?` | 按配置键读取值，读不到时返回 `null` |
+```groovy
+def configuredSize = Config.get('orders.pageSize')
+def pageSize = configuredSize == null ? 20 : Converter.toInteger(configuredSize)
+```
 
-要注意一点：当前脚本上下文暴露的 `Config` 只包装了 `get(String key)`，并没有把 `ConfigurationService` 的全部方法都开放出来。
-
-它适合在脚本里读取平台配置项，而不是把配置常量硬编码进脚本。相关背景可以配合 [配置教程](../../../guide/tutorial/configuration/) 一起看。
+配置键与值的声明见 [配置教程](../../../guide/tutorial/configuration/)。
 
 ## NotificationDispatcher
 
-如果当前运行时启用了通知能力，脚本里还会额外拿到 `NotificationDispatcher`。
+| 方法 | 用途 |
+| --- | --- |
+| `sendByEmployee(String employeeId, String template, Map payload)` | 发给单个员工 |
+| `sendByEmployee(Collection<String> employeeIds, String template, Map payload)` | 发给多个员工 |
+| `sendByAddress(Map<String, Collection<String>> addresses, String template, Map payload)` | 按渠道地址发送 |
 
-| 方法形态                                                                 | 说明 |
-| ------------------------------------------------------------------------ | ---- |
-| `sendByEmployee(String employeeId, String template, Map payload)`        | 给单个员工发通知 |
-| `sendByEmployee(Collection<String> employeeIds, String template, Map payload)` | 给多个员工发通知 |
-| `sendByAddress(Map<String, Collection<String>> addressMap, String template, Map payload)` | 按渠道地址直接发通知 |
-| 上述方法都支持再追加一个 `DispatchOptions options` 参数                  | 指定发送附加选项 |
+以上方法还可追加 `DispatchOptions`，指定 `channels`、`channelOptions` 等发送选项。示例要求已存在 `orderCreated` 模板，且调用方传入员工 ID 和订单编号：
 
-使用建议：
+```groovy
+NotificationDispatcher.sendByEmployee(
+    recipientEmployeeId, 'orderCreated', [orderCode: orderCode]
+)
+```
 
-- 已经知道员工 ID 时，优先用 `sendByEmployee`
-- 已经自行准备好渠道地址时，再考虑 `sendByAddress`
-- 模板名和 `payload` 字段要与通知模板定义保持一致
-- 如果需要附加发送选项，`DispatchOptions` 当前可用字段主要是 `channels`、`channelOptions` 和 `sendByEmployee`
-
-通知模板本身怎么设计，可以继续看 [通知模板教程](../../../guide/tutorial/notification/)。
+`payload` 字段须与 [通知模板](../../../guide/tutorial/notification/) 一致。
 
 ## Scheduler
 
-如果当前运行时启用了计划任务能力，脚本里还会额外拿到 `Scheduler`。
+| 方法 | 返回值 / 用途 |
+| --- | --- |
+| `schedule(ScheduleTask task)` | `Try<LocalDateTime>`，创建任务 |
+| `scheduleCron(String taskName, String cron, String flowName, Map data)` | `Try<LocalDateTime>`，周期任务 |
+| `scheduleOnce(...)` | `Try<LocalDateTime>`，支持日期、时间、时长或毫秒数 |
+| `cancel(String taskName)` | `Try<Void>`，取消任务 |
+| `isScheduled(String taskName)` | `boolean`，检查任务是否存在 |
 
-| 方法形态                                                                  | 返回值类型           | 说明 |
-| ------------------------------------------------------------------------- | -------------------- | ---- |
-| `schedule(ScheduleTask task)`                                             | `Try<LocalDateTime>` | 按任务对象创建调度 |
-| `scheduleCron(String taskName, String cron, String flowName, Map data)`   | `Try<LocalDateTime>` | 创建 cron 调度 |
-| `scheduleOnce(...)`                                                       | `Try<LocalDateTime>` | 创建一次性调度，支持 `Date`、`LocalDateTime`、`Duration`、毫秒数 |
-| `cancel(String taskName)`                                                 | `Try<Void>`          | 取消任务 |
-| `isScheduled(String taskName)`                                            | `boolean`            | 判断任务是否已存在 |
+已配置 `cleanupOrders` 逻辑流时：
 
-要注意两点：
+```groovy
+Scheduler.scheduleCron(
+    'orders-cleanup', '0 0 2 * * ?', 'cleanupOrders', [retentionDays: 30]
+).get()
+```
 
-- `Scheduler` 返回的是 `Try`，不是直接抛异常
-- 如果当前环境没有可用调度器实例，这些调用会失败
-
-这类能力更偏集成和自动化场景；如果它会成为稳定的业务能力，通常还要结合后端扩展或逻辑流来设计。
-
-## 下一步看哪里
-
-- 想查 `${...}` 里能直接用什么：看 [表达式上下文](../expression-context/)
-- 想学什么时候该写脚本：看 [脚本教程](../../../guide/tutorial/script/)
-- 想给脚本补充新的全局对象：看 [扩展脚本](../../../guide/advance/extend-backend/extend-script/)
-- 想查这些对象背后的 Java 类型：看 [Java API](../java-api/)
+没有可用调度器时返回失败结果；使用 `.get()` 或处理 `Try` 的失败分支。平台界面配置方式见 [计划任务](../../../low-code/development-platform-menus/scheduled-task)。

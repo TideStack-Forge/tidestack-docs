@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kubernetes · 内部开发助手部署展开</title><style>body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.frame{max-width:1600px;min-width:0;margin:auto}.diagram-container{width:100%;overflow-x:auto}.diagram-container svg{display:block;width:100%;min-width:1600px;height:auto}@media print{.diagram-container{overflow-x:visible}.diagram-container svg{min-width:0}}</style></head><body><main class="frame"><div class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-kubernetes-helper-title deployment-kubernetes-helper-desc">
+<title id="deployment-kubernetes-helper-title">Kubernetes · 内部开发助手部署展开</title>
+<desc id="deployment-kubernetes-helper-desc">局部展开：平台在集群外，助手运行在集群；共享存储与 MQ 均需对两端可达；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}</style>
+<marker id="deployment-kubernetes-helper-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43546c"/></marker>
+<marker id="deployment-kubernetes-helper-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#577dab"/></marker>
+<marker id="deployment-kubernetes-helper-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs><rect width="1600" height="1520" fill="#fff"/>
+<text x="40" y="52" font-size="28" font-weight="600" fill="#33455e">Kubernetes · 内部开发助手部署展开</text>
+<text x="40" y="84" font-size="14" font-weight="400" fill="#596b83">局部展开：平台在集群外，助手运行在集群；共享存储与 MQ 均需对两端可达</text>
+<rect x="40" y="104" width="16" height="16" rx="3" fill="#eef5ff" stroke="#8eafe0"/>
+<text x="64" y="117" font-size="12" font-weight="400" fill="#33455e">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="3" fill="#eaf6f4" stroke="#8ebeb3"/>
+<text x="284" y="117" font-size="12" font-weight="400" fill="#33455e">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="3" fill="#edf5eb" stroke="#a4be97"/>
+<text x="504" y="117" font-size="12" font-weight="400" fill="#33455e">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="3" fill="#fff5e7" stroke="#d5b78b"/>
+<text x="724" y="117" font-size="12" font-weight="400" fill="#33455e">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="3" fill="#f4f6f9" stroke="#b3bfce"/>
+<text x="944" y="117" font-size="12" font-weight="400" fill="#33455e">外部 / 基础设施</text>
+<g data-zone="platformhost"><rect x="40" y="164" width="400" height="700" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="64" y="196" font-size="14" font-weight="600" fill="#33455e">平台主机 ×1</text>
+<text x="64" y="220" font-size="12" font-weight="400" fill="#596b83">客户端身份与工作区挂载分别准备</text>
+</g>
+<g data-zone="cluster"><rect x="480" y="164" width="1080" height="700" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="504" y="196" font-size="14" font-weight="600" fill="#33455e">Kubernetes 集群 · 工作节点池 ×M</text>
+<text x="504" y="220" font-size="12" font-weight="400" fill="#596b83">API Server 位于控制平面，实例资源位于目标命名空间</text>
+</g>
+<g data-zone="namespace"><rect x="504" y="476" width="1032" height="360" rx="8" fill="#f7faff" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="1512" y="508" font-size="14" font-weight="600" fill="#33455e" text-anchor="end">运行命名空间 · 示例 tidestack-dev</text>
+<text x="1512" y="532" font-size="12" font-weight="400" fill="#596b83" text-anchor="end">INTERNAL_ONLY：不创建 NodePort / Ingress</text>
+</g>
+<g data-zone="deps"><rect x="40" y="904" width="1520" height="196" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="1536" y="936" font-size="14" font-weight="600" fill="#33455e" text-anchor="end">两端可达的消息与文件服务 · 集群外（示例）</text>
+</g>
+<path data-edge="0" d="M416 388 L1128 388" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-kubernetes-helper-control)"/>
+<path data-edge="1" d="M952 668 L1080 668" fill="none" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-kubernetes-helper-storage)"/>
+<path data-edge="2" d="M240 472 L240 980" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-helper-traffic)"/>
+<path data-edge="3" d="M752 716 L752 872 Q752 880 744 880 L368 880 Q360 880 360 888 L360 980" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-helper-traffic)"/>
+<g data-edge-label="0"><rect x="752.5" y="344" width="79" height="24" rx="3" fill="#fff"/><text x="792" y="360" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">HTTPS API</text></g>
+<g data-edge-label="1"><rect x="981" y="624" width="70" height="24" rx="3" fill="#fff"/><text x="1016" y="640" font-size="12" font-weight="400" fill="#43816c" text-anchor="middle">PVC 挂载</text></g>
+<g data-edge-label="2"><rect x="285" y="724" width="86" height="24" rx="3" fill="#fff"/><text x="328" y="740" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">AMQP :5672</text></g>
+<g data-edge-label="3"><rect x="517" y="836" width="86" height="24" rx="3" fill="#fff"/><text x="560" y="852" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">AMQP :5672</text></g>
+<g data-node="platform"><rect x="64" y="344" width="352" height="128" rx="6" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.5"/>
+<rect x="64" y="368" width="4" height="24" fill="#8eafe0"/>
+<rect x="357" y="364" width="35" height="22" rx="3" fill="#fff" stroke="#8eafe0"/><text x="374.5" y="380" font-size="12" font-weight="400" fill="#204f86" text-anchor="middle">×1</text>
+<text x="88" y="384" font-size="16" font-weight="600" fill="#204f86">开发平台</text>
+<text x="88" y="420" font-size="12" font-weight="400" fill="#596b83">ouroboros-develop:&lt;v&gt;</text>
+<text x="88" y="444" font-size="12" font-weight="400" fill="#596b83">KubernetesClient + RBAC</text>
+</g>
+<g data-node="api"><rect x="1128" y="276" width="384" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="1128" y="300" width="4" height="24" fill="#b3bfce"/>
+<rect x="1436" y="296" width="52" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="1462.0" y="312" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">按集群</text>
+<text x="1152" y="316" font-size="16" font-weight="600" fill="#52657f">API Server</text>
+<text x="1152" y="352" font-size="12" font-weight="400" fill="#596b83">HTTPS / 集群 API Endpoint</text>
+</g>
+<g data-node="helper"><rect x="552" y="588" width="400" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="552" y="612" width="4" height="24" fill="#8ebeb3"/>
+<rect x="850" y="608" width="78" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="889.0" y="624" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">每实例 ×1</text>
+<text x="576" y="628" font-size="16" font-weight="600" fill="#28675b">开发助手 Pod</text>
+<text x="576" y="664" font-size="12" font-weight="400" fill="#596b83">ouroboros-mothership:&lt;v&gt;</text>
+<text x="576" y="688" font-size="12" font-weight="400" fill="#596b83">Deployment replicas=1</text>
+</g>
+<g data-node="pvc"><rect x="1080" y="588" width="432" height="128" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="1080" y="612" width="4" height="24" fill="#a4be97"/>
+<rect x="1424" y="608" width="64" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1456.0" y="624" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">逻辑资源</text>
+<text x="1104" y="628" font-size="16" font-weight="600" fill="#42663a">共享工作区 PVC</text>
+<text x="1104" y="664" font-size="12" font-weight="400" fill="#596b83">映射底层 PV / 共享文件系统</text>
+<text x="1104" y="688" font-size="12" font-weight="400" fill="#596b83">Pod 使用实例根目录 subPath</text>
+</g>
+<g data-node="mq"><rect x="64" y="980" width="592" height="96" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="64" y="1004" width="4" height="24" fill="#d5b78b"/>
+<rect x="568" y="1000" width="64" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="600.0" y="1016" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">拓扑自定</text>
+<text x="88" y="1020" font-size="16" font-weight="600" fill="#805d2e">RabbitMQ 服务</text>
+<text x="88" y="1048" font-size="12" font-weight="400" fill="#596b83">平台与助手 AMQP :5672</text>
+</g>
+<g data-node="files"><rect x="720" y="980" width="792" height="96" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="720" y="1004" width="4" height="24" fill="#a4be97"/>
+<rect x="1448" y="1000" width="40" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1468.0" y="1016" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">自备</text>
+<text x="744" y="1020" font-size="16" font-weight="600" fill="#42663a">共享文件存储</text>
+<text x="744" y="1048" font-size="12" font-weight="400" fill="#596b83">平台 mounted-workspace-root 与 PVC 后端内容一致</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="6" fill="#fff" stroke="#b3bfce"/>
+<text x="64" y="1196" font-size="14" font-weight="600" fill="#33455e">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" fill="#33455e">平台 → API Server</text>
+<text x="368" y="1236" font-size="12" font-weight="400" fill="#596b83">HTTPS；管理助手 Deployment、读取状态和建立所需连接</text>
+<line x1="64" y1="1246" x2="992" y2="1246" stroke="#edf0f4"/>
+<text x="64" y="1268" font-size="12" font-weight="600" fill="#33455e">平台 / 助手 → RabbitMQ</text>
+<text x="368" y="1268" font-size="12" font-weight="400" fill="#596b83">AMQP :5672；身份、vhost 与凭据配套，真实命令往返验收</text>
+<line x1="64" y1="1278" x2="992" y2="1278" stroke="#edf0f4"/>
+<text x="64" y="1300" font-size="12" font-weight="600" fill="#33455e">平台 → 共享文件存储</text>
+<text x="368" y="1300" font-size="12" font-weight="400" fill="#596b83">在 mounted-workspace-root 写入 workspace/run/&lt;app&gt;/&lt;env&gt;</text>
+<line x1="64" y1="1310" x2="992" y2="1310" stroke="#edf0f4"/>
+<text x="64" y="1332" font-size="12" font-weight="600" fill="#33455e">底层存储 → PVC → 助手 Pod</text>
+<text x="368" y="1332" font-size="12" font-weight="400" fill="#596b83">助手将实例 subPath 挂入 /app/deploy 与 /app/metadata</text>
+<line x1="64" y1="1342" x2="992" y2="1342" stroke="#edf0f4"/>
+<text x="64" y="1364" font-size="12" font-weight="600" fill="#33455e">平台与其他依赖</text>
+<text x="368" y="1364" font-size="12" font-weight="400" fill="#596b83">数据库 / 原始工作区按部署主图维护；不把 PVC 当作自动文件同步</text>
+<rect x="1040" y="1160" width="520" height="248" rx="6" fill="#fff9f0" stroke="#d5b78b"/>
+<text x="1064" y="1196" font-size="14" font-weight="600" fill="#33455e">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" fill="#805d2e">每个助手 Deployment ×1 / Pod ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" fill="#805d2e">集群 M 与 MQ 副本数由实际部署确定</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" fill="#805d2e">平台 ×1、消息与文件服务需评估单点</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" fill="#805d2e">Pod 配额 / limits 与 PVC 访问模式需明确</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" fill="#805d2e">该图不提供平台多副本高可用承诺</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" stroke="#b3bfce"/>
+<line x1="40" y1="1468" x2="80" y2="1468" stroke="#43546c" stroke-width="2"/><text x="92" y="1473" font-size="12" font-weight="400" fill="#33455e">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5"/><text x="372" y="1473" font-size="12" font-weight="400" fill="#33455e">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5"/><text x="620" y="1473" font-size="12" font-weight="400" fill="#33455e">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" fill="#596b83">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg></div></main></body></html>

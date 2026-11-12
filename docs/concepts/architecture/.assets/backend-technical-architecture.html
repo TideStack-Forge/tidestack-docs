@@ -1,0 +1,315 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>后端基座技术架构</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1920 2508" width="1920" height="2508" role="img" aria-labelledby="backend-technical-architecture-title backend-technical-architecture-desc">
+<title id="backend-technical-architecture-title">后端基座技术架构</title>
+<desc id="backend-technical-architecture-desc">后端以接入与协议、公共应用、业务能力、模型与执行引擎、公共技术和运行框架分层。独立运行时、业务服务和通用技术各自成节点；安全机制贯穿调用，数据库、中间件和外部服务位于进程外。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+</defs>
+<rect width="1920" height="2580" fill="white"/>
+
+<rect x="40" y="96" width="1840" height="2176" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#204f86">后端运行进程：按模块依赖、自动配置与 SPI 契约装配</text>
+<rect x="64" y="152" width="1432" height="168" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="84" y="182" font-size="18" font-weight="600" fill="#204f86">接入与协议层</text>
+<rect x="64" y="344" width="1432" height="280" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="84" y="374" font-size="18" font-weight="600" fill="#245e69">应用层：公共应用功能</text>
+<rect x="64" y="648" width="1432" height="464" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="84" y="678" font-size="18" font-weight="600" fill="#216149">能力层：业务服务与外部系统适配</text>
+<rect x="64" y="1136" width="1432" height="552" rx="8" fill="#f5f1fc" fill-opacity="0.55" stroke="#b3a0d6" stroke-width="1"/>
+<text x="84" y="1166" font-size="18" font-weight="600" fill="#63448e">核心层：模型运行时与业务执行引擎</text>
+<rect x="80" y="1480" width="1400" height="184" rx="8" fill="#f5f1fc" fill-opacity="0.55" stroke="#b3a0d6" stroke-width="1"/>
+<text x="100" y="1510" font-size="18" font-weight="600" fill="#63448e">数据访问、结构演进与初始化</text>
+<rect x="1520" y="152" width="336" height="1536" rx="8" fill="#fff1ef" fill-opacity="0.55" stroke="#d4a09a" stroke-width="1"/>
+<text x="1540" y="182" font-size="18" font-weight="600" fill="#8c453b">安全体系：贯穿各层</text>
+<rect x="64" y="1712" width="1792" height="328" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="84" y="1742" font-size="18" font-weight="600" fill="#245e69">公共能力：执行引擎、数据处理与通用支撑</text>
+<rect x="64" y="2064" width="1792" height="184" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="84" y="2094" font-size="18" font-weight="600" fill="#43546c">基础设施：进程内运行框架</text>
+<rect x="40" y="2320" width="1840" height="192" rx="8" fill="#fff7e9" fill-opacity="0.55" stroke="#d4ad69" stroke-width="1"/>
+<text x="60" y="2350" font-size="18" font-weight="600" fill="#805719">进程外设施与服务：按已装配能力和环境配置接入</text>
+<g data-node="webapi"><rect x="80" y="208" width="440" height="88" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="300.0" y="238.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">WebAPI 路由</text>
+<text x="300.0" y="263.0" font-size="16" fill="#52657f" text-anchor="middle">Spring MVC／RouterFunction</text>
+<text x="300.0" y="288.0" font-size="16" fill="#52657f" text-anchor="middle">按接口定义分派业务执行</text>
+</g>
+<g data-node="websocket"><rect x="560" y="208" width="440" height="88" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="780.0" y="238.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">实时通信端点</text>
+<text x="780.0" y="263.0" font-size="16" fill="#52657f" text-anchor="middle">Spring WebSocket／STOMP</text>
+<text x="780.0" y="288.0" font-size="16" fill="#52657f" text-anchor="middle">本地 Broker、Redis Pub/Sub 或 STOMP Relay</text>
+</g>
+<g data-node="openapi"><rect x="1040" y="208" width="440" height="88" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="1260.0" y="238.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">接口文档</text>
+<text x="1260.0" y="263.0" font-size="16" fill="#52657f" text-anchor="middle">平台 OpenAPI 文档构建器</text>
+<text x="1260.0" y="288.0" font-size="16" fill="#52657f" text-anchor="middle">汇总动态接口，导出 OpenAPI 3.1.0</text>
+</g>
+<g data-node="ui-schema"><rect x="80" y="400" width="440" height="88" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="300.0" y="442.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">UI Schema 实时管理</text>
+<text x="300.0" y="468.0" font-size="17" fill="#52657f" text-anchor="middle">运行时 Schema 覆盖与管理</text>
+</g>
+<g data-node="user-profile"><rect x="560" y="400" width="440" height="88" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="780.0" y="442.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">用户资料管理</text>
+<text x="780.0" y="468.0" font-size="17" fill="#52657f" text-anchor="middle">资料动态定义与联系方式管理</text>
+</g>
+<g data-node="dynamic-form"><rect x="1040" y="400" width="440" height="88" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1260.0" y="442.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">动态表单</text>
+<text x="1260.0" y="468.0" font-size="17" fill="#52657f" text-anchor="middle">表单方案、字段与校验定义</text>
+</g>
+<g data-node="document"><rect x="80" y="512" width="440" height="88" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="300.0" y="554.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">文档管理</text>
+<text x="300.0" y="580.0" font-size="17" fill="#52657f" text-anchor="middle">文档内容、持久化与存储服务</text>
+</g>
+<g data-node="dashboard"><rect x="560" y="512" width="440" height="88" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="780.0" y="554.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">看板</text>
+<text x="780.0" y="580.0" font-size="17" fill="#52657f" text-anchor="middle">用户看板与小组件编排</text>
+</g>
+<g data-node="widget"><rect x="1040" y="512" width="440" height="88" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1260.0" y="554.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">小组件</text>
+<text x="1260.0" y="580.0" font-size="17" fill="#52657f" text-anchor="middle">小组件定义与运行服务</text>
+</g>
+<g data-node="organization"><rect x="80" y="704" width="440" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="300.0" y="758.0" font-size="22" font-weight="600" fill="#216149" text-anchor="middle">组织架构</text>
+<text x="300.0" y="784.0" font-size="17" fill="#52657f" text-anchor="middle">组织、岗位、员工等组织服务</text>
+</g>
+<g data-node="configuration"><rect x="560" y="704" width="440" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="780.0" y="758.0" font-size="22" font-weight="600" fill="#216149" text-anchor="middle">统一配置</text>
+<text x="780.0" y="784.0" font-size="17" fill="#52657f" text-anchor="middle">配置定义、取值与运行时访问</text>
+</g>
+<g data-node="file-upload"><rect x="1040" y="704" width="440" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1260.0" y="758.0" font-size="22" font-weight="600" fill="#216149" text-anchor="middle">文件上传与存储</text>
+<text x="1260.0" y="784.0" font-size="17" fill="#52657f" text-anchor="middle">存储 SPI／本地文件系统实现</text>
+</g>
+<g data-node="notification"><rect x="80" y="840" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="246.0" y="881.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">消息通知</text>
+<text x="246.0" y="906.5" font-size="16" fill="#52657f" text-anchor="middle">平台模板、收件人与渠道分发</text>
+<text x="246.0" y="931.5" font-size="16" fill="#52657f" text-anchor="middle">发送状态、发送尝试与回执</text>
+</g>
+<g data-node="scheduler"><rect x="436" y="840" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="602.0" y="881.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">任务调度</text>
+<text x="602.0" y="906.5" font-size="16" fill="#52657f" text-anchor="middle">Quartz</text>
+<text x="602.0" y="931.5" font-size="16" fill="#52657f" text-anchor="middle">Cron 计划任务／一次性与延迟任务</text>
+</g>
+<g data-node="rpc"><rect x="792" y="840" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="958.0" y="881.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">RPC／OpenAPI 调用</text>
+<text x="958.0" y="906.5" font-size="16" fill="#52657f" text-anchor="middle">Spring WebClient</text>
+<text x="958.0" y="931.5" font-size="16" fill="#52657f" text-anchor="middle">参数、认证、超时与重试策略</text>
+</g>
+<g data-node="message-queue"><rect x="1148" y="840" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1314.0" y="881.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">消息队列</text>
+<text x="1314.0" y="906.5" font-size="16" fill="#52657f" text-anchor="middle">Spring Cloud Stream</text>
+<text x="1314.0" y="931.5" font-size="16" fill="#52657f" text-anchor="middle">RabbitMQ Binder／消息绑定</text>
+</g>
+<g data-node="ai-model"><rect x="80" y="976" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="246.0" y="1017.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">AI 模型调用</text>
+<text x="246.0" y="1042.5" font-size="16" fill="#52657f" text-anchor="middle">Spring AI</text>
+<text x="246.0" y="1067.5" font-size="16" fill="#52657f" text-anchor="middle">OpenAI／Anthropic 模型适配</text>
+</g>
+<g data-node="rag"><rect x="436" y="976" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="602.0" y="1017.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">知识检索</text>
+<text x="602.0" y="1042.5" font-size="16" fill="#52657f" text-anchor="middle">Spring AI VectorStore</text>
+<text x="602.0" y="1067.5" font-size="16" fill="#52657f" text-anchor="middle">检索增强与上下文组织</text>
+</g>
+<g data-node="mcp"><rect x="792" y="976" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="958.0" y="1017.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">MCP 工具接入</text>
+<text x="958.0" y="1042.5" font-size="16" fill="#52657f" text-anchor="middle">MCP Java SDK</text>
+<text x="958.0" y="1067.5" font-size="16" fill="#52657f" text-anchor="middle">MCP 客户端与工具调用</text>
+</g>
+<g data-node="external-approval"><rect x="1148" y="976" width="332" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1314.0" y="1030.0" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">外部审批流引擎适配</text>
+<text x="1314.0" y="1055.0" font-size="16" fill="#52657f" text-anchor="middle">外部流程、实例与任务对接</text>
+</g>
+<g data-node="model-runtime"><rect x="80" y="1192" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="246.0" y="1237.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">模型运行时</text>
+<text x="246.0" y="1262.5" font-size="16" fill="#52657f" text-anchor="middle">Catalog／Provider／Builder</text>
+<text x="246.0" y="1287.5" font-size="16" fill="#52657f" text-anchor="middle">模型构建、投射与生命周期</text>
+</g>
+<g data-node="resource-service"><rect x="436" y="1192" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="602.0" y="1237.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">应用资源服务</text>
+<text x="602.0" y="1262.5" font-size="16" fill="#52657f" text-anchor="middle">应用文件与运行时覆盖解析</text>
+<text x="602.0" y="1287.5" font-size="16" fill="#52657f" text-anchor="middle">资源来源与读取</text>
+</g>
+<g data-node="action-runtime"><rect x="792" y="1192" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="958.0" y="1237.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">业务动作运行时</text>
+<text x="958.0" y="1262.5" font-size="16" fill="#52657f" text-anchor="middle">动作契约、输入与输出校验</text>
+<text x="958.0" y="1287.5" font-size="16" fill="#52657f" text-anchor="middle">事务与执行审计</text>
+</g>
+<g data-node="event-runtime"><rect x="1148" y="1192" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1314.0" y="1237.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">业务事件运行时</text>
+<text x="1314.0" y="1262.5" font-size="16" fill="#52657f" text-anchor="middle">事件事实与逐订阅投递记录</text>
+<text x="1314.0" y="1287.5" font-size="16" fill="#52657f" text-anchor="middle">租约、确认与 Outbox 恢复</text>
+</g>
+<g data-node="data-runtime"><rect x="80" y="1336" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="246.0" y="1381.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">动态数据模型</text>
+<text x="246.0" y="1406.5" font-size="16" fill="#52657f" text-anchor="middle">平台数据模型与查询语义</text>
+<text x="246.0" y="1431.5" font-size="16" fill="#52657f" text-anchor="middle">动态查询、写入与事务接入</text>
+</g>
+<g data-node="logicflow"><rect x="436" y="1336" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="602.0" y="1381.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">逻辑流引擎</text>
+<text x="602.0" y="1406.5" font-size="16" fill="#52657f" text-anchor="middle">节点类型定义、逻辑流编译</text>
+<text x="602.0" y="1431.5" font-size="16" fill="#52657f" text-anchor="middle">脚本、表达式能力接入</text>
+</g>
+<g data-node="approval"><rect x="792" y="1336" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="958.0" y="1381.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">审批流引擎</text>
+<text x="958.0" y="1406.5" font-size="16" fill="#52657f" text-anchor="middle">Flowable／BPMN</text>
+<text x="958.0" y="1431.5" font-size="16" fill="#52657f" text-anchor="middle">流程实例、任务与历史</text>
+</g>
+<g data-node="report"><rect x="1148" y="1336" width="332" height="120" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1314.0" y="1381.5" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">统计报表运行时</text>
+<text x="1314.0" y="1406.5" font-size="16" fill="#52657f" text-anchor="middle">平台数据集与视图运行时</text>
+<text x="1314.0" y="1431.5" font-size="16" fill="#52657f" text-anchor="middle">查询计划与结果处理</text>
+</g>
+<g data-node="querydsl"><rect x="112" y="1536" width="248" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="236.0" y="1586.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">QueryDSL SQL</text>
+<text x="236.0" y="1610.0" font-size="15" fill="#52657f" text-anchor="middle">动态 SQL 构建</text>
+</g>
+<g data-node="jdbc"><rect x="384" y="1536" width="248" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="508.0" y="1586.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">Spring JDBC</text>
+<text x="508.0" y="1610.0" font-size="15" fill="#52657f" text-anchor="middle">参数绑定与 SQL 执行</text>
+</g>
+<g data-node="druid"><rect x="656" y="1536" width="248" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="780.0" y="1586.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">Druid</text>
+<text x="780.0" y="1610.0" font-size="15" fill="#52657f" text-anchor="middle">数据源构建与连接池</text>
+</g>
+<g data-node="liquibase"><rect x="928" y="1536" width="248" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1052.0" y="1586.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">Liquibase</text>
+<text x="1052.0" y="1610.0" font-size="15" fill="#52657f" text-anchor="middle">结构快照、比较与迁移</text>
+</g>
+<g data-node="data-init"><rect x="1200" y="1536" width="248" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1324.0" y="1586.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">数据初始化</text>
+<text x="1324.0" y="1610.0" font-size="15" fill="#52657f" text-anchor="middle">初始化计划与记录协调</text>
+</g>
+<g data-node="oidc"><rect x="1544" y="208" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="262.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">OIDC 服务</text>
+<text x="1688.0" y="286.5" font-size="15" fill="#52657f" text-anchor="middle">Spring Authorization Server</text>
+<text x="1688.0" y="310.5" font-size="15" fill="#52657f" text-anchor="middle">Nimbus JOSE＋JWT</text>
+<text x="1688.0" y="334.5" font-size="15" fill="#52657f" text-anchor="middle">OAuth 2.0／OpenID Connect</text>
+</g>
+<g data-node="identity"><rect x="1544" y="392" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="458.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">身份认证</text>
+<text x="1688.0" y="482.5" font-size="15" fill="#52657f" text-anchor="middle">平台身份认证</text>
+<text x="1688.0" y="506.5" font-size="15" fill="#52657f" text-anchor="middle">Spring Security 适配</text>
+</g>
+<g data-node="token"><rect x="1544" y="576" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="642.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">令牌服务</text>
+<text x="1688.0" y="666.5" font-size="15" fill="#52657f" text-anchor="middle">JJWT</text>
+<text x="1688.0" y="690.5" font-size="15" fill="#52657f" text-anchor="middle">平台令牌签发与校验</text>
+</g>
+<g data-node="session"><rect x="1544" y="760" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="826.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">平台会话</text>
+<text x="1688.0" y="850.5" font-size="15" fill="#52657f" text-anchor="middle">会话绑定、刷新与撤销</text>
+<text x="1688.0" y="874.5" font-size="15" fill="#52657f" text-anchor="middle">会话关联的令牌生命周期</text>
+</g>
+<g data-node="credential"><rect x="1544" y="944" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="1010.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">委托凭据</text>
+<text x="1688.0" y="1034.5" font-size="15" fill="#52657f" text-anchor="middle">目标资源与委托范围</text>
+<text x="1688.0" y="1058.5" font-size="15" fill="#52657f" text-anchor="middle">范围受用户自身权限限制</text>
+</g>
+<g data-node="context"><rect x="1544" y="1128" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="1194.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">安全上下文</text>
+<text x="1688.0" y="1218.5" font-size="15" fill="#52657f" text-anchor="middle">身份、角色与凭据上下文</text>
+<text x="1688.0" y="1242.5" font-size="15" fill="#52657f" text-anchor="middle">执行过程中的上下文传递</text>
+</g>
+<g data-node="authorization"><rect x="1544" y="1312" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="1378.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">授权判定</text>
+<text x="1688.0" y="1402.5" font-size="15" fill="#52657f" text-anchor="middle">角色与凭据联合判定</text>
+<text x="1688.0" y="1426.5" font-size="15" fill="#52657f" text-anchor="middle">接口及业务操作访问控制</text>
+</g>
+<g data-node="data-security"><rect x="1544" y="1496" width="288" height="160" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1688.0" y="1562.5" font-size="21" font-weight="600" fill="#8c453b" text-anchor="middle">数据访问控制</text>
+<text x="1688.0" y="1586.5" font-size="15" fill="#52657f" text-anchor="middle">行级过滤与列级字段权限</text>
+<text x="1688.0" y="1610.5" font-size="15" fill="#52657f" text-anchor="middle">查询、写入与输出控制</text>
+</g>
+<g data-node="groovy"><rect x="84" y="1768" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="248.0" y="1810.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">Groovy 脚本引擎</text>
+<text x="248.0" y="1834.5" font-size="15" fill="#52657f" text-anchor="middle">Groovy</text>
+<text x="248.0" y="1858.5" font-size="15" fill="#52657f" text-anchor="middle">脚本编译、执行与上下文接入</text>
+</g>
+<g data-node="javascript"><rect x="440" y="1768" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="604.0" y="1810.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">JavaScript 脚本引擎</text>
+<text x="604.0" y="1834.5" font-size="15" fill="#52657f" text-anchor="middle">GraalVM JavaScript</text>
+<text x="604.0" y="1858.5" font-size="15" fill="#52657f" text-anchor="middle">脚本执行与平台 API 接入</text>
+</g>
+<g data-node="expression"><rect x="796" y="1768" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="960.0" y="1810.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">表达式引擎</text>
+<text x="960.0" y="1834.5" font-size="15" fill="#52657f" text-anchor="middle">Spring Expression Language</text>
+<text x="960.0" y="1858.5" font-size="15" fill="#52657f" text-anchor="middle">SpEL 解析与求值</text>
+</g>
+<g data-node="template"><rect x="1152" y="1768" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1316.0" y="1810.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">模板引擎</text>
+<text x="1316.0" y="1834.5" font-size="15" fill="#52657f" text-anchor="middle">FreeMarker</text>
+<text x="1316.0" y="1858.5" font-size="15" fill="#52657f" text-anchor="middle">文本与资源模板渲染</text>
+</g>
+<g data-node="cache"><rect x="1508" y="1768" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1672.0" y="1810.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">统一缓存</text>
+<text x="1672.0" y="1834.5" font-size="15" fill="#52657f" text-anchor="middle">Spring Cache</text>
+<text x="1672.0" y="1858.5" font-size="15" fill="#52657f" text-anchor="middle">Redis 或内存缓存实现</text>
+</g>
+<g data-node="json"><rect x="84" y="1904" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="248.0" y="1946.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">JSON 读写</text>
+<text x="248.0" y="1970.5" font-size="15" fill="#52657f" text-anchor="middle">Jackson</text>
+<text x="248.0" y="1994.5" font-size="15" fill="#52657f" text-anchor="middle">序列化、反序列化与数据转换</text>
+</g>
+<g data-node="schema"><rect x="440" y="1904" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="604.0" y="1946.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">JSON Schema 校验</text>
+<text x="604.0" y="1970.5" font-size="15" fill="#52657f" text-anchor="middle">networknt JSON Schema Validator</text>
+<text x="604.0" y="1994.5" font-size="15" fill="#52657f" text-anchor="middle">数据结构与载荷校验</text>
+</g>
+<g data-node="utilities"><rect x="796" y="1904" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="960.0" y="1946.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">通用函数</text>
+<text x="960.0" y="1970.5" font-size="15" fill="#52657f" text-anchor="middle">Apache Commons</text>
+<text x="960.0" y="1994.5" font-size="15" fill="#52657f" text-anchor="middle">字符串、集合等通用工具</text>
+</g>
+<g data-node="locks"><rect x="1152" y="1904" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1316.0" y="1946.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">自适应分布式锁</text>
+<text x="1316.0" y="1970.5" font-size="15" fill="#52657f" text-anchor="middle">Redisson／本地锁</text>
+<text x="1316.0" y="1994.5" font-size="15" fill="#52657f" text-anchor="middle">按运行环境选择实现</text>
+</g>
+<g data-node="result"><rect x="1508" y="1904" width="328" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1672.0" y="1946.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">函数式结果处理</text>
+<text x="1672.0" y="1970.5" font-size="15" fill="#52657f" text-anchor="middle">Vavr Try／Either</text>
+<text x="1672.0" y="1994.5" font-size="15" fill="#52657f" text-anchor="middle">成功与失败结果的组合</text>
+</g>
+<g data-node="jvm"><rect x="92" y="2120" width="416" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="300.0" y="2170.5" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">Java 21／JVM</text>
+<text x="300.0" y="2195.5" font-size="16" fill="#52657f" text-anchor="middle">模块与插件代码的运行环境</text>
+</g>
+<g data-node="spring"><rect x="532" y="2120" width="416" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="740.0" y="2170.5" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">Spring Framework</text>
+<text x="740.0" y="2195.5" font-size="16" fill="#52657f" text-anchor="middle">依赖注入、事务与生命周期</text>
+</g>
+<g data-node="boot"><rect x="972" y="2120" width="416" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="1180.0" y="2170.5" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">Spring Boot 3.5.11</text>
+<text x="1180.0" y="2195.5" font-size="16" fill="#52657f" text-anchor="middle">应用启动、自动配置与条件装配</text>
+</g>
+<g data-node="spi"><rect x="1412" y="2120" width="416" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="1620.0" y="2158.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">Java SPI</text>
+<text x="1620.0" y="2183.0" font-size="16" fill="#52657f" text-anchor="middle">META-INF/services</text>
+<text x="1620.0" y="2208.0" font-size="16" fill="#52657f" text-anchor="middle">接口实现发现与插件扩展</text>
+</g>
+<g data-node="database"><rect x="72" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="192.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">关系数据库</text>
+<text x="192.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">MySQL 等数据库</text>
+</g>
+<g data-node="redis"><rect x="328" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="448.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">Redis</text>
+<text x="448.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">统一缓存／锁／Pub/Sub</text>
+</g>
+<g data-node="rabbit"><rect x="584" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="704.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">消息队列服务</text>
+<text x="704.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">RabbitMQ／STOMP Relay</text>
+</g>
+<g data-node="files"><rect x="840" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="960.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">文件系统</text>
+<text x="960.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">上传目录与持久卷</text>
+</g>
+<g data-node="model-api"><rect x="1096" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1216.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">模型服务</text>
+<text x="1216.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">OpenAI／Anthropic</text>
+</g>
+<g data-node="notification-channel"><rect x="1352" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1472.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">通知渠道</text>
+<text x="1472.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">邮件／短信／IM 服务</text>
+</g>
+<g data-node="business-api"><rect x="1608" y="2376" width="240" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1728.0" y="2426.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">外部业务服务</text>
+<text x="1728.0" y="2450.5" font-size="15" fill="#52657f" text-anchor="middle">HTTP／OpenAPI 接口</text>
+</g>
+<text x="960" y="2552" font-size="18" fill="#52657f" text-anchor="middle">同一能力可按契约接入不同实现；数据库、Redis 和消息队列等依赖由所选模块与配置确定。</text>
+</svg></html>

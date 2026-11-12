@@ -3,7 +3,7 @@ const items = [
     type: 'docSidebar',
     sidebarId: 'gettingStartedSidebar',
     position: 'left',
-    label: '快速上手',
+    label: '开始使用',
   },
   {
     type: 'docSidebar',
@@ -25,7 +25,7 @@ const items = [
   },
   {
     type: 'docSidebar',
-    label: '核心概念',
+    label: '概念与设计',
     position: 'left',
     sidebarId: 'conceptsSidebar',
   },

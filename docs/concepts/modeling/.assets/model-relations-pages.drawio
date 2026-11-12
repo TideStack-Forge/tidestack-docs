@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="26.0.9" type="device">
+  <diagram id="model-relations-pages" name="页面入口、页面实现与接口调用">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="520">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="e08" source="module-diff" target="module" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#B08B57;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e07" source="module" target="menu" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#B08B57;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e06" source="menu" target="ui" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.8214285714285714;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="816" y="160" />
+              <mxPoint x="552" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e04" source="ui-schema" target="ui" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#368B9B;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e05" source="micro" target="ui" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#368B9B;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" source="i18n" target="ui-schema" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e34" source="ui-schema" target="webapi" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.75;exitY=1.0;entryX=0.14285714285714285;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="344" />
+              <mxPoint x="400" y="344" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e35" source="micro" target="webapi" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.8214285714285714;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="816" y="360" />
+              <mxPoint x="552" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e08-label" value="调整编排" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#B08B57;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="272.0" y="38" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e07-label" value="组织菜单" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#B08B57;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="38" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e06-label" value="指向页面" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="126" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e04-label" value="实现页面" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#368B9B;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="272.0" y="222" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e05-label" value="实现页面" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#368B9B;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="222" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e15-label" value="文案引用" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="48.0" y="334" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e34-label" value="页面请求" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="240.0" y="310" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e35-label" value="页面请求" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="632.0" y="326" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="module-diff" value="&lt;b&gt;模块树 Diff&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;记录模块编排差异&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="module" value="&lt;b&gt;模块树&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;功能归属、菜单与权限&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F6F1FC;strokeColor=#AD91CE;strokeWidth=1.8;dashed=0;fontColor=#674489;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="menu" value="&lt;b&gt;菜单模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;运行态导航入口&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F0FAF7;strokeColor=#6BB39E;strokeWidth=1.8;dashed=1;fontColor=#215F4B;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-schema" value="&lt;b&gt;UI Schema&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;页面内容、交互与组件&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F0FAF7;strokeColor=#6BB39E;strokeWidth=1.8;dashed=0;fontColor=#215F4B;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="&lt;b&gt;UI 模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;页面入口与实现方式&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F0FAF7;strokeColor=#6BB39E;strokeWidth=1.8;dashed=0;fontColor=#215F4B;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="micro" value="&lt;b&gt;微前端模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;独立前端应用实现&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F0FAF7;strokeColor=#6BB39E;strokeWidth=1.8;dashed=0;fontColor=#215F4B;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="i18n" value="&lt;b&gt;国际化语言包&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;语言与文案资源&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="webapi" value="&lt;b&gt;WebAPI 模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;HTTP 契约与处理绑定&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F2F6FF;strokeColor=#8BAAE1;strokeWidth=1.8;dashed=0;fontColor=#335890;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

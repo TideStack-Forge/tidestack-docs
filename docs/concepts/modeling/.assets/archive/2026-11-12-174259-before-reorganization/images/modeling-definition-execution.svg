@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="modeling-definition-execution-title modeling-definition-execution-desc" id="modeling-definition-execution-root">
+<title id="modeling-definition-execution-title">从声明式定义到应用运行</title>
+<desc id="modeling-definition-execution-desc">模型元数据经读取、校验与构建形成运行模型，执行引擎依据模型处理请求，代码扩展通过契约补充执行能力。</desc>
+<defs>
+      <style>#modeling-definition-execution-root { font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif; }
+      #modeling-definition-execution-root .diagram-container { width:100%;max-width:100%;overflow-x:auto }
+      @media print {
+#modeling-definition-execution-root .diagram-container { overflow-x:visible }
+}</style><marker id="modeling-definition-execution-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#7B8DA4"/></marker></defs>
+<rect width="960" height="600" fill="#FFFFFF"/>
+<text x="32" y="52" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#0B1F3A">从声明式定义到应用运行</text>
+<text x="32" y="92" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#52657F">定义保存业务意图，模型组织语义，执行引擎提供通用实现</text>
+<path d="M272 248 L360 248" fill="none" stroke="#7B8DA4" stroke-width="1.5" marker-end="url(#modeling-definition-execution-arrow)"/>
+<path d="M600 248 L688 248" fill="none" stroke="#7B8DA4" stroke-width="1.5" marker-end="url(#modeling-definition-execution-arrow)"/>
+<path d="M804 312 L804 400" fill="none" stroke="#7B8DA4" stroke-width="1.5" marker-end="url(#modeling-definition-execution-arrow)"/>
+<path d="M516 448 L632 448 Q640 448 640 440 L640 296 Q640 288 648 288 L688 288" fill="none" stroke="#7B8DA4" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#modeling-definition-execution-arrow)"/>
+<g data-node="metadata"><rect x="32" y="176" width="240" height="136" rx="8" fill="#EDF5FF" stroke="#88B2E5" stroke-width="1.5"/>
+<text x="52" y="212" fill="#174C88" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">元数据</text>
+<text x="52" y="244" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">结构化的模型定义</text>
+<text x="52" y="270" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">文件或受管存储</text>
+</g>
+<g data-node="model"><rect x="360" y="176" width="240" height="136" rx="8" fill="#EDF5FF" stroke="#88B2E5" stroke-width="1.5"/>
+<text x="380" y="212" fill="#174C88" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">运行模型</text>
+<text x="380" y="244" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">具有语义的模型对象</text>
+<text x="380" y="270" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">标识、关系与约束</text>
+</g>
+<g data-node="engine"><rect x="688" y="176" width="240" height="136" rx="8" fill="#EFFAF6" stroke="#70B9A3" stroke-width="1.5"/>
+<text x="708" y="212" fill="#235D4A" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">执行引擎</text>
+<text x="708" y="244" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">读取模型契约</text>
+<text x="708" y="270" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">处理请求与业务行为</text>
+</g>
+<g data-node="code"><rect x="308" y="400" width="208" height="112" rx="8" fill="#FFF8EC" stroke="#D8AA60" stroke-width="1.5"/>
+<text x="328" y="436" fill="#79521F" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">代码扩展</text>
+<text x="328" y="468" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">按扩展契约接入</text>
+</g>
+<g data-node="result"><rect x="688" y="400" width="240" height="112" rx="8" fill="#EFFAF6" stroke="#70B9A3" stroke-width="1.5"/>
+<text x="708" y="436" fill="#235D4A" font-size="22" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">应用能力</text>
+<text x="708" y="468" fill="#52657F" font-size="17" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif">页面、数据与业务服务</text>
+</g>
+<text x="284" y="224" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">构建</text>
+<text x="612" y="224" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">解释</text>
+<text x="828" y="376" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">执行</text>
+<text x="548" y="424" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">接入</text>
+<text x="32" y="568" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#52657F">修改定义与修改执行实现各有职责，生效方式由具体模型的生命周期决定</text>
+</svg>

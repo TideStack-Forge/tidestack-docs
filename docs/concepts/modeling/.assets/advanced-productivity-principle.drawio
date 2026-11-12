@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="advanced-productivity-principle" name="追求先进生产力">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="360">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" parent="1" source="methods" target="validation" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" parent="1" source="validation" target="capability" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="methods" value="&lt;b&gt;吸收新工具与新方法&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;AI 辅助开发等生产力工具&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="64" width="320" height="144" />
+        </mxCell>
+        <mxCell id="validation" value="&lt;b&gt;在实际任务中验证&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;效率、质量与维护成本&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="440" y="64" width="320" height="144" />
+        </mxCell>
+        <mxCell id="capability" value="&lt;b&gt;沉淀为工程能力&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;减少重复劳动，缩短反馈时间&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="840" y="64" width="320" height="144" />
+        </mxCell>
+        <mxCell id="note-0" value="持续吸收技术进步，让生产力提升进入日常开发与交付" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=20;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40.0" y="268" width="1120" height="28" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,77 @@
+[
+  {
+    "source": "index.md",
+    "backup": "index.md.bak",
+    "sha256": "f4168d0cfbf968a16007dc2aab088d8bd3e3c49258fd0042cc073a36c963eccc"
+  },
+  {
+    "source": ".assets/modeling-design-analysis.svg",
+    "backup": "modeling-design-analysis.svg",
+    "sha256": "4a361b7991a33df707dcd409b44e0eeb861ce6c53fd86f153593920ef4a64dd4"
+  },
+  {
+    "source": ".assets/modeling-design-analysis.html",
+    "backup": "modeling-design-analysis.html",
+    "sha256": "316809bd2963f2480bd83e577f1aa7d3766a04b4b8b4213914d251271186a26f"
+  },
+  {
+    "source": ".assets/modeling-design-analysis.drawio",
+    "backup": "modeling-design-analysis.drawio",
+    "sha256": "b573133134ded2fe25b3ad520b9ae4eb652e89181dc42cbe6ba392d9739e0797"
+  },
+  {
+    "source": ".assets/modeling-definition-execution.svg",
+    "backup": "modeling-definition-execution.svg",
+    "sha256": "21d4af2cce279e43179acb06a7743a45d85466eef57c0cc1221a7c8ed142a6e2"
+  },
+  {
+    "source": ".assets/modeling-definition-execution.html",
+    "backup": "modeling-definition-execution.html",
+    "sha256": "56f7ba1e622fe4e9260132b3870ef8612008cd37b9164bde39ab19a8f5514ba0"
+  },
+  {
+    "source": ".assets/modeling-definition-execution.drawio",
+    "backup": "modeling-definition-execution.drawio",
+    "sha256": "512fabbcd0184044de91b31a5764f8198d4cc339ef4db1b4b3017eb21d79f9b1"
+  },
+  {
+    "source": ".assets/modeling-business-elements.svg",
+    "backup": "modeling-business-elements.svg",
+    "sha256": "8d3184850faddf01857b3847966f8a49227a23ba4ff117e6aefb914d9dba3762"
+  },
+  {
+    "source": ".assets/modeling-business-elements.html",
+    "backup": "modeling-business-elements.html",
+    "sha256": "f3230c54ca0678a982e425d7c661fc29586cb24c6fd0c71b129802bb5a6221e8"
+  },
+  {
+    "source": ".assets/modeling-business-elements.drawio",
+    "backup": "modeling-business-elements.drawio",
+    "sha256": "800badba28c73b1003782bd28dce16c03b58a2a55820be69d3636303b396d3a2"
+  },
+  {
+    "source": ".assets/complete-model-topology.svg",
+    "backup": "complete-model-topology.svg",
+    "sha256": "5cfc3961a119f8b09d081a9dba8a516e8b9a446ab466413c1ee12021aa81c5cc"
+  },
+  {
+    "source": ".assets/complete-model-topology.html",
+    "backup": "complete-model-topology.html",
+    "sha256": "4b7033e93a1a27213db131519a92f7e08b593a187d944ddba2ac5e63addc609c"
+  },
+  {
+    "source": ".assets/complete-model-topology.drawio",
+    "backup": "complete-model-topology.drawio",
+    "sha256": "79257996aa1c905c95ae91dcb6d452fbdb086dd764e530d95abebb8137ecdb95"
+  },
+  {
+    "source": ".assets/metadata-layering.svg",
+    "backup": "metadata-layering.svg",
+    "sha256": "cf48adea8a62c3c738162800175adbf1ad9d2ef70f9813061becf3c567fac8d2"
+  },
+  {
+    "source": ".assets/metadata-layering.drawio",
+    "backup": "metadata-layering.drawio",
+    "sha256": "449bf91d143e9959013e90f740a110da478f2d86848b1f5c4e32de248381e74e"
+  }
+]

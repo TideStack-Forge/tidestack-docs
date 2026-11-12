@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/rpc-auth.schema.json",
-  "title": "RPC 认证",
-  "description": "TideStack metadata schema for rpc-auth. Legacy runtime packaging may still use Ouroboros paths.",
+  "title": "RPC 认证定义",
+  "description": "声明可被 RPC 模型引用的认证凭据，type 选择认证实现；凭据专有配置通过扩展属性平铺。",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -12,19 +12,26 @@
   ],
   "properties": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "认证资源的名称，由 RPC 模型的 authCredential 引用。"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "description": "认证实现类型标识，由已注册认证机制解析。"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
     },
     "isEnabled": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "是否启用该定义。"
     }
-  }
+  },
+  "$comment": "Source: ability/ouroboros-rpc-model/ouroboros-rpc-model-core/src/main/java/com/ouroboros/rpc/security/metadata/RPCCredentialMetadata.java"
 }

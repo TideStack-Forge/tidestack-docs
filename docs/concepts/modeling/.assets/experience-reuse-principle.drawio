@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="experience-reuse-principle" name="经验复用">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="560">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" parent="1" source="experience" target="components" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.15714285714285714;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" parent="1" source="experience" target="architecture" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" parent="1" source="experience" target="industry" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.8428571428571429;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" parent="1" source="components" target="platform" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.15714285714285714;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" parent="1" source="architecture" target="platform" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" parent="1" source="industry" target="platform" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.8428571428571429;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="experience" value="&lt;b&gt;项目经验&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;在真实项目中得到验证的解决方法&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="40" width="1120" height="96" />
+        </mxCell>
+        <mxCell id="components" value="&lt;b&gt;组件复用&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;组件承载成熟实现与使用方法&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="200" width="352" height="104" />
+        </mxCell>
+        <mxCell id="architecture" value="&lt;b&gt;架构复用&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;基座与插件承载成熟架构&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="424" y="200" width="352" height="104" />
+        </mxCell>
+        <mxCell id="industry" value="&lt;b&gt;行业知识复用&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;一组业务模型承载领域知识&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="808" y="200" width="352" height="104" />
+        </mxCell>
+        <mxCell id="platform" value="&lt;b&gt;潮汐栈平台&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;承载复用成果，供后续项目继承与组合&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="368" width="1120" height="96" />
+        </mxCell>
+        <mxCell id="note-0" value="领域知识随业务模型沉淀，复用成果在平台上持续积累" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=20;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40.0" y="500" width="1120" height="28" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

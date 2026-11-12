@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kubernetes · Ingress 稳定域名入口</title><style>body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.frame{max-width:1600px;min-width:0;margin:auto}.diagram-container{width:100%;overflow-x:auto}.diagram-container svg{display:block;width:100%;min-width:1600px;height:auto}@media print{.diagram-container{overflow-x:visible}.diagram-container svg{min-width:0}}</style></head><body><main class="frame"><div class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-kubernetes-ingress-title deployment-kubernetes-ingress-desc">
+<title id="deployment-kubernetes-ingress-title">Kubernetes · Ingress 稳定域名入口</title>
+<desc id="deployment-kubernetes-ingress-desc">局部展开：平台在集群外；入口 Controller 自备；Ingress 规则与处理流量的进程分别标识；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}</style>
+<marker id="deployment-kubernetes-ingress-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43546c"/></marker>
+<marker id="deployment-kubernetes-ingress-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#577dab"/></marker>
+<marker id="deployment-kubernetes-ingress-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs><rect width="1600" height="1520" fill="#fff"/>
+<text x="40" y="52" font-size="28" font-weight="600" fill="#33455e">Kubernetes · Ingress 稳定域名入口</text>
+<text x="40" y="84" font-size="14" font-weight="400" fill="#596b83">局部展开：平台在集群外；入口 Controller 自备；Ingress 规则与处理流量的进程分别标识</text>
+<rect x="40" y="104" width="16" height="16" rx="3" fill="#eef5ff" stroke="#8eafe0"/>
+<text x="64" y="117" font-size="12" font-weight="400" fill="#33455e">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="3" fill="#eaf6f4" stroke="#8ebeb3"/>
+<text x="284" y="117" font-size="12" font-weight="400" fill="#33455e">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="3" fill="#edf5eb" stroke="#a4be97"/>
+<text x="504" y="117" font-size="12" font-weight="400" fill="#33455e">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="3" fill="#fff5e7" stroke="#d5b78b"/>
+<text x="724" y="117" font-size="12" font-weight="400" fill="#33455e">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="3" fill="#f4f6f9" stroke="#b3bfce"/>
+<text x="944" y="117" font-size="12" font-weight="400" fill="#33455e">外部 / 基础设施</text>
+<g data-zone="a"><rect x="40" y="420" width="400" height="656" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="64" y="452" font-size="14" font-weight="600" fill="#33455e">集群外平台主机 ×1</text>
+<text x="64" y="476" font-size="12" font-weight="400" fill="#596b83">共享文件存储同时对平台与集群可用</text>
+</g>
+<g data-zone="cluster"><rect x="480" y="152" width="1080" height="924" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="504" y="184" font-size="14" font-weight="600" fill="#33455e">Kubernetes 集群 · 工作节点池 ×M（按实际配置）</text>
+<text x="504" y="208" font-size="12" font-weight="400" fill="#596b83">Ingress Controller 自行安装，监听范围与默认 IngressClass 需核对</text>
+</g>
+<g data-zone="namespace"><rect x="504" y="520" width="1032" height="360" rx="8" fill="#f7faff" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="1512" y="552" font-size="14" font-weight="600" fill="#33455e" text-anchor="end">运行命名空间 · 示例 tidestack-dev</text>
+<text x="1512" y="576" font-size="12" font-weight="400" fill="#596b83" text-anchor="end">Ingress / Service / PVC 为逻辑资源；Pod 运行在节点上</text>
+</g>
+<path data-edge="0" d="M440 280 L552 280" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-ingress-traffic)"/>
+<path data-edge="1" d="M752 376 L752 480 Q752 488 760 488 L984 488 Q992 488 992 496 L992 612" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-ingress-traffic)"/>
+<path data-edge="2" d="M1128 688 L1160 688" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-kubernetes-ingress-traffic)"/>
+<path data-edge="3" d="M664 376 L664 612" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-kubernetes-ingress-control)"/>
+<path d="M742 432 C742 418 762 418 762 432" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M654 432 C654 418 674 418 674 432" fill="none" stroke="#fff" stroke-width="7"/>
+<path data-edge="4" d="M416 596 L448 596 Q456 596 456 588 L456 440 Q456 432 464 432 L654 432 C654 418 674 418 674 432 L742 432 C742 418 762 418 762 432 L1312 432 Q1320 432 1320 424 L1320 376" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-kubernetes-ingress-control)"/>
+<g data-edge-label="0"><rect x="470.5" y="244" width="51" height="24" rx="3" fill="#fff"/><text x="496" y="260" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">HTTPS</text></g>
+<g data-edge-label="1"><rect x="938.5" y="444" width="139" height="24" rx="3" fill="#fff"/><text x="1008" y="460" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">转发至 Service :80</text></g>
+<g data-edge-label="3"><rect x="566" y="444" width="68" height="24" rx="3" fill="#fff"/><text x="600" y="460" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">读取规则</text></g>
+<g data-edge-label="4"><rect x="1000.5" y="392" width="79" height="24" rx="3" fill="#fff"/><text x="1040" y="408" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">HTTPS API</text></g>
+<g data-node="browser"><rect x="40" y="208" width="400" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="40" y="232" width="4" height="24" fill="#b3bfce"/>
+<rect x="352" y="228" width="64" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="384.0" y="244" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">用户网络</text>
+<text x="64" y="248" font-size="16" font-weight="600" fill="#52657f">用户浏览器</text>
+<text x="64" y="284" font-size="12" font-weight="400" fill="#596b83">测试应用域名 / DNS 指向集群入口</text>
+</g>
+<g data-node="platform"><rect x="64" y="532" width="352" height="128" rx="6" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.5"/>
+<rect x="64" y="556" width="4" height="24" fill="#8eafe0"/>
+<rect x="357" y="552" width="35" height="22" rx="3" fill="#fff" stroke="#8eafe0"/><text x="374.5" y="568" font-size="12" font-weight="400" fill="#204f86" text-anchor="middle">×1</text>
+<text x="88" y="572" font-size="16" font-weight="600" fill="#204f86">开发平台</text>
+<text x="88" y="608" font-size="12" font-weight="400" fill="#596b83">ouroboros-develop:&lt;v&gt;</text>
+<text x="88" y="632" font-size="12" font-weight="400" fill="#596b83">KubernetesClient + RBAC</text>
+</g>
+<g data-node="controller"><rect x="552" y="248" width="400" height="128" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="552" y="272" width="4" height="24" fill="#d5b78b"/>
+<rect x="862" y="268" width="66" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="895.0" y="284" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×G 待定</text>
+<text x="576" y="288" font-size="16" font-weight="600" fill="#805d2e">Ingress Controller</text>
+<text x="576" y="324" font-size="12" font-weight="400" fill="#596b83">实际运行进程 / Pod；数量自行规划</text>
+<text x="576" y="348" font-size="12" font-weight="400" fill="#596b83">HTTP / HTTPS 入口与证书自行提供</text>
+</g>
+<g data-node="api"><rect x="1128" y="248" width="384" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="1128" y="272" width="4" height="24" fill="#b3bfce"/>
+<rect x="1436" y="268" width="52" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="1462.0" y="284" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">按集群</text>
+<text x="1152" y="288" font-size="16" font-weight="600" fill="#52657f">API Server</text>
+<text x="1152" y="324" font-size="12" font-weight="400" fill="#596b83">HTTPS / 集群 API Endpoint</text>
+</g>
+<g data-node="rule"><rect x="552" y="612" width="272" height="128" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="552" y="636" width="4" height="24" fill="#d5b78b"/>
+<rect x="765" y="632" width="35" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="782.5" y="648" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×1</text>
+<text x="576" y="652" font-size="16" font-weight="600" fill="#805d2e">Ingress 规则</text>
+<text x="576" y="688" font-size="12" font-weight="400" fill="#596b83">Host / Path Prefix /</text>
+<text x="576" y="712" font-size="12" font-weight="400" fill="#596b83">目标为应用 Service :80</text>
+</g>
+<g data-node="service"><rect x="856" y="612" width="272" height="128" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="856" y="636" width="4" height="24" fill="#d5b78b"/>
+<rect x="1069" y="632" width="35" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="1086.5" y="648" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×1</text>
+<text x="880" y="652" font-size="16" font-weight="600" fill="#805d2e">ClusterIP Service</text>
+<text x="880" y="688" font-size="12" font-weight="400" fill="#596b83">虚拟 Service IP / :80</text>
+<text x="880" y="712" font-size="12" font-weight="400" fill="#596b83">转发到就绪 Pod</text>
+</g>
+<g data-node="pod"><rect x="1160" y="612" width="352" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="1160" y="636" width="4" height="24" fill="#8ebeb3"/>
+<rect x="1453" y="632" width="35" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="1470.5" y="648" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">×1</text>
+<text x="1184" y="652" font-size="16" font-weight="600" fill="#28675b">测试应用 Pod</text>
+<text x="1184" y="688" font-size="12" font-weight="400" fill="#596b83">mothership:&lt;v&gt; / :80</text>
+<text x="1184" y="712" font-size="12" font-weight="400" fill="#596b83">Deployment replicas=1</text>
+</g>
+<g data-node="storage"><rect x="552" y="924" width="960" height="96" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="552" y="948" width="4" height="24" fill="#a4be97"/>
+<rect x="1436" y="944" width="52" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1462.0" y="960" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">见主图</text>
+<text x="576" y="964" font-size="16" font-weight="600" fill="#42663a">存储与外部依赖沿用主图</text>
+<text x="576" y="992" font-size="12" font-weight="400" fill="#596b83">平台本地挂载 ↔ 底层共享存储 ↔ PVC / Pod；MySQL 与 RabbitMQ 使用集群可达地址</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="6" fill="#fff" stroke="#b3bfce"/>
+<text x="64" y="1196" font-size="14" font-weight="600" fill="#33455e">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" fill="#33455e">浏览器 → Controller → Service → Pod</text>
+<text x="368" y="1236" font-size="12" font-weight="400" fill="#596b83">HTTP(S) → Service :80 → Pod :80；Ingress 是 Controller 读取的规则</text>
+<line x1="64" y1="1246" x2="992" y2="1246" stroke="#edf0f4"/>
+<text x="64" y="1268" font-size="12" font-weight="600" fill="#33455e">平台 → Kubernetes API</text>
+<text x="368" y="1268" font-size="12" font-weight="400" fill="#596b83">创建应用 Deployment、ClusterIP Service 与 Ingress 规则</text>
+<line x1="64" y1="1278" x2="992" y2="1278" stroke="#edf0f4"/>
+<text x="64" y="1300" font-size="12" font-weight="600" fill="#33455e">Ingress / TLS 条件</text>
+<text x="368" y="1300" font-size="12" font-weight="400" fill="#596b83">需要 host suffix；当前生成规则不设置 ingressClassName 或 TLS</text>
+<line x1="64" y1="1310" x2="992" y2="1310" stroke="#edf0f4"/>
+<text x="64" y="1332" font-size="12" font-weight="600" fill="#33455e">PVC / DB / MQ</text>
+<text x="368" y="1332" font-size="12" font-weight="400" fill="#596b83">工作区与外部连接沿用主图；入口切换不会改变数据存储要求</text>
+<line x1="64" y1="1342" x2="992" y2="1342" stroke="#edf0f4"/>
+<text x="64" y="1364" font-size="12" font-weight="600" fill="#33455e">APISIX Ingress Controller</text>
+<text x="368" y="1364" font-size="12" font-weight="400" fill="#596b83">可选的集群入口实现；与 Docker APISIX Admin 路由同步分别配置</text>
+<rect x="1040" y="1160" width="520" height="248" rx="6" fill="#fff9f0" stroke="#d5b78b"/>
+<text x="1064" y="1196" font-size="14" font-weight="600" fill="#33455e">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" fill="#805d2e">每个测试实例 Pod ×1 / Service ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" fill="#805d2e">Controller 数量 G 与副本资源由集群确定</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" fill="#805d2e">HTTPS 返回地址不表示证书已经配置</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" fill="#805d2e">入口、Pod 与共享存储的单点需按实际确认</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" fill="#805d2e">平台自身入口与测试应用入口分别维护</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" stroke="#b3bfce"/>
+<line x1="40" y1="1468" x2="80" y2="1468" stroke="#43546c" stroke-width="2"/><text x="92" y="1473" font-size="12" font-weight="400" fill="#33455e">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5"/><text x="372" y="1473" font-size="12" font-weight="400" fill="#33455e">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5"/><text x="620" y="1473" font-size="12" font-weight="400" fill="#33455e">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" fill="#596b83">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg></div></main></body></html>

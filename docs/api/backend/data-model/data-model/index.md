@@ -1,91 +1,68 @@
 # DataModel
 
-`DataModel` 是平台里最核心的运行时数据访问接口。它把“一个模型能读什么、怎么查、怎么增删改、有哪些字段和插件”统一收口到一个对象上。
+`com.ouroboros.data.model.DataModel` 用 Map 写入模型数据，并返回 `Record` 或 `RecordList`。通过 [DataModelCenter](../data-model-center/) 获取实例。
 
-## 先理解它的风格
+## 数据读写
 
-`DataModel` 当前有两个很重要的特征：
-
-1. 数据读写方法普遍返回 `io.vavr.control.Try`
-2. 接口同时承载元数据访问和运行时 CRUD 能力
-
-这意味着你拿到一个 `DataModel` 之后，既能读模型定义，也能直接查数据。
-
-## 基础标识与元数据
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getFormatVersion()` | `String` | 格式版本 |
-| `getSource()` | `String` | 模型来源 |
-| `getNamespace()` | `String` | 命名空间 |
-| `getName()` | `String` | 模型名 |
-| `getFullName()` | `String` | 完整模型名，通常是 `namespace.name` |
-| `getLabel()` | `String` | 模型标题 |
-| `getDescription()` | `String` | 模型描述 |
-| `getRawName()` | `String` | 底层原始名称，通常更接近物理表名 |
-| `getMigrationStrategy()` | `MigrationStrategy` | 当前迁移策略 |
-| `getExtraProps()` | `Map<String, Object>` | 扩展属性 |
-| `getExtraProp(String name)` | `Optional<Object>` | 读取单个扩展属性 |
-
-## 字段与主键
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getFields()` | `List<DataModelField>` | 获取全部字段 |
-| `getField(String name)` | `Optional<DataModelField>` | 按名称取字段 |
-| `getPrimaryKeys()` | `List<DataModelField>` | 获取主键字段列表 |
-| `getPrimaryKeyGenerator()` | `PrimaryKeyGenerator<?>` | 获取主键生成器 |
-
-## 运行时基础依赖
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getAdapter()` | `DataAdapter` | 当前模型使用的数据适配器 |
-| `getDataStation()` | `DataStation<?>` | 当前模型所属数据站 |
-
-## 写入相关
-
-| 方法族 | 返回值类型 | 说明 |
-| ------ | ---------- | ---- |
-| `insert(Map<String, Object> data)` | `Try<Record>` | 插入单条记录 |
-| `insertOrUpdate(Map<String, Object> data)` | `Try<Record>` | 按主键做插入或更新 |
-| `batchInsert(...)` | `Try<RecordList>` | 批量插入 |
-| `batchInsertOrUpdate(...)` | `Try<RecordList>` | 批量插入或更新 |
-| `update(id / ids / where, data)` | `Try<Long>` | 更新记录 |
-| `delete(id / ids / where)` | `Try<Long>` | 删除记录 |
-
-## 查询相关
-
-| 方法族 | 返回值类型 | 说明 |
-| ------ | ---------- | ---- |
-| `count(Map<String, Object> where)` | `Try<Long>` | 统计数量 |
-| `get(Object id)` | `Try<Record>` | 按主键读取单条 |
-| `get(Object id, Map<String, Object> statement)` | `Try<Record>` | 按主键读取并附加查询语句 |
-| `query(List<?> ids)` | `Try<RecordList>` | 按 ID 列表查询 |
+| 方法 | 返回值 | 说明 |
+| --- | --- | --- |
+| `insert(Map<String, Object> data)` | `Try<Record>` | 插入单条 |
+| `insertOrUpdate(Map<String, Object> data)` | `Try<Record>` | 插入或更新 |
+| `batchInsert(List<Map<String, Object>> rows)` | `Try<RecordList>` | 批量插入 |
+| `batchInsertOrUpdate(List<Map<String, Object>> rows)` | `Try<RecordList>` | 批量插入或更新 |
+| `update(id / ids / where, Map<String, Object> data)` | `Try<Long>` | 更新字段，返回影响行数 |
+| `delete(id / ids / where)` | `Try<Long>` | 删除，返回影响行数 |
+| `get(Object id)` | `Try<Record>` | 按主键读取 |
+| `get(Object id, Map<String, Object> statement)` | `Try<Record>` | 按主键读取并指定查询选项 |
+| `count(Map<String, Object> where)` | `Try<Long>` | 统计符合条件的记录 |
+| `query(List<?> ids)` | `Try<RecordList>` | 按主键列表查询 |
 | `query(Map<String, Object> statement)` | `Try<RecordList>` | 按完整 DSL 查询 |
-| `query(select, where)` 等重载 | `Try<RecordList>` | 便捷查询重载 |
+| `query()` | `DataModelQuery` | 创建 Java 查询构建器 |
 
-如果你要写复杂过滤、排序、分页或关联查询，下一步通常要继续看 [查询 DSL](../../data-query-dsl/)。
+`where` 表示条件本身，例如 `Map.of("status", "OPEN")`；`statement` 表示包含 `where/select/order/skip/limit` 等键的查询语句。二者不能混用。
 
-## 插件切换
+还支持 `query(select, where[, orderBy[, offset, limit]])`，其中 `select` 是 `List<String>`，`orderBy` 是 `Map<String, Object>`。复杂查询见 [查询 DSL](../../data-query-dsl/)。
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `withPlugins(...)` | `DataModel` | 追加模型插件 |
-| `withoutPlugins(pluginNames)` | `DataModel` | 去掉指定插件 |
-| `withoutPlugins()` | `DataModel` | 去掉全部插件 |
-| `hasPlugin(String name)` | `boolean` | 是否启用指定插件 |
+## 查询与更新示例
 
-这组方法更适合运行时临时装配插件行为，而不是修改模型定义本身。
+假设 `crm.Order` 已加载，且含有 `id/status/amount` 字段：
 
-## 使用建议
+```java
+import java.util.List;
+import java.util.Map;
+import com.ouroboros.data.model.DataModelCenter;
 
-- 只要你需要同时读元数据和读写数据，优先先看 `DataModel`
-- 需要强类型对象映射时，继续看 [TypedDataModel](../typed-data-model/)
-- 需要按名称拿模型时，继续看 [DataModelCenter](../data-model-center/)
+var orders = DataModelCenter.getDataModel("crm.Order")
+    .orElseThrow(() -> new IllegalStateException("订单模型不可用"));
+var rows = orders.query(Map.of(
+    "select", List.of("id", "amount"),
+    "where", Map.of("status", "OPEN"),
+    "order", Map.of("id", "ASC"),
+    "skip", 0,
+    "limit", 20
+)).get();
+long updated = orders.update("order-001", Map.of("status", "CLOSED")).get();
+```
 
-## 下一步看哪里
+`.get()` 在失败时抛出异常。若需要组合多次调用，可使用 `Try.map/flatMap`；不要忽略失败后继续执行后续业务。条件更新和删除须传入明确的目标条件，避免使用空条件。
 
-- 想看字段对象：看 [DataModelField](../data-model-field/)
-- 想看元数据对象：看 [DataModelMeta](../data-model-meta/)
-- 想看脚本里怎么按名称拿模型：看 [脚本上下文](../../script-context/)
+## 模型和字段信息
+
+| 方法 | 返回值 |
+| --- | --- |
+| `getNamespace()` / `getName()` / `getFullName()` | `String`，名称空间、模型名和全名 |
+| `getLabel()` / `getDescription()` | `String`，标题和说明 |
+| `getFormatVersion()` / `getSource()` / `getRawName()` | `String`，格式、来源和原始名称 |
+| `getFields()` / `getField(String name)` | `List<DataModelField>` / `Optional<DataModelField>` |
+| `getPrimaryKeys()` | `List<DataModelField>` |
+| `getUniqueConstraints()` | `List<DataModelUniqueConstraintMeta>` |
+| `getExtraProps()` / `getExtraProp(String name)` | `Map<String, Object>` / `Optional<Object>` |
+| `getExtraProp(Class<T> type, String name)` | `Optional<T>` |
+
+迁移、适配器和主键扩展还可读取 `getMigrationStrategy()`、`getAdapter()`、`getDataStation()` 和 `getPrimaryKeyGenerator()`。常规业务读写无需直接操作这些对象。
+
+## 插件
+
+`withPlugins(...)` 返回附加插件后的模型，`hasPlugin(name)` 检查插件。`withoutPlugins(...)` 和无参 `withoutPlugins()` 分别移除指定或全部插件；移除校验、权限或删除策略插件会改变读写行为，仅在明确了解影响的扩展场景使用。
+
+插件声明见 [PluginDescriptor](../plugin-descriptor/)，强类型读写见 [TypedDataModel](../typed-data-model/)。

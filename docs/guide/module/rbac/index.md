@@ -162,4 +162,4 @@ sidebar_position: 2
 
 - 想继续补组织和员工身份：看 [组织架构管理](../organization/)
 - 想先理解权限抽象，而不是继续点页面：看 [权限模型](../../../concepts/authority-model/)
-- 想继续看更底层的权限与访问控制实现：看 [权限与访问控制](../../advance/authority-and-access-control)
+- 想继续看更底层的权限与访问控制实现：看 [权限与访问控制](../../../fusion-development/authority-subject-and-access-control-design)

@@ -1,105 +1,36 @@
 ---
-title: 创建后端扩展包
+title: 后端扩展包
 sidebar_position: 7
 ---
 
-# 创建后端扩展包
+# 后端扩展包
 
-后端扩展包是可安装、可装配的 Maven `jar`，用于交付 Spring Bean、SPI 和平台资源。它遵循 Spring Boot Starter 式装配，不是工具类集合。
+后端扩展包是由平台加载的普通 Maven JAR，用于交付业务实现、Spring Bean、SPI 和元数据。平台基座提供运行环境；扩展包通过已有模型、流程或接口被消费。
 
-## 什么时候应该做成后端扩展包
+本页按工程创建、实现注册、构建交付和平台验证组织。具体能力契约见 [后端插件扩展](../guide/advance/extend-backend/)。
 
-- 需要补新的字段、表达式、脚本上下文或逻辑流节点
-- 需要把某项集成能力做成可复用运行时能力
-- 需要让多个应用或多个场景共用同一套后端扩展
-- 希望扩展结果可以被平台统一装配，而不是散落在业务代码里
+## 准备工程与能力契约
 
-如果只是单个业务里的临时逻辑，通常先评估配置、脚本或现成节点是否已经足够。
+向 AI 提供目标平台版本、已有 Maven 工程、扩展接口、同类实现和调用样例。先明确哪些由现有模型或节点完成，哪些确实需要新增实现；约定正常、无效输入和外部依赖失败的结果。
 
-## 先判断你做的是哪种扩展包
+| 包的内容 | 必要的配套文件 |
+| --- | --- |
+| 固定元数据资源 | 模型资源 JSON 与构建复制配置 |
+| SPI 实现 | Java 实现与 `META-INF/services/<接口全名>` |
+| 依赖 Spring Bean 的能力 | 自动配置及两份自动配置注册文件 |
+| 带编辑器或管理入口的能力 | 对应节点、字段、页面、菜单或权限定义 |
 
-### 纯资源 / 纯 SPI 扩展包
+按实际能力组合这些内容。固定字段模板可以由平台已有 Provider 读取，无需仅为放置资源再写一个 Provider。
 
-适合这类场景：
+## 1. 创建 Maven 工程
 
-- 只提供字段模板、节点定义或其他 `META-INF/ouroboros/*` 资源
-- 只注册 `ExpressionContextContributor` / `ScriptContextContributor` / `NodeBuilder` 这类 SPI
-- 不需要额外 Spring Bean 和自动装配
-
-这种包的重点是资源文件和 `META-INF/services/*`。
-
-### Starter 风格扩展包
-
-适合这类场景：
-
-- 扩展能力依赖 Spring Bean
-- 需要自动装配配置类
-- 需要把多个 SPI、资源和 Bean 作为一个完整能力分发
-
-这种包除了 SPI，还通常要补：
-
-- 自动装配类
-- `META-INF/spring.factories`
-- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
-- Maven 依赖管理
-- 必要的 `META-INF/ouroboros/*` 资源
-
-多数真正可复用的后端能力包，最后都会长成这一类。
-
-## 先理解后端扩展包的最小形态
-
-一个典型的后端扩展包，至少会包含下面几类东西：
-
-- Maven 模块与 `pom.xml`
-- 自动装配类
-- `META-INF/spring.factories`
-- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
-- 按需要补充的 SPI 注册文件
-- 按需要补充的 `META-INF/ouroboros/*` 资源声明
-
-也就是说，它的关键不只是“写了一个 Bean”，而是要让平台知道：
-
-- 启动时该怎么装配它
-- 运行时该怎么发现它
-- 哪些模型、资源或扩展点会消费它
-
-一个常见骨架大致会长这样：
-
-```text
-my-capability/
-├── pom.xml
-└── src/main/
-    ├── java/com/example/mycapability/
-    │   ├── MyCapabilityAutoConfiguration.java
-    │   └── ...能力实现...
-    └── resources/
-        └── META-INF/
-            ├── spring.factories
-            ├── spring/
-            │   └── org.springframework.boot.autoconfigure.AutoConfiguration.imports
-            ├── services/
-            │   ├── com.ouroboros.expression.ExpressionContextContributor
-            │   ├── com.ouroboros.script.ScriptContextContributor
-            │   └── com.ouroboros.logicflow.nodes.NodeBuilder
-            └── ouroboros/
-                ├── logic-flow-node-define/
-                ├── menu-model/
-                ├── ui-model/
-                ├── ui-schema/
-                └── authority/
-```
-
-并不是每个扩展包都要同时具备这些文件，但你做的那类能力需要什么，就必须把那一层闭环补全。
-
-## 创建 Maven 项目
-
-后端扩展包是普通 Maven `jar` 项目，不是独立启动应用。平台基座提供 Spring Boot、潮汐栈核心能力和运行时基础设施；扩展包只交付自己的业务代码、自动配置、SPI 实现和元数据资源。
-
-### 使用平台 archetype
+### 使用平台模板
 
 代码仓库中提供了 `maven-archetypes/ouroboros-module-archetype` 模板。模板会生成普通 Maven `jar` 项目，并带上平台 BOM、Java 21 编译配置、常用 `provided` 依赖和依赖复制配置。
 
-平台使用者只需要确认本地 Maven 能访问团队 Maven 仓库，然后直接生成扩展项目：
+也可以在应用的 [后端扩展包管理](../low-code/development-platform-menus/backend-extension-package#生成项目) 中选择兼容模板，生成并下载源码 ZIP。生成器只创建源码，仍需在本地构建并安装 JAR。
+
+使用 archetype 时，确认本地 Maven 能访问团队 Maven 仓库，再生成扩展项目。以下示例版本需与目标平台和仓库中可用的模板版本一致：
 
 ```bash
 mvn archetype:generate \
@@ -121,28 +52,16 @@ example-backend-extension/
 └── src/main/
     ├── java/com/example/tidal/extension/
     │   └── ExampleBackendExtensionAutoConfiguration.java
+    ├── metadata/
     └── resources/
         └── META-INF/
             ├── spring.factories
             ├── spring/
             │   └── org.springframework.boot.autoconfigure.AutoConfiguration.imports
-            ├── services/
-            └── ouroboros/
+            └── services/
 ```
 
-### 手工创建项目
-
-如果不使用 archetype，至少保留以下约定：
-
-- `packaging` 使用 `jar`
-- 通过 `ouroboros-bom` 导入平台依赖版本
-- 平台基座已经提供的依赖使用 `provided`
-- 不打 fat jar
-- 自动配置类同时注册到 `META-INF/spring.factories` 和 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
-- SPI 实现注册到 `META-INF/services/<接口全名>`
-- 平台元数据放到 `META-INF/ouroboros/` 下
-
-## Maven 依赖怎么配
+### 核对 POM 与依赖
 
 一个最小扩展包 `pom.xml` 通常包含这些核心配置：
 
@@ -211,31 +130,59 @@ example-backend-extension/
 </project>
 ```
 
-### 依赖 scope 规则
+上述版本仅为示例，替换为目标环境兼容值。依赖按下面的原则处理：
 
-| 依赖类型 | 推荐 scope | 说明 |
-|---|---:|---|
-| Spring Boot、Spring Framework | `provided` | 平台基座负责提供，不应打进扩展包 |
-| 潮汐栈核心、公共能力、能力聚合包 | `provided` | 由目标平台版本统一控制 |
-| 扩展包自己的代码 | 默认 | 编译进当前 jar |
-| 扩展包独有的第三方库 | 默认或运行时部署提供 | 需要确认不会与平台已有依赖冲突 |
-| 测试框架 | `test` | 只用于本项目测试 |
+| 依赖 | scope 与交付方式 |
+| --- | --- |
+| 平台已提供的 Spring 和潮汐栈能力 | `provided`，由目标基座提供 |
+| 扩展自身代码 | 编译进当前 JAR |
+| 扩展独有第三方库 | 按实际需要声明，并准备运行时依赖交付 |
+| 测试框架 | `test`，不随运行产物交付 |
 
-不要在扩展项目中重新声明平台基础依赖版本。新增第三方依赖时，优先确认平台 BOM 是否已有版本管理；如果没有，扩展包需要明确说明该依赖由扩展包独立承担。
+通过平台 BOM 管理已有依赖版本。新增第三方库时，核对基座是否已提供以及是否存在版本冲突；普通 JAR 不会自动携带这些依赖。
 
-## 自动装配和 SPI
+### Java 21 编译配置
 
-- `spring.factories` 与 `AutoConfiguration.imports` 注册 Spring Boot 自动配置类。
-- `META-INF/services/*` 注册平台在运行时发现的 SPI 实现。
+当前平台和扩展模板都以 Java 21 为编译与运行基线。扩展项目使用下面的编译配置：
 
-它们经常同时出现，但并不等价。
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.13.0</version>
+    <configuration>
+        <release>21</release>
+        <source>21</source>
+        <target>21</target>
+        <parameters>true</parameters>
+    </configuration>
+</plugin>
+```
 
-例如：
+不要把扩展包降级为 Java 8 或 Java 17 字节码；编译 JDK、`release` 和目标平台运行时必须保持 Java 21。
 
-- 一个字段类型资源包可能几乎不需要 Spring Bean，但需要资源路径和 `FieldTypeDefinitionProvider`
-- 一个配置能力节点包可能既要自动装配拿到 `ConfigurationService`，又要注册 `NodeBuilder`
+## 2. 实现能力并注册
 
-### 自动装配类
+先让 AI 实现一个能够被真实模型或流程调用的最小能力，同时编写行为测试。实现点与注册契约如下：
+
+| 能力 | 实现入口 | 配套资源 |
+| --- | --- | --- |
+| 字段类型 | 固定模板或 `FieldTypeDefinitionProvider` | `.field-type.json`；[字段指南](../guide/advance/extend-backend/extend-field/) |
+| 表达式对象 | `ExpressionContextContributor` | 对应 SPI；[表达式指南](../guide/advance/extend-backend/extend-expression/) |
+| 脚本对象 | `ScriptContextContributor` | 对应 SPI；[脚本指南](../guide/advance/extend-backend/extend-script/) |
+| 逻辑流节点 | `NodeBuilder` | 对应 SPI 与 `.flow-node.json`；[节点指南](../guide/advance/extend-backend/extend-logicflow/) |
+
+SPI 注册文件名是接口全限定名，内容是实现类全限定名，每行一个。例如：
+
+```text
+src/main/resources/META-INF/services/com.ouroboros.logicflow.nodes.NodeBuilder
+```
+
+```text
+com.example.tidal.extension.logicflow.ExampleNodeBuilder
+```
+
+### 依赖 Bean 时配置自动装配
 
 扩展包应通过 Spring Boot 自动配置接入平台，而不是要求平台应用手写扫描路径或显式创建 Bean。
 
@@ -268,121 +215,72 @@ com.example.tidal.extension.ExampleBackendExtensionAutoConfiguration
 
 当前 archetype 会同时生成这两个注册文件。新扩展包必须保留二者，并确保类名一致。
 
-### SPI 注册
+自动配置装配 Bean，SPI 让平台发现扩展实现，两者不能互相代替。扩展依赖 Bean 时，按对应专题使用已有代理或装配模式，不要求宿主额外添加包扫描。
 
-如果扩展包实现了平台 SPI，必须在 `META-INF/services/` 中注册。文件名是接口全限定名，文件内容是实现类全限定名，每行一个。
+## 3. 配套元数据并配置打包
 
-示例：扩展逻辑流节点构建器。
-
-```text
-src/main/resources/META-INF/services/com.ouroboros.logicflow.nodes.NodeBuilder
-```
+模型资源源码放在 `src/main/metadata/`；Spring 和 SPI 注册文件放在 `src/main/resources/META-INF/`。例如：
 
 ```text
-com.example.tidal.extension.logicflow.ExampleNodeBuilder
+src/main/
+├── java/com/example/tidal/extension/
+│   └── ExampleBackendExtensionAutoConfiguration.java
+├── metadata/
+│   ├── Example.flow-node.json
+│   ├── Example.authority.json
+│   ├── Example.menu.json
+│   ├── Example.ui-model.json
+│   └── Example.ui-schema.json
+└── resources/META-INF/
+    ├── spring.factories
+    ├── spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+    └── services/com.ouroboros.logicflow.nodes.NodeBuilder
 ```
 
-SPI 适合提供“多来源、多实现、可追加”的扩展点。只做启动期 Bean 装配时，优先使用自动配置；不要为了单一实现额外创建 SPI。
+只提供本能力实际需要的资源。声明菜单、页面和权限时，核对名称、路由、接口与调用实现之间的引用。
 
-## 常见扩展落点怎么选
+独立 Maven 工程不会自动继承主仓库的元数据复制执行。使用模板时保留 `copy-metadata-sources`；手工创建时，在 `build/plugins` 中配置：
 
-### 字段扩展
-
-适合补新的字段类型、字段模板和字段行为。
-
-常见抓手是：
-
-- 字段类型资源
-- `FieldTypeDefinitionProvider`
-
-### 表达式扩展
-
-适合给 `${...}` 表达式注入新的全局变量、工具对象或上下文能力。
-
-常见抓手是：
-
-- `ExpressionContextContributor`
-- `META-INF/services/com.ouroboros.expression.ExpressionContextContributor`
-
-### 脚本扩展
-
-适合给脚本运行时补新的上下文对象或工具能力。
-
-常见抓手是：
-
-- `ScriptContextContributor`
-- `META-INF/services/com.ouroboros.script.ScriptContextContributor`
-
-### 逻辑流扩展
-
-适合补新的逻辑流节点，让业务开发者在可视化编排里直接用。
-
-常见抓手是：
-
-- `NodeBuilder`
-- `META-INF/services/com.ouroboros.logicflow.nodes.NodeBuilder`
-- `src/main/metadata/*.flow-node.json`
-
-## 平台元数据放哪里
-
-typed 模型元数据统一放在 `src/main/metadata/`，构建后进入 `META-INF/ouroboros/metadata/`。legacy UI、菜单、权限等固定资源仍放在 `src/main/resources/META-INF/ouroboros/`。扩展包只应声明自己拥有的菜单、权限、页面、配置或节点定义，不要覆盖平台内置资源。
-
-常见资源约定包括：
-
-| 场景 | 注册位置 |
-|---|---|
-| Java SPI 实现 | `META-INF/services/<接口全名>` |
-| Spring Boot 自动配置 | `META-INF/spring.factories`、`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` |
-| 逻辑流节点定义 | `src/main/metadata/*.flow-node.json` |
-| 菜单模型 | `META-INF/ouroboros/menu-model/*.json` |
-| 开发控制台菜单 | `src/main/metadata/*.dev-menu.json` |
-| UI 模型 | `META-INF/ouroboros/ui-model/**/*.json` |
-| UI Schema | `META-INF/ouroboros/ui-schema/**/*.json` |
-| 权限定义 | `META-INF/ouroboros/authority/*.json` |
-| 配置元数据 | `META-INF/ouroboros/configuration*.json` |
-
-一个带管理页面的后端扩展通常会包含：
-
-```text
-src/main/resources/META-INF/ouroboros/
-├── app-modules.json
-├── authority/
-│   └── exampleExtension.json
-├── menu-model/
-│   └── exampleExtension.json
-├── ui-model/
-│   └── exampleExtension.json
-└── ui-schema/
-    └── exampleExtension.json
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.3.1</version>
+    <executions>
+        <execution>
+            <id>copy-metadata-sources</id>
+            <phase>process-resources</phase>
+            <goals><goal>copy-resources</goal></goals>
+            <configuration>
+                <outputDirectory>${project.build.outputDirectory}/META-INF/ouroboros/metadata</outputDirectory>
+                <resources>
+                    <resource>
+                        <directory>${project.basedir}/src/main/metadata</directory>
+                        <filtering>false</filtering>
+                        <excludes><exclude>**/.gitkeep</exclude></excludes>
+                    </resource>
+                </resources>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 ```
 
-开发控制台扩展还会使用：
+运行时由已有 Provider / Center 发现打包资源。完整后缀、固定文件名和 legacy 支持范围见 [模型资源与打包](../guide/advance/authoring-metadata-conventions/)。
 
-```text
-src/main/resources/META-INF/ouroboros/
-├── dev-menu-model/
-│   └── ExampleExtension.json
-└── ui-model/dev/{appName}/
-    └── example-extension.json
-```
+## 4. 构建 JAR 与运行依赖
 
-资源命名应稳定、语义清晰，避免使用临时名称或历史兼容名称作为正式合同。
-
-## 打包和交付
-
-扩展包默认打普通 jar：
+执行项目测试与普通 JAR 打包：
 
 ```bash
 mvn clean package
 ```
 
-输出类似：
+扩展自身产物如 `target/example-backend-extension-1.0.0-SNAPSHOT.jar`。不要默认用 Spring Boot repackage 或 shade 打成可执行 JAR / fat JAR，否则可能重复打入基座类和覆盖注册资源。
 
-```text
-target/example-backend-extension-1.0.0-SNAPSHOT.jar
-```
+### 复制并过滤第三方依赖
 
-如果扩展包有自己的运行时第三方依赖，可以使用 `maven-dependency-plugin` 将运行时依赖复制到 `target/lib`：
+扩展包有独立运行依赖时，可以使用 `maven-dependency-plugin` 将运行时依赖复制到 `target/lib`：
 
 ```xml
 <plugin>
@@ -459,76 +357,35 @@ mvn clean package \
 
 不要默认使用 `spring-boot-maven-plugin` 重新打包为可执行 jar，也不要默认使用 shade 生成 fat jar。扩展包应保持为可被平台装载的库 jar，避免把平台已经提供的类和依赖重复打入包内。
 
-发布到 Maven 私服：
+只有实际执行过滤后才使用 `target/extension-lib` 作为交付依赖目录。未启用过滤时，核对 `target/lib` 并按目标基座依赖清单准备需要上传的 JAR。过滤报告还需人工或 AI 结合目标版本审阅，不能只根据同名异版本的 warning 判定兼容。
+
+### 发布到私服
+
+团队使用 Maven 私服交付时，执行：
 
 ```bash
 mvn clean deploy
 ```
 
-对外交付时应同时说明：
+记录 Maven 坐标、兼容平台版本、第三方依赖、SPI 和资源，以及宿主是否需要更新依赖或重启。
 
-- 兼容的平台版本
-- Maven 坐标
-- 是否需要额外第三方运行时依赖
-- 是否包含 `META-INF/ouroboros/` 元数据
-- 是否实现了 SPI，以及对应扩展点名称
-- 是否需要平台应用显式添加依赖或重启
+## 5. 检查产物并在平台调用
 
-## 编译配置
-
-当前平台和扩展模板都以 Java 21 为编译与运行基线。扩展项目使用下面的编译配置：
-
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.13.0</version>
-    <configuration>
-        <release>21</release>
-        <source>21</source>
-        <target>21</target>
-        <parameters>true</parameters>
-    </configuration>
-</plugin>
-```
-
-不要把扩展包降级为 Java 8 或 Java 17 字节码；编译 JDK、`release` 和目标平台运行时必须保持 Java 21。
-
-## 一个推荐的交付顺序
-
-1. 先明确扩展点属于字段、表达式、脚本、逻辑流还是开发模块。
-2. 建一个独立 Maven 模块，先把依赖和包名结构稳定下来。
-3. 写最小能力实现，例如一个 wrapper、一个 builder 或一个字段模板。
-4. 补 `META-INF/services/*` 和必要的 `META-INF/ouroboros/*` 资源。
-5. 如果依赖 Spring Bean，再补自动装配类，并同时维护两份 Spring Boot 自动配置注册文件。
-6. 在目标运行环境安装后做最小验证。
-7. 最后再补复杂参数、更多节点或更多资源。
-
-## 本地验证
-
-扩展包交付前至少完成以下验证：
+先检查构建 JAR：
 
 ```bash
-mvn clean test
-mvn clean package
+jar tf target/example-backend-extension-1.0.0-SNAPSHOT.jar
 ```
 
-再检查 jar 内容是否包含自动配置、SPI 和元数据：
+| 检查 | 预期结果 |
+| --- | --- |
+| 自动配置 | 两份注册文件存在并指向同一配置类；纯资源包按需提供 |
+| SPI | 文件名、实现类和扩展接口一致 |
+| 元数据 | 位于 `META-INF/ouroboros/metadata/`，名称、后缀和内容正确 |
+| 依赖 | 平台已提供的基础类没有重复进入扩展包，所需外部 JAR 已准备 |
+| 行为 | 测试覆盖输入、输出和失败分支 |
 
-```bash
-jar tf target/example-backend-extension-1.0.0-SNAPSHOT.jar | grep 'META-INF'
-```
-
-重点确认：
-
-- `META-INF/spring.factories` 存在且配置类名称正确
-- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` 存在，且指向同一个自动配置类
-- 所有 SPI 实现都已在 `META-INF/services/` 注册
-- `META-INF/ouroboros/` 下的 JSON 资源路径符合平台约定
-- jar 中没有误打入平台基础依赖类
-- 单元测试覆盖扩展包的核心行为和资源装载契约
-
-集成到平台应用验证时，在目标平台应用中添加依赖：
+再按 [后端扩展包管理](../low-code/development-platform-menus/backend-extension-package) 安装到测试应用。源码组装宿主时，也可通过 Maven 依赖引入：
 
 ```xml
 <dependency>
@@ -538,52 +395,26 @@ jar tf target/example-backend-extension-1.0.0-SNAPSHOT.jar | grep 'META-INF'
 </dependency>
 ```
 
-启动后检查自动配置日志、Spring Bean、SPI 行为、菜单/权限/UI 元数据是否生效。
+确认实例加载目标版本，再从模型、页面、表达式、脚本或流程完成真实调用。验证结果应包括平台发现能力、业务输入输出、失败场景和权限。
 
-## Spring Bean 未加载
+## 本地 IDE 与线上平台联调
 
-按顺序检查：
+使用 IntelliJ IDEA 的 TideStack Develop 插件，将本地产物上传到平台测试实例并附加远程调试器。先核对应用、profile、源码与产物，再通过真实请求触发断点。具体连接、更新和结束会话的步骤见 [本地 IDE 与线上平台联调](./local-ide-and-platform-debugging)。
 
-- 没有 `META-INF/spring.factories`
-- 没有 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
-- `EnableAutoConfiguration` 没配对
-- 打包或合并资源时，其他 Starter 覆盖了当前扩展包的注册文件
+## 排查装配或调用失败
 
-其他高频问题：
+| 现象 | 检查顺序 |
+| --- | --- |
+| Bean 未加载 | 产物版本 → 两份自动配置文件 → 配置类与依赖 → 启动错误 |
+| SPI 未发现 | 接口文件名 → 实现类全名 → 类是否打包 → 加载日志 |
+| 字段或节点缺失 | 元数据复制 → 后缀和标识 → 开发态与运行时范围 |
+| 能力加载但业务未变化 | 目标实例 → 模型或页面引用 → 实际请求与结果 |
+| 安装后依赖冲突 | 基座版本 → 扩展依赖 → 过滤报告与最终上传 JAR |
 
-- SPI 文件路径正确，但里面写错了实现类全限定名。
-- 字段模板、节点资源等放错了 `META-INF/ouroboros/*` 路径。
-- 扩展包已经安装，但实际运行的应用并没有引用或启用对应能力。
-- 后端扩展已生效，但开发平台侧没有相应 UI 入口，团队仍然觉得“不可用”。
-- 把扩展包打成 fat jar，导致平台基础依赖重复、版本冲突或 SPI 资源覆盖。
+让 AI 使用源码、JAR 清单、安装版本、调用输入和日志定位最先失败的环节，修复后重新构建并复验。
 
-## 排查顺序
+## 交付与后续维护
 
-1. 确认扩展包已经安装到当前运行环境。
-2. 确认两份 Spring Boot 自动配置文件指向同一个配置类。
-3. 确认需要的 SPI 文件存在，且实现类全限定名正确。
-4. 确认资源位于正确的 `META-INF` 目录。
-5. 确认页面、模型、脚本、流程或配置实际引用了该扩展能力。
+交付实现、行为测试、JAR、运行依赖及配套资源，记录实际验证和恢复步骤。环境与版本准备见 [开发平台辅助能力](./development-platform-support-capabilities)，验收见 [任务协作与交付验收](./high-low-code-collaboration)。
 
-## 和开发模块脚手架的区别
-
-后端扩展包主要解决的是“运行时能力怎么扩展”。
-
-如果你要做的是开发平台里的 `*-dev` 模块，例如模型管理、VCS 提交、锁定、开发态 CRUD 和片段页面，那更适合看开发模块脚手架，而不是普通运行时扩展包。
-
-一个简单判断方式是：
-
-- 你要补的是“运行时能力” -> 看这页
-- 你要补的是“开发平台里可管理的一类模型” -> 看脚手架页
-
-## 推荐阅读顺序
-
-1. 先看 [扩展后端](../guide/advance/extend-backend/)
-2. 再按能力类型进入 [扩展字段](../guide/advance/extend-backend/extend-field/)、[扩展表达式](../guide/advance/extend-backend/extend-expression/)、[扩展脚本](../guide/advance/extend-backend/extend-script/)、[扩展逻辑流](../guide/advance/extend-backend/extend-logicflow/)
-3. 遇到装配问题时，再回看 [后端 FAQ](../faq/backend/)
-
-## 下一步看哪里
-
-- 想继续看开发平台模块骨架：看 [开发模块与 Maven 脚手架](./development-module-scaffold-and-maven-skeleton)
-- 想先判断是否真的需要写代码：看 [何时用低代码，何时写代码](./when-to-use-code)
-- 想直接进入具体扩展点：看 [扩展后端](../guide/advance/extend-backend/)
+需要新增可管理模型及开发态 CRUD、VCS 锁定、提交、回滚和页面时，继续使用 [开发模块脚手架](./development-module-scaffold-and-maven-skeleton)。

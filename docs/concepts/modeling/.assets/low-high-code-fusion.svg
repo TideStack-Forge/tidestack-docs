@@ -1,0 +1,12 @@
+<svg viewBox="0 0 1200 520" role="img" aria-labelledby="title desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="title">高低代码融合</title><desc id="desc">标准需求进入低代码模型与配置，长尾需求进入代码扩展和外部集成，两条路径汇入同一应用，并共享模型、权限、版本和运行时。</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#687386"/></marker><style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.title{font-size:20px;font-weight:650;fill:#0b1f3a;text-anchor:middle}.sub{font-size:14px;fill:#52657f;text-anchor:middle}.label{font-size:16px;font-weight:600;fill:#264a73;text-anchor:middle}.edge{fill:none;stroke:#687386;stroke-width:2.2;marker-end:url(#arrow)}</style></defs>
+  <rect width="1200" height="520" fill="#fff"/>
+  <rect x="45" y="195" width="190" height="120" rx="12" fill="#f8fafc" stroke="#8b95a7" stroke-width="2"/><text x="140" y="245" class="title">业务需求</text><text x="140" y="280" class="sub">标准场景与长尾需求</text>
+  <path d="M235 245H330V150H400" class="edge"/><path d="M235 265H330V370H400" class="edge"/>
+  <rect x="400" y="75" width="300" height="160" rx="14" fill="#edf5ff" stroke="#0b63ce" stroke-width="2.5"/><text x="550" y="125" class="title">低代码路径</text><text x="550" y="165" class="sub">模型 · 配置 · 可视化编排</text><text x="550" y="200" class="label">承接标准场景</text>
+  <rect x="400" y="285" width="300" height="160" rx="14" fill="#fff8ec" stroke="#d29a47" stroke-width="2.5"/><text x="550" y="335" class="title">代码路径</text><text x="550" y="375" class="sub">扩展点 · 专用代码 · 外部集成</text><text x="550" y="410" class="label" fill="#5f420f">承接长尾需求</text>
+  <path d="M700 155H805V220H860" class="edge"/><path d="M700 365H805V300H860" class="edge"/>
+  <rect x="860" y="130" width="290" height="250" rx="16" fill="#f0faf7" stroke="#54a89b" stroke-width="2.5"/><text x="1005" y="180" class="title">同一个应用</text><g class="label"><text x="1005" y="225">统一模型</text><text x="1005" y="265">统一权限</text><text x="1005" y="305">统一版本</text><text x="1005" y="345">统一运行时</text></g>
+  <text x="600" y="490" class="sub">低代码提高常见需求的交付效率，代码为复杂需求保留确定的实现出口</text>
+</svg>

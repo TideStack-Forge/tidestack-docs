@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="26.0.9" type="device">
+  <diagram id="model-relations-analytics" name="数据访问、初始化与统计分析">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="720">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="e57" source="initialization" target="data" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e56" source="data" target="field" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e58" source="dataset" target="data" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e59" source="dataset" target="datasource" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e60" source="query" target="dataset" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=0.0;entryX=0.14285714285714285;entryY=1.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="144" y="344" />
+              <mxPoint x="400" y="344" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e61" source="report" target="dataset" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=0.0;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="816" y="256" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e62" source="report-dashboard" target="query" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.0;exitY=0.3333333333333333;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="288" y="608" />
+              <mxPoint x="288" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e63" source="report-dashboard" target="report" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="656" y="624" />
+              <mxPoint x="656" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e33" source="business" target="report-dashboard" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#2B70BE;strokeWidth=1.4;endArrow=block;endSize=6;dashed=1;dashPattern=7 5;exitX=1.0;exitY=0.8333333333333334;entryX=0.0;entryY=0.8333333333333334;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e57-label" value="初始化记录" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="264.0" y="38" width="96" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e56-label" value="采用类型" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="38" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e58-label" value="模型查询" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="496.0" y="150" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e59-label" value="SQL 查询" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="272.0" y="222" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e60-label" value="引用数据集" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="224.0" y="310" width="96" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e61-label" value="引用数据集" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="656.0" y="222" width="96" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e62-label" value="引用视图" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="184.0" y="514" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e63-label" value="引用视图" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="680.0" y="514" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e33-label" value="看板型映射" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#2B70BE;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="264.0" y="670" width="96" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="initialization" value="&lt;b&gt;数据初始化定义&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;目标模型与初始记录&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="data" value="&lt;b&gt;数据模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;字段、关系与查询语义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F1F9FD;strokeColor=#76AEC8;strokeWidth=1.8;dashed=0;fontColor=#2B6078;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="field" value="&lt;b&gt;字段类型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;数据、展示与编辑能力&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F1F9FD;strokeColor=#76AEC8;strokeWidth=1.8;dashed=0;fontColor=#2B6078;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="datasource" value="&lt;b&gt;数据源定义&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;SQL 连接与数据源标识&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="dataset" value="&lt;b&gt;数据集模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;查询、参数与结果结构&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8EC;strokeColor=#D5AC6A;strokeWidth=1.8;dashed=0;fontColor=#79531E;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="query" value="&lt;b&gt;查询视图&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;数据集查询与结果投影&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8EC;strokeColor=#D5AC6A;strokeWidth=1.8;dashed=0;fontColor=#79531E;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="report" value="&lt;b&gt;报表视图&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;数据集与报表呈现定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8EC;strokeColor=#D5AC6A;strokeWidth=1.8;dashed=0;fontColor=#79531E;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="business" value="&lt;b&gt;业务模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;属性、关系、视图与行为&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#79A6DE;strokeWidth=1.8;dashed=0;fontColor=#174B87;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="576" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="report-dashboard" value="&lt;b&gt;统计看板&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;布局与查询 / 报表视图&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8EC;strokeColor=#D5AC6A;strokeWidth=1.8;dashed=0;fontColor=#79531E;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="576" width="224" height="96" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

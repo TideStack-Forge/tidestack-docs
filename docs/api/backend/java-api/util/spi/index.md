@@ -1,95 +1,53 @@
 # SPI
 
-`SPI` 是平台里统一的 Java SPI 加载工具，用来读取 `META-INF/services` 注册的实现，并按 `@Priority` 做排序和缓存。
+按 Java 服务注册文件加载扩展实现，Java 导入 `com.ouroboros.util.SPI`。扩展包应按目标扩展点的约定注册服务。
 
-Maven 包：`com.ouroboros:ouroboros-util`
+## 方法
 
-Java 包：`com.ouroboros.util`
+| 方法 | 返回值 / 顺序 |
+| --- | --- |
+| `getServiceStream(Class<T>)` | 实例流，原始加载顺序 |
+| `getSortedServiceStream(Class<T>)` | 按 `@Priority` 数值升序 |
+| `getReversedServiceStream(Class<T>)` | 按 `@Priority` 数值降序 |
+| `getPrimaryService(Class<T>)` | 数值最高的实现；没有时为 `null` |
+| 对应的 `getCached*` 方法 | 复用进程内已加载的实例 |
 
-## 什么时候看这页
+无 `jakarta.annotation.Priority` 时按 `0` 处理。实例流方法还支持额外传入一到三个 `Class` 参数，用于按泛型类型筛选实现。
 
-- 你在做平台扩展点，例如 `ScriptContextContributor`、`NodeBuilder`、序列化器或装饰器
-- 你想按优先级选择默认实现
-- 你想避免反复 `ServiceLoader.load(...)`
+## 注册示例
 
-## 先理解排序规则
+以脚本上下文扩展为例：
 
-当前实现按 `jakarta.annotation.Priority` 排序：
+```java
+package com.example.orders;
 
-- `getSorted*`：优先级低的在前
-- `getReversed*`：优先级高的在前
-- `getPrimaryService` / `getCachedPrimaryService`：取优先级最高的那个
+import java.util.Map;
+import com.ouroboros.script.ScriptContextContributor;
 
-没有 `@Priority` 时，按 `0` 处理。
+public class OrderScriptContext implements ScriptContextContributor {
+    @Override
+    public Map<String, Object> getBindings() {
+        return Map.of("OrderConstants", Map.of("openStatus", "OPEN"));
+    }
+}
+```
 
-## 基础加载
+在扩展包中创建 `META-INF/services/com.ouroboros.script.ScriptContextContributor`：
 
-| 方法 | 说明 |
-| ---- | ---- |
-| `getServiceStream(Class<T> serviceClass)` | 获取原始 SPI 实例流 |
-| `getSortedServiceStream(Class<T> serviceClass)` | 按优先级升序 |
-| `getReversedServiceStream(Class<T> serviceClass)` | 按优先级降序 |
+```text
+com.example.orders.OrderScriptContext
+```
 
-## 缓存加载
+平台会通过对应扩展点加载已注册的服务。完整打包方式见 [扩展脚本](../../../../../guide/advance/extend-backend/extend-script/)。
 
-| 方法 | 说明 |
-| ---- | ---- |
-| `getCachedServiceStream(...)` | 获取缓存后的实例流 |
-| `getCachedSortedServiceStream(...)` | 缓存 + 升序 |
-| `getCachedReversedServiceStream(...)` | 缓存 + 降序 |
-| `getCachedPrimaryService(...)` | 直接取缓存中的最高优先级实例 |
+## 读取扩展
 
-如果某个 SPI 在运行时会频繁读取，优先用 `getCached*` 会更合适。
+```java
+import com.ouroboros.script.ScriptContextContributor;
+import com.ouroboros.util.SPI;
 
-## 泛型过滤
+var contributors = SPI.getCachedSortedServiceStream(ScriptContextContributor.class)
+    .toList();
+```
 
-`SPI` 还支持按 1~3 个泛型参数过滤实现：
-
-| 方法形态 | 说明 |
-| -------- | ---- |
-| `getServiceStream(serviceClass, p1)` | 按 1 个泛型参数过滤 |
-| `getServiceStream(serviceClass, p1, p2)` | 按 2 个泛型参数过滤 |
-| `getServiceStream(serviceClass, p1, p2, p3)` | 按 3 个泛型参数过滤 |
-| `getCachedServiceStream(...)` 的同类重载 | 缓存版本 |
-
-当前缓存版本的泛型过滤内部会结合 `GenericTypeUtil` 判断真实泛型类型。
-
-## 直接取主实现
-
-| 方法 | 说明 |
-| ---- | ---- |
-| `getPrimaryService(Class<T> serviceClass)` | 取当前最高优先级实例 |
-| `getCachedPrimaryService(Class<T> serviceClass)` | 取缓存中的最高优先级实例 |
-
-如果没有任何实现，这两个方法都会返回 `null`。
-
-## 常见使用方式
-
-### 做平台扩展点加载
-
-典型场景包括：
-
-- `ExpressionContextContributor`
-- `ScriptContextContributor`
-- `NodeBuilder`
-- `ObjectMapperConfigurator`
-
-### 选默认实现
-
-当一个扩展点允许多个实现并存，但运行时需要选出一个“主实现”时，可以配合 `@Priority` 和 `getPrimaryService(...)` 使用。
-
-## 使用建议
-
-- 平台扩展点优先用 `SPI` 统一加载，不要各处手写 `ServiceLoader`
-- 需要默认实现时，用 `getPrimaryService`
-- 需要高频调用时，用 `getCached*`
-
-## 使用提醒
-
-- 缓存结果会保留在当前进程内，没有单独的缓存失效接口；适合稳定扩展点，不适合指望运行时热插拔后立刻刷新。
-- `getSorted*` 是低优先级在前，`getReversed*` 才是高优先级在前。
-- 做扩展时，除了 Java 代码本身，还要记得补 `META-INF/services/<接口全限定名>` 注册文件。
-
-## 下一步看哪里
-
-- 想看数据模型插件：看 [PluginDescriptor](../../../data-model/plugin-descriptor/)
+缓存没有通用失效入口，不应依赖安装新包后自动热刷新。普通业务调用通常直接使用平台已装配好的能力，无需自行再次扫描服务。

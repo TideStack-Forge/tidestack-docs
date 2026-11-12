@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="ide-platform-collaboration" name="本地 IDE 与线上开发平台联调">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1680" pageHeight="1268">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="local" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef9fb;strokeColor=#7fb9c3;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="24" width="440" height="1080" />
+        </mxCell>
+        <mxCell id="local-title" value="开发者电脑" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#245e69;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="34" width="400" height="30" />
+        </mxCell>
+        <mxCell id="ide" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef9fb;strokeColor=#7fb9c3;dashed=0;">
+          <mxGeometry as="geometry" x="60" y="80" width="400" height="816" />
+        </mxCell>
+        <mxCell id="ide-title" value="IntelliJ IDEA" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#245e69;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="90" width="360" height="30" />
+        </mxCell>
+        <mxCell id="platform" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef5ff;strokeColor=#8eafe0;dashed=0;">
+          <mxGeometry as="geometry" x="600" y="24" width="480" height="1080" />
+        </mxCell>
+        <mxCell id="platform-title" value="线上开发平台" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="620" y="34" width="440" height="30" />
+        </mxCell>
+        <mxCell id="test" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#effaf5;strokeColor=#78b59a;dashed=0;">
+          <mxGeometry as="geometry" x="1200" y="24" width="440" height="1080" />
+        </mxCell>
+        <mxCell id="test-title" value="线上测试实例" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#216149;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1220" y="34" width="400" height="30" />
+        </mxCell>
+        <mxCell id="workspace" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#fff7e9;strokeColor=#d4ad69;dashed=0;">
+          <mxGeometry as="geometry" x="620" y="280" width="440" height="240" />
+        </mxCell>
+        <mxCell id="workspace-title" value="应用运行工作区" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#805719;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="640" y="290" width="400" height="30" />
+        </mxCell>
+        <mxCell id="jvm" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#effaf5;strokeColor=#78b59a;dashed=0;">
+          <mxGeometry as="geometry" x="1220" y="284" width="400" height="788" />
+        </mxCell>
+        <mxCell id="jvm-title" value="测试 JVM" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#216149;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1240" y="294" width="360" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43818d;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="260" y="256" />
+            <mxPoint as="targetPoint" x="260" y="368" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=block;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="448" y="408" />
+            <mxPoint as="targetPoint" x="632" y="192" />
+            <Array as="points">
+              <mxPoint x="532" y="408" />
+              <mxPoint x="532" y="192" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1048" y="192" />
+            <mxPoint as="targetPoint" x="1232" y="192" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#a57b33;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="448" y="456" />
+            <mxPoint as="targetPoint" x="612" y="456" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#a57b33;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1068" y="424" />
+            <mxPoint as="targetPoint" x="1232" y="424" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1420" y="256" />
+            <mxPoint as="targetPoint" x="1420" y="360" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="360" y="496" />
+            <mxPoint as="targetPoint" x="632" y="640" />
+            <Array as="points">
+              <mxPoint x="360" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1048" y="640" />
+            <mxPoint as="targetPoint" x="1232" y="488" />
+            <Array as="points">
+              <mxPoint x="1144" y="640" />
+              <mxPoint x="1144" y="488" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="840" y="704" />
+            <mxPoint as="targetPoint" x="840" y="736" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=block;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="448" y="800" />
+            <mxPoint as="targetPoint" x="632" y="800" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-10" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=block;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1048" y="800" />
+            <mxPoint as="targetPoint" x="1232" y="800" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-11" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=block;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="260" y="1056" />
+            <mxPoint as="targetPoint" x="1420" y="1056" />
+            <Array as="points">
+              <mxPoint x="260" y="1152" />
+              <mxPoint x="1420" y="1152" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-12" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1608" y="996" />
+            <mxPoint as="targetPoint" x="1420" y="516" />
+            <Array as="points">
+              <mxPoint x="1608" y="548" />
+              <mxPoint x="1420" y="548" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="source" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="136" width="360" height="112" />
+        </mxCell>
+        <mxCell id="source-heading" value="扩展项目与本地源码" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="165.5" width="344" height="35" />
+        </mxCell>
+        <mxCell id="source-line0" value="编辑、编译与构建扩展 JAR" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="197.5" width="344" height="29" />
+        </mxCell>
+        <mxCell id="plugin" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="376" width="360" height="112" />
+        </mxCell>
+        <mxCell id="plugin-heading" value="TideStack Develop 插件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="407" width="344" height="33" />
+        </mxCell>
+        <mxCell id="plugin-line0" value="平台绑定、构建上传与调试协作" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="437" width="344" height="28" />
+        </mxCell>
+        <mxCell id="debugger" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="744" width="360" height="112" />
+        </mxCell>
+        <mxCell id="debugger-heading" value="IDE JVM 调试器" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="773.5" width="344" height="35" />
+        </mxCell>
+        <mxCell id="debugger-line0" value="断点、单步、线程与变量查看" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="805.5" width="344" height="29" />
+        </mxCell>
+        <mxCell id="browser" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="944" width="360" height="104" />
+        </mxCell>
+        <mxCell id="browser-heading" value="浏览器／接口客户端" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="971" width="344" height="33" />
+        </mxCell>
+        <mxCell id="browser-line0" value="通过页面操作或接口发起业务请求" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1001" width="344" height="28" />
+        </mxCell>
+        <mxCell id="binding" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="640" y="136" width="400" height="112" />
+        </mxCell>
+        <mxCell id="binding-heading" value="应用与 profile 解析" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="153" width="384" height="34" />
+        </mxCell>
+        <mxCell id="binding-line0" value="根据应用名称与 devKey 授权" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="184" width="384" height="29" />
+        </mxCell>
+        <mxCell id="binding-line1" value="返回 profile 并定位目标测试实例" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="210" width="384" height="29" />
+        </mxCell>
+        <mxCell id="metadata" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="640" y="336" width="400" height="64" />
+        </mxCell>
+        <mxCell id="metadata-heading" value="应用元数据" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="343" width="384" height="33" />
+        </mxCell>
+        <mxCell id="metadata-line0" value="由线上建模与资源编辑维护" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="373" width="384" height="28" />
+        </mxCell>
+        <mxCell id="jar" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="640" y="424" width="400" height="64" />
+        </mxCell>
+        <mxCell id="jar-heading" value="扩展 JAR" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="431" width="384" height="33" />
+        </mxCell>
+        <mxCell id="jar-line0" value="接收本地构建产物" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="461" width="384" height="28" />
+        </mxCell>
+        <mxCell id="management" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="640" y="584" width="400" height="112" />
+        </mxCell>
+        <mxCell id="management-heading" value="测试实例与调试会话管理" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="602.5" width="384" height="33" />
+        </mxCell>
+        <mxCell id="management-line0" value="重启测试实例、建立或关闭会话" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="632.5" width="384" height="28" />
+        </mxCell>
+        <mxCell id="management-line1" value="关联实例身份与运行代次" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="657.5" width="384" height="28" />
+        </mxCell>
+        <mxCell id="broker" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="640" y="744" width="400" height="112" />
+        </mxCell>
+        <mxCell id="broker-heading" value="调试隧道 Broker" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="760.5" width="384" height="35" />
+        </mxCell>
+        <mxCell id="broker-line0" value="返回调试地址与访问提示" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="792.5" width="384" height="29" />
+        </mxCell>
+        <mxCell id="broker-line1" value="双向转发 JDWP 字节流" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="648" y="818.5" width="384" height="29" />
+        </mxCell>
+        <mxCell id="config" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1240" y="136" width="360" height="112" />
+        </mxCell>
+        <mxCell id="config-heading" value="实例配置与运行目标" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="154.5" width="344" height="33" />
+        </mxCell>
+        <mxCell id="config-line0" value="应用名称、profile 与实例身份" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="184.5" width="344" height="28" />
+        </mxCell>
+        <mxCell id="config-line1" value="使用对应环境的配置及业务数据" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="209.5" width="344" height="28" />
+        </mxCell>
+        <mxCell id="runtime" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1240" y="368" width="360" height="140" />
+        </mxCell>
+        <mxCell id="runtime-heading" value="统一运行时基座" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="398.5" width="344" height="35" />
+        </mxCell>
+        <mxCell id="runtime-line0" value="加载应用模型与扩展 JAR" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="430.5" width="344" height="29" />
+        </mxCell>
+        <mxCell id="runtime-line1" value="执行 WebAPI、逻辑流和业务动作" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="456.5" width="344" height="29" />
+        </mxCell>
+        <mxCell id="jdwp" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1240" y="744" width="360" height="112" />
+        </mxCell>
+        <mxCell id="jdwp-heading" value="JDWP 调试端点" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="773.5" width="344" height="35" />
+        </mxCell>
+        <mxCell id="jdwp-line0" value="连接正在执行业务的测试 JVM" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="805.5" width="344" height="29" />
+        </mxCell>
+        <mxCell id="http" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1240" y="944" width="360" height="104" />
+        </mxCell>
+        <mxCell id="http-heading" value="应用访问入口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="969.5" width="344" height="35" />
+        </mxCell>
+        <mxCell id="http-line0" value="HTTP 业务请求与响应" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1248" y="1001.5" width="344" height="29" />
+        </mxCell>
+        <mxCell id="edge-label0" value="本地构建" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43818d;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="290.0" y="294" width="80" height="28" />
+        </mxCell>
+        <mxCell id="edge-label1" value="授权与目标解析" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#627ba4;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="468.0" y="248" width="128" height="28" />
+        </mxCell>
+        <mxCell id="edge-label2" value="定位测试实例" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#627ba4;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1084.0" y="158" width="112" height="28" />
+        </mxCell>
+        <mxCell id="edge-label3" value="上传 JAR" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#a57b33;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="490.0" y="422" width="80" height="28" />
+        </mxCell>
+        <mxCell id="edge-label4" value="装配模型与扩展" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#a57b33;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1086.0" y="390" width="128" height="28" />
+        </mxCell>
+        <mxCell id="edge-label5" value="实例配置" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43816c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1452.0" y="296" width="80" height="28" />
+        </mxCell>
+        <mxCell id="edge-label6" value="重启与打开会话" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#627ba4;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="452.0" y="606" width="128" height="28" />
+        </mxCell>
+        <mxCell id="edge-label7" value="准备／重启实例" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43816c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1084.0" y="454" width="128" height="28" />
+        </mxCell>
+        <mxCell id="edge-label8" value="建立调试通道" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#9577b5;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="908.0" y="706" width="112" height="28" />
+        </mxCell>
+        <mxCell id="edge-label9" value="按会话入口连接" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#9577b5;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="476.0" y="766" width="128" height="28" />
+        </mxCell>
+        <mxCell id="edge-label10" value="JDWP 字节流" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#9577b5;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1088.0" y="766" width="104" height="28" />
+        </mxCell>
+        <mxCell id="edge-label11" value="业务请求与响应：HTTP" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43816c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="752.0" y="1118" width="176" height="28" />
+        </mxCell>
+        <mxCell id="edge-label12" value="执行业务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43816c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1452.0" y="514" width="80" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="本地编写与调试代码，线上测试实例执行业务；跨网络时按会话访问提示配置端口转发。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="481.0" y="1206" width="718" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

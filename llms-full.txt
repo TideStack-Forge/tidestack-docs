@@ -1,6 +1,6 @@
 # TideStack Handbook Full AI Index
 
-This file is the expanded AI routing index for TideStack Handbook. It is intentionally concise and points to source documents instead of duplicating them.
+This file is the expanded AI routing index for TideStack Handbook. It points to source documents instead of duplicating them and does not contain the full documentation text. Paths are relative to the Handbook repository root; do not assume repository assets are published at matching website URLs.
 
 ## Identity And Compatibility
 
@@ -13,7 +13,7 @@ This file is the expanded AI routing index for TideStack Handbook. It is intenti
 
 - First-time setup and first app: `docs/getting-started/index.md`.
 - Low-code delivery with built-in platform capabilities: `docs/low-code/index.md`.
-- Fusion development with frontend/backend extension points: `docs/fusion-development/index.md`.
+- Fusion development across models, AI-assisted implementation, and platform capabilities: `docs/fusion-development/index.md`.
 - Deployment, release, backup, monitoring, and troubleshooting: `docs/operations/index.md`.
 - Conceptual model map and model responsibilities: `docs/concepts/index.md`.
 - Supporting metadata resources: `docs/concepts/supporting-resources/index.md`.
@@ -22,27 +22,60 @@ This file is the expanded AI routing index for TideStack Handbook. It is intenti
 
 ## Agent-Specific Routes
 
-- Start with `docs/ai/index.md` for the agent contract.
+- Start with `docs/ai/index.md` to provide the handbook to an assistant and describe a task with its version, workspace, existing implementation, and acceptance criteria.
 - Use `docs/ai/routing-hints.md` to choose the minimum relevant handbook section.
-- Use `docs/ai/task-recipes.md` for common development tasks and validation expectations.
-- Use `docs/ai/reference-sources.md` to identify canonical files, generated artifacts, and MCP resource/tool boundaries.
+- Use `docs/ai/task-recipes.md` for low-code delivery, metadata changes, extensions, API examples, and troubleshooting, including required inputs and acceptance criteria.
+- Use `docs/ai/reference-sources.md` to distinguish public knowledge, current project contracts, runtime evidence, schema coverage, and available tools.
+
+## Fusion Development Routes
+
+- Use `docs/fusion-development/when-to-use-code.md` to map business behavior to existing models and define the implementation scope. The historical filename is retained for stable links.
+- Use `docs/fusion-development/ai-assisted-development.md` for context preparation, coordinated model/page/flow/code changes, layered verification, and feedback.
+- Use `docs/fusion-development/high-low-code-collaboration.md` for task responsibilities, review, acceptance, and delivery records.
+- Use `docs/fusion-development/extension-points.md` to locate model/configuration entry points and official frontend/backend extensions.
+- Use `docs/guide/advance/index.md` for task-based tutorial selection and `docs/fusion-development/local-ide-and-platform-debugging.md` for runtime debugging.
+- AI can assist with models and configuration as well as code. Keep generated assets in the project's existing model, metadata, registration, permission, and lifecycle mechanisms.
+
+## Version And Evidence
+
+- Confirm the target platform version and each relevant page's version statement; different handbook sections may describe different versions.
+- Read the target project's development instructions, existing definitions, dependencies, registration mechanisms, and tests before making changes.
+- Use application version records, logs, instance state, and actual requests to confirm runtime behavior. Documentation retrieval alone cannot verify the current application.
+- Explain missing evidence or version conflicts instead of inventing fields, APIs, tool names, or successful outcomes.
+
+## Development Task Routes
+
+- Use `docs/guide/advance/index.md` to choose a tutorial by task.
+- Use `docs/fusion-development/frontend-extension-paths.md` for pages, layouts, micro-apps, and Widget development.
+- Use `docs/fusion-development/backend-development/index.md` for Java/model integration, Controller and Service Beans, MQ, and Java or flow scheduling.
+- Use `docs/fusion-development/plugin-extensions/index.md` for reusable frontend and backend extensions. Distinguish platform component libraries with manifests from ordinary component packages.
+- Use `docs/fusion-development/oidc-auth-adaptation-guide.md` for built-in OIDC configuration and binding; custom protocol plugins have separate registration requirements.
+- Use `docs/fusion-development/cas-auth-adaptation-guide.md` for CAS service registration, ticket validation, identity mapping, and account binding.
+- Use `docs/fusion-development/dingtalk-auth-adaptation-guide.md`, `docs/fusion-development/wecom-auth-adaptation-guide.md`, and `docs/fusion-development/feishu-auth-adaptation-guide.md` for connection-scoped enterprise login. These profiles are not automatically listed as static providers.
+- Use `docs/fusion-development/backend-development/data-model.md` for typed model injection, `docs/fusion-development/backend-development/business-model.md` for event subscriptions, and `docs/fusion-development/backend-development/supporting-resources.md` for configuration, dictionaries, notifications, realtime messaging, uploads, and organization services.
 
 ## Metadata And Schema Routes
 
 - Metadata source convention: `src/main/metadata/` packaged to `META-INF/ouroboros/metadata/` unless a specific runtime contract states otherwise.
 - Public bundled schemas: `docs/reference/jsonschema/metadata/*.schema.json`.
-- Schema index: `docs/reference/jsonschema/metadata/index.json`.
+- Schema index: `docs/reference/jsonschema/metadata/index.json`; match `type`, `fileSuffix`, and `schema`, including fixed-name resources.
+- Bundled schemas provide partial structural checks. For example, `business.schema.json` allows additional properties and does not fully describe nested fields. Check target-version definitions, cross-resource references, packaging, registration, and runtime behavior separately.
+- Schema `$id` values identify schemas; they do not prove a download endpoint exists.
 - Handbook must be self-contained after publication; do not rely on monorepo paths outside this repository.
+- `openapi/` is a publication directory that currently contains maintenance instructions only; do not treat it as an available API specification.
 
 ## MCP Boundary
 
-- Expose handbook files and generated schemas as MCP resources.
-- Expose validation, generation, project scanning, template creation, runtime startup, and platform UI automation as MCP tools.
+- When implementing an MCP server, expose handbook files, bundled schemas, and existing API specifications as resources.
+- Expose validation, generation, project scanning, template creation, runtime startup, and platform UI automation as tools when implemented.
 - Do not copy long handbook prose into tool descriptions; tools should point to the resource URI or source document.
+- Use only tools and resources actually exposed in the current environment and within the user's authorization. No TideStack MCP endpoint is supplied by this handbook.
+- Follow each tool's input, permission, side-effect, dry-run, confirmation, audit, and recovery contract. If no matching tool exists, use available project scripts or tests and report any remaining limitations.
 
 ## Context7 Boundary
 
-- Context7 should index stable public Markdown, schema, OpenAPI, and examples.
+- Confirm a matching Context7 library and version exist before relying on retrieved examples; this handbook does not establish an active integration.
+- Context7 should index stable public Markdown, available schemas, published OpenAPI specifications, and examples. It does not inspect or change the current project or runtime state.
 - Keep headings stable and examples small enough to retrieve independently.
 - Avoid hiding essential reference material only inside interactive UI pages.
 
@@ -51,3 +84,4 @@ This file is the expanded AI routing index for TideStack Handbook. It is intenti
 - For handbook structure changes: run `npm run check:structure`.
 - For site publication: run `npm run build`.
 - For metadata schema changes: update `docs/reference/jsonschema/metadata/`, then rerun `npm run check:structure`.
+- For implementation tasks: use the target project's tests, build, and relevant runtime checks; report each check's actual result and any work that remains unverified.

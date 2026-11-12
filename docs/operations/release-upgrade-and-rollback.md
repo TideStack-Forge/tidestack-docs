@@ -1,11 +1,13 @@
 ---
 title: 平台升级与回滚
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # 平台升级与回滚
 
 平台升级只变更开发平台版本及其运行配置。业务应用发布、MySQL 升级和 RabbitMQ 升级必须使用独立变更单和独立验证结果，不得混在同一次平台升级中。
+
+以下命令在配套 Compose 的同一个专用 Bash 会话执行；命令失败时中止，再根据错误判断处理方式。使用外部依赖或 Kubernetes 开发运行后端时，按实际部署执行对应检查。
 
 ## 升级输入
 
@@ -28,8 +30,10 @@ sidebar_position: 6
 在包含 `docker-compose.yml` 和 `.env` 的部署目录执行：
 
 ```bash
+set -euo pipefail
 DEPLOY_DIR=/srv/tidestack
 TARGET_VERSION=2.0.0-rc.1-SNAPSHOT
+PLATFORM_URL=http://127.0.0.1:80
 
 cd "$DEPLOY_DIR"
 CURRENT_VERSION=$(awk -F= '$1 == "OUROBOROS_VERSION" { print $2 }' .env)
@@ -39,16 +43,20 @@ docker compose ps
 docker compose images
 ```
 
+将 `TARGET_VERSION` 换成实际目标版本，`PLATFORM_URL` 换成 `.env` 对应的实际端口。Compose 读取 `.env` 不会自动设置当前 shell 的变量。
+
 继续执行升级前，必须满足：三个服务状态正常；没有未处理的运行故障；[完整备份](./backup-monitoring-and-troubleshooting#执行一次完整备份) 已成功；备份至少通过校验，正式环境还应有近期恢复演练结果。
 
 先拉取目标镜像，不切换运行容器：
 
 ```bash
 OUROBOROS_VERSION="$TARGET_VERSION" docker compose pull ouroboros-develop
-docker image inspect \
-  "registry.cn-hangzhou.aliyuncs.com/ouroboros/ouroboros-develop:${TARGET_VERSION}" \
-  --format '{{index .RepoDigests 0}}'
+TARGET_PLATFORM_IMAGE=$(OUROBOROS_VERSION="$TARGET_VERSION" docker compose config --images | grep '/ouroboros-develop:')
+test -n "$TARGET_PLATFORM_IMAGE"
+docker image inspect "$TARGET_PLATFORM_IMAGE" --format '{{json .RepoDigests}}'
 ```
+
+从 Compose 读取完整镜像引用可以保留 `ARCH_AFFIX` 等部署设置。Docker 开发运行实例使用的配套 `ouroboros-mothership` 基座，需要在镜像管理中另行准备；拉取平台镜像不会自动更新现有实例。
 
 拉取失败、镜像摘要不符合发布记录或目标架构无对应镜像时，停止升级。
 
@@ -76,11 +84,11 @@ docker compose logs --since 10m --tail 500 ouroboros-develop
 
 按顺序执行，任一关键项失败即进入回滚判断：
 
-1. `curl -fsS --max-time 5 -o /dev/null "http://127.0.0.1:${PLATFORM_PORT:-80}/"` 返回 `0`。
+1. `curl -fsS --max-time 5 -o /dev/null "$PLATFORM_URL/"` 成功，`curl -fsS --max-time 5 "$PLATFORM_URL/actuator/health"` 返回 `UP`。
 2. 使用管理员账号登录开发平台，打开应用管理和业务模型管理。
 3. 打开一个升级前已存在的应用，确认模型、页面、菜单和权限配置可读取。
 4. 在测试应用中完成一次最小变更、发布和运行验证。
-5. 执行数据库、RabbitMQ 和 Docker Socket 巡检命令，结果全部正常。
+5. 执行 [监控与告警](./monitoring-and-alerting) 中的数据库、RabbitMQ 与对应运行后端检查，结果全部正常。
 6. 检查升级后日志，没有持续增长的 `ERROR`、迁移失败或连接异常。
 
 验证通过后恢复平台操作，并在约定观察窗口内持续检查登录、发布、应用运行、队列积压和错误日志。观察窗口结束前保留旧镜像和升级前备份。
@@ -120,7 +128,7 @@ docker compose logs --since 10m --tail 500 ouroboros-develop
 4. 恢复升级前数据库、配置和工作区。
 5. 使用原版本镜像启动平台并执行完整验证。
 
-具体备份和恢复校验命令见 [备份、监控与排障](./backup-monitoring-and-troubleshooting)。数据库恢复会覆盖升级后的写入，必须由回滚决策人确认数据时间点和丢失范围。
+具体备份和恢复校验命令见 [备份与恢复](./backup-monitoring-and-troubleshooting)。数据库恢复会覆盖升级后的写入，必须由回滚决策人确认数据时间点和丢失范围。
 
 ## 完成标准
 
@@ -128,7 +136,7 @@ docker compose logs --since 10m --tail 500 ouroboros-develop
 
 - 平台版本与变更单一致。
 - 登录、应用管理、模型读取、最小发布和应用运行均通过。
-- MySQL、RabbitMQ、Docker Socket 和磁盘巡检正常。
+- MySQL、RabbitMQ、所用运行后端和磁盘巡检正常。
 - 错误日志和队列积压没有持续增长。
 - 执行记录包含镜像摘要、备份位置、验证结果和完成时间。
 - 观察窗口结束后再按团队保留策略清理旧镜像和临时文件。

@@ -4,150 +4,170 @@ sidebar_position: 3
 
 # 高级编辑组件
 
-适用对象：需要在低代码页面里承载更复杂的选择、编辑和结构调整能力的开发者。
+以下表单组件用于选择并编辑条目、组合穿梭选择和树结构编辑。通过 `name` 绑定字段，提交结果为选中条目或树数据。
 
-## 使用场景
+## selection-editor：选择并编辑条目
 
-- 你需要“选中 + 编辑”一体化的表格类组件
-- 你需要可编辑的组合穿梭器
-- 你需要可编辑、可移动的树形结构组件
-
-## 支持编辑和选择的 Table
-
-### 基本使用
+`source` 提供候选数组或接口，`value` 为已选对象数组。选中条目后，可在弹层内编辑其附加属性。
 
 ```json
 {
-  "type": "selection-editor",
-  "primaryField": "id",
-  "columns": [
+  "type": "form",
+  "data": { "reviewers": [] },
+  "body": [
     {
-      "label": "权限",
-      "name": "title"
-    }
-  ],
-  "selectedData": {
-    "fullName": "$fullName",
-    "accessControlParams": "$accessControlParams"
-  },
-  "editColumnProps": {
-    "label": "数据权限"
-  },
-  "editButtonProps": {
-    "level": "primary",
-    "label": "配置数据权限"
-  },
-  "editDialogProps": {
-    "size": "md",
-    "title": "配置数据权限"
-  },
-  "editFormItems": [
-    {
-      "type": "amis-schema",
-      "source": "${accessControlSettingSchema}",
-      "label": "配置"
+      "type": "selection-editor",
+      "name": "reviewers",
+      "label": "审核人员",
+      "primaryField": "id",
+      "source": [
+        { "id": "employee-001", "name": "张三", "limit": 1000 },
+        { "id": "employee-002", "name": "李四", "limit": 2000 }
+      ],
+      "columns": [{ "name": "name", "label": "姓名" }],
+      "selectedData": { "id": "$id", "name": "$name", "limit": "$limit" },
+      "editButtonProps": { "label": "设置额度" },
+      "editDialogProps": { "title": "设置审核额度", "size": "md" },
+      "editFormItems": [
+        { "type": "input-number", "name": "limit", "label": "额度", "min": 0 }
+      ]
     }
   ]
 }
 ```
 
-### 属性表
+选中并修改后，`reviewers` 形如 `[{ "id": "employee-001", "name": "张三", "limit": 1500 }]`。
 
-下列属性为 selection-editor 独占属性,更多属性用法，参考[FormItem 普通表单项](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/formitem#%E5%B1%9E%E6%80%A7%E8%A1%A8)
+| 属性 | 类型 / 用途 |
+| --- | --- |
+| `source` | 候选数据数组或 API；接口返回数组或 `data.items` |
+| `primaryField` | 匹配候选与已选数据的唯一字段，默认 `id` |
+| `columns` | 表格列数组 |
+| `selectedData` | 从候选条目生成已选对象的数据映射 |
+| `editFormItems` | 编辑表单项数组 |
+| `editColumnProps`、`editButtonProps`、`editDialogProps` | 编辑列、按钮和弹层配置对象 |
 
-| 属性名          | 类型            | 默认值 | 说明                               |
-| --------------- | --------------- | ------ | ---------------------------------- |
-| type            | `string`        |        | type 指定为 SelectionEditor 渲染器 |
-| columns         | `Array<Column>` |        | 用来设置列信息                     |
-| primaryField    | `string`        | `id`   | 指定主字段                         |
-| editColumnProps | `object`        |        | 定义编辑列的信息                   |
-| editButtonProps | `object`        |        | 定义编辑按钮的属性                 |
-| editDialogProps | `object`        |        | 定义编辑对话框的属性               |
-| editFormItems   | `object`        |        | 定义编辑表单项                     |
-| selectedData    | `object`        |        | 定义选中数据的参数格式             |
+组件采用多选。主键必须唯一，`selectedData` 需要保留主键；编辑结果随表单提交，组件不会自动保存到服务端。
 
-## 支持编辑的 TabsTransfer 组合穿梭器
+## tabs-transfer-editor：分组选择并编辑
 
-### 基本使用
+按分组展示候选项，可编辑已选项并保留附加属性。以下示例完全使用本地数据：
 
 ```json
 {
-  "type": "tabs-transfer-editor",
-  "options": [
+  "type": "form",
+  "data": { "columns": [] },
+  "body": [
     {
-      "label": "字段",
-      "searchable": false,
-      "source": "${fields|pick:label~title,name|addAttribute:type:field}"
-    },
-    {
-      "label": "关联模型",
-      "searchable": true,
-      "source": "${relations|pick:label~title,name|addAttribute:type:relation}"
+      "type": "tabs-transfer-editor",
+      "name": "columns",
+      "label": "导出列",
+      "valueField": "value",
+      "labelField": "label",
+      "joinValues": false,
+      "extractValue": false,
+      "options": [
+        {
+          "label": "订单字段",
+          "children": [
+            { "value": "code", "label": "订单号", "width": 160 },
+            { "value": "amount", "label": "金额", "width": 100 }
+          ]
+        }
+      ],
+      "valueTpl": "${label}",
+      "editable": true,
+      "editButton": { "label": "列设置" },
+      "editDialog": { "title": "设置列宽" },
+      "editControls": [
+        { "type": "hidden", "name": "value" },
+        { "type": "input-number", "name": "width", "label": "宽度", "min": 40 }
+      ]
     }
-  ],
-  "valueTpl": [
-    {
-      "type": "text",
-      "name": "label"
-    },
-    {
-      "type": "tpl",
-      "tpl": " (${name})",
-      "className": "text-muted"
-    }
-  ],
-  "editButtonProps": {
-    "level": "primary",
-    "label": "编辑",
-    "size": "xs",
-    "className": "float-right mr-2"
-  },
-  "editDialogProps": {
-    "size": "md",
-    "title": "编辑"
-  },
-  "editFormItems": {
-    "field": [],
-    "relation": []
-  }
+  ]
 }
 ```
 
-### 属性表
+| 属性 | 类型 / 用途 |
+| --- | --- |
+| `options` | 分组数组，每组可含 `children` 或 `source` |
+| `source` | 整组选项的数据源，优先于 `options` |
+| `valueField` | 唯一字段，默认 `value` |
+| `selectedDataMapping` | 输出选中条目的数据映射，需保留唯一字段 |
+| `editable` | 显示已选项编辑按钮，默认 `false` |
+| `editButton`、`editDialog` | 编辑按钮和弹层配置对象 |
+| `editControls` | 编辑表单项数组 |
+| `creatable` | 是否允许新增条目 |
+| `addButton`、`addDialog`、`addControls` | 新增按钮、弹层和表单项 |
 
-下列属性为 tabs-transfer-editor 独占属性, 更多属性用法，参考[TabsTransferPicker 穿梭选择器](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/tabs-transfer#%E5%B1%9E%E6%80%A7%E8%A1%A8)
+当前编辑参数使用 `editable/editButton/editDialog/editControls`。编辑表单必须保留 `valueField` 对应字段，才能将结果合并到正确条目。输出为选中对象数组，如 `[{ "value": "code", "label": "订单号", "width": 180 }]`。
 
-| 属性名          | 类型     | 默认值 | 说明                                  |
-| --------------- | -------- | ------ | ------------------------------------- |
-| type            | `string` |        | type 指定为 TabsTransferEditor 渲染器 |
-| editButtonProps | `string` |        | 定义编辑按钮的属性                    |
-| editDialogProps | `string` |        | 定义编辑对话框的属性                  |
-| editFormItems   | `string` |        | 定义编辑表单项                        |
+## tree-editor：编辑树结构
 
-## 支持编辑和移动的 Tree
+### 本地模式
 
-树形结构的编辑器，并提供了节点移动的功能。
+默认 `mode: 'local'`，表单值承载整棵树。编辑先更新本地值，由外层表单统一保存。
 
-:::warning
-Tree 组件的参数都需要提供吗？
-:::
+```json
+{
+  "type": "form",
+  "data": { "nodes": [{ "id": "root", "name": "订单分类", "children": [] }] },
+  "body": [
+    {
+      "type": "tree-editor",
+      "name": "nodes",
+      "keyField": "id",
+      "labelField": "name",
+      "creatable": true,
+      "editable": true,
+      "removable": true,
+      "draggable": true,
+      "addControls": [
+        { "type": "input-text", "name": "id", "label": "标识", "required": true },
+        { "type": "input-text", "name": "name", "label": "名称", "required": true }
+      ],
+      "editControls": [{ "type": "input-text", "name": "name", "label": "名称", "required": true }]
+    }
+  ]
+}
+```
 
-### 基本使用
+### 服务端命令模式
+
+`mode: 'command'` 适用于新增、移动或删除必须经过服务端校验的树。示例要求已定义查询和移动接口：
 
 ```json
 {
   "type": "tree-editor",
-  "labelField": "title",
-  "valueField": "fullName"
+  "name": "projectTree",
+  "mode": "command",
+  "source": "/api/project/tree",
+  "keyField": "id",
+  "labelField": "name",
+  "draggable": true,
+  "moveApi": {
+    "method": "post",
+    "url": "/api/project/nodes/${event.dragNode.id}/move",
+    "data": {
+      "targetNodeId": "${event.targetNode.id}",
+      "dropMode": "${event.dropMode}"
+    }
+  },
+  "reloadOnSuccess": true,
+  "optimistic": false
 }
 ```
 
-### 属性表
+| 属性 | 用途 |
+| --- | --- |
+| `keyField` | 节点唯一键；兼容旧 `valueField`，默认 `value` |
+| `labelField`、`childrenField` | 显示字段和子节点字段，默认 `label`、`children` |
+| `selectedValue` | 当前选中节点，独立于整棵树 |
+| `creatable`、`editable`、`removable`、`draggable` | 启用相应操作 |
+| 对应的 `*On` | 节点级条件表达式，可读取 `item/node` |
+| `createApi`、`updateApi`、`deleteApi`、`moveApi` | 命令接口 |
+| `reloadOnSuccess` | 成功后重新加载 `source`，默认 `true` |
+| `optimistic` | 命令前先修改本地树，默认 `false` |
+| `autoFillHeight` | 填满有明确高度的父容器 |
 
-下列属性为 tree-editor 独占属性,更多属性用法，参考[FormItem 普通表单项](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/formitem#%E5%B1%9E%E6%80%A7%E8%A1%A8)
-
-| 属性名     | 类型     | 默认值  | 说明                                                                                                                                              |
-| ---------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type       | `string` |         | type 指定为 TreeEditor 渲染器                                                                                                                     |
-| labelField | `string` | `label` | [选项标签字段](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/options#%E9%80%89%E9%A1%B9%E6%A0%87%E7%AD%BE%E5%AD%97%E6%AE%B5-labelfield) |
-| valueField | `string` | `value` | [选项值字段](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/options#%E9%80%89%E9%A1%B9%E5%80%BC%E5%AD%97%E6%AE%B5-valuefield)            |
+移动事件提供 `dragNode`、`targetNode`、`dropMode`、父节点和索引等信息。`beforeMove`、`move`、`beforeDelete` 等事件可以阻止后续操作。节点键应稳定且唯一；服务端仍须校验层级、循环引用与权限。

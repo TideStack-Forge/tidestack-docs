@@ -4,281 +4,155 @@ sidebar_position: 3
 
 # 事件、Schema 与组件注册
 
-适用对象：需要在微前端里发事件、判断权限、动态渲染 Schema，或者为组件库注册自定义组件 / 动作 / 校验器的开发者。
-
-## 使用场景
-
-- 你想发平台事件或监听平台事件
-- 你想动态渲染一段 AMIS Schema
-- 你想在组件库里注册自定义组件、动作或表单校验规则
+前端事件、权限判断和 Schema 渲染在挂载后使用；组件、动作和校验器可在组件库入口加载时注册。
 
 ## EventBus
 
-事件总线，集中式事件处理机制，允许不同的组件进行彼此通信而又不需要相互依赖。
-
-**方法说明**
-
-| 函数方法                                                                | 说明                             |
-| ----------------------------------------------------------------------- | -------------------------------- |
-| [subscribeOnce(event,filter,handler)](#subscribeonceeventfilterhandler) | 一次性订阅指定的事件             |
-| [subscribe(event,filter,handler)](#subscribeeventfilterhandler)         | 订阅指定的事件                   |
-| [unsubscribe(event,handler)](#unsubscribeeventhandler)                  | 取消订阅指定事件的处理函数       |
-| [publish(event,data,eventOptions)](#publisheventdataeventoptions)       | 发布指定的事件，并传递相关的数据 |
-
-### subscribeOnce(event,filter,handler)
-
-**参数说明**
-
-| 参数    | 类型     | 必填 | 说明         |
-| ------- | -------- | ---- | ------------ |
-| event   | string   | 是   | 事件名       |
-| filter  | function | 否   | 过滤器函数   |
-| handler | function | 是   | 事件处理函数 |
-
-**示例**
+| 方法 | 用途 |
+| --- | --- |
+| `subscribe(event, handler)` | 持续监听 |
+| `subscribeOnce(event, handler)` | 一次性监听 |
+| `unsubscribe(event, handler)` | 移除指定处理函数 |
+| `unsubscribeAll(event)` | 移除该事件的所有监听 |
+| `publish(event, data, options?)` | 发布事件 |
 
 ```js
-import { EventBus } from 'ouroboros-sdk'
+import { EventBus, initMicroApp } from 'ouroboros-sdk'
 
-EventBus.subscribeOnce('事件名', (data) => {
-  // 业务逻辑
+const handleSaved = (order) => console.log('订单更新', order.id)
+const { bootstrap, mount, update, unmount } = initMicroApp({
+  async afterMount() {
+    EventBus.subscribe('orders:saved', handleSaved)
+  },
+  async afterUnmount() {
+    EventBus.unsubscribe('orders:saved', handleSaved)
+  },
 })
+export { bootstrap, mount, update, unmount }
+
+// 保存成功后的交互处理函数中调用：
+export function notifySaved(order) {
+  EventBus.publish('orders:saved', { id: order.id })
+}
 ```
 
-### subscribe(event,filter,handler)
+取消监听需传入原处理函数。组件卸载时使用 `unsubscribe`，避免移除其他页面的监听。
 
-| 参数    | 类型     | 必填 | 说明         |
-| ------- | -------- | ---- | ------------ |
-| event   | string   | 是   | 事件名       |
-| filter  | function | 否   | 过滤器函数   |
-| handler | function | 是   | 事件处理函数 |
+当前平台支持第三个参数作为过滤器：`EventBus.subscribe(event, handler, filter)`，过滤器返回 `true` 才通知处理函数。SDK 类型声明的三参数顺序与运行时存在差异；需要兼容不同基座版本时，使用双参数订阅，并在 `handler` 内判断条件。
 
-### unsubscribe(event,handler)
+### 平台事件与回放
 
-| 参数    | 类型     | 必填 | 说明         |
-| ------- | -------- | ---- | ------------ |
-| event   | string   | 是   | 事件名       |
-| handler | function | 是   | 事件处理函数 |
+| 事件 | 数据 |
+| --- | --- |
+| `updateAppName` | 应用名称字符串 |
+| `updateAppLogo` | Logo 地址字符串 |
+| `updateMenu` | 菜单数组 |
 
-### publish(event,data,eventOptions)
-
-| 参数         | 类型                          | 必填 | 说明                             |
-| ------------ | ----------------------------- | ---- | -------------------------------- |
-| event        | string                        | 是   | 事件名,详见[系统方法](#系统方法) |
-| data         | object                        | 是   | 事件数据                         |
-| eventOptions | [EventOptions](#eventoptions) | 否   | 回放配置                         |
-
-> 回放解释：当一些数据存在 sessionStorage 中，例如更新完应用名称或者菜单，刷新页面修改后的数据会丢，加了回放则会支持修改后数据不丢。
-
-### 系统方法
-
-| 事件名        | 参数    | 参数类型 | 说明         |
-| ------------- | ------- | -------- | ------------ |
-| updateAppName | appName | string   | 更新应用名称 |
-| updateMenu    | menu    | object[] | 更新菜单     |
-| updateAppLogo | logo    | string   | 更新应用图标 |
-
-### EventOptions
-
-| 参数        | 类型   | 必填 | 说明                                               |
-| ----------- | ------ | ---- | -------------------------------------------------- |
-| replayScope | string | 是   | 回放范围选项,支持： SESSION                        |
-| replayStage | string | 是   | 标识事件的回放阶段,支持：SYS_INIT_USER, SYS_LOGOUT |
-
-**示例**
+需要在用户初始化后恢复前端展示设置时，可显式记录会话回放：
 
 ```js
-import { EventBus } from 'ouroboros-sdk'
-
-EventBus.publish('事件名', '事件数据', {
-  replayStage: 'SYS_INIT_USER',
+EventBus.publish('updateAppName', '订单中心', {
   replayScope: 'SESSION',
+  replayStage: 'SYS_INIT_USER',
 })
 ```
 
-## hasAuth(authKey)
+回放用于前端展示状态，不会保存应用元数据。同名事件只保留最新记录；不要存入密码、令牌或敏感业务数据。
 
-判断是否存在某权限的能力。
+## hasAuth
 
-**参数说明**
+`hasAuth(authKey)` 返回布尔值，可控制按钮等前端展示。实际读写权限由服务端校验。
 
-| 参数名  | 类型   | 必填 | 说明     |
-| ------- | ------ | ---- | -------- |
-| authKey | string | 是   | 权限标识 |
+```js
+import { hasAuth } from 'ouroboros-sdk'
 
-**返回值**
-
-存在权限，返回**true**，否则**false**。
-
-## renderAmisSchema(containerEl,schema,props,env)
-
-渲染 amis Schema 页面。
-
-**参数说明**
-
-| 参数名      | 类型        | 必填 | 说明                                                     |
-| ----------- | ----------- | ---- | -------------------------------------------------------- |
-| containerEl | HTMLElement | 是   | 要渲染到的容器元素                                       |
-| schema      | object      | 是   | 组件的 JSON 配置                                         |
-| props       | object      | 否   | 传递一些数据给渲染器内部使用，例如可以传递 data 数据进去 |
-| env         | object      | 是   | 环境变量                                                 |
-
-**返回值**
-
-返回一个 Promise 对象，可以获取 amis 渲染的内部信息。
-
-**示例**
-
-```vue
-<template>
-  <div ref="testRef"></div>
-</template>
+const canApprove = hasAuth('orders.approve')
 ```
+
+## renderAmisSchema
+
+`await renderAmisSchema(containerEl, schema, props?, env?)` 渲染 AMIS 页面，返回包含 `update`、`destroy` 和 `getScopeRef` 的句柄。
 
 ```js
 import { renderAmisSchema } from 'ouroboros-sdk'
-const amisScope = await renderAmisSchema(this.$refs.testRef, {
+
+// containerEl 为页面已创建的 DOM 容器。
+const view = await renderAmisSchema(containerEl, {
   type: 'page',
-  body: 'test',
+  body: { type: 'tpl', tpl: '订单号：${orderId}' },
+}, { data: { orderId: 'order-001' } })
+
+await view.update({ type: 'page', body: '订单已处理' })
+// 页面卸载时：
+view.destroy()
+```
+
+传入的容器应专供该渲染实例使用。`props.data` 提供页面数据；`env` 按需覆盖运行环境方法。
+
+## Renderer 与 FormItem
+
+`Renderer(options)(Component)` 注册展示组件；`FormItem(options)(Component)` 注册表单项。自定义表单项通过 `value` 读取值，通过 `onChange(nextValue)` 更新值。
+
+```jsx
+import React from 'react'
+import { Renderer, FormItem } from 'ouroboros-sdk'
+
+function OrderStatus({ status }) {
+  return <span>{status === 'OPEN' ? '待处理' : '已处理'}</span>
+}
+Renderer({ type: 'order-status', autoVar: true })(OrderStatus)
+
+function OrderCode({ value = '', onChange }) {
+  return <input value={value} onChange={(e) => onChange(e.target.value)} />
+}
+FormItem({ type: 'order-code', autoVar: true })(OrderCode)
+```
+
+在页面中引用：
+
+```json
+{
+  "type": "form",
+  "body": [
+    { "type": "order-code", "name": "code", "label": "订单号" },
+    { "type": "order-status", "status": "OPEN" }
+  ]
+}
+```
+
+注册名应在应用内唯一。组件库构建与加载方式见 [组件库](../../../../guide/advance/extend-frontend/amis-component/)。
+
+## 自定义动作与校验
+
+```js
+import { registerAction, addRule, toast } from 'ouroboros-sdk'
+
+registerAction('show-order-code', {
+  run(action) {
+    toast.info(`订单号：${action.args.code}`)
+  },
 })
-console.log(amisScope)
+addRule('orderCode', (values, value) => /^ORD-\d+$/.test(value),
+  '订单号格式应为 ORD-数字')
 ```
-
-## Renderer
-
-amis 注册自定义类型，[点击查看更多信息。](https://aisuda.bce.baidu.com/amis/zh-CN/docs/extend/custom-react#react-%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B)
-
-**示例**
-
-```ts
-import { Renderer } from 'ouroboros-sdk'
-import React from 'react'
-
-export default class CustomRenderer extends React.Component<any, any> {
-  render() {
-    const { tip } = this.props
-    return <div>这是自定义组件：{tip}</div>
-  }
-}
-
-Renderer({
-  type: 'my-renderer',
-  autoVar: true,
-})(CustomRenderer as any)
-```
-
-页面使用
 
 ```json
 {
-  "type": "page",
-  "title": "自定义组件示例",
-  "body": {
-    "type": "my-renderer",
-    "tip": "简单示例"
-  }
-}
-```
-
-## FormItem
-
-amis 注册自定义类型-表单项的扩展,[点击查看更多信息。](https://aisuda.bce.baidu.com/amis/zh-CN/docs/extend/custom-react#%E8%A1%A8%E5%8D%95%E9%A1%B9%E7%9A%84%E6%89%A9%E5%B1%95)
-
-**示例**
-
-```ts
-import { FormItem } from 'ouroboros-sdk'
-import React from 'react'
-
-export default class MyFormItem extends React.Component<any, any> {
-  render() {
-    const { value, onChange } = this.props
-    return (
-      <div>
-        <p>这个是个自定义组件</p>
-        <p>当前值：{value}</p>
-        <a
-          className="btn btn-default"
-          onClick={() => onChange(Math.round(Math.random() * 10000))}>
-          随机修改
-        </a>
-      </div>
-    )
-  }
-}
-
-FormItem({
-  type: 'custom',
-  autoVar: true,
-})(MyFormItem as any)
-```
-
-页面使用
-
-```json
-{
-  "type": "page",
-  "title": "自定义组件示例",
-  "body": {
-    "type": "form",
-    "body": [
-      {
-        "type": "input-text",
-        "label": "用户名",
-        "name": "usename"
-      },
-
-      {
-        "type": "custom",
-        "label": "随机值",
-        "name": "random"
-      }
-    ]
-  }
-}
-```
-
-## registerAction
-
-amis 注册自定义动作,[点击查看更多信息。](https://aisuda.bce.baidu.com/amis/zh-CN/docs/concepts/event-action#%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E4%BD%9C)
-
-**示例**
-
-```ts
-import { registerAction } from 'ouroboros-sdk'
-import React from 'react'
-
-export class MyAction {
-  run(action, renderer, event) {
-    const props = renderer.props
-    const { param1, param2 } = action.args // 动作参数
-    // 自定义动作逻辑
-    console.log(param1, param2)
-  }
-}
-
-registerAction('my-action', new MyAction())
-```
-
-页面使用
-
-```json
-{
-  "type": "page",
+  "type": "form",
   "body": [
     {
+      "type": "input-text",
+      "name": "code",
+      "label": "订单号",
+      "validations": { "orderCode": true }
+    },
+    {
       "type": "button",
-      "label": "测试按钮",
+      "label": "显示订单号",
       "onEvent": {
         "click": {
           "actions": [
-            {
-              "actionType": "my-action",
-              "args": {
-                "param1": "test1",
-                "param2": "test2"
-              }
-            }
+            { "actionType": "show-order-code", "args": { "code": "${code}" } }
           ]
         }
       }
@@ -287,42 +161,19 @@ registerAction('my-action', new MyAction())
 }
 ```
 
-## addRule
+其他注册入口包括 `OptionsControl`、`registerFormula`、`registerValidator`、`registerIcon`、`registerEditorPlugin` 和 `registerActionPanel`，分别用于选项表单项、公式、公式校验、图标及编辑器扩展。
 
-扩展表单验证，[点击查看更多信息。](https://aisuda.bce.baidu.com/amis/zh-CN/docs/extend/addon#%E6%89%A9%E5%B1%95%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81)
+## 主题与国际化
 
-**示例**
+```js
+import { getTheme, setTheme, i18n } from 'ouroboros-sdk'
 
-```ts
-import { addRule } from 'ouroboros-sdk'
-function isZXSFn(values: any, value: string, field?: string) {
-  if (value === '新加坡') {
-    // 校验不通过，提示：该地区不在国内
-    return {
-      error: true,
-      msg: '该地区不在国内',
-    }
-  }
-
-  if (value === '北京' || value === '上海' || value === '天津' || value === '重庆') {
-    // return true 表示校验通过
-    return true
-  }
-
-  // 校验不通过，提示：输入的不是直辖市
-  return {
-    error: true,
-    msg: '输入的不是直辖市',
-  }
-}
-
-addRule('isZXS', isZXSFn, '输入的不是直辖市')
+const theme = getTheme()
+setTheme(theme)
+const title = i18n.t('orders.title', '订单')
+const stop = i18n.onLocaleChange((locale) => console.log('语言切换', locale))
+// 页面卸载时：
+stop()
 ```
 
-在配置中就能使用下面的验证方法
-
-```json
-"validations": {
-  "isZXS": true
-}
-```
+`i18n` 还支持 `getLocale()`、`getLanguages()`、`switchLanguage(locale)`、`tn(namespace, key, defaultText?, params?)`、`tMenu` 和 `tCommon`。

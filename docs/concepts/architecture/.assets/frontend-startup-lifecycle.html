@@ -1,0 +1,76 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>前端基座启动生命周期</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1152" width="1480" height="1152" role="img" aria-labelledby="frontend-startup-lifecycle-title frontend-startup-lifecycle-desc">
+<title id="frontend-startup-lifecycle-title">前端基座启动生命周期</title>
+<desc id="frontend-startup-lifecycle-desc">主应用先完成宿主与公共资源准备，再初始化用户上下文、启动微应用、刷新路由并挂载界面；匿名访问和用户初始化失败分别进入登录或恢复路径。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43818d"/></marker>
+</defs>
+<rect width="1480" height="1152" fill="white"/>
+<rect x="40" y="24" width="1400" height="208" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="60" y="54" font-size="18" font-weight="600" fill="#43546c">01  宿主准备</text>
+<rect x="40" y="248" width="1400" height="208" rx="8" fill="#f5f1fc" fill-opacity="0.55" stroke="#b3a0d6" stroke-width="1"/>
+<text x="60" y="278" font-size="18" font-weight="600" fill="#63448e">02  扩展与语言</text>
+<rect x="40" y="472" width="1400" height="208" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="60" y="502" font-size="18" font-weight="600" fill="#204f86">03  路由与用户上下文</text>
+<rect x="40" y="696" width="1400" height="208" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="60" y="726" font-size="18" font-weight="600" fill="#245e69">04  微应用启动</text>
+<rect x="40" y="920" width="1400" height="208" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="60" y="950" font-size="18" font-weight="600" fill="#216149">05  首屏挂载</text>
+<path d="M784 136L904 136" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M784 360L904 360" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M784 584L904 584" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M784 1032L904 1032" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1156 196L1156.0 218.0Q1156 224 1150.0 224.0L558.0 224.0Q552 224 552.0 230.0L552 300" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1156 420L1156.0 442.0Q1156 448 1150.0 448.0L558.0 448.0Q552 448 552.0 454.0L552 524" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1156 644L1156 748" fill="none" stroke="#43818d" stroke-width="1.5" marker-end="url(#a43818d)"/>
+<path d="M1156 868L1156.0 890.0Q1156 896 1150.0 896.0L558.0 896.0Q552 896 552.0 902.0L552 972" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<g data-node="entry"><rect x="328" y="84" width="448" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="552.0" y="121.0" font-size="20" font-weight="600" fill="#43546c" text-anchor="middle">初始化主应用入口</text>
+<text x="552.0" y="146.0" font-size="16" fill="#52657f" text-anchor="middle">注册事件订阅与菜单生命周期</text>
+<text x="552.0" y="171.0" font-size="16" fill="#52657f" text-anchor="middle">发布 SYS_INIT_BOOTSTRAP</text>
+</g>
+<g data-node="config"><rect x="912" y="84" width="488" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="1156.0" y="121.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">读取应用配置</text>
+<text x="1156.0" y="146.0" font-size="16" fill="#52657f" text-anchor="middle">路由、布局、主题与组件库配置</text>
+<text x="1156.0" y="171.0" font-size="16" fill="#52657f" text-anchor="middle">恢复用户及页签的本地存储</text>
+</g>
+<g data-node="libraries"><rect x="328" y="308" width="448" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="552.0" y="345.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">加载组件库</text>
+<text x="552.0" y="370.0" font-size="16" fill="#52657f" text-anchor="middle">应用组件库 → 平台组件库</text>
+<text x="552.0" y="395.0" font-size="16" fill="#52657f" text-anchor="middle">等待注册结果，按配置等待挂载</text>
+</g>
+<g data-node="locale"><rect x="912" y="308" width="488" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1156.0" y="345.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">初始化国际化</text>
+<text x="1156.0" y="370.0" font-size="16" fill="#52657f" text-anchor="middle">语言列表、语言偏好、资源缓存</text>
+<text x="1156.0" y="395.0" font-size="16" fill="#52657f" text-anchor="middle">加载词条并更新页面标题</text>
+</g>
+<g data-node="white-routes"><rect x="328" y="532" width="448" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="552.0" y="569.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">补充微应用白名单路由</text>
+<text x="552.0" y="594.0" font-size="16" fill="#52657f" text-anchor="middle">读取 microWhiteRoutes.json</text>
+<text x="552.0" y="619.0" font-size="16" fill="#52657f" text-anchor="middle">登记可匿名访问的微应用路由</text>
+</g>
+<g data-node="user"><rect x="912" y="532" width="488" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="1156.0" y="569.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">初始化用户上下文</text>
+<text x="1156.0" y="594.0" font-size="16" fill="#52657f" text-anchor="middle">有令牌时依次获取用户、菜单、权限</text>
+<text x="1156.0" y="619.0" font-size="16" fill="#52657f" text-anchor="middle">全部成功后提交状态并加载用户设置</text>
+</g>
+<g data-node="micro"><rect x="912" y="756" width="488" height="104" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1156.0" y="793.0" font-size="20" font-weight="600" fill="#245e69" text-anchor="middle">注册并启动微应用</text>
+<text x="1156.0" y="818.0" font-size="16" fill="#52657f" text-anchor="middle">建立微应用配置与公共能力注入</text>
+<text x="1156.0" y="843.0" font-size="16" fill="#52657f" text-anchor="middle">启动 qiankun，发布 SYS_INIT_USER</text>
+</g>
+<g data-node="routes"><rect x="328" y="980" width="448" height="104" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="552.0" y="1017.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">刷新前端路由</text>
+<text x="552.0" y="1042.0" font-size="16" fill="#52657f" text-anchor="middle">按用户状态重建可用路由</text>
+<text x="552.0" y="1067.0" font-size="16" fill="#52657f" text-anchor="middle">确定当前页面及登录／恢复入口</text>
+</g>
+<g data-node="mount"><rect x="912" y="980" width="488" height="104" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1156.0" y="1017.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">挂载应用界面</text>
+<text x="1156.0" y="1042.0" font-size="16" fill="#52657f" text-anchor="middle">React createRoot → AppLayout</text>
+<text x="1156.0" y="1067.0" font-size="16" fill="#52657f" text-anchor="middle">按当前路由渲染页面</text>
+</g>
+<rect x="1220.0" y="686" width="128" height="25" rx="3" fill="white"/><text x="1284" y="704" fill="#43818d" font-size="16" text-anchor="middle">用户初始化成功</text>
+<text x="328" y="776" font-size="17" fill="#52657f" text-anchor="start">无令牌：保留匿名页面，或转入登录页。</text>
+<text x="328" y="812" font-size="17" fill="#52657f" text-anchor="start">有令牌但初始化失败：保留错误，转入恢复页。</text>
+<text x="328" y="848" font-size="17" fill="#52657f" text-anchor="start">这两条路径跳过微应用启动，继续刷新路由。</text>
+</svg></html>

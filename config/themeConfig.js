@@ -8,6 +8,9 @@ const themeConfig =
   ({
     // Replace with your project's social card
     image: fullMeta.socialCardImage,
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: fullMeta.title,
       logo: fullMeta.logo,

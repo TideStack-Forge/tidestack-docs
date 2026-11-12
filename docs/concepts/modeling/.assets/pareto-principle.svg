@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="pareto-principle-title pareto-principle-desc" id="pareto-principle-root">
+<title id="pareto-principle-title">聚焦业务价值（二八原则）</title>
+<desc id="pareto-principle-desc">开发方式按需求特点分工，开发精力向高价值业务集中；比例表示设计取舍。</desc>
+<defs>
+      <style>#pareto-principle-root { font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif; }
+      #pareto-principle-root .diagram-container { max-width:100%;overflow-x:auto }
+      @media print {
+#pareto-principle-root .diagram-container { overflow:visible }
+}</style><marker id="pareto-principle-pareto-principle-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" fill="#71839a" /></marker></defs>
+<rect width="1200" height="480" fill="#fff" />
+<g data-node="general" data-parent="1"><rect x="40" y="104" width="880" height="100" rx="8" fill="#edf5ff" stroke="#8eb7e9" stroke-width="1.5" />
+<text x="480" y="150" fill="#1d4f91" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">约 80% 的一般性需求</text>
+<text x="480" y="182" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">低代码：在适合建模、配置和复用的范围内解决</text></g>
+<g data-node="special" data-parent="1"><rect x="940" y="104" width="220" height="100" rx="8" fill="#fff8ec" stroke="#dfb570" stroke-width="1.5" />
+<text x="1050" y="150" fill="#7b4c17" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">约 20% 的需求</text>
+<text x="1050" y="182" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">代码：补足特殊需求</text></g>
+<g data-node="common-effort" data-parent="1"><rect x="40" y="300" width="220" height="100" rx="8" fill="#edf5ff" stroke="#8eb7e9" stroke-width="1.5" />
+<text x="150" y="346" fill="#1d4f91" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">约 20% 的精力</text>
+<text x="150" y="378" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">搭建通用功能</text></g>
+<g data-node="value-effort" data-parent="1"><rect x="280" y="300" width="880" height="100" rx="8" fill="#fff8ec" stroke="#dfb570" stroke-width="1.5" />
+<text x="720" y="346" fill="#7b4c17" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">约 80% 的精力</text>
+<text x="720" y="378" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">深入约 20% 的高价值功能</text></g>
+<text x="40" y="68" fill="#52657f" font-size="20" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">开发方式：低代码解决一般性需求，代码承接复杂与特殊需求</text>
+<text x="40" y="264" fill="#52657f" font-size="20" text-anchor="start" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">精力分配：快速搭建通用功能，把主要精力投入高价值业务</text>
+<text x="600" y="448" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">二八表达开发取舍，具体比例依项目特点分配</text>
+</svg>

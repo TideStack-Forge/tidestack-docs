@@ -1,0 +1,84 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>插件化与模块装配</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1400 1158" role="img" aria-labelledby="plugin-and-module-assembly-title plugin-and-module-assembly-desc">
+<title id="plugin-and-module-assembly-title">插件化与模块装配</title>
+<desc id="plugin-and-module-assembly-desc">后端扩展通过依赖、自动配置和 Java SPI 接入正式契约；前端扩展通过渲染器、微前端和 SDK 接入。开发平台与应用运行环境分别组合所需模块。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43818d"/></marker>
+</defs>
+<rect width="1400" height="1230" fill="white"/>
+
+<rect x="40" y="96" width="880" height="712" rx="8" fill="#f5f1fc" fill-opacity="0.55" stroke="#b3a0d6" stroke-width="1"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#63448e">后端扩展：编译与启动装配</text>
+<rect x="960" y="96" width="400" height="712" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="980" y="126" font-size="18" font-weight="600" fill="#245e69">前端扩展：构建与页面加载</text>
+<rect x="80" y="536" width="800" height="224" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="100" y="566" font-size="18" font-weight="600" fill="#216149">后端正式扩展契约</text>
+<rect x="40" y="900" width="1320" height="264" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="60" y="930" font-size="18" font-weight="600" fill="#204f86">按运行单元组合：共用契约，各自装配</text>
+<path d="M280 264L280 336" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M680 264L680 336" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M280 464L280 528" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M680 464L680 528" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1160 264L1160 336" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1160 464L1160 596" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M232 768L232 956" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M740 768L740.0 846.0Q740 852 746.0 852.0L1034.0 852.0Q1040 852 1040.0 858.0L1040 956" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1160 724L1160 892" fill="none" stroke="#43818d" stroke-width="1.5" marker-end="url(#a43818d)"/>
+<g data-node="jars"><rect x="80" y="160" width="800" height="96" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="480.0" y="205.5" font-size="20" font-weight="600" fill="#805719" text-anchor="middle">模块依赖与插件 JAR</text>
+<text x="480.0" y="230.5" font-size="16" fill="#52657f" text-anchor="middle">代码实现、META-INF 注册文件、内嵌元数据</text>
+</g>
+<g data-node="spring"><rect x="80" y="344" width="360" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="260.0" y="385.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">Spring 自动配置</text>
+<text x="260.0" y="410.0" font-size="16" fill="#52657f" text-anchor="middle">自动配置注册／条件 Bean</text>
+<text x="260.0" y="435.0" font-size="16" fill="#52657f" text-anchor="middle">按依赖与环境装配实现</text>
+</g>
+<g data-node="spi"><rect x="520" y="344" width="360" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="700.0" y="385.0" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">Java SPI</text>
+<text x="700.0" y="410.0" font-size="16" fill="#52657f" text-anchor="middle">META-INF/services</text>
+<text x="700.0" y="435.0" font-size="16" fill="#52657f" text-anchor="middle">按 Priority 发现与选择实现</text>
+</g>
+<g data-node="model-contract"><rect x="104" y="604" width="232" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="220.0" y="645.0" font-size="18" font-weight="600" fill="#216149" text-anchor="middle">模型扩展</text>
+<text x="220.0" y="669.0" font-size="15" fill="#52657f" text-anchor="middle">Provider／Builder</text>
+<text x="220.0" y="693.0" font-size="15" fill="#52657f" text-anchor="middle">模型类型与字段类型</text>
+</g>
+<g data-node="execution-contract"><rect x="364" y="604" width="232" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="480.0" y="645.0" font-size="18" font-weight="600" fill="#216149" text-anchor="middle">执行扩展</text>
+<text x="480.0" y="669.0" font-size="15" fill="#52657f" text-anchor="middle">逻辑流节点</text>
+<text x="480.0" y="693.0" font-size="15" fill="#52657f" text-anchor="middle">业务行为与接口处理器</text>
+</g>
+<g data-node="adapter-contract"><rect x="624" y="604" width="232" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="740.0" y="645.0" font-size="18" font-weight="600" fill="#216149" text-anchor="middle">技术适配</text>
+<text x="740.0" y="669.0" font-size="15" fill="#52657f" text-anchor="middle">数据与存储适配</text>
+<text x="740.0" y="693.0" font-size="15" fill="#52657f" text-anchor="middle">外部服务与协议实现</text>
+</g>
+<g data-node="ui-resources"><rect x="1000" y="160" width="320" height="96" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1160.0" y="205.5" font-size="19" font-weight="600" fill="#805719" text-anchor="middle">界面资源与前端扩展</text>
+<text x="1160.0" y="229.5" font-size="15" fill="#52657f" text-anchor="middle">组件库／页面资源／微前端</text>
+</g>
+<g data-node="ui-registration"><rect x="1000" y="344" width="320" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1160.0" y="385.5" font-size="19" font-weight="600" fill="#245e69" text-anchor="middle">注册与加载机制</text>
+<text x="1160.0" y="409.5" font-size="15" fill="#52657f" text-anchor="middle">渲染器／动作／校验规则</text>
+<text x="1160.0" y="433.5" font-size="15" fill="#52657f" text-anchor="middle">微前端入口与生命周期</text>
+</g>
+<g data-node="ui-contract"><rect x="1000" y="604" width="320" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1160.0" y="645.5" font-size="19" font-weight="600" fill="#216149" text-anchor="middle">页面实现与宿主契约</text>
+<text x="1160.0" y="669.5" font-size="15" fill="#52657f" text-anchor="middle">Schema 渲染／qiankun</text>
+<text x="1160.0" y="693.5" font-size="15" fill="#52657f" text-anchor="middle">通过 SDK 使用宿主能力</text>
+</g>
+<g data-node="develop"><rect x="80" y="964" width="560" height="152" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="360.0" y="1025.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">开发平台装配</text>
+<text x="360.0" y="1050.0" font-size="16" fill="#52657f" text-anchor="middle">统一运行能力＋开发模块</text>
+<text x="360.0" y="1075.0" font-size="16" fill="#52657f" text-anchor="middle">模型编辑、应用管理与开发元数据发现</text>
+</g>
+<g data-node="app"><rect x="760" y="964" width="560" height="152" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="1040.0" y="1025.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">应用基座装配</text>
+<text x="1040.0" y="1050.0" font-size="16" fill="#52657f" text-anchor="middle">统一运行能力＋公共应用模块＋业务插件</text>
+<text x="1040.0" y="1075.0" font-size="16" fill="#52657f" text-anchor="middle">加载应用定义，提供应用运行服务</text>
+</g>
+<rect x="264.0" y="842" width="80" height="25" rx="3" fill="white"/><text x="304" y="860" fill="#71839a" font-size="16" text-anchor="middle">参与装配</text>
+<rect x="892.0" y="820" width="96" height="25" rx="3" fill="white"/><text x="940" y="838" fill="#71839a" font-size="16" text-anchor="middle">按依赖选择</text>
+<rect x="1194.0" y="842" width="112" height="25" rx="3" fill="white"/><text x="1250" y="860" fill="#43818d" font-size="16" text-anchor="middle">前端基座加载</text>
+<text x="700" y="1208" font-size="17" fill="#52657f" text-anchor="middle">后端通过正式注册与装配机制扩展；前端扩展遵循页面生命周期与宿主契约。</text>
+</svg></html>

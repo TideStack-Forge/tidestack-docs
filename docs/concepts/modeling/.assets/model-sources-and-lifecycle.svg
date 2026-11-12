@@ -1,0 +1,46 @@
+<svg viewBox="0 0 1400 720" role="img" aria-labelledby="sources-title sources-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="sources-title">模型来源与生效阶段</title>
+  <desc id="sources-desc">模型来源分为平台能力与扩展、应用定义与资源、特定能力中的受管自定义定义；模型进入系统后依次经历定义或编码、版本或打包、启动或加载、运行或刷新等阶段。</desc>
+  <defs>
+    <marker id="phase-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#687386"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .heading { fill: #0b1f3a; font-size: 20px; font-weight: 650; }
+      .phase-title { fill: #0b1f3a; font-size: 17px; font-weight: 650; text-anchor: middle; }
+      .phase-subtitle { fill: #52657f; font-size: 14px; text-anchor: middle; }
+      .row-title { fill: #0b1f3a; font-size: 18px; font-weight: 650; }
+      .row-subtitle { fill: #52657f; font-size: 14px; }
+      .cell-text { font-size: 15px; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect width="1400" height="720" fill="#fff"/>
+  <text x="40" y="62" class="heading">来源与治理边界</text>
+  <text x="860" y="62" class="heading" text-anchor="middle">进入系统后的生效阶段</text>
+
+  <g><rect x="390" y="90" width="205" height="70" rx="8" fill="#eef4fd" stroke="#7aa7de" stroke-width="1.5"/><text x="493" y="119" class="phase-title">定义 / 编码</text><text x="493" y="143" class="phase-subtitle">形成模型或扩展契约</text></g>
+  <g><rect x="625" y="90" width="205" height="70" rx="8" fill="#eef4fd" stroke="#7aa7de" stroke-width="1.5"/><text x="728" y="119" class="phase-title">版本 / 打包</text><text x="728" y="143" class="phase-subtitle">形成可交付资产</text></g>
+  <g><rect x="860" y="90" width="205" height="70" rx="8" fill="#eef4fd" stroke="#7aa7de" stroke-width="1.5"/><text x="963" y="119" class="phase-title">启动 / 加载</text><text x="963" y="143" class="phase-subtitle">发现、校验与装配</text></g>
+  <g><rect x="1095" y="90" width="235" height="70" rx="8" fill="#eef4fd" stroke="#7aa7de" stroke-width="1.5"/><text x="1213" y="119" class="phase-title">运行 / 刷新</text><text x="1213" y="143" class="phase-subtitle">解释、执行或按契约刷新</text></g>
+  <path d="M595 125H625" stroke="#687386" stroke-width="1.8" marker-end="url(#phase-arrow)"/><path d="M830 125H860" stroke="#687386" stroke-width="1.8" marker-end="url(#phase-arrow)"/><path d="M1065 125H1095" stroke="#687386" stroke-width="1.8" marker-end="url(#phase-arrow)"/>
+
+  <g><rect x="40" y="205" width="300" height="110" rx="9" fill="#f3f7fd" stroke="#0b63ce" stroke-width="2"/><text x="62" y="243" class="row-title">平台能力与扩展</text><text x="62" y="271" class="row-subtitle">Java 类型、注解、自动配置、SPI、</text><text x="62" y="293" class="row-subtitle">JAR 元数据</text></g>
+  <g><rect x="390" y="225" width="205" height="56" rx="6" fill="#fff" stroke="#a9c6ea"/><text x="493" y="259" class="cell-text" fill="#264a73">定义稳定契约与实现</text></g>
+  <g><rect x="625" y="225" width="205" height="56" rx="6" fill="#fff" stroke="#a9c6ea"/><text x="728" y="259" class="cell-text" fill="#264a73">编译进入程序包</text></g>
+  <g><rect x="860" y="225" width="205" height="56" rx="6" fill="#fff" stroke="#a9c6ea"/><text x="963" y="259" class="cell-text" fill="#264a73">启动期发现与装配</text></g>
+  <g><rect x="1095" y="225" width="235" height="56" rx="6" fill="#fff" stroke="#a9c6ea"/><text x="1213" y="259" class="cell-text" fill="#264a73">作为引擎或扩展执行</text></g>
+
+  <g><rect x="40" y="355" width="300" height="110" rx="9" fill="#f0faf7" stroke="#0f766e" stroke-width="2"/><text x="62" y="393" class="row-title">应用定义与资源</text><text x="62" y="421" class="row-subtitle">工作区文件、模型元数据、扩展资源</text></g>
+  <g><rect x="390" y="375" width="205" height="56" rx="6" fill="#fff" stroke="#8bc5b9"/><text x="493" y="409" class="cell-text" fill="#285d54">在设计时定义与校验</text></g>
+  <g><rect x="625" y="375" width="205" height="56" rx="6" fill="#fff" stroke="#8bc5b9"/><text x="728" y="409" class="cell-text" fill="#285d54">进入应用版本</text></g>
+  <g><rect x="860" y="375" width="205" height="56" rx="6" fill="#fff" stroke="#8bc5b9"/><text x="963" y="409" class="cell-text" fill="#285d54">由统一运行时基座加载</text></g>
+  <g><rect x="1095" y="375" width="235" height="56" rx="6" fill="#fff" stroke="#8bc5b9"/><text x="1213" y="400" class="cell-text" fill="#285d54">装配执行；部分模型</text><text x="1213" y="420" class="cell-text" fill="#285d54">按生命周期刷新</text></g>
+
+  <g><rect x="40" y="505" width="300" height="110" rx="9" fill="#fff8ec" stroke="#b45309" stroke-width="2"/><text x="62" y="543" class="row-title">受管自定义定义</text><text x="62" y="571" class="row-subtitle">特定能力的数据库化管理数据</text></g>
+  <g><rect x="390" y="525" width="205" height="56" rx="6" fill="#fff" stroke="#ddb66f"/><text x="493" y="559" class="cell-text" fill="#5f420f">通过对应管理功能维护</text></g>
+  <g><rect x="625" y="525" width="205" height="56" rx="6" fill="#fff" stroke="#ddb66f"/><text x="728" y="550" class="cell-text" fill="#5f420f">由该能力管理持久化</text><text x="728" y="570" class="cell-text" fill="#5f420f">与版本边界</text></g>
+  <g><rect x="860" y="525" width="205" height="56" rx="6" fill="#fff" stroke="#ddb66f"/><text x="963" y="550" class="cell-text" fill="#5f420f">由专用 Provider</text><text x="963" y="570" class="cell-text" fill="#5f420f">投影到运行时</text></g>
+  <g><rect x="1095" y="525" width="235" height="56" rx="6" fill="#fff" stroke="#ddb66f"/><text x="1213" y="550" class="cell-text" fill="#5f420f">按对应能力的启停</text><text x="1213" y="570" class="cell-text" fill="#5f420f">与刷新规则生效</text></g>
+
+  <rect x="205" y="655" width="990" height="48" rx="6" fill="#f7f7fb" stroke="#9ea6b4"/>
+  <text x="700" y="685" fill="#39475a" font-size="16" text-anchor="middle">来源决定模型由谁定义和如何治理；阶段决定模型何时被发现、装载与执行。两者不能混为同一分类。</text>
+</svg>

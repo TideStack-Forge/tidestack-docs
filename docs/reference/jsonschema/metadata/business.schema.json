@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/business.schema.json",
   "title": "业务模型",
-  "description": "TideStack metadata schema for business. Legacy runtime packaging may still use Ouroboros paths.",
+  "description": "定义业务对象的数据字段、关联关系、动作、事件及页面配置。modelType 经 SPI 选择模型实现；默认模型、复合视图和仪表盘使用各自的配置结构。",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -12,61 +12,1402 @@
   ],
   "properties": {
     "formatVersion": {
-      "type": "string"
+      "type": "string",
+      "description": "默认模型支持省略版本，或使用字符串 0.1、1.0、2.0；当前版本为 2.0，其他模型类型自行解释其版本。"
     },
     "modelType": {
-      "type": "string"
+      "type": "string",
+      "default": "default",
+      "description": "业务模型实现标识；default 为默认模型，composite-view 为复合视图，dashboard 为仪表盘，也支持 SPI 扩展类型。"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "模型在所属命名空间内的名称。"
     },
     "namespace": {
-      "type": "string"
+      "type": "string",
+      "description": "模型命名空间；与 name 用点连接形成完整模型名。"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
     },
     "icon": {
-      "type": "string"
+      "type": "string",
+      "description": "前端显示使用的图标标识。"
     },
     "isEnabled": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "是否启用模型，缺省 false。"
     },
     "isAttachment": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "是否将模型标记为附件模型，缺省 false。"
     },
     "fields": {
-      "type": "array"
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/field"
+      },
+      "description": "默认业务模型的字段定义列表。"
     },
     "relations": {
-      "type": "array"
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/relation"
+      },
+      "description": "默认业务模型的关联关系定义列表。"
     },
     "features": {
-      "type": "object"
+      "type": "object",
+      "description": "审计字段、删除策略等业务能力的扩展配置，由对应能力实现解释。"
     },
     "apis": {
-      "type": "object"
+      "type": "object",
+      "description": "查询、单条读取、新增、更新、删除等标准业务接口的配置。"
     },
     "views": {
-      "type": "object"
+      "type": "object",
+      "description": "业务模型页面的配置，如列表、新增、编辑和详情视图。"
     },
     "workflow": {
-      "type": "object"
+      "type": "object",
+      "description": "与业务模型关联的审批流配置。"
     },
     "accessControl": {
-      "type": "object"
+      "type": "object",
+      "description": "模型操作的数据访问控制配置，包括字段范围和数据筛选。"
     },
     "custom": {
-      "type": "array"
+      "type": "array",
+      "description": "自定义业务入口配置列表，可包含自定义接口和视图等扩展设置。"
     },
     "enableArchiveDelete": {
-      "type": "boolean"
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "是否启用归档删除能力。"
     },
     "enableScd2History": {
-      "type": "boolean"
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "是否启用 SCD2 历史版本能力。"
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "readOnly": true,
+      "description": "资源来源信息，由加载器写入，通常无需在资源文件中填写。"
+    },
+    "fullName": {
+      "type": "string",
+      "readOnly": true,
+      "description": "由 namespace 与 name 计算的完整模型名，供跨模型引用。"
+    },
+    "statusFlow": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "模型状态及状态流转的扩展配置。"
+    },
+    "actions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "description": "模型对外提供的业务动作契约，包括输入、输出和执行绑定。"
+    },
+    "events": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/event"
+      },
+      "description": "模型声明的业务事件契约，描述已经发生的业务事实。"
+    },
+    "eventSubscriptions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/subscription"
+      },
+      "description": "消费方模型的事件订阅，选择目标动作或监听器处理来源事件。"
     }
-  }
+  },
+  "$defs": {
+    "field": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "字段在模型中的逻辑名称。"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "type": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "字段类型标识，引用已注册或已加载的字段类型定义。"
+        },
+        "defaultValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "字段默认值的字符串配置，由字段及业务模型处理逻辑解释。"
+        },
+        "isRequired": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否要求字段有值。"
+        },
+        "isPrimaryKey": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否将字段用作模型主键。"
+        },
+        "isDisplayField": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否将字段用作业务对象的显示字段。"
+        },
+        "isUnique": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否要求字段值唯一。"
+        },
+        "validators": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "字段使用的校验规则标识或表达式列表，由平台字段校验机制解释。"
+        },
+        "customInput": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "该字段自定义输入组件的配置。"
+        },
+        "customDisplay": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "该字段自定义显示组件的配置。"
+        }
+      },
+      "title": "业务字段定义",
+      "description": "定义默认业务模型的一个字段及其类型、数据约束和输入显示配置。字段类型及扩展参数由字段类型实现解释。"
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "type",
+        "model"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "关系在当前模型中的名称。"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "model": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "目标业务模型的完整名称。"
+        },
+        "type": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "关系类型；child 表示子表、master 表示主表、reference 表示引用，兼容 oneToMany、manyToOne、oneToOne 旧名称。"
+        },
+        "submitTogether": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否随当前对象一并提交关联对象，未设置时为 false。"
+        },
+        "isRequired": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否要求该关联关系有值，未设置时为 false。"
+        },
+        "referenceKey": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "关联使用的引用字段；子表关系指向子模型回连当前对象的字段，主表或引用关系指向目标模型的引用字段。"
+        }
+      },
+      "title": "业务关系定义",
+      "description": "描述当前业务对象与另一个业务模型的关联方向、共同提交方式和引用字段。"
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "动作在当前模型中的名称，供 API、代码和事件订阅引用。"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "isEnabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否允许执行动作；必须显式设为 true，未设置时为 false。"
+        },
+        "inputSchema": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "用 JSON Schema 对象描述动作输入契约。"
+        },
+        "outputSchema": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "用 JSON Schema 对象描述动作输出契约。"
+        },
+        "binding": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/binding"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "动作实现的绑定配置；启用的动作必须具有有效绑定。"
+        },
+        "readOnly": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否以只读方式执行；只读动作受到平台数据写入及嵌套动作调用约束。"
+        },
+        "authorization": {
+          "type": "null",
+          "description": "预留授权字段，当前必须保持为空；实际动作授权使用权限项机制。"
+        },
+        "precondition": {
+          "description": "执行动作前必须满足的业务条件，由平台前置条件机制解析和检查。"
+        },
+        "emits": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/eventReference"
+          },
+          "description": "动作实现允许产生的事件引用列表；声明本身不会自动发布自定义事件。"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "isEnabled": {
+                "const": true,
+                "description": "是否允许执行动作；必须显式设为 true，未设置时为 false。"
+              }
+            },
+            "required": [
+              "isEnabled"
+            ]
+          },
+          "then": {
+            "required": [
+              "binding"
+            ],
+            "properties": {
+              "binding": {
+                "$ref": "#/$defs/binding",
+                "description": "动作实现的绑定配置；启用的动作必须具有有效绑定。"
+              }
+            }
+          }
+        }
+      ],
+      "title": "业务动作定义",
+      "description": "声明一个可复用的业务操作。执行时平台检查启用状态、权限、输入和前置条件，再按 binding 调用实现并校验输出。"
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "pattern": "^(?:[lL][oO][gG][iI][cC][fF][lL][oO][wW]|[hH][aA][nN][dD][lL][eE][rR])$",
+          "description": "执行实现类型：logicflow 为逻辑流，handler 为代码处理器。"
+        },
+        "flowName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "kind 为 logicflow 时必填的逻辑流名称，不可同时配置 handlerName。"
+        },
+        "handlerName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "kind 为 handler 时必填的已注册处理器名称，不可同时配置 flowName。"
+        },
+        "inputMapping": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "将动作输入映射为逻辑流或处理器输入的配置。"
+        },
+        "outputMapping": {
+          "description": "将执行实现的返回结果映射为动作输出的配置。"
+        },
+        "requiresHttpRequest": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否依赖真实 HTTP 请求上下文；依赖请求上下文的实现不能直接用于无请求上下文的调用。"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "pattern": "^[lL]",
+                "description": "执行实现类型：logicflow 为逻辑流，handler 为代码处理器。"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "flowName"
+            ],
+            "properties": {
+              "flowName": {
+                "type": "string",
+                "pattern": "\\S",
+                "description": "kind 为 logicflow 时必填的逻辑流名称，不可同时配置 handlerName。"
+              },
+              "handlerName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^\\s*$",
+                "description": "kind 为 handler 时必填的已注册处理器名称，不可同时配置 flowName。"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "pattern": "^[hH]",
+                "description": "执行实现类型：logicflow 为逻辑流，handler 为代码处理器。"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "handlerName"
+            ],
+            "properties": {
+              "handlerName": {
+                "type": "string",
+                "pattern": "\\S",
+                "description": "kind 为 handler 时必填的已注册处理器名称，不可同时配置 flowName。"
+              },
+              "flowName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^\\s*$",
+                "description": "kind 为 logicflow 时必填的逻辑流名称，不可同时配置 handlerName。"
+              }
+            }
+          }
+        }
+      ],
+      "title": "动作执行绑定",
+      "description": "将业务动作绑定到逻辑流或已注册代码处理器，并配置实现的输入、输出映射。两类实现目标互斥。"
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "occurrenceCondition",
+        "subject",
+        "allowedProducerKinds"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "事件在当前模型内的名称。"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "occurrenceCondition": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "事件代表的业务事实及发布时机的文字说明，不作为条件表达式自动执行。"
+        },
+        "subject": {
+          "type": "string",
+          "pattern": "^(?:[mM][oO][dD][eE][lL]|[iI][nN][sS][tT][aA][nN][cC][eE])$",
+          "description": "事件主体：model 为模型级，instance 为业务记录级；实例级事件要求模型具有唯一的 id 主键。"
+        },
+        "requireUnfilteredModelRead": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "消费事件是否要求具备不受行级筛选限制的模型读取权限。"
+        },
+        "payloadSchema": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "用 JSON Schema 对象描述事件携带的数据负载。"
+        },
+        "allowedProducerKinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "description": "允许发布该事件的生产者类型标识列表，由事件生产机制识别，列表不得为空。"
+        }
+      },
+      "title": "业务事件定义",
+      "description": "声明一个业务事实的名称、发生时机、主体和数据负载。事件由动作实现或已接入的生产机制发布。"
+    },
+    "eventReference": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "modelFullName",
+        "eventName"
+      ],
+      "properties": {
+        "modelFullName": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "事件定义所属业务模型的完整名称。"
+        },
+        "eventName": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "该业务模型内的事件名称。"
+        }
+      },
+      "title": "业务事件引用",
+      "description": "使用业务模型完整名与事件名称定位一个已声明事件。"
+    },
+    "subscription": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "sourceEventModelFullName",
+        "sourceEventName",
+        "executionPrincipalRef"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "订阅在消费方模型内的名称。"
+        },
+        "isEnabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否启用订阅；未设置时默认启用，false 表示停用。"
+        },
+        "sourceEventModelFullName": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "来源事件定义所属业务模型的完整名称。"
+        },
+        "sourceEventName": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "订阅的来源事件名称。"
+        },
+        "filter": {
+          "type": [
+            "boolean",
+            "string",
+            "null"
+          ],
+          "description": "事件过滤条件，可为布尔值或 EL 谓词表达式；表达式有效性由平台校验。"
+        },
+        "targetActionModelFullName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "选择动作处理时，目标动作所属模型的完整名称。"
+        },
+        "targetActionName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "选择动作处理时，目标模型中的动作名称。"
+        },
+        "inputMapping": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "选择动作处理时，将事件内容映射为动作输入的配置。"
+        },
+        "listenerName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "选择监听器处理时，引用已注册监听器的名称。"
+        },
+        "listenerConfig": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "监听器约定的配置，只能用于监听器目标。"
+        },
+        "listenerInputMapping": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true,
+          "description": "将事件内容映射为监听器输入的配置，只能用于监听器目标。"
+        },
+        "executionPrincipalRef": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "处理事件时使用的已配置执行身份引用；该身份仍须具备事件读取及目标操作权限。"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "targetActionModelFullName",
+            "targetActionName"
+          ],
+          "properties": {
+            "targetActionModelFullName": {
+              "type": "string",
+              "pattern": "\\S",
+              "description": "选择动作处理时，目标动作所属模型的完整名称。"
+            },
+            "targetActionName": {
+              "type": "string",
+              "pattern": "\\S",
+              "description": "选择动作处理时，目标模型中的动作名称。"
+            },
+            "listenerName": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^\\s*$",
+              "description": "选择监听器处理时，引用已注册监听器的名称。"
+            },
+            "listenerConfig": {
+              "type": "null",
+              "description": "监听器约定的配置，只能用于监听器目标。"
+            },
+            "listenerInputMapping": {
+              "type": "null",
+              "description": "将事件内容映射为监听器输入的配置，只能用于监听器目标。"
+            }
+          }
+        },
+        {
+          "required": [
+            "listenerName"
+          ],
+          "properties": {
+            "listenerName": {
+              "type": "string",
+              "pattern": "\\S",
+              "description": "选择监听器处理时，引用已注册监听器的名称。"
+            },
+            "targetActionModelFullName": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^\\s*$",
+              "description": "选择动作处理时，目标动作所属模型的完整名称。"
+            },
+            "targetActionName": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^\\s*$",
+              "description": "选择动作处理时，目标模型中的动作名称。"
+            },
+            "inputMapping": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "additionalProperties": true,
+              "maxProperties": 0,
+              "description": "选择动作处理时，将事件内容映射为动作输入的配置。"
+            }
+          }
+        }
+      ],
+      "title": "业务事件订阅",
+      "description": "消费方模型订阅来源事件，并使用指定身份调用目标动作或已注册监听器；两种处理目标互斥。"
+    },
+    "column": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "field": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "数据集中用于该列的字段名。"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "width": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "列宽配置。"
+        },
+        "format": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "字段的显示格式配置。"
+        }
+      },
+      "title": "复合视图列",
+      "description": "定义复合视图中一列的字段、标题和显示方式。"
+    },
+    "filterConfig": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "items": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/filterItem"
+          },
+          "description": "筛选项定义列表。"
+        }
+      },
+      "title": "复合视图筛选配置",
+      "description": "组织复合视图可用的筛选项。"
+    },
+    "filterItem": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "field": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "参与筛选的数据字段名。"
+        },
+        "ops": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "该字段允许使用的筛选操作符列表。"
+        },
+        "widget": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "筛选输入组件的标识。"
+        }
+      },
+      "title": "复合视图筛选项",
+      "description": "定义一个字段允许使用的筛选运算与输入组件。"
+    },
+    "actionButton": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "界面中展示的名称。"
+        },
+        "icon": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "前端显示使用的图标标识。"
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "按钮作用范围的配置，由视图实现解释。"
+        },
+        "apiRef": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "按钮调用的 API 引用。"
+        },
+        "contextBinding": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "按钮上下文字段到调用参数的字符串映射。"
+        }
+      },
+      "title": "复合视图操作按钮",
+      "description": "定义视图操作按钮的展示及调用参数绑定。"
+    },
+    "compositeLayout": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "pageSize": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "默认每页显示的记录条数。"
+        },
+        "defaultSort": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/sort"
+          },
+          "description": "默认排序规则列表。"
+        }
+      },
+      "title": "复合视图布局",
+      "description": "配置复合视图的每页条数与默认排序。"
+    },
+    "sort": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "field": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "参与排序的数据字段名。"
+        },
+        "direction": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "排序方向配置。"
+        }
+      },
+      "title": "视图排序规则",
+      "description": "按指定字段及方向组织查询结果。"
+    },
+    "dashboardLayout": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "cols": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "网格的总列数。"
+        },
+        "rowHeight": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "网格单行的高度。"
+        },
+        "draggable": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否允许拖动仪表盘组件。"
+        },
+        "resizable": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否允许调整仪表盘组件尺寸。"
+        }
+      },
+      "title": "仪表盘布局",
+      "description": "设置仪表盘网格的列数、行高及交互开关。"
+    },
+    "dashboardWidget": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "组件实例在仪表盘中的标识。"
+        },
+        "widgetName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "组件定义或组件类型的名称。"
+        },
+        "viewName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "该组件引用的视图名称。"
+        },
+        "position": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/position"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "组件在仪表盘网格中的位置。"
+        },
+        "size": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/size"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "组件占用的网格列数和行数。"
+        },
+        "config": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/widgetConfig"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "该组件实例的显示配置。"
+        }
+      },
+      "title": "仪表盘组件实例",
+      "description": "在仪表盘中实例化组件，引用组件或视图定义并配置其位置、尺寸与显示。"
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "x": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "组件的水平网格位置。"
+        },
+        "y": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "组件的垂直网格位置。"
+        }
+      },
+      "title": "仪表盘组件位置",
+      "description": "使用网格坐标描述组件在仪表盘中的位置。"
+    },
+    "size": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "cols": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "组件占用的网格列数。"
+        },
+        "rows": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "组件占用的网格行数。"
+        }
+      },
+      "title": "仪表盘组件尺寸",
+      "description": "以网格列数和行数描述组件占用空间。"
+    },
+    "widgetConfig": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "供开发界面或页面展示的标题。"
+        },
+        "showHeader": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否显示组件头部。"
+        },
+        "showBorder": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否显示组件边框。"
+        },
+        "backgroundColor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "组件背景颜色配置。"
+        }
+      },
+      "title": "仪表盘组件显示配置",
+      "description": "控制仪表盘组件实例的标题、边框与背景。"
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "legacyDashboardName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "关联的旧仪表盘名称。"
+        },
+        "loadingPolicy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "旧仪表盘数据或配置的加载策略。"
+        },
+        "legacyReadOnly": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "是否将旧仪表盘作为只读来源。"
+        }
+      },
+      "title": "仪表盘迁移配置",
+      "description": "记录旧仪表盘来源及其加载和只读策略。"
+    },
+    "globalFilterBinding": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "全局筛选值的来源配置。"
+        },
+        "widgetFieldMappings": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/widgetFieldMapping"
+          },
+          "description": "各组件接收全局筛选值的字段映射列表。"
+        }
+      },
+      "title": "仪表盘全局筛选绑定",
+      "description": "将指定来源的全局筛选值映射到仪表盘组件字段。"
+    },
+    "widgetFieldMapping": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "widgetId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "目标组件实例的 id。"
+        },
+        "sourceField": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "全局筛选来源中的字段名。"
+        },
+        "targetField": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "目标组件接收筛选值的字段名。"
+        },
+        "op": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "筛选条件的操作符。"
+        }
+      },
+      "title": "组件筛选字段映射",
+      "description": "定义一项全局筛选字段到目标组件字段的映射及操作符。"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "modelType": {
+            "const": "default",
+            "description": "业务模型实现标识；default 为默认模型，composite-view 为复合视图，dashboard 为仪表盘，也支持 SPI 扩展类型。"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "formatVersion": {
+            "type": "string",
+            "enum": [
+              "0.1",
+              "1.0",
+              "2.0"
+            ],
+            "description": "默认模型支持省略版本，或使用字符串 0.1、1.0、2.0；当前版本为 2.0，其他模型类型自行解释其版本。"
+          }
+        },
+        "title": "默认业务模型格式",
+        "description": "默认业务模型允许省略 formatVersion，或使用字符串 0.1、1.0、2.0。"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "modelType": {
+            "const": "composite-view",
+            "description": "业务模型实现标识；default 为默认模型，composite-view 为复合视图，dashboard 为仪表盘，也支持 SPI 扩展类型。"
+          }
+        },
+        "required": [
+          "modelType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "datasetName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "复合视图引用的数据集名称。"
+          },
+          "embeddedQuery": {
+            "description": "复合视图内嵌的查询定义，由查询实现解释。"
+          },
+          "columns": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/$defs/column"
+            },
+            "description": "复合视图显示的列定义。"
+          },
+          "filterConfig": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/filterConfig"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "复合视图允许使用的筛选项配置。"
+          },
+          "actionButtons": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/$defs/actionButton"
+            },
+            "description": "复合视图展示的操作按钮及其调用配置。"
+          },
+          "layoutConfig": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/compositeLayout"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "复合视图的分页和默认排序配置。"
+          }
+        },
+        "title": "复合视图业务模型配置",
+        "description": "modelType 为 composite-view 时使用；基于数据集或内嵌查询组织展示列、筛选项及操作按钮。"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "modelType": {
+            "const": "dashboard",
+            "description": "业务模型实现标识；default 为默认模型，composite-view 为复合视图，dashboard 为仪表盘，也支持 SPI 扩展类型。"
+          }
+        },
+        "required": [
+          "modelType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "layout": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/dashboardLayout"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "仪表盘的网格布局配置。"
+          },
+          "widgets": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/$defs/dashboardWidget"
+            },
+            "description": "仪表盘中的组件实例列表。"
+          },
+          "migration": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/migration"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "仪表盘与旧定义之间的迁移配置。"
+          },
+          "globalFilterBinding": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/globalFilterBinding"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "仪表盘全局筛选值到组件字段的绑定配置。"
+          }
+        },
+        "title": "仪表盘业务模型配置",
+        "description": "modelType 为 dashboard 时使用；通过网格布局组织组件实例，并配置迁移及全局筛选绑定。"
+      }
+    }
+  ],
+  "$comment": "Source: core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/BusinessModelMetaParser.java; core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/meta/BusinessModelMeta.java; core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java; core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/BusinessModelFieldMeta.java; core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/BusinessModelRelationMeta.java; core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/ActionDefinition.java; core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/ActionBinding.java; core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/EventDefinition.java; core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/EventSubscriptionDefinition.java; core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/CompositeViewBusinessModelMeta.java; core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DashboardBusinessModelMeta.java"
 }

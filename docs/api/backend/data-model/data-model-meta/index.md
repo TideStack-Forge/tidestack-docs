@@ -1,89 +1,63 @@
 # DataModelMeta
 
-`DataModelMeta` 是数据模型的元数据定义对象，描述了模型名、字段列表、主键、迁移策略、插件和扩展属性等内容。
+`com.ouroboros.data.model.DataModelMeta` 描述模型的名称、字段、主键、唯一约束和插件。用于模型定义检查或扩展；业务数据读写使用 [DataModel](../data-model/)。
 
-如果说 `DataModel` 更像“运行时可执行模型”，那 `DataModelMeta` 更像“这张模型蓝图本身长什么样”。
+## 属性
 
-## 基础标识
+下表列出 getter；可变定义对象也提供对应 setter。
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getFormatVersion()` | `String` | 格式版本 |
-| `getSource()` | `String` | 元数据来源 |
-| `getDataStation()` | `String` | 模型所属数据站名称 |
-| `getNamespace()` | `String` | 命名空间 |
-| `getName()` | `String` | 模型名 |
-| `getFullName()` | `String` | 完整模型名 |
-| `getLabel()` | `String` | 展示标题 |
-| `getDescription()` | `String` | 模型说明 |
-| `getRawName()` | `String` | 原始名称 |
+| 方法 | 返回值 | 说明 |
+| --- | --- | --- |
+| `getNamespace()` / `getName()` | `String` | 名称空间和模型名 |
+| `getFullName()` | `String` | 按名称空间与模型名计算的全名 |
+| `getLabel()` / `getDescription()` | `String` | 标题和说明 |
+| `getFormatVersion()` / `getSource()` | `String` | 格式版本和来源 |
+| `getDataStation()` / `getRawName()` | `String` | 数据站名和原始名称 |
+| `getMigrationStrategy()` | `MigrationStrategy` | 结构迁移策略 |
+| `getFields()` | `List<DataModelFieldMeta>` | 字段定义 |
+| `getPrimaryKeys()` / `getPrimaryKeyGenerator()` | `List<String>` / `String` | 主键字段和生成器名称 |
+| `getUniqueConstraints()` | `List<DataModelUniqueConstraintMeta>` | 模型级唯一约束 |
+| `getPluginDescriptors()` | `List<PluginDescriptor>` | 插件声明 |
+| `getExtraProps()` / `getExtraProp(String name)` | `Map<String, Object>` / `Optional<Object>` | 扩展属性 |
+| `getExtraProp(Class<T> type, String name)` | `Optional<T>` | 按类型读取扩展属性 |
 
-## 结构定义
+## 构建定义示例
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getMigrationStrategy()` | `MigrationStrategy` | 当前迁移策略 |
-| `getFields()` | `List<DataModelFieldMeta>` | 字段元数据列表 |
-| `getPrimaryKeys()` | `List<String>` | 主键字段名列表 |
-| `getPrimaryKeyGenerator()` | `String` | 主键生成器名称 |
-| `getPluginDescriptors()` | `List<PluginDescriptor>` | 模型插件描述列表 |
+```java
+import java.util.List;
+import com.ouroboros.data.model.DataModelFieldMeta;
+import com.ouroboros.data.model.DataModelMeta;
 
-## 这组字段怎么理解
+var id = new DataModelFieldMeta();
+id.setName("id");
+id.setType("string");
+id.setIsNullable(false);
 
-- `namespace + name` 共同决定 `getFullName()`
-- `dataStation` 决定模型属于哪个数据站
-- `migrationStrategy` 决定结构变更如何迁移
-- `fields`、`primaryKeys`、`primaryKeyGenerator` 一起定义模型结构和主键行为
-- `pluginDescriptors` 用来声明模型启用的插件及其配置
+var definition = new DataModelMeta();
+definition.setNamespace("crm");
+definition.setName("Order");
+definition.setLabel("订单");
+definition.setFields(List.of(id));
+definition.setPrimaryKeys(List.of("id"));
+String fullName = definition.getFullName(); // crm.Order
+```
 
-如果你在做的是运行时数据读写，而不是看模型定义，通常应该转到 [DataModel](../data-model/)。
+示例只构建定义对象，不注册运行时模型，也不创建数据库表。模型加载仍由应用的建模与发布流程完成。
 
-## 扩展属性
+## 唯一约束
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getExtraProps()` | `Map<String, Object>` | 扩展属性集合 |
-| `getExtraProp(String propName)` | `Optional<Object>` | 读取单个扩展属性 |
-| `getExtraProp(Class<T>, String)` | `Optional<T>` | 按类型读取扩展属性 |
+`uniqueConstraints` 支持多字段唯一约束。`nullsDistinct` 默认 `false`，空值参与重复检查；为 `true` 时，完整约束键中任一持久值为 `null`，该键不参与重复检查。字段缺失不能直接当作空值，部分更新仍需补齐约束字段。
 
-当前实现通过 `@JsonAnyGetter` / `@JsonAnySetter` 暴露扩展属性，所以很多非标准属性会直接铺在元数据对象外层。
+Java 模型声明示例：
 
-## 可变与复制
+```java
+@UniqueConstraint(fields = {"tenantId", "activeKey"}, nullsDistinct = true)
+```
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `addPluginDescriptor(...)` | `void` | 追加插件描述 |
-| `removePluginDescriptor(String pluginName)` | `void` | 删除插件描述 |
-| `deepCopy()` | `DataModelMeta` | 深拷贝元数据对象 |
+动态定义在单个约束上配置 `"nullsDistinct": true`，或调用 `constraint.setExtraProp("nullsDistinct", true)`。这不改变软删除的 `scope` 范围；含空值的约束键也不能作为无主键更新的唯一身份。并发写入仍需匹配的数据库唯一约束。
 
-`deepCopy()` 会连带复制字段、主键、插件描述和扩展属性，适合做运行时 patch 或装饰前的保护性复制。
+## 扩展和复制
 
-## 常见使用方式
+使用 `setExtraProp(name, value)` 配置扩展属性，它们在 JSON 中与标准属性平铺。插件通过 `addPluginDescriptor(...)` 和 `removePluginDescriptor(name)` 维护。
 
-### 做建模检查
-
-适合在开发态或启动期检查：
-
-- 字段是否齐全
-- 主键是否正确
-- 插件声明是否完整
-
-### 做运行时装饰
-
-适合在真正构建 `DataModel` 前，对元数据做保护性复制和补丁处理。
-
-### 生成其他结构
-
-比如动态页面、动态表单、开发平台界面等，都可能会先消费 `DataModelMeta` 和 `DataModelFieldMeta`。
-
-## 使用提醒
-
-- `getFullName()` 是由 `namespace` 和 `name` 组合出来的，不是独立存储字段。
-- 扩展属性通过 `@JsonAnyGetter` / `@JsonAnySetter` 平铺在对象外层，读取时不要只盯着固定字段。
-- 如果你要的是“字段默认值在当前上下文下算出来的结果”，那已经超出元数据层了，应该看 [DataModelField](../data-model-field/)。
-
-## 下一步看哪里
-
-- 想看运行时模型接口：看 [DataModel](../data-model/)
-- 想看字段元数据：看 [DataModelFieldMeta](../data-model-field-meta/)
-- 想看插件描述对象：看 [PluginDescriptor](../plugin-descriptor/)
+需要生成修改后的定义时，先调用 `deepCopy()`，再修改副本。字段结构见 [DataModelFieldMeta](../data-model-field-meta/)，插件参数见 [PluginDescriptor](../plugin-descriptor/)。

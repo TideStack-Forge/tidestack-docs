@@ -1,61 +1,41 @@
 # DataModelCenter
 
-`DataModelCenter` 是运行时数据模型注册中心，用来按名称读取已经加载好的 `DataModel`。
+按模型名称获取已加载的 [DataModel](../data-model/)。Java 导入 `com.ouroboros.data.model.DataModelCenter`；脚本中直接使用同名全局对象。
 
-它更适合解决“我已经知道模型名，接下来要拿到模型对象”的问题，而不是负责定义模型本身。
+## 方法
 
-## 方法总览
+| Java 方法 | 返回值 | 说明 |
+| --- | --- | --- |
+| `getDataModel(String name)` | `Optional<DataModel>` | 未加载或名称不存在时为空 |
+| `getDataModelMap()` | `Map<String, DataModel>` | 只读模型映射；模型可以有多个名称入口 |
+| `hasSnapshot()` | `boolean` | 是否已建立模型快照 |
+| `refresh()` | `void` | 刷新模型映射，由模型加载流程使用 |
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getDataModel(String name)` | `Optional<DataModel>` | 按名称读取模型 |
-| `getDataModelMap()` | `Map<String, DataModel>` | 获取当前模型映射表 |
-| `refresh()` | `void` | 重新扫描数据站并刷新模型注册表 |
+名称支持 `crm.Order` 和 `main:crm.Order` 两种形式。后者的 `main` 是数据站名，适合区分来自不同数据站的同名模型。名称查找不区分大小写。
 
-## 名称注册规则
+## Java 示例
 
-当前实现里，`refresh()` 会把每个模型同时注册成两类 key：
+```java
+import java.util.Map;
+import com.ouroboros.data.model.DataModelCenter;
 
-1. `模型全名`
-2. `数据站名:模型全名`
-
-例如：
-
-- `crm.Order`
-- `main:crm.Order`
-
-如果多个数据站里出现同名模型，第二种写法更稳妥。
-
-## 常见使用方式
-
-### 在脚本里动态取模型
-
-`DataModelCenter` 已被注入到脚本上下文，最常见的写法类似：
-
-```javascript
-var orderModel = DataModelCenter.get('main:crm.Order')
-var orders = orderModel == null ? null : orderModel.query({ where: { status: 'OPEN' } })
+var orders = DataModelCenter.getDataModel("main:crm.Order")
+    .orElseThrow(() -> new IllegalStateException("未找到订单模型"));
+var rows = orders.query(Map.of("where", Map.of("status", "OPEN"))).get();
 ```
 
-### 在 Java 代码里按名称取模型
+模型名称和字段须在当前应用中存在。业务请求直接获取模型即可，无需每次调用 `refresh()`。
 
-适合模型名来自配置、请求参数或运行时映射表的场景。
+## 脚本示例
 
-如果你已经有明确的 Java 类型，通常转向 [TypedDataModelCenter](../typed-data-model-center/) 会更顺。
+脚本提供 `get(String name)`，返回 `DataModel` 或 `null`，与 Java 的 `Optional` 返回形式不同。
 
-## 其他实现细节
+```groovy
+def orders = DataModelCenter.get('main:crm.Order')
+if (orders == null) {
+    Exceptions.business('未找到订单模型')
+}
+orders.query([where: [status: 'OPEN'], limit: 20]).get()
+```
 
-- 内部使用大小写不敏感的 `TreeMap`
-- `getDataModelMap()` 返回的是只读视图
-- 注册表不会自动增量刷新，只有调用 `refresh()` 后新模型映射才会生效
-
-## 使用提醒
-
-- `getDataModel(...)` 返回 `Optional<DataModel>`，脚本上下文里暴露的是一个更方便的 `get(String)` 包装。
-- 如果你在不同数据站里维护了同名模型，尽量统一使用 `数据站名:模型全名`，比只写全名更稳。
-- `refresh()` 会重新扫描 `DataStationCenter`，更适合模型刷新链路，而不是业务代码里高频调用。
-
-## 下一步看哪里
-
-- 想看脚本里的同名能力：看 [脚本上下文](../../script-context/)
-- 想看模型接口本身：看 [DataModel](../data-model/)
+已知 Java 模型类时，见 [TypedDataModelCenter](../typed-data-model-center/)。

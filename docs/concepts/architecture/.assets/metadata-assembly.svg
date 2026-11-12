@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1600 1148" width="1600" height="1148" role="img" aria-labelledby="metadata-assembly-title metadata-assembly-desc">
+<title id="metadata-assembly-title">元数据装配与模型生效</title>
+<desc id="metadata-assembly-desc">元数据从下方的程序内嵌资源、插件内嵌资源、应用目录及数据库读取，按模型契约确定生效定义，再构建模型、完成业务模型投射并接入运行环境；来源优先级以 UI Schema 的标准提供者为例。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a57b33"/></marker>
+</defs>
+<rect width="1600" height="1220" fill="white"/>
+
+<rect x="40" y="840" width="744" height="256" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="60" y="870" font-size="18" font-weight="600" fill="#43546c">内嵌基础定义</text>
+<rect x="808" y="840" width="364" height="256" rx="8" fill="#fff7e9" fill-opacity="0.55" stroke="#d4ad69" stroke-width="1"/>
+<text x="828" y="870" font-size="18" font-weight="600" fill="#805719">应用定制</text>
+<rect x="1196" y="840" width="364" height="256" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="1216" y="870" font-size="18" font-weight="600" fill="#245e69">运行时定制</text>
+<path d="M800 640L800 584" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M800 456L800.0 430.0Q800 424 794.0 424.0L406.0 424.0Q400 424 400.0 418.0L400 400" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M728 336L872 336" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)"/>
+<path d="M400 272L400.0 246.0Q400 240 406.0 240.0L594.0 240.0Q600 240 600.0 234.0L600 216" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M1528 336L1554.0 336.0Q1560 336 1560.0 342.0L1560.0 514.0Q1560 520 1554.0 520.0L1248 520" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)"/>
+<path d="M232 888L232.0 806.0Q232 800 238.0 800.0L434.0 800.0Q440 800 440.0 794.0L440 768" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M592 888L592.0 822.0Q592 816 598.0 816.0L674.0 816.0Q680 816 680.0 810.0L680 768" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M990 888L990.0 822.0Q990 816 984.0 816.0L926.0 816.0Q920 816 920.0 810.0L920 768" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1378 888L1378.0 806.0Q1378 800 1372.0 800.0L1166.0 800.0Q1160 800 1160.0 794.0L1160 768" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M200 1136L1496 1136" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<g data-node="registration"><rect x="360" y="96" width="880" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="800.0" y="150.5" font-size="25" font-weight="600" fill="#216149" text-anchor="middle">接入运行环境</text>
+<text x="800.0" y="178.5" font-size="19" fill="#52657f" text-anchor="middle">注册页面路由与接口，初始化执行契约和数据服务</text>
+</g>
+<g data-node="models"><rect x="80" y="280" width="640" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="400.0" y="334.0" font-size="24" font-weight="600" fill="#63448e" text-anchor="middle">模型构建</text>
+<text x="400.0" y="362.0" font-size="19" fill="#52657f" text-anchor="middle">构建该类型的运行时模型对象</text>
+</g>
+<g data-node="projection"><rect x="880" y="280" width="640" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1200.0" y="334.0" font-size="24" font-weight="600" fill="#63448e" text-anchor="middle">业务模型投射</text>
+<text x="1200.0" y="362.0" font-size="19" fill="#52657f" text-anchor="middle">形成数据、UI、接口、权限等相关模型定义</text>
+</g>
+<g data-node="effective"><rect x="360" y="464" width="880" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="800.0" y="518.0" font-size="24" font-weight="600" fill="#204f86" text-anchor="middle">确定生效定义</text>
+<text x="800.0" y="546.0" font-size="19" fill="#52657f" text-anchor="middle">按模型标识执行内容合并，或选择高优先级的完整定义</text>
+</g>
+<g data-node="providers"><rect x="360" y="648" width="880" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="800.0" y="702.5" font-size="24" font-weight="600" fill="#204f86" text-anchor="middle">按模型类型读取与解析</text>
+<text x="800.0" y="729.5" font-size="18" fill="#52657f" text-anchor="middle">文件加载器、资源扫描和数据库提供者读取各自支持的来源</text>
+</g>
+<g data-node="embedded"><rect x="64" y="896" width="336" height="112" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="232.0" y="950.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">程序内嵌资源</text>
+<text x="232.0" y="976.0" font-size="17" fill="#52657f" text-anchor="middle">基座与程序随包提供的模型文件</text>
+</g>
+<g data-node="plugin"><rect x="424" y="896" width="336" height="112" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="592.0" y="950.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">插件内嵌资源</text>
+<text x="592.0" y="976.0" font-size="17" fill="#52657f" text-anchor="middle">插件随 JAR 交付的模型文件</text>
+</g>
+<g data-node="app"><rect x="832" y="896" width="316" height="112" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="990.0" y="950.0" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用元数据目录</text>
+<text x="990.0" y="976.0" font-size="17" fill="#52657f" text-anchor="middle">随应用维护和交付的定义</text>
+</g>
+<g data-node="db"><rect x="1220" y="896" width="316" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="1378.0" y="950.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">数据库</text>
+<text x="1378.0" y="976.0" font-size="17" fill="#52657f" text-anchor="middle">受管的运行时模型定义</text>
+</g>
+<rect x="760.0" y="302" width="80" height="25" rx="3" fill="white"/><text x="800" y="320" fill="#9577b5" font-size="16" text-anchor="middle">业务模型</text>
+<rect x="1328.0" y="482" width="144" height="25" rx="3" fill="white"/><text x="1400" y="500" fill="#9577b5" font-size="16" text-anchor="middle">参与目标模型装配</text>
+<text x="412" y="1056" font-size="16" fill="#52657f" text-anchor="middle">二者同属 Classpath 来源，内部顺序由资源加载规则确定</text>
+<text x="990" y="1056" font-size="17" fill="#52657f" text-anchor="middle">例如应用 Schema 文件</text>
+<text x="1378" y="1056" font-size="17" fill="#52657f" text-anchor="middle">仅用于支持此来源的模型</text>
+<text x="80" y="1142" font-size="18" fill="#805719" text-anchor="middle">低</text>
+<text x="1540" y="1142" font-size="18" fill="#805719" text-anchor="middle">高</text>
+<text x="820" y="1172" font-size="18" fill="#52657f" text-anchor="middle">来源优先级示例：UI Schema 为数据库 ＞ 应用目录 ＞ 内嵌 Schema；其他模型见下文规则。</text>
+</svg>

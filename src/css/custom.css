@@ -1,30 +1,174 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+/* Brand colors and typography follow https://www.tidestackforge.com/.
+ * Blue is used for light-mode text links; cyan remains the action color.
  */
-
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --handbook-brand: #00d2e9;
+  --handbook-brand-hover: #4ce4f5;
+  --handbook-brand-active: #00b8d4;
+  --handbook-brand-ink: #021014;
+  --handbook-brand-wash: rgba(0, 210, 233, 0.09);
+  --handbook-footer-background: #092f4a;
+  --handbook-footer-ink: #f8fafc;
+  --handbook-footer-muted: #cbd5e1;
+  --handbook-code-background: #f1f5f9;
+
+  --ifm-color-primary: #0057e4;
+  --ifm-color-primary-dark: #004ecc;
+  --ifm-color-primary-darker: #0049c2;
+  --ifm-color-primary-darkest: #003c9f;
+  --ifm-color-primary-light: #176bf0;
+  --ifm-color-primary-lighter: #2e7bf2;
+  --ifm-color-primary-lightest: #5c99f5;
+  --ifm-color-primary-contrast-background: #e8f1ff;
+  --ifm-color-primary-contrast-foreground: #003c9f;
+  --ifm-color-emphasis-0: #ffffff;
+  --ifm-color-emphasis-100: #f1f5f9;
+  --ifm-color-emphasis-200: #e2e8f0;
+  --ifm-color-emphasis-300: #cbd5e1;
+  --ifm-color-emphasis-400: #94a3b8;
+  --ifm-color-emphasis-500: #64748b;
+  --ifm-color-emphasis-600: #526278;
+  --ifm-color-emphasis-700: #475569;
+  --ifm-color-emphasis-800: #334155;
+  --ifm-color-emphasis-900: #0f172a;
+  --ifm-color-emphasis-1000: #05070a;
+
+  --ifm-background-color: #f8fafc;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-font-color-base: #0f172a;
+  --ifm-color-content: var(--ifm-font-color-base);
+  --ifm-color-content-secondary: #475569;
+  --ifm-font-family-base: 'Inter', 'PingFang SC', 'Noto Sans SC',
+    'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'SF Mono', 'Fira Code', 'Noto Sans Mono CJK SC',
+    ui-monospace, monospace;
+  --ifm-line-height-base: 1.75;
+  --ifm-heading-font-weight: 600;
+  --ifm-heading-line-height: 1.35;
+  --ifm-code-font-size: 90%;
+  --ifm-code-background: var(--handbook-code-background);
+  --ifm-code-border-radius: 0.25rem;
+  --ifm-code-padding-horizontal: 0.3rem;
+  --ifm-global-radius: 0.5rem;
+  --ifm-card-border-radius: 0.75rem;
+  --ifm-navbar-background-color: var(--ifm-background-color);
+  --ifm-navbar-shadow: none;
+  --ifm-toc-border-color: var(--ifm-color-emphasis-200);
+  --ifm-menu-color: var(--ifm-color-emphasis-700);
+  --ifm-menu-color-background-active: #e8f1ff;
+  --ifm-menu-color-background-hover: var(--ifm-color-emphasis-100);
+  --ifm-breadcrumb-color-active: var(--ifm-color-primary);
+  --ifm-breadcrumb-item-background-active: var(--ifm-menu-color-background-active);
+  --ifm-table-border-color: var(--ifm-color-emphasis-200);
+  --ifm-table-stripe-background: var(--ifm-background-surface-color);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 161, 233, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+html[data-theme='dark'] {
+  --handbook-brand-wash: rgba(0, 210, 233, 0.06);
+  --handbook-footer-background: #05070a;
+  --handbook-code-background: #0d1117;
+
+  --ifm-color-primary: #4ce4f5;
+  --ifm-color-primary-dark: #00d2e9;
+  --ifm-color-primary-darker: #00c2db;
+  --ifm-color-primary-darkest: #00a1bc;
+  --ifm-color-primary-light: #79ecf8;
+  --ifm-color-primary-lighter: #9cf1fb;
+  --ifm-color-primary-lightest: #c7f8fc;
+  --ifm-color-primary-contrast-background: #102a3a;
+  --ifm-color-primary-contrast-foreground: #9cf1fb;
+  --ifm-color-emphasis-0: #06080c;
+  --ifm-color-emphasis-100: #111827;
+  --ifm-color-emphasis-200: #1e293b;
+  --ifm-color-emphasis-300: #334155;
+  --ifm-color-emphasis-400: #475569;
+  --ifm-color-emphasis-500: #64748b;
+  --ifm-color-emphasis-600: #7b8da6;
+  --ifm-color-emphasis-700: #94a3b8;
+  --ifm-color-emphasis-800: #cbd5e1;
+  --ifm-color-emphasis-900: #f1f5f9;
+  --ifm-color-emphasis-1000: #f8fafc;
+
+  --ifm-background-color: #06080c;
+  --ifm-background-surface-color: #0b0f17;
+  --ifm-font-color-base: #f1f5f9;
+  --ifm-color-content: var(--ifm-font-color-base);
+  --ifm-color-content-secondary: #94a3b8;
+  --ifm-code-background: var(--handbook-code-background);
+  --ifm-table-stripe-background: var(--ifm-background-surface-color);
+  --ifm-menu-color-background-active: #102a3a;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 210, 233, 0.1);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.navbar__title {
+  font-weight: 600;
+}
+
+/* Infima keeps button fills separate from text-link colors. */
+.button--primary:not(.button--outline) {
+  --ifm-button-background-color: var(--handbook-brand);
+  --ifm-button-border-color: var(--handbook-brand);
+  --ifm-button-color: var(--handbook-brand-ink);
+}
+
+.button--primary:not(.button--outline):hover {
+  --ifm-button-background-color: var(--handbook-brand-hover);
+  --ifm-button-border-color: var(--handbook-brand-hover);
+}
+
+.button--primary:not(.button--outline):active {
+  --ifm-button-background-color: var(--handbook-brand-active);
+  --ifm-button-border-color: var(--handbook-brand-active);
+}
+
+.theme-doc-sidebar-menu {
+  font-size: 0.9375rem;
+}
+
+.theme-doc-markdown h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.025em;
+}
+
+.theme-doc-markdown h2 {
+  font-size: 1.625rem;
+}
+
+.theme-doc-markdown h3 {
+  font-size: 1.25rem;
+}
+
+.theme-doc-markdown a:not(.hash-link) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.theme-code-block {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: none;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--handbook-footer-background);
+  --ifm-footer-color: var(--handbook-footer-muted);
+  --ifm-footer-link-color: var(--handbook-footer-muted);
+  --ifm-footer-link-hover-color: var(--handbook-brand-hover);
+  --ifm-footer-title-color: var(--handbook-footer-ink);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+@media screen and (max-width: 700px) {
+  .theme-doc-markdown h1 {
+    font-size: 1.875rem;
+  }
 }

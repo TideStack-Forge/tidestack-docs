@@ -1,73 +1,33 @@
 ---
-sidebar_position: 3
+title: 后端插件扩展
 ---
 
-# 扩展后端
+# 后端插件扩展
 
-扩展后端用于承接低代码难以直接覆盖、但又需要与平台模型体系协同的场景。
+后端插件为模型、脚本、流程或平台运行时增加可复用能力。按能力的使用位置选择接口，注册方式由具体扩展点决定。
 
-选择扩展点前先看：
+| 要增加的能力 | 教程 |
+| --- | --- |
+| 可视化编排中的新节点 | [逻辑流节点](./extend-logicflow/) |
+| 脚本可调用的共享对象 | [脚本上下文](./extend-script/) |
+| 表达式中的公共对象和方法 | [表达式上下文](./extend-expression/) |
+| 建模字段、参数及默认界面 | [字段类型](./extend-field/) |
+| 执行另一种脚本语言 | [新脚本语言](../../../fusion-development/plugin-extensions/backend/script-languages) |
+| 值转换、持久化和物理列类型 | [数据字段类型](../../../fusion-development/plugin-extensions/backend/data-field-types) |
+| 数据操作链中的可复用行为 | [数据模型插件](../../../fusion-development/plugin-extensions/backend/data-model-plugins) |
+| 构建模型时补字段和插件描述符 | [元数据装饰器插件](../../../fusion-development/plugin-extensions/backend/metadata-decorators) |
+| 业务模型的可选编辑与投影功能 | [业务模型插件](../../../fusion-development/plugin-extensions/backend/business-model-plugins) |
+| 文件介质、命名、路径与访问地址 | [文件上传存储扩展](../../../fusion-development/plugin-extensions/backend/upload-storage) |
+| 主体、Claims 和数据范围解析 | [数据权限扩展](../../../fusion-development/plugin-extensions/backend/data-permissions) |
+| 新认证协议或 provider 来源 | [认证方式插件](../../../fusion-development/plugin-extensions/backend/authentication) |
+| RPC、调度、消息与新模型来源 | [其他扩展入口](../../../fusion-development/plugin-extensions/backend/other-extension-points) |
 
-1. [融合开发总览](../../../fusion-development/overview)
-2. [何时用低代码，何时写代码](../../../fusion-development/when-to-use-code)
-3. [平台扩展点总表](../../../fusion-development/extension-points)
+## 实现顺序
 
-后端扩展按字段、表达式、脚本和逻辑流节点四类实现入口组织。
+1. 明确复用场景、稳定名称、输入输出、配置和兼容版本。
+2. 查目标接口、加载位置与同类实现，确认 SPI、Bean 或配置源等装配方式。
+3. 按 [扩展包指南](../../../fusion-development/backend-extension-packages)实现代码、注册文件与配套资源。
+4. 验证行为、打包发现以及模型、脚本、流程中的真实调用。
+5. 交付最小使用示例、升级影响和实际验证记录。
 
-## 先判断你要扩哪一层
-
-| 需求特征 | 更适合的扩展点 | 典型结果 |
-| ---- | ---- | ---- |
-| 需要沉淀新的字段语义、参数面板、默认 UI 和校验约定 | [扩展字段](./extend-field/) | 建模时多出一个可复用字段类型 |
-| 需要在 `${...}` 中提供新的全局对象、短方法或只读工具 | [扩展表达式](./extend-expression/) | 表达式里直接可用的新上下文对象 |
-| 需要在脚本中复用 helper、访问 Bean，或补新脚本语言 | [扩展脚本](./extend-script/) | 脚本上下文对象、脚本执行器 |
-| 需要在可视化编排中新增一个稳定节点 | [扩展逻辑流](./extend-logicflow/) | 节点库中的新节点类型 |
-
-如果你还没有确认需求该落在哪一层，先回到 [平台扩展点总表](../../../fusion-development/extension-points) 做判断，比直接下手写代码更省时间。
-
-## 常见扩展方式
-
-- [扩展字段](./extend-field/)
-- [扩展表达式](./extend-expression/)
-- [扩展脚本](./extend-script/)
-- [扩展逻辑流](./extend-logicflow/)
-
-## 一个后端扩展最小要交付什么
-
-无论你扩的是字段、表达式、脚本还是逻辑流，真正能在平台里生效的最小闭环通常都不只是一段 Java 代码，而是下面几部分的组合：
-
-1. 承载扩展能力的 Maven 模块或 JAR。
-2. 扩展实现本身，例如 `ExpressionContextContributor`、`ScriptContextContributor`、`NodeBuilder`、`FieldTypeDefinitionProvider`。
-3. 让平台发现它的注册信息，常见是 `META-INF/services/*`、`META-INF/ouroboros/*`、`META-INF/spring.factories` 和 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`。
-4. 验证入口，确认开发平台或运行时已经真的看到了这个能力。
-
-很多“代码写好了但平台里看不到”的问题，本质上都不是业务逻辑错了，而是第 3 步或第 4 步没有闭环。
-
-## 何时进入后端扩展
-
-常见场景包括：
-
-- 业务规则复杂，难以只靠标准模型和配置描述
-- 需要接入外部系统或封装通用能力
-- 需要提供新的字段类型、表达式能力或脚本上下文
-- 需要把定制代码稳定地纳入平台运行时
-
-## 推荐推进顺序
-
-1. 先用 [何时用低代码，何时写代码](../../../fusion-development/when-to-use-code) 判断是不是真的需要扩展。
-2. 再用本页的四类扩展点把问题归类。
-3. 进入对应专题，把实现、注册和验证方式走通。
-4. 最后回到 [高低开协同模式](../../../fusion-development/high-low-code-collaboration) 看业务开发者将如何继续消费这个能力。
-
-## 常见误区
-
-- 把一次性业务逻辑做成平台扩展，导致能力点越来越碎。
-- 只写 Spring Bean，不补 `META-INF/services` 或资源声明。
-- 只验证“代码能编译”，不验证页面、脚本、模型或流程里是否真的能引用。
-- 后端节点已经能执行，但开发平台里没有对应配置入口，业务人员仍然用不起来。
-
-## 建议阅读顺序
-
-1. 先判断需求属于字段、表达式、脚本还是逻辑流扩展
-2. 再进入对应专题查看实现方式
-3. 最后回到 [高低开协同模式](../../../fusion-development/high-low-code-collaboration) 检查扩展结果如何被业务开发继续复用
+应用内实现 Controller、Service，或调用模型、MQ 和调度服务，见 [后端开发](../../../fusion-development/backend-development/)。制作可复用插件时，也保留平台的执行身份、权限、事务和生命周期。

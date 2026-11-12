@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" modified="2026-11-11T00:00:00.000Z" agent="Codex" version="26.0.9" type="device">
+  <diagram id="model-sources-and-lifecycle" name="模型来源与生效阶段">
+    <mxGraphModel dx="1400" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="720" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="axis-title" value="&lt;b&gt;来源与治理边界&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontColor=#0B1F3A;fontSize=20;" vertex="1" parent="1"><mxGeometry x="40" y="35" width="250" height="40" as="geometry"/></mxCell>
+        <mxCell id="phase-title" value="&lt;b&gt;进入系统后的生效阶段&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=#0B1F3A;fontSize=20;" vertex="1" parent="1"><mxGeometry x="390" y="35" width="920" height="40" as="geometry"/></mxCell>
+
+        <mxCell id="phase-define" value="&lt;b&gt;定义 / 编码&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;形成模型或扩展契约&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#EEF4FD;strokeColor=#7AA7DE;strokeWidth=1.5;fontColor=#0B1F3A;fontSize=17;" vertex="1" parent="1"><mxGeometry x="390" y="90" width="205" height="70" as="geometry"/></mxCell>
+        <mxCell id="phase-package" value="&lt;b&gt;版本 / 打包&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;形成可交付资产&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#EEF4FD;strokeColor=#7AA7DE;strokeWidth=1.5;fontColor=#0B1F3A;fontSize=17;" vertex="1" parent="1"><mxGeometry x="625" y="90" width="205" height="70" as="geometry"/></mxCell>
+        <mxCell id="phase-load" value="&lt;b&gt;启动 / 加载&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;发现、校验与装配&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#EEF4FD;strokeColor=#7AA7DE;strokeWidth=1.5;fontColor=#0B1F3A;fontSize=17;" vertex="1" parent="1"><mxGeometry x="860" y="90" width="205" height="70" as="geometry"/></mxCell>
+        <mxCell id="phase-runtime" value="&lt;b&gt;运行 / 刷新&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;解释、执行或按契约刷新&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#EEF4FD;strokeColor=#7AA7DE;strokeWidth=1.5;fontColor=#0B1F3A;fontSize=17;" vertex="1" parent="1"><mxGeometry x="1095" y="90" width="235" height="70" as="geometry"/></mxCell>
+
+        <mxCell id="platform-source" value="&lt;b&gt;平台能力与扩展&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;Java 类型、注解、自动配置、SPI、JAR 元数据&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F3F7FD;strokeColor=#0B63CE;strokeWidth=2;fontColor=#0B1F3A;fontSize=18;align=left;spacingLeft=18;" vertex="1" parent="1"><mxGeometry x="40" y="205" width="300" height="110" as="geometry"/></mxCell>
+        <mxCell id="platform-define" value="定义稳定契约与实现" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#A9C6EA;fontColor=#264A73;fontSize=15;" vertex="1" parent="1"><mxGeometry x="390" y="225" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="platform-package" value="编译进入程序包" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#A9C6EA;fontColor=#264A73;fontSize=15;" vertex="1" parent="1"><mxGeometry x="625" y="225" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="platform-load" value="启动期发现与装配" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#A9C6EA;fontColor=#264A73;fontSize=15;" vertex="1" parent="1"><mxGeometry x="860" y="225" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="platform-runtime" value="作为引擎或扩展执行" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#A9C6EA;fontColor=#264A73;fontSize=15;" vertex="1" parent="1"><mxGeometry x="1095" y="225" width="235" height="56" as="geometry"/></mxCell>
+
+        <mxCell id="app-source" value="&lt;b&gt;应用定义与资源&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;工作区文件、模型元数据、扩展资源&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0FAF7;strokeColor=#0F766E;strokeWidth=2;fontColor=#0B1F3A;fontSize=18;align=left;spacingLeft=18;" vertex="1" parent="1"><mxGeometry x="40" y="355" width="300" height="110" as="geometry"/></mxCell>
+        <mxCell id="app-define" value="在设计时定义与校验" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#8BC5B9;fontColor=#285D54;fontSize=15;" vertex="1" parent="1"><mxGeometry x="390" y="375" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="app-package" value="进入应用版本" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#8BC5B9;fontColor=#285D54;fontSize=15;" vertex="1" parent="1"><mxGeometry x="625" y="375" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="app-load" value="由统一运行时基座加载" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#8BC5B9;fontColor=#285D54;fontSize=15;" vertex="1" parent="1"><mxGeometry x="860" y="375" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="app-runtime" value="装配执行；部分模型按生命周期刷新" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#8BC5B9;fontColor=#285D54;fontSize=15;" vertex="1" parent="1"><mxGeometry x="1095" y="375" width="235" height="56" as="geometry"/></mxCell>
+
+        <mxCell id="managed-source" value="&lt;b&gt;受管自定义定义&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657F&quot; style=&quot;font-size:14px&quot;&gt;特定能力的数据库化管理数据&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFF8EC;strokeColor=#B45309;strokeWidth=2;fontColor=#0B1F3A;fontSize=18;align=left;spacingLeft=18;" vertex="1" parent="1"><mxGeometry x="40" y="505" width="300" height="110" as="geometry"/></mxCell>
+        <mxCell id="managed-define" value="通过对应管理功能维护" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#DDB66F;fontColor=#5F420F;fontSize=15;" vertex="1" parent="1"><mxGeometry x="390" y="525" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="managed-package" value="由该能力管理持久化与版本边界" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#DDB66F;fontColor=#5F420F;fontSize=15;" vertex="1" parent="1"><mxGeometry x="625" y="525" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="managed-load" value="由专用 Provider 投影到运行时" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#DDB66F;fontColor=#5F420F;fontSize=15;" vertex="1" parent="1"><mxGeometry x="860" y="525" width="205" height="56" as="geometry"/></mxCell>
+        <mxCell id="managed-runtime" value="按对应能力的启停与刷新规则生效" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#DDB66F;fontColor=#5F420F;fontSize=15;" vertex="1" parent="1"><mxGeometry x="1095" y="525" width="235" height="56" as="geometry"/></mxCell>
+
+        <mxCell id="note" value="来源决定模型由谁定义和如何治理；阶段决定模型何时被发现、装载与执行。两者不能混为同一分类。" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#F7F7FB;strokeColor=#9EA6B4;fontColor=#39475A;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="205" y="655" width="990" height="48" as="geometry"/></mxCell>
+
+        <mxCell id="phase-arrow-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#687386;strokeWidth=1.8;endArrow=block;endFill=1;" edge="1" parent="1" source="phase-define" target="phase-package"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="phase-arrow-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#687386;strokeWidth=1.8;endArrow=block;endFill=1;" edge="1" parent="1" source="phase-package" target="phase-load"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="phase-arrow-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#687386;strokeWidth=1.8;endArrow=block;endFill=1;" edge="1" parent="1" source="phase-load" target="phase-runtime"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

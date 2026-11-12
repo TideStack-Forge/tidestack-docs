@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="26.0.9" type="device">
+  <diagram id="model-relations-execution" name="逻辑执行、集成与任务触发">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="520">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="e43" source="schedule" target="logic" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.14285714285714285;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="144" y="160" />
+              <mxPoint x="400" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e44" source="delayed" target="logic" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e41" source="mq" target="logic" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.0;exitY=0.3333333333333333;entryX=1.0;entryY=0.3333333333333333;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e42" source="logic" target="mq" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.75;entryX=0.0;entryY=0.75;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e36" source="webapi" target="logic" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e38" source="logic" target="flow-node" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.8571428571428571;exitY=0.0;entryX=0.5;entryY=1.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="160" />
+              <mxPoint x="816" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e39" source="logic" target="rpc" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e40" source="rpc" target="rpc-auth" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#6C7E93;strokeWidth=1.4;endArrow=block;endSize=6;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e45" source="logic" target="notification" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#248672;strokeWidth=1.4;endArrow=block;endSize=6;exitX=0.0;exitY=0.75;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="304" y="280" />
+              <mxPoint x="304" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e43-label" value="定时触发" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="232.0" y="126" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e44-label" value="到时触发" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="492.0" y="154" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e41-label" value="消费触发" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="206" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e42-label" value="生产消息" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="294" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e36-label" value="绑定处理" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="272.0" y="222" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e38-label" value="使用节点" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="648.0" y="126" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e39-label" value="远程调用" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="496.0" y="338" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e40-label" value="认证引用" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#6C7E93;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="608.0" y="406" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="e45-label" value="发送通知" vertex="1" parent="1" style="text;html=0;fillColor=#FFFFFF;strokeColor=none;fontSize=16;fontFamily=Helvetica;fontColor=#248672;align=center;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="208.0" y="342" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="schedule" value="&lt;b&gt;计划任务定义&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;Cron 与目标逻辑流&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="delayed" value="&lt;b&gt;延迟任务&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;运行时提交的一次性任务&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;运行任务&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-node" value="&lt;b&gt;逻辑流节点定义&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;节点类型与配置契约&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="24" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="webapi" value="&lt;b&gt;WebAPI 模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;HTTP 契约与处理绑定&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F2F6FF;strokeColor=#8BAAE1;strokeWidth=1.8;dashed=0;fontColor=#335890;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="logic" value="&lt;b&gt;逻辑流模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;节点、连线与执行上下文&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F2F6FF;strokeColor=#8BAAE1;strokeWidth=1.8;dashed=0;fontColor=#335890;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="mq" value="&lt;b&gt;消息队列绑定&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;生产 / 消费与目标逻辑流&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="208" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="notification" value="&lt;b&gt;消息通知模板&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;内容、渠道与接收人&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="32" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="rpc" value="&lt;b&gt;RPC 模型&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;外部调用与协议契约&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F2F6FF;strokeColor=#8BAAE1;strokeWidth=1.8;dashed=0;fontColor=#335890;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="368" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="rpc-auth" value="&lt;b&gt;RPC 认证定义&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:17px&quot;&gt;认证类型与凭据引用&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;配套定义&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B4C0D0;strokeWidth=1.8;dashed=0;fontColor=#52657F;fontSize=26;align=left;spacingLeft=16;" vertex="1" parent="1">
+          <mxGeometry x="704" y="392" width="224" height="96" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

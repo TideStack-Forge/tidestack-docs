@@ -1,83 +1,70 @@
 ---
 sidebar_position: 99.3
-title: 运维
+title: 运维常见问题
 ---
 
-# 运维
+# 运维常见问题
 
-运维 FAQ 优先回答“环境已经搭起来了，但为什么还跑不稳”和“出问题时先查哪一层”这两类高频问题。
+## 容器已启动，为什么平台仍不可用？
 
-## Q: 平台容器已经启动了，但应用发布或运行失败，先查什么？
+容器处于运行状态不代表应用及依赖已就绪。先看平台日志，再检查数据库、消息服务和入口代理。以下命令适用于手册的 Compose 部署，服务名按实际清单调整：
 
-优先按下面顺序检查：
+```bash
+docker compose ps -a
+docker compose logs --since 15m --tail 500 ouroboros-develop
+docker compose exec -T ouroboros-rabbitmq rabbitmq-diagnostics -q ping
+```
 
-1. Docker Engine API 是否可达。
-2. 开发平台是否拿到了正确的 `HOST_WORKSPACE_PATH`。
-3. `workspace` 目录是否真实存在、可持久化、可被平台和运行容器共同访问。
-4. `ouroboros-mothership` 基座镜像是否已经准备好，且版本与当前平台匹配。
-5. 平台日志里是否已经出现容器创建、镜像拉取或工作区挂载相关错误。
+通过实际平台地址检查 HTTP 结果：
 
-如果你当前还在安装阶段，先回看 [安装与初始化](../operations/installation-and-initialization) 和 [环境要求](../operations/environment-requirements)。
+```bash
+export PLATFORM_URL='https://platform.example.com'
+curl -i --max-time 5 "$PLATFORM_URL/actuator/health"
+```
 
-## Q: 平台能打开，但关键开发入口一进去就报错，先查数据库还是 RabbitMQ？
+保留发生时间、请求路径、HTTP 状态和对应日志，再按 [故障排查](../operations/troubleshooting) 定位。入口若限制健康端点，需要在允许的网络和认证条件下检查。
 
-两个都要查，但建议顺序是：
+## 平台能打开，为什么应用实例创建或启动失败？
 
-1. 先看平台服务日志有没有持续报错。
-2. 再确认数据库连接是否正常。
-3. 再确认 RabbitMQ 是否可用。
-4. 最后再看最近是否改过初始化配置、环境变量或镜像版本。
+先确认应用使用 Docker 还是 Kubernetes 后端，再检查该后端的连接权限、资源和运行日志。
 
-原因很简单：开发入口报错不一定是页面问题，很多时候是平台启动后某个关键依赖没有真正准备好。
+Docker 部署重点检查 Engine API 是否可达、基座镜像是否可用、工作区是否可写及挂载是否一致。`HOST_WORKSPACE_PATH` 填宿主机工作区绝对路径，并与平台容器工作区对应同一份文件。
 
-如果你想看更系统的排障顺序，继续看 [备份、监控与排障](../operations/backup-monitoring-and-troubleshooting)。
+Kubernetes 部署检查集群连接、命名空间、RBAC、镜像拉取和存储挂载。平台数据库可用不代表业务应用的数据源可用。
 
-## Q: 升级前最少应该备份什么，才算有回滚基础？
+对应说明见 [Docker Compose](../operations/deployment-methods/docker-compose)、[远程 Docker](../operations/deployment-methods/remote-docker) 和 [Kubernetes](../operations/deployment-methods/kubernetes)。
 
-至少不要只备份数据库。
+## 页面正常，为什么任务、消息或实时状态异常？
 
-建议最少保留下面几类内容：
+| 症状 | 优先检查 |
+| --- | --- |
+| 定时任务未执行 | 任务启用状态、调度时间和时区、运行实例日志 |
+| 消息积压 | 队列和绑定、消费者数量、未确认消息、消费异常 |
+| 页面状态不更新 | WebSocket 握手、认证、订阅目的地、服务端发送记录 |
 
-- 数据库备份
-- 平台配置、环境变量和外部连接参数
-- 上传文件、附件或文档类持久化目录
-- 镜像标签、部署脚本和发布清单
-- 升级前的执行记录与验证记录
+RabbitMQ 的只读检查示例：
 
-如果这些内容没有一起保留，即便数据库能恢复，很多环境也很难真正回到“可运行”状态。
+```bash
+docker compose exec -T ouroboros-rabbitmq rabbitmqctl \
+  list_queues name messages_ready messages_unacknowledged consumers
+```
 
-平台自身的变更见 [平台升级与回滚](../operations/release-upgrade-and-rollback)；业务应用变更见 [业务应用发布与回退](../operations/application-release-and-rollback)。
+默认 WebSocket 入口为 `/websocket/stomp`。代理需要支持连接升级；连上以后还要确认认证和业务订阅成功。任务、消息和页面反馈的完整排查见 [任务、消息与实时链路维护](../operations/task-message-and-realtime-link-maintenance)。
 
-## Q: 页面访问正常，但定时任务、消息消费或实时推送异常，先查哪里？
+## 应用发布后异常，什么时候回退？
 
-不要只盯着页面本身，建议先判断是哪条运行链路出了问题：
+记录本次应用版本、运行实例、镜像和配置变更，先判断是否由本次发布引起。回退前核对新旧版本的数据兼容性，尤其是表结构、初始化数据和外部系统副作用。
 
-- 定时任务没跑：优先查调度链路
-- 异步处理不推进：优先查消息链路
-- 页面在线但状态不刷新：优先查实时连接链路
+应用版本回退不会自动撤销数据库变更或已经发出的消息。按 [业务应用发布与回退](../operations/application-release-and-rollback) 执行并验证关键业务流程；平台自身升级走 [平台升级与回滚](../operations/release-upgrade-and-rollback)。
 
-如果是消息链路，RabbitMQ 正常不代表整条链路正常，还要继续看绑定加载、消费者装配和运行时接入。
+## 升级前需要备份什么？
 
-如果是实时链路，除了 WebSocket 服务本身，还要继续看反向代理、鉴权和订阅路径。当前默认 WebSocket 入口是 `/websocket/stomp`。
+至少保存数据库、配置和环境变量、上传附件等持久化文件、镜像标签及部署清单。需要恢复的业务应用也应保留版本和外部连接配置。
 
-专项排查路径请看 [任务、消息与实时链路维护](../operations/task-message-and-realtime-link-maintenance)。
+备份是否可用以恢复验证为准。具体范围和操作见 [备份与恢复](../operations/backup-monitoring-and-troubleshooting)。
 
-## Q: 排障时应该先看平台服务日志，还是业务日志？
+## 排障该看服务日志还是业务日志？
 
-这两个日志解决的问题不同：
+启动失败、依赖连接、容器创建和执行异常查看服务日志；核对操作者、业务对象及操作结果查看业务日志。两者按发生时间、业务标识和请求标识关联。
 
-- 平台服务日志：更适合查启动失败、依赖连接异常、容器和运行时错误
-- 业务日志：更适合查“谁在什么时候对哪个业务对象做了什么”
-
-如果你面对的是“系统为什么起不来”“依赖为什么连不上”，先看平台服务日志。
-
-如果你面对的是“这次操作是谁做的、结果如何、影响了什么对象”，先看业务日志。
-
-更完整的说明，请看 [业务日志与审计回溯](../operations/business-logs-and-audit-traceability)。
-
-## Q: 我什么时候该回 FAQ，什么时候该直接进运维主线文档？
-
-- 你已经有明确症状，但还不知道先查哪里：先看 FAQ
-- 你正在设计环境、安装、升级、备份和长期维护流程：直接进 [运维管理](../operations/)
-
-如果你需要先盘点平台有哪些会影响部署方案的能力，也可以先看 [平台能力地图](../reference/platform-capability-map)。
+记录问题时附环境版本、时间、复现步骤、影响范围及脱敏后的响应和日志。业务操作回溯见 [业务日志与审计回溯](../operations/business-logs-and-audit-traceability)，持续巡检见 [运维管理](../operations/)。

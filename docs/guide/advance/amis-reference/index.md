@@ -2,119 +2,58 @@
 sidebar_position: 2
 ---
 
-# AMIS 开发参考
+# PrismUI 开发参考
 
-这页是潮汐栈开发者使用 AMIS 的统一入口。它帮助你在“AMIS 原生能力”和“潮汐栈平台能力”之间快速定位文档，而不是把两套文档割裂开来查。
+本页用于编写和核对潮汐栈页面的 UI Schema：组件属性、表达式和事件语法查 PrismUI 文档；页面承载、平台组件、接口调用和 SDK 行为查对应的平台契约。让 AI 生成页面时，也应同时提供这两类上下文。
 
-在潮汐栈里，AMIS 不是孤立使用的。它通常会和下面几类能力一起出现：
+## 按问题查参考
 
-- 低代码页面与 UI Schema
-- 平台基座内建组件
-- 微前端 SDK
-- 组件库扩展
-
-如果你只是查 AMIS 原生组件、表达式或事件动作，优先进入 AMIS 原生文档；如果你要把这些能力接入潮汐栈页面、SDK、组件库或微前端，继续看 handbook 里的平台文档。
-
-## 先判断你现在遇到的是哪类问题
-
-| 当前问题 | 优先去看哪里 |
+| 需要确定什么 | 参考入口 |
 | --- | --- |
-| 我不知道某个 Schema、组件属性或事件动作怎么写 | [AMIS 原生文档](https://baidu.github.io/amis/zh-CN/docs/index) |
-| 我想查 Page、Form、CRUD、Dialog、Table 等组件 | [AMIS 组件文档](https://baidu.github.io/amis/zh-CN/components/page) |
-| 我想查表达式、模板、数据映射、数据域和联动 | [AMIS 概念文档](https://baidu.github.io/amis/zh-CN/docs/concepts/schema) |
-| 我想知道潮汐栈基座已经内建了哪些前端组件 | [前端 API](../../../api/frontend/) 和 [基座内建组件](../../../api/frontend/buildin-comps/) |
-| 我想在微前端里调用平台对话框、抽屉、事件或工具 | [SDK 文档](../../../api/frontend/sdk/) |
-| 我需要在低代码页面里注册新的可复用控件 | [组件库](../extend-frontend/amis-component/) |
-| 我还没想清楚该写 UI Schema 还是做前端扩展 | [前端融合开发方式](../../../fusion-development/frontend-extension-paths) 和 [前端 FAQ](../../../faq/frontend/) |
+| Schema、模板、数据域、数据映射与事件动作 | [PrismUI 核心概念](https://prismui.io/docs/zh-CN/docs/concepts/schema) |
+| Page、Form、CRUD、Dialog、Table 等组件属性 | [PrismUI 组件文档](https://prismui.io/docs/zh-CN/components/page) |
+| SchemaNode、API、ClassName、Definitions 等通用类型 | [PrismUI 类型说明](https://prismui.io/docs/zh-CN/docs/types/schemanode) |
+| className、CSS 变量、响应式和状态样式 | [PrismUI 样式说明](https://prismui.io/docs/zh-CN/style/index) |
+| 自定义组件、编辑器、国际化与埋点机制 | [PrismUI 扩展机制](https://prismui.io/docs/zh-CN/docs/extend/custom-react) |
+| 渲染和初始化方式 | [PrismUI 快速开始](https://prismui.io/docs/zh-CN/docs/start/getting-started) |
+| 平台如何承载和引用 Schema | [UI Schema](../../../concepts/ui-schema/)、[页面交付](../../../low-code/page-delivery-with-dynamic-forms-and-ui-schema) |
+| 平台已内建的渲染组件 | [基座内建组件](../../../api/frontend/buildin-comps/) |
+| 弹窗、抽屉、页签、事件总线与 Schema 渲染 | [SDK](../../../api/frontend/sdk/)、[事件与组件注册](../../../api/frontend/sdk/completion-methods/events-schema-and-component-registration)、[导航与弹窗](../../../api/frontend/sdk/completion-methods/navigation-and-tabs-and-dialogs) |
+| 可复用控件与整页应用的实现位置 | [前端开发](../../../fusion-development/frontend-extension-paths)、[组件库](../extend-frontend/amis-component/)、[微前端应用](../extend-frontend/micro-app/) |
 
-## AMIS 原生能力入口
+PrismUI 文档中的示例可用于理解和试验语法。目标平台实际使用的渲染器版本、注册组件和数据上下文仍需单独核对，官方沙箱中的效果不能代替平台内的验证。
 
-| 能力 | 适合查什么 |
+外部参考采用 PrismUI 文档。现有工程中的 `amis`、`initAmisComponentLib` 等包名或协议标识按目标 SDK 保留；切换参考站点不等于迁移运行时依赖。
+
+## 生成页面前准备上下文
+
+先给出当前 UI 模型、已有 Schema 和一个真实接口响应，再描述要增加的行为。若页面由业务模型投影产生，应先检查模型配置和投影机制，确认修改位置。
+
+| 上下文 | 需要明确的内容 |
 | --- | --- |
-| [快速开始](https://baidu.github.io/amis/zh-CN/docs/start/getting-started) | AMIS SDK、React 使用方式和基础渲染方式 |
-| [核心概念](https://baidu.github.io/amis/zh-CN/docs/concepts/schema) | Schema、模板、表达式、数据域、数据映射、事件动作 |
-| [组件文档](https://baidu.github.io/amis/zh-CN/components/page) | 页面、表单、CRUD、弹窗、抽屉、表格、列表、容器等组件属性 |
-| [类型说明](https://baidu.github.io/amis/zh-CN/docs/types/schemanode) | SchemaNode、API、ClassName、Definitions 等通用类型 |
-| [样式说明](https://baidu.github.io/amis/zh-CN/style/index) | className、CSS 变量、响应式和状态样式 |
-| [扩展机制](https://baidu.github.io/amis/zh-CN/docs/extend/custom-react) | 自定义组件、SDK 扩展、编辑器扩展、国际化和埋点 |
+| 页面入口 | UI 模型名称、路由、页面参数、菜单与权限 |
+| 数据 | 接口路径和方法、请求参数、响应结构、分页、空值和错误示例 |
+| 交互 | 查询、提交、弹窗、联动分别由什么事件触发，影响哪个数据域 |
+| 组件 | 当前版本可用的 PrismUI 属性、平台内建组件、自定义组件及其注册名 |
+| 状态 | 加载、空数据、失败、只读、禁用和无权限时的预期表现 |
 
-AMIS 原生文档里的示例通常带有可运行沙箱，尤其是 `schema:` 示例。查组件和语法时优先使用这些可运行示例验证效果，再把最终 Schema 放回潮汐栈页面里。
+可以让 AI 按“修改 Schema → 说明数据来源和事件目标 → 给出验证步骤”交付。不要只根据页面截图推测接口字段或组件属性。任务拆解见 [用 AI 完成功能开发](../../../fusion-development/ai-assisted-development)。
 
-## 在潮汐栈里，AMIS 通常承担什么角色
+## 在平台内验证
 
-你可以把 AMIS 理解成“平台前端里的结构化界面描述层”。
+1. 检查 Schema 结构、组件名称和属性是否适用于目标版本，确认自定义组件已加载。
+2. 从真实菜单或 UI 模型入口打开页面，确认路由参数、初始数据和当前用户上下文正确。
+3. 用实际响应检查列表、表单和详情的数据映射；覆盖空数据、分页、字段缺失和错误返回。
+4. 逐一操作查询、提交、弹窗和联动，核对事件读取的数据域、目标组件和最终请求。
+5. 用只读或无权限账号验证界面状态和后端访问限制；刷新或重新进入页面，检查状态是否符合预期。
 
-它最适合承接：
-
-- 列表、表单、详情、操作面板这类结构化页面
-- 需要通过 Schema 快速交付和迭代的业务界面
-- 基于平台现成组件和运行时能力拼装出来的页面
-
-它不太适合直接承接：
-
-- 大量自定义状态管理和复杂交互的整页应用
-- 独立路由、复杂图形交互或强工程化的前端产品
-- 本质上更适合微前端页面的场景
-
-如果你发现 Schema 越写越像“在 JSON 里硬写一整套前端应用逻辑”，通常就该回头评估是否应该切到微前端路线。
-
-## 平台内怎么接 AMIS
-
-### 写 UI Schema 页面
-
-如果你要配置结构化页面，先用 AMIS 文档确认组件和语法，再回到平台文档确认页面承载方式：
-
-- [UI Schema](../../../concepts/ui-schema/)
-- [页面交付：标准页面、动态表单与 UI Schema](../../../low-code/page-delivery-with-dynamic-forms-and-ui-schema)
-- [基座内建组件](../../../api/frontend/buildin-comps/)
-
-### 调用平台 SDK 能力
-
-如果 Schema 或微前端页面需要打开弹窗、抽屉、页签、事件总线或动态渲染 Schema，看：
-
-- [SDK 文档](../../../api/frontend/sdk/)
-- [事件、Schema 与组件注册](../../../api/frontend/sdk/completion-methods/events-schema-and-component-registration)
-- [导航、页签、弹窗与抽屉](../../../api/frontend/sdk/completion-methods/navigation-and-tabs-and-dialogs)
-
-### 补充平台组件
-
-如果 AMIS 原生组件不够，但需求仍然属于低代码页面里的复用控件，优先走组件库：
-
-- [扩展前端](../extend-frontend/)
-- [组件库](../extend-frontend/amis-component/)
-- [前端融合开发方式](../../../fusion-development/frontend-extension-paths)
-
-### 切到微前端
-
-如果页面需要独立路由、复杂状态、专用可视化或重前端交互，优先按微前端承载：
-
-- [前端融合开发方式](../../../fusion-development/frontend-extension-paths)
-- [微前端应用](../extend-frontend/micro-app/)
-- [何时用低代码，何时写代码](../../../fusion-development/when-to-use-code)
-
-## 一条很实用的判断线
-
-### 只是写 Schema
-
-优先看 AMIS 原生文档，再结合平台内建组件和现成页面模式。
-
-### 需要调用平台能力
-
-优先看 [前端 API](../../../api/frontend/)，尤其是 SDK 和基座组件相关内容。
-
-### 需要做自定义控件
-
-优先看 [扩展前端](../extend-frontend/) 里的 [组件库](../extend-frontend/amis-component/)。
-
-### 需要做整页复杂交互
-
-先回到 [前端融合开发方式](../../../fusion-development/frontend-extension-paths)，判断是否应该用微前端页面，而不是继续堆 Schema。
+如果失败，将相关 Schema 片段、触发步骤、请求响应和控制台错误反馈给 AI。涉及复杂状态、独立路由或专用可视化时，按 [前端开发](../../../fusion-development/frontend-extension-paths)确定组件或微前端边界，保留平台的页面与权限入口。
 
 ## 开发小贴士
 
 ### 事件动作里的 expression 上下文
 
-在 AMIS 事件动作里写 `expression` 时，常见可用上下文可以这样理解：
+在 PrismUI 事件动作里写 `expression` 时，常见可用上下文可以这样理解：
 
 1. 事件自身的 `data`
    例如通过 `broadcast` 动作广播事件时，可以在 `data` 中传值；监听该事件的动作表达式里可以直接读取这些字段。
@@ -125,16 +64,8 @@ AMIS 原生文档里的示例通常带有可运行沙箱，尤其是 `schema:` �
 
 如果事件的 `data` 和当前数据域里出现同名字段，通常需要显式通过 `__super.xxx` 或 `__rendererData.xxx` 来区分来源，避免表达式读错值。
 
-## 推荐阅读顺序
+## 相关文档
 
-1. [AMIS 官方文档](https://baidu.github.io/amis/zh-CN/docs/index)
-2. [前端 API](../../../api/frontend/)
-3. [SDK 文档](../../../api/frontend/sdk/)
-4. [扩展前端](../extend-frontend/)
-5. [组件库](../extend-frontend/amis-component/)
-
-## 下一步看哪里
-
-- 想先判断该不该写前端扩展：看 [前端融合开发方式](../../../fusion-development/frontend-extension-paths)
-- 想直接查平台前端能力：看 [前端 API](../../../api/frontend/)
-- 想扩展平台前端：看 [扩展前端](../extend-frontend/)
+- [PrismUI 官方文档](https://prismui.io/docs/zh-CN/docs/index)
+- [前端 API](../../../api/frontend/)
+- [微前端包管理](../extend-frontend/)

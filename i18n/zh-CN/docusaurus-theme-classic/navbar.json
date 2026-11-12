@@ -23,9 +23,9 @@
     "message": "运维管理",
     "description": "Navbar item with label 运维管理"
   },
-  "item.label.核心概念": {
-    "message": "核心概念",
-    "description": "Navbar item with label 核心概念"
+  "item.label.概念与设计": {
+    "message": "概念与设计",
+    "description": "Navbar item with label 概念与设计"
   },
   "item.label.参考资料": {
     "message": "参考资料",

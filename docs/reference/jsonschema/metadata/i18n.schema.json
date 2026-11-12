@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/i18n.schema.json",
   "title": "国际化语言包",
-  "description": "TideStack metadata schema for i18n. Legacy runtime packaging may still use Ouroboros paths.",
+  "description": "定义一种语言的基本信息及按命名空间组织的翻译消息，供平台国际化机制查找和展示。",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -12,29 +12,36 @@
   ],
   "properties": {
     "locale": {
-      "type": "string"
+      "type": "string",
+      "description": "语言区域标识，如 zh-CN 或 en-US。"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "语言在选择界面中的显示名称。"
     },
     "version": {
-      "type": "string"
+      "type": "string",
+      "description": "语言包版本标识。"
     },
     "enabled": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "是否启用该定义。"
     },
     "isDefault": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "是否将该语言标记为默认语言。"
     },
     "direction": {
       "type": "string",
       "enum": [
         "LTR",
         "RTL"
-      ]
+      ],
+      "description": "文字方向：LTR 为从左到右，RTL 为从右到左。"
     },
     "timestamp": {
-      "type": "integer"
+      "type": "integer",
+      "description": "语言包的时间戳，由对应语言包生产方提供。"
     },
     "messages": {
       "type": "object",
@@ -43,7 +50,9 @@
         "additionalProperties": {
           "type": "string"
         }
-      }
+      },
+      "description": "两层消息映射：第一层为命名空间，第二层为消息键，叶子值为翻译字符串。"
     }
-  }
+  },
+  "$comment": "Source: core/ouroboros-i18n/ouroboros-i18n-runtime/src/main/java/com/ouroboros/i18n/runtime/model/I18nLocaleImpl.java"
 }

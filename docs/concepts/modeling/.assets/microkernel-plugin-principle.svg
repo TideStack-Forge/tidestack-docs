@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="microkernel-plugin-principle-title microkernel-plugin-principle-desc" id="microkernel-plugin-principle-root">
+<title id="microkernel-plugin-principle-title">微核心与插件化</title>
+<desc id="microkernel-plugin-principle-desc">精简稳定的核心通过明确契约连接独立插件，能力按应用需要组合和装配。</desc>
+<defs>
+      <style>#microkernel-plugin-principle-root { font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif; }
+      #microkernel-plugin-principle-root .diagram-container { max-width:100%;overflow-x:auto }
+      @media print {
+#microkernel-plugin-principle-root .diagram-container { overflow:visible }
+}</style><marker id="microkernel-plugin-principle-microkernel-plugin-principle-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" fill="#71839a" /></marker></defs>
+<rect width="1200" height="480" fill="#fff" />
+<path stroke-width="1.5" marker-end="url(#microkernel-plugin-principle-microkernel-plugin-principle-arrow)" d="M464 204 H488 Q496 204 496 196 V104 Q496 96 504 96 H576" fill="none" stroke="#71839a" /><path stroke-width="1.5" marker-end="url(#microkernel-plugin-principle-microkernel-plugin-principle-arrow)" d="M464 240 H576" fill="none" stroke="#71839a" /><path stroke-width="1.5" marker-end="url(#microkernel-plugin-principle-microkernel-plugin-principle-arrow)" d="M464 276 H536 Q544 276 544 284 V376 Q544 384 552 384 H576" fill="none" stroke="#71839a" /><g data-node="core" data-parent="1"><rect x="40" y="176" width="416" height="128" rx="8" fill="#edf5ff" stroke="#8eb7e9" stroke-width="1.5" />
+<text x="248" y="236" fill="#1d4f91" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">微核心</text>
+<text x="248" y="268" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">稳定契约与必要运行机制</text></g>
+<g data-node="plugin-a" data-parent="1"><rect x="584" y="40" width="576" height="112" rx="8" fill="#f0fdfa" stroke="#73cfc2" stroke-width="1.5" />
+<text x="872" y="92" fill="#0f655d" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">业务能力插件</text>
+<text x="872" y="124" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">独立实现与演进</text></g>
+<g data-node="plugin-b" data-parent="1"><rect x="584" y="184" width="576" height="112" rx="8" fill="#f0fdfa" stroke="#73cfc2" stroke-width="1.5" />
+<text x="872" y="236" fill="#0f655d" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">界面能力插件</text>
+<text x="872" y="268" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">通过扩展点接入</text></g>
+<g data-node="plugin-c" data-parent="1"><rect x="584" y="328" width="576" height="112" rx="8" fill="#fff8ec" stroke="#dfb570" stroke-width="1.5" />
+<text x="872" y="380" fill="#7b4c17" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">集成能力插件</text>
+<text x="872" y="412" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">按应用需要组合与装配</text></g>
+</svg>

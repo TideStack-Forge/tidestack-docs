@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/position.schema.json",
   "title": "岗位定义",
-  "description": "TideStack metadata schema for position. Legacy runtime packaging may still use Ouroboros paths.",
+  "description": "声明可被组织、授权或审批候选人规则引用的岗位标识、名称和级别。",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -11,16 +11,21 @@
   ],
   "properties": {
     "key": {
-      "type": "string"
+      "type": "string",
+      "description": "岗位的稳定标识，供其他配置引用。"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "岗位显示名称。"
     },
     "level": {
-      "type": "string"
+      "type": "string",
+      "description": "岗位级别的字符串标识，不是数值类型。"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
     }
-  }
+  },
+  "$comment": "Source: ability/ouroboros-organization-structure/ouroboros-organization-structure-core/src/main/java/com/ouroboros/organizationstructure/PositionDefinition.java"
 }

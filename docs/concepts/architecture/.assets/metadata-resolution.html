@@ -1,0 +1,59 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同名定义：内容合并与整项覆盖</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1600 788" width="1600" height="788" role="img" aria-labelledby="metadata-resolution-title metadata-resolution-desc">
+<title id="metadata-resolution-title">同名定义：内容合并与整项覆盖</title>
+<desc id="metadata-resolution-desc">模块树按模块标识合并菜单与权限集合；UI Schema 按路径选择高优先级的完整定义，不从低优先级定义补齐缺少的字段或动作。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
+<marker id="a98a4b2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#98a4b2"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs>
+<rect width="1600" height="860" fill="white"/>
+
+<rect x="40" y="96" width="744" height="664" rx="8" fill="#f5f1fc" fill-opacity="0.55" stroke="#b3a0d6" stroke-width="1"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#63448e">内容合并：模块树</text>
+<rect x="816" y="96" width="744" height="664" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="836" y="126" font-size="18" font-weight="600" fill="#204f86">整项覆盖：UI Schema</text>
+<path d="M232 488L232 360" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)"/>
+<path d="M592 488L592 360" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)"/>
+<path d="M1008 488L1008 360" fill="none" stroke="#98a4b2" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a98a4b2)"/>
+<path d="M1368 488L1368 360" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<g data-node="merged-module"><rect x="80" y="176" width="664" height="176" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="412.0" y="232.5" font-size="24" font-weight="600" fill="#216149" text-anchor="middle">生效模块：采购</text>
+<text x="412.0" y="261.5" font-size="20" fill="#52657f" text-anchor="middle">菜单：查询、录入、分析</text>
+<text x="412.0" y="290.5" font-size="20" fill="#52657f" text-anchor="middle">权限：查看、编辑、导出</text>
+<text x="412.0" y="319.5" font-size="20" fill="#52657f" text-anchor="middle">保留双方提供的菜单与权限</text>
+</g>
+<g data-node="base-module"><rect x="64" y="496" width="336" height="192" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="232.0" y="575.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">基础模块：采购</text>
+<text x="232.0" y="603.0" font-size="19" fill="#52657f" text-anchor="middle">菜单：查询、录入</text>
+<text x="232.0" y="631.0" font-size="19" fill="#52657f" text-anchor="middle">权限：查看、编辑</text>
+</g>
+<g data-node="app-module"><rect x="424" y="496" width="336" height="192" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="592.0" y="575.0" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用模块：采购</text>
+<text x="592.0" y="603.0" font-size="19" fill="#52657f" text-anchor="middle">菜单：分析</text>
+<text x="592.0" y="631.0" font-size="19" fill="#52657f" text-anchor="middle">权限：导出</text>
+</g>
+<g data-node="effective-schema"><rect x="856" y="176" width="664" height="176" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1188.0" y="234.0" font-size="24" font-weight="600" fill="#216149" text-anchor="middle">生效 Schema：/example/form</text>
+<text x="1188.0" y="262.0" font-size="19" fill="#52657f" text-anchor="middle">采用应用 Schema 的完整内容</text>
+<text x="1188.0" y="290.0" font-size="19" fill="#52657f" text-anchor="middle">字段：名称（新布局）</text>
+<text x="1188.0" y="318.0" font-size="19" fill="#52657f" text-anchor="middle">不补入基础定义中的状态字段和保存动作</text>
+</g>
+<g data-node="base-schema"><rect x="840" y="496" width="336" height="192" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="1008.0" y="562.5" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">基础 Schema</text>
+<text x="1008.0" y="589.5" font-size="18" fill="#52657f" text-anchor="middle">路径：/example/form</text>
+<text x="1008.0" y="616.5" font-size="18" fill="#52657f" text-anchor="middle">字段：名称、状态</text>
+<text x="1008.0" y="643.5" font-size="18" fill="#52657f" text-anchor="middle">提交动作：保存</text>
+</g>
+<g data-node="app-schema"><rect x="1200" y="496" width="336" height="192" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1368.0" y="562.5" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用 Schema</text>
+<text x="1368.0" y="589.5" font-size="18" fill="#52657f" text-anchor="middle">路径：/example/form</text>
+<text x="1368.0" y="616.5" font-size="18" fill="#52657f" text-anchor="middle">字段：名称（新布局）</text>
+<text x="1368.0" y="643.5" font-size="18" fill="#52657f" text-anchor="middle">未声明其他字段和动作</text>
+</g>
+<rect x="1032.0" y="406" width="64" height="25" rx="3" fill="white"/><text x="1064" y="424" fill="#98a4b2" font-size="16" text-anchor="middle">未采用</text>
+<rect x="1392.0" y="406" width="80" height="25" rx="3" fill="white"/><text x="1432" y="424" fill="#43816c" font-size="16" text-anchor="middle">优先采用</text>
+<text x="412" y="432" font-size="19" fill="#63448e" text-anchor="middle">按同一模块标识归并，集合继续扩充</text>
+<text x="412" y="728" font-size="17" fill="#52657f" text-anchor="middle">菜单与权限按引用标识去重，各自的定义另行装配</text>
+<text x="1188" y="728" font-size="17" fill="#52657f" text-anchor="middle">替换完整定义；低优先级的原始文件仍然保留</text>
+<text x="800" y="812" font-size="18" fill="#52657f" text-anchor="middle">“同名”按各模型标识判断：模块完整名称、Schema 路径、配置键或语言标识等。</text>
+</svg></html>

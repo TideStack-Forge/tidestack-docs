@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-docker-apisix-title deployment-docker-apisix-desc" id="deployment-docker-apisix-root">
+<title id="deployment-docker-apisix-title">Docker + APISIX · 稳定域名部署</title>
+<desc id="deployment-docker-apisix-desc">示例采用同一 Engine 与共享网络；网关及配置存储由实施方提供，不包含在平台 Compose 中；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs>
+      <style>#deployment-docker-apisix-root { font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+      #deployment-docker-apisix-root .diagram-container { width:100%;overflow-x:auto }
+      #deployment-docker-apisix-root .diagram-container svg { display:block;width:100%;min-width:1600px;height:auto }
+      @media print {
+#deployment-docker-apisix-root .diagram-container { overflow-x:visible }
+      #deployment-docker-apisix-root .diagram-container svg { min-width:0 }
+}
+      #deployment-docker-apisix-root text { font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif }</style><style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}</style>
+<marker id="deployment-docker-apisix-deployment-docker-apisix-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43546c"/></marker>
+<marker id="deployment-docker-apisix-deployment-docker-apisix-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#577dab"/></marker>
+<marker id="deployment-docker-apisix-deployment-docker-apisix-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs><rect width="1600" height="1520" fill="#fff"/>
+<text x="40" y="52" font-size="28" font-weight="600" fill="#33455e">Docker + APISIX · 稳定域名部署</text>
+<text x="40" y="84" font-size="14" font-weight="400" fill="#596b83">示例采用同一 Engine 与共享网络；网关及配置存储由实施方提供，不包含在平台 Compose 中</text>
+<rect x="40" y="104" width="16" height="16" rx="3" fill="#eef5ff" stroke="#8eafe0"/>
+<text x="64" y="117" font-size="12" font-weight="400" fill="#33455e">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="3" fill="#eaf6f4" stroke="#8ebeb3"/>
+<text x="284" y="117" font-size="12" font-weight="400" fill="#33455e">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="3" fill="#edf5eb" stroke="#a4be97"/>
+<text x="504" y="117" font-size="12" font-weight="400" fill="#33455e">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="3" fill="#fff5e7" stroke="#d5b78b"/>
+<text x="724" y="117" font-size="12" font-weight="400" fill="#33455e">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="3" fill="#f4f6f9" stroke="#b3bfce"/>
+<text x="944" y="117" font-size="12" font-weight="400" fill="#33455e">外部 / 基础设施</text>
+<g data-zone="host"><rect x="328" y="152" width="1232" height="924" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="352" y="184" font-size="14" font-weight="600" fill="#33455e">Docker 宿主机 ×1 · 示例落位</text>
+<text x="352" y="208" font-size="12" font-weight="400" fill="#596b83">APISIX 可另行部署，但必须满足容器名解析与上游可达条件</text>
+</g>
+<g data-zone="network"><rect x="352" y="420" width="1184" height="456" rx="8" fill="#f7faff" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="1512" y="452" font-size="14" font-weight="600" fill="#33455e" text-anchor="end">共享 Docker 网络 · 运行实例加入同一网络</text>
+<text x="1512" y="476" font-size="12" font-weight="400" fill="#596b83" text-anchor="end">bridge 网络；平台、APISIX 与实例必须互通</text>
+</g>
+<path data-edge="0" d="M280 268 L376 268" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-apisix-deployment-docker-apisix-traffic)"/>
+<path data-edge="1" d="M736 268 L1144 268" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-apisix-deployment-docker-apisix-control)"/>
+<path data-edge="2" d="M736 332 L936 332 Q944 332 944 340 L944 528" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-apisix-deployment-docker-apisix-traffic)"/>
+<path data-edge="3" d="M280 336 L296 336 Q304 336 304 344 L304 576 Q304 584 312 584 L376 584" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-apisix-deployment-docker-apisix-traffic)"/>
+<path data-edge="4" d="M488 528 L488 352" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-apisix-deployment-docker-apisix-control)"/>
+<path data-edge="5" d="M704 632 L728 632 Q736 632 736 640 L736 884 Q736 892 728 892 L548 892 Q540 892 540 900 L540 920" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-apisix-deployment-docker-apisix-control)"/>
+<g data-edge-label="0"><rect x="302.5" y="232" width="51" height="24" rx="3" fill="#fff"/><text x="328" y="248" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">HTTPS</text></g>
+<g data-edge-label="1"><rect x="889" y="220" width="94" height="24" rx="3" fill="#fff"/><text x="936" y="236" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">配置存储协议</text></g>
+<g data-edge-label="2"><rect x="990.5" y="372" width="83" height="24" rx="3" fill="#fff"/><text x="1032" y="388" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">容器名 :80</text></g>
+<g data-edge-label="3"><rect x="306" y="448" width="44" height="24" rx="3" fill="#fff"/><text x="328" y="464" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">HTTP</text></g>
+<g data-edge-label="4"><rect x="508.5" y="444" width="79" height="24" rx="3" fill="#fff"/><text x="548" y="460" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">Admin API</text></g>
+<g data-edge-label="5"><rect x="773" y="880" width="86" height="24" rx="3" fill="#fff"/><text x="816" y="896" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">Socket API</text></g>
+<g data-node="browser"><rect x="40" y="224" width="240" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="40" y="248" width="4" height="24" fill="#b3bfce"/>
+<rect x="192" y="244" width="64" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="224.0" y="260" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">用户网络</text>
+<text x="64" y="264" font-size="16" font-weight="600" fill="#52657f">用户浏览器</text>
+<text x="64" y="300" font-size="12" font-weight="400" fill="#596b83">平台地址 / 稳定应用域名</text>
+</g>
+<g data-node="entry"><rect x="376" y="224" width="360" height="128" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="376" y="248" width="4" height="24" fill="#d5b78b"/>
+<rect x="677" y="244" width="35" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="694.5" y="260" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×1</text>
+<text x="400" y="264" font-size="16" font-weight="600" fill="#805d2e">APISIX 网关</text>
+<text x="400" y="300" font-size="12" font-weight="400" fill="#596b83">流量 HTTP / HTTPS：实际监听端口</text>
+<text x="400" y="324" font-size="12" font-weight="400" fill="#596b83">Admin API：示例 :9180</text>
+</g>
+<g data-node="config"><rect x="1144" y="224" width="368" height="128" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="1144" y="248" width="4" height="24" fill="#a4be97"/>
+<rect x="1448" y="244" width="40" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1468.0" y="260" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">自备</text>
+<text x="1168" y="264" font-size="16" font-weight="600" fill="#42663a">网关配置存储</text>
+<text x="1168" y="300" font-size="12" font-weight="400" fill="#596b83">选定 APISIX 部署模式所需存储</text>
+<text x="1168" y="324" font-size="12" font-weight="400" fill="#596b83">使用 etcd 时：TCP :2379</text>
+</g>
+<g data-node="platform"><rect x="376" y="528" width="328" height="128" rx="6" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.5"/>
+<rect x="376" y="552" width="4" height="24" fill="#8eafe0"/>
+<rect x="645" y="548" width="35" height="22" rx="3" fill="#fff" stroke="#8eafe0"/><text x="662.5" y="564" font-size="12" font-weight="400" fill="#204f86" text-anchor="middle">×1</text>
+<text x="400" y="568" font-size="16" font-weight="600" fill="#204f86">开发平台</text>
+<text x="400" y="604" font-size="12" font-weight="400" fill="#596b83">ouroboros-develop:&lt;v&gt;</text>
+<text x="400" y="628" font-size="12" font-weight="400" fill="#596b83">宿主机 ${PLATFORM_PORT} → :80</text>
+</g>
+<g data-node="apps"><rect x="776" y="528" width="336" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="776" y="552" width="4" height="24" fill="#8ebeb3"/>
+<rect x="1039" y="548" width="49" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="1063.5" y="564" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">N ×1</text>
+<text x="800" y="568" font-size="16" font-weight="600" fill="#28675b">测试应用</text>
+<text x="800" y="604" font-size="12" font-weight="400" fill="#596b83">ouroboros-mothership:&lt;v&gt;</text>
+<text x="800" y="628" font-size="12" font-weight="400" fill="#596b83">STABLE_DOMAIN / 容器 :80</text>
+</g>
+<g data-node="engine"><rect x="376" y="920" width="328" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="376" y="944" width="4" height="24" fill="#b3bfce"/>
+<rect x="645" y="940" width="35" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="662.5" y="956" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">×1</text>
+<text x="400" y="960" font-size="16" font-weight="600" fill="#52657f">Docker Engine</text>
+<text x="400" y="996" font-size="12" font-weight="400" fill="#596b83">平台通过本机 Socket 管理容器</text>
+<text x="400" y="1020" font-size="12" font-weight="400" fill="#596b83">运行实例没有临时端口发布</text>
+</g>
+<g data-node="mysql"><rect x="376" y="756" width="328" height="96" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="376" y="780" width="4" height="24" fill="#a4be97"/>
+<rect x="645" y="776" width="35" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="662.5" y="792" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">×1</text>
+<text x="400" y="796" font-size="16" font-weight="600" fill="#42663a">MySQL 8.0</text>
+<text x="400" y="824" font-size="12" font-weight="400" fill="#596b83">平台库与业务库 / TCP :3306</text>
+</g>
+<g data-node="mq"><rect x="776" y="756" width="336" height="96" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="776" y="780" width="4" height="24" fill="#d5b78b"/>
+<rect x="1053" y="776" width="35" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="1070.5" y="792" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×1</text>
+<text x="800" y="796" font-size="16" font-weight="600" fill="#805d2e">RabbitMQ 3-management</text>
+<text x="800" y="824" font-size="12" font-weight="400" fill="#596b83">内部消息与助手命令 / :5672</text>
+</g>
+<g data-node="files"><rect x="776" y="920" width="736" height="128" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="776" y="944" width="4" height="24" fill="#a4be97"/>
+<rect x="1355" y="940" width="133" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1421.5" y="956" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">本机磁盘 / 自备存储</text>
+<text x="800" y="960" font-size="16" font-weight="600" fill="#42663a">宿主机存储与数据持久化</text>
+<text x="800" y="996" font-size="12" font-weight="400" fill="#596b83">平台工作区与实例 bind mount；MySQL / RabbitMQ 数据</text>
+<text x="800" y="1020" font-size="12" font-weight="400" fill="#596b83">APISIX 配置存储分别维护；开发助手同 Compose</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="6" fill="#fff" stroke="#b3bfce"/>
+<text x="64" y="1196" font-size="14" font-weight="600" fill="#33455e">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" fill="#33455e">浏览器 → APISIX → 测试应用</text>
+<text x="368" y="1236" font-size="12" font-weight="400" fill="#596b83">稳定域名 → 网关流量端口 → ouroboros-test-app-&lt;app&gt;-&lt;env&gt;:80</text>
+<line x1="64" y1="1246" x2="992" y2="1246" stroke="#edf0f4"/>
+<text x="64" y="1268" font-size="12" font-weight="600" fill="#33455e">平台 → APISIX Admin API</text>
+<text x="368" y="1268" font-size="12" font-weight="400" fill="#596b83">HTTP(S) /apisix/admin/routes/&lt;id&gt;；X-API-KEY；端口按实际配置</text>
+<line x1="64" y1="1278" x2="992" y2="1278" stroke="#edf0f4"/>
+<text x="64" y="1300" font-size="12" font-weight="600" fill="#33455e">平台 / 实例 → MySQL、RabbitMQ</text>
+<text x="368" y="1300" font-size="12" font-weight="400" fill="#596b83">TCP :3306 / AMQP :5672；依赖地址需从各容器可达</text>
+<line x1="64" y1="1310" x2="992" y2="1310" stroke="#edf0f4"/>
+<text x="64" y="1332" font-size="12" font-weight="600" fill="#33455e">工作区与网关配置持久化</text>
+<text x="368" y="1332" font-size="12" font-weight="400" fill="#596b83">工作区 bind mount；APISIX 配置存储使用所选模式的持久化</text>
+<line x1="64" y1="1342" x2="992" y2="1342" stroke="#edf0f4"/>
+<text x="64" y="1364" font-size="12" font-weight="600" fill="#33455e">平台自身入口</text>
+<text x="368" y="1364" font-size="12" font-weight="400" fill="#596b83">单独发布平台端口；当前自动路由不负责代理开发平台</text>
+<rect x="1040" y="1160" width="520" height="248" rx="6" fill="#fff9f0" stroke="#d5b78b"/>
+<text x="1064" y="1196" font-size="14" font-weight="600" fill="#33455e">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" fill="#805d2e">图示平台、网关、数据库与 MQ 均为 ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" fill="#805d2e">测试应用每个应用 / 环境 ×1，按需增加</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" fill="#805d2e">单网关、存储及宿主机均无自动故障切换</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" fill="#805d2e">etcd 等组件数量与高可用由实施方确定</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" fill="#805d2e">CPU / 内存 / 磁盘与 TLS 均按实际环境配置</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" stroke="#b3bfce"/>
+<line x1="40" y1="1468" x2="80" y2="1468" stroke="#43546c" stroke-width="2"/><text x="92" y="1473" font-size="12" font-weight="400" fill="#33455e">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5"/><text x="372" y="1473" font-size="12" font-weight="400" fill="#33455e">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5"/><text x="620" y="1473" font-size="12" font-weight="400" fill="#33455e">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" fill="#596b83">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg>

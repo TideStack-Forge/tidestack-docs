@@ -67,4 +67,4 @@ sidebar_position: 4
 - 容量阈值和临时文件清理策略已生效。
 - 无权限用户不能通过页面或直接地址取得文件。
 
-存储、备份和恢复要求见 [运行能力维护要点](../operations/runtime-capability-maintenance)。需要转码、查毒、对象存储或外部文档系统时，使用 [融合开发](../fusion-development/)。
+存储、备份和恢复要求见 [文件与文档维护](../operations/runtime-capability-maintenance)。需要转码、查毒、对象存储或外部文档系统时，使用 [融合开发](../fusion-development/)。

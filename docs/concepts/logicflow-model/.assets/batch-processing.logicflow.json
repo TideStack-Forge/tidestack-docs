@@ -1,0 +1,432 @@
+{
+  "name": "handbook.batch-processing",
+  "description": "批量数据处理示例",
+  "entryNode": "校验输入",
+  "errorEntryNode": "整理错误",
+  "inputDataType": "object",
+  "outputDataType": "object",
+  "isEnabled": true,
+  "nodes": [
+    {
+      "name": "校验输入",
+      "type": "validate",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "schema": {
+        "type": "object",
+        "required": [
+          "items",
+          "mode"
+        ],
+        "properties": {
+          "items": {
+            "type": "array"
+          },
+          "mode": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "规范化数据",
+      "type": "script",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "language": "groovy",
+      "script": "return [mode: $0.mode, items: $0.items.findAll { it != null }.unique()]"
+    },
+    {
+      "name": "选择处理策略",
+      "type": "switch",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "快速处理",
+          "dataType": "any",
+          "exclusiveGroupId": "switch-branches"
+        },
+        {
+          "name": "完整处理",
+          "dataType": "any",
+          "exclusiveGroupId": "switch-branches"
+        },
+        {
+          "name": "default",
+          "dataType": "any",
+          "exclusiveGroupId": "switch-branches",
+          "defaultBranch": true
+        }
+      ],
+      "conditions": [
+        {
+          "name": "快速处理",
+          "expression": "${mode == \"fast\"}"
+        },
+        {
+          "name": "完整处理",
+          "expression": "${mode == \"full\"}"
+        }
+      ]
+    },
+    {
+      "name": "提取必要字段",
+      "type": "mapping",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "mapping": {
+        "mode": "${mode}",
+        "items": "${items}"
+      }
+    },
+    {
+      "name": "快速计算",
+      "type": "script",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "language": "groovy",
+      "script": "return [strategy: \"fast\", count: $0.items.size(), items: $0.items]"
+    },
+    {
+      "name": "逐项转换",
+      "type": "script",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "language": "groovy",
+      "script": "return [mode: $0.mode, items: $0.items.collect { [value: it, checked: true] }]"
+    },
+    {
+      "name": "汇总统计",
+      "type": "script",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "language": "groovy",
+      "script": "return [strategy: \"full\", count: $0.items.size(), items: $0.items]"
+    },
+    {
+      "name": "构造默认结果",
+      "type": "mapping",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "mapping": {
+        "strategy": "${\"default\"}",
+        "count": 0,
+        "items": []
+      }
+    },
+    {
+      "name": "汇集处理结果",
+      "type": "mutex",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ]
+    },
+    {
+      "name": "封装响应",
+      "type": "mapping",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "mapping": {
+        "success": true,
+        "data": "${$0}"
+      }
+    },
+    {
+      "name": "返回处理结果",
+      "type": "return",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": []
+    },
+    {
+      "name": "整理错误",
+      "type": "mapping",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "mapping": {
+        "success": false,
+        "code": "${exceptionCode}",
+        "message": "${exceptionMessage}"
+      }
+    },
+    {
+      "name": "返回错误结果",
+      "type": "return",
+      "isEnabled": true,
+      "isAsync": false,
+      "inputPorts": [
+        {
+          "name": "",
+          "dataType": "any"
+        }
+      ],
+      "outputPorts": []
+    }
+  ],
+  "connections": [
+    {
+      "sourceNode": "校验输入",
+      "sourceOutputPort": 0,
+      "targetNode": "规范化数据",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "规范化数据",
+      "sourceOutputPort": 0,
+      "targetNode": "选择处理策略",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "选择处理策略",
+      "sourceOutputPort": 0,
+      "targetNode": "提取必要字段",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "选择处理策略",
+      "sourceOutputPort": 1,
+      "targetNode": "逐项转换",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "选择处理策略",
+      "sourceOutputPort": 2,
+      "targetNode": "构造默认结果",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "提取必要字段",
+      "sourceOutputPort": 0,
+      "targetNode": "快速计算",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "逐项转换",
+      "sourceOutputPort": 0,
+      "targetNode": "汇总统计",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "快速计算",
+      "sourceOutputPort": 0,
+      "targetNode": "汇集处理结果",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "汇总统计",
+      "sourceOutputPort": 0,
+      "targetNode": "汇集处理结果",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "构造默认结果",
+      "sourceOutputPort": 0,
+      "targetNode": "汇集处理结果",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "汇集处理结果",
+      "sourceOutputPort": 0,
+      "targetNode": "封装响应",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "封装响应",
+      "sourceOutputPort": 0,
+      "targetNode": "返回处理结果",
+      "targetInputPort": 0
+    },
+    {
+      "sourceNode": "整理错误",
+      "sourceOutputPort": 0,
+      "targetNode": "返回错误结果",
+      "targetInputPort": 0
+    }
+  ],
+  "nodePositions": {
+    "校验输入": {
+      "x": 50,
+      "y": 260
+    },
+    "规范化数据": {
+      "x": 290,
+      "y": 260
+    },
+    "选择处理策略": {
+      "x": 540,
+      "y": 260
+    },
+    "提取必要字段": {
+      "x": 790,
+      "y": 80
+    },
+    "快速计算": {
+      "x": 1040,
+      "y": 80
+    },
+    "逐项转换": {
+      "x": 790,
+      "y": 260
+    },
+    "汇总统计": {
+      "x": 1040,
+      "y": 260
+    },
+    "构造默认结果": {
+      "x": 790,
+      "y": 440
+    },
+    "汇集处理结果": {
+      "x": 1290,
+      "y": 260
+    },
+    "封装响应": {
+      "x": 1540,
+      "y": 260
+    },
+    "返回处理结果": {
+      "x": 1790,
+      "y": 260
+    },
+    "整理错误": {
+      "x": 540,
+      "y": 700
+    },
+    "返回错误结果": {
+      "x": 790,
+      "y": 700
+    }
+  }
+}

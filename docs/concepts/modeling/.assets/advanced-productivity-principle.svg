@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="advanced-productivity-principle-title advanced-productivity-principle-desc" id="advanced-productivity-principle-root">
+<title id="advanced-productivity-principle-title">追求先进生产力</title>
+<desc id="advanced-productivity-principle-desc">持续吸收新工具与新方法，在实际任务中验证效果，将技术进步沉淀为工程能力。</desc>
+<defs>
+      <style>#advanced-productivity-principle-root { font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif; }
+      #advanced-productivity-principle-root .diagram-container { max-width:100%;overflow-x:auto }
+      @media print {
+#advanced-productivity-principle-root .diagram-container { overflow:visible }
+}</style><marker id="advanced-productivity-principle-advanced-productivity-principle-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" fill="#71839a"/></marker></defs>
+<rect width="1200" height="360" fill="#fff"/>
+<path d="M368 136L432 136" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#advanced-productivity-principle-advanced-productivity-principle-arrow)"/>
+<path d="M768 136L832 136" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#advanced-productivity-principle-advanced-productivity-principle-arrow)"/>
+<g data-node="methods" data-parent="1"><rect x="40" y="64" width="320" height="144" rx="8" fill="#edf5ff" stroke="#8eb7e9" stroke-width="1.5"/>
+<text x="200" y="132" fill="#1d4f91" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">吸收新工具与新方法</text>
+<text x="200" y="164" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">AI 辅助开发等生产力工具</text></g>
+<g data-node="validation" data-parent="1"><rect x="440" y="64" width="320" height="144" rx="8" fill="#f0fdfa" stroke="#73cfc2" stroke-width="1.5"/>
+<text x="600" y="132" fill="#0f655d" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">在实际任务中验证</text>
+<text x="600" y="164" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">效率、质量与维护成本</text></g>
+<g data-node="capability" data-parent="1"><rect x="840" y="64" width="320" height="144" rx="8" fill="#fff8ec" stroke="#dfb570" stroke-width="1.5"/>
+<text x="1000" y="132" fill="#7b4c17" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">沉淀为工程能力</text>
+<text x="1000" y="164" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">减少重复劳动，缩短反馈时间</text></g>
+<text x="600" y="288" fill="#52657f" font-size="20" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">持续吸收技术进步，让生产力提升进入日常开发与交付</text>
+</svg>

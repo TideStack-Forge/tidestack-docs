@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/modules-diff.schema.json",
-  "title": "模块树 Diff",
-  "description": "TideStack metadata schema for modules-diff. Legacy runtime packaging may still use Ouroboros paths.",
+  "title": "应用模块差异数组",
+  "description": "modules.diff.json 使用的模块树差异列表，通过 add、remove、modify 表达相对基础模块定义的调整。",
   "type": "array",
   "items": {
     "type": "object",
@@ -18,41 +18,78 @@
           "add",
           "remove",
           "modify"
-        ]
+        ],
+        "description": "差异操作类型：add 为新增，remove 为移除，modify 为修改。"
       },
       "fullName": {
-        "type": "string"
+        "type": "string",
+        "description": "应用模块的完整标识，供模块树和覆盖配置引用。"
       },
       "parent": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "父应用模块的完整标识，用于组织模块树。"
       },
       "title": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "供开发界面或页面展示的标题。"
       },
       "description": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "说明该定义的用途、业务含义或使用条件。"
       },
       "icon": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "前端显示使用的图标标识。"
       },
       "order": {
-        "type": "integer"
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "用于同类条目排序的数值。"
       },
       "menu": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "模块关联的主菜单标识。"
       },
       "subMenus": {
-        "type": "array",
+        "type": [
+          "array",
+          "null"
+        ],
         "items": {
           "type": "string"
-        }
+        },
+        "description": "新增模块时关联的附加菜单标识列表；其他操作通常不提供。"
       },
       "authorities": {
-        "type": "array",
+        "type": [
+          "array",
+          "null"
+        ],
         "items": {
           "type": "string"
-        }
+        },
+        "description": "新增模块时关联的权限项标识列表；其他操作通常不提供。"
       }
-    }
-  }
+    },
+    "title": "应用模块差异",
+    "description": "描述对一个应用模块的新增、移除或修改；可空字段表示差异中未提供替换值，由现有模块合并规则处理。"
+  },
+  "$comment": "Source: core/ouroboros-app-module-model/ouroboros-app-module-model-runtime/src/main/java/com/ouroboros/appmodule/runtime/RuntimeAppModuleDiffProvider.java; core/ouroboros-app-module-model/ouroboros-app-module-model-core/src/main/java/com/ouroboros/appmodule/AppModuleDiff.java"
 }

@@ -1,138 +1,80 @@
 ---
-title: 权限、主体与访问控制设计
+title: 权限与访问控制
 sidebar_position: 11
 ---
 
-# 权限、主体与访问控制设计
+# 权限与访问控制
 
-本专题用于改动权限模型边界、接入外部身份来源，或把访问控制下沉到代码和运行时。标准账号、角色、菜单、接口和基础数据权限使用 [组织、权限、配置与通知](../low-code/organization-permissions-configuration-and-notification)。
+先确定谁能执行什么操作、能访问哪些记录和字段，再将规则接入平台权限链路。认证、业务主体、角色和数据范围分别承担不同职责；隐藏前端菜单或按钮不能代替后端授权。
 
-## 什么时候应该进入这条线
+普通账号、组织和角色配置见 [组织、权限、配置与通知](../low-code/organization-permissions-configuration-and-notification)，本页说明应用实现如何消费和扩展这些规则。
 
-- 需要把外部人员、设备或其他业务主体接入当前安全体系
-- 需要在后端代码里定义新的权限点，并让接口、菜单或页面统一受控
-- 需要做字段级、数据级访问控制，而不只是勾选功能权限
-- 需要把权限结果带进逻辑流、查询过滤或运行时上下文
-- 需要在自定义登录页、外部认证和平台授权模型之间理清边界
+## 1. 明确授权用例
 
-## 先分清四个边界
+| 输入 | 需要确定的内容 |
+| --- | --- |
+| 用户与业务身份 | 用户绑定哪类主体，角色和 Claims 来自哪里 |
+| 受控资源 | 权限名及关联菜单、页面、API 和业务动作 |
+| 数据范围 | 允许访问的记录、允许与禁止的字段 |
+| 预期行为 | 同角色不同主体、无角色、未绑定和禁用账号分别如何响应 |
+| 当前实现 | 权限定义、查询入口、Controller、动作或逻辑流 |
 
-### 1. 登录入口与认证方式
+例如，“只能查看所属部门订单”需要明确部门从哪里取得、接口绑定哪个权限、查询如何落实部门过滤及字段裁剪。验收同时检查页面入口和直接 API 请求。
 
-这层解决的是“用户怎么完成登录”。
+## 2. 理解身份与权限对象
 
-当前平台已经支持本地登录、LDAP、CAS、OAuth2 / OIDC 等认证方式；如果只是要替换登录体验，通常优先看 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)，而不是先改权限模型。
+| 对象 | 职责 |
+| --- | --- |
+| `User` | 暴露 `getUserIdentity()`、`getClaims()`、`getRoles()`、`getSubject()` 与 `isEnabled()` |
+| `SubjectCenter` | 按主体类型和 ID 读取业务主体 |
+| `UserSubjectCenter` | 管理平台用户与主体的绑定关系 |
+| `Authority` | 统一描述权限名、标题、API、UI 视图、菜单和 `AccessControlDefine` |
+| `AuthorityCenter` | 聚合 `AuthorityProvider` 提供的权限定义 |
+| `AccessControlDefine` | 描述可配置的字段和数据过滤规则 |
+| `AccessControlParams` | 表示当前用户计算得到的字段与行访问范围 |
 
-### 2. 用户、角色与授权
+认证确定登录身份，主体表示用户在业务中代表谁，角色与权限决定可执行的动作。AD / OIDC 外部身份绑定平台账号后，也不自动获得业务角色。
 
-这层解决的是“谁拥有哪些权限”。
+新增代码通过 `Subject`、`SubjectCenter` 和 `UserSubjectCenter` 处理主体关系。Claims 中的 `subject_type`、`subject_id` 用于兼容既有消费者，不代替正式主体接口。
 
-当前代码中，`User` 暴露用户标识、`Claims`、角色列表、主体对象和启用状态；角色再关联到 `Authority`，形成统一授权入口。
+## 3. 将接口关联到权限项
 
-### 3. 主体与组织身份
+普通 Spring MVC Controller 可以在方法上使用 `@Authority("权限名")`，关联到平台统一鉴权。完整注册示例见 [Controller 与 Service](./backend-development/spring-beans-and-controllers)。
 
-这层解决的是“登录身份在业务上代表谁”。
+同一权限项可聚合多个 API、视图与菜单。仍需让权限定义进入 `AuthorityCenter` 并配置角色授权，注解本身不会给用户授予权限。`@Anonymous` 用于明确的匿名接口，不应作为排查鉴权失败的临时绕过。
 
-当前运行时不是把主体类型直接硬编码在 `User` 抽象里，而是通过 `UserSubjectCenter` 和 `SubjectCenter` 把用户与员工、设备或其他主体类型关联起来。组织架构模块则继续负责公司、部门、岗位和员工等组织语义。
+业务模型动作和低代码 WebAPI 通过各自正式绑定与权限配置接入。自定义登录页只替换登录展示，见 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)。
 
-### 4. 访问控制参数
+## 4. 在业务执行中落实数据范围
 
-这层解决的是“拿到权限之后，具体能看到哪些字段、哪些数据”。
+从当前认证对象取得：
 
-当前访问控制的运行时结果主要表现为：
+- `OuroborosAuthentication.getAccessControlParams()`：当前入口的访问控制结果。
+- `OuroborosAuthentication.getAccessControlParams(String authorityName)`：指定权限点的访问控制结果。
 
-- `allowedFields`
-- `disallowedFields`
-- `filters`
+这些是认证对象实例的方法。业务查询继续消费 `getAllowedFields()`、`getDisallowedFields()` 与 `getRowConstraint()`；查询过滤、count、分页、导出和返回字段都要符合授权用例。
 
-也就是说，权限不仅能控制接口是否可调，还能继续下沉到字段可见性和数据过滤条件。
+行约束区分 ALL、FILTER、NONE。NONE 不等价于空过滤条件；`getFilters()` 遇到无可访问数据行会拒绝访问，不能捕获后改成不受限查询。规则计算成功后仍需要实际查询入口消费，读取结果不代表自动过滤所有自定义代码。
 
-## 当前代码里已经确认存在的关键能力
+逻辑流中使用 `authFilter`、`authAllowedFields`、`authDisallowedFields` 取得相应结果，并映射到后续查询与字段处理节点。只放置节点而不使用其输出，数据范围不会凭空生效。
 
-这部分内容已按当前仓库代码核对，不直接照搬旧设计稿。
+## 5. 增加新的规则来源
 
-### 权限定义与聚合
+| 要增加的能力 | 正式入口 |
+| --- | --- |
+| 权限定义来源 | `AuthorityProvider` |
+| 员工、设备或外部成员等主体 | `SubjectProvider`、`UserSubjectProvider` |
+| 当前用户的扩展身份信息 | `ClaimsProvider`，由 `ClaimsAggregator` 聚合 |
+| 可复用的数据范围规则解析 | `AccessControlFilterBuilder` 与行约束 |
 
-- `Authority` 负责统一描述权限名、标题、接口列表、UI 视图、菜单项和 `AccessControlDefine`
-- `AuthorityCenter` 会从多个 `AuthorityProvider` 聚合权限定义
-- `@Authority` 和 `@Anonymous` 注解可直接标注接口访问边界
+按接口实际装配机制增加实现；行约束解析、SPI、参数消费和拒绝语义见 [数据权限扩展插件](./plugin-extensions/backend/data-permissions)。已有角色配置足够时直接配置，不增加一套平行权限表。
 
-### 用户、主体与 Claims
+## 6. 验证与交付
 
-- `UserCenter` 提供统一用户查询入口
-- `SubjectCenter` 提供主体查询入口
-- `UserSubjectCenter` 负责用户与主体绑定关系
-- `ClaimsAggregator` / `ClaimsProvider` 负责把头像、角色、主体等信息聚合到当前用户 Claims
+1. 确认权限、主体与 Claims 来源已加载，测试用户的绑定、角色和启用状态正确。
+2. 对照权限名核对 API 方法和路径、UI、菜单引用，用有权限与无权限账号分别调用。
+3. 用同角色不同主体访问同一批数据，比较行范围与允许、禁止字段，并验证 count、分页和导出。
+4. 覆盖主体未绑定、Claims 缺失、未知规则、禁用用户与执行失败，确认拒绝结果可定位。
+5. 如果从 MQ 或计划任务执行，明确后台执行身份；不假设存在当前 HTTP 用户。
 
-这意味着如果你要接外部身份体系，通常不是只改登录接口，而是要同时考虑用户、主体绑定和 Claims 聚合。
-
-### 字段级与数据级访问控制
-
-- `AccessControlDefine` 定义“这个权限可以控制什么”
-- `AccessControlParams` 表达“当前用户实际拿到了什么控制结果”
-- `AccessControlParams` 当前支持字段放行、字段禁用和过滤条件三类结果
-
-### 与逻辑流联动
-
-当前安全模块还提供了可直接接入逻辑流的节点：
-
-- `authFilter`
-- `authAllowedFields`
-- `authDisallowedFields`
-
-这适合把当前用户的数据过滤条件或字段可见范围直接带入流程执行链路。
-
-## 常见场景怎么选
-
-| 当前问题                                       | 更适合的入口                                                                          |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------- |
-| 只是给业务角色配页面、菜单、接口和基础数据权限 | [低代码权限配置](../low-code/organization-permissions-configuration-and-notification) |
-| 需要维护用户、角色和授权关系                   | [用户角色权限](../guide/module/rbac/)                                                 |
-| 需要把员工、设备等业务主体接入授权链路         | 本页 + 自定义 `SubjectProvider` / `UserSubjectProvider`                               |
-| 需要在代码中声明新的权限点并控制接口访问       | 本页 + `AuthorityProvider` / `@Authority`                                             |
-| 需要做字段级、数据级过滤                       | 本页 + `AccessControlDefine` / `AccessControlParams`                                  |
-| 需要替换登录页但不想自己重写整套认证回调       | [自定义登录页与认证接入](./custom-login-page-and-auth-integration)                    |
-
-## 三种常见组合方式
-
-### 组合一：组织架构 + 标准 RBAC
-
-适合大多数标准业务系统。
-
-重点是先用组织架构维护员工与岗位，再在角色里配置功能权限和基础数据权限，不要过早引入自定义主体类型。
-
-### 组合二：外部主体接入 + Claims 聚合
-
-适合用户不只是“系统账号”，而是需要映射员工、设备、合作方身份等场景。
-
-这时更关键的是把主体来源、用户绑定关系和 Claims 输出先定义清楚，再让前后端消费统一的用户信息。
-
-### 组合三：权限定义 + 运行时过滤
-
-适合你已经不满足“能不能访问”，而要进入“能看到哪些字段、能查哪些数据”的场景。
-
-这时权限设计就不能只停留在菜单和按钮层，而要把 `AccessControlDefine` 与查询、流程、脚本或接口逻辑一起考虑。
-
-## 一个很容易踩坑的点
-
-旧资料中有一部分仍沿用“`User` 直接携带 `subjectType` / `subjectId`”的描述，但当前代码的公开抽象已经更偏向：
-
-- `User`
-- `Claims`
-- `UserSubjectCenter`
-- `SubjectCenter`
-
-因此如果你现在要做新扩展，建议优先按当前接口和运行时实现理解，而不是继续围绕旧字段假设做设计。
-
-## 推荐阅读顺序
-
-1. [权限模型](../concepts/authority-model/)
-2. [组织、权限、配置与通知](../low-code/organization-permissions-configuration-and-notification)
-3. [用户角色权限](../guide/module/rbac/)
-4. [权限与访问控制](../guide/advance/authority-and-access-control)
-
-## 下一步看哪里
-
-- 想看详细扩展与实现抓手：看 [权限与访问控制](../guide/advance/authority-and-access-control)
-- 想先把登录入口接起来：看 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)
-- 想继续判断是否真的要写代码：看 [何时用低代码，何时写代码](./when-to-use-code)
+交付授权规则、资源引用和实际验证记录。给 AI 的排查上下文包含账号角色、主体类型、权限名、脱敏访问控制结果及请求结果。概念定义见 [权限模型](../concepts/authority-model/)，业务实现接入见 [后端开发](./backend-development/)。

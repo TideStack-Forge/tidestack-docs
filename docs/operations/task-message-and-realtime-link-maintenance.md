@@ -1,11 +1,11 @@
 ---
 title: 任务、消息与实时链路维护
-sidebar_position: 7
+sidebar_position: 9
 ---
 
 # 任务、消息与实时链路维护
 
-本页适用于启用了计划任务、RabbitMQ 或 WebSocket 的 Compose 环境。页面可访问只证明 HTTP 入口正常，不能证明这三条链路可用。
+本页分别验证计划任务、消息队列和 WebSocket 从触发到业务结果的完整链路。按实际启用的能力执行；页面可访问不能证明这些链路可用。
 
 ## 巡检前准备
 
@@ -18,7 +18,9 @@ docker compose config --quiet
 docker compose ps
 ```
 
-继续巡检前，`ouroboros-develop` 和 `ouroboros-rabbitmq` 必须处于运行状态。先保留最近日志，避免后续重启覆盖故障线索：
+以下平台日志命令以 `ouroboros-develop` 为例。业务应用的任务和消息消费在目标运行实例执行，应换成该实例的容器日志；Kubernetes 后端使用对应 Pod 日志。外部 RabbitMQ 使用实际节点和 virtual host。
+
+先按 [监控与告警](./monitoring-and-alerting) 确认目标实例与依赖可用，再保留最近日志：
 
 ```bash
 docker compose logs --since 15m --tail 1000 ouroboros-develop \
@@ -36,17 +38,17 @@ docker compose logs --since 15m --tail 1000 ouroboros-develop \
   | grep -E 'Ouroboros Scheduler Runtime Loaded|计划任务调度器未初始化|ERROR'
 ```
 
-启动日志应包含 `Ouroboros Scheduler Runtime Loaded`，不得出现 `计划任务调度器未初始化`，也不得持续出现计划任务元数据解析、刷新或执行错误。
+启用调度模块的启动日志应包含 `Ouroboros Scheduler Runtime Loaded`，不得出现 `计划任务调度器未初始化`，也不得持续出现计划任务元数据解析、刷新或执行错误。启动早于最近 15 分钟时，从完整启动日志中查询；时间窗口内没有加载日志不等于模块未加载。
 
 ### 执行端到端验证
 
 1. 建立专用巡检逻辑流，写入执行时间、任务名和唯一巡检 ID。
-2. 创建每分钟触发的巡检任务，任务数据中写入本次巡检 ID。
+2. 在测试应用创建巡检任务，任务数据中写入本次巡检 ID，约定一个可观察的触发周期。
 3. 提交编辑并等待一个完整触发周期。
 4. 在业务结果或审计记录中查询该 ID，核对触发时间和输入。
 5. 完成后停用巡检任务，避免长期产生无用数据。
 
-成功标志：任务按预期时区触发，逻辑流收到正确任务数据，业务结果只产生一次且可查询。
+成功标志：任务按预期时区和周期触发，逻辑流收到正确任务数据，每次触发产生预期业务结果且可查询。周期任务可能产生多条记录，应按触发时间核对次数。
 
 ### 未触发时的检查顺序
 
@@ -57,7 +59,7 @@ docker compose logs --since 15m --tail 1000 ouroboros-develop \
 
 ## 消息链路
 
-消息链路为：绑定加载 -> RabbitMQ -> 生产者 -> 队列 -> 消费者 -> 逻辑流业务结果。
+消息链路为：绑定加载后，生产者 -> Exchange 与路由 -> 队列 -> 消费者 -> 逻辑流业务结果。
 
 ### 检查 RabbitMQ
 
@@ -69,18 +71,18 @@ docker compose exec -T ouroboros-rabbitmq \
 
 第一条命令必须返回 `Ping succeeded`。第二条命令中，关键消费队列应有消费者；`messages_ready` 或 `messages_unacknowledged` 持续增长表示消息正在堆积或消费未确认。
 
-### 检查平台运行时
+### 检查目标应用运行时
 
 ```bash
 docker compose logs --since 15m --tail 1000 ouroboros-develop \
   | grep -E 'Ouroboros MQ Runtime Loaded|RabbitMQ|consumer|ERROR'
 ```
 
-启动日志应包含 `Ouroboros MQ Runtime Loaded`，且不得持续出现连接、绑定或消费错误。
+启用消息模块的启动日志应包含 `Ouroboros MQ Runtime Loaded`，且不得持续出现连接、绑定或消费错误。加载日志可能早于当前查询窗口，仍需结合完整启动日志和业务结果判断。
 
 ### 执行端到端验证
 
-1. 生成唯一消息 ID，例如 `mq-check-20260815-1530`。
+1. 生成唯一消息 ID，例如 `mq-check-<本次巡检时间>`。
 2. 通过实际生产者发送包含该 ID 的消息。
 3. 在队列列表中确认消息没有持续积压。
 4. 在消费者逻辑流的业务结果中查询该 ID。
@@ -93,12 +95,14 @@ docker compose logs --since 15m --tail 1000 ouroboros-develop \
 1. RabbitMQ ping 是否成功。
 2. 目标队列是否存在，Exchange、路由键、分组和 Binder 名是否匹配。
 3. `consumers` 是否大于 `0`。
-4. 平台日志是否有绑定加载或逻辑流执行错误。
+4. 目标应用日志是否有绑定加载或逻辑流执行错误。
 5. 消费者恢复前先确认消息是否幂等，避免重放造成重复业务结果。
 
 ## WebSocket 链路
 
 WebSocket 链路为：代理入口 -> HTTP Upgrade -> 鉴权 -> STOMP 订阅 -> 服务端发送 -> 页面更新。默认入口为 `/websocket/stomp`。
+
+先确认当前应用使用的 broker。默认简单 broker、RabbitMQ STOMP relay 和 Redis Pub/Sub 的依赖不同；使用 relay 时检查其 STOMP 连接，AMQP `5672` 正常不能证明 STOMP relay 可用。
 
 ### 检查入口转发
 
@@ -112,7 +116,7 @@ curl --http1.1 -i --max-time 5 \
   "$PLATFORM_URL/websocket/stomp"
 ```
 
-`101 Switching Protocols` 表示 Upgrade 成功。`401` 或 `403` 表示入口已到达鉴权链路；`404`、`502` 或超时应先检查代理路径、端口和 Upgrade 请求头。该命令只检查入口，不能证明 STOMP 订阅和消息投递成功。
+将地址替换为目标应用的实际端点。`101 Switching Protocols` 表示 Upgrade 成功；连接在 5 秒后超时不否定此前的握手成功。`401` 或 `403` 可能由代理或应用鉴权返回，应结合日志确认来源；`404`、`502` 或握手前超时先检查路径、端口和 Upgrade 请求头。启用 SockJS 时，还应以浏览器实际使用的协商与传输路径为准。该命令不能证明 STOMP 订阅和消息投递成功。
 
 ### 执行端到端验证
 
@@ -128,7 +132,7 @@ curl --http1.1 -i --max-time 5 \
 
 ## 变更后最小验证
 
-平台升级、认证调整、RabbitMQ 迁移、代理变更、端口变化或时区变化后，必须完成：
+平台升级、认证调整、RabbitMQ 迁移、代理变更、端口变化或时区变化后，对已启用且受影响的链路完成：
 
 1. 一条巡检任务按时触发并产生业务结果。
 2. 一条唯一消息完成生产、消费和业务落库。

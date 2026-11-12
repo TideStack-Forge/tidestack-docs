@@ -1,0 +1,75 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>后端基座启动生命周期</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1480" width="1480" height="1480" role="img" aria-labelledby="backend-startup-lifecycle-title backend-startup-lifecycle-desc">
+<title id="backend-startup-lifecycle-title">后端基座启动生命周期</title>
+<desc id="backend-startup-lifecycle-desc">Spring Boot 完成进程装配后，应用运行时按六个事件阶段刷新上下文；各模块依次读取元数据、投射和构建模型、初始化数据及校验运行契约，成功后放行请求，失败则记录启动错误。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="ab6746b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#b6746b"/></marker>
+</defs>
+<rect width="1480" height="1480" fill="white"/>
+<rect x="40" y="216" width="1400" height="1008" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="60" y="246" font-size="18" font-weight="600" fill="#204f86">上下文刷新阶段 · 同步发布事件，模块按监听顺序执行</text>
+<path d="M408 400L408 424" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M408 552L408 576" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M408 704L408 728" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M408 856L408 880" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M408 1008L408 1032" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M408 168L408 272" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M408 1160L408 1288" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M1148 1232L1148 1288" fill="none" stroke="#b6746b" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#ab6746b)"/>
+<g data-node="process"><rect x="80" y="24" width="1320" height="136" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="740.0" y="77.0" font-size="20" font-weight="600" fill="#43546c" text-anchor="middle">启动进程与装配模块</text>
+<text x="740.0" y="102.0" font-size="16" fill="#52657f" text-anchor="middle">Spring Boot 创建上下文，装配模块、插件及基础服务</text>
+<text x="740.0" y="127.0" font-size="16" fill="#52657f" text-anchor="middle">应用运行时准备应用元数据目录、AppContext 与控制消息监听</text>
+</g>
+<g data-node="context-refreshing"><rect x="80" y="280" width="656" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="408.0" y="333.5" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">①  开始刷新上下文</text>
+<text x="408.0" y="358.5" font-size="16" fill="#52657f" text-anchor="middle">OuroborosContextRefreshingEvent</text>
+</g>
+<g data-node="metadata-refreshing"><rect x="80" y="432" width="656" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="408.0" y="485.5" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">②  刷新元数据</text>
+<text x="408.0" y="510.5" font-size="16" fill="#52657f" text-anchor="middle">OuroborosMetadataRefreshingEvent</text>
+</g>
+<g data-node="metadata-refreshed"><rect x="80" y="584" width="656" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="408.0" y="637.5" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">③  元数据刷新完成</text>
+<text x="408.0" y="662.5" font-size="16" fill="#52657f" text-anchor="middle">OuroborosMetadataRefreshedEvent</text>
+</g>
+<g data-node="model-refreshing"><rect x="80" y="736" width="656" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="408.0" y="789.5" font-size="20" font-weight="600" fill="#245e69" text-anchor="middle">④  刷新运行时模型</text>
+<text x="408.0" y="814.5" font-size="16" fill="#52657f" text-anchor="middle">OuroborosModelRefreshingEvent</text>
+</g>
+<g data-node="model-refreshed"><rect x="80" y="888" width="656" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="408.0" y="941.5" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">⑤  模型刷新完成</text>
+<text x="408.0" y="966.5" font-size="16" fill="#52657f" text-anchor="middle">OuroborosModelRefreshedEvent</text>
+</g>
+<g data-node="context-refreshed"><rect x="80" y="1040" width="656" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="408.0" y="1093.5" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">⑥  上下文刷新完成</text>
+<text x="408.0" y="1118.5" font-size="16" fill="#52657f" text-anchor="middle">OuroborosContextRefreshedEvent</text>
+</g>
+<g data-node="ready"><rect x="80" y="1296" width="656" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="408.0" y="1337.0" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">READY · 开始服务业务请求</text>
+<text x="408.0" y="1362.0" font-size="16" fill="#52657f" text-anchor="middle">生命周期防护放行请求</text>
+<text x="408.0" y="1387.0" font-size="16" fill="#52657f" text-anchor="middle">受稳定上下文保护的业务执行继续进行</text>
+</g>
+<g data-node="failed"><rect x="896" y="1296" width="504" height="112" rx="7" fill="#fff1ef" stroke="#d4a09a" stroke-width="1.3"/>
+<text x="1148.0" y="1337.0" font-size="20" font-weight="600" fill="#8c453b" text-anchor="middle">FAILED · 终止本轮刷新</text>
+<text x="1148.0" y="1362.0" font-size="16" fill="#52657f" text-anchor="middle">记录失败阶段及模块，返回 HTTP 500</text>
+<text x="1148.0" y="1387.0" font-size="16" fill="#52657f" text-anchor="middle">异常继续向上传播</text>
+</g>
+<rect x="552.0" y="176" width="200" height="25" rx="3" fill="white"/><text x="652" y="194" fill="#627ba4" font-size="16" text-anchor="middle">ApplicationStartedEvent</text>
+<rect x="1224.0" y="1250" width="112" height="25" rx="3" fill="white"/><text x="1280" y="1268" fill="#b6746b" font-size="16" text-anchor="middle">任一阶段异常</text>
+<text x="816" y="304" font-size="18" fill="#52657f" text-anchor="start">准备或清理本轮刷新所需的上下文。</text>
+<text x="816" y="334" font-size="18" fill="#52657f" text-anchor="start">生命周期防护记录阶段与模块进度。</text>
+<text x="816" y="456" font-size="18" fill="#52657f" text-anchor="start">各提供者读取或刷新元数据。</text>
+<text x="816" y="486" font-size="18" fill="#52657f" text-anchor="start">按对应模型的来源和优先级形成定义。</text>
+<text x="816" y="608" font-size="18" fill="#52657f" text-anchor="start">业务模型更新投射结果。</text>
+<text x="816" y="638" font-size="18" fill="#52657f" text-anchor="start">数据、页面、接口等定义进入后续装配。</text>
+<text x="816" y="760" font-size="18" fill="#52657f" text-anchor="start">数据模型等运行时刷新，逻辑流构建候选快照。</text>
+<text x="816" y="790" font-size="18" fill="#52657f" text-anchor="start">具体处理顺序由模块监听器约定。</text>
+<text x="816" y="912" font-size="18" fill="#52657f" text-anchor="start">更新业务模型投射、类型化数据映射。</text>
+<text x="816" y="942" font-size="18" fill="#52657f" text-anchor="start">执行数据初始化，再发布逻辑流运行快照。</text>
+<text x="816" y="1064" font-size="18" fill="#52657f" text-anchor="start">校验业务动作和事件订阅的运行绑定。</text>
+<text x="816" y="1094" font-size="18" fill="#52657f" text-anchor="start">首次启动时注册计划任务，更新应用信息。</text>
+<text x="80" y="1452" font-size="17" fill="#52657f" text-anchor="start">启动／刷新期间返回 HTTP 503；运行中刷新复用六个阶段，失败后需成功完成一次完整刷新才能恢复受保护的业务执行。</text>
+</svg></html>

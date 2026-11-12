@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="standards-first-principle" name="标准与规范先行">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="600">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" parent="1" source="industry" target="contracts" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.21785714285714286;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" parent="1" source="internal" target="contracts" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.7821428571428571;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" parent="1" source="contracts" target="learning" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.15714285714285714;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" parent="1" source="contracts" target="collaboration" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" parent="1" source="contracts" target="migration" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.8428571428571429;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="industry" value="&lt;b&gt;行业标准与最佳实践&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;沿用已有知识与成熟方法&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="40" width="488" height="112" />
+        </mxCell>
+        <mxCell id="internal" value="&lt;b&gt;内部构建规范&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;先明确契约，再组织实现&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="672" y="40" width="488" height="112" />
+        </mxCell>
+        <mxCell id="contracts" value="&lt;b&gt;共同约定&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;开发、集成与扩展遵循明确的规则&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="232" width="1120" height="112" />
+        </mxCell>
+        <mxCell id="learning" value="&lt;b&gt;降低学习成本&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;复用已有认知&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="432" width="352" height="104" />
+        </mxCell>
+        <mxCell id="collaboration" value="&lt;b&gt;降低协作成本&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;按契约分工与检查&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="424" y="432" width="352" height="104" />
+        </mxCell>
+        <mxCell id="migration" value="&lt;b&gt;降低迁移成本&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;减少对专有约定的依赖&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="808" y="432" width="352" height="104" />
+        </mxCell>
+        <mxCell id="note-0" value="共同规则进入设计、构建与交付过程" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=18;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40.0" y="566" width="1120" height="26" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

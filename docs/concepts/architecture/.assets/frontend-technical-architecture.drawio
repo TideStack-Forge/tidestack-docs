@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="frontend-technical-architecture" name="前端基座技术架构">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1560" pageHeight="2018">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="browser" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef5ff;strokeColor=#8eafe0;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="192" width="1480" height="1496" />
+        </mxCell>
+        <mxCell id="browser-title" value="浏览器运行：前端基座" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="202" width="1440" height="30" />
+        </mxCell>
+        <mxCell id="sdk" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef9fb;strokeColor=#7fb9c3;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="248" width="1432" height="144" />
+        </mxCell>
+        <mxCell id="sdk-title" value="基座能力接口：ouroboros-sdk" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#245e69;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="84" y="258" width="1392" height="30" />
+        </mxCell>
+        <mxCell id="application" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef5ff;strokeColor=#8eafe0;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="416" width="1432" height="152" />
+        </mxCell>
+        <mxCell id="application-title" value="应用组织与交互" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="84" y="426" width="1392" height="30" />
+        </mxCell>
+        <mxCell id="presentation" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f1fc;strokeColor=#b3a0d6;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="592" width="1432" height="280" />
+        </mxCell>
+        <mxCell id="presentation-title" value="页面呈现与交互组件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#63448e;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="84" y="602" width="1392" height="30" />
+        </mxCell>
+        <mxCell id="devtools" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#fff7e9;strokeColor=#d4ad69;dashed=1;">
+          <mxGeometry as="geometry" x="64" y="896" width="1432" height="168" />
+        </mxCell>
+        <mxCell id="devtools-title" value="开发场景按需加载的编辑能力" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#805719;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="84" y="906" width="1392" height="30" />
+        </mxCell>
+        <mxCell id="shared" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#effaf5;strokeColor=#78b59a;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="1088" width="1432" height="336" />
+        </mxCell>
+        <mxCell id="shared-title" value="公共服务与通用工具" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#216149;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="84" y="1098" width="1392" height="30" />
+        </mxCell>
+        <mxCell id="foundation" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f7fa;strokeColor=#b3bfce;dashed=0;">
+          <mxGeometry as="geometry" x="64" y="1448" width="1432" height="208" />
+        </mxCell>
+        <mxCell id="foundation-title" value="运行基础与平台内核" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#43546c;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="84" y="1458" width="1392" height="30" />
+        </mxCell>
+        <mxCell id="build" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f7fa;strokeColor=#b3bfce;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="1728" width="1480" height="200" />
+        </mxCell>
+        <mxCell id="build-title" value="构建与交付：位于浏览器运行范围之外" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#43546c;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="1738" width="1440" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43818d;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="280" y="240" />
+            <mxPoint as="targetPoint" x="280" y="132" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43818d;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="780" y="240" />
+            <mxPoint as="targetPoint" x="780" y="132" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43818d;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1280" y="240" />
+            <mxPoint as="targetPoint" x="1280" y="132" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="micro-app" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="24" width="400" height="100" />
+        </mxCell>
+        <mxCell id="micro-app-heading" value="微前端应用" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="47.5" width="384" height="35" />
+        </mxCell>
+        <mxCell id="micro-app-line0" value="业务页面与交互" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="79.5" width="384" height="29" />
+        </mxCell>
+        <mxCell id="component-package" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="580" y="24" width="400" height="100" />
+        </mxCell>
+        <mxCell id="component-package-heading" value="组件包" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="588" y="47.5" width="384" height="35" />
+        </mxCell>
+        <mxCell id="component-package-line0" value="组件、动作与校验扩展" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="588" y="79.5" width="384" height="29" />
+        </mxCell>
+        <mxCell id="layout-extension" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1080" y="24" width="400" height="100" />
+        </mxCell>
+        <mxCell id="layout-extension-heading" value="布局与页面扩展" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=23;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1088" y="47.5" width="384" height="35" />
+        </mxCell>
+        <mxCell id="layout-extension-line0" value="头部、侧栏与页面组合" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1088" y="79.5" width="384" height="29" />
+        </mxCell>
+        <mxCell id="sdk-http" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="304" width="216" height="64" />
+        </mxCell>
+        <mxCell id="sdk-http-heading" value="请求与认证" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="324" width="200" height="32" />
+        </mxCell>
+        <mxCell id="sdk-message" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="316" y="304" width="216" height="64" />
+        </mxCell>
+        <mxCell id="sdk-message-heading" value="消息与事件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="324" y="324" width="200" height="32" />
+        </mxCell>
+        <mxCell id="sdk-nav" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="552" y="304" width="216" height="64" />
+        </mxCell>
+        <mxCell id="sdk-nav-heading" value="导航与页签" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="560" y="324" width="200" height="32" />
+        </mxCell>
+        <mxCell id="sdk-modal" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="788" y="304" width="216" height="64" />
+        </mxCell>
+        <mxCell id="sdk-modal-heading" value="弹窗交互" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="796" y="324" width="200" height="32" />
+        </mxCell>
+        <mxCell id="sdk-theme" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1024" y="304" width="216" height="64" />
+        </mxCell>
+        <mxCell id="sdk-theme-heading" value="主题接口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1032" y="324" width="200" height="32" />
+        </mxCell>
+        <mxCell id="sdk-i18n" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1260" y="304" width="216" height="64" />
+        </mxCell>
+        <mxCell id="sdk-i18n-heading" value="国际化接口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1268" y="324" width="200" height="32" />
+        </mxCell>
+        <mxCell id="layout" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="472" width="440" height="72" />
+        </mxCell>
+        <mxCell id="layout-heading" value="应用布局与导航" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="482" width="424" height="34" />
+        </mxCell>
+        <mxCell id="layout-line0" value="头部、侧栏、菜单与布局扩展" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="513" width="424" height="29" />
+        </mxCell>
+        <mxCell id="page-container" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="560" y="472" width="440" height="72" />
+        </mxCell>
+        <mxCell id="page-container-heading" value="页面与交互容器" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="482" width="424" height="34" />
+        </mxCell>
+        <mxCell id="page-container-line0" value="Schema 页面、微前端、页签与弹窗" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="513" width="424" height="29" />
+        </mxCell>
+        <mxCell id="extension-registration" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1040" y="472" width="440" height="72" />
+        </mxCell>
+        <mxCell id="extension-registration-heading" value="组件扩展注册" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="482" width="424" height="34" />
+        </mxCell>
+        <mxCell id="extension-registration-line0" value="渲染器、自定义动作与校验规则" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="513" width="424" height="29" />
+        </mxCell>
+        <mxCell id="prismui" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="648" width="440" height="88" />
+        </mxCell>
+        <mxCell id="prismui-heading" value="prismui" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="666" width="424" height="34" />
+        </mxCell>
+        <mxCell id="prismui-line0" value="声明式页面、表单与 UI Schema" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="697" width="424" height="29" />
+        </mxCell>
+        <mxCell id="grid" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="560" y="648" width="440" height="88" />
+        </mxCell>
+        <mxCell id="grid-heading" value="react-grid-layout" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="666" width="424" height="34" />
+        </mxCell>
+        <mxCell id="grid-line0" value="看板网格、拖拽与尺寸调整" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="697" width="424" height="29" />
+        </mxCell>
+        <mxCell id="monaco" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1040" y="648" width="440" height="88" />
+        </mxCell>
+        <mxCell id="monaco-heading" value="Monaco Editor" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="666" width="424" height="34" />
+        </mxCell>
+        <mxCell id="monaco-line0" value="脚本、SQL 与结构化文本编辑" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="697" width="424" height="29" />
+        </mxCell>
+        <mxCell id="mobx" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="760" width="440" height="88" />
+        </mxCell>
+        <mxCell id="mobx-heading" value="MobX 组件状态" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="766.5" width="424" height="33" />
+        </mxCell>
+        <mxCell id="mobx-line0" value="mobx-react／mobx-state-tree" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="796.5" width="424" height="28" />
+        </mxCell>
+        <mxCell id="mobx-line1" value="用于部分 Schema 组件内部" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="821.5" width="424" height="28" />
+        </mxCell>
+        <mxCell id="echarts" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="560" y="760" width="440" height="88" />
+        </mxCell>
+        <mxCell id="echarts-heading" value="ECharts" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="778" width="424" height="34" />
+        </mxCell>
+        <mxCell id="echarts-line0" value="通过 prismui Chart 渲染器展示图表" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="809" width="424" height="29" />
+        </mxCell>
+        <mxCell id="textmate" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1040" y="760" width="440" height="88" />
+        </mxCell>
+        <mxCell id="textmate-heading" value="TextMate 语法支持" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="766.5" width="424" height="33" />
+        </mxCell>
+        <mxCell id="textmate-line0" value="monaco-editor-textmate／monaco-textmate" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="796.5" width="424" height="28" />
+        </mxCell>
+        <mxCell id="textmate-line1" value="onigasm 正则执行" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="821.5" width="424" height="28" />
+        </mxCell>
+        <mxCell id="schema-designer" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="952" width="440" height="88" />
+        </mxCell>
+        <mxCell id="schema-designer-heading" value="prismui 可视化编辑器" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="970.5" width="424" height="33" />
+        </mxCell>
+        <mxCell id="schema-designer-line0" value="Schema 编辑、预览与组件配置" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1000.5" width="424" height="29" />
+        </mxCell>
+        <mxCell id="x6" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="560" y="952" width="440" height="88" />
+        </mxCell>
+        <mxCell id="x6-heading" value="AntV X6＋布局与交互插件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="959" width="424" height="32" />
+        </mxCell>
+        <mxCell id="x6-line0" value="逻辑流开发微前端" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="988" width="424" height="28" />
+        </mxCell>
+        <mxCell id="x6-line1" value="@antv/layout／拖拽／对齐／撤销" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="1013" width="424" height="28" />
+        </mxCell>
+        <mxCell id="reactflow" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff7e9;strokeColor=#d4ad69;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1040" y="952" width="440" height="88" />
+        </mxCell>
+        <mxCell id="reactflow-heading" value="React Flow" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#805719;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="958.5" width="424" height="33" />
+        </mxCell>
+        <mxCell id="reactflow-line0" value="审批流开发微前端" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="988.5" width="424" height="28" />
+        </mxCell>
+        <mxCell id="reactflow-line1" value="@xyflow/react／节点与连线编辑" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="1013.5" width="424" height="28" />
+        </mxCell>
+        <mxCell id="http" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="1144" width="328" height="112" />
+        </mxCell>
+        <mxCell id="http-heading" value="HTTP 请求与认证" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1162.5" width="312" height="33" />
+        </mxCell>
+        <mxCell id="http-line0" value="Axios" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1192.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="http-line1" value="令牌、请求拦截与响应处理" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1217.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="realtime" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="432" y="1144" width="328" height="112" />
+        </mxCell>
+        <mxCell id="realtime-heading" value="实时通信" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440" y="1162.5" width="312" height="33" />
+        </mxCell>
+        <mxCell id="realtime-line0" value="@stomp/stompjs／SockJS" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440" y="1192.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="realtime-line1" value="实时连接、订阅与重连" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440" y="1217.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="i18n" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="784" y="1144" width="328" height="112" />
+        </mxCell>
+        <mxCell id="i18n-heading" value="国际化服务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="792" y="1162.5" width="312" height="33" />
+        </mxCell>
+        <mxCell id="i18n-line0" value="平台 I18n" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="792" y="1192.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="i18n-line1" value="语言资源与 IndexedDB 缓存" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="792" y="1217.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="theme" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1136" y="1144" width="328" height="112" />
+        </mxCell>
+        <mxCell id="theme-heading" value="主题服务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1144" y="1162.5" width="312" height="33" />
+        </mxCell>
+        <mxCell id="theme-line0" value="平台主题管理" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1144" y="1192.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="theme-line1" value="主题切换、样式与本地偏好" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1144" y="1217.5" width="312" height="28" />
+        </mxCell>
+        <mxCell id="icons" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="1280" width="328" height="112" />
+        </mxCell>
+        <mxCell id="icons-heading" value="Font Awesome" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1311" width="312" height="33" />
+        </mxCell>
+        <mxCell id="icons-line0" value="图标字体与图标样式" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1341" width="312" height="28" />
+        </mxCell>
+        <mxCell id="selection" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="432" y="1280" width="328" height="112" />
+        </mxCell>
+        <mxCell id="selection-heading" value="Downshift" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440" y="1311" width="312" height="33" />
+        </mxCell>
+        <mxCell id="selection-line0" value="选择器状态、键盘与焦点交互" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440" y="1341" width="312" height="28" />
+        </mxCell>
+        <mxCell id="functions" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="784" y="1280" width="328" height="112" />
+        </mxCell>
+        <mxCell id="functions-heading" value="Lodash" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="792" y="1311" width="312" height="33" />
+        </mxCell>
+        <mxCell id="functions-line0" value="集合、对象与通用函数" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="792" y="1341" width="312" height="28" />
+        </mxCell>
+        <mxCell id="clipboard" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1136" y="1280" width="328" height="112" />
+        </mxCell>
+        <mxCell id="clipboard-heading" value="copy-to-clipboard" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=21;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1144" y="1311" width="312" height="33" />
+        </mxCell>
+        <mxCell id="clipboard-line0" value="剪贴板复制" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1144" y="1341" width="312" height="28" />
+        </mxCell>
+        <mxCell id="react" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="1504" width="216" height="120" />
+        </mxCell>
+        <mxCell id="react-heading" value="React 18" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1540" width="200" height="32" />
+        </mxCell>
+        <mxCell id="react-line0" value="界面组件与渲染机制" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1569" width="200" height="27" />
+        </mxCell>
+        <mxCell id="react-dom" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="316" y="1504" width="216" height="120" />
+        </mxCell>
+        <mxCell id="react-dom-heading" value="ReactDOM" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="324" y="1540" width="200" height="32" />
+        </mxCell>
+        <mxCell id="react-dom-line0" value="DOM 挂载与界面更新" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="324" y="1569" width="200" height="27" />
+        </mxCell>
+        <mxCell id="qiankun" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="552" y="1504" width="216" height="120" />
+        </mxCell>
+        <mxCell id="qiankun-heading" value="qiankun" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="560" y="1528" width="200" height="32" />
+        </mxCell>
+        <mxCell id="qiankun-line0" value="微前端加载与沙箱" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="560" y="1557" width="200" height="27" />
+        </mxCell>
+        <mxCell id="qiankun-line1" value="挂载、更新与卸载" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="560" y="1581" width="200" height="27" />
+        </mxCell>
+        <mxCell id="router" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="788" y="1504" width="216" height="120" />
+        </mxCell>
+        <mxCell id="router-heading" value="平台路由内核" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="796" y="1528" width="200" height="32" />
+        </mxCell>
+        <mxCell id="router-line0" value="History API" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="796" y="1557" width="200" height="27" />
+        </mxCell>
+        <mxCell id="router-line1" value="导航与页面切换" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="796" y="1581" width="200" height="27" />
+        </mxCell>
+        <mxCell id="store" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1024" y="1504" width="216" height="120" />
+        </mxCell>
+        <mxCell id="store-heading" value="平台状态内核" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1032" y="1528" width="200" height="32" />
+        </mxCell>
+        <mxCell id="store-line0" value="Store" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1032" y="1557" width="200" height="27" />
+        </mxCell>
+        <mxCell id="store-line1" value="模块、动作与订阅" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1032" y="1581" width="200" height="27" />
+        </mxCell>
+        <mxCell id="event-bus" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1260" y="1504" width="216" height="120" />
+        </mxCell>
+        <mxCell id="event-bus-heading" value="平台事件总线" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1268" y="1528" width="200" height="32" />
+        </mxCell>
+        <mxCell id="event-bus-line0" value="EventBus" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1268" y="1557" width="200" height="27" />
+        </mxCell>
+        <mxCell id="event-bus-line1" value="事件发布与订阅" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1268" y="1581" width="200" height="27" />
+        </mxCell>
+        <mxCell id="main-build" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="1784" width="440" height="112" />
+        </mxCell>
+        <mxCell id="main-build-heading" value="主应用编译与打包" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1801" width="424" height="34" />
+        </mxCell>
+        <mxCell id="main-build-line0" value="TypeScript／Babel／Webpack 5" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1832" width="424" height="29" />
+        </mxCell>
+        <mxCell id="main-build-line1" value="Sass／PostCSS／Monaco Worker" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1858" width="424" height="29" />
+        </mxCell>
+        <mxCell id="sdk-build" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="560" y="1784" width="440" height="112" />
+        </mxCell>
+        <mxCell id="sdk-build-heading" value="SDK 与类型声明" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="1801" width="424" height="34" />
+        </mxCell>
+        <mxCell id="sdk-build-line0" value="TypeScript／Rollup" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="1832" width="424" height="29" />
+        </mxCell>
+        <mxCell id="sdk-build-line1" value="ESM 包与类型声明" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="568" y="1858" width="424" height="29" />
+        </mxCell>
+        <mxCell id="static-delivery" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="1040" y="1784" width="440" height="112" />
+        </mxCell>
+        <mxCell id="static-delivery-heading" value="静态交付" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=22;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="1801" width="424" height="34" />
+        </mxCell>
+        <mxCell id="static-delivery-line0" value="HTML／JavaScript／CSS" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="1832" width="424" height="29" />
+        </mxCell>
+        <mxCell id="static-delivery-line1" value="Nginx 静态服务与反向代理" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1048" y="1858" width="424" height="29" />
+        </mxCell>
+        <mxCell id="edge-label0" value="提供基座能力" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43818d;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="240.0" y="158" width="112" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="Schema 组件内部的 MobX 状态与平台全局状态分别管理；开发设计器按需加载。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="440.8" y="1964" width="678.4" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

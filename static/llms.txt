@@ -4,32 +4,38 @@ TideStack Handbook is the canonical public knowledge source for TideStack, also 
 
 Use TideStack / 潮汐栈 for product-facing text. Preserve `Ouroboros / ouroboros` in Java packages, Maven coordinates, Docker images, SDK imports, metadata paths, and runtime identifiers unless a dedicated migration says otherwise.
 
+Paths below are relative to the Handbook repository root. This file and `llms-full.txt` are routing indexes, not full documentation dumps. Repository assets are not necessarily available at matching website URLs.
+
 ## Start Here
 
 - Platform overview: `docs/overview.md`
 - Getting started: `docs/getting-started/index.md`
 - Low-code delivery: `docs/low-code/index.md`
-- High/low-code fusion development: `docs/fusion-development/index.md`
+- Fusion development across models, AI-assisted implementation, and platform capabilities: `docs/fusion-development/index.md`
 - Operations: `docs/operations/index.md`
 - Core concepts, model relationships, and model pages: `docs/concepts/index.md`
 - API and reference: `docs/api/index.md`, `docs/reference/index.md`
 
 ## AI Agent Context
 
-- AI guide: `docs/ai/index.md`
-- Terminology and compatibility: `docs/ai/terminology.md`
+- Getting started with AI and a reusable task prompt: `docs/ai/index.md`
 - Task routing: `docs/ai/routing-hints.md`
-- Task recipes: `docs/ai/task-recipes.md`
-- Canonical source map: `docs/ai/reference-sources.md`
+- End-to-end AI-assisted feature development: `docs/fusion-development/ai-assisted-development.md`
+- Task execution and acceptance criteria: `docs/ai/task-recipes.md`
+- Knowledge sources and tool boundaries: `docs/ai/reference-sources.md`
+- Terminology and compatibility: `docs/ai/terminology.md`
 
 ## Machine-Readable Assets
 
 - Metadata schemas: `docs/reference/jsonschema/metadata/`
-- OpenAPI specs: `openapi/`
-- Full AI index: `llms-full.txt`
+- OpenAPI publication directory: `openapi/` (currently contains maintenance instructions only)
+- Expanded AI routing index: `llms-full.txt`
 
 ## Rules
 
 - Prefer handbook docs for stable public knowledge.
-- Prefer MCP tools for project-specific inspection, validation, generation, runtime control, or authenticated platform actions.
-- Do not invent metadata shapes; validate against `docs/reference/jsonschema/metadata/*.schema.json` when available.
+- Confirm the target platform version and the relevant page's version statement before using examples.
+- Inspect the target project's definitions and tests for its current contract; use runtime evidence for deployed state.
+- Use available MCP tools or project scripts for inspection, validation, generation, or runtime actions. Do not assume a TideStack MCP service or Context7 library is configured.
+- Do not invent metadata shapes. Use the schema index to select a bundled schema, then check version compatibility, references, and runtime behavior; schema validation alone is insufficient.
+- Report what was actually verified and what remains unverified.

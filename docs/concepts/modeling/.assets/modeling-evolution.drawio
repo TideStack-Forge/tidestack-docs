@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="modeling-evolution" name="模型随应用一起演进">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="600">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cell-1" value="模型随应用一起演进" style="text;html=0;fillColor=none;strokeColor=none;fontSize=26;fontColor=#0B1F3A;fontStyle=1;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="26" width="868" height="34" />
+        </mxCell>
+        <mxCell id="cell-2" value="模型定义在开发、交付与运行之间保持可识别、可比较" style="text;html=0;fillColor=none;strokeColor=none;fontSize=18;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="74" width="868" height="26" />
+        </mxCell>
+        <mxCell id="design-delivery" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" source="design" target="delivery">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="272" y="276" />
+            <mxPoint as="targetPoint" x="360" y="276" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="delivery-running" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=0;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;" source="delivery" target="running">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="600" y="276" />
+            <mxPoint as="targetPoint" x="688" y="276" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="feedback" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#7B8DA4;strokeWidth=1.5;endArrow=block;dashed=1;exitX=0.5;exitY=1.0;entryX=0.5;entryY=1.0;" source="running" target="design">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="808" y="380" />
+            <mxPoint as="targetPoint" x="152" y="380" />
+            <Array as="points">
+              <mxPoint x="808" y="488" />
+              <mxPoint x="152" y="488" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="design" value="&lt;b&gt;开发与验证&lt;/b&gt;&lt;br&gt;定义业务语义&lt;br&gt;检查结构与引用&lt;br&gt;验证页面和业务行为" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EDF5FF;strokeColor=#88B2E5;fontColor=#174C88;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="172" width="240" height="208" />
+        </mxCell>
+        <mxCell id="delivery" value="&lt;b&gt;版本与交付&lt;/b&gt;&lt;br&gt;保存定义与代码扩展&lt;br&gt;比较本次变更&lt;br&gt;形成可交付的应用状态" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF8EC;strokeColor=#D8AA60;fontColor=#79521F;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="360" y="172" width="240" height="208" />
+        </mxCell>
+        <mxCell id="running" value="&lt;b&gt;加载与运行&lt;/b&gt;&lt;br&gt;按来源装配模型&lt;br&gt;执行业务请求&lt;br&gt;按契约刷新定义" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EFFAF6;strokeColor=#70B9A3;fontColor=#235D4A;fontSize=20;align=left;verticalAlign=middle;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="688" y="172" width="240" height="208" />
+        </mxCell>
+        <mxCell id="cell-6" value="交付" style="text;html=0;fillColor=none;strokeColor=none;fontSize=17;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="284" y="235" width="616" height="25" />
+        </mxCell>
+        <mxCell id="cell-7" value="装载" style="text;html=0;fillColor=none;strokeColor=none;fontSize=17;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="612" y="235" width="288" height="25" />
+        </mxCell>
+        <mxCell id="cell-8" value="验证与使用反馈" style="text;html=0;fillColor=none;strokeColor=none;fontSize=18;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="388" y="450" width="512" height="26" />
+        </mxCell>
+        <mxCell id="cell-9" value="模型变更与代码变更采用不同的生效方式，刷新能力由各模型分别提供" style="text;html=0;fillColor=none;strokeColor=none;fontSize=18;fontColor=#52657F;fontStyle=0;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="32" y="550" width="868" height="26" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

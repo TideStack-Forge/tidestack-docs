@@ -1,90 +1,61 @@
 # TypedDataModel
 
-`TypedDataModel<PK, M>` 是 `DataModel` 的强类型版本，适合在 Java 代码里直接对领域对象 `M` 做读写，而不是手动操作 `Map<String, Object>` 和 `Record`。
+`com.ouroboros.data.model.TypedDataModel<PK, M>` 在 Java 中直接读写模型对象。`PK` 是主键类型，`M` 是模型类；查询返回 `M` 或 `List<M>`。
 
-## 先理解它和 DataModel 的关系
+## 方法
 
-- `DataModel`：更偏弱结构、通用运行时
-- `TypedDataModel`：更偏强类型、后端代码友好
+| 方法 | 返回值 |
+| --- | --- |
+| `getDataModel()` | `DataModel` |
+| `insert(M data)` | `Try<M>` |
+| `batchInsert(Collection<M> rows)` | `Try<List<M>>` |
+| `get(PK id)` / `get(PK id, Map<String, Object> statement)` | `Try<M>` |
+| `query(Collection<PK> ids)` | `Try<List<M>>` |
+| `query(Map<String, Object> statement)` | `Try<List<M>>` |
+| `query()` | `TypedDataModelQuery<PK, M>` |
+| `count(Map<String, Object> where)` | `Try<Long>` |
+| `update(PK id, M data)` | `Try<Long>` |
+| `update(id / ids / where, Map<String, Object> patch)` | `Try<Long>` |
+| `delete(id / ids / where)` | `Try<Long>` |
 
-两者能力范围非常接近，只是返回类型从 `Record / RecordList` 变成了 `M / List<M>`。
-
-## 什么时候优先用它
-
-- 你已经有领域对象类或 typed model 类
-- 你在写后端 Java 代码，而不是脚本
-- 你希望把查询结果直接映射成对象，而不是再自己拆 `Record`
-
-如果模型名是动态的、结构又不固定，通常还是 [DataModel](../data-model/) 更灵活。
-
-## 基础入口
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getDataModel()` | `DataModel` | 拿到底层原始 `DataModel` |
-
-## 写入相关
-
-| 方法族 | 返回值类型 | 说明 |
-| ------ | ---------- | ---- |
-| `insert(M data)` | `Try<M>` | 插入单条模型对象 |
-| `batchInsert(Collection<M> dataList)` | `Try<List<M>>` | 批量插入 |
-| `delete(id / ids / where)` | `Try<Long>` | 删除记录 |
-| `update(id, M data)` | `Try<Long>` | 用完整对象更新 |
-| `update(id / ids / where, Map<String, Object> data)` | `Try<Long>` | 用字段 patch 更新 |
-
-## 查询相关
-
-| 方法族 | 返回值类型 | 说明 |
-| ------ | ---------- | ---- |
-| `count(Map<String, Object> where)` | `Try<Long>` | 统计数量 |
-| `get(PK id)` | `Try<M>` | 按主键取单条 |
-| `get(PK id, Map<String, Object> statement)` | `Try<M>` | 按主键并附加语句 |
-| `query(Collection<PK> ids)` | `Try<List<M>>` | 批量按主键查询 |
-| `query(Map<String, Object> statement)` | `Try<List<M>>` | 完整语句查询 |
-| `query(select, where, orderBy, offset, limit)` | `Try<List<M>>` | 便捷查询重载 |
-
-要注意一点：当前 `TypedDataModel` 的 `orderBy` 参数是 `String`，不像 `DataModel` 的便捷重载那样使用 `Map<String, Object>`。
-
-## 插件切换
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `withPlugins(...)` | `TypedDataModel<PK, M>` | 追加插件 |
-| `withoutPlugins(...)` | `TypedDataModel<PK, M>` | 去掉插件 |
-| `hasPlugin(String name)` | `boolean` | 判断插件是否启用 |
-
-## 常见使用路径
-
-1. 优先通过 Spring 注入 `TypedDataModel<PK, M>`，或通过 [TypedDataModelCenter](../typed-data-model-center/) 按类型获取模型。
-2. 用 `get(...)`、`query(...)`、`insert(...)` 直接处理 `M`。
-3. 需要底层弱结构能力时，再从 `getDataModel()` 下钻到原始模型。
+支持 `query(select, where[, orderBy[, offset, limit]])`：`select` 为 `Collection<String>`，`where` 为 Map，`orderBy` 为字符串，例如 `"id ASC"`。这与 `DataModel` 便捷重载使用 Map 排序的形式不同。
 
 ## Spring 注入
 
-被 `@DataModelScan` 扫描到的 Java `@Model` 类，如果恰好有一个 `@PrimaryKey` 字段，会自动注册成可按泛型匹配的 Spring Bean：
+模型类被 `@DataModelScan` 扫描且恰有一个 `@PrimaryKey` 字段时，可按泛型注入。示例假设应用已有 `Order` 模型类，主键为 `String`：
 
 ```java
-@Service
-class OrderService {
-  private final TypedDataModel<String, Order> orders;
+import java.util.List;
+import java.util.Map;
+import org.springframework.stereotype.Service;
+import com.ouroboros.data.model.TypedDataModel;
 
-  OrderService(TypedDataModel<String, Order> orders) {
-    this.orders = orders;
-  }
+@Service
+public class OrderService {
+    private final TypedDataModel<String, Order> orders;
+
+    public OrderService(TypedDataModel<String, Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Order> findOpenOrders() {
+        return orders.query(Map.of(
+            "where", Map.of("status", "OPEN"), "limit", 20
+        )).get();
+    }
+
+    public long closeOrder(String id) {
+        return orders.update(id, Map.of("status", "CLOSED")).get();
+    }
 }
 ```
 
-注入阶段不要求底层 `DataModel` 已完成刷新。模型刷新前注入的是延迟代理；这时同步方法会抛出 `IllegalStateException`，刷新完成后会委托到底层模型。没有主键或多个主键字段的 typed model 不会注册为可精确注入的 `TypedDataModel<PK, M>` Bean。
+注入时模型可以尚未就绪；此时同步读写方法会抛出 `IllegalStateException`，应在模型就绪后调用。没有主键或有多个主键字段的类不能通过上述方式精确注入。
 
-## 使用提醒
+## 返回结果与插件
 
-- 查询、写入等方法同样大多返回 `Try`，不要忽略失败分支。
-- `orderBy` 在当前接口里是 `String`，和部分弱结构 API 的写法不完全一样。
-- 需要按名字动态取模型时，不要硬走强类型，直接转到 [DataModelCenter](../data-model-center/) 会更自然。
-- 如果业务组件在初始化阶段就调用模型同步方法，要确认模型刷新已经完成；否则改用异步调用或延后到刷新后执行。
+读写操作返回 `Try`。示例使用 `.get()`，失败时抛出原异常；需要自行处理失败时保留错误原因。字段局部修改使用 Map patch，避免把无意变更的对象字段一起提交。
 
-## 下一步看哪里
+`withPlugins(...)`、`withoutPlugins(...)`、`withoutPlugins()` 和 `hasPlugin(name)` 与 [DataModel](../data-model/) 对应；插件会影响校验和读写策略，不能仅为绕过错误而移除。
 
-- 想看弱结构版本：看 [DataModel](../data-model/)
-- 想看获取入口：看 [TypedDataModelCenter](../typed-data-model-center/)
+在非 Spring 代码中按类获取模型，见 [TypedDataModelCenter](../typed-data-model-center/)；动态结构访问见 [DataModel](../data-model/)。

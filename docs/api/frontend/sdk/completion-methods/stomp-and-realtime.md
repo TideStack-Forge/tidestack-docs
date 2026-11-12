@@ -4,404 +4,113 @@ sidebar_position: 5
 
 # Stomp 与实时通信
 
-适用对象：需要在微前端里做主题订阅、用户通道、点对点消息、发送消息和断线重连的开发者。
+从 SDK 导入 `Stomp`，用于接收服务端推送和发送消息。目的地须与应用服务端配置一致；平台默认连接路径为 `/websocket/stomp`。
 
-## 使用场景
+## 订阅与清理
 
-- 你需要订阅主题、队列或用户主题
-- 你需要主动发送文本、JSON 或二进制消息
-- 你要处理连接、断开和重连
+| 方法 | 目的地示例 | 返回值 |
+| --- | --- | --- |
+| `Stomp.subscribeTopic('orders', listener, options?)` | `/topic/orders` | 取消函数 |
+| `Stomp.subscribeQueue('jobs', listener, options?)` | `/queue/jobs` | 取消函数 |
+| `Stomp.subscribeUserTopic('notice', listener, options?)` | `/user/topic/notice` | 取消函数 |
+| `Stomp.subscribe(destination, listener, options?)` | 使用完整目的地 | 取消函数 |
 
-## subscribeTopic(topic,listener,keepSingleListener)
-
-实时通信 - 订阅主题。
-
-**参数说明**
-
-| 参数名             | 类型     | 必填 | 默认值 | 说明                                                                            |
-| ------------------ | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| topic              | string   | 是   |        | 订阅的主题                                                                      |
-| listener           | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-| keepSingleListener | boolean  | 否   | true   | 是否保持单一的监听器，即订阅同一个目的地时，之前的监听器会被移除                |
-
-**示例**
+监听器接收 `(message, rawMessage)`。第三个参数可传布尔值或 `{ keepSingleListener }`，默认 `true`，会替换该目的地已有监听器。多个组件需要同时监听时设为 `false`。
 
 ```js
-import { subscribeTopic } from 'ouroboros-sdk'
+import { Stomp, initMicroApp } from 'ouroboros-sdk'
 
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
+let stop
+const { bootstrap, mount, update, unmount } = initMicroApp({
+  async afterMount() {
+    stop = Stomp.subscribeTopic('orders', (message) => {
+      console.log('订单状态', message)
+    }, { keepSingleListener: false })
+  },
+  async afterUnmount() {
+    stop?.()
+    stop = undefined
+  },
+})
+export { bootstrap, mount, update, unmount }
+```
+
+普通订阅会按需连接，重连后恢复订阅。组件卸载时调用自己持有的取消函数。
+
+## 初始数据加实时更新
+
+服务端实现了对应初始化接口时，可用 `subscribeWithInitial`。例如实时目的地 `/orders/status` 默认配对 `/app/orders/status/init`：
+
+```js
+import { Stomp } from 'ouroboros-sdk'
+
+const handle = Stomp.subscribeWithInitial('/orders/status', (message) => {
+  console.log('收到订单数据', message)
+}, {
+  initialBody: { status: 'OPEN' },
+  initialTimeoutMs: 10000,
+  keepSingleListener: false,
+})
+try {
+  await handle.bootstrapDone
+  console.log('初始数据接收完成')
+} catch (error) {
+  console.error('初始数据加载失败', error)
 }
-
-subscribeTopic('myTopic', messageListener, true)
+// 页面卸载时：
+// handle.unsubscribe()
 ```
 
-## subscribeQueue(queue,listener,keepSingleListener)
+该方法返回 `{ bootstrapDone, unsubscribe }`。初始化失败、超时或提前取消会使等待失败，需要处理 Promise 拒绝。
 
-实时通信 - 订阅点对点队列。
+| 选项 | 用途 |
+| --- | --- |
+| `initialDestination` | 显式指定 `/app/.../init` 地址 |
+| `initialBody` | 初始请求数据 |
+| `createInitialRequest()` | 每次初始化动态生成请求数据 |
+| `initialTimeoutMs` | 等待初始数据的超时，毫秒 |
+| `splitInitialHandlers` | 分开处理初始与实时消息 |
+| `onInitialData`、`onInitialLive` | 初始数据 / 初始化期间实时数据回调 |
+| `onInitialComplete`、`onInitialError` | 初始化结束 / 错误回调 |
 
-**参数说明**
+普通 `subscribe*` 的选项也可携带这些初始化配置；需要等待完成时使用 `subscribeWithInitial`。
 
-| 参数名             | 类型     | 必填 | 默认值 | 说明                                                                            |
-| ------------------ | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| queue              | string   | 是   |        | 点对点队列名称                                                                  |
-| listener           | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-| keepSingleListener | boolean  | 否   | true   | 是否保持单一的监听器，即订阅同一个目的地时，之前的监听器会被移除                |
+## 发送消息
 
-**示例**
+| 方法 | 消息体 |
+| --- | --- |
+| `Stomp.sendText(destination, body, headers?)` | 字符串 |
+| `Stomp.sendJson(destination, body, headers?)` | JSON 数据 |
+| `Stomp.sendBinary(destination, body, headers?)` | `Uint8Array` |
+| `Stomp.send(destination, body, headers?)` | 通用发送 |
+
+均返回 Promise。发送成功仅表示消息已发出，业务处理完成应由服务端结果消息确认。
 
 ```js
-import { subscribeQueue } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-subscribeQueue('myQueue', messageListener, true)
+await Stomp.sendJson('/app/orders/reload', { orderId: 'order-001' })
 ```
 
-## subscribeUserTopic(topic,listener,keepSingleListener)
+## 连接状态
 
-实时通信 - 订阅用户主题。
-
-**参数说明**
-
-| 参数名             | 类型     | 必填 | 默认值 | 说明                                                                            |
-| ------------------ | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| topic              | string   | 是   |        | 订阅的主题                                                                      |
-| listener           | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-| keepSingleListener | boolean  | 否   | true   | 是否保持单一的监听器，即订阅同一个目的地时，之前的监听器会被移除                |
-
-**示例**
+| 方法 | 用途 |
+| --- | --- |
+| `connect()`、`reconnect()` | 建立 / 重建连接，返回 Promise |
+| `disconnect(force?)` | 断开连接，默认非强制 |
+| `isConnected()` | 是否已建立连接 |
+| `isActive()` | 客户端是否已激活 |
+| `isStompAuthenticated()` | Stomp 认证状态 |
+| `onStompConnected(handler)`、`onStompDisconnected(handler)` | 监听状态，返回清理函数 |
 
 ```js
-import { subscribeUserTopic } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-subscribeUserTopic('myUserTopic', messageListener, true)
+const stopStatus = Stomp.onStompConnected(() => console.log('实时连接已就绪'))
+// 页面卸载时：
+// stopStatus()
 ```
 
-## subscribe(destination,listener,keepSingleListener)
+连接由同一基座下的页面共享。普通组件通过取消自己的订阅清理资源，避免断开整个连接。
 
-实时通信 - 订阅消息。
+## 按目的地取消
 
-**参数说明**
+`unsubscribeTopic`、`unsubscribeQueue`、`unsubscribeUserTopic` 和 `unsubscribe` 接收目的地及可选 `listener`。省略监听器会取消该目的地的全部监听。
 
-| 参数名             | 类型     | 必填 | 默认值 | 说明                                                                            |
-| ------------------ | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| destination        | string   | 是   |        | 订阅的目的地                                                                    |
-| listener           | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-| keepSingleListener | boolean  | 否   | true   | 是否保持单一的监听器，即订阅同一个目的地时，之前的监听器会被移除                |
-
-**示例**
-
-```js
-import { subscribe } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-subscribe('/myDestination', messageListener, true)
-```
-
-## unsubscribeTopic(topic,listener)
-
-实时通信 - 取消订阅主题。
-
-**参数说明**
-
-| 参数名   | 类型     | 必填 | 默认值 | 说明                                                                            |
-| -------- | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| topic    | string   | 是   |        | 订阅的主题                                                                      |
-| listener | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-
-**示例**
-
-```js
-import { unsubscribeTopic } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-unsubscribeTopic('myTopic', messageListener)
-```
-
-## unsubscribeQueue(queue,listener)
-
-实时通信 - 取消订阅点对点队列。
-
-**参数说明**
-
-| 参数名   | 类型     | 必填 | 默认值 | 说明                                                                            |
-| -------- | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| queue    | string   | 是   |        | 点对点队列名称                                                                  |
-| listener | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-
-**示例**
-
-```js
-import { unsubscribeQueue } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-unsubscribeQueue('myQueue', messageListener)
-```
-
-## unsubscribeUserTopic(topic,listener)
-
-实时通信 - 取消订阅用户主题。
-
-**参数说明**
-
-| 参数名   | 类型     | 必填 | 默认值 | 说明                                                                            |
-| -------- | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| topic    | string   | 是   |        | 订阅的主题                                                                      |
-| listener | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-
-**示例**
-
-```js
-import { unsubscribeUserTopic } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-unsubscribeUserTopic('myUserTopic', messageListener)
-```
-
-## unsubscribe(destination,listener)
-
-实时通信 - 取消订阅。
-
-**参数说明**
-
-| 参数名      | 类型     | 必填 | 默认值 | 说明                                                                            |
-| ----------- | -------- | ---- | ------ | ------------------------------------------------------------------------------- |
-| destination | string   | 是   |        | 取消订阅的目的地                                                                |
-| listener    | function | 是   |        | 消息监听器，接收两个参数：`message` 表示消息内容， `rawMessage`表示原始消息对象 |
-
-**示例**
-
-```js
-import { unsubscribe } from 'ouroboros-sdk'
-
-const messageListener = (message, rawMessage) => {
-  console.log('Received message:', message)
-}
-
-unsubscribe('/myDestination', messageListener)
-```
-
-## unsubscribeAll
-
-实时通信 - 取消订阅所有。
-
-**示例**
-
-```js
-import { unsubscribeAll } from 'ouroboros-sdk'
-
-unsubscribeAll()
-```
-
-## unsubscribeAllTopics
-
-实时通信 - 取消订阅所有主题。
-
-**示例**
-
-```js
-import { unsubscribeAll } from 'ouroboros-sdk'
-
-unsubscribeAll()
-```
-
-## unsubscribeAllQueues
-
-实时通信 - 取消订阅所有点对点队列。
-
-**示例**
-
-```js
-import { unsubscribeAllQueues } from 'ouroboros-sdk'
-
-unsubscribeAllQueues()
-```
-
-## unsubscribeAllUserTopics
-
-实时通信 - 取消订阅所有用户主题。
-
-**示例**
-
-```js
-import { unsubscribeAllUserTopics } from 'ouroboros-sdk'
-
-unsubscribeAllUserTopics()
-```
-
-## sendBinary(destination,body,headers)
-
-发送二进制消息。
-
-**参数说明**
-
-| 参数名      | 类型       | 必填 | 默认值 | 说明       |
-| ----------- | ---------- | ---- | ------ | ---------- |
-| destination | string     | 是   |        | 目的地     |
-| body        | Uint8Array | 是   |        | 消息体     |
-| headers     | any        | 否   |        | 请求头信息 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { sendBinary } from 'ouroboros-sdk'
-
-const destination = '/upload'
-const binaryData = new Uint8Array([0x48, 0x65, 0x6c, 0x6c, 0x6f])
-const headers = { 'Content-Type': 'application/octet-stream' }
-
-await sendBinary(destination, binaryData, headers)
-```
-
-## sendText(destination,body,headers)
-
-发送文本消息。
-
-**参数说明**
-
-| 参数名      | 类型   | 必填 | 默认值 | 说明       |
-| ----------- | ------ | ---- | ------ | ---------- |
-| destination | string | 是   |        | 目的地     |
-| body        | string | 是   |        | 消息体     |
-| headers     | any    | 否   |        | 请求头信息 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { sendText } from 'ouroboros-sdk'
-
-const destination = '/upload'
-const body = 'Hello, World!'
-const headers = { 'Content-Type': 'text/plain' }
-
-await sendText(destination, body, headers)
-```
-
-## sendJson(destination,body,headers)
-
-发送 JSON 消息。
-
-**参数说明**
-
-| 参数名      | 类型   | 必填 | 默认值 | 说明       |
-| ----------- | ------ | ---- | ------ | ---------- |
-| destination | string | 是   |        | 目的地     |
-| body        | any    | 是   |        | 消息体     |
-| headers     | any    | 否   |        | 请求头信息 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { sendJson } from 'ouroboros-sdk'
-
-const destination = '/upload'
-const jsonData = { name: 'John', age: 30 }
-const headers = { 'Content-Type': 'application/json' }
-
-await sendJson(destination, jsonData, headers)
-```
-
-## send(destination,body,headers)
-
-发送消息。
-
-**参数说明**
-
-| 参数名      | 类型   | 必填 | 默认值 | 说明       |
-| ----------- | ------ | ---- | ------ | ---------- |
-| destination | string | 是   |        | 目的地     |
-| body        | any    | 是   |        | 消息体     |
-| headers     | any    | 否   |        | 请求头信息 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-同上。
-
-## connect
-
-连接服务器。
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { connect } from 'ouroboros-sdk'
-
-await connect()
-```
-
-## disconnect(force)
-
-断开连接。
-
-**参数说明**
-
-| 参数名 | 类型    | 必填 | 默认值 | 说明             |
-| ------ | ------- | ---- | ------ | ---------------- |
-| force  | boolean | 否   | false  | 是否强制断开连接 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { disconnect } from 'ouroboros-sdk'
-
-await disconnect()
-```
-
-## reconnect
-
-重新连接。
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { reconnect } from 'ouroboros-sdk'
-
-await reconnect()
-```
+`unsubscribeAll`、`unsubscribeAllTopics`、`unsubscribeAllQueues`、`unsubscribeAllUserTopics` 会影响其他使用者，仅用于明确需要全局清理的场景。

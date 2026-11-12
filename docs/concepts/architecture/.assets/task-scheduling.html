@@ -1,0 +1,62 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>任务调度</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1400 978" width="1400" height="978" role="img" aria-labelledby="task-scheduling-title task-scheduling-desc">
+<title id="task-scheduling-title">任务调度</title>
+<desc id="task-scheduling-desc">计划任务在应用启动时从定义加载并注册，业务代码或脚本也可提交一次性与延迟任务；统一调度器通过 Quartz 管理触发，LogicFlowJob 将任务交给逻辑流执行入口。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43818d"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs>
+<rect width="1400" height="1050" fill="white"/>
+
+<rect x="40" y="96" width="1320" height="244" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#204f86">任务定义与提交入口</text>
+<path d="M260 300L260 432" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M700 300L700 432" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M1160 300L1160.0 490.0Q1160 496 1154.0 496.0L888 496" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M260 560L260 652" fill="none" stroke="#43818d" stroke-width="1.5" marker-end="url(#a43818d)"/>
+<path d="M448 722L632 722" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M888 722L1032 722" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<g data-node="cron"><rect x="80" y="164" width="360" height="128" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="260.0" y="213.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">计划任务</text>
+<text x="260.0" y="239.0" font-size="17" fill="#52657f" text-anchor="middle">启动时加载计划任务定义</text>
+<text x="260.0" y="265.0" font-size="17" fill="#52657f" text-anchor="middle">Cron、目标逻辑流与上下文</text>
+</g>
+<g data-node="once"><rect x="520" y="164" width="360" height="128" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="700.0" y="213.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">一次性／延迟任务</text>
+<text x="700.0" y="239.0" font-size="17" fill="#52657f" text-anchor="middle">业务代码或脚本提交</text>
+<text x="700.0" y="265.0" font-size="17" fill="#52657f" text-anchor="middle">指定执行时间或延迟时长</text>
+</g>
+<g data-node="control"><rect x="1000" y="164" width="320" height="128" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="1160.0" y="226.0" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">任务管理</text>
+<text x="1160.0" y="252.0" font-size="17" fill="#52657f" text-anchor="middle">注册、取消与状态查询</text>
+</g>
+<g data-node="scheduler"><rect x="80" y="440" width="800" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="480.0" y="494.5" font-size="24" font-weight="600" fill="#63448e" text-anchor="middle">统一调度器 Scheduler</text>
+<text x="480.0" y="521.5" font-size="18" fill="#52657f" text-anchor="middle">scheduleCron／scheduleOnce／cancel／isScheduled</text>
+</g>
+<g data-node="quartz"><rect x="80" y="660" width="360" height="124" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="260.0" y="707.0" font-size="22" font-weight="600" fill="#245e69" text-anchor="middle">Quartz 调度实现</text>
+<text x="260.0" y="733.0" font-size="17" fill="#52657f" text-anchor="middle">JobDetail、Trigger 与触发时间</text>
+<text x="260.0" y="759.0" font-size="17" fill="#52657f" text-anchor="middle">按任务标识管理注册</text>
+</g>
+<g data-node="job"><rect x="640" y="660" width="240" height="124" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="760.0" y="720.0" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">LogicFlowJob</text>
+<text x="760.0" y="745.0" font-size="16" fill="#52657f" text-anchor="middle">绑定逻辑流与上下文</text>
+</g>
+<g data-node="flow"><rect x="1040" y="660" width="280" height="124" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1180.0" y="707.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">逻辑流执行入口</text>
+<text x="1180.0" y="732.5" font-size="16" fill="#52657f" text-anchor="middle">执行本次业务处理</text>
+<text x="1180.0" y="757.5" font-size="16" fill="#52657f" text-anchor="middle">由逻辑流协调内部节点</text>
+</g>
+<g data-node="scope"><rect x="80" y="876" width="1240" height="96" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="700.0" y="921.5" font-size="22" font-weight="600" fill="#43546c" text-anchor="middle">时间调度与流程执行各自分工</text>
+<text x="700.0" y="948.5" font-size="18" fill="#52657f" text-anchor="middle">调度器决定何时触发；逻辑流引擎负责本次运行中的节点编排与执行。</text>
+</g>
+<rect x="296.0" y="358" width="88" height="25" rx="3" fill="white"/><text x="340" y="376" fill="#71839a" font-size="16" text-anchor="middle">注册 Cron</text>
+<rect x="732.0" y="358" width="112" height="25" rx="3" fill="white"/><text x="788" y="376" fill="#71839a" font-size="16" text-anchor="middle">注册一次任务</text>
+<rect x="1112.0" y="378" width="96" height="25" rx="3" fill="white"/><text x="1160" y="396" fill="#71839a" font-size="16" text-anchor="middle">控制与查询</text>
+<rect x="312.0" y="594" width="144" height="25" rx="3" fill="white"/><text x="384" y="612" fill="#43818d" font-size="16" text-anchor="middle">创建／维护触发器</text>
+<rect x="500.0" y="690" width="80" height="25" rx="3" fill="white"/><text x="540" y="708" fill="#43816c" font-size="16" text-anchor="middle">到时触发</text>
+<rect x="936.0" y="690" width="48" height="25" rx="3" fill="white"/><text x="960" y="708" fill="#43816c" font-size="16" text-anchor="middle">执行</text>
+<text x="700" y="1016" font-size="17" fill="#52657f" text-anchor="middle">计划任务变更通过调度接口维护；任务注册、取消与运行状态遵循相应调度实现的契约。</text>
+</svg></html>

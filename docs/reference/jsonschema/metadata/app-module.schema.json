@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/app-module.schema.json",
-  "title": "应用模块",
-  "description": "TideStack metadata schema for app-module. Legacy runtime packaging may still use Ouroboros paths.",
+  "title": "应用模块数组",
+  "description": "app-modules.json 使用的模块列表，组织应用模块树及其菜单与权限资源。",
   "type": "array",
   "items": {
     "type": "object",
@@ -13,35 +13,71 @@
     ],
     "properties": {
       "fullName": {
-        "type": "string"
+        "type": "string",
+        "description": "应用模块的完整标识，供模块树和覆盖配置引用。"
       },
       "title": {
-        "type": "string"
+        "type": "string",
+        "description": "供开发界面或页面展示的标题。"
       },
       "description": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "说明该定义的用途、业务含义或使用条件。"
       },
       "icon": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "前端显示使用的图标标识。"
       },
       "order": {
-        "type": "integer"
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "用于同类条目排序的数值。"
       },
       "menu": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "模块关联的主菜单标识。"
       },
       "subMenus": {
-        "type": "array",
+        "type": [
+          "array",
+          "null"
+        ],
         "items": {
           "type": "string"
-        }
+        },
+        "description": "模块关联的附加菜单标识列表。"
       },
       "authorities": {
-        "type": "array",
+        "type": [
+          "array",
+          "null"
+        ],
         "items": {
           "type": "string"
-        }
+        },
+        "description": "模块关联的权限项完整标识列表。"
+      },
+      "parent": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "父应用模块的完整标识，用于组织模块树。"
       }
-    }
-  }
+    },
+    "title": "应用模块定义",
+    "description": "描述一个应用模块的身份、父模块、展示信息及关联菜单和权限项。"
+  },
+  "$comment": "Source: core/ouroboros-app-module-model/ouroboros-app-module-model-core/src/main/java/com/ouroboros/appmodule/BaseAppModule.java"
 }

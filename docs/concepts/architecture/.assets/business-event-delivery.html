@@ -1,0 +1,61 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>业务事件与可靠投递</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1400 808" width="1400" height="808" role="img" aria-labelledby="business-event-delivery-title business-event-delivery-desc">
+<title id="business-event-delivery-title">业务事件与可靠投递</title>
+<desc id="business-event-delivery-desc">业务动作或注册生产者按契约发布事件，在源可写事务内保存事件事实及逐订阅投递记录，提交后执行订阅，Outbox 扫描并恢复未完成投递。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a57b33"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs>
+<rect width="1400" height="880" fill="white"/>
+
+<rect x="1000" y="96" width="360" height="480" rx="8" fill="#fff7e9" fill-opacity="0.55" stroke="#d4ad69" stroke-width="1"/>
+<text x="1020" y="126" font-size="18" font-weight="600" fill="#805719">源可写事务</text>
+<path d="M368 212L512 212" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)"/>
+<path d="M368 448L434.0 448.0Q440 448 440.0 442.0L440.0 258.0Q440 252 446.0 252.0L512 252" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M848 220L1032 220" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1180 284L1180 360" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1180 508L1180 656" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M848 692L934.0 692.0Q940 692 940.0 686.0L940.0 414.0Q940 408 946.0 408.0L1032 408" fill="none" stroke="#71839a" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a71839a)"/>
+<path d="M848 748L1032 748" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<g data-node="producer"><rect x="80" y="164" width="280" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="220.0" y="217.5" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">业务动作／事件生产者</text>
+<text x="220.0" y="242.5" font-size="16" fill="#52657f" text-anchor="middle">发布已经发生的业务事实</text>
+</g>
+<g data-node="approval"><rect x="80" y="388" width="280" height="132" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="220.0" y="426.5" font-size="20" font-weight="600" fill="#63448e" text-anchor="middle">审批事实回流</text>
+<text x="220.0" y="451.5" font-size="16" fill="#52657f" text-anchor="middle">校验绑定、顺序及幂等</text>
+<text x="220.0" y="476.5" font-size="16" fill="#52657f" text-anchor="middle">按适用规则投射业务状态</text>
+<text x="220.0" y="501.5" font-size="16" fill="#52657f" text-anchor="middle">发布相应业务事件</text>
+</g>
+<g data-node="contract"><rect x="520" y="164" width="320" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="680.0" y="218.0" font-size="21" font-weight="600" fill="#63448e" text-anchor="middle">事件发布契约</text>
+<text x="680.0" y="243.0" font-size="16" fill="#52657f" text-anchor="middle">事件定义、载荷与生产者校验</text>
+</g>
+<g data-node="occurrence"><rect x="1040" y="164" width="280" height="112" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1180.0" y="218.0" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">事件事实</text>
+<text x="1180.0" y="243.0" font-size="16" fill="#52657f" text-anchor="middle">保存事件主体、载荷及来源</text>
+</g>
+<g data-node="deliveries"><rect x="1040" y="368" width="280" height="132" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1180.0" y="419.5" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">逐订阅投递记录</text>
+<text x="1180.0" y="444.5" font-size="16" fill="#52657f" text-anchor="middle">目标订阅与处理状态</text>
+<text x="1180.0" y="469.5" font-size="16" fill="#52657f" text-anchor="middle">租约、确认及失败信息</text>
+</g>
+<g data-node="outbox"><rect x="520" y="664" width="320" height="120" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="680.0" y="709.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">Outbox 恢复扫描</text>
+<text x="680.0" y="734.5" font-size="16" fill="#52657f" text-anchor="middle">待处理／失败／过期投递</text>
+<text x="680.0" y="759.5" font-size="16" fill="#52657f" text-anchor="middle">重新领取并接续处理</text>
+</g>
+<g data-node="subscriber"><rect x="1040" y="664" width="280" height="120" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1180.0" y="709.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">订阅执行</text>
+<text x="1180.0" y="734.5" font-size="16" fill="#52657f" text-anchor="middle">执行身份与内容披露校验</text>
+<text x="1180.0" y="759.5" font-size="16" fill="#52657f" text-anchor="middle">调用绑定动作或监听器</text>
+</g>
+<rect x="416.0" y="180" width="48" height="25" rx="3" fill="white"/><text x="440" y="198" fill="#9577b5" font-size="16" text-anchor="middle">发布</text>
+<rect x="908.0" y="188" width="64" height="25" rx="3" fill="white"/><text x="940" y="206" fill="#a57b33" font-size="16" text-anchor="middle">持久化</text>
+<rect x="1204.0" y="310" width="96" height="25" rx="3" fill="white"/><text x="1252" y="328" fill="#a57b33" font-size="16" text-anchor="middle">按订阅记录</text>
+<rect x="1208.0" y="572" width="96" height="25" rx="3" fill="white"/><text x="1256" y="590" fill="#43816c" font-size="16" text-anchor="middle">提交后唤醒</text>
+<rect x="844.0" y="554" width="128" height="25" rx="3" fill="white"/><text x="908" y="572" fill="#71839a" font-size="16" text-anchor="middle">读取未完成投递</text>
+<rect x="892.0" y="716" width="96" height="25" rx="3" fill="white"/><text x="940" y="734" fill="#43816c" font-size="16" text-anchor="middle">恢复与重试</text>
+<text x="700" y="844" font-size="18" fill="#52657f" text-anchor="middle">事件事实与订阅处理状态由数据库持久化，可靠投递无需消息队列参与。</text>
+</svg></html>

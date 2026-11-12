@@ -168,42 +168,61 @@
       "displayName": "错误码",
       "fileSuffix": null,
       "schema": "error-code.schema.json",
-      "path": "docs/reference/jsonschema/metadata/error-code.schema.json"
+      "path": "docs/reference/jsonschema/metadata/error-code.schema.json",
+      "fileNames": [
+        "error-codes.error.json"
+      ]
     },
     {
       "type": "app-metadata",
       "displayName": "应用元数据",
       "fileSuffix": null,
       "schema": "app-metadata.schema.json",
-      "path": "docs/reference/jsonschema/metadata/app-metadata.schema.json"
+      "path": "docs/reference/jsonschema/metadata/app-metadata.schema.json",
+      "fileNames": [
+        "app.metadata.json"
+      ]
     },
     {
       "type": "modules-diff",
       "displayName": "模块树 Diff",
       "fileSuffix": null,
       "schema": "modules-diff.schema.json",
-      "path": "docs/reference/jsonschema/metadata/modules-diff.schema.json"
+      "path": "docs/reference/jsonschema/metadata/modules-diff.schema.json",
+      "fileNames": [
+        "modules.diff.json"
+      ]
     },
     {
       "type": "app-module",
       "displayName": "应用模块",
       "fileSuffix": null,
       "schema": "app-module.schema.json",
-      "path": "docs/reference/jsonschema/metadata/app-module.schema.json"
+      "path": "docs/reference/jsonschema/metadata/app-module.schema.json",
+      "fileNames": [
+        "app-modules.json"
+      ]
     },
     {
       "type": "configuration",
       "displayName": "配置项",
       "fileSuffix": null,
       "schema": "configuration.schema.json",
-      "path": "docs/reference/jsonschema/metadata/configuration.schema.json"
+      "path": "docs/reference/jsonschema/metadata/configuration.schema.json",
+      "fileNames": [
+        "configurations.json",
+        "configuration.json"
+      ]
     },
     {
       "type": "configuration-group",
       "displayName": "配置分组",
       "fileSuffix": null,
       "schema": "configuration-group.schema.json",
-      "path": "docs/reference/jsonschema/metadata/configuration-group.schema.json"
+      "path": "docs/reference/jsonschema/metadata/configuration-group.schema.json",
+      "fileNames": [
+        "configuration-groups.json"
+      ]
     },
     {
       "type": "configuration-item",

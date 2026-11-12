@@ -1,549 +1,233 @@
 ---
 sidebar_position: 1
+title: 数据查询 DSL
 toc_min_heading_level: 2
-toc_max_heading_level: 4
+toc_max_heading_level: 3
 ---
-
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
 
 # 数据查询 DSL
 
-查询 DSL 是一种用于构建查询语句的结构化的表达方式，DSL 基于 Map/List 结构，在保持简便性的同时，也提供了一种可以更好地控制和描述查询的方式。
+使用 Map/List 描述字段、条件、排序、分页和关联。业务代码通常把语句传给 `DataModel.query(statement)`；Java 也可以使用 `model.query()` 构建语句并执行。
 
-**Map/List 结构的优点**
+以下示例假设已定义 `crm.Order` 模型，包含 `id`、`status`、`amount`、`createdAt` 等字段。关联示例还要求模型中定义了对应关系。模型查询使用模型字段名，不使用数据库列名。
 
-- 构建方便，可以将前端的参数直接映射为查询条件，也可以用 Groovy 等脚本很方便的构建：
-  ```groovy
-  def query = [
-    select: ['id', 'name'],
-    from: 'user',
-    where: [ department: 1001]
-  ]
-  ```
-- 结构化数据，可以更方便的编程控制
-- 语法分析简单，存在大量的工具库降低开发与维护成本
+## 查询一页数据
 
-## DML —— 增删改
-
-### 1. 插入
-
-_单数据插入_
+Groovy 脚本可直接执行：
 
 ```groovy
-def insertStatement = [
-        insert: 'tableA',
-        values: [
-                field1: 'value1',
-                field2: 'value2'
-        ]
-]
-
+def orders = DataModelCenter.get('crm.Order')
+if (orders == null) {
+    Exceptions.business('订单模型不可用')
+}
+def rows = orders.query([
+    select: ['id', 'amount'],
+    where: [status: 'OPEN', amount: [greaterThanOrEqual: 100]],
+    order: [createdAt: 'DESC', id: 'ASC'],
+    skip: 0,
+    limit: 20
+]).get()
+rows
 ```
 
-_批量插入_
+`.get()` 取出 `Try` 中的结果，查询失败时抛出异常。需要总数时，单独调用 `orders.count(where).get()`，不要把当前页长度当作总数。
+
+## 查询语句字段
+
+| 字段 | 常用值 | 用途 |
+| --- | --- | --- |
+| `select` | `['id', 'amount']` | 返回字段或表达式 |
+| `omit` | `['internalNote']` | 从模型查询中排除字段 |
+| `where` | `[status: 'OPEN']` | 过滤条件 |
+| `order` | `[createdAt: 'DESC', id: 'ASC']` | 排序 |
+| `skip` / `offset` | `0` | 跳过条数，两者等价 |
+| `limit` | `20` | 返回条数 |
+| `populate` | `['customer']` | 填充已定义的关联字段，限模型查询 |
+| `distinct` | `true` | 去重 |
+| `from` | `'crm.Order'` 或 `[o: 'crm.Order']` | 数据来源；在模型上查询时可省略 |
+| `join` / `leftJoin` 等 | 关联定义 | 连接数据源 |
+| `group` / `having` | 分组字段 / 条件 | 聚合查询 |
+| `union` / `unionAll` | 查询列表 | 合并结果，后者保留重复行 |
+
+关键字不区分大小写。复杂连接、聚合和集合查询的执行能力取决于目标数据适配器，应在应用使用的数据源上验证。
+
+## SELECT：字段和别名
 
 ```groovy
-def batchInsertStatement = [
-        insert: 'tableA',
-        values: [
-                [
-                        field1: 'value11',
-                        field2: 'value21'
-                ],
-                [
-                        field1: 'value12',
-                        field2: 'value22'
-                ],
-        ]
-]
-```
-
-### 2. 更新
-
-```groovy
-def updateStatement = [
-        update: 'tableA',
-        set   : [
-                field1: 'value1',
-                field2: 'value2'
-        ],
-        where : [ /* 条件定义 */]
+def statement = [
+    select: ['id', [orderAmount: 'amount']],
+    where: [status: 'OPEN']
 ]
 ```
 
-> WHERE 子句请参考 DQL 中的[4. WHERE 子句](#4-where-子句)
+别名写作 `[返回名称: '模型字段']`。省略 `select` 时使用模型默认投影；只需要少量字段时明确列出字段。
 
-### 3. 删除
+聚合字段用列表表达式：
 
 ```groovy
-def deleteStatement = [
-        delete: "tableA",
-        where : [ /* 条件定义 */]
+def statement = [
+    select: ['status', [count: ['count', ['id']]]],
+    group: ['status'],
+    having: ['>', ['count', ['id']], 10]
 ]
 ```
 
-> WHERE 子句请参考 DQL 中的[4. WHERE 子句](#4-where-子句)
+## WHERE：过滤条件 {#4-where-子句}
 
-## DQL —— 查询
+### 等值、范围和集合
+
+同一 Map 中多个字段默认按 `AND` 组合。
 
 ```groovy
-def selectStatement = [
-        // 未实现
-        with     : [ /* 关联定义 */],
-        // 是否去重
-        distinct : false,
-        select   : [
-                'id',
-                [nameAlias: 'name'],
-                /* 字段表 */
-        ],
-        omit     : [ /* 剔除字段列表 (模型上可用) */],
-        from     : [ // 也可以直接设定表名字符串
-                     'a': 'tableA'
-                     /* 别名或子查询 */
-        ],
-        // INNER JOIN
-        join     : [
-                /* 连接表 */
-                [
-                        b : 'tableB',
-                        on: ['b.id': 'a.id']
-                ]
-        ],
-        leftJoin : [ /* 连接表 */],
-        rightJoin: [ /* 连接表 */],
-        fullJoin : [ /* 连接表 */],
-        crossJoin: [ /* 连接表 */],
-        populate : [ /* 填充关联字段（模型查询可用） */],
-        where    : [ /* 条件定义 */],
-        group    : [ /* 分组字段 */],
-        having   : [ /* 聚合条件 */],
-        order    : [ /* 排序定义 */],
-        // 分页
-        skip     : 0,
-        limit    : 10,
-        union    : [ /* UNION 语句 */]
+def where = [
+    status: 'OPEN',
+    amount: [greaterThanOrEqual: 100, lessThan: 1000],
+    departmentId: ['sales', 'support']
 ]
 ```
 
-### 1. SELECT 子句
+字段对应列表时表示 `IN`。用 `notIn` 表示排除集合：
 
 ```groovy
-// 简单SELECT
-def select = ['id', 'name', 'gender']
-
-// 字段别名 [别名: '字段名']
-def select2 = ['id', [username: 'name'], [gender: 'gender']]
-
-// CASE WHEN
-def select3 = ['id', 'name', [gender: ['case', [[gender: 1], '男'], [[gender: 2], '女']]]]
-
-// 聚合函数
-def select4 = [[cnt: ['count', [1]]], [sum: ['sum', ['price']]]]
-
-// 子查询结果作为返回字段
-def select5 = ['id', 'name', 'gender',
-               [
-                       orderCount: [
-                               select: ['count', 1],
-                               from  : 'order',
-                               where : ['=', ['order.user'], ['user.id']]
-                       ]
-               ]
-]
-// 字段列表中的第一个字段名不能为关键字，如and、or、not等，及标准SQL函数名等
-// 可以通过加表别名前缀或者把第一个字段设为 'field' 的方式解决
-// 在多表关联查询中，没有指定表名的字段默认都会指向主表
+def where = [status: [notIn: ['CLOSED', 'CANCELLED']]]
 ```
 
-### 2. OMIT 子句
+| 常用操作符 | 常见等价写法 | 含义 |
+| --- | --- | --- |
+| `equal` | `=`, `==`, `eq` | 等于 |
+| `notEqual` | `!=`, `<>`, `ne` | 不等于 |
+| `greaterThan` | `>`, `gt` | 大于 |
+| `greaterThanOrEqual` | `>=`, `gte` | 大于等于 |
+| `lessThan` | `<`, `lt` | 小于 |
+| `lessThanOrEqual` | `<=`, `lte` | 小于等于 |
+| `between` | — | 闭区间 |
+| `in` / `notIn` | — | 属于 / 不属于集合 |
+| `like` / `notLike` | — | 使用匹配模式 |
+| `startsWith` / `endsWith` | — | 前缀 / 后缀匹配 |
+| `isNull` / `isNotNull` | — | 空值 / 非空值 |
 
-:::warning
-
-模型专用
-
-:::
-
-只能是字段列表，且不支持表达式（因为没有意义）
-
-### 3. FROM 子句
-
-基于数据模型查询的时候可以省略，默认即为当前模型
+操作符不区分大小写。`like` 的 `%` 等模式字符按目标数据源的匹配规则解释。
 
 ```groovy
-// 简单FROM
-def from1 = 'tableA'
-
-// 指定表别名
-def from2 = [a: 'tableA']
-
-// 子查询
-def from3 = [a: [ /* 查询语句 */]]
+def range = [amount: [between: [100, 1000]]]
+def prefix = [code: [startsWith: 'ORD-']]
 ```
 
-### 4. WHERE 子句
+### AND、OR 和 NOT
 
 ```groovy
-def where = [id: 1]
-```
-
-:::warning 为什么不直接用字符串形式的 SQL 表达式？
-
-1. 字符串形式的表达式很难杜绝拼接 SQL 的使用方式，会存在 SQL 注入风险。
-2. 字符串形式的表达式要兼容各种数据库的方言的时候，需要做完整的语法解析，工作量大。
-3. 对字符串形式的表达式做运行时检查要远高于结构化的数据结构。
-4. 字符串形式的表达式难以二次修改，比如在原有的查询条件中加入权限控制条件，或者剔除某些受限制的查询条件。
-
-:::
-
-WHERE 子句由结构化的条件表达式构成，表达式又分为 **Map 表达式** 和 **S 表达式**。
-
-<Tabs
-  defaultValue="map-expr"
-  values={[
-    { label: 'Map表达式', value: 'map-expr' },
-    { label: 'S表达式', value: 's-expr' },
-    { label: '两种表达式的适用场景', value: 'map-vs-s' },
-  ]}>
-  <TabItem value="map-expr">
-
-:::tip Map 表达式的优势
-
-Map 表达式的主要价值在于，在 WebAPI 接口中，最常用的是查询接口，查询接口的参数传递方式都是键值对，而键值对可以很自然的转化为 Map 结构，而 Map 结构的修改、合并等操作很方便，也就便于组合查询逻辑，比如合并权限控制查询参数、提供默认参数或者覆写敏感参数。
-
-:::
-
-**Map 表达式的局限性**
-
-Map 表达式的表达能力有限，比如这样的 SQL 条件，用 Map 表达式就很难表达了：
-
-```sql
-select * from user where createdAt = updatedAt;
-```
-
-尝试用 Map 表达式表达上面的 SQL 条件：
-
-```groovy
-// ❌ 有歧义，无法区分'updatedAt'代表的是字段还是常量
-def whereA = [createdAt: 'updatedAt']
-
-// 😔 可接受，但嵌套层次深，不易编写、不易读
-def whereM = [createdAt: [equal: [field: 'updatedAt']]]
-```
-
-再复杂一点的例子：
-
-```sql
-select * from news where YEAR(createdAt) = YEAR(current_timestamp());
-```
-
-```groovy
-// ❌ 过于复杂，不可接受，并且函数参数依然存在歧义
-def whereA = [['year': [[field: 'createdAt']]]: [equal: [year: [[current_timestamp: []]]]]]
-
-// 😔 如果需要拼接参数，则会留下注入漏洞，还是尽量不要这样做
-def whereB = [RAW_EXP: 'YEAR(createdAt) = YEAR(CURRENT_TIMESTAMP())']
-
-// 😔 可接受，但嵌套层次深，不易编写、不易读
-def whereM = [equal: [[year: [[field: ['createdAt']]]], [year: [current_timestamp: []]]]]
-```
-
-_BTW: 这个例子中 `whereM` 的语法形式是 M 表达式（Meta-expression），第一个例子中的 `whereM` 混合了 **Map 表达式** 和 **M 表达式** 两种写法_
-
-> 为了不引入更多复杂性，暂 **不支持 M 表达式**
-
-  </TabItem>
-  <TabItem value="s-expr">
-
-:::tip S 表达式更加灵活
-
-如果采用 **S 表达式**（S-expression）的形式，上面的表达式可以更简洁一些：
-
-```groovy
-// 😄 相比M表达式，S表达式的括号嵌套层次更浅
-def whereS = ['equal', ['$year', ['$field', 'createdAt']], ['$year', ['$current_timestamp']]]
-```
-
-通过上面的例子我们可以得出 **S 表达式** 的基本形式：`['<符号>', ...参数列表]`。
-
-> BTW: S 表达式就是 Lisp 语言的的基本形式，Clojure 中著名的 ORM 库 HoneySQL[^HoneySQL] 就是基于 S 表达式的。
-
-:::
-
-**S 表达式的缺点**
-
-S 表达式是半结构化数据，相比于结构化的 **Map 表达式**，定位特定查询字段比较麻烦，不方便做查询字段覆写之类的操作。
-
-  </TabItem>
-  <TabItem value="map-vs-s">
-
-**Map 表达式** 擅长自动处理大量字段的查询需求，快速生成 WebAPI[^Sailsjs] [^WixAPI] [^rql] [^rsql]满足绝大多数的 OLTP（在线交易）场景需求。
-
-**S 表达式** 大多数 OLAP（在线分析）的场景，查询比较复杂但是参数较少且参数位置固定，这时候用 **S 表达式** 比较合适。
-
-  </TabItem>
-
-</Tabs>
-
----
-
-#### 比较表达式
-
-:::note 比较运算符
-
-| 比较操作符         | 兼容写法           | 说明                 |
-| ------------------ | ------------------ | -------------------- |
-| equal              | =、==、eq          | 等于                 |
-| notEqual           | !=、&lt;&gt;、ne、 | 不等于               |
-| greaterThan        | &gt;、gt           | 大于                 |
-| greaterThanOrEqual | &gt;=、ge          | 大于等于             |
-| lessThan           | &lt;、lt           | 小于                 |
-| lessThanOrEqual    | &lt;=、le          | 小于等于             |
-| between            | between            | 在指定的值之间       |
-| in                 | in                 | 在指定的值中         |
-| notIn              | notIn              | 不在指定的值中       |
-| like               | like、contains、~  | 匹配指定的值         |
-| notLike            | notContains、!~    | 不匹配指定的值       |
-| leftLike           | startsWith、~\*    | 匹配指定的值         |
-| rightLike          | endsWith、\*~      | 匹配指定的值         |
-| regexp             | regex              | 匹配指定的正则表达式 |
-
-_其中，多单词的操作符，均支持下划线分割的写法_
-
-:::
-
-**比较条件**的基本表达方式：
-
-```groovy
-// Map表达式
-def mapCompare = [fieldName: ['<操作符>': '常量值']]
-
-// S表达式
-def sCompare1 = ['<操作符>', ['fieldName'], '常量值']
-
-// S表达式的优点是能够表表达复杂的逻辑
-def sExprB = ['=', ['left', ['fieldNameA'], 5], ['left', ['fieldNameB'], 5]]
-// 等价SQL表达式：WHERE LEFT(fieldNameA, 5) = LEFT(fieldNameB, 5)
-```
-
-比较操作符不区分大小写。
-
-绝大多数的操作符都有兼容写法，如表示 `等于条件` 的 equal 兼容符号有"="、"=="等。
-
-还有一些操作符存在便捷写法，如 `等于条件`：
-
-```groovy
-// 简便写法
-def equalExprA = [fieldName: '比较值']
-
-// 等同于
-def equalExprB = [fieldName: [equal: "比较值"]]
-
-```
-
-**比较条件的简便写法**
-
-- 等于条件：
-
-```groovy
-def equalExpr = [fieldNameA: "值"]
-```
-
-- in 条件：
-
-```groovy
-def inExpr = [fieldNameA: ["值1", "值2"]] // 也就是等于表达式
-```
-
-- notIn 条件：
-
-```groovy
-def notInExpr = [fieldName: ['!=': ["值1", "值2"]]] // 也就是不等于表达式
-```
-
-#### 逻辑表达式
-
-:::note 逻辑运算符
-
-| 逻辑运算符 | 兼容写法 | 说明 |
-| ---------- | -------- | ---- |
-| and        | &&       | 并且 |
-| or         | \|\|     | 或者 |
-| not        | !        | 取反 |
-| xor        |          | 异或 |
-| xnor       |          | 同或 |
-
-:::
-
-**逻辑表达式**的表达式方式：
-
-```groovy
-// Map表达式
-def logicMapExpr = [
-        "<AND|OR|NOT|XOR|XNOR>": [
-                [fieldA: ['=': '<搜索值>']],
-                [fieldB: ['=': '<搜索值>']]
-        ]
-]
-
-// S表达式
-def logicSExpr = [
-        "<AND|OR|NOT|XOR|XNOR>",
-        ['=', ['fieldA'], '<搜索值>'],
-        ['=', ['fieldB'], '<搜索值>']
+def where = [
+    status: 'OPEN',
+    or: [
+        [departmentId: 'sales'],
+        [amount: [greaterThan: 10000]]
+    ]
 ]
 ```
 
-逻辑运算符也有简便写法，如下：
-
-**AND/OR 运算符**
+结果为 `status = OPEN AND (departmentId = sales OR amount > 10000)`。显式组合可使用 `and`、`or`、`not`，也支持 `xor`、`xnor`。
 
 ```groovy
-
-// 简便写法A（即内部的条件表达式可以简写）：
-def andExprA = [
-        and: [
-                fieldA: '<搜索值>',
-                fieldB: '<搜索值>'
-        ]
-]
-
-def orExprA = [
-        or: [
-                fieldA: '<搜索值>',
-                fieldB: '<搜索值'
-        ]
-]
-
-// AND操作符在不需要参与其他组合条件的情况下，可以直接使用更简便的写法B：
-def andExprB = [
-        fieldA: '<搜索值>',
-        fieldB: '<搜索值>'
-]
+def where = [not: [status: 'CLOSED', departmentId: 'sales']]
 ```
 
-NOT 运算符支持多条件的写法，隐含了先将条件组合成一个 AND 条件，然后再使用 NOT 操作符：
+上例对整个内部条件取反，即 `NOT (status = CLOSED AND departmentId = sales)`。
+
+### 字段比较和空值：S 表达式
+
+S 表达式写作 `['操作符', 参数1, 参数2, ...]`。字段用列表表示，字符串常量直接写字符串：
 
 ```groovy
-def notExprA = [
-        not: [
-                fieldA: "searchValue",
-                fieldB: "searchValue"
-        ]
+// 比较两个字段，而不是把 updatedAt 当成字符串常量。
+def changed = ['!=', ['createdAt'], ['updatedAt']]
+def missing = ['isNull', ['approvedAt']]
+def expensive = ['>', ['amount'], 1000]
+```
+
+Map 条件与 S 表达式可以组合：
+
+```groovy
+def where = ['and', [status: 'OPEN'], ['>', ['amount'], 1000]]
+```
+
+`[createdAt: 'updatedAt']` 表示字段等于字符串常量，不表示两个字段相等。
+
+## 排序与分页
+
+```groovy
+def statement = [
+    order: [[createdAt: 'DESC'], [id: 'ASC']],
+    skip: 20,
+    limit: 20
 ]
 ```
 
-#### 复杂条件（S 表达式）
+也支持 `'createdAt DESC'`、`['createdAt DESC', 'id ASC']` 等排序形式。分页时应包含稳定排序，必要时增加主键作为第二排序字段。
+
+## POPULATE：关联数据
 
 ```groovy
-// 1. （S表达式）字段间比较，比如：createdAt != updatedAt
-def sExpr = ['!=', ['createdAt'], ['updatedAt']]
-
-// 2. （S表达式）函数
-def sExpr2 = ['=', ['year', ['createdAt']], ['year', ['now']]]
-
-// 3. （S表达式）IN条件的多字段子查询
-def sExpr3 = ['in', ['a', 'b'], [select: ['a', 'b'], from: 'tableC', where: [id: ['>': 1]]]]
-//                     ^
-//              同 SELECT 语法
-
-// 4. CASE WHEN（S表达式）
-def sExpr4 = ['case',
-              ['when', ['=', ['gender'], 1], '男'],
-              ['when', ['=', ['gender'], 2], '男'],
-              ['when', [], '未知']
+def statement = [
+    select: ['id', 'customer'],
+    populate: [customer: [select: ['id', 'name']]],
+    limit: 20
 ]
-// CASE WHEN 简写
-def sExpr5 = ['case',
-              [[gender: 1], '男'],
-              [[gender: 2], '女'],
-              [[], '未知']
+```
+
+`customer` 必须是模型中已经定义的关联字段。只需默认关联投影时可写 `populate: ['customer']`。此语法用于模型查询，不能把任意数据库列当作关联字段。
+
+## JOIN、子查询和 UNION
+
+以下示例要求目标适配器支持对应查询，并已存在 `crm.Customer` 数据来源：
+
+```groovy
+def statement = [
+    from: [o: 'crm.Order'],
+    select: ['o.id', [customerName: 'c.name']],
+    leftJoin: [[c: 'crm.Customer', on: ['o.customerId': 'c.id']]],
+    where: ['=', ['o.status'], 'OPEN'],
+    limit: 20
 ]
-
-
-// S表达式、Map表达式混写
-def sExprMapExpr1 = ['and', [department: 1001], ['>', ['age'], 30]]
-def mapExprSExpr1 = ['and': [[department: 1001], ['>', ['age'], 30]]]
-// 等价Map表达式：
-def mapExpr1 = [department: 1001, age: ['>': 30]]
-// 等价SQL表达式：
-// department = 1001 AND age > 30
 ```
 
-### 5. ORDER 子句
+来源也可以是子查询，例如 `from: [o: [select: ['id'], from: 'crm.Order']]`。合并查询时，两边投影应兼容：
 
 ```groovy
-def orderA1 = 'fieldA'
-def orderA2 = 'fieldA ASC'
-def orderB1 = ['fieldA', 'fieldB']
-def orderB2 = ['fieldA ASC', 'fieldB DESC']
-def orderC1 = [[fieldA: 'ASC'], [fieldB: 'ASC']]
-def orderD1 = [fieldA: 'ASC', fieldB: 'ASC']
+def statement = [
+    select: ['id'], from: 'crm.Order', where: [status: 'OPEN'],
+    union: [[select: ['id'], from: 'crm.Order', where: [status: 'PENDING']]]
+]
 ```
 
-### 6. SKIP/LIMIT 子句
+## Java 查询构建器
 
-skip/limit 子句用于分页，skip 表示跳过的记录数，limit 表示每页的记录数。
+```java
+import static com.ouroboros.data.dsl.query.Query.field;
+import java.util.Map;
+import com.ouroboros.data.model.DataModelCenter;
 
-### 7. POPULATE 子句
+var orders = DataModelCenter.getDataModel("crm.Order")
+    .orElseThrow(() -> new IllegalStateException("订单模型不可用"));
+var rows = orders.query()
+    .select(field("id"), field("amount"))
+    .where(field("status").eq("OPEN"))
+    .clause("order", Map.of("id", "ASC"))
+    .clause("limit", 20)
+    .execute().get();
+```
 
-:::warning
+`build()` 只返回 Map 语句，`execute()` 执行并返回 `Try<RecordList>`。`where` 设置条件，`andWhere/orWhere` 追加组合条件；`clause(name, value)` 设置排序、分页等其他语句字段。强类型模型同样提供 `query()` 入口。
 
-模型专用
+## 增删改使用模型接口
 
-:::
+常规业务写入直接传数据和条件，不需要自行拼接 `insert/update/delete` 语句：
 
 ```groovy
-def populateA = ['user']
-def populateB = [user: [select: [], omit: [], where: []]]
+orders.insert([id: 'order-001', status: 'OPEN', amount: 100]).get()
+orders.update('order-001', [status: 'CLOSED']).get()
+orders.delete('order-001').get()
 ```
 
-### 8. JOIN 子句
+这些调用会执行模型配置的校验和插件。构建查询时只接收业务允许的字段和操作符，数据权限按应用接口契约处理；不要将外部输入直接拼为 SQL 字符串。
 
-```groovy
-// 简单JOIN
-def join1 = [with: 'tableB', on: ['tableA.fk': 'tableB.id']]
-
-// 指定别名
-def join2 = [with: [b: 'tableB'], on: ['a.fk': 'b.id']]
-
-// 复杂条件
-def join3 = [with: [b: 'tableB'], on: [ /* S表达式 */]]
-```
-
-### 9. GROUP 子句
-
-```groovy
-// 简单GROUP
-def group1 = ['fieldA', 'fieldB']
-
-// 复杂GROUP
-def group2 = [[/* S表达式 */]]
-```
-
-### 10. HAVING 子句
-
-```groovy
-// 基于select中的聚合字段
-def havingA = [arragedFiledA: ['>': 1000]]
-
-// 使用聚合函数
-def havingB = ['>', ['count', ['fieldA']], 1000]
-```
-
-### 11. UNION/UNIONAll 子句
-
-```groovy
-def union = [ /* SELECT 查询 */]
-```
-
-[^HoneySQL]: [Honey SQL](https://github.com/seancorfield/honeysql)
-
-[^WixAPI]: [Wix - API Query Language](https://dev.wix.com/api/rest/getting-started/api-query-language)
-
-[^Sailsjs]: [Sails.js - find where](https://sailsjs.com/documentation/reference/blueprint-api/find-where)
-
-[^rql]: [Resource Query Language for REST](https://github.com/a8m/rql)
-
-[^rsql]: [REST Query Language with RSQL](https://www.baeldung.com/rest-api-search-language-rsql-fiql)
+完整读写方法见 [DataModel](../data-model/data-model/)，脚本全局对象见 [脚本上下文](../script-context/)。

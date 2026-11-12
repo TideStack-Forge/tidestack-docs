@@ -4,104 +4,102 @@ sidebar_position: 1
 
 # Schema 与编辑器组件
 
-适用对象：已经确定会继续写 Schema，但想确认平台是否已经内建了动态渲染、预览或代码编辑类组件的开发者。
+这些组件用于加载、预览和编辑 AMIS 页面配置。这里的 UI Schema 是界面配置；用于验证数据结构的标准见 [JSON Schema](../../../reference/jsonschema/)。
 
-## 使用场景
+## amis-schema：加载并渲染
 
-- 你想动态加载一个已存在的 Schema
-- 你想在平台里提供带开关的 Schema 编辑器
-- 你想先预览动态渲染出来的 Schema
+`amis-schema` 与 `ui-schema` 等价。可加载已发布的 UI Schema，也可直接渲染内联对象。
 
-## 动态渲染 JSON Schema
+```json
+{
+  "type": "page",
+  "body": {
+    "type": "amis-schema",
+    "schemaId": "/orders/detail"
+  }
+}
+```
 
-### 基本使用
+示例要求应用中存在路径为 `/orders/detail` 的 UI Schema，`schemaId` 填路径。
+
+| 属性 | 类型 / 行为 |
+| --- | --- |
+| `schemaId` | UI Schema 路径，优先级最高 |
+| `source` | Schema 对象 / 数组，或返回 Schema 的接口字符串 / API 对象 |
+| `schema` | 内联 Schema，未提供前两项时使用 |
+| `autoRemapping` | `true` 映射整个 Schema；字符串数组只映射指定顶层属性 |
+| `defaultProps` | 载入 Schema 未设置的默认属性 |
+| `replaceProps` | 覆盖载入 Schema 的同名属性 |
+| `mergeProps` | 深度合并到最终 Schema |
+
+同时提供时，选择顺序为 `schemaId → source → schema`。内联示例无需额外资源：
 
 ```json
 {
   "type": "amis-schema",
-  "schemaId": ""
+  "source": {
+    "type": "alert",
+    "level": "info",
+    "body": "请选择订单后继续"
+  }
 }
 ```
 
-### 属性表
+接口形式的 `source` 需要返回成功响应，业务数据为待渲染的 Schema 对象或数组。
 
-| 属性名   | 类型                                                                      | 默认值 | 说明                                                                                                                                |
-| -------- | ------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| type     | `string`                                                                  |        | type 指定为 AmisSchema 渲染器                                                                                                       |
-| source   | `string` \| [API](https://aisuda.bce.baidu.com/amis/zh-CN/docs/types/api) |        | [ 动态选项组](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/options#%E5%8A%A8%E6%80%81%E9%80%89%E9%A1%B9%E7%BB%84-source) |
-| schemaId | `string`                                                                  |        | 已经定义好的 JSON Schema 的标识符,优先级低于`source`属性                                                                            |
+## amis-schema-editor：编辑组件配置
 
-## 带开关的代码编辑器
-
-用于实现代码编辑器，支持两种展示形式。
-
-### 基本使用
+`amis-schema-editor` 与 `ui-schema-editor` 等价，是表单项。默认编辑一个组件，`multiple: true` 时编辑组件数组。
 
 ```json
 {
-  "type": "amis-schema-editor",
-  "onText": "使用自定义组件",
-  "offText": "使用默认组件",
-  "placeholder": "请输入自定义组件的Schema",
-  "showSwitch": true
-},
+  "type": "form",
+  "body": [
+    {
+      "type": "amis-schema-editor",
+      "name": "customBody",
+      "label": "自定义内容",
+      "showSwitch": true,
+      "onText": "启用自定义内容",
+      "offText": "使用默认内容",
+      "initValue": { "type": "tpl", "tpl": "订单详情" },
+      "switchLayout": false
+    }
+  ]
+}
 ```
 
-### 属性表
+| 属性 | 用途 |
+| --- | --- |
+| `value` | 当前组件对象或组件数组 |
+| `defaultSchema` | 当前没有值时供编辑器展示的默认配置 |
+| `initValue`、`initValueApi` | 初始化值 / 加载初始值的接口 |
+| `showSwitch` | 显示启用开关，默认关闭此功能 |
+| `onText`、`offText` | 开关文字 |
+| `multiple` | 是否编辑多个组件，默认 `false` |
+| `minLength`、`maxLength` | 多组件数量约束 |
+| `switchLayout` | 展示不同表单布局预览，默认 `true` |
+| `propsEditMode` | 仅编辑属性 |
+| `placeholder` | 无值提示 |
+| `pureSchema` | 清理未使用的组件 ID，默认 `true` |
 
-下列属性为 amis-schema-editor 独占属性,更多属性用法，参考[FormItem 普通表单项](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/formitem#%E5%B1%9E%E6%80%A7%E8%A1%A8)
+开关关闭时，字段输出 `null`；启用后需有实际配置才能通过校验。默认配置的预览不等于已提交表单值，应通过 `initValue` 或表单数据明确初始化。
 
-| 属性名      | 类型                                  | 默认值  | 说明                                         |
-| ----------- | ------------------------------------- | ------- | -------------------------------------------- |
-| type        | `string`                              |         | type 指定为 AmisSchemaEditor 渲染器          |
-| showSwitch  | `boolean`                             | `false` | 展示形式， 详见[showSwitch](#showswitch)     |
-| placeholder | `string`                              |         | 代码编辑器占位描述，没有值的时候展示         |
-| style       | `object`                              |         | 代码编辑器自定义样式                         |
-| className   | `string`                              |         | 代码编辑器外层 Dom 的类名                    |
-| onText      | `string` \| [IconSchema](#iconschema) |         | showSwitch 为 true 生效,开启时开关显示的内容 |
-| offText     | `string` \| [IconSchema](#iconschema) |         | showSwitch 为 true 生效,关闭时开关显示的内容 |
+## amis-schema-preview：外观预览
 
-#### showSwitch {#showswitch}
-
-| 值  | 说明               |
-| --- | ------------------ |
-| 开  | 增加开关控制       |
-| 关  | 常规编辑器形式展示 |
-
-- 以开关的形式展示
-
-  ![开关被打开形式](.assets/schema-editor-switch-on.png)
-
-- 常规编辑器形式展示
-
-  ![常规形式](.assets/schema-editor.png)
-
-#### IconSchema {#iconschema}
-
-| 属性名 | 类型     | 默认值 | 说明        |
-| ------ | -------- | ------ | ----------- |
-| type   | `string` |        | `icon`      |
-| icon   | `string` |        | icon 的类型 |
-
-## 预览动态渲染的 JSON Schema
-
-:::warning
-和 AmisSchema 组件有什么区别？
-:::
-
-### 基本使用
+`amis-schema-preview` 与 `ui-schema-preview` 等价，适合在编辑页展示布局：
 
 ```json
 {
   "type": "amis-schema-preview",
-  "schemaId": ""
+  "source": {
+    "type": "page",
+    "title": "订单预览",
+    "body": "这里展示页面布局"
+  }
 }
 ```
 
-### 属性表
+支持 `source` 和 `schemaId`，其中 `source` 优先；`placeholder` 设置无 Schema 时的提示。
 
-| 属性名   | 类型                                                                      | 默认值 | 说明                                                                                                                                |
-| -------- | ------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| type     | `string`                                                                  |        | type 指定为 AmisSchemaPreview 渲染器                                                                                                |
-| source   | `string` \| [API](https://aisuda.bce.baidu.com/amis/zh-CN/docs/types/api) |        | [ 动态选项组](https://aisuda.bce.baidu.com/amis/zh-CN/components/form/options#%E5%8A%A8%E6%80%81%E9%80%89%E9%A1%B9%E7%BB%84-source) |
-| schemaId | `string`                                                                  |        | 已经定义好的 JSON Schema 的标识符,优先级低于`source`属性                                                                            |
+预览内容中的业务请求使用空数据，导航不执行。验证表单提交、权限、接口和跳转时，应使用 `amis-schema` 或实际发布页面。

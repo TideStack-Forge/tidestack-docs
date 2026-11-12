@@ -2,46 +2,81 @@
 sidebar_position: 99.1
 ---
 
-# 前端
+# 前端常见问题
 
-前端 FAQ 优先回答“页面为什么没按预期生效”和“前端扩展该从哪类入口切入”这两类高频问题。
+## 页面应该用 UI Schema、组件库还是微前端？
 
-## Q: 什么时候应该继续用 UI Schema，什么时候该切到微前端或自定义前端扩展？
+标准列表、表单和详情继续使用 UI Schema；单个控件缺失时扩展组件库；需要独立路由、复杂交互或专用前端框架时使用微前端。入口选择与发布方式见 [前端开发](../fusion-development/frontend-extension-paths)。
 
-标准列表、表单、详情、审批页和大多数结构化业务页面，优先继续使用 `UI Schema`。当页面存在复杂交互、自定义可视化、专用前端框架依赖，或者需要明显超出标准组件能力的体验时，再考虑微前端或自定义组件扩展。
+## 发布后为什么没有显示新页面？
 
-如果你还在判断边界，建议先看 [融合开发总览](../fusion-development/) 和 [UI Schema](../concepts/ui-schema/)。
+先核对 UI 模型是否指向新实现、菜单地址是否正确、当前用户是否有权限。再通过浏览器 Network 检查入口 HTML 和 JS/CSS 是否成功加载，响应内容是否确为本次产物，失败地址是否被代理返回了首页 HTML。
 
-## Q: 自定义前端页面或微前端已经发布了，为什么平台里没有按预期生效？
+确认目标运行实例使用的应用版本和静态资源版本，再处理缓存。微前端目录结构与发布步骤见 [微前端应用](../guide/advance/extend-frontend/micro-app/)。
 
-先按下面顺序检查：
+## SDK 方法为什么不可用或返回空结果？
 
-1. 对应入口的 [UI 模型](../concepts/ui-model/) 是否已经切换到正确的实现方式。
-2. 微前端资源地址、打包产物和静态资源访问路径是否正确。
-3. 菜单入口是否已经指向新的页面，并且当前角色有权限访问。
-4. 平台缓存、版本发布或运行时装载是否已经刷新到最新资源。
+运行时方法在页面的 `render`、`afterMount` 或后续用户交互中调用。`beforeMount` 发生在 SDK 就绪之前；独立打开微前端 HTML 也不能验证完整平台能力。
 
-如果你的目标只是替换标准页面中的少量交互，通常不一定需要直接切到微前端，先评估 UI Schema 或组件扩展是否足够。
+```js
+import { initMicroApp, getUserInfo } from 'ouroboros-sdk'
 
-## Q: 我应该从哪里查前端能力细节？
+const { bootstrap, mount, update, unmount } = initMicroApp({
+  async afterMount() {
+    const user = await getUserInfo()
+    console.log('当前用户', user)
+  },
+})
+export { bootstrap, mount, update, unmount }
+```
 
-- 组件能力优先看 [内置组件参考](../api/frontend/buildin-comps/)
-- SDK 补全和调用方式优先看 [前端 SDK 参考](../api/frontend/sdk/completion-methods/)
-- 如果你想看扩展方式，继续看 [扩展前端](../guide/advance/extend-frontend/)
+该示例演示调用时机，实际页面另提供 `render`。完整生命周期见 [微前端初始化](../api/frontend/sdk/initialization-methods/)。
 
-## Q: 自定义登录页要不要自己实现 `/login/callback` 和 `/login/bind`？
+## HTTP 200 为什么仍提示失败？数据为什么多了一层？
 
-大多数情况下不需要。
+普通平台 JSON 响应为 `{ code, msg, data }`。SDK `request` 返回响应对象，需要先取 `response.data`，再检查 `code`：
 
-当前平台默认只把 `/login` 交给自定义微前端处理，而 `/login/callback` 和 `/login/bind` 仍由基座负责。所以自定义登录页通常重点是：
+```js
+import { request } from 'ouroboros-sdk'
 
-- 组织登录方式
-- 发起本地登录、LDAP 登录或跳转式登录
-- 处理当前页的文案、交互和回跳参数
+// 示例要求应用定义了该接口。
+const response = await request.get('/api/orders')
+const result = response.data
+if (result.code !== 0) throw new Error(result.msg || '查询失败')
+console.log(result.data)
+```
 
-如果你正在做这类接入，建议继续看 [自定义登录页与认证接入](../fusion-development/custom-login-page-and-auth-integration)。
+HTTP 错误还需通过 `try/catch` 处理。`login` 返回的则是登录结果 `success`，不能混用两种判断方式。见 [请求与认证](../api/frontend/sdk/completion-methods/request-and-authentication)。
 
-## Q: 我是该先看 SDK 初始化方法，还是自动补全方法？
+## 自定义登录页要实现 callback 和 bind 吗？
 
-- 你还在解决“怎么挂到基座里”：先看 [SDK 初始化方法](../api/frontend/sdk/initialization-methods/)
-- 你已经挂载成功，正在查 token、登录、跳转、请求等工具：先看 [SDK 自动补全方法](../api/frontend/sdk/completion-methods/)
+通常无需自行实现。平台将 `/login` 交给自定义页面，`/login/callback` 和 `/login/bind` 继续由基座处理。自定义页面负责展示登录方式、发起登录并传递清洗后的回跳地址。
+
+长期运行时使用 `getToken()` 获取最新令牌，`props.token` 是挂载时快照。接入流程见 [自定义登录页与认证接入](../fusion-development/custom-login-page-and-auth-integration)。
+
+## 表单选择器为什么返回字符串，而不是对象？
+
+检查 `joinValues` 和 `extractValue`。需要员工或组织对象时，显式设置二者为 `false`；多选输出对象数组，单选输出对象。需要 ID 数组时，设置 `joinValues: false`、`extractValue: true`。
+
+字段类型、默认值及回显格式也要一致。完整示例见 [业务选择器与微前端容器](../api/frontend/buildin-comps/business-pickers-and-micro-components)。
+
+## Schema 预览正常，为什么实际请求和跳转没有执行？
+
+`amis-schema-preview` 用于外观预览，内容中的业务请求使用空数据，导航不执行。接口、权限、提交和跳转应在 `amis-schema` 或实际发布页面中验证。
+
+`amis-schema` 同时提供多个来源时，优先使用 `schemaId`，然后才是 `source`。组件用法见 [Schema 与编辑器组件](../api/frontend/buildin-comps/schema-and-editor-components)。
+
+## 离开页面后为什么还会收到消息，或者监听越来越多？
+
+页面卸载时取消本页的事件、语言和 Stomp 订阅，并销毁自行创建的渲染实例。保留处理函数或订阅返回的清理函数，避免调用全局清理误删其他页面监听。
+
+```js
+import { Stomp } from 'ouroboros-sdk'
+
+const stop = Stomp.subscribeTopic('orders', (message) => {
+  console.log(message)
+}, { keepSingleListener: false })
+// 在页面卸载钩子中调用 stop()。
+```
+
+完整生命周期示例见 [Stomp 与实时通信](../api/frontend/sdk/completion-methods/stomp-and-realtime)。

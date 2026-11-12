@@ -4,31 +4,37 @@ sidebar_position: 1
 
 # 前端基座 SDK
 
-SDK 是一组前端基座工具库，用来承接微前端初始化、运行时工具方法和平台注入能力。
+`ouroboros-sdk` 用于将微前端接入平台，并调用导航、请求、认证、菜单和实时通信能力。
 
-## 先分成两类看
+## 安装与导入
 
-### 初始化方法
+在微前端项目中安装与所部署基座兼容的 SDK 版本：
 
-适合你正在解决“应用怎么挂到基座里”这类问题。
+```bash
+npm install ouroboros-sdk
+```
 
-优先看 [SDK 初始化方法](./initialization-methods/)。
+```js
+import { initMicroApp, request, toast } from 'ouroboros-sdk'
+```
 
-### 自动补全与运行时方法
+页面、布局和组件库均从包名导入公开 API。
 
-适合你已经挂载成功，正在查 token、请求、事件、登录、跳转等运行时工具。
+## 接口索引
 
-优先看 [SDK 自动补全方法](./completion-methods/)。
+| 专题 | 主要入口 |
+| --- | --- |
+| [微前端初始化](./initialization-methods/) | `initMicroApp`、`initSingleComponent`、`initLayoutComponent`、`initAmisComponentLib` |
+| [导航、标签页与弹层](./completion-methods/navigation-and-tabs-and-dialogs) | `openMenu`、`openTab`、`openDialog`、`confirm`、`toast` |
+| [事件、Schema 与组件注册](./completion-methods/events-schema-and-component-registration) | `EventBus`、`hasAuth`、`renderAmisSchema`、`Renderer`、`FormItem` |
+| [请求与认证](./completion-methods/request-and-authentication) | `request`、`businessActions`、`login`、`getUserInfo`、`getToken` |
+| [Stomp 与实时通信](./completion-methods/stomp-and-realtime) | `Stomp` 的订阅、发送和连接方法 |
+| [菜单扩展](./menu-extension/) | `menu`、`userMenu` |
 
-现在这部分已经按主题拆成了子页：
+## 调用时机
 
-- [导航、标签页与弹层](./completion-methods/navigation-and-tabs-and-dialogs)
-- [事件、Schema 与组件注册](./completion-methods/events-schema-and-component-registration)
-- [请求与认证](./completion-methods/request-and-authentication)
-- [Stomp 与实时通信](./completion-methods/stomp-and-realtime)
+请求、导航、事件和用户信息等运行时 API 应在 `render`、`afterMount` 或其后的用户交互中调用。`beforeMount` 发生在运行时 API 就绪之前，可以读取传入的 `props`。
 
-## 推荐阅读顺序
+静态组件、动作、公式和校验器的注册可以放在模块加载阶段。事件监听、实时订阅和自行创建的渲染实例，需要在卸载时清理。
 
-1. 先看 [SDK 初始化方法](./initialization-methods/)
-2. 再看 [SDK 自动补全方法](./completion-methods/)
-3. 如果你还没决定该走哪种前端扩展方式，回到 [前端 API 总览](../) 或 [前端问题 FAQ](../../../faq/frontend/)
+接入步骤见 [微前端应用](../../../guide/advance/extend-frontend/micro-app/)，页面 Schema 可用的现成组件见 [基座内建组件](../buildin-comps/)。

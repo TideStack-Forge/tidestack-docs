@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/rpc.schema.json",
   "title": "RPC 模型",
-  "description": "TideStack metadata schema for rpc. Legacy runtime packaging may still use Ouroboros paths.",
+  "description": "声明平台如何调用外部系统；type 选择协议实现，authCredential 引用独立认证资源，request 保存协议专有请求配置。",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -12,28 +12,38 @@
   ],
   "properties": {
     "group": {
-      "type": "string"
+      "type": "string",
+      "description": "按外部系统或用途组织 RPC 模型的分组。"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "RPC 调用定义的名称，供逻辑流和代码引用。"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "description": "供开发界面或页面展示的标题。"
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "description": "协议调用实现的标识，支持已接入的自定义协议类型。"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
     },
     "isEnabled": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "description": "是否启用该定义。"
     },
     "authCredential": {
-      "type": "string"
+      "type": "string",
+      "description": "独立 RPC 认证资源的名称，由凭据机制提供认证能力。"
     },
     "request": {
-      "type": "object"
+      "type": "object",
+      "description": "协议专有请求配置；HTTP 类型通常包含地址、方法和参数，其他协议由对应实现解释。"
     }
-  }
+  },
+  "$comment": "Source: ability/ouroboros-rpc-model/ouroboros-rpc-model-core/src/main/java/com/ouroboros/rpc/metadata/RPCModelMetadata.java"
 }

@@ -1,124 +1,250 @@
 ---
 title: 自定义登录页与认证接入
-sidebar_position: 6
 ---
 
 # 自定义登录页与认证接入
 
-自定义登录页同时涉及：
+自定义登录页通过应用的 `loginEntry` 引用微前端，负责 `/login` 的展示、认证方式选择和发起登录。`/login/callback` 与 `/login/bind` 由基座处理，登录页不再实现一套回调和绑定流程。
 
-- 微前端接入
-- 登录入口替换
-- 本地登录、LDAP、CAS、OAuth2/OIDC 等认证方式组织
-- token、provider 和 i18n 的运行时接入
+本指南覆盖登录页工程、宿主接入、认证调用、国际化和上线验证。认证后的角色、主体和数据范围见 [权限与访问控制](./authority-subject-and-access-control-design)。
 
-## 替换边界
+## 准备工程与认证样例
 
-当前平台默认只把 `/login` 页面交给自定义微前端。
+1. 创建单组件微前端，按 [应用改造](../guide/advance/extend-frontend/application-transformation) 接入生命周期，不注入独立路由。
+2. 提供目标基座与 SDK 版本、实际 provider 列表、本地登录开关、品牌与语言要求。
+3. 为 AI 提供成功、首次绑定、凭据错误及外部服务不可用的返回样例，明确相应交互。
+4. 通过 [微前端包管理](../guide/advance/extend-frontend/index.md#configuration) 上传构建包，并在应用配置中设置自定义登录入口。
 
-这意味着：
+按身份来源配置认证：
 
-- 你负责的是登录页视觉和交互
-- `/login/callback` 仍由基座负责
-- `/login/bind` 仍由基座负责
+| 身份来源 | 适配指南 |
+| --- | --- |
+| 企业目录 | [AD](./ad-domain-auth-adaptation-guide) |
+| 统一认证服务 | [OIDC](./oidc-auth-adaptation-guide)、[CAS](./cas-auth-adaptation-guide) |
+| 企业协作连接 | [钉钉](./dingtalk-auth-adaptation-guide)、[企业微信](./wecom-auth-adaptation-guide)、[飞书](./feishu-auth-adaptation-guide) |
 
-所以大多数自定义登录页并不需要自己实现 OAuth2、CAS 或 OIDC 的回调页，而是要把“发起登录”这一段接好。
+静态 provider 通过 SDK 列表组织入口；企业协作连接使用下文的连接级登录入口。
 
-## 什么时候值得做自定义登录页
+先在宿主中确认页面加载与 SDK 注入，再接入真实认证。独立预览缺少宿主上下文时，应使用工程已有测试方式提供样例，不据此认定平台登录可用。
 
-- 需要统一企业品牌视觉
-- 需要把多种认证方式组织成更清晰的登录体验
-- 需要在登录页接入企业文案、多语言或特殊说明
-- 默认登录页已经无法满足产品级体验要求
+## 读取宿主能力
 
-如果你的目标只是调整某个业务页面，而不是登录体验本身，通常应先看普通微前端页面扩展，而不是从登录页切入。
+| 内容 | 入口 | 使用约定 |
+| --- | --- | --- |
+| 应用信息和配置 | `props.appInfo`、`props.config` | 可含名称、logo 和预加载认证信息 |
+| provider 列表 | `listExternalProviders()` | 按实际 `key`、`type` 和可用状态组织入口 |
+| 本地登录开关 | `isLocalPasswordLoginEnabled()` | 关闭时不展示本地凭据登录入口 |
+| 本地凭据登录 | `login()` | 由基座处理登录结果和默认跳转 |
+| LDAP 凭据登录 | `loginWithLdap()` | 提交选定 provider、用户名及密码 |
+| 跳转式登录 | `startRedirectLogin()` | 用于 `cas`、`oauth2`，后者包括 OIDC |
+| 回跳地址 | `resolveReturnUrl()` | 对原始 `redirect` / `returnUrl` 做统一处理 |
+| 错误文案 | `mapAuthError()` | 将错误码映射为用户提示 |
+| 最新 token | `getToken()` | 调用时取最新值；`props.token` 是挂载快照 |
+| 国际化 | `props.i18n` | 语言、namespace、切换与订阅 |
 
-## 一条完整接入路径
+provider 类型和 SDK 签名以目标版本为准。对 LDAP 使用凭据表单，不能按跳转式 provider 处理；LDAP 的 `loginUrl` 为空不代表不可用。
 
-这类需求通常建议按下面顺序推进：
+## 组织认证入口
 
-1. 先创建一个微前端应用
-2. 完成 [应用改造](../guide/advance/extend-frontend/application-transformation)
-3. 在平台中上传微前端包
-4. 把它配置成登录页入口
-5. 再在页面里接本地登录、LDAP 和跳转式登录能力
+将本地账号与 LDAP 放在凭据登录区，CAS / OAuth2 / OIDC 放在跳转区。两类入口使用各自的 SDK 方法。
 
-这里最关键的是先把“微前端可被基座稳定挂载”解决，再做认证交互。
+| 当前可用方式 | 页面行为 |
+| --- | --- |
+| 本地与 LDAP 均可用 | 展示模式切换，默认本地账号；明确当前 LDAP provider |
+| 只有一个 LDAP | 直接显示该目录的用户名密码表单 |
+| 多个 LDAP | 按 provider 展示名称并明确选中项 |
+| 只有跳转式认证 | 展示可用的单点登录按钮 |
+| provider 不可用 | 说明状态并限制该入口，保留其他可用方式 |
 
-## 登录方式建议怎么组织
+提交期间显示加载态并防止重复提交，失败后恢复操作。用户切换模式时，处理旧错误与凭据状态，避免将同一组凭据提交给错误 provider。
 
-当前最稳妥的做法通常是把登录页拆成两块：
+## 接入认证调用
 
-- 账号密码区：承接本地登录和 LDAP 登录
-- 跳转式单点登录区：承接 CAS、OAuth2、OIDC 一类 provider
+下面的 TypeScript 片段提取主要调用，页面状态和事件处理按工程框架补齐。示例类型用于说明结构，落地时核对目标 SDK 的导出类型。
 
-这样做的好处是：
+```ts
+import {
+  isLocalPasswordLoginEnabled,
+  listExternalProviders,
+  login,
+  loginWithLdap,
+  mapAuthError,
+  resolveReturnUrl,
+  startRedirectLogin,
+} from 'ouroboros-sdk'
 
-- 账号密码表单不会和 SSO 按钮混成一堆
-- 不同 provider 类型边界更清楚
-- 后续补多语言、错误提示和回跳逻辑也更容易维护
+export async function loadLoginOptions() {
+  const providers = await listExternalProviders()
+  return {
+    localEnabled: isLocalPasswordLoginEnabled(),
+    ldapProviders: providers.filter((provider) => provider.type === 'ldap'),
+    redirectProviders: providers.filter(
+      (provider) => provider.type === 'cas' || provider.type === 'oauth2'
+    ),
+  }
+}
 
-## 你真正会用到哪些运行时能力
+export function readReturnUrl() {
+  const query = new URLSearchParams(window.location.search)
+  return resolveReturnUrl(query.get('redirect') || query.get('returnUrl') || '/')
+}
 
-自定义登录页通常会依赖下面这组能力：
+export async function submitLocalLogin(username: string, password: string) {
+  return login({ username, password })
+}
 
-- 最新 token 获取
-- 当前应用信息与配置
-- 外部 provider 列表
-- 本地登录开关判断
-- 本地登录与 LDAP 登录方法
-- 跳转式登录发起方法
-- `returnUrl` 清洗
-- 错误码映射
-- i18n namespace 与语言切换
+export async function submitLdapLogin(
+  providerKey: string,
+  username: string,
+  password: string
+) {
+  const result = await loginWithLdap({ provider: providerKey, username, password })
+  if (result?.bindingRequired && result?.bindingToken) {
+    const search = new URLSearchParams({ token: result.bindingToken })
+    const returnUrl = readReturnUrl()
+    if (returnUrl !== '/') search.set('returnUrl', returnUrl)
+    window.location.assign(`/login/bind?${search.toString()}`)
+  }
+  return result
+}
 
-一个很关键的细节是：
+export function submitRedirectLogin(provider: any) {
+  return startRedirectLogin(provider, readReturnUrl())
+}
 
-- `props.token` 只是挂载时快照
-- 需要持续拿最新 token 时，应改用 `getToken()`
+export function resolveLoginError(code?: string | number) {
+  return mapAuthError(code)
+}
+```
 
-## 常见误判
+回跳目标从查询参数取得并交给 `resolveReturnUrl()`。不要把当前 `/login?...` 页面本身作为登录后的业务目标。
 
-### 误判一：自定义登录页等于自己实现整套认证流程
+### 企业协作连接登录入口
 
-不成立。
+钉钉、企业微信和飞书从已发布的 `enterprise.connections` 派生认证配置，以 `connectionId` 为登录标识。它们不会自动加入静态 `/api/auth/providers` 列表，也不能仅靠上文筛选 `oauth2` 类型显示全部企业登录方式。
 
-大多数情况下，你只是替换 `/login` 的展示和入口发起逻辑，回调和绑定链路仍然由基座承接。
+为部署中已配置并启用登录的连接增加独立按钮，使用平台 OAuth2 流程入口。以下函数由按钮传入应用已知的连接标识；回跳仍使用宿主规则：
 
-### 误判二：登录页做好了，微前端接入一定没问题
+```ts
+export function submitEnterpriseLogin(connectionId: string) {
+  const params = new URLSearchParams({ returnUrl: readReturnUrl() })
+  window.location.assign(
+    `/api/auth/oauth2/${encodeURIComponent(connectionId)}/authorize?${params}`
+  )
+}
+// 例如：submitEnterpriseLogin('dingtalk-main')
+```
 
-不成立。
+登录页只需要连接标识及展示名称，不读取 `credentialRef` 或凭据内容。后端完成 state 校验、按连接版本派生认证配置、交换授权码及身份绑定。钉钉和企业微信使用各自的认证桥，飞书使用派生的 OAuth2 配置；前端无需识别内部桥类型或重写回调。
 
-`publicPath`、生命周期导出、打包产物、挂载模式这些微前端基础问题，往往比登录表单本身更容易先出错。
+`auth.enabled: false` 停用该连接登录。认证过程中连接改变或被停用时，旧结果应被拒绝，重新发起。前端 `/login/callback`、`/login/bind` 继续由基座处理。
 
-### 误判三：所有登录方式都可以塞进同一个账号密码表单
+### 绑定与错误结果
 
-不建议。
+LDAP 首次认证成功但尚未绑定时，SDK 可返回：
 
-LDAP 与跳转式 SSO 的交互语义不同，混在一起通常会让用户不清楚当前到底在走哪条认证链路。
+```json
+{
+  "success": false,
+  "bindingRequired": true,
+  "bindingToken": "..."
+}
+```
 
-## 推荐的阅读顺序
+此时进入基座 `/login/bind`，携带绑定 token 与已处理的业务回跳地址。完成绑定后再次登录也需要验证。
 
-如果你准备正式做这件事，建议按下面顺序看：
+| 错误码 | 含义与处理 |
+| --- | --- |
+| `40104` | 账号或密码错误，展示映射文案并允许重新输入 |
+| `40301` | 本地账号密码登录已关闭，检查界面与运行开关是否一致 |
+| `40901` | 外部身份需要绑定，按实际返回的绑定参数进入基座页面 |
+| `50201` | 外部认证不可用，结合 provider 状态与后端日志排查 |
 
-1. [微前端应用](../guide/advance/extend-frontend/micro-app/)
-2. [应用改造](../guide/advance/extend-frontend/application-transformation)
-3. [平台自定义登录页集成指南](../guide/advance/extend-frontend/micro-app/custom-login-integration)
+异常通过页面统一错误处理展示，既处理 SDK 返回的业务结果，也按项目请求层约定处理抛出的错误。登录页不保存 AD 密码，也不把平台访问 token 拼接到 URL。
 
-这三篇分别解决：
+## 国际化与资源释放
 
-- 微前端以什么形态接入
-- 前端工程如何改造成可挂载产物
-- 登录页如何接认证、token、provider 和 i18n
+`/login` 用于登录页文案，`common` 用于通用按钮和加载提示。以下 key 可作为语言资源的起点，实际新增文案同步补齐各语言。
 
-## 实施顺序
+### `/login` Key
 
-先把“微前端稳定挂载”解决，再把“认证入口组织”解决，最后再打磨视觉和文案。
+| Key                    | 默认值                                                | 用途                            |
+| ---------------------- | ----------------------------------------------------- | ------------------------------- |
+| `welcome`              | 欢迎使用                                              | 登录页欢迎语                    |
+| `username.label`       | 用户名                                                | 用户名标签                      |
+| `username.placeholder` | 请输入用户名                                          | 用户名输入框占位符              |
+| `password.label`       | 密码                                                  | 密码标签                        |
+| `password.placeholder` | 请输入密码                                            | 密码输入框占位符                |
+| `button.submit`        | 登录                                                  | 通用提交按钮                    |
+| `button.submitLocal`   | 本地登录                                              | 本地登录按钮                    |
+| `button.submitLdap`    | LDAP 登录                                             | LDAP 登录按钮                   |
+| `credential.local`     | 本地账号                                              | 本地模式标签                    |
+| `credential.localHint` | 请输入平台账号密码进行本地登录                        | 本地模式说明                    |
+| `credential.ldap`      | LDAP 目录                                             | LDAP 模式默认名称               |
+| `credential.ldapHint`  | `请输入 {{provider}} 的账号密码进行目录认证`          | LDAP 模式说明                   |
+| `divider.sso`          | 单点登录                                              | 账号密码区与 SSO 区的分割线标题 |
+| `sso.title`            | 单点登录                                              | 纯 SSO 页面下的区块标题         |
+| `sso.description`      | 通过 OAuth2、CAS 或 OIDC 跳转到企业认证系统完成登录。 | SSO 区描述                      |
+| `validation.required`  | `请输入{{field}}`                                     | 必填校验                        |
+| `validation.invalid`   | `请输入有效的{{field}}`                               | 格式校验                        |
 
-如果顺序反过来，往往会在页面已经做得很完整时，才发现接入边界和认证链路还没跑通。
+### 推荐的 `common` Key
 
-## 下一步看哪里
+| Key           | 默认值    | 用途         |
+| ------------- | --------- | ------------ |
+| `app.appName` | 潮汐栈    | 应用名       |
+| `save`        | 保存      | 通用按钮     |
+| `cancel`      | 取消      | 通用按钮     |
+| `loading`     | 加载中... | 加载态       |
+| `error`       | 操作失败  | 通用错误提示 |
 
-- 想直接进入详细接入：看 [平台自定义登录页集成指南](../guide/advance/extend-frontend/micro-app/custom-login-integration)
-- 想先理解微前端页面扩展：看 [微前端应用](../guide/advance/extend-frontend/micro-app/)
-- 想继续看前端扩展全貌：看 [融合开发总览](./overview)
+### 读取和更新文案
+
+```ts
+export function bindLoginI18n(props: any, onLocaleChange: () => void) {
+  const tLogin = props.i18n.useNamespace('/login')
+  const tCommon = props.i18n.useNamespace('common')
+  const dispose = props.i18n.onLocaleChange(onLocaleChange)
+
+  return {
+    readTexts: () => ({
+      welcome: tLogin('welcome', '欢迎使用'),
+      submit: tLogin('button.submit', '登录'),
+      loading: tCommon('loading', '加载中...'),
+    }),
+    languages: props.i18n.getLanguages(),
+    locale: props.i18n.getLocale(),
+    switchLanguage: (locale: string) => props.i18n.switchLanguage(locale),
+    dispose,
+  }
+}
+```
+
+语言变化后重新读取文案并触发组件更新；只在挂载时生成一次字符串，不能保证后续自动刷新。组件卸载时调用 `dispose`，释放订阅。
+
+语言资源的结构示例：
+
+```json
+{
+  "/login": { "welcome": "欢迎使用", "button.submit": "登录" },
+  "common": { "loading": "加载中..." }
+}
+```
+
+## 上线前验证
+
+记录基座、SDK 与微前端包版本，按实际启用方式验证：
+
+| 场景 | 要观察的结果 |
+| --- | --- |
+| 本地开关与 LDAP 组合 | 可用入口和默认模式正确，选定 provider 与请求一致 |
+| CAS / OAuth2 / OIDC | 正确发起认证，由基座处理回调和回跳 |
+| 钉钉 / 企业微信 / 飞书连接 | 使用 connectionId 发起登录，停用和配置变更正确生效 |
+| 首次绑定与再次登录 | 进入基座绑定页，绑定后可正常使用同一外部身份 |
+| 凭据错误或外部服务不可用 | 错误可理解，加载态恢复，可以重试或选择其他入口 |
+| 带 `redirect` 或 `returnUrl` | 参数已处理，登录与绑定后到达目标业务页面 |
+| token 刷新后读取 | 需要使用 token 的操作调用 `getToken()`，不依赖旧快照 |
+| 切换语言、离开再进入 | 文案更新，卸载后无重复订阅 |
+| 新包安装与恢复 | 资源路径和版本正确，基座回调及绑定页可访问 |
+
+交付代码、语言资源、入口配置和实际验证记录。失败时把触发步骤、provider key、错误码、脱敏响应和版本反馈给 AI，先定位加载、调用、认证或回调阶段，再复验。

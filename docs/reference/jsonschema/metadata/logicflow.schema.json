@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/logicflow.schema.json",
   "title": "逻辑流模型",
-  "description": "TideStack metadata schema for logicflow. Legacy runtime packaging may still use Ouroboros paths.",
+  "description": "定义可执行逻辑流的节点、端口、连线和入口出口，并保存编辑位置及设计校验结果。节点类型通过已注册实现解析。",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -10,37 +10,381 @@
   ],
   "properties": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "逻辑流名称，供业务动作、定时任务或其他逻辑流引用。"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "说明该定义的用途、业务含义或使用条件。"
     },
     "entryNode": {
-      "type": "string"
+      "type": "string",
+      "description": "正常执行入口节点的名称。"
     },
     "exitNode": {
-      "type": "string"
+      "type": "string",
+      "description": "正常执行出口节点的名称。"
     },
     "errorEntryNode": {
-      "type": "string"
+      "type": "string",
+      "description": "错误处理入口节点的名称。"
     },
     "inputDataType": {
-      "type": "string"
+      "type": "string",
+      "default": "any",
+      "description": "逻辑流输入的数据类型标识，缺省 any。"
     },
     "outputDataType": {
-      "type": "string"
+      "type": "string",
+      "default": "any",
+      "description": "逻辑流输出的数据类型标识，缺省 any。"
     },
     "nodes": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      },
+      "description": "流程中的节点实例列表。"
     },
     "connections": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/connection"
+      },
+      "description": "节点端口之间的有向连线列表。"
     },
     "nodePositions": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/position"
+      },
+      "description": "按节点名称索引的编辑画布位置。"
     },
     "isEnabled": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用逻辑流，缺省 true。"
+    },
+    "validationSummary": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "最近一次设计校验的摘要信息。"
+    },
+    "validationErrors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "最近一次设计校验的错误消息列表。"
+    },
+    "validationDiagnostics": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      },
+      "description": "最近一次设计校验产生的结构化诊断信息。"
+    },
+    "lastValidatedTime": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ],
+      "description": "最近一次设计校验时间，由平台日期序列化机制处理。"
+    },
+    "validationState": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "VALID",
+        "INVALID",
+        null
+      ],
+      "readOnly": true,
+      "description": "由校验摘要、错误和时间计算的状态：VALID 或 INVALID；尚未校验时为空。"
     }
-  }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "节点在当前逻辑流中的名称，连线及入口出口通过此名称引用。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "已注册逻辑流节点类型的标识。"
+        },
+        "inputPorts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/port"
+          },
+          "description": "节点输入端口列表，连线以数组下标定位端口。"
+        },
+        "outputPorts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/port"
+          },
+          "description": "节点输出端口列表，连线以数组下标定位端口。"
+        },
+        "isAsync": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": false,
+          "description": "是否将节点标记为异步执行，缺省 false。"
+        },
+        "isEnabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": true,
+          "description": "是否启用该节点，缺省 true。"
+        }
+      },
+      "title": "逻辑流节点实例",
+      "description": "描述流程中的一个节点及其端口和启用状态，节点特有配置以扩展属性平铺。"
+    },
+    "port": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "端口名称，用于展示和节点定义识别。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "any",
+          "description": "端口承载的数据类型标识，缺省 any。"
+        },
+        "exclusiveGroupId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "互斥输出路径所属的组标识；填写输入端口不会自动创建执行分支。"
+        },
+        "defaultBranch": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": false,
+          "description": "是否为互斥组中的默认输出路径，缺省 false；不是输入数据的默认值。"
+        }
+      },
+      "title": "逻辑流节点端口",
+      "description": "描述节点的一个输入或输出端口；互斥组与默认分支信息供支持选择性输出的节点及设计校验使用。"
+    },
+    "connection": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "界面中展示的名称。"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "说明该定义的用途、业务含义或使用条件。"
+        },
+        "sourceNode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "源节点在当前逻辑流中的名称。"
+        },
+        "sourceOutputPort": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "源节点输出端口的数组下标。"
+        },
+        "targetNode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "目标节点在当前逻辑流中的名称。"
+        },
+        "targetInputPort": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "目标节点输入端口的数组下标。"
+        }
+      },
+      "title": "逻辑流连线",
+      "description": "将源节点的一个输出端口连接到目标节点的一个输入端口，端口使用数组下标表示。"
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "x": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "节点在编辑画布中的横坐标。"
+        },
+        "y": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "节点在编辑画布中的纵坐标。"
+        }
+      },
+      "title": "逻辑流画布位置",
+      "description": "保存节点在设计画布中的位置，用于编辑展示。"
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "diagnosticKind": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "诊断问题的类别标识。"
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "诊断问题的说明文字。"
+        },
+        "nodeNames": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "该问题涉及的节点名称列表。"
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "诊断问题的作用范围标识。"
+        },
+        "fieldPath": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "问题字段在节点或流程配置中的路径。"
+        },
+        "portKind": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "问题涉及的端口类别。"
+        },
+        "portIndex": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "问题涉及端口的数组下标。"
+        },
+        "sourceNode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "问题涉及连线的源节点名称。"
+        },
+        "sourceOutputPort": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "问题涉及连线的源输出端口下标。"
+        },
+        "targetNode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "问题涉及连线的目标节点名称。"
+        },
+        "targetInputPort": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "问题涉及连线的目标输入端口下标。"
+        }
+      },
+      "title": "逻辑流校验诊断",
+      "description": "记录设计校验问题及其关联节点、字段、端口或连线，供编辑器定位问题。"
+    }
+  },
+  "$comment": "Source: core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java; core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowNodeMeta.java; core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowNodePortMeta.java; core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowConnectionMeta.java; core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelValidationDiagnostic.java"
 }

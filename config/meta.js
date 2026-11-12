@@ -12,7 +12,7 @@ const docsBaseUrl = process.env.DOCS_BASE_URL || '/'
 // 基本信息
 const baseMeta = {
   title: '潮汐栈',
-  tagline: '快速构建、融合开发、快速迭代',
+  tagline: '需求进，应用出',
   favicon: 'img/favicon.ico',
 
   url: docsSiteUrl,

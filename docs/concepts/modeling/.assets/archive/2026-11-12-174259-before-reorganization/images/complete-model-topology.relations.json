@@ -1,0 +1,3644 @@
+{
+  "scope": "应用级模型、配套定义与调度任务；不包含普通 Java DTO 或应用基本信息",
+  "nodes": [
+    {
+      "id": "user-dashboard",
+      "title": "用户看板",
+      "sub": "布局与小组件实例",
+      "x": 480,
+      "y": 192,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/model/UserDashboardTemplateModel.java"
+    },
+    {
+      "id": "dashboard-template",
+      "title": "用户看板模板",
+      "sub": "提供初始布局",
+      "x": 96,
+      "y": 192,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/model/UserDashboardTemplateModel.java"
+    },
+    {
+      "id": "widget",
+      "title": "小组件定义",
+      "sub": "配置契约与 Schema 模板",
+      "x": 480,
+      "y": 448,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-widget/ouroboros-widget-core/src/main/java/com/ouroboros/widget/WidgetDefinition.java"
+    },
+    {
+      "id": "i18n",
+      "title": "国际化语言包",
+      "sub": "语言与文案资源",
+      "x": 864,
+      "y": 192,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/i18n.schema.json"
+    },
+    {
+      "id": "ui-schema",
+      "title": "UI Schema",
+      "sub": "页面内容、交互与组件",
+      "x": 864,
+      "y": 448,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-ui-model/ouroboros-ui-model-schema-dev/src/main/java/com/ouroboros/uischema/dev/service/impl/UISchemaDevService.java"
+    },
+    {
+      "id": "ui",
+      "title": "UI 模型",
+      "sub": "页面入口与实现方式",
+      "x": 1248,
+      "y": 448,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-ui-model/ouroboros-ui-model-core/src/main/java/com/ouroboros/uimodel/UIModel.java"
+    },
+    {
+      "id": "micro",
+      "title": "微前端模型",
+      "sub": "独立前端应用实现",
+      "x": 1248,
+      "y": 704,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-ui-model/ouroboros-ui-model-microweb/src/main/java/com/ouroboros/uimodel/microweb/MicroWebModel.java"
+    },
+    {
+      "id": "menu",
+      "title": "菜单模型",
+      "sub": "运行态导航入口",
+      "x": 1632,
+      "y": 192,
+      "w": 256,
+      "h": 96,
+      "color": "page",
+      "kind": "model",
+      "readonly": true,
+      "source": "core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/MenuModel.java"
+    },
+    {
+      "id": "module",
+      "title": "模块树",
+      "sub": "功能归属、菜单与权限",
+      "x": 1632,
+      "y": 448,
+      "w": 256,
+      "h": 96,
+      "color": "security",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-app-module-model/ouroboros-app-module-model-core/src/main/java/com/ouroboros/appmodule/AppModule.java"
+    },
+    {
+      "id": "module-diff",
+      "title": "模块树 Diff",
+      "sub": "记录模块编排差异",
+      "x": 1248,
+      "y": 192,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/modules-diff.schema.json"
+    },
+    {
+      "id": "dev-menu",
+      "title": "开发菜单",
+      "sub": "开发管理入口定义",
+      "x": 96,
+      "y": 1984,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "dev-module/ouroboros-dev-app-management/src/main/java/com/ouroboros/dev/app/model/DevMenuModel.java"
+    },
+    {
+      "id": "authority",
+      "title": "权限模型",
+      "sub": "页面、接口与数据权限",
+      "x": 1632,
+      "y": 704,
+      "w": 256,
+      "h": 96,
+      "color": "security",
+      "kind": "model",
+      "readonly": true,
+      "source": "docs/handbook/docs/concepts/authority-model/index.md"
+    },
+    {
+      "id": "role",
+      "title": "角色定义",
+      "sub": "关联用户主体与权限",
+      "x": 1632,
+      "y": 960,
+      "w": 256,
+      "h": 96,
+      "color": "security",
+      "kind": "model",
+      "readonly": false,
+      "source": "docs/handbook/docs/concepts/authority-model/index.md"
+    },
+    {
+      "id": "organization",
+      "title": "组织模型",
+      "sub": "公司、部门、员工与任职",
+      "x": 1632,
+      "y": 1216,
+      "w": 256,
+      "h": 96,
+      "color": "security",
+      "kind": "model",
+      "readonly": false,
+      "source": "docs/handbook/docs/concepts/organization-model/index.md"
+    },
+    {
+      "id": "position",
+      "title": "岗位定义",
+      "sub": "岗位编码与层级",
+      "x": 1632,
+      "y": 1472,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-organization-structure/ouroboros-organization-structure-core/src/main/java/com/ouroboros/organizationstructure/PositionDefinition.java"
+    },
+    {
+      "id": "configuration",
+      "title": "统一配置模型",
+      "sub": "键、类型、范围与编辑方式",
+      "x": 1632,
+      "y": 1984,
+      "w": 256,
+      "h": 96,
+      "color": "security",
+      "kind": "model",
+      "readonly": false,
+      "source": "ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigurationMetadata.java"
+    },
+    {
+      "id": "config-group",
+      "title": "配置分组",
+      "sub": "组织配置项",
+      "x": 1632,
+      "y": 1728,
+      "w": 256,
+      "h": 96,
+      "color": "security",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigurationGroupMetadata.java"
+    },
+    {
+      "id": "business",
+      "title": "业务模型",
+      "sub": "属性、关系、视图与行为",
+      "x": 480,
+      "y": 704,
+      "w": 288,
+      "h": 96,
+      "color": "business",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java"
+    },
+    {
+      "id": "action",
+      "title": "动作定义",
+      "sub": "输入、条件与实现绑定",
+      "x": 480,
+      "y": 960,
+      "w": 256,
+      "h": 96,
+      "color": "business",
+      "kind": "part",
+      "readonly": false,
+      "source": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/ActionDefinition.java"
+    },
+    {
+      "id": "event",
+      "title": "事件定义",
+      "sub": "事实与事件内容契约",
+      "x": 96,
+      "y": 704,
+      "w": 256,
+      "h": 96,
+      "color": "business",
+      "kind": "part",
+      "readonly": false,
+      "source": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/EventDefinition.java"
+    },
+    {
+      "id": "subscription",
+      "title": "事件订阅定义",
+      "sub": "事件过滤与目标动作",
+      "x": 96,
+      "y": 960,
+      "w": 256,
+      "h": 96,
+      "color": "business",
+      "kind": "part",
+      "readonly": false,
+      "source": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/EventSubscriptionDefinition.java"
+    },
+    {
+      "id": "webapi",
+      "title": "WebAPI 模型",
+      "sub": "HTTP 契约与处理绑定",
+      "x": 864,
+      "y": 1216,
+      "w": 256,
+      "h": 96,
+      "color": "execute",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/WebAPIModel.java"
+    },
+    {
+      "id": "log",
+      "title": "业务日志模板",
+      "sub": "接口匹配与审计内容",
+      "x": 864,
+      "y": 960,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/business-log.schema.json"
+    },
+    {
+      "id": "logic",
+      "title": "逻辑流模型",
+      "sub": "节点、连线与执行上下文",
+      "x": 864,
+      "y": 1472,
+      "w": 256,
+      "h": 96,
+      "color": "execute",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java"
+    },
+    {
+      "id": "flow-node",
+      "title": "逻辑流节点定义",
+      "sub": "节点类型与配置契约",
+      "x": 480,
+      "y": 1472,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/flow-node.schema.json"
+    },
+    {
+      "id": "approval",
+      "title": "审批流模型",
+      "sub": "人员任务、表单与回调",
+      "x": 1248,
+      "y": 1216,
+      "w": 256,
+      "h": 96,
+      "color": "execute",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/FlowDefinition.java"
+    },
+    {
+      "id": "dynamic-form",
+      "title": "动态表单定义",
+      "sub": "表单内容与审批绑定",
+      "x": 1248,
+      "y": 960,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "app-module/dynamic-form/src/main/java/com/ouroboros/dynamicform/provider/DynamicFormUIModelProvider.java"
+    },
+    {
+      "id": "rpc",
+      "title": "RPC 模型",
+      "sub": "外部调用与协议契约",
+      "x": 864,
+      "y": 1728,
+      "w": 256,
+      "h": 96,
+      "color": "execute",
+      "kind": "model",
+      "readonly": false,
+      "source": "ability/ouroboros-rpc-model/ouroboros-rpc-model-core/src/main/java/com/ouroboros/rpc/metadata/RPCModelMetadata.java"
+    },
+    {
+      "id": "rpc-auth",
+      "title": "RPC 认证定义",
+      "sub": "认证类型与凭据引用",
+      "x": 480,
+      "y": 1728,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/rpc-auth.schema.json"
+    },
+    {
+      "id": "mq",
+      "title": "消息队列绑定",
+      "sub": "生产 / 消费与目标逻辑流",
+      "x": 1248,
+      "y": 1472,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-message-queue/ouroboros-message-queue-runtime/src/main/java/com/ouroboros/mq/runtime/LogicFlowMQConsumer.java"
+    },
+    {
+      "id": "notification",
+      "title": "消息通知模板",
+      "sub": "内容、渠道与接收人",
+      "x": 864,
+      "y": 1984,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/notification.schema.json"
+    },
+    {
+      "id": "schedule",
+      "title": "计划任务定义",
+      "sub": "Cron 与目标逻辑流",
+      "x": 1248,
+      "y": 1728,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "ability/ouroboros-scheduler/ouroboros-scheduler-core/src/main/java/com/ouroboros/scheduler/ScheduleTask.java"
+    },
+    {
+      "id": "delayed",
+      "title": "延迟任务",
+      "sub": "运行时提交的一次性任务",
+      "x": 1248,
+      "y": 1984,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "runtime",
+      "readonly": false,
+      "source": "ability/ouroboros-scheduler/ouroboros-scheduler-core/src/main/java/com/ouroboros/scheduler/Scheduler.java"
+    },
+    {
+      "id": "errors",
+      "title": "错误码定义",
+      "sub": "错误标识与对外说明",
+      "x": 96,
+      "y": 1728,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "docs/handbook/docs/reference/jsonschema/metadata/error-code.schema.json"
+    },
+    {
+      "id": "data",
+      "title": "数据模型",
+      "sub": "字段、关系与查询语义",
+      "x": 480,
+      "y": 2240,
+      "w": 256,
+      "h": 96,
+      "color": "data",
+      "kind": "model",
+      "readonly": false,
+      "source": "docs/handbook/docs/concepts/data-model/index.md"
+    },
+    {
+      "id": "field",
+      "title": "字段类型",
+      "sub": "数据、展示与编辑能力",
+      "x": 96,
+      "y": 1472,
+      "w": 256,
+      "h": 96,
+      "color": "data",
+      "kind": "model",
+      "readonly": false,
+      "source": "docs/handbook/docs/concepts/field-define/index.md"
+    },
+    {
+      "id": "dict",
+      "title": "数据字典模型",
+      "sub": "值域与选项",
+      "x": 96,
+      "y": 1216,
+      "w": 256,
+      "h": 96,
+      "color": "data",
+      "kind": "model",
+      "readonly": false,
+      "source": "docs/handbook/docs/concepts/data-dict-model/index.md"
+    },
+    {
+      "id": "initialization",
+      "title": "数据初始化定义",
+      "sub": "目标模型与初始记录",
+      "x": 480,
+      "y": 2496,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "core/ouroboros-data/ouroboros-data-initialization-core/src/main/java/com/ouroboros/data/initialization/InitializationBlock.java"
+    },
+    {
+      "id": "datasource",
+      "title": "数据源定义",
+      "sub": "SQL 连接与数据源标识",
+      "x": 96,
+      "y": 2496,
+      "w": 256,
+      "h": 96,
+      "color": "resource",
+      "kind": "resource",
+      "readonly": false,
+      "source": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/query/SqlQueryDefinition.java"
+    },
+    {
+      "id": "dataset",
+      "title": "数据集模型",
+      "sub": "查询、参数与结果结构",
+      "x": 864,
+      "y": 2240,
+      "w": 256,
+      "h": 96,
+      "color": "stats",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/DatasetDefinition.java"
+    },
+    {
+      "id": "query",
+      "title": "查询视图",
+      "sub": "数据集查询与结果投影",
+      "x": 1248,
+      "y": 2240,
+      "w": 256,
+      "h": 96,
+      "color": "stats",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/view/QueryViewDefinition.java"
+    },
+    {
+      "id": "report",
+      "title": "报表视图",
+      "sub": "数据集与报表呈现定义",
+      "x": 1632,
+      "y": 2240,
+      "w": 256,
+      "h": 96,
+      "color": "stats",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/view/ReportViewDefinition.java"
+    },
+    {
+      "id": "report-dashboard",
+      "title": "统计看板",
+      "sub": "布局与查询 / 报表视图",
+      "x": 1248,
+      "y": 2496,
+      "w": 256,
+      "h": 96,
+      "color": "stats",
+      "kind": "model",
+      "readonly": false,
+      "source": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/dashboard/ReportDashboardDefinition.java"
+    }
+  ],
+  "groups": [
+    {
+      "id": "dashboard",
+      "title": "用户看板",
+      "x": 72,
+      "y": 144,
+      "w": 688,
+      "h": 432,
+      "color": "page",
+      "members": [
+        "dashboard-template",
+        "user-dashboard",
+        "widget"
+      ]
+    },
+    {
+      "id": "page-build",
+      "title": "页面呈现",
+      "x": 840,
+      "y": 400,
+      "w": 688,
+      "h": 432,
+      "color": "page",
+      "members": [
+        "ui-schema",
+        "ui",
+        "micro"
+      ]
+    },
+    {
+      "id": "authorization",
+      "title": "角色与权限",
+      "x": 1608,
+      "y": 656,
+      "w": 304,
+      "h": 432,
+      "color": "security",
+      "members": [
+        "authority",
+        "role"
+      ]
+    },
+    {
+      "id": "organization-zone",
+      "title": "组织架构",
+      "x": 1608,
+      "y": 1168,
+      "w": 304,
+      "h": 432,
+      "color": "security",
+      "members": [
+        "organization",
+        "position"
+      ]
+    },
+    {
+      "id": "semantics",
+      "title": "业务语义与行为",
+      "x": 72,
+      "y": 656,
+      "w": 720,
+      "h": 432,
+      "color": "business",
+      "members": [
+        "business",
+        "event",
+        "subscription",
+        "action"
+      ]
+    },
+    {
+      "id": "approval-zone",
+      "title": "审批流程",
+      "x": 1224,
+      "y": 912,
+      "w": 304,
+      "h": 432,
+      "color": "execute",
+      "members": [
+        "dynamic-form",
+        "approval"
+      ]
+    },
+    {
+      "id": "execution",
+      "title": "逻辑执行",
+      "x": 456,
+      "y": 1424,
+      "w": 688,
+      "h": 176,
+      "color": "execute",
+      "members": [
+        "flow-node",
+        "logic"
+      ]
+    },
+    {
+      "id": "remote",
+      "title": "外部调用",
+      "x": 456,
+      "y": 1680,
+      "w": 688,
+      "h": 176,
+      "color": "execute",
+      "members": [
+        "rpc-auth",
+        "rpc"
+      ]
+    },
+    {
+      "id": "task-scheduling",
+      "title": "任务调度",
+      "x": 1224,
+      "y": 1680,
+      "w": 304,
+      "h": 432,
+      "color": "execute",
+      "members": [
+        "schedule",
+        "delayed"
+      ]
+    },
+    {
+      "id": "datazone",
+      "title": "数据定义与初始化",
+      "x": 72,
+      "y": 2192,
+      "w": 688,
+      "h": 432,
+      "color": "data",
+      "members": [
+        "data",
+        "initialization",
+        "datasource"
+      ]
+    },
+    {
+      "id": "analytics",
+      "title": "统计分析",
+      "x": 840,
+      "y": 2192,
+      "w": 1072,
+      "h": 432,
+      "color": "stats",
+      "members": [
+        "dataset",
+        "query",
+        "report",
+        "report-dashboard"
+      ]
+    },
+    {
+      "id": "configuration-zone",
+      "title": "统一配置",
+      "x": 1608,
+      "y": 1680,
+      "w": 304,
+      "h": 432,
+      "color": "security",
+      "members": [
+        "configuration",
+        "config-group"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "e01",
+      "source": "dashboard-template",
+      "target": "user-dashboard",
+      "label": "初始化布局",
+      "kind": "composition",
+      "evidence": "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/model/UserDashboardTemplateModel.java",
+      "points": [
+        [
+          320,
+          184
+        ],
+        [
+          320,
+          160
+        ],
+        [
+          448,
+          160
+        ],
+        [
+          448,
+          224
+        ],
+        [
+          472,
+          224
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        224
+      ],
+      "targetPort": [
+        "l",
+        32
+      ],
+      "labelRect": [
+        331.0,
+        122.0,
+        437.0,
+        152.0
+      ]
+    },
+    {
+      "id": "e02",
+      "source": "user-dashboard",
+      "target": "widget",
+      "label": "引用组件",
+      "kind": "reference",
+      "evidence": "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/model/UserDashboardTemplateModel.java",
+      "points": [
+        [
+          608,
+          296
+        ],
+        [
+          608,
+          440
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        512.0,
+        353.0,
+        600.0,
+        383.0
+      ]
+    },
+    {
+      "id": "e03",
+      "source": "widget",
+      "target": "ui-schema",
+      "label": "使用 Schema",
+      "kind": "reference",
+      "evidence": "ability/ouroboros-widget/ouroboros-widget-core/src/main/java/com/ouroboros/widget/WidgetDefinition.java",
+      "points": [
+        [
+          672,
+          552
+        ],
+        [
+          672,
+          640
+        ],
+        [
+          896,
+          640
+        ],
+        [
+          896,
+          552
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        192
+      ],
+      "targetPort": [
+        "b",
+        32
+      ],
+      "labelRect": [
+        904.0,
+        581.0,
+        1082.0,
+        611.0
+      ]
+    },
+    {
+      "id": "e04",
+      "source": "ui-schema",
+      "target": "ui",
+      "label": "实现页面",
+      "kind": "implementation",
+      "evidence": "core/ouroboros-ui-model/ouroboros-ui-model-schema-dev/src/main/java/com/ouroboros/uischema/dev/service/impl/UISchemaDevService.java",
+      "points": [
+        [
+          1128,
+          480
+        ],
+        [
+          1240,
+          480
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "l",
+        32
+      ],
+      "labelRect": [
+        1140.0,
+        442.0,
+        1228.0,
+        472.0
+      ]
+    },
+    {
+      "id": "e05",
+      "source": "micro",
+      "target": "ui",
+      "label": "实现页面",
+      "kind": "implementation",
+      "evidence": "core/ouroboros-ui-model/ouroboros-ui-model-microweb/src/main/java/com/ouroboros/uimodel/microweb/MicroWebModel.java",
+      "points": [
+        [
+          1376,
+          696
+        ],
+        [
+          1376,
+          552
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        1280.0,
+        609.0,
+        1368.0,
+        639.0
+      ]
+    },
+    {
+      "id": "e06",
+      "source": "menu",
+      "target": "ui",
+      "label": "指向页面",
+      "kind": "reference",
+      "evidence": "core/ouroboros-menu-model/ouroboros-menu-model-core/src/main/java/com/ouroboros/menu/MenuModel.java",
+      "points": [
+        [
+          1624,
+          256
+        ],
+        [
+          1536,
+          256
+        ],
+        [
+          1536,
+          480
+        ],
+        [
+          1512,
+          480
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        64
+      ],
+      "targetPort": [
+        "r",
+        32
+      ],
+      "labelRect": [
+        1440.0,
+        353.0,
+        1528.0,
+        383.0
+      ]
+    },
+    {
+      "id": "e07",
+      "source": "module",
+      "target": "menu",
+      "label": "组织菜单",
+      "kind": "composition",
+      "evidence": "core/ouroboros-app-module-model/ouroboros-app-module-model-core/src/main/java/com/ouroboros/appmodule/AppModule.java",
+      "points": [
+        [
+          1744,
+          440
+        ],
+        [
+          1744,
+          296
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        112
+      ],
+      "targetPort": [
+        "b",
+        112
+      ],
+      "labelRect": [
+        1648.0,
+        353.0,
+        1736.0,
+        383.0
+      ]
+    },
+    {
+      "id": "e08",
+      "source": "module-diff",
+      "target": "module",
+      "label": "调整编排",
+      "kind": "composition",
+      "evidence": "docs/handbook/docs/reference/jsonschema/metadata/modules-diff.schema.json",
+      "points": [
+        [
+          1512,
+          240
+        ],
+        [
+          1584,
+          240
+        ],
+        [
+          1584,
+          480
+        ],
+        [
+          1624,
+          480
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        48
+      ],
+      "targetPort": [
+        "l",
+        32
+      ],
+      "labelRect": [
+        1592.0,
+        405.0,
+        1680.0,
+        435.0
+      ]
+    },
+    {
+      "id": "e09",
+      "source": "module",
+      "target": "authority",
+      "label": "归集权限",
+      "kind": "composition",
+      "evidence": "core/ouroboros-app-module-model/ouroboros-app-module-model-core/src/main/java/com/ouroboros/appmodule/AppModule.java",
+      "points": [
+        [
+          1760,
+          552
+        ],
+        [
+          1760,
+          576
+        ],
+        [
+          1808,
+          576
+        ],
+        [
+          1808,
+          696
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        176
+      ],
+      "labelRect": [
+        1712.0,
+        621.0,
+        1800.0,
+        651.0
+      ]
+    },
+    {
+      "id": "e10",
+      "source": "role",
+      "target": "authority",
+      "label": "授予权限",
+      "kind": "governance",
+      "evidence": "docs/handbook/docs/concepts/authority-model/index.md",
+      "points": [
+        [
+          1760,
+          952
+        ],
+        [
+          1760,
+          808
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        1664.0,
+        865.0,
+        1752.0,
+        895.0
+      ]
+    },
+    {
+      "id": "e11",
+      "source": "business",
+      "target": "organization",
+      "label": "组织字段引用",
+      "kind": "reference",
+      "evidence": "docs/handbook/docs/concepts/organization-model/index.md",
+      "points": [
+        [
+          608,
+          696
+        ],
+        [
+          608,
+          576
+        ],
+        [
+          48,
+          576
+        ],
+        [
+          48,
+          112
+        ],
+        [
+          2032,
+          112
+        ],
+        [
+          2032,
+          1184
+        ],
+        [
+          1760,
+          1184
+        ],
+        [
+          1760,
+          1208
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        978.0,
+        120.0,
+        1102.0,
+        150.0
+      ]
+    },
+    {
+      "id": "e12",
+      "source": "position",
+      "target": "organization",
+      "label": "岗位与任职",
+      "kind": "composition",
+      "evidence": "ability/ouroboros-organization-structure/ouroboros-organization-structure-core/src/main/java/com/ouroboros/organizationstructure/PositionDefinition.java",
+      "points": [
+        [
+          1760,
+          1464
+        ],
+        [
+          1760,
+          1320
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        1646.0,
+        1377.0,
+        1752.0,
+        1407.0
+      ]
+    },
+    {
+      "id": "e13",
+      "source": "config-group",
+      "target": "configuration",
+      "label": "归集配置",
+      "kind": "composition",
+      "evidence": "ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigurationGroupMetadata.java",
+      "points": [
+        [
+          1760,
+          1832
+        ],
+        [
+          1760,
+          1976
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        1664.0,
+        1889.0,
+        1752.0,
+        1919.0
+      ]
+    },
+    {
+      "id": "e14",
+      "source": "configuration",
+      "target": "ui-schema",
+      "label": "编辑器定义",
+      "kind": "reference",
+      "evidence": "ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigurationMetadata.java",
+      "points": [
+        [
+          1824,
+          1976
+        ],
+        [
+          1824,
+          1952
+        ],
+        [
+          1920,
+          1952
+        ],
+        [
+          1920,
+          1104
+        ],
+        [
+          1200,
+          1104
+        ],
+        [
+          1200,
+          512
+        ],
+        [
+          1128,
+          512
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        192
+      ],
+      "targetPort": [
+        "r",
+        64
+      ],
+      "labelRect": [
+        1806.0,
+        1619.0,
+        1912.0,
+        1649.0
+      ]
+    },
+    {
+      "id": "e15",
+      "source": "i18n",
+      "target": "ui-schema",
+      "label": "文案引用",
+      "kind": "reference",
+      "evidence": "docs/handbook/docs/reference/jsonschema/metadata/i18n.schema.json",
+      "points": [
+        [
+          992,
+          296
+        ],
+        [
+          992,
+          440
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        896.0,
+        353.0,
+        984.0,
+        383.0
+      ]
+    },
+    {
+      "id": "e16",
+      "source": "business",
+      "target": "action",
+      "label": "包含",
+      "kind": "composition",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java",
+      "points": [
+        [
+          592,
+          808
+        ],
+        [
+          592,
+          952
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        112
+      ],
+      "targetPort": [
+        "t",
+        112
+      ],
+      "labelRect": [
+        532.0,
+        865.0,
+        584.0,
+        895.0
+      ]
+    },
+    {
+      "id": "e17",
+      "source": "business",
+      "target": "event",
+      "label": "包含",
+      "kind": "composition",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java",
+      "points": [
+        [
+          472,
+          752
+        ],
+        [
+          360,
+          752
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        48
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        390.0,
+        714.0,
+        442.0,
+        744.0
+      ]
+    },
+    {
+      "id": "e18",
+      "source": "business",
+      "target": "subscription",
+      "label": "包含",
+      "kind": "composition",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java",
+      "points": [
+        [
+          472,
+          736
+        ],
+        [
+          448,
+          736
+        ],
+        [
+          448,
+          640
+        ],
+        [
+          48,
+          640
+        ],
+        [
+          48,
+          1088
+        ],
+        [
+          384,
+          1088
+        ],
+        [
+          384,
+          1008
+        ],
+        [
+          360,
+          1008
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        56.0,
+        849.0,
+        108.0,
+        879.0
+      ]
+    },
+    {
+      "id": "e19",
+      "source": "action",
+      "target": "event",
+      "label": "声明产生",
+      "kind": "reference",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/ActionDefinition.java",
+      "points": [
+        [
+          472,
+          992
+        ],
+        [
+          400,
+          992
+        ],
+        [
+          400,
+          768
+        ],
+        [
+          360,
+          768
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "r",
+        64
+      ],
+      "labelRect": [
+        304.0,
+        865.0,
+        392.0,
+        895.0
+      ]
+    },
+    {
+      "id": "e20",
+      "source": "subscription",
+      "target": "event",
+      "label": "订阅事件",
+      "kind": "reference",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/EventSubscriptionDefinition.java",
+      "points": [
+        [
+          224,
+          952
+        ],
+        [
+          224,
+          808
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        128.0,
+        865.0,
+        216.0,
+        895.0
+      ]
+    },
+    {
+      "id": "e21",
+      "source": "subscription",
+      "target": "action",
+      "label": "调用目标动作",
+      "kind": "execution",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/EventSubscriptionDefinition.java",
+      "points": [
+        [
+          360,
+          992
+        ],
+        [
+          384,
+          992
+        ],
+        [
+          384,
+          912
+        ],
+        [
+          512,
+          912
+        ],
+        [
+          512,
+          952
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "t",
+        32
+      ],
+      "labelRect": [
+        252.0,
+        917.0,
+        376.0,
+        947.0
+      ]
+    },
+    {
+      "id": "e22",
+      "source": "action",
+      "target": "logic",
+      "label": "绑定实现",
+      "kind": "execution",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/behavior/ActionDefinition.java",
+      "points": [
+        [
+          672,
+          1064
+        ],
+        [
+          672,
+          1392
+        ],
+        [
+          944,
+          1392
+        ],
+        [
+          944,
+          1464
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        192
+      ],
+      "targetPort": [
+        "t",
+        80
+      ],
+      "labelRect": [
+        576.0,
+        1213.0,
+        664.0,
+        1243.0
+      ]
+    },
+    {
+      "id": "e23",
+      "source": "business",
+      "target": "ui",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          776,
+          752
+        ],
+        [
+          1216,
+          752
+        ],
+        [
+          1216,
+          512
+        ],
+        [
+          1240,
+          512
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        48
+      ],
+      "targetPort": [
+        "l",
+        64
+      ],
+      "labelRect": [
+        970.0,
+        714.0,
+        1022.0,
+        744.0
+      ]
+    },
+    {
+      "id": "e24",
+      "source": "business",
+      "target": "ui-schema",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          776,
+          736
+        ],
+        [
+          800,
+          736
+        ],
+        [
+          800,
+          496
+        ],
+        [
+          856,
+          496
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "l",
+        48
+      ],
+      "labelRect": [
+        740.0,
+        601.0,
+        792.0,
+        631.0
+      ]
+    },
+    {
+      "id": "e25",
+      "source": "business",
+      "target": "menu",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          688,
+          696
+        ],
+        [
+          688,
+          576
+        ],
+        [
+          784,
+          576
+        ],
+        [
+          784,
+          320
+        ],
+        [
+          1216,
+          320
+        ],
+        [
+          1216,
+          160
+        ],
+        [
+          1600,
+          160
+        ],
+        [
+          1600,
+          224
+        ],
+        [
+          1624,
+          224
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        208
+      ],
+      "targetPort": [
+        "l",
+        32
+      ],
+      "labelRect": [
+        1082.0,
+        328.0,
+        1134.0,
+        358.0
+      ]
+    },
+    {
+      "id": "e26",
+      "source": "business",
+      "target": "authority",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          776,
+          768
+        ],
+        [
+          1216,
+          768
+        ],
+        [
+          1216,
+          832
+        ],
+        [
+          1600,
+          832
+        ],
+        [
+          1600,
+          768
+        ],
+        [
+          1624,
+          768
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        64
+      ],
+      "targetPort": [
+        "l",
+        64
+      ],
+      "labelRect": [
+        970.0,
+        776.0,
+        1022.0,
+        806.0
+      ]
+    },
+    {
+      "id": "e27",
+      "source": "business",
+      "target": "data",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          592,
+          696
+        ],
+        [
+          592,
+          624
+        ],
+        [
+          32,
+          624
+        ],
+        [
+          32,
+          2176
+        ],
+        [
+          368,
+          2176
+        ],
+        [
+          368,
+          2208
+        ],
+        [
+          544,
+          2208
+        ],
+        [
+          544,
+          2232
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        112
+      ],
+      "targetPort": [
+        "t",
+        64
+      ],
+      "labelRect": [
+        286.0,
+        586.0,
+        338.0,
+        616.0
+      ]
+    },
+    {
+      "id": "e28",
+      "source": "business",
+      "target": "webapi",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          704,
+          808
+        ],
+        [
+          704,
+          880
+        ],
+        [
+          832,
+          880
+        ],
+        [
+          832,
+          1264
+        ],
+        [
+          856,
+          1264
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        224
+      ],
+      "targetPort": [
+        "l",
+        48
+      ],
+      "labelRect": [
+        772.0,
+        1057.0,
+        824.0,
+        1087.0
+      ]
+    },
+    {
+      "id": "e29",
+      "source": "business",
+      "target": "logic",
+      "label": "投影",
+      "kind": "projection",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/projection/DefaultModelBundleProjector.java",
+      "points": [
+        [
+          608,
+          808
+        ],
+        [
+          608,
+          928
+        ],
+        [
+          448,
+          928
+        ],
+        [
+          448,
+          1408
+        ],
+        [
+          912,
+          1408
+        ],
+        [
+          912,
+          1464
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        48
+      ],
+      "labelRect": [
+        456.0,
+        1153.0,
+        508.0,
+        1183.0
+      ]
+    },
+    {
+      "id": "e30",
+      "source": "business",
+      "target": "field",
+      "label": "属性类型",
+      "kind": "reference",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java",
+      "points": [
+        [
+          472,
+          768
+        ],
+        [
+          432,
+          768
+        ],
+        [
+          432,
+          1264
+        ],
+        [
+          384,
+          1264
+        ],
+        [
+          384,
+          1504
+        ],
+        [
+          360,
+          1504
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        64
+      ],
+      "targetPort": [
+        "r",
+        32
+      ],
+      "labelRect": [
+        440.0,
+        877.0,
+        528.0,
+        907.0
+      ]
+    },
+    {
+      "id": "e31",
+      "source": "business",
+      "target": "dict",
+      "label": "属性值域",
+      "kind": "reference",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java",
+      "points": [
+        [
+          528,
+          808
+        ],
+        [
+          528,
+          848
+        ],
+        [
+          416,
+          848
+        ],
+        [
+          416,
+          1248
+        ],
+        [
+          360,
+          1248
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        48
+      ],
+      "targetPort": [
+        "r",
+        32
+      ],
+      "labelRect": [
+        320.0,
+        1133.0,
+        408.0,
+        1163.0
+      ]
+    },
+    {
+      "id": "e32",
+      "source": "business",
+      "target": "module",
+      "label": "功能归属",
+      "kind": "composition",
+      "evidence": "core/ouroboros-business-model/ouroboros-business-model-default/src/main/java/com/ouroboros/businessmodel/meta/DefaultBusinessModelMeta.java",
+      "points": [
+        [
+          704,
+          696
+        ],
+        [
+          704,
+          592
+        ],
+        [
+          768,
+          592
+        ],
+        [
+          768,
+          160
+        ],
+        [
+          1200,
+          160
+        ],
+        [
+          1200,
+          416
+        ],
+        [
+          1568,
+          416
+        ],
+        [
+          1568,
+          496
+        ],
+        [
+          1624,
+          496
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        224
+      ],
+      "targetPort": [
+        "l",
+        48
+      ],
+      "labelRect": [
+        832.0,
+        122.0,
+        920.0,
+        152.0
+      ]
+    },
+    {
+      "id": "e33",
+      "source": "business",
+      "target": "report-dashboard",
+      "label": "看板型映射",
+      "kind": "projection",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/provider/BusinessModelReportDashboardDefinitionProvider.java",
+      "points": [
+        [
+          512,
+          808
+        ],
+        [
+          512,
+          832
+        ],
+        [
+          240,
+          832
+        ],
+        [
+          240,
+          928
+        ],
+        [
+          64,
+          928
+        ],
+        [
+          64,
+          1584
+        ],
+        [
+          48,
+          1584
+        ],
+        [
+          48,
+          2672
+        ],
+        [
+          1216,
+          2672
+        ],
+        [
+          1216,
+          2528
+        ],
+        [
+          1240,
+          2528
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        32
+      ],
+      "targetPort": [
+        "l",
+        32
+      ],
+      "labelRect": [
+        287.0,
+        2634.0,
+        393.0,
+        2664.0
+      ]
+    },
+    {
+      "id": "e34",
+      "source": "ui-schema",
+      "target": "webapi",
+      "label": "页面请求",
+      "kind": "execution",
+      "evidence": "core/ouroboros-ui-model/ouroboros-ui-model-schema-dev/src/main/java/com/ouroboros/uischema/dev/service/impl/UISchemaDevService.java",
+      "points": [
+        [
+          1072,
+          552
+        ],
+        [
+          1072,
+          576
+        ],
+        [
+          1152,
+          576
+        ],
+        [
+          1152,
+          1136
+        ],
+        [
+          1024,
+          1136
+        ],
+        [
+          1024,
+          1208
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        208
+      ],
+      "targetPort": [
+        "t",
+        160
+      ],
+      "labelRect": [
+        1056.0,
+        701.0,
+        1144.0,
+        731.0
+      ]
+    },
+    {
+      "id": "e35",
+      "source": "micro",
+      "target": "webapi",
+      "label": "页面请求",
+      "kind": "execution",
+      "evidence": "core/ouroboros-ui-model/ouroboros-ui-model-microweb/src/main/java/com/ouroboros/uimodel/microweb/MicroWebModel.java",
+      "points": [
+        [
+          1344,
+          808
+        ],
+        [
+          1344,
+          880
+        ],
+        [
+          1168,
+          880
+        ],
+        [
+          1168,
+          1248
+        ],
+        [
+          1128,
+          1248
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        96
+      ],
+      "targetPort": [
+        "r",
+        32
+      ],
+      "labelRect": [
+        1072.0,
+        1141.0,
+        1160.0,
+        1171.0
+      ]
+    },
+    {
+      "id": "e36",
+      "source": "webapi",
+      "target": "logic",
+      "label": "绑定处理",
+      "kind": "execution",
+      "evidence": "core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/WebAPIModel.java",
+      "points": [
+        [
+          992,
+          1320
+        ],
+        [
+          992,
+          1464
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        1000.0,
+        1377.0,
+        1088.0,
+        1407.0
+      ]
+    },
+    {
+      "id": "e37",
+      "source": "logic",
+      "target": "data",
+      "label": "查询与写入",
+      "kind": "execution",
+      "evidence": "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java",
+      "points": [
+        [
+          1072,
+          1576
+        ],
+        [
+          1072,
+          1696
+        ],
+        [
+          1152,
+          1696
+        ],
+        [
+          1152,
+          1920
+        ],
+        [
+          688,
+          1920
+        ],
+        [
+          688,
+          2232
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        208
+      ],
+      "targetPort": [
+        "t",
+        208
+      ],
+      "labelRect": [
+        867.0,
+        1882.0,
+        973.0,
+        1912.0
+      ]
+    },
+    {
+      "id": "e38",
+      "source": "logic",
+      "target": "flow-node",
+      "label": "使用节点",
+      "kind": "reference",
+      "evidence": "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java",
+      "points": [
+        [
+          856,
+          1520
+        ],
+        [
+          744,
+          1520
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        48
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        756.0,
+        1482.0,
+        844.0,
+        1512.0
+      ]
+    },
+    {
+      "id": "e39",
+      "source": "logic",
+      "target": "rpc",
+      "label": "远程调用",
+      "kind": "execution",
+      "evidence": "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java",
+      "points": [
+        [
+          992,
+          1576
+        ],
+        [
+          992,
+          1720
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        896.0,
+        1633.0,
+        984.0,
+        1663.0
+      ]
+    },
+    {
+      "id": "e40",
+      "source": "rpc",
+      "target": "rpc-auth",
+      "label": "认证引用",
+      "kind": "reference",
+      "evidence": "ability/ouroboros-rpc-model/ouroboros-rpc-model-core/src/main/java/com/ouroboros/rpc/metadata/RPCModelMetadata.java",
+      "points": [
+        [
+          856,
+          1776
+        ],
+        [
+          744,
+          1776
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        48
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        756.0,
+        1738.0,
+        844.0,
+        1768.0
+      ]
+    },
+    {
+      "id": "e41",
+      "source": "mq",
+      "target": "logic",
+      "label": "消费触发",
+      "kind": "execution",
+      "evidence": "ability/ouroboros-message-queue/ouroboros-message-queue-runtime/src/main/java/com/ouroboros/mq/runtime/LogicFlowMQConsumer.java",
+      "points": [
+        [
+          1240,
+          1504
+        ],
+        [
+          1216,
+          1504
+        ],
+        [
+          1216,
+          1440
+        ],
+        [
+          1008,
+          1440
+        ],
+        [
+          1008,
+          1464
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "t",
+        144
+      ],
+      "labelRect": [
+        1094.0,
+        1402.0,
+        1182.0,
+        1432.0
+      ]
+    },
+    {
+      "id": "e42",
+      "source": "logic",
+      "target": "mq",
+      "label": "生产消息",
+      "kind": "execution",
+      "evidence": "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java",
+      "points": [
+        [
+          1128,
+          1504
+        ],
+        [
+          1216,
+          1504
+        ],
+        [
+          1216,
+          1600
+        ],
+        [
+          1424,
+          1600
+        ],
+        [
+          1424,
+          1576
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "b",
+        176
+      ],
+      "labelRect": [
+        1328.0,
+        1608.0,
+        1416.0,
+        1638.0
+      ]
+    },
+    {
+      "id": "e43",
+      "source": "schedule",
+      "target": "logic",
+      "label": "定时触发",
+      "kind": "execution",
+      "evidence": "ability/ouroboros-scheduler/ouroboros-scheduler-core/src/main/java/com/ouroboros/scheduler/ScheduleTask.java",
+      "points": [
+        [
+          1240,
+          1760
+        ],
+        [
+          1184,
+          1760
+        ],
+        [
+          1184,
+          1536
+        ],
+        [
+          1128,
+          1536
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "r",
+        64
+      ],
+      "labelRect": [
+        1192.0,
+        1633.0,
+        1280.0,
+        1663.0
+      ]
+    },
+    {
+      "id": "e44",
+      "source": "delayed",
+      "target": "logic",
+      "label": "到时触发",
+      "kind": "execution",
+      "evidence": "ability/ouroboros-scheduler/ouroboros-scheduler-core/src/main/java/com/ouroboros/scheduler/Scheduler.java",
+      "points": [
+        [
+          1280,
+          1976
+        ],
+        [
+          1280,
+          1952
+        ],
+        [
+          1168,
+          1952
+        ],
+        [
+          1168,
+          1664
+        ],
+        [
+          1088,
+          1664
+        ],
+        [
+          1088,
+          1576
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        32
+      ],
+      "targetPort": [
+        "b",
+        224
+      ],
+      "labelRect": [
+        1138.0,
+        1960.0,
+        1226.0,
+        1990.0
+      ]
+    },
+    {
+      "id": "e45",
+      "source": "logic",
+      "target": "notification",
+      "label": "发送通知",
+      "kind": "execution",
+      "evidence": "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/model/FlowModelMeta.java",
+      "points": [
+        [
+          896,
+          1576
+        ],
+        [
+          896,
+          1600
+        ],
+        [
+          432,
+          1600
+        ],
+        [
+          432,
+          2032
+        ],
+        [
+          856,
+          2032
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        32
+      ],
+      "targetPort": [
+        "l",
+        48
+      ],
+      "labelRect": [
+        620.0,
+        1608.0,
+        708.0,
+        1638.0
+      ]
+    },
+    {
+      "id": "e46",
+      "source": "approval",
+      "target": "notification",
+      "label": "流程通知",
+      "kind": "execution",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/FlowDefinition.java",
+      "points": [
+        [
+          1328,
+          1320
+        ],
+        [
+          1328,
+          1424
+        ],
+        [
+          1584,
+          1424
+        ],
+        [
+          1584,
+          1936
+        ],
+        [
+          1008,
+          1936
+        ],
+        [
+          1008,
+          1976
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        80
+      ],
+      "targetPort": [
+        "t",
+        144
+      ],
+      "labelRect": [
+        1252.0,
+        1898.0,
+        1340.0,
+        1928.0
+      ]
+    },
+    {
+      "id": "e47",
+      "source": "approval",
+      "target": "organization",
+      "label": "解析参与人",
+      "kind": "reference",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/FlowDefinition.java",
+      "points": [
+        [
+          1392,
+          1208
+        ],
+        [
+          1392,
+          1168
+        ],
+        [
+          1584,
+          1168
+        ],
+        [
+          1584,
+          1248
+        ],
+        [
+          1624,
+          1248
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        144
+      ],
+      "targetPort": [
+        "l",
+        32
+      ],
+      "labelRect": [
+        1387.0,
+        1130.0,
+        1493.0,
+        1160.0
+      ]
+    },
+    {
+      "id": "e48",
+      "source": "approval",
+      "target": "business",
+      "label": "业务表单绑定",
+      "kind": "reference",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-business-model-form/src/main/java/com/ouroboros/workflow/approval/businessmodelform/service/BusinessModelFlowFormService.java",
+      "points": [
+        [
+          1240,
+          1248
+        ],
+        [
+          1184,
+          1248
+        ],
+        [
+          1184,
+          848
+        ],
+        [
+          736,
+          848
+        ],
+        [
+          736,
+          808
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "b",
+        256
+      ],
+      "labelRect": [
+        898.0,
+        810.0,
+        1022.0,
+        840.0
+      ]
+    },
+    {
+      "id": "e49",
+      "source": "approval",
+      "target": "dynamic-form",
+      "label": "动态表单绑定",
+      "kind": "reference",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/FlowDefinition.java",
+      "points": [
+        [
+          1376,
+          1208
+        ],
+        [
+          1376,
+          1064
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        1244.0,
+        1121.0,
+        1368.0,
+        1151.0
+      ]
+    },
+    {
+      "id": "e50",
+      "source": "logic",
+      "target": "approval",
+      "label": "发起与办理",
+      "kind": "execution",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-runtime/src/main/java/com/ouroboros/workflow/approval/logicflow/StartProcessNode.java",
+      "points": [
+        [
+          1128,
+          1520
+        ],
+        [
+          1200,
+          1520
+        ],
+        [
+          1200,
+          1344
+        ],
+        [
+          1280,
+          1344
+        ],
+        [
+          1280,
+          1320
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        48
+      ],
+      "targetPort": [
+        "b",
+        32
+      ],
+      "labelRect": [
+        1208.0,
+        1373.0,
+        1314.0,
+        1403.0
+      ]
+    },
+    {
+      "id": "e51",
+      "source": "approval",
+      "target": "role",
+      "label": "角色候选人",
+      "kind": "reference",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/definition/candidates/RoleCandidate.java",
+      "points": [
+        [
+          1512,
+          1248
+        ],
+        [
+          1568,
+          1248
+        ],
+        [
+          1568,
+          1024
+        ],
+        [
+          1624,
+          1024
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "l",
+        64
+      ],
+      "labelRect": [
+        1576.0,
+        1121.0,
+        1682.0,
+        1151.0
+      ]
+    },
+    {
+      "id": "e52",
+      "source": "approval",
+      "target": "logic",
+      "label": "流程回调",
+      "kind": "execution",
+      "evidence": "core/ouroboros-approval-workflow/ouroboros-approval-workflow-runtime/src/main/java/com/ouroboros/workflow/approval/runtime/callback/ApprovalProcessCallbackBindingCatalog.java",
+      "points": [
+        [
+          1240,
+          1280
+        ],
+        [
+          1152,
+          1280
+        ],
+        [
+          1152,
+          1360
+        ],
+        [
+          976,
+          1360
+        ],
+        [
+          976,
+          1464
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        64
+      ],
+      "targetPort": [
+        "t",
+        112
+      ],
+      "labelRect": [
+        1020.0,
+        1322.0,
+        1108.0,
+        1352.0
+      ]
+    },
+    {
+      "id": "e53",
+      "source": "dynamic-form",
+      "target": "ui",
+      "label": "提供页面",
+      "kind": "implementation",
+      "evidence": "app-module/dynamic-form/src/main/java/com/ouroboros/dynamicform/provider/DynamicFormUIModelProvider.java",
+      "points": [
+        [
+          1472,
+          952
+        ],
+        [
+          1472,
+          848
+        ],
+        [
+          1552,
+          848
+        ],
+        [
+          1552,
+          496
+        ],
+        [
+          1512,
+          496
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        224
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        1560.0,
+        569.0,
+        1648.0,
+        599.0
+      ]
+    },
+    {
+      "id": "e54",
+      "source": "log",
+      "target": "webapi",
+      "label": "匹配接口",
+      "kind": "reference",
+      "evidence": "docs/handbook/docs/reference/jsonschema/metadata/business-log.schema.json",
+      "points": [
+        [
+          992,
+          1064
+        ],
+        [
+          992,
+          1208
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        128
+      ],
+      "targetPort": [
+        "t",
+        128
+      ],
+      "labelRect": [
+        896.0,
+        1121.0,
+        984.0,
+        1151.0
+      ]
+    },
+    {
+      "id": "e55",
+      "source": "errors",
+      "target": "webapi",
+      "label": "错误响应",
+      "kind": "reference",
+      "evidence": "docs/handbook/docs/reference/jsonschema/metadata/error-code.schema.json",
+      "points": [
+        [
+          360,
+          1760
+        ],
+        [
+          416,
+          1760
+        ],
+        [
+          416,
+          1280
+        ],
+        [
+          856,
+          1280
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "l",
+        64
+      ],
+      "labelRect": [
+        320.0,
+        1625.0,
+        408.0,
+        1655.0
+      ]
+    },
+    {
+      "id": "e56",
+      "source": "data",
+      "target": "field",
+      "label": "采用类型",
+      "kind": "reference",
+      "evidence": "docs/handbook/docs/concepts/data-model/index.md",
+      "points": [
+        [
+          560,
+          2232
+        ],
+        [
+          560,
+          2128
+        ],
+        [
+          64,
+          2128
+        ],
+        [
+          64,
+          1600
+        ],
+        [
+          224,
+          1600
+        ],
+        [
+          224,
+          1576
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        80
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        72.0,
+        1849.0,
+        160.0,
+        1879.0
+      ]
+    },
+    {
+      "id": "e57",
+      "source": "initialization",
+      "target": "data",
+      "label": "初始化记录",
+      "kind": "execution",
+      "evidence": "core/ouroboros-data/ouroboros-data-initialization-core/src/main/java/com/ouroboros/data/initialization/InitializationBlock.java",
+      "points": [
+        [
+          608,
+          2488
+        ],
+        [
+          608,
+          2344
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        494.0,
+        2401.0,
+        600.0,
+        2431.0
+      ]
+    },
+    {
+      "id": "e58",
+      "source": "dataset",
+      "target": "data",
+      "label": "模型查询",
+      "kind": "execution",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/query/DataModelQueryDefinition.java",
+      "points": [
+        [
+          856,
+          2288
+        ],
+        [
+          744,
+          2288
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        48
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        756.0,
+        2250.0,
+        844.0,
+        2280.0
+      ]
+    },
+    {
+      "id": "e59",
+      "source": "dataset",
+      "target": "datasource",
+      "label": "SQL 查询",
+      "kind": "execution",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/query/SqlQueryDefinition.java",
+      "points": [
+        [
+          856,
+          2304
+        ],
+        [
+          832,
+          2304
+        ],
+        [
+          832,
+          2624
+        ],
+        [
+          384,
+          2624
+        ],
+        [
+          384,
+          2528
+        ],
+        [
+          360,
+          2528
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        64
+      ],
+      "targetPort": [
+        "r",
+        32
+      ],
+      "labelRect": [
+        546.0,
+        2632.0,
+        670.0,
+        2662.0
+      ]
+    },
+    {
+      "id": "e60",
+      "source": "query",
+      "target": "dataset",
+      "label": "引用数据集",
+      "kind": "reference",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/view/QueryViewDefinition.java",
+      "points": [
+        [
+          1240,
+          2272
+        ],
+        [
+          1216,
+          2272
+        ],
+        [
+          1216,
+          2208
+        ],
+        [
+          1088,
+          2208
+        ],
+        [
+          1088,
+          2232
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "t",
+        224
+      ],
+      "labelRect": [
+        1224.0,
+        2197.0,
+        1330.0,
+        2227.0
+      ]
+    },
+    {
+      "id": "e61",
+      "source": "report",
+      "target": "dataset",
+      "label": "引用数据集",
+      "kind": "reference",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/view/ReportViewDefinition.java",
+      "points": [
+        [
+          1624,
+          2272
+        ],
+        [
+          1600,
+          2272
+        ],
+        [
+          1600,
+          2192
+        ],
+        [
+          1152,
+          2192
+        ],
+        [
+          1152,
+          2272
+        ],
+        [
+          1128,
+          2272
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "r",
+        32
+      ],
+      "labelRect": [
+        1435.0,
+        2200.0,
+        1541.0,
+        2230.0
+      ]
+    },
+    {
+      "id": "e62",
+      "source": "report-dashboard",
+      "target": "query",
+      "label": "引用视图",
+      "kind": "reference",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/dashboard/ReportDashboardDefinition.java",
+      "points": [
+        [
+          1376,
+          2488
+        ],
+        [
+          1376,
+          2344
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        128
+      ],
+      "targetPort": [
+        "b",
+        128
+      ],
+      "labelRect": [
+        1280.0,
+        2401.0,
+        1368.0,
+        2431.0
+      ]
+    },
+    {
+      "id": "e63",
+      "source": "report-dashboard",
+      "target": "report",
+      "label": "引用视图",
+      "kind": "reference",
+      "evidence": "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/definition/dashboard/ReportDashboardDefinition.java",
+      "points": [
+        [
+          1512,
+          2528
+        ],
+        [
+          1536,
+          2528
+        ],
+        [
+          1536,
+          2288
+        ],
+        [
+          1624,
+          2288
+        ]
+      ],
+      "sourcePort": [
+        "r",
+        32
+      ],
+      "targetPort": [
+        "l",
+        48
+      ],
+      "labelRect": [
+        1440.0,
+        2393.0,
+        1528.0,
+        2423.0
+      ]
+    },
+    {
+      "id": "e64",
+      "source": "authority",
+      "target": "menu",
+      "label": "入口可见",
+      "kind": "governance",
+      "evidence": "docs/handbook/docs/concepts/authority-model/index.md",
+      "points": [
+        [
+          1824,
+          696
+        ],
+        [
+          1824,
+          672
+        ],
+        [
+          1920,
+          672
+        ],
+        [
+          1920,
+          320
+        ],
+        [
+          1776,
+          320
+        ],
+        [
+          1776,
+          296
+        ]
+      ],
+      "sourcePort": [
+        "t",
+        192
+      ],
+      "targetPort": [
+        "b",
+        144
+      ],
+      "labelRect": [
+        1928.0,
+        481.0,
+        2016.0,
+        511.0
+      ]
+    },
+    {
+      "id": "e65",
+      "source": "authority",
+      "target": "ui",
+      "label": "页面访问",
+      "kind": "governance",
+      "evidence": "docs/handbook/docs/concepts/authority-model/index.md",
+      "points": [
+        [
+          1624,
+          736
+        ],
+        [
+          1536,
+          736
+        ],
+        [
+          1536,
+          512
+        ],
+        [
+          1512,
+          512
+        ]
+      ],
+      "sourcePort": [
+        "l",
+        32
+      ],
+      "targetPort": [
+        "r",
+        64
+      ],
+      "labelRect": [
+        1440.0,
+        609.0,
+        1528.0,
+        639.0
+      ]
+    },
+    {
+      "id": "e66",
+      "source": "authority",
+      "target": "webapi",
+      "label": "接口权限",
+      "kind": "governance",
+      "evidence": "docs/handbook/docs/concepts/authority-model/index.md",
+      "points": [
+        [
+          1680,
+          808
+        ],
+        [
+          1680,
+          848
+        ],
+        [
+          1632,
+          848
+        ],
+        [
+          1632,
+          928
+        ],
+        [
+          1536,
+          928
+        ],
+        [
+          1536,
+          1088
+        ],
+        [
+          1216,
+          1088
+        ],
+        [
+          1216,
+          1264
+        ],
+        [
+          1128,
+          1264
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        48
+      ],
+      "targetPort": [
+        "r",
+        48
+      ],
+      "labelRect": [
+        1224.0,
+        1161.0,
+        1312.0,
+        1191.0
+      ]
+    },
+    {
+      "id": "e67",
+      "source": "authority",
+      "target": "data",
+      "label": "数据权限",
+      "kind": "governance",
+      "evidence": "docs/handbook/docs/concepts/authority-model/index.md",
+      "points": [
+        [
+          1824,
+          808
+        ],
+        [
+          1824,
+          832
+        ],
+        [
+          1936,
+          832
+        ],
+        [
+          1936,
+          2176
+        ],
+        [
+          704,
+          2176
+        ],
+        [
+          704,
+          2232
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        192
+      ],
+      "targetPort": [
+        "t",
+        224
+      ],
+      "labelRect": [
+        1840.0,
+        901.0,
+        1928.0,
+        931.0
+      ]
+    },
+    {
+      "id": "e68",
+      "source": "authority",
+      "target": "action",
+      "label": "动作权限",
+      "kind": "governance",
+      "evidence": "docs/handbook/docs/concepts/authority-model/index.md",
+      "points": [
+        [
+          1664,
+          808
+        ],
+        [
+          1664,
+          832
+        ],
+        [
+          1616,
+          832
+        ],
+        [
+          1616,
+          896
+        ],
+        [
+          704,
+          896
+        ],
+        [
+          704,
+          952
+        ]
+      ],
+      "sourcePort": [
+        "b",
+        32
+      ],
+      "targetPort": [
+        "t",
+        224
+      ],
+      "labelRect": [
+        888.0,
+        858.0,
+        976.0,
+        888.0
+      ]
+    }
+  ],
+  "summaryDiagramSHA256": {
+    "docs/handbook/docs/low-code/.assets/current-system/business-model-topology.svg": "c61da37dc260e21bf87ed702d3f07448e0aae70cb31bf561a3a6079ff356f83f",
+    "docs/handbook/docs/low-code/.assets/current-system/business-model-topology.html": "ffd5a59f99d8d12e7f8fd377bf8aba1f779cc3ff7119003ab4daee62c0552f87",
+    "docs/handbook/docs/low-code/.assets/current-system/business-model-topology.drawio": "563da1b5139285019d82079bbca7491609b0ac81df838a88c69157a2bf4ba395"
+  },
+  "layoutMetrics": {
+    "crossings": 54,
+    "bends": 173,
+    "length": 49392,
+    "unlabelled": 0,
+    "worstEdges": [
+      [
+        "e14",
+        8
+      ],
+      [
+        "e68",
+        6
+      ],
+      [
+        "e33",
+        5
+      ],
+      [
+        "e19",
+        5
+      ],
+      [
+        "e32",
+        4
+      ],
+      [
+        "e30",
+        4
+      ],
+      [
+        "e35",
+        4
+      ],
+      [
+        "e25",
+        4
+      ]
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>页面加载与业务请求协作</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1400 1358" role="img" aria-labelledby="application-request-sequence-title application-request-sequence-desc">
+<title id="application-request-sequence-title">页面加载与业务请求协作</title>
+<desc id="application-request-sequence-desc">前端先取得路由与页面定义再渲染页面；业务请求通过接入与授权后，按 WebAPI 类型进入业务动作或直接进入逻辑流与代码处理器，再由实现访问数据。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="ac2cad6" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#c2cad6"/></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="ab3bfce" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#b3bfce"/></marker>
+<marker id="a9474b1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9474b1"/></marker>
+</defs>
+<rect width="1400" height="1430" fill="white"/>
+
+<rect x="312" y="520" width="1044" height="760" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="332" y="550" font-size="18" font-weight="600" fill="#43546c">按接口契约选择执行路径</text>
+<path d="M140 180L140 1360" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M420 180L420 1360" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M700 180L700 1360" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M980 180L980 1360" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M1260 180L1260 1360" fill="none" stroke="#c2cad6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M148 252L412 252" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M412 316L148 316" fill="none" stroke="#627ba4" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a627ba4)"/>
+<path d="M148 372L226.0 372.0Q232 372 232.0 378.0L232.0 406.0Q232 412 226.0 412.0L148 412" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#a71839a)"/>
+<path d="M148 492L412 492" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M428 632L692 632" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M708 696L972 696" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M988 760L1252 760" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M1252 824L988 824" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<path d="M972 888L708 888" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<path d="M692 952L428 952" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<path d="M328 992L1340 992" fill="none" stroke="#b3bfce" stroke-width="1.5" stroke-dasharray="6 5"/>
+<path d="M428 1080L972 1080" fill="none" stroke="#9474b1" stroke-width="1.5" marker-end="url(#a9474b1)"/>
+<path d="M988 1140L1252 1140" fill="none" stroke="#9474b1" stroke-width="1.5" marker-end="url(#a9474b1)"/>
+<path d="M1252 1200L988 1200" fill="none" stroke="#9474b1" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a9474b1)"/>
+<path d="M972 1260L428 1260" fill="none" stroke="#9474b1" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a9474b1)"/>
+<path d="M412 1340L148 1340" fill="none" stroke="#627ba4" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a627ba4)"/>
+<g data-node="a0"><rect x="32" y="96" width="216" height="76" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="140.0" y="131.5" font-size="19" font-weight="600" fill="#204f86" text-anchor="middle">前端基座</text>
+<text x="140.0" y="155.5" font-size="15" fill="#52657f" text-anchor="middle">页面容器与交互</text>
+</g>
+<g data-node="a1"><rect x="312" y="96" width="216" height="76" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="420.0" y="131.5" font-size="19" font-weight="600" fill="#204f86" text-anchor="middle">接入与页面服务</text>
+<text x="420.0" y="155.5" font-size="15" fill="#52657f" text-anchor="middle">接口分派与授权</text>
+</g>
+<g data-node="a2"><rect x="592" y="96" width="216" height="76" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="700.0" y="131.5" font-size="19" font-weight="600" fill="#63448e" text-anchor="middle">业务动作运行时</text>
+<text x="700.0" y="155.5" font-size="15" fill="#52657f" text-anchor="middle">契约／权限／事务</text>
+</g>
+<g data-node="a3"><rect x="872" y="96" width="216" height="76" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="980.0" y="131.5" font-size="19" font-weight="600" fill="#216149" text-anchor="middle">逻辑流或代码</text>
+<text x="980.0" y="155.5" font-size="15" fill="#52657f" text-anchor="middle">具体业务实现</text>
+</g>
+<g data-node="a4"><rect x="1152" y="96" width="216" height="76" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1260.0" y="131.5" font-size="19" font-weight="600" fill="#216149" text-anchor="middle">数据访问服务</text>
+<text x="1260.0" y="155.5" font-size="15" fill="#52657f" text-anchor="middle">动态数据模型</text>
+</g>
+<rect x="176.0" y="220" width="208" height="25" rx="3" fill="white"/><text x="280.0" y="238" fill="#627ba4" font-size="16" text-anchor="middle">取得菜单、路由与页面定义</text>
+<rect x="200.0" y="284" width="160" height="25" rx="3" fill="white"/><text x="280.0" y="302" fill="#627ba4" font-size="16" text-anchor="middle">返回定义与资源入口</text>
+<rect x="240.0" y="370" width="200" height="25" rx="3" fill="white"/><text x="340" y="388" fill="#71839a" font-size="16" text-anchor="middle">Schema 渲染／微前端加载</text>
+<rect x="196.0" y="460" width="168" height="25" rx="3" fill="white"/><text x="280.0" y="478" fill="#627ba4" font-size="16" text-anchor="middle">HTTP 请求与身份凭据</text>
+<rect x="480.0" y="600" width="160" height="25" rx="3" fill="white"/><text x="560.0" y="618" fill="#43816c" font-size="16" text-anchor="middle">进入业务动作运行时</text>
+<rect x="760.0" y="664" width="160" height="25" rx="3" fill="white"/><text x="840.0" y="682" fill="#43816c" font-size="16" text-anchor="middle">校验后调用绑定实现</text>
+<rect x="1040.0" y="728" width="160" height="25" rx="3" fill="white"/><text x="1120.0" y="746" fill="#43816c" font-size="16" text-anchor="middle">按模型契约读写数据</text>
+<rect x="1040.0" y="792" width="160" height="25" rx="3" fill="white"/><text x="1120.0" y="810" fill="#43816c" font-size="16" text-anchor="middle">返回数据与执行结果</text>
+<rect x="784.0" y="856" width="112" height="25" rx="3" fill="white"/><text x="840.0" y="874" fill="#43816c" font-size="16" text-anchor="middle">返回动作输出</text>
+<rect x="456.0" y="920" width="208" height="25" rx="3" fill="white"/><text x="560.0" y="938" fill="#43816c" font-size="16" text-anchor="middle">输出校验与事务／审计处理</text>
+<rect x="588.0" y="1048" width="224" height="25" rx="3" fill="white"/><text x="700.0" y="1066" fill="#9474b1" font-size="16" text-anchor="middle">直接调用逻辑流或代码处理器</text>
+<rect x="1024.0" y="1108" width="192" height="25" rx="3" fill="white"/><text x="1120.0" y="1126" fill="#9474b1" font-size="16" text-anchor="middle">按实现需要调用数据服务</text>
+<rect x="1080.0" y="1168" width="80" height="25" rx="3" fill="white"/><text x="1120.0" y="1186" fill="#9474b1" font-size="16" text-anchor="middle">返回数据</text>
+<rect x="644.0" y="1228" width="112" height="25" rx="3" fill="white"/><text x="700.0" y="1246" fill="#9474b1" font-size="16" text-anchor="middle">返回处理结果</text>
+<rect x="200.0" y="1308" width="160" height="25" rx="3" fill="white"/><text x="280.0" y="1326" fill="#627ba4" font-size="16" text-anchor="middle">返回响应并更新页面</text>
+<text x="40" y="218" font-size="18" fill="#52657f" text-anchor="start" font-weight="600">打开页面</text>
+<text x="40" y="458" font-size="18" fill="#52657f" text-anchor="start" font-weight="600">执行业务操作</text>
+<text x="336" y="592" font-size="17" fill="#52657f" text-anchor="start" font-weight="600">业务动作接口</text>
+<text x="336" y="1032" font-size="17" fill="#52657f" text-anchor="start" font-weight="600">逻辑流接口／代码接口</text>
+<text x="700" y="1404" font-size="17" fill="#52657f" text-anchor="middle">业务动作和普通接口保留不同入口；WebAPI 通过实现调用数据服务，不直接连接数据模型。</text>
+</svg></html>

@@ -1,73 +1,46 @@
 ---
 sidebar_position: 5
+title: Java API
 ---
 
 # Java API
 
-这页收录的是在手册中已经整理出来、并且适合直接查阅的 Java 接口与工具类。
+本节提供后端扩展可复用的工具类，以及脚本中常见的认证和组织对象。工具类来自 `com.ouroboros:ouroboros-util`，Java 导入路径为 `com.ouroboros.util.<类名>`，版本沿用应用依赖管理。
 
-如果你当前主要写的是表达式或脚本，这页更适合作为“对象长什么样、工具类还有哪些方法”的补充手册；如果你写的是后端 Java 代码，它则更接近可直接对照使用的参考页。
+## 工具类索引
 
-## 当前收录范围
+| 类 | 用途 |
+| --- | --- |
+| [Converter](./util/converter/) | 将输入转为数字、布尔值或字符串 |
+| [Dates](./util/dates/) | 日期转换、格式化、时间戳和日期区间 |
+| [Maps](./util/maps/) · [Lists](./util/lists/) | 合并、筛选、复制和嵌套结构访问 |
+| [Json](./util/json/) · [JsonBag](./util/json-bag/) | JSON 解析、序列化和弱结构数据访问 |
+| [JsonSchemas](./util/json-schemas/) | 校验 JSON 数据并读取错误详情 |
+| [Functions](./util/functions/) | 函数组合和参数适配 |
+| [Paths](./util/paths/) | 文件路径和 URL 拼接 |
+| [SPI](./util/spi/) | 加载已注册的 Java 扩展实现 |
 
-- 工具类：适合在表达式、脚本或服务实现中复用
-- 实体接口：适合快速确认运行时对象的基本结构
+```java
+import com.ouroboros.util.Json;
 
-如果你当前要找的是扩展 SPI 或装配入口，例如 `NodeBuilder`、`ExpressionContextContributor`、`ScriptContextContributor`，更适合先回到 [融合开发](../../../fusion-development/) 和 [扩展后端](../../../guide/advance/extend-backend/)。
+var payload = Json.tryToMap("{\"status\":\"OPEN\"}").get();
+```
 
-## 先按使用环境理解
+需要保留解析错误时，使用 `tryTo*` 并处理 `Try`，或用 `.get()` 将失败继续抛出。
 
-| 环境 | 更常看的内容 | 说明 |
-| ---- | ---- | ---- |
-| 表达式 `${...}` | `Dates`、`Converter`、认证 / 组织对象 | 表达式默认上下文对象比较少 |
-| 脚本 | `Dates`、`Converter`、`Maps`、认证 / 组织 / 模型对象 | 脚本上下文比表达式更完整 |
-| Java 后端代码 | 全部工具类和实体接口 | 不受脚本默认注入范围限制 |
+## 认证和组织对象
 
-当前默认脚本上下文直接注入的是：
+| 接口 | 获取方式 |
+| --- | --- |
+| [OuroborosAuthentication](./entity/ouroboros-authentication/) | `AuthenticationHolder.getAuthentication()` |
+| [Employee](./entity/employee/) | `OrganizationHolder.getEmployee()` |
+| [Department](./entity/department/) | `OrganizationHolder.getDepartment()` |
+| [Company](./entity/company/) | `OrganizationHolder.getCompany()` |
 
-- `Dates`
-- `Converter`
-- `Maps`
+这些获取方式适用于已启用相应能力的脚本和表达式。组织信息可能未绑定，使用前判空。
 
-当前表达式上下文默认直接可用的是：
+## 使用环境
 
-- `Dates`
-- `Converter`
+表达式默认提供 `Dates`、`Converter`；脚本还提供 `Maps`。其他工具类在 Java 中导入使用，并非默认脚本全局变量。完整可用对象见 [表达式上下文](../expression-context/) 和 [脚本上下文](../script-context/)。
 
-像 `Json`、`JsonBag`、`Functions`、`Paths`、`SPI` 这些更偏后端代码复用，不会默认作为表达式 / 脚本全局对象全部暴露出来。
-
-## 工具类
-
-| 类名                          | 说明               |
-| ----------------------------- | ------------------ |
-| [Dates](./util/dates)         | 日期相关工具类     |
-| [Converter](./util/converter) | 类型转换相关工具类 |
-| [Maps](./util/maps)           | Map 相关工具类     |
-| [Lists](./util/lists)         | List 相关工具类    |
-| [Json](./util/json)           | JSON 序列化与反序列化工具 |
-| [JsonBag](./util/json-bag)    | JSON 弱结构包装器  |
-| [JsonSchemas](./util/json-schemas) | JSON Schema 校验工具 |
-| [Functions](./util/functions) | 函数组合与 Vavr 适配工具 |
-| [Paths](./util/paths)         | 文件路径与 URL 路径工具 |
-| [SPI](./util/spi)             | Java SPI 加载工具 |
-
-## 实体接口
-
-| 接口名                                                       | 说明         | 所属模块     |
-| ------------------------------------------------------------ | ------------ | ------------ |
-| [OuroborosAuthentication](./entity/ouroboros-authentication) | 认证信息接口 | 安全模块     |
-| [Company](./entity/company)                                  | 公司实体接口 | 组织架构模块 |
-| [Department](./entity/department)                            | 部门实体接口 | 组织架构模块 |
-| [Employee](./entity/employee)                                | 员工实体接口 | 组织架构模块 |
-
-## 使用建议
-
-- 想查表达式和脚本里怎么拿到这些对象，继续看 [表达式上下文](../expression-context/) 和 [脚本上下文](../script-context/)
-- 想查这些对象背后的模型关系，回到 [核心概念](../../../concepts/)
-- 只有 `Dates`、`Converter`、`Maps` 会在当前默认脚本上下文里直接作为全局对象注入；其他工具类主要面向 Java 后端代码
-
-## 一条推荐阅读路径
-
-1. 先通过 [脚本上下文](../script-context/) 或 [表达式上下文](../expression-context/) 确认你当前能直接拿到什么对象。
-2. 再回到这页查对应 Java 类型、工具类方法和实体结构。
-3. 如果最终发现自己真正要解决的是“如何把这些对象扩展到平台里”，再转到 [扩展后端](../../../guide/advance/extend-backend/)。
+数据读写见 [数据模型 API](../data-model/)，新增扩展的安装与注册见 [扩展后端](../../../guide/advance/extend-backend/)。

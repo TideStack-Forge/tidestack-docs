@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关联键与关联填充</title><style>body{margin:0;background:#fff}.diagram-container{width:100%;overflow-x:auto}svg{display:block;width:100%;min-width:960px;height:auto;margin:auto}</style></head><body><div class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 688" width="960" height="688" role="img" aria-labelledby="data-model-relations-title data-model-relations-desc">
+<title id="data-model-relations-title">关联键与关联填充</title>
+<desc id="data-model-relations-desc">资产通过 departmentId 关联部门的 id；按需填充后，资产查询返回单个部门对象，部门查询返回资产集合。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a71839a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#71839a"/></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs>
+<rect width="960" height="688" fill="white"/>
+<path d="M376 224L584 224" fill="none" stroke="#71839a" stroke-width="1.5"/>
+<path d="M208 336L208 448" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M752 336L752 448" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<g data-node="asset"><rect x="40" y="112" width="336" height="224" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="208.0" y="184.0" font-size="20" font-weight="600" fill="#204f86" text-anchor="middle">inventory.Asset</text>
+<text x="208.0" y="209.0" font-size="16" fill="#52657f" text-anchor="middle">id: String</text>
+<text x="208.0" y="234.0" font-size="16" fill="#52657f" text-anchor="middle">code: String</text>
+<text x="208.0" y="259.0" font-size="16" fill="#52657f" text-anchor="middle">departmentId: String</text>
+<text x="208.0" y="284.0" font-size="16" fill="#52657f" text-anchor="middle">department: Model（虚拟）</text>
+</g>
+<g data-node="department"><rect x="584" y="112" width="336" height="224" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="752.0" y="196.5" font-size="20" font-weight="600" fill="#216149" text-anchor="middle">organization.Department</text>
+<text x="752.0" y="221.5" font-size="16" fill="#52657f" text-anchor="middle">id: String</text>
+<text x="752.0" y="246.5" font-size="16" fill="#52657f" text-anchor="middle">name: String</text>
+<text x="752.0" y="271.5" font-size="16" fill="#52657f" text-anchor="middle">assets: Collection（虚拟）</text>
+</g>
+<g data-node="asset-result"><rect x="40" y="448" width="336" height="152" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="208.0" y="496.0" font-size="19" font-weight="600" fill="#204f86" text-anchor="middle">资产查询结果</text>
+<text x="208.0" y="521.0" font-size="16" fill="#52657f" text-anchor="middle">code: &quot;A001&quot;</text>
+<text x="208.0" y="546.0" font-size="16" fill="#52657f" text-anchor="middle">department: { id: &quot;D01&quot;,</text>
+<text x="208.0" y="571.0" font-size="16" fill="#52657f" text-anchor="middle">name: &quot;研发部&quot; }</text>
+</g>
+<g data-node="department-result"><rect x="584" y="448" width="336" height="152" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="752.0" y="496.0" font-size="19" font-weight="600" fill="#216149" text-anchor="middle">部门查询结果</text>
+<text x="752.0" y="521.0" font-size="16" fill="#52657f" text-anchor="middle">name: &quot;研发部&quot;</text>
+<text x="752.0" y="546.0" font-size="16" fill="#52657f" text-anchor="middle">assets: [ { code: &quot;A001&quot; },</text>
+<text x="752.0" y="571.0" font-size="16" fill="#52657f" text-anchor="middle">{ code: &quot;A002&quot; } ]</text>
+</g>
+<rect x="432.0" y="182" width="96" height="25" rx="3" fill="white"/><text x="480" y="200" fill="#71839a" font-size="16" text-anchor="middle">关联键匹配</text>
+<text x="40" y="40" font-size="24" fill="#204f86" text-anchor="start" font-weight="600">关联键与关联填充</text>
+<text x="40" y="72" font-size="16" fill="#52657f" text-anchor="start">示例：资产属于一个部门，一个部门可以包含多项资产。</text>
+<text x="400" y="248" font-size="16" fill="#43546c" text-anchor="middle">N</text>
+<text x="560" y="248" font-size="16" fill="#43546c" text-anchor="middle">1</text>
+<text x="480" y="276" font-size="15" fill="#43546c" text-anchor="middle">departmentId = id</text>
+<text x="232" y="388" font-size="15" fill="#204f86" text-anchor="start">填充 department</text>
+<text x="728" y="388" font-size="15" fill="#216149" text-anchor="end">填充 assets</text>
+<text x="480" y="640" font-size="16" fill="#43546c" text-anchor="middle">Model 返回单个关联对象；Collection 返回关联记录集合。</text>
+<text x="480" y="668" font-size="15" fill="#52657f" text-anchor="middle">关联定义描述匹配方式，查询时通过 populate 选择要填充的内容。</text>
+</svg></div></body></html>

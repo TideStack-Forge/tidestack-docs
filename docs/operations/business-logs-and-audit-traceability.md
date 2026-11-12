@@ -1,6 +1,6 @@
 ---
 title: 业务日志与审计回溯
-sidebar_position: 8
+sidebar_position: 10
 ---
 
 # 业务日志与审计回溯
@@ -17,6 +17,8 @@ sidebar_position: 8
 | 请求经过了哪些服务、耗时在哪里 | 链路追踪；业务日志不提供完整调用链 |
 
 ## 配置业务日志模板
+
+模板字段及菜单操作见 [业务日志模板](../low-code/development-platform-menus/business-log-template)。本页侧重审计覆盖和回溯验证。
 
 1. 进入 **运维监控 / 业务日志模板**。
 2. 选择需要审计的 HTTP 方法和 URL。
@@ -55,3 +57,5 @@ sidebar_position: 8
 - 检查业务日志写入是否中断、容量是否接近阈值。
 - 抽查敏感字段，发现明文立即停用相关模板并处理历史数据。
 - 权限、接口路径或响应结构变化后重新验证模板匹配和字段提取。
+
+业务日志数据与模板应纳入 [备份与恢复](./backup-monitoring-and-troubleshooting)。服务运行异常的检查入口见 [故障排查](./troubleshooting)。

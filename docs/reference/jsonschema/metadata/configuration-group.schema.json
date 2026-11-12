@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/configuration-group.schema.json",
-  "title": "配置分组",
-  "description": "TideStack metadata schema for configuration-group. Legacy runtime packaging may still use Ouroboros paths.",
+  "title": "配置分组数组",
+  "description": "configuration-groups.json 使用的配置分组列表，用于组织配置管理界面的分组。",
   "type": "array",
   "items": {
     "type": "object",
@@ -13,20 +13,37 @@
     ],
     "properties": {
       "path": {
-        "type": "string"
+        "type": "string",
+        "description": "配置分组的路径，由配置项的 groupPath 引用。"
       },
       "title": {
-        "type": "string"
+        "type": "string",
+        "description": "供开发界面或页面展示的标题。"
       },
       "icon": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "前端显示使用的图标标识。"
       },
       "order": {
-        "type": "integer"
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "用于同类条目排序的数值。"
       },
       "description": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "说明该定义的用途、业务含义或使用条件。"
       }
-    }
-  }
+    },
+    "title": "配置分组定义",
+    "description": "定义配置分组的路径、标题、图标和排序。"
+  },
+  "$comment": "Source: ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigurationGroupMetadata.java"
 }

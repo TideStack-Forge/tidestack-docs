@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-docker-helper-title deployment-docker-helper-desc" id="deployment-docker-helper-root">
+<title id="deployment-docker-helper-title">Docker · 内部开发助手部署展开</title>
+<desc id="deployment-docker-helper-desc">局部展开：助手与平台同一宿主机 / bridge 网络；无公开测试应用入口；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs>
+      <style>#deployment-docker-helper-root { font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+      #deployment-docker-helper-root .diagram-container { width:100%;overflow-x:auto }
+      #deployment-docker-helper-root .diagram-container svg { display:block;width:100%;min-width:1600px;height:auto }
+      @media print {
+#deployment-docker-helper-root .diagram-container { overflow-x:visible }
+      #deployment-docker-helper-root .diagram-container svg { min-width:0 }
+}
+      #deployment-docker-helper-root text { font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif }</style><style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}</style>
+<marker id="deployment-docker-helper-deployment-docker-helper-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43546c"/></marker>
+<marker id="deployment-docker-helper-deployment-docker-helper-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#577dab"/></marker>
+<marker id="deployment-docker-helper-deployment-docker-helper-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+</defs><rect width="1600" height="1520" fill="#fff"/>
+<text x="40" y="52" font-size="28" font-weight="600" fill="#33455e">Docker · 内部开发助手部署展开</text>
+<text x="40" y="84" font-size="14" font-weight="400" fill="#596b83">局部展开：助手与平台同一宿主机 / bridge 网络；无公开测试应用入口</text>
+<rect x="40" y="104" width="16" height="16" rx="3" fill="#eef5ff" stroke="#8eafe0"/>
+<text x="64" y="117" font-size="12" font-weight="400" fill="#33455e">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="3" fill="#eaf6f4" stroke="#8ebeb3"/>
+<text x="284" y="117" font-size="12" font-weight="400" fill="#33455e">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="3" fill="#edf5eb" stroke="#a4be97"/>
+<text x="504" y="117" font-size="12" font-weight="400" fill="#33455e">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="3" fill="#fff5e7" stroke="#d5b78b"/>
+<text x="724" y="117" font-size="12" font-weight="400" fill="#33455e">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="3" fill="#f4f6f9" stroke="#b3bfce"/>
+<text x="944" y="117" font-size="12" font-weight="400" fill="#33455e">外部 / 基础设施</text>
+<g data-zone="host"><rect x="40" y="152" width="1520" height="924" rx="8" fill="#fafbfc" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="64" y="184" font-size="14" font-weight="600" fill="#33455e">Docker 宿主机 ×1</text>
+<text x="64" y="208" font-size="12" font-weight="400" fill="#596b83">沿用 Compose 主图的服务器资源、数据库、工作区与依赖落位</text>
+</g>
+<g data-zone="network"><rect x="64" y="436" width="1472" height="392" rx="8" fill="#f7faff" stroke="#b3bfce" stroke-width="1.5"/>
+<text x="1512" y="468" font-size="14" font-weight="600" fill="#33455e" text-anchor="end">本机 bridge 网络 · 助手内部连接</text>
+<text x="1512" y="492" font-size="12" font-weight="400" fill="#596b83" text-anchor="end">开发助手的内部消息通道与平台 JDWP / 调试会话分别管理</text>
+</g>
+<path data-edge="0" d="M496 612 L600 612" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-helper-deployment-docker-helper-traffic)"/>
+<path data-edge="1" d="M1000 612 L1104 612" fill="none" stroke="#43546c" stroke-width="2" marker-end="url(#deployment-docker-helper-deployment-docker-helper-traffic)"/>
+<path data-edge="2" d="M296 544 L296 332 Q296 324 304 324 L1144 324" fill="none" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-helper-deployment-docker-helper-control)"/>
+<path data-edge="3" d="M296 672 L296 924" fill="none" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-helper-deployment-docker-helper-storage)"/>
+<path data-edge="4" d="M1304 672 L1304 924" fill="none" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#deployment-docker-helper-deployment-docker-helper-storage)"/>
+<g data-edge-label="0"><rect x="509" y="568" width="86" height="24" rx="3" fill="#fff"/><text x="552" y="584" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">AMQP :5672</text></g>
+<g data-edge-label="1"><rect x="1009" y="568" width="86" height="24" rx="3" fill="#fff"/><text x="1052" y="584" font-size="12" font-weight="400" fill="#43546c" text-anchor="middle">AMQP :5672</text></g>
+<g data-edge-label="2"><rect x="691.5" y="280" width="121" height="24" rx="3" fill="#fff"/><text x="752" y="296" font-size="12" font-weight="400" fill="#577dab" text-anchor="middle">Unix Socket API</text></g>
+<g data-edge-label="3"><rect x="343.5" y="796" width="81" height="24" rx="3" fill="#fff"/><text x="384" y="812" font-size="12" font-weight="400" fill="#43816c" text-anchor="middle">工作区写入</text></g>
+<g data-edge-label="4"><rect x="1349" y="796" width="86" height="24" rx="3" fill="#fff"/><text x="1392" y="812" font-size="12" font-weight="400" fill="#43816c" text-anchor="middle">bind mount</text></g>
+<g data-node="engine"><rect x="1144" y="248" width="368" height="128" rx="6" fill="#f4f6f9" stroke="#b3bfce" stroke-width="1.5"/>
+<rect x="1144" y="272" width="4" height="24" fill="#b3bfce"/>
+<rect x="1453" y="268" width="35" height="22" rx="3" fill="#fff" stroke="#b3bfce"/><text x="1470.5" y="284" font-size="12" font-weight="400" fill="#52657f" text-anchor="middle">×1</text>
+<text x="1168" y="288" font-size="16" font-weight="600" fill="#52657f">Docker Engine</text>
+<text x="1168" y="324" font-size="12" font-weight="400" fill="#596b83">/var/run/docker.sock</text>
+<text x="1168" y="348" font-size="12" font-weight="400" fill="#596b83">管理平台创建的助手容器</text>
+</g>
+<g data-node="platform"><rect x="96" y="544" width="400" height="128" rx="6" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.5"/>
+<rect x="96" y="568" width="4" height="24" fill="#8eafe0"/>
+<rect x="437" y="564" width="35" height="22" rx="3" fill="#fff" stroke="#8eafe0"/><text x="454.5" y="580" font-size="12" font-weight="400" fill="#204f86" text-anchor="middle">×1</text>
+<text x="120" y="584" font-size="16" font-weight="600" fill="#204f86">开发平台</text>
+<text x="120" y="620" font-size="12" font-weight="400" fill="#596b83">ouroboros-develop:&lt;v&gt;</text>
+<text x="120" y="644" font-size="12" font-weight="400" fill="#596b83">发布 / 消费助手命令与结果</text>
+</g>
+<g data-node="mq"><rect x="600" y="544" width="400" height="128" rx="6" fill="#fff5e7" stroke="#d5b78b" stroke-width="1.5"/>
+<rect x="600" y="568" width="4" height="24" fill="#d5b78b"/>
+<rect x="941" y="564" width="35" height="22" rx="3" fill="#fff" stroke="#d5b78b"/><text x="958.5" y="580" font-size="12" font-weight="400" fill="#805d2e" text-anchor="middle">×1</text>
+<text x="624" y="584" font-size="16" font-weight="600" fill="#805d2e">RabbitMQ</text>
+<text x="624" y="620" font-size="12" font-weight="400" fill="#596b83">AMQP :5672</text>
+<text x="624" y="644" font-size="12" font-weight="400" fill="#596b83">沿用平台或专用实例凭据</text>
+</g>
+<g data-node="helper"><rect x="1104" y="544" width="400" height="128" rx="6" fill="#eaf6f4" stroke="#8ebeb3" stroke-width="1.5"/>
+<rect x="1104" y="568" width="4" height="24" fill="#8ebeb3"/>
+<rect x="1402" y="564" width="78" height="22" rx="3" fill="#fff" stroke="#8ebeb3"/><text x="1441.0" y="580" font-size="12" font-weight="400" fill="#28675b" text-anchor="middle">每实例 ×1</text>
+<text x="1128" y="584" font-size="16" font-weight="600" fill="#28675b">开发助手</text>
+<text x="1128" y="620" font-size="12" font-weight="400" fill="#596b83">ouroboros-mothership:&lt;v&gt;</text>
+<text x="1128" y="644" font-size="12" font-weight="400" fill="#596b83">INTERNAL_ONLY / 按需创建</text>
+</g>
+<g data-node="disk"><rect x="96" y="924" width="1408" height="112" rx="6" fill="#edf5eb" stroke="#a4be97" stroke-width="1.5"/>
+<rect x="96" y="948" width="4" height="24" fill="#a4be97"/>
+<rect x="1416" y="944" width="64" height="22" rx="3" fill="#fff" stroke="#a4be97"/><text x="1448.0" y="960" font-size="12" font-weight="400" fill="#42663a" text-anchor="middle">同机磁盘</text>
+<text x="120" y="964" font-size="16" font-weight="600" fill="#42663a">宿主机工作区与持久化</text>
+<text x="120" y="1000" font-size="12" font-weight="400" fill="#596b83">平台读写工作区 → HOST_WORKSPACE_PATH/run/&lt;app&gt;/&lt;env&gt; → 助手 /app/deploy（bind mount）</text>
+<text x="120" y="1024" font-size="12" font-weight="400" fill="#596b83">RabbitMQ 数据卷与 MySQL 数据仍按 Compose 主图维护；无需为助手发布测试应用 Web 端口</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="6" fill="#fff" stroke="#b3bfce"/>
+<text x="64" y="1196" font-size="14" font-weight="600" fill="#33455e">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" fill="#33455e">平台 → Docker Engine</text>
+<text x="368" y="1236" font-size="12" font-weight="400" fill="#596b83">Socket API；助手的创建、查询、启停与清理沿用容器生命周期</text>
+<line x1="64" y1="1246" x2="992" y2="1246" stroke="#edf0f4"/>
+<text x="64" y="1268" font-size="12" font-weight="600" fill="#33455e">平台 / 助手 → RabbitMQ</text>
+<text x="368" y="1268" font-size="12" font-weight="400" fill="#596b83">AMQP :5672；通过消息交互命令与结果，不是 Web 访问入口</text>
+<line x1="64" y1="1278" x2="992" y2="1278" stroke="#edf0f4"/>
+<text x="64" y="1300" font-size="12" font-weight="600" fill="#33455e">助手 → 文件系统</text>
+<text x="368" y="1300" font-size="12" font-weight="400" fill="#596b83">与平台相同工作区内容；宿主机 run 子目录绑定到助手容器</text>
+<line x1="64" y1="1310" x2="992" y2="1310" stroke="#edf0f4"/>
+<text x="64" y="1332" font-size="12" font-weight="600" fill="#33455e">平台与其他依赖</text>
+<text x="368" y="1332" font-size="12" font-weight="400" fill="#596b83">数据库、上传目录与日志沿用 Docker Compose 主图</text>
+<line x1="64" y1="1342" x2="992" y2="1342" stroke="#edf0f4"/>
+<text x="64" y="1364" font-size="12" font-weight="600" fill="#33455e">调试会话</text>
+<text x="368" y="1364" font-size="12" font-weight="400" fill="#596b83">需要时由平台按会话生命周期创建；内部助手不等同已开放调试端口</text>
+<rect x="1040" y="1160" width="520" height="248" rx="6" fill="#fff9f0" stroke="#d5b78b"/>
+<text x="1064" y="1196" font-size="14" font-weight="600" fill="#33455e">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" fill="#805d2e">平台 ×1；每个开发助手容器 ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" fill="#805d2e">RabbitMQ 图示 ×1，为内部命令链路单点</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" fill="#805d2e">助手故障影响该实例，宿主机故障影响全部</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" fill="#805d2e">CPU / 内存上限未由 Compose 模板统一指定</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" fill="#805d2e">真实助手命令往返成功才算链路验收</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" stroke="#b3bfce"/>
+<line x1="40" y1="1468" x2="80" y2="1468" stroke="#43546c" stroke-width="2"/><text x="92" y="1473" font-size="12" font-weight="400" fill="#33455e">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke="#577dab" stroke-width="2" stroke-dasharray="6 5"/><text x="372" y="1473" font-size="12" font-weight="400" fill="#33455e">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke="#43816c" stroke-width="2" stroke-dasharray="6 5"/><text x="620" y="1473" font-size="12" font-weight="400" fill="#33455e">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" fill="#596b83">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg>

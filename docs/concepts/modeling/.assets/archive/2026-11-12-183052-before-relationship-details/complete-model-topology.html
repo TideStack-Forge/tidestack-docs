@@ -1,0 +1,408 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>完整模型拓扑</title><style>body{margin:0;background:#fff;font-family:-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif}.diagram-container{width:100%;max-width:100%;overflow-x:auto}svg{display:block;width:100%;min-width:2048px;height:auto}@media print{.diagram-container{overflow:visible}svg{min-width:0}}</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2912" viewBox="0 0 2048 2912" role="img" aria-labelledby="complete-model-topology-title complete-model-topology-desc">
+<title id="complete-model-topology-title">完整模型拓扑</title>
+<desc id="complete-model-topology-desc">应用中各类模型及配套定义的完整关系图，区分投影、引用、调用、实现、归属和权限约束，覆盖页面、业务行为、组织授权、流程集成、数据与统计分析。</desc>
+<defs>
+<marker id="arrow-projection" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#2B70BE"/></marker>
+<marker id="arrow-reference" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#6C7E93"/></marker>
+<marker id="arrow-execution" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#248672"/></marker>
+<marker id="arrow-implementation" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#368B9B"/></marker>
+<marker id="arrow-governance" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#9974B9"/></marker>
+<marker id="arrow-composition" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#B08B57"/></marker>
+</defs>
+<rect width="2048" height="2912" fill="#FFFFFF"/>
+<text x="64" y="58" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="32" font-weight="600" fill="#0B1F3A">完整模型拓扑</text>
+<text x="384" y="58" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="400" fill="#52657F">模型、行为定义与配套资源</text>
+<rect x="72" y="144" width="688" height="432" rx="8" fill="#F0FAF7" fill-opacity="0.45" stroke="#6BB39E" stroke-opacity="0.4"/>
+<text x="96" y="178" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#215F4B">用户看板</text>
+<rect x="840" y="400" width="688" height="432" rx="8" fill="#F0FAF7" fill-opacity="0.45" stroke="#6BB39E" stroke-opacity="0.4"/>
+<text x="864" y="434" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#215F4B">页面呈现</text>
+<rect x="1608" y="656" width="304" height="432" rx="8" fill="#F6F1FC" fill-opacity="0.45" stroke="#AD91CE" stroke-opacity="0.4"/>
+<text x="1632" y="690" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#674489">角色与权限</text>
+<rect x="1608" y="1168" width="304" height="432" rx="8" fill="#F6F1FC" fill-opacity="0.45" stroke="#AD91CE" stroke-opacity="0.4"/>
+<text x="1632" y="1202" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#674489">组织架构</text>
+<rect x="72" y="656" width="720" height="432" rx="8" fill="#EDF5FF" fill-opacity="0.45" stroke="#79A6DE" stroke-opacity="0.4"/>
+<text x="96" y="690" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#174B87">业务语义与行为</text>
+<rect x="1224" y="912" width="304" height="432" rx="8" fill="#F2F6FF" fill-opacity="0.45" stroke="#8BAAE1" stroke-opacity="0.4"/>
+<text x="1248" y="946" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#335890">审批流程</text>
+<rect x="456" y="1424" width="688" height="176" rx="8" fill="#F2F6FF" fill-opacity="0.45" stroke="#8BAAE1" stroke-opacity="0.4"/>
+<text x="480" y="1458" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#335890">逻辑执行</text>
+<rect x="456" y="1680" width="688" height="176" rx="8" fill="#F2F6FF" fill-opacity="0.45" stroke="#8BAAE1" stroke-opacity="0.4"/>
+<text x="480" y="1714" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#335890">外部调用</text>
+<rect x="1224" y="1680" width="304" height="432" rx="8" fill="#F2F6FF" fill-opacity="0.45" stroke="#8BAAE1" stroke-opacity="0.4"/>
+<text x="1248" y="1714" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#335890">任务调度</text>
+<rect x="72" y="2192" width="688" height="432" rx="8" fill="#F1F9FD" fill-opacity="0.45" stroke="#76AEC8" stroke-opacity="0.4"/>
+<text x="96" y="2226" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#2B6078">数据定义与初始化</text>
+<rect x="840" y="2192" width="1072" height="432" rx="8" fill="#FFF8EC" fill-opacity="0.45" stroke="#D5AC6A" stroke-opacity="0.4"/>
+<text x="864" y="2226" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#79531E">统计分析</text>
+<rect x="1608" y="1680" width="304" height="432" rx="8" fill="#F6F1FC" fill-opacity="0.45" stroke="#AD91CE" stroke-opacity="0.4"/>
+<text x="1632" y="1714" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#674489">统一配置</text>
+<path data-edge="e10" d="M1760 952 L1760 808" fill="none" stroke="#9974B9" stroke-width="1.6" marker-end="url(#arrow-governance)"><title>角色定义 → 权限模型：授予权限</title></path>
+<rect x="1664.0" y="865.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1672.0" y="887.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#9974B9">授予权限</text>
+<path data-edge="e64" d="M1824 696 L1824 680 Q1824 672 1832 672 L1912 672 Q1920 672 1920 664 L1920 328 Q1920 320 1912 320 L1784 320 Q1776 320 1776 312 L1776 296" fill="none" stroke="#9974B9" stroke-width="1.6" marker-end="url(#arrow-governance)"><title>权限模型 → 菜单模型：入口可见</title></path>
+<rect x="1928.0" y="481.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1936.0" y="503.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#9974B9">入口可见</text>
+<path data-edge="e24" d="M776 736 L792 736 Q800 736 800 728 L800 504 Q800 496 808 496 L856 496" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → UI Schema：投影</title></path>
+<rect x="740.0" y="601.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="748.0" y="623.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e65" d="M1624 736 L1544 736 Q1536 736 1536 728 L1536 520 Q1536 512 1528 512 L1512 512" fill="none" stroke="#9974B9" stroke-width="1.6" marker-end="url(#arrow-governance)"><title>权限模型 → UI 模型：页面访问</title></path>
+<rect x="1440.0" y="609.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1448.0" y="631.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#9974B9">页面访问</text>
+<path data-edge="e28" d="M704 808 L704 872 Q704 880 712 880 L824 880 Q832 880 832 888 L832 1256 Q832 1264 840 1264 L856 1264" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → WebAPI 模型：投影</title></path>
+<rect x="772.0" y="1057.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="780.0" y="1079.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e23" d="M776 752 L1208 752 Q1216 752 1216 744 L1216 520 Q1216 512 1224 512 L1240 512" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → UI 模型：投影</title></path>
+<rect x="970.0" y="714.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="978.0" y="736.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e26" d="M776 768 L1208 768 Q1216 768 1216 776 L1216 824 Q1216 832 1224 832 L1592 832 Q1600 832 1600 824 L1600 776 Q1600 768 1608 768 L1624 768" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → 权限模型：投影</title></path>
+<rect x="970.0" y="776.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="978.0" y="798.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e29" d="M608 808 L608 920 Q608 928 600 928 L456 928 Q448 928 448 936 L448 1400 Q448 1408 456 1408 L904 1408 Q912 1408 912 1416 L912 1464" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → 逻辑流模型：投影</title></path>
+<rect x="456.0" y="1153.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="464.0" y="1175.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e66" d="M1680 808 L1680 840 Q1680 848 1672 848 L1640 848 Q1632 848 1632 856 L1632 920 Q1632 928 1624 928 L1544 928 Q1536 928 1536 936 L1536 1080 Q1536 1088 1528 1088 L1224 1088 Q1216 1088 1216 1096 L1216 1256 Q1216 1264 1208 1264 L1128 1264" fill="none" stroke="#9974B9" stroke-width="1.6" marker-end="url(#arrow-governance)"><title>权限模型 → WebAPI 模型：接口权限</title></path>
+<rect x="1224.0" y="1161.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1232.0" y="1183.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#9974B9">接口权限</text>
+<path data-edge="e68" d="M1664 808 L1664 824 Q1664 832 1656 832 L1624 832 Q1616 832 1616 840 L1616 888 Q1616 896 1608 896 L837 896 a5 5 0 0 1 -10 0 L712 896 Q704 896 704 904 L704 952" fill="none" stroke="#9974B9" stroke-width="1.6" marker-end="url(#arrow-governance)"><title>权限模型 → 动作定义：动作权限</title></path>
+<rect x="888.0" y="858.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="896.0" y="880.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#9974B9">动作权限</text>
+<path data-edge="e27" d="M592 696 L592 632 Q592 624 584 624 L40 624 Q32 624 32 632 L32 2168 Q32 2176 40 2176 L360 2176 Q368 2176 368 2184 L368 2200 Q368 2208 376 2208 L536 2208 Q544 2208 544 2216 L544 2232" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → 数据模型：投影</title></path>
+<rect x="286.0" y="586.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="294.0" y="608.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e25" d="M688 696 L688 584 Q688 576 696 576 L776 576 Q784 576 784 568 L784 328 Q784 320 792 320 L1208 320 Q1216 320 1216 312 L1216 168 Q1216 160 1224 160 L1592 160 Q1600 160 1600 168 L1600 216 Q1600 224 1608 224 L1624 224" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → 菜单模型：投影</title></path>
+<rect x="1082.0" y="328.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1090.0" y="350.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">投影</text>
+<path data-edge="e33" d="M512 808 L512 824 Q512 832 504 832 L248 832 Q240 832 240 840 L240 920 Q240 928 232 928 L72 928 Q64 928 64 936 L64 1576 Q64 1584 56 1584 L56 1584 Q48 1584 48 1592 L48 2171 a5 5 0 0 1 0 10 L48 2664 Q48 2672 56 2672 L1208 2672 Q1216 2672 1216 2664 L1216 2536 Q1216 2528 1224 2528 L1240 2528" fill="none" stroke="#2B70BE" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"><title>业务模型 → 统计看板：看板型映射</title></path>
+<rect x="287.0" y="2634.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="295.0" y="2656.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#2B70BE">看板型映射</text>
+<path data-edge="e67" d="M1824 808 L1824 824 Q1824 832 1832 832 L1928 832 Q1936 832 1936 840 L1936 2168 Q1936 2176 1928 2176 L712 2176 Q704 2176 704 2184 L704 2232" fill="none" stroke="#9974B9" stroke-width="1.6" marker-end="url(#arrow-governance)"><title>权限模型 → 数据模型：数据权限</title></path>
+<rect x="1840.0" y="901.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1848.0" y="923.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#9974B9">数据权限</text>
+<path data-edge="e02" d="M608 296 L608 440" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>用户看板 → 小组件定义：引用组件</title></path>
+<rect x="512.0" y="353.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="520.0" y="375.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">引用组件</text>
+<path data-edge="e05" d="M1376 696 L1376 552" fill="none" stroke="#368B9B" stroke-width="1.6" marker-end="url(#arrow-implementation)"><title>微前端模型 → UI 模型：实现页面</title></path>
+<rect x="1280.0" y="609.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1288.0" y="631.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#368B9B">实现页面</text>
+<path data-edge="e07" d="M1744 440 L1744 296" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>模块树 → 菜单模型：组织菜单</title></path>
+<rect x="1648.0" y="353.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1656.0" y="375.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">组织菜单</text>
+<path data-edge="e09" d="M1760 552 L1760 568 Q1760 576 1768 576 L1800 576 Q1808 576 1808 584 L1808 696" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>模块树 → 权限模型：归集权限</title></path>
+<rect x="1712.0" y="621.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1720.0" y="643.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">归集权限</text>
+<path data-edge="e12" d="M1760 1464 L1760 1320" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>岗位定义 → 组织模型：岗位与任职</title></path>
+<rect x="1646.0" y="1377.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1654.0" y="1399.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">岗位与任职</text>
+<path data-edge="e13" d="M1760 1832 L1760 1976" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>配置分组 → 统一配置模型：归集配置</title></path>
+<rect x="1664.0" y="1889.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1672.0" y="1911.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">归集配置</text>
+<path data-edge="e15" d="M992 296 L992 315 a5 5 0 0 1 0 10 L992 440" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>国际化语言包 → UI Schema：文案引用</title></path>
+<rect x="896.0" y="353.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="904.0" y="375.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">文案引用</text>
+<path data-edge="e20" d="M224 952 L224 933 a5 5 0 0 1 0 -10 L224 808" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>事件订阅定义 → 事件定义：订阅事件</title></path>
+<rect x="128.0" y="865.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="136.0" y="887.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">订阅事件</text>
+<path data-edge="e36" d="M992 1320 L992 1464" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>WebAPI 模型 → 逻辑流模型：绑定处理</title></path>
+<rect x="1000.0" y="1377.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1008.0" y="1399.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">绑定处理</text>
+<path data-edge="e39" d="M992 1576 L992 1720" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>逻辑流模型 → RPC 模型：远程调用</title></path>
+<rect x="896.0" y="1633.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="904.0" y="1655.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">远程调用</text>
+<path data-edge="e49" d="M1376 1208 L1376 1093 a5 5 0 0 1 0 -10 L1376 1064" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>审批流模型 → 动态表单定义：动态表单绑定</title></path>
+<rect x="1244.0" y="1121.0" width="124.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1252.0" y="1143.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">动态表单绑定</text>
+<path data-edge="e54" d="M992 1064 L992 1208" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>业务日志模板 → WebAPI 模型：匹配接口</title></path>
+<rect x="896.0" y="1121.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="904.0" y="1143.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">匹配接口</text>
+<path data-edge="e57" d="M608 2488 L608 2344" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>数据初始化定义 → 数据模型：初始化记录</title></path>
+<rect x="494.0" y="2401.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="502.0" y="2423.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">初始化记录</text>
+<path data-edge="e62" d="M1376 2488 L1376 2344" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>统计看板 → 查询视图：引用视图</title></path>
+<rect x="1280.0" y="2401.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1288.0" y="2423.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">引用视图</text>
+<path data-edge="e16" d="M592 808 L592 923 a5 5 0 0 1 0 10 L592 952" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>业务模型 → 动作定义：包含</title></path>
+<rect x="532.0" y="865.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="540.0" y="887.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">包含</text>
+<path data-edge="e01" d="M320 184 L320 168 Q320 160 328 160 L440 160 Q448 160 448 168 L448 216 Q448 224 456 224 L472 224" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>用户看板模板 → 用户看板：初始化布局</title></path>
+<rect x="331.0" y="122.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="339.0" y="144.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">初始化布局</text>
+<path data-edge="e03" d="M672 552 L672 632 Q672 640 680 640 L795 640 a5 5 0 0 1 10 0 L888 640 Q896 640 896 632 L896 552" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>小组件定义 → UI Schema：使用 Schema</title></path>
+<rect x="904.0" y="581.0" width="178.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="912.0" y="603.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">使用 Schema</text>
+<path data-edge="e04" d="M1128 480 L1240 480" fill="none" stroke="#368B9B" stroke-width="1.6" marker-end="url(#arrow-implementation)"><title>UI Schema → UI 模型：实现页面</title></path>
+<rect x="1140.0" y="442.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1148.0" y="464.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#368B9B">实现页面</text>
+<path data-edge="e21" d="M360 992 L376 992 Q384 992 384 984 L384 920 Q384 912 392 912 L504 912 Q512 912 512 920 L512 952" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>事件订阅定义 → 动作定义：调用目标动作</title></path>
+<rect x="252.0" y="917.0" width="124.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="260.0" y="939.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">调用目标动作</text>
+<path data-edge="e38" d="M856 1520 L744 1520" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>逻辑流模型 → 逻辑流节点定义：使用节点</title></path>
+<rect x="756.0" y="1482.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="764.0" y="1504.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">使用节点</text>
+<path data-edge="e40" d="M856 1776 L744 1776" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>RPC 模型 → RPC 认证定义：认证引用</title></path>
+<rect x="756.0" y="1738.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="764.0" y="1760.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">认证引用</text>
+<path data-edge="e41" d="M1240 1504 L1224 1504 Q1216 1504 1216 1496 L1216 1448 Q1216 1440 1208 1440 L1016 1440 Q1008 1440 1008 1448 L1008 1464" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>消息队列绑定 → 逻辑流模型：消费触发</title></path>
+<rect x="1094.0" y="1402.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1102.0" y="1424.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">消费触发</text>
+<path data-edge="e42" d="M1128 1504 L1208 1504 Q1216 1504 1216 1512 L1216 1592 Q1216 1600 1224 1600 L1416 1600 Q1424 1600 1424 1592 L1424 1576" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>逻辑流模型 → 消息队列绑定：生产消息</title></path>
+<rect x="1328.0" y="1608.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1336.0" y="1630.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">生产消息</text>
+<path data-edge="e47" d="M1392 1208 L1392 1176 Q1392 1168 1400 1168 L1576 1168 Q1584 1168 1584 1176 L1584 1240 Q1584 1248 1592 1248 L1624 1248" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>审批流模型 → 组织模型：解析参与人</title></path>
+<rect x="1387.0" y="1130.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1395.0" y="1152.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">解析参与人</text>
+<path data-edge="e58" d="M856 2288 L744 2288" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>数据集模型 → 数据模型：模型查询</title></path>
+<rect x="756.0" y="2250.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="764.0" y="2272.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">模型查询</text>
+<path data-edge="e60" d="M1240 2272 L1224 2272 Q1216 2272 1216 2264 L1216 2216 Q1216 2208 1208 2208 L1096 2208 Q1088 2208 1088 2216 L1088 2232" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>查询视图 → 数据集模型：引用数据集</title></path>
+<rect x="1224.0" y="2197.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1232.0" y="2219.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">引用数据集</text>
+<path data-edge="e17" d="M472 752 L360 752" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>业务模型 → 事件定义：包含</title></path>
+<rect x="390.0" y="714.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="398.0" y="736.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">包含</text>
+<path data-edge="e45" d="M896 1576 L896 1592 Q896 1600 888 1600 L440 1600 Q432 1600 432 1608 L432 2024 Q432 2032 440 2032 L856 2032" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>逻辑流模型 → 消息通知模板：发送通知</title></path>
+<rect x="620.0" y="1608.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="628.0" y="1630.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">发送通知</text>
+<path data-edge="e53" d="M1472 952 L1472 901 a5 5 0 0 1 0 -10 L1472 856 Q1472 848 1480 848 L1544 848 Q1552 848 1552 840 L1552 741 a5 5 0 0 1 0 -10 L1552 504 Q1552 496 1544 496 L1512 496" fill="none" stroke="#368B9B" stroke-width="1.6" marker-end="url(#arrow-implementation)"><title>动态表单定义 → UI 模型：提供页面</title></path>
+<rect x="1560.0" y="569.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1568.0" y="591.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#368B9B">提供页面</text>
+<path data-edge="e06" d="M1624 256 L1544 256 Q1536 256 1536 264 L1536 472 Q1536 480 1528 480 L1512 480" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>菜单模型 → UI 模型：指向页面</title></path>
+<rect x="1440.0" y="353.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1448.0" y="375.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">指向页面</text>
+<path data-edge="e08" d="M1512 240 L1576 240 Q1584 240 1584 248 L1584 472 Q1584 480 1592 480 L1624 480" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>模块树 Diff → 模块树：调整编排</title></path>
+<rect x="1592.0" y="405.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1600.0" y="427.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">调整编排</text>
+<path data-edge="e19" d="M472 992 L453 992 a5 5 0 0 1 -10 0 L408 992 Q400 992 400 984 L400 917 a5 5 0 0 1 0 -10 L400 837 a5 5 0 0 1 0 -10 L400 776 Q400 768 392 768 L360 768" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>动作定义 → 事件定义：声明产生</title></path>
+<rect x="304.0" y="865.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="312.0" y="887.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">声明产生</text>
+<path data-edge="e43" d="M1240 1760 L1192 1760 Q1184 1760 1184 1752 L1184 1544 Q1184 1536 1176 1536 L1128 1536" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>计划任务定义 → 逻辑流模型：定时触发</title></path>
+<rect x="1192.0" y="1633.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1200.0" y="1655.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">定时触发</text>
+<path data-edge="e50" d="M1128 1520 L1192 1520 Q1200 1520 1200 1512 L1200 1445 a5 5 0 0 1 0 -10 L1200 1352 Q1200 1344 1208 1344 L1272 1344 Q1280 1344 1280 1336 L1280 1320" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>逻辑流模型 → 审批流模型：发起与办理</title></path>
+<rect x="1208.0" y="1373.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1216.0" y="1395.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">发起与办理</text>
+<path data-edge="e51" d="M1512 1248 L1560 1248 Q1568 1248 1568 1240 L1568 1173 a5 5 0 0 1 0 -10 L1568 1032 Q1568 1024 1576 1024 L1624 1024" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>审批流模型 → 角色定义：角色候选人</title></path>
+<rect x="1576.0" y="1121.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1584.0" y="1143.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">角色候选人</text>
+<path data-edge="e52" d="M1240 1280 L1160 1280 Q1152 1280 1152 1288 L1152 1352 Q1152 1360 1144 1360 L984 1360 Q976 1360 976 1368 L976 1464" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>审批流模型 → 逻辑流模型：流程回调</title></path>
+<rect x="1020.0" y="1322.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1028.0" y="1344.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">流程回调</text>
+<path data-edge="e63" d="M1512 2528 L1528 2528 Q1536 2528 1536 2520 L1536 2296 Q1536 2288 1544 2288 L1624 2288" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>统计看板 → 报表视图：引用视图</title></path>
+<rect x="1440.0" y="2393.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1448.0" y="2415.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">引用视图</text>
+<path data-edge="e18" d="M472 736 L456 736 Q448 736 448 728 L448 648 Q448 640 440 640 L56 640 Q48 640 48 648 L48 1080 Q48 1088 56 1088 L376 1088 Q384 1088 384 1080 L384 1016 Q384 1008 376 1008 L360 1008" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>业务模型 → 事件订阅定义：包含</title></path>
+<rect x="56.0" y="849.0" width="52.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="64.0" y="871.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">包含</text>
+<path data-edge="e34" d="M1072 552 L1072 568 Q1072 576 1080 576 L1144 576 Q1152 576 1152 584 L1152 747 a5 5 0 0 1 0 10 L1152 763 a5 5 0 0 1 0 10 L1152 891 a5 5 0 0 1 0 10 L1152 1128 Q1152 1136 1144 1136 L1032 1136 Q1024 1136 1024 1144 L1024 1208" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>UI Schema → WebAPI 模型：页面请求</title></path>
+<rect x="1056.0" y="701.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1064.0" y="723.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">页面请求</text>
+<path data-edge="e61" d="M1624 2272 L1608 2272 Q1600 2272 1600 2264 L1600 2200 Q1600 2192 1592 2192 L1160 2192 Q1152 2192 1152 2200 L1152 2264 Q1152 2272 1144 2272 L1128 2272" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>报表视图 → 数据集模型：引用数据集</title></path>
+<rect x="1435.0" y="2200.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1443.0" y="2222.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">引用数据集</text>
+<path data-edge="e22" d="M672 1064 L672 1384 Q672 1392 680 1392 L936 1392 Q944 1392 944 1400 L944 1464" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>动作定义 → 逻辑流模型：绑定实现</title></path>
+<rect x="576.0" y="1213.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="584.0" y="1235.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">绑定实现</text>
+<path data-edge="e35" d="M1344 808 L1344 827 a5 5 0 0 1 0 10 L1344 872 Q1344 880 1336 880 L1176 880 Q1168 880 1168 888 L1168 1240 Q1168 1248 1160 1248 L1128 1248" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>微前端模型 → WebAPI 模型：页面请求</title></path>
+<rect x="1072.0" y="1141.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1080.0" y="1163.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">页面请求</text>
+<path data-edge="e44" d="M1280 1976 L1280 1960 Q1280 1952 1272 1952 L1176 1952 Q1168 1952 1168 1944 L1168 1672 Q1168 1664 1160 1664 L1096 1664 Q1088 1664 1088 1656 L1088 1576" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>延迟任务 → 逻辑流模型：到时触发</title></path>
+<rect x="1138.0" y="1960.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1146.0" y="1982.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">到时触发</text>
+<path data-edge="e31" d="M528 808 L528 840 Q528 848 520 848 L424 848 Q416 848 416 856 L416 907 a5 5 0 0 1 0 10 L416 987 a5 5 0 0 1 0 10 L416 1240 Q416 1248 408 1248 L360 1248" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>业务模型 → 数据字典模型：属性值域</title></path>
+<rect x="320.0" y="1133.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="328.0" y="1155.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">属性值域</text>
+<path data-edge="e59" d="M856 2304 L840 2304 Q832 2304 832 2312 L832 2616 Q832 2624 824 2624 L392 2624 Q384 2624 384 2616 L384 2536 Q384 2528 376 2528 L360 2528" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>数据集模型 → 数据源定义：SQL 查询</title></path>
+<rect x="546.0" y="2632.0" width="124.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="554.0" y="2654.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">SQL 查询</text>
+<path data-edge="e37" d="M1072 1576 L1072 1688 Q1072 1696 1080 1696 L1144 1696 Q1152 1696 1152 1704 L1152 1912 Q1152 1920 1144 1920 L696 1920 Q688 1920 688 1928 L688 2027 a5 5 0 0 1 0 10 L688 2232" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>逻辑流模型 → 数据模型：查询与写入</title></path>
+<rect x="867.0" y="1882.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="875.0" y="1904.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">查询与写入</text>
+<path data-edge="e46" d="M1328 1320 L1328 1416 Q1328 1424 1336 1424 L1576 1424 Q1584 1424 1584 1432 L1584 1928 Q1584 1936 1576 1936 L1173 1936 a5 5 0 0 1 -10 0 L1016 1936 Q1008 1936 1008 1944 L1008 1976" fill="none" stroke="#248672" stroke-width="1.6" marker-end="url(#arrow-execution)"><title>审批流模型 → 消息通知模板：流程通知</title></path>
+<rect x="1252.0" y="1898.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1260.0" y="1920.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#248672">流程通知</text>
+<path data-edge="e56" d="M560 2232 L560 2136 Q560 2128 552 2128 L72 2128 Q64 2128 64 2120 L64 1608 Q64 1600 72 1600 L216 1600 Q224 1600 224 1592 L224 1576" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>数据模型 → 字段类型：采用类型</title></path>
+<rect x="72.0" y="1849.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="80.0" y="1871.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">采用类型</text>
+<path data-edge="e30" d="M472 768 L440 768 Q432 768 432 776 L432 827 a5 5 0 0 1 0 10 L432 843 a5 5 0 0 1 0 10 L432 907 a5 5 0 0 1 0 10 L432 987 a5 5 0 0 1 0 10 L432 1256 Q432 1264 424 1264 L392 1264 Q384 1264 384 1272 L384 1496 Q384 1504 376 1504 L360 1504" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>业务模型 → 字段类型：属性类型</title></path>
+<rect x="440.0" y="877.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="448.0" y="899.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">属性类型</text>
+<path data-edge="e48" d="M1240 1248 L1221 1248 a5 5 0 0 1 -10 0 L1192 1248 Q1184 1248 1184 1240 L1184 901 a5 5 0 0 1 0 -10 L1184 885 a5 5 0 0 1 0 -10 L1184 856 Q1184 848 1176 848 L1157 848 a5 5 0 0 1 -10 0 L744 848 Q736 848 736 840 L736 808" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>审批流模型 → 业务模型：业务表单绑定</title></path>
+<rect x="898.0" y="810.0" width="124.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="906.0" y="832.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">业务表单绑定</text>
+<path data-edge="e55" d="M360 1760 L408 1760 Q416 1760 416 1752 L416 1288 Q416 1280 424 1280 L443 1280 a5 5 0 0 1 10 0 L667 1280 a5 5 0 0 1 10 0 L856 1280" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>错误码定义 → WebAPI 模型：错误响应</title></path>
+<rect x="320.0" y="1625.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="328.0" y="1647.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">错误响应</text>
+<path data-edge="e32" d="M704 696 L704 645 a5 5 0 0 1 0 -10 L704 600 Q704 592 712 592 L760 592 Q768 592 768 584 L768 168 Q768 160 776 160 L1192 160 Q1200 160 1200 168 L1200 315 a5 5 0 0 1 0 10 L1200 408 Q1200 416 1208 416 L1531 416 a5 5 0 0 1 10 0 L1560 416 Q1568 416 1568 424 L1568 488 Q1568 496 1576 496 L1624 496" fill="none" stroke="#B08B57" stroke-width="1.6" marker-end="url(#arrow-composition)"><title>业务模型 → 模块树：功能归属</title></path>
+<rect x="832.0" y="122.0" width="88.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="840.0" y="144.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#B08B57">功能归属</text>
+<path data-edge="e11" d="M608 696 L608 584 Q608 576 600 576 L56 576 Q48 576 48 568 L48 120 Q48 112 56 112 L2024 112 Q2032 112 2032 120 L2032 1176 Q2032 1184 2024 1184 L1941 1184 a5 5 0 0 1 -10 0 L1768 1184 Q1760 1184 1760 1192 L1760 1208" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>业务模型 → 组织模型：组织字段引用</title></path>
+<rect x="978.0" y="120.0" width="124.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="986.0" y="142.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">组织字段引用</text>
+<path data-edge="e14" d="M1824 1976 L1824 1960 Q1824 1952 1832 1952 L1912 1952 Q1920 1952 1920 1944 L1920 1189 a5 5 0 0 1 0 -10 L1920 1112 Q1920 1104 1912 1104 L1573 1104 a5 5 0 0 1 -10 0 L1381 1104 a5 5 0 0 1 -10 0 L1208 1104 Q1200 1104 1200 1096 L1200 901 a5 5 0 0 1 0 -10 L1200 885 a5 5 0 0 1 0 -10 L1200 773 a5 5 0 0 1 0 -10 L1200 757 a5 5 0 0 1 0 -10 L1200 520 Q1200 512 1192 512 L1128 512" fill="none" stroke="#6C7E93" stroke-width="1.6" marker-end="url(#arrow-reference)"><title>统一配置模型 → UI Schema：编辑器定义</title></path>
+<rect x="1806.0" y="1619.0" width="106.0" height="30.0" rx="3" fill="#FFFFFF"/>
+<text x="1814.0" y="1641.0" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#6C7E93">编辑器定义</text>
+<g data-node="user-dashboard"><title>用户看板：布局与小组件实例</title><rect x="480" y="192" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#6BB39E" stroke-width="1.8"/></g>
+<text x="496" y="228" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">用户看板</text>
+<text x="496" y="260" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">布局与小组件实例</text>
+<text x="496" y="278" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="dashboard-template"><title>用户看板模板：提供初始布局</title><rect x="96" y="192" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#6BB39E" stroke-width="1.8"/></g>
+<text x="112" y="228" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">用户看板模板</text>
+<text x="112" y="260" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">提供初始布局</text>
+<text x="112" y="278" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="widget"><title>小组件定义：配置契约与 Schema 模板</title><rect x="480" y="448" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#6BB39E" stroke-width="1.8"/></g>
+<text x="496" y="484" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">小组件定义</text>
+<text x="496" y="516" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">配置契约与 Schema 模板</text>
+<text x="496" y="534" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="i18n"><title>国际化语言包：语言与文案资源</title><rect x="864" y="192" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="880" y="228" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">国际化语言包</text>
+<text x="880" y="260" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">语言与文案资源</text>
+<text x="880" y="278" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="ui-schema"><title>UI Schema：页面内容、交互与组件</title><rect x="864" y="448" width="256" height="96" rx="8" fill="#F0FAF7" stroke="#6BB39E" stroke-width="1.8"/></g>
+<text x="880" y="484" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">UI Schema</text>
+<text x="880" y="516" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">页面内容、交互与组件</text>
+<g data-node="ui"><title>UI 模型：页面入口与实现方式</title><rect x="1248" y="448" width="256" height="96" rx="8" fill="#F0FAF7" stroke="#6BB39E" stroke-width="1.8"/></g>
+<text x="1264" y="484" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">UI 模型</text>
+<text x="1264" y="516" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">页面入口与实现方式</text>
+<g data-node="micro"><title>微前端模型：独立前端应用实现</title><rect x="1248" y="704" width="256" height="96" rx="8" fill="#F0FAF7" stroke="#6BB39E" stroke-width="1.8"/></g>
+<text x="1264" y="740" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">微前端模型</text>
+<text x="1264" y="772" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">独立前端应用实现</text>
+<g data-node="menu"><title>菜单模型：运行态导航入口</title><rect x="1632" y="192" width="256" height="96" rx="8" fill="#F0FAF7" stroke="#6BB39E" stroke-width="1.8" stroke-dasharray="7 5"/></g>
+<text x="1648" y="228" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#215F4B">菜单模型</text>
+<text x="1648" y="260" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">运行态导航入口</text>
+<g data-node="module"><title>模块树：功能归属、菜单与权限</title><rect x="1632" y="448" width="256" height="96" rx="8" fill="#F6F1FC" stroke="#AD91CE" stroke-width="1.8"/></g>
+<text x="1648" y="484" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#674489">模块树</text>
+<text x="1648" y="516" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">功能归属、菜单与权限</text>
+<g data-node="module-diff"><title>模块树 Diff：记录模块编排差异</title><rect x="1248" y="192" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="1264" y="228" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">模块树 Diff</text>
+<text x="1264" y="260" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">记录模块编排差异</text>
+<text x="1264" y="278" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="dev-menu"><title>开发菜单：开发管理入口定义</title><rect x="96" y="1984" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="112" y="2020" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">开发菜单</text>
+<text x="112" y="2052" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">开发管理入口定义</text>
+<text x="112" y="2070" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="authority"><title>权限模型：页面、接口与数据权限</title><rect x="1632" y="704" width="256" height="96" rx="8" fill="#F6F1FC" stroke="#AD91CE" stroke-width="1.8" stroke-dasharray="7 5"/></g>
+<text x="1648" y="740" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#674489">权限模型</text>
+<text x="1648" y="772" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">页面、接口与数据权限</text>
+<g data-node="role"><title>角色定义：关联用户主体与权限</title><rect x="1632" y="960" width="256" height="96" rx="8" fill="#F6F1FC" stroke="#AD91CE" stroke-width="1.8"/></g>
+<text x="1648" y="996" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#674489">角色定义</text>
+<text x="1648" y="1028" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">关联用户主体与权限</text>
+<g data-node="organization"><title>组织模型：公司、部门、员工与任职</title><rect x="1632" y="1216" width="256" height="96" rx="8" fill="#F6F1FC" stroke="#AD91CE" stroke-width="1.8"/></g>
+<text x="1648" y="1252" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#674489">组织模型</text>
+<text x="1648" y="1284" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">公司、部门、员工与任职</text>
+<g data-node="position"><title>岗位定义：岗位编码与层级</title><rect x="1632" y="1472" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="1648" y="1508" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">岗位定义</text>
+<text x="1648" y="1540" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">岗位编码与层级</text>
+<text x="1648" y="1558" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="configuration"><title>统一配置模型：键、类型、范围与编辑方式</title><rect x="1632" y="1984" width="256" height="96" rx="8" fill="#F6F1FC" stroke="#AD91CE" stroke-width="1.8"/></g>
+<text x="1648" y="2020" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#674489">统一配置模型</text>
+<text x="1648" y="2052" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">键、类型、范围与编辑方式</text>
+<g data-node="config-group"><title>配置分组：组织配置项</title><rect x="1632" y="1728" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#AD91CE" stroke-width="1.8"/></g>
+<text x="1648" y="1764" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#674489">配置分组</text>
+<text x="1648" y="1796" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">组织配置项</text>
+<text x="1648" y="1814" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="business"><title>业务模型：属性、关系、视图与行为</title><rect x="480" y="704" width="288" height="96" rx="8" fill="#EDF5FF" stroke="#79A6DE" stroke-width="1.8"/></g>
+<text x="496" y="740" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#174B87">业务模型</text>
+<text x="496" y="772" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">属性、关系、视图与行为</text>
+<g data-node="action"><title>动作定义：输入、条件与实现绑定</title><rect x="480" y="960" width="256" height="96" rx="8" fill="#EDF5FF" stroke="#79A6DE" stroke-width="1.8"/></g>
+<text x="496" y="996" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#174B87">动作定义</text>
+<text x="496" y="1028" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">输入、条件与实现绑定</text>
+<text x="496" y="1046" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">业务模型内定义</text>
+<g data-node="event"><title>事件定义：事实与事件内容契约</title><rect x="96" y="704" width="256" height="96" rx="8" fill="#EDF5FF" stroke="#79A6DE" stroke-width="1.8"/></g>
+<text x="112" y="740" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#174B87">事件定义</text>
+<text x="112" y="772" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">事实与事件内容契约</text>
+<text x="112" y="790" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">业务模型内定义</text>
+<g data-node="subscription"><title>事件订阅定义：事件过滤与目标动作</title><rect x="96" y="960" width="256" height="96" rx="8" fill="#EDF5FF" stroke="#79A6DE" stroke-width="1.8"/></g>
+<text x="112" y="996" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#174B87">事件订阅定义</text>
+<text x="112" y="1028" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">事件过滤与目标动作</text>
+<text x="112" y="1046" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">业务模型内定义</text>
+<g data-node="webapi"><title>WebAPI 模型：HTTP 契约与处理绑定</title><rect x="864" y="1216" width="256" height="96" rx="8" fill="#F2F6FF" stroke="#8BAAE1" stroke-width="1.8"/></g>
+<text x="880" y="1252" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#335890">WebAPI 模型</text>
+<text x="880" y="1284" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">HTTP 契约与处理绑定</text>
+<g data-node="log"><title>业务日志模板：接口匹配与审计内容</title><rect x="864" y="960" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="880" y="996" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">业务日志模板</text>
+<text x="880" y="1028" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">接口匹配与审计内容</text>
+<text x="880" y="1046" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="logic"><title>逻辑流模型：节点、连线与执行上下文</title><rect x="864" y="1472" width="256" height="96" rx="8" fill="#F2F6FF" stroke="#8BAAE1" stroke-width="1.8"/></g>
+<text x="880" y="1508" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#335890">逻辑流模型</text>
+<text x="880" y="1540" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">节点、连线与执行上下文</text>
+<g data-node="flow-node"><title>逻辑流节点定义：节点类型与配置契约</title><rect x="480" y="1472" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="496" y="1508" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">逻辑流节点定义</text>
+<text x="496" y="1540" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">节点类型与配置契约</text>
+<text x="496" y="1558" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="approval"><title>审批流模型：人员任务、表单与回调</title><rect x="1248" y="1216" width="256" height="96" rx="8" fill="#F2F6FF" stroke="#8BAAE1" stroke-width="1.8"/></g>
+<text x="1264" y="1252" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#335890">审批流模型</text>
+<text x="1264" y="1284" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">人员任务、表单与回调</text>
+<g data-node="dynamic-form"><title>动态表单定义：表单内容与审批绑定</title><rect x="1248" y="960" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="1264" y="996" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">动态表单定义</text>
+<text x="1264" y="1028" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">表单内容与审批绑定</text>
+<text x="1264" y="1046" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="rpc"><title>RPC 模型：外部调用与协议契约</title><rect x="864" y="1728" width="256" height="96" rx="8" fill="#F2F6FF" stroke="#8BAAE1" stroke-width="1.8"/></g>
+<text x="880" y="1764" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#335890">RPC 模型</text>
+<text x="880" y="1796" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">外部调用与协议契约</text>
+<g data-node="rpc-auth"><title>RPC 认证定义：认证类型与凭据引用</title><rect x="480" y="1728" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="496" y="1764" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">RPC 认证定义</text>
+<text x="496" y="1796" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">认证类型与凭据引用</text>
+<text x="496" y="1814" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="mq"><title>消息队列绑定：生产 / 消费与目标逻辑流</title><rect x="1248" y="1472" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="1264" y="1508" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">消息队列绑定</text>
+<text x="1264" y="1540" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">生产 / 消费与目标逻辑流</text>
+<text x="1264" y="1558" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="notification"><title>消息通知模板：内容、渠道与接收人</title><rect x="864" y="1984" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="880" y="2020" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">消息通知模板</text>
+<text x="880" y="2052" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">内容、渠道与接收人</text>
+<text x="880" y="2070" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="schedule"><title>计划任务定义：Cron 与目标逻辑流</title><rect x="1248" y="1728" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="1264" y="1764" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">计划任务定义</text>
+<text x="1264" y="1796" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">Cron 与目标逻辑流</text>
+<text x="1264" y="1814" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="delayed"><title>延迟任务：运行时提交的一次性任务</title><rect x="1248" y="1984" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="1264" y="2020" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">延迟任务</text>
+<text x="1264" y="2052" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">运行时提交的一次性任务</text>
+<text x="1264" y="2070" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">运行任务</text>
+<g data-node="errors"><title>错误码定义：错误标识与对外说明</title><rect x="96" y="1728" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="112" y="1764" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">错误码定义</text>
+<text x="112" y="1796" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">错误标识与对外说明</text>
+<text x="112" y="1814" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="data"><title>数据模型：字段、关系与查询语义</title><rect x="480" y="2240" width="256" height="96" rx="8" fill="#F1F9FD" stroke="#76AEC8" stroke-width="1.8"/></g>
+<text x="496" y="2276" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#2B6078">数据模型</text>
+<text x="496" y="2308" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">字段、关系与查询语义</text>
+<g data-node="field"><title>字段类型：数据、展示与编辑能力</title><rect x="96" y="1472" width="256" height="96" rx="8" fill="#F1F9FD" stroke="#76AEC8" stroke-width="1.8"/></g>
+<text x="112" y="1508" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#2B6078">字段类型</text>
+<text x="112" y="1540" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">数据、展示与编辑能力</text>
+<g data-node="dict"><title>数据字典模型：值域与选项</title><rect x="96" y="1216" width="256" height="96" rx="8" fill="#F1F9FD" stroke="#76AEC8" stroke-width="1.8"/></g>
+<text x="112" y="1252" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#2B6078">数据字典模型</text>
+<text x="112" y="1284" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">值域与选项</text>
+<g data-node="initialization"><title>数据初始化定义：目标模型与初始记录</title><rect x="480" y="2496" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="496" y="2532" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">数据初始化定义</text>
+<text x="496" y="2564" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">目标模型与初始记录</text>
+<text x="496" y="2582" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="datasource"><title>数据源定义：SQL 连接与数据源标识</title><rect x="96" y="2496" width="256" height="96" rx="8" fill="#FFFFFF" stroke="#B4C0D0" stroke-width="1.8"/></g>
+<text x="112" y="2532" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#52657F">数据源定义</text>
+<text x="112" y="2564" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">SQL 连接与数据源标识</text>
+<text x="112" y="2582" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#6B7F97">配套定义</text>
+<g data-node="dataset"><title>数据集模型：查询、参数与结果结构</title><rect x="864" y="2240" width="256" height="96" rx="8" fill="#FFF8EC" stroke="#D5AC6A" stroke-width="1.8"/></g>
+<text x="880" y="2276" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#79531E">数据集模型</text>
+<text x="880" y="2308" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">查询、参数与结果结构</text>
+<g data-node="query"><title>查询视图：数据集查询与结果投影</title><rect x="1248" y="2240" width="256" height="96" rx="8" fill="#FFF8EC" stroke="#D5AC6A" stroke-width="1.8"/></g>
+<text x="1264" y="2276" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#79531E">查询视图</text>
+<text x="1264" y="2308" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">数据集查询与结果投影</text>
+<g data-node="report"><title>报表视图：数据集与报表呈现定义</title><rect x="1632" y="2240" width="256" height="96" rx="8" fill="#FFF8EC" stroke="#D5AC6A" stroke-width="1.8"/></g>
+<text x="1648" y="2276" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#79531E">报表视图</text>
+<text x="1648" y="2308" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">数据集与报表呈现定义</text>
+<g data-node="report-dashboard"><title>统计看板：布局与查询 / 报表视图</title><rect x="1248" y="2496" width="256" height="96" rx="8" fill="#FFF8EC" stroke="#D5AC6A" stroke-width="1.8"/></g>
+<text x="1264" y="2532" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="600" fill="#79531E">统计看板</text>
+<text x="1264" y="2564" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" fill="#52657F">布局与查询 / 报表视图</text>
+<path d="M64 2752 H128" fill="none" stroke="#2B70BE" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow-projection)"/>
+<text x="144" y="2759" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#2B70BE">投影 / 映射</text>
+<path d="M744 2752 H808" fill="none" stroke="#6C7E93" stroke-width="2" marker-end="url(#arrow-reference)"/>
+<text x="824" y="2759" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#6C7E93">引用 / 绑定</text>
+<path d="M1424 2752 H1488" fill="none" stroke="#248672" stroke-width="2" marker-end="url(#arrow-execution)"/>
+<text x="1504" y="2759" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#248672">调用 / 触发</text>
+<path d="M64 2800 H128" fill="none" stroke="#368B9B" stroke-width="2" marker-end="url(#arrow-implementation)"/>
+<text x="144" y="2807" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#368B9B">页面实现</text>
+<path d="M744 2800 H808" fill="none" stroke="#9974B9" stroke-width="2" marker-end="url(#arrow-governance)"/>
+<text x="824" y="2807" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#9974B9">权限约束</text>
+<path d="M1424 2800 H1488" fill="none" stroke="#B08B57" stroke-width="2" marker-end="url(#arrow-composition)"/>
+<text x="1504" y="2807" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#B08B57">包含 / 归属</text>
+<text x="64" y="2856" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#52657F">虚线节点：仅投影、无独立低代码编辑入口。节点小字区分配套定义、业务模型内定义和运行任务。</text>
+<text x="64" y="2892" font-family="-apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#52657F">连线表示明确契约；通用基础设施与各模型内部的 Java 类型不作为独立模型展开。</text>
+</svg></main></body></html>

@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="data-model-relations" name="关联键与关联填充">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="960" pageHeight="688">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=none;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="376" y="224" />
+            <mxPoint as="targetPoint" x="584" y="224" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="208" y="336" />
+            <mxPoint as="targetPoint" x="208" y="448" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="752" y="336" />
+            <mxPoint as="targetPoint" x="752" y="448" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asset" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="112" width="336" height="224" />
+        </mxCell>
+        <mxCell id="asset-heading" value="inventory.Asset" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="162.0" width="320" height="32" />
+        </mxCell>
+        <mxCell id="asset-line0" value="id: String" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="191.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="asset-line1" value="code: String" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="216.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="asset-line2" value="departmentId: String" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="241.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="asset-line3" value="department: Model（虚拟）" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="266.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="department" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="584" y="112" width="336" height="224" />
+        </mxCell>
+        <mxCell id="department-heading" value="organization.Department" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="174.5" width="320" height="32" />
+        </mxCell>
+        <mxCell id="department-line0" value="id: String" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="203.5" width="320" height="28" />
+        </mxCell>
+        <mxCell id="department-line1" value="name: String" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="228.5" width="320" height="28" />
+        </mxCell>
+        <mxCell id="department-line2" value="assets: Collection（虚拟）" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="253.5" width="320" height="28" />
+        </mxCell>
+        <mxCell id="asset-result" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="448" width="336" height="152" />
+        </mxCell>
+        <mxCell id="asset-result-heading" value="资产查询结果" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="475.0" width="320" height="31" />
+        </mxCell>
+        <mxCell id="asset-result-line0" value="code: &quot;A001&quot;" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="503.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="asset-result-line1" value="department: { id: &quot;D01&quot;," vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="528.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="asset-result-line2" value="name: &quot;研发部&quot; }" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="48" y="553.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="department-result" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="584" y="448" width="336" height="152" />
+        </mxCell>
+        <mxCell id="department-result-heading" value="部门查询结果" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=19;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="475.0" width="320" height="31" />
+        </mxCell>
+        <mxCell id="department-result-line0" value="name: &quot;研发部&quot;" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="503.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="department-result-line1" value="assets: [ { code: &quot;A001&quot; }," vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="528.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="department-result-line2" value="{ code: &quot;A002&quot; } ]" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="592" y="553.0" width="320" height="28" />
+        </mxCell>
+        <mxCell id="edge-label0" value="关联键匹配" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#71839a;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="432.0" y="180" width="96" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="关联键与关联填充" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="40" y="14" width="208" height="36" />
+        </mxCell>
+        <mxCell id="note-1" value="示例：资产属于一个部门，一个部门可以包含多项资产。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="40" y="54" width="416" height="28" />
+        </mxCell>
+        <mxCell id="note-2" value="N" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="387.2" y="230" width="25.6" height="28" />
+        </mxCell>
+        <mxCell id="note-3" value="1" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="547.2" y="230" width="25.6" height="28" />
+        </mxCell>
+        <mxCell id="note-4" value="departmentId = id" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="395.5" y="259" width="169.0" height="27" />
+        </mxCell>
+        <mxCell id="note-5" value="填充 department" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="232" y="371" width="145.0" height="27" />
+        </mxCell>
+        <mxCell id="note-6" value="填充 assets" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#216149;align=right;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="619.0" y="371" width="109.0" height="27" />
+        </mxCell>
+        <mxCell id="note-7" value="Model 返回单个关联对象；Collection 返回关联记录集合。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="246.4" y="622" width="467.2" height="28" />
+        </mxCell>
+        <mxCell id="note-8" value="关联定义描述匹配方式，查询时通过 populate 选择要填充的内容。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="239.5" y="651" width="481.0" height="27" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

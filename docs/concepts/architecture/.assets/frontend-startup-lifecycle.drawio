@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="frontend-startup-lifecycle" name="前端基座启动生命周期">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1480" pageHeight="1152">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="host" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f7fa;strokeColor=#b3bfce;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="24" width="1400" height="208" />
+        </mxCell>
+        <mxCell id="host-title" value="01  宿主准备" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#43546c;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="34" width="1360" height="30" />
+        </mxCell>
+        <mxCell id="resources" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#f5f1fc;strokeColor=#b3a0d6;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="248" width="1400" height="208" />
+        </mxCell>
+        <mxCell id="resources-title" value="02  扩展与语言" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#63448e;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="258" width="1360" height="30" />
+        </mxCell>
+        <mxCell id="identity" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef5ff;strokeColor=#8eafe0;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="472" width="1400" height="208" />
+        </mxCell>
+        <mxCell id="identity-title" value="03  路由与用户上下文" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="482" width="1360" height="30" />
+        </mxCell>
+        <mxCell id="micro-stage" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef9fb;strokeColor=#7fb9c3;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="696" width="1400" height="208" />
+        </mxCell>
+        <mxCell id="micro-stage-title" value="04  微应用启动" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#245e69;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="706" width="1360" height="30" />
+        </mxCell>
+        <mxCell id="render" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#effaf5;strokeColor=#78b59a;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="920" width="1400" height="208" />
+        </mxCell>
+        <mxCell id="render-title" value="05  首屏挂载" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#216149;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="930" width="1360" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="784" y="136" />
+            <mxPoint as="targetPoint" x="904" y="136" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="784" y="360" />
+            <mxPoint as="targetPoint" x="904" y="360" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="784" y="584" />
+            <mxPoint as="targetPoint" x="904" y="584" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="784" y="1032" />
+            <mxPoint as="targetPoint" x="904" y="1032" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1156" y="196" />
+            <mxPoint as="targetPoint" x="552" y="300" />
+            <Array as="points">
+              <mxPoint x="1156" y="224" />
+              <mxPoint x="552" y="224" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1156" y="420" />
+            <mxPoint as="targetPoint" x="552" y="524" />
+            <Array as="points">
+              <mxPoint x="1156" y="448" />
+              <mxPoint x="552" y="448" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43818d;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1156" y="644" />
+            <mxPoint as="targetPoint" x="1156" y="748" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1156" y="868" />
+            <mxPoint as="targetPoint" x="552" y="972" />
+            <Array as="points">
+              <mxPoint x="1156" y="896" />
+              <mxPoint x="552" y="896" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="entry" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="328" y="84" width="448" height="104" />
+        </mxCell>
+        <mxCell id="entry-heading" value="初始化主应用入口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="99.0" width="432" height="32" />
+        </mxCell>
+        <mxCell id="entry-line0" value="注册事件订阅与菜单生命周期" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="128.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="entry-line1" value="发布 SYS_INIT_BOOTSTRAP" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="153.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="config" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="912" y="84" width="488" height="104" />
+        </mxCell>
+        <mxCell id="config-heading" value="读取应用配置" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="99.0" width="472" height="32" />
+        </mxCell>
+        <mxCell id="config-line0" value="路由、布局、主题与组件库配置" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="128.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="config-line1" value="恢复用户及页签的本地存储" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="153.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="libraries" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="328" y="308" width="448" height="104" />
+        </mxCell>
+        <mxCell id="libraries-heading" value="加载组件库" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="323.0" width="432" height="32" />
+        </mxCell>
+        <mxCell id="libraries-line0" value="应用组件库 → 平台组件库" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="352.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="libraries-line1" value="等待注册结果，按配置等待挂载" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="377.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="locale" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="912" y="308" width="488" height="104" />
+        </mxCell>
+        <mxCell id="locale-heading" value="初始化国际化" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="323.0" width="472" height="32" />
+        </mxCell>
+        <mxCell id="locale-line0" value="语言列表、语言偏好、资源缓存" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="352.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="locale-line1" value="加载词条并更新页面标题" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="377.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="white-routes" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="328" y="532" width="448" height="104" />
+        </mxCell>
+        <mxCell id="white-routes-heading" value="补充微应用白名单路由" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="547.0" width="432" height="32" />
+        </mxCell>
+        <mxCell id="white-routes-line0" value="读取 microWhiteRoutes.json" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="576.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="white-routes-line1" value="登记可匿名访问的微应用路由" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="601.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="user" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="912" y="532" width="488" height="104" />
+        </mxCell>
+        <mxCell id="user-heading" value="初始化用户上下文" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="547.0" width="472" height="32" />
+        </mxCell>
+        <mxCell id="user-line0" value="有令牌时依次获取用户、菜单、权限" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="576.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="user-line1" value="全部成功后提交状态并加载用户设置" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="601.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="micro" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="912" y="756" width="488" height="104" />
+        </mxCell>
+        <mxCell id="micro-heading" value="注册并启动微应用" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="771.0" width="472" height="32" />
+        </mxCell>
+        <mxCell id="micro-line0" value="建立微应用配置与公共能力注入" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="800.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="micro-line1" value="启动 qiankun，发布 SYS_INIT_USER" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="825.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="routes" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="328" y="980" width="448" height="104" />
+        </mxCell>
+        <mxCell id="routes-heading" value="刷新前端路由" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="995.0" width="432" height="32" />
+        </mxCell>
+        <mxCell id="routes-line0" value="按用户状态重建可用路由" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="1024.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="routes-line1" value="确定当前页面及登录／恢复入口" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="336" y="1049.0" width="432" height="28" />
+        </mxCell>
+        <mxCell id="mount" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="912" y="980" width="488" height="104" />
+        </mxCell>
+        <mxCell id="mount-heading" value="挂载应用界面" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="995.0" width="472" height="32" />
+        </mxCell>
+        <mxCell id="mount-line0" value="React createRoot → AppLayout" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="1024.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="mount-line1" value="按当前路由渲染页面" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="920" y="1049.0" width="472" height="28" />
+        </mxCell>
+        <mxCell id="edge-label6" value="用户初始化成功" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#43818d;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1220.0" y="684" width="128" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="无令牌：保留匿名页面，或转入登录页。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="328" y="757" width="322" height="29" />
+        </mxCell>
+        <mxCell id="note-1" value="有令牌但初始化失败：保留错误，转入恢复页。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="328" y="793" width="373" height="29" />
+        </mxCell>
+        <mxCell id="note-2" value="这两条路径跳过微应用启动，继续刷新路由。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="328" y="829" width="356" height="29" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

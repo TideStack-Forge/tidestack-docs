@@ -34,4 +34,4 @@ sidebar_position: 5
 - 修改配置项后，消费该配置的功能按预期生效。
 - 通知模板变量能被替换，发送失败有可查询记录。
 
-需要接入外部身份、Claims 或字段级访问控制时，使用 [权限、主体与访问控制设计](../fusion-development/authority-subject-and-access-control-design)。
+需要接入外部身份、Claims 或字段级访问控制时，使用 [权限与访问控制](../fusion-development/authority-subject-and-access-control-design)。

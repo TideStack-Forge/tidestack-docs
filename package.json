@@ -13,7 +13,9 @@
     "check:structure": "node --no-warnings scripts/check-handbook-structure.mjs",
     "sync:llms-static": "node scripts/sync-llms-static.mjs",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
@@ -24,11 +26,16 @@
     "clsx": "^1.2.1",
     "prism-react-renderer": "^2.1.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-zoom-pan-pinch": "^4.2.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
-    "@docusaurus/types": "^3.9.2"
+    "@docusaurus/types": "^3.9.2",
+    "@vitest/coverage-v8": "^3.2.7",
+    "ajv": "^8.18.0",
+    "happy-dom": "^20.14.6",
+    "vitest": "^3.2.7"
   },
   "browserslist": {
     "production": [

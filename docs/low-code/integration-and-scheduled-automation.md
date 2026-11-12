@@ -43,8 +43,8 @@ sidebar_position: 8
 
 1. 打开 **后端接口**，按 HTTP 方法和路径找到目标 API。
 2. 核对范围：**内部**、**开放** 或 **公开**。
-3. 选择处理器：逻辑流、`RequestMapping` 或 `RouterFunction`。
-4. 使用逻辑流处理器时选择逻辑流；使用 `RequestMapping` 时核对类名和方法名。
+3. 选择可用的处理器：业务 Action、逻辑流或 `RequestMapping`。当前页面中的 `RouterFunction` 选项不可编辑。
+4. 使用业务 Action 时选择模型和动作并配置 HTTP 输入映射；使用逻辑流时选择目标流程；使用 `RequestMapping` 时核对类名和方法名。
 5. 保存后使用匹配范围的调用方发起请求，核对状态码和响应体。
 6. 需要撤销切换时点击 **复原**，再重复调用验证。
 

@@ -1,0 +1,78 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>系统协作关系</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1500 1108" width="1500" height="1108" role="img" aria-labelledby="system-collaboration-title system-collaboration-desc">
+<title id="system-collaboration-title">系统协作关系</title>
+<desc id="system-collaboration-desc">开发平台通过开发支持连接 IDE 插件与开发助手，通过测试支持管理测试容器，通过在线编辑维护应用元数据；应用元数据交付到应用部署环境，由统一运行时基座装配运行。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43818d"/></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a57b33"/></marker>
+</defs>
+<rect width="1500" height="1180" fill="white"/>
+
+<rect x="40" y="368" width="1420" height="760" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="60" y="398" font-size="18" font-weight="600" fill="#204f86">开发与验证环境</text>
+<rect x="60" y="832" width="300" height="228" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
+<text x="80" y="862" font-size="18" font-weight="600" fill="#43546c">开发者 IDE</text>
+<rect x="460" y="448" width="500" height="632" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="480" y="478" font-size="18" font-weight="600" fill="#204f86">开发平台</text>
+<rect x="40" y="96" width="1420" height="184" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#216149">应用部署环境</text>
+<path d="M348 984L492 984" fill="none" stroke="#43818d" stroke-width="1.5" marker-end="url(#a43818d)" marker-start="url(#a43818d)"/>
+<path d="M928 964L1152 964" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M1152 1004L928 1004" fill="none" stroke="#9577b5" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a9577b5)"/>
+<path d="M928 768L1152 768" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M1152 808L928 808" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
+<path d="M928 600L1152 600" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)" marker-start="url(#aa57b33)"/>
+<path d="M1300 660L1300 728" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1300 540L1300 248" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1152 196L928 196" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<g data-node="ide-plugin"><rect x="80" y="932" width="260" height="104" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="210.0" y="994.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">TideStack 开发插件</text>
+</g>
+<g data-node="development-support"><rect x="500" y="932" width="420" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="710.0" y="982.5" font-size="23" font-weight="600" fill="#204f86" text-anchor="middle">开发支持</text>
+<text x="710.0" y="1008.5" font-size="17" fill="#52657f" text-anchor="middle">IDE 协作与元数据发现</text>
+</g>
+<g data-node="test-support"><rect x="500" y="736" width="420" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="710.0" y="786.5" font-size="23" font-weight="600" fill="#204f86" text-anchor="middle">测试支持</text>
+<text x="710.0" y="812.5" font-size="17" fill="#52657f" text-anchor="middle">测试容器管理与联调反馈</text>
+</g>
+<g data-node="online-editor"><rect x="500" y="548" width="420" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="710.0" y="598.5" font-size="23" font-weight="600" fill="#204f86" text-anchor="middle">在线编辑</text>
+<text x="710.0" y="624.5" font-size="17" fill="#52657f" text-anchor="middle">可视化建模与应用元数据维护</text>
+</g>
+<g data-node="helper"><rect x="1160" y="932" width="280" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1300.0" y="969.0" font-size="22" font-weight="600" fill="#63448e" text-anchor="middle">开发助手</text>
+<text x="1300.0" y="995.0" font-size="17" fill="#52657f" text-anchor="middle">加载扩展及依赖</text>
+<text x="1300.0" y="1021.0" font-size="17" fill="#52657f" text-anchor="middle">发现元数据</text>
+</g>
+<g data-node="test"><rect x="1160" y="736" width="280" height="104" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1300.0" y="773.0" font-size="22" font-weight="600" fill="#216149" text-anchor="middle">测试容器</text>
+<text x="1300.0" y="799.0" font-size="17" fill="#52657f" text-anchor="middle">统一运行时基座</text>
+<text x="1300.0" y="825.0" font-size="17" fill="#52657f" text-anchor="middle">加载当前应用进行验证</text>
+</g>
+<g data-node="metadata"><rect x="1160" y="548" width="280" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1300.0" y="598.0" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用元数据</text>
+<text x="1300.0" y="624.0" font-size="17" fill="#52657f" text-anchor="middle">模型定义、扩展与界面资源</text>
+</g>
+<g data-node="runtime"><rect x="80" y="152" width="840" height="88" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="500.0" y="194.0" font-size="23" font-weight="600" fill="#216149" text-anchor="middle">统一运行时基座</text>
+<text x="500.0" y="221.0" font-size="18" fill="#52657f" text-anchor="middle">前端基座＋后端基座</text>
+</g>
+<g data-node="deployed-metadata"><rect x="1160" y="152" width="280" height="88" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="1300.0" y="194.0" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用元数据</text>
+<text x="1300.0" y="220.0" font-size="17" fill="#52657f" text-anchor="middle">随应用部署到目标环境</text>
+</g>
+<rect x="380.0" y="952" width="80" height="25" rx="3" fill="white"/><text x="420" y="970" fill="#43818d" font-size="16" text-anchor="middle">开发协作</text>
+<rect x="992.0" y="932" width="96" height="25" rx="3" fill="white"/><text x="1040" y="950" fill="#627ba4" font-size="16" text-anchor="middle">管理与命令</text>
+<rect x="1008.0" y="972" width="64" height="25" rx="3" fill="white"/><text x="1040" y="990" fill="#9577b5" font-size="16" text-anchor="middle">元数据</text>
+<rect x="992.0" y="736" width="96" height="25" rx="3" fill="white"/><text x="1040" y="754" fill="#43816c" font-size="16" text-anchor="middle">创建与启停</text>
+<rect x="976.0" y="776" width="128" height="25" rx="3" fill="white"/><text x="1040" y="794" fill="#43816c" font-size="16" text-anchor="middle">日志与状态回传</text>
+<rect x="992.0" y="568" width="96" height="25" rx="3" fill="white"/><text x="1040" y="586" fill="#a57b33" font-size="16" text-anchor="middle">读取与保存</text>
+<rect x="1324.0" y="686" width="96" height="25" rx="3" fill="white"/><text x="1372" y="704" fill="#a57b33" font-size="16" text-anchor="middle">加载元数据</text>
+<rect x="1324.0" y="310" width="48" height="25" rx="3" fill="white"/><text x="1348" y="328" fill="#a57b33" font-size="16" text-anchor="middle">交付</text>
+<rect x="992.0" y="164" width="96" height="25" rx="3" fill="white"/><text x="1040" y="182" fill="#43816c" font-size="16" text-anchor="middle">装配与运行</text>
+<text x="210" y="896" font-size="18" fill="#52657f" text-anchor="middle">IDEA／VS Code</text>
+<text x="750" y="1164" font-size="18" fill="#52657f" text-anchor="middle">应用部署环境使用独立配置与业务数据，由统一运行时基座加载应用元数据。</text>
+</svg></html>

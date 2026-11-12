@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/configuration.schema.json",
-  "title": "配置项",
-  "description": "TideStack metadata schema for configuration. Legacy runtime packaging may still use Ouroboros paths.",
+  "title": "配置项数组",
+  "description": "配置项定义列表，用于 configurations.json 或兼容的 configuration.json；每一项声明配置键、值类型、缺省值及管理方式。",
   "type": "array",
   "items": {
     "type": "object",
@@ -14,19 +14,29 @@
     ],
     "properties": {
       "key": {
-        "type": "string"
+        "type": "string",
+        "description": "配置项的稳定键，运行时按此键读取或更新配置值。"
       },
       "label": {
-        "type": "string"
+        "type": "string",
+        "description": "配置项在管理界面的显示名称。"
       },
       "description": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "说明该定义的用途、业务含义或使用条件。"
       },
       "modifiable": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false,
+        "description": "是否允许通过配置管理机制修改该项，缺省 false。"
       },
       "nullable": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false,
+        "description": "配置值是否允许为空，缺省 false。"
       },
       "valueType": {
         "type": "string",
@@ -41,7 +51,8 @@
           "map",
           "list",
           "array"
-        ]
+        ],
+        "description": "配置值类型：int、long、float、double、boolean、string、object、map、list、array。"
       },
       "defaultValue": {
         "type": [
@@ -51,30 +62,112 @@
           "object",
           "array",
           "null"
-        ]
+        ],
+        "description": "配置缺省值；字符串原样保存，其他 JSON 值由平台序列化为 JSON 字符串保存。"
       },
       "groupPath": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "该配置项所属配置分组的路径。"
       },
       "order": {
-        "type": "integer"
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "用于同类条目排序的数值。"
       },
       "scope": {
         "type": "string",
         "enum": [
           "frontend",
           "backend"
-        ]
+        ],
+        "default": "backend",
+        "description": "配置生效范围：frontend 为前端，backend 为后端；未设置时为 backend。"
       },
       "obsolete": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false,
+        "description": "是否已废弃该配置项，缺省 false。"
       },
       "obsoleteCause": {
-        "type": "string"
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "配置项废弃的原因或替代说明。"
       },
       "editorSchema": {
-        "type": "object"
+        "type": [
+          "object",
+          "null"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "UI 组件类型，由前端组件注册机制解析，如 page、form、input-text。"
+          },
+          "name": {
+            "type": "string",
+            "description": "组件绑定的数据字段名，表单组件通常用它读取和写入表单数据。"
+          },
+          "id": {
+            "type": "string",
+            "description": "组件标识，供组件定位或交互引用。"
+          },
+          "className": {
+            "type": [
+              "string",
+              "object",
+              "null"
+            ],
+            "description": "组件样式类；可使用类名字符串或按条件启用类名的对象。"
+          },
+          "visible": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "组件是否可见。"
+          },
+          "hidden": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "组件是否隐藏。"
+          },
+          "visibleOn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "决定组件可见性的前端表达式。"
+          },
+          "hiddenOn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "决定组件隐藏状态的前端表达式。"
+          }
+        },
+        "description": "用于编辑配置值的 UI Schema 组件定义。"
+      },
+      "managementEntry": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "配置管理入口的 UI 模型路径。"
       }
-    }
-  }
+    },
+    "title": "配置项定义",
+    "description": "定义一个可被平台配置机制读取和管理的配置项。"
+  },
+  "$comment": "Source: ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigurationMetadata.java; ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigValueType.java; ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/metadata/ConfigScope.java"
 }

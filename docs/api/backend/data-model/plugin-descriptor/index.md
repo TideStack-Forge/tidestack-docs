@@ -1,70 +1,39 @@
 # PluginDescriptor
 
-`PluginDescriptor` 用来描述一个数据模型插件，包括插件名和插件配置。
+`com.ouroboros.data.model.PluginDescriptor` 声明插件名称和配置。用于模型的 `pluginDescriptors` 或 `DataModel.withPlugins(...)`；名称必须对应当前应用中已注册的模型插件。
 
-它最常出现在：
+## 构造和属性
 
-- `DataModelMeta.getPluginDescriptors()`
-- `DataModel.withPlugins(...)`
-- `TypedDataModel.withPlugins(...)`
+| 接口 | 说明 |
+| --- | --- |
+| `new PluginDescriptor()` | 创建空声明，再设置名称和参数 |
+| `new PluginDescriptor(String name)` | 使用插件名称创建 |
+| `new PluginDescriptor(String name, Map<String, Object> config)` | 使用名称和配置创建 |
+| `getName()` / `setName(String name)` | 插件名称 |
+| `getConfig()` / `setConfig(Map<String, Object> config)` | 插件配置；未设置时 getter 返回空 Map |
+| `deepCopy()` | 复制声明及配置 |
 
-## 先理解它是什么
+配置字段由对应插件定义，没有适用于所有插件的通用 `field` 或 `enabled` 参数。
 
-`PluginDescriptor` 不是插件实现本身，而是“某个模型启用了哪个插件、插件参数是什么”的描述对象。
+## Java 示例
 
-也就是说，它更像下面这种结构化声明：
+以下辅助方法适合扩展代码按已知插件名称追加行为。`pluginName` 和 `config` 由该扩展支持的插件契约决定：
 
-```json
-{
-  "name": "tenantFilter",
-  "config": {
-    "field": "tenantId"
-  }
+```java
+import java.util.Map;
+import com.ouroboros.data.model.DataModel;
+import com.ouroboros.data.model.PluginDescriptor;
+
+DataModel withPlugin(DataModel model, String pluginName, Map<String, Object> config) {
+    var descriptor = new PluginDescriptor(pluginName, config);
+    return model.withPlugins(descriptor);
 }
 ```
 
-真正怎么解释这个插件、运行时如何生效，取决于对应插件实现。
+使用返回的模型对象执行后续操作。插件声明不包含插件实现，也不会安装扩展包；插件须先在目标环境中可用。
 
-## 基础属性
+## 复制声明
 
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `getName()` | `String` | 插件名 |
-| `getConfig()` | `Map<String, Object>` | 插件配置；当前实现里即使未设置也会返回空 Map |
+`deepCopy()` 复制名称和配置，适合在扩展中生成独立配置。修改原声明或副本都不会安装插件实现。
 
-## 复制
-
-| 方法 | 返回值类型 | 说明 |
-| ---- | ---------- | ---- |
-| `deepCopy()` | `PluginDescriptor` | 深拷贝插件描述及其配置 |
-
-## 使用建议
-
-- 只需要临时启停模型插件时，可以把它当作一个轻量配置对象来传
-- 配置对象会被深拷贝，因此适合做运行时拼装
-
-## 常见使用方式
-
-### 在元数据里声明
-
-适合模型定义阶段就确定需要哪些插件。
-
-### 在运行时临时追加
-
-适合某次查询或某段处理里临时增强模型行为：
-
-- `DataModel.withPlugins(...)`
-- `TypedDataModel.withPlugins(...)`
-
-这种方式更像运行时装饰，不会直接改写原始模型定义。
-
-## 使用提醒
-
-- `getConfig()` 即使没有配置，也会返回空 `Map`，不要把“没有配置”和 `null` 混为一谈。
-- `deepCopy()` 会连带复制配置内容，适合在做运行时 patch 前保护原始描述对象。
-- 如果你当前还不确定“插件到底是什么”，先回到 [DataModelMeta](../data-model-meta/) 和 [DataModel](../data-model/) 结合上下文一起看。
-
-## 下一步看哪里
-
-- 想看模型接口：看 [DataModel](../data-model/)
-- 想看元数据对象：看 [DataModelMeta](../data-model-meta/)
+移除插件可能改变权限、校验和删除行为，使用 `withoutPlugins(...)` 前应确认影响。模型定义中的使用位置见 [DataModelMeta](../data-model-meta/)。

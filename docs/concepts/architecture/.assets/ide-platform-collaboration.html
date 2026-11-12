@@ -1,0 +1,109 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>本地 IDE 与线上开发平台联调</title><style>body{margin:0;background:#fff}svg{display:block;width:100%;height:auto;max-width:1600px;margin:auto}</style><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1680 1268" width="1680" height="1268" role="img" aria-labelledby="ide-platform-collaboration-title ide-platform-collaboration-desc">
+<title id="ide-platform-collaboration-title">本地 IDE 与线上开发平台联调</title>
+<desc id="ide-platform-collaboration-desc">本地 IDEA 通过 TideStack Develop 插件绑定线上应用与 profile、上传构建的扩展 JAR，并请求重启测试实例和建立调试会话；线上工作区汇集应用元数据与扩展，测试实例运行实际业务，IDE 经会话入口使用 JDWP 调试同一 JVM。</desc>
+<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
+<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43818d"/></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
+<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a57b33"/></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
+<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
+</defs>
+<rect width="1680" height="1340" fill="white"/>
+
+<rect x="40" y="96" width="440" height="1080" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="60" y="126" font-size="18" font-weight="600" fill="#245e69">开发者电脑</text>
+<rect x="60" y="152" width="400" height="816" rx="8" fill="#eef9fb" fill-opacity="0.55" stroke="#7fb9c3" stroke-width="1"/>
+<text x="80" y="182" font-size="18" font-weight="600" fill="#245e69">IntelliJ IDEA</text>
+<rect x="600" y="96" width="480" height="1080" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
+<text x="620" y="126" font-size="18" font-weight="600" fill="#204f86">线上开发平台</text>
+<rect x="1200" y="96" width="440" height="1080" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="1220" y="126" font-size="18" font-weight="600" fill="#216149">线上测试实例</text>
+<rect x="620" y="352" width="440" height="240" rx="8" fill="#fff7e9" fill-opacity="0.55" stroke="#d4ad69" stroke-width="1"/>
+<text x="640" y="382" font-size="18" font-weight="600" fill="#805719">应用运行工作区</text>
+<rect x="1220" y="356" width="400" height="788" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
+<text x="1240" y="386" font-size="18" font-weight="600" fill="#216149">测试 JVM</text>
+<path d="M260 328L260 440" fill="none" stroke="#43818d" stroke-width="1.5" marker-end="url(#a43818d)"/>
+<path d="M448 480L526.0 480.0Q532 480 532.0 474.0L532.0 270.0Q532 264 538.0 264.0L632 264" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)" marker-start="url(#a627ba4)"/>
+<path d="M1048 264L1232 264" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M448 528L612 528" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1068 496L1232 496" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
+<path d="M1420 328L1420 432" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M360 568L360.0 706.0Q360 712 366.0 712.0L632 712" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
+<path d="M1048 712L1138.0 712.0Q1144 712 1144.0 706.0L1144.0 566.0Q1144 560 1150.0 560.0L1232 560" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<path d="M840 776L840 808" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)"/>
+<path d="M448 872L632 872" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)" marker-start="url(#a9577b5)"/>
+<path d="M1048 872L1232 872" fill="none" stroke="#9577b5" stroke-width="1.5" marker-end="url(#a9577b5)" marker-start="url(#a9577b5)"/>
+<path d="M260 1128L260.0 1218.0Q260 1224 266.0 1224.0L1414.0 1224.0Q1420 1224 1420.0 1218.0L1420 1128" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)" marker-start="url(#a43816c)"/>
+<path d="M1608 1068L1608.0 626.0Q1608 620 1602.0 620.0L1426.0 620.0Q1420 620 1420.0 614.0L1420 588" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
+<g data-node="source"><rect x="80" y="208" width="360" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="260.0" y="262.5" font-size="23" font-weight="600" fill="#245e69" text-anchor="middle">扩展项目与本地源码</text>
+<text x="260.0" y="288.5" font-size="17" fill="#52657f" text-anchor="middle">编辑、编译与构建扩展 JAR</text>
+</g>
+<g data-node="plugin"><rect x="80" y="448" width="360" height="112" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
+<text x="260.0" y="502.0" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">TideStack Develop 插件</text>
+<text x="260.0" y="527.0" font-size="16" fill="#52657f" text-anchor="middle">平台绑定、构建上传与调试协作</text>
+</g>
+<g data-node="debugger"><rect x="80" y="816" width="360" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="260.0" y="870.5" font-size="23" font-weight="600" fill="#63448e" text-anchor="middle">IDE JVM 调试器</text>
+<text x="260.0" y="896.5" font-size="17" fill="#52657f" text-anchor="middle">断点、单步、线程与变量查看</text>
+</g>
+<g data-node="browser"><rect x="80" y="1016" width="360" height="104" rx="7" fill="#f5f7fa" stroke="#b3bfce" stroke-width="1.3"/>
+<text x="260.0" y="1066.0" font-size="21" font-weight="600" fill="#43546c" text-anchor="middle">浏览器／接口客户端</text>
+<text x="260.0" y="1091.0" font-size="16" fill="#52657f" text-anchor="middle">通过页面操作或接口发起业务请求</text>
+</g>
+<g data-node="binding"><rect x="640" y="208" width="400" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="840.0" y="249.0" font-size="22" font-weight="600" fill="#204f86" text-anchor="middle">应用与 profile 解析</text>
+<text x="840.0" y="275.0" font-size="17" fill="#52657f" text-anchor="middle">根据应用名称与 devKey 授权</text>
+<text x="840.0" y="301.0" font-size="17" fill="#52657f" text-anchor="middle">返回 profile 并定位目标测试实例</text>
+</g>
+<g data-node="metadata"><rect x="640" y="408" width="400" height="64" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="840.0" y="438.0" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">应用元数据</text>
+<text x="840.0" y="463.0" font-size="16" fill="#52657f" text-anchor="middle">由线上建模与资源编辑维护</text>
+</g>
+<g data-node="jar"><rect x="640" y="496" width="400" height="64" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
+<text x="840.0" y="526.0" font-size="21" font-weight="600" fill="#805719" text-anchor="middle">扩展 JAR</text>
+<text x="840.0" y="551.0" font-size="16" fill="#52657f" text-anchor="middle">接收本地构建产物</text>
+</g>
+<g data-node="management"><rect x="640" y="656" width="400" height="112" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
+<text x="840.0" y="697.5" font-size="21" font-weight="600" fill="#204f86" text-anchor="middle">测试实例与调试会话管理</text>
+<text x="840.0" y="722.5" font-size="16" fill="#52657f" text-anchor="middle">重启测试实例、建立或关闭会话</text>
+<text x="840.0" y="747.5" font-size="16" fill="#52657f" text-anchor="middle">关联实例身份与运行代次</text>
+</g>
+<g data-node="broker"><rect x="640" y="816" width="400" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="840.0" y="857.5" font-size="23" font-weight="600" fill="#63448e" text-anchor="middle">调试隧道 Broker</text>
+<text x="840.0" y="883.5" font-size="17" fill="#52657f" text-anchor="middle">返回调试地址与访问提示</text>
+<text x="840.0" y="909.5" font-size="17" fill="#52657f" text-anchor="middle">双向转发 JDWP 字节流</text>
+</g>
+<g data-node="config"><rect x="1240" y="208" width="360" height="112" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1420.0" y="249.5" font-size="21" font-weight="600" fill="#216149" text-anchor="middle">实例配置与运行目标</text>
+<text x="1420.0" y="274.5" font-size="16" fill="#52657f" text-anchor="middle">应用名称、profile 与实例身份</text>
+<text x="1420.0" y="299.5" font-size="16" fill="#52657f" text-anchor="middle">使用对应环境的配置及业务数据</text>
+</g>
+<g data-node="runtime"><rect x="1240" y="440" width="360" height="140" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1420.0" y="495.5" font-size="23" font-weight="600" fill="#216149" text-anchor="middle">统一运行时基座</text>
+<text x="1420.0" y="521.5" font-size="17" fill="#52657f" text-anchor="middle">加载应用模型与扩展 JAR</text>
+<text x="1420.0" y="547.5" font-size="17" fill="#52657f" text-anchor="middle">执行 WebAPI、逻辑流和业务动作</text>
+</g>
+<g data-node="jdwp"><rect x="1240" y="816" width="360" height="112" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
+<text x="1420.0" y="870.5" font-size="23" font-weight="600" fill="#63448e" text-anchor="middle">JDWP 调试端点</text>
+<text x="1420.0" y="896.5" font-size="17" fill="#52657f" text-anchor="middle">连接正在执行业务的测试 JVM</text>
+</g>
+<g data-node="http"><rect x="1240" y="1016" width="360" height="104" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
+<text x="1420.0" y="1066.5" font-size="23" font-weight="600" fill="#216149" text-anchor="middle">应用访问入口</text>
+<text x="1420.0" y="1092.5" font-size="17" fill="#52657f" text-anchor="middle">HTTP 业务请求与响应</text>
+</g>
+<rect x="290.0" y="368" width="80" height="25" rx="3" fill="white"/><text x="330" y="386" fill="#43818d" font-size="16" text-anchor="middle">本地构建</text>
+<rect x="468.0" y="322" width="128" height="25" rx="3" fill="white"/><text x="532" y="340" fill="#627ba4" font-size="16" text-anchor="middle">授权与目标解析</text>
+<rect x="1084.0" y="232" width="112" height="25" rx="3" fill="white"/><text x="1140" y="250" fill="#627ba4" font-size="16" text-anchor="middle">定位测试实例</text>
+<rect x="490.0" y="496" width="80" height="25" rx="3" fill="white"/><text x="530" y="514" fill="#a57b33" font-size="16" text-anchor="middle">上传 JAR</text>
+<rect x="1086.0" y="464" width="128" height="25" rx="3" fill="white"/><text x="1150" y="482" fill="#a57b33" font-size="16" text-anchor="middle">装配模型与扩展</text>
+<rect x="1452.0" y="370" width="80" height="25" rx="3" fill="white"/><text x="1492" y="388" fill="#43816c" font-size="16" text-anchor="middle">实例配置</text>
+<rect x="452.0" y="680" width="128" height="25" rx="3" fill="white"/><text x="516" y="698" fill="#627ba4" font-size="16" text-anchor="middle">重启与打开会话</text>
+<rect x="1084.0" y="528" width="128" height="25" rx="3" fill="white"/><text x="1148" y="546" fill="#43816c" font-size="16" text-anchor="middle">准备／重启实例</text>
+<rect x="908.0" y="780" width="112" height="25" rx="3" fill="white"/><text x="964" y="798" fill="#9577b5" font-size="16" text-anchor="middle">建立调试通道</text>
+<rect x="476.0" y="840" width="128" height="25" rx="3" fill="white"/><text x="540" y="858" fill="#9577b5" font-size="16" text-anchor="middle">按会话入口连接</text>
+<rect x="1088.0" y="840" width="104" height="25" rx="3" fill="white"/><text x="1140" y="858" fill="#9577b5" font-size="16" text-anchor="middle">JDWP 字节流</text>
+<rect x="752.0" y="1192" width="176" height="25" rx="3" fill="white"/><text x="840" y="1210" fill="#43816c" font-size="16" text-anchor="middle">业务请求与响应：HTTP</text>
+<rect x="1452.0" y="588" width="80" height="25" rx="3" fill="white"/><text x="1492" y="606" fill="#43816c" font-size="16" text-anchor="middle">执行业务</text>
+<text x="840" y="1298" font-size="18" fill="#52657f" text-anchor="middle">本地编写与调试代码，线上测试实例执行业务；跨网络时按会话访问提示配置端口转发。</text>
+</svg></html>

@@ -4,432 +4,117 @@ sidebar_position: 2
 
 # 导航、标签页与弹层
 
-适用对象：已经挂载微前端，准备调用页面导航、标签页通信、对话框、抽屉和提示能力的开发者。
+以下方法从 `ouroboros-sdk` 导入，在平台挂载后调用。路径示例以应用已配置 `/orders` 和 `/orders/detail` 页面为前提。
 
-## 使用场景
+## 菜单与标签页
 
-- 你想打开菜单、标签页，或者和打开方标签通信
-- 你想弹出对话框、抽屉或确认提示
-- 你想在页面内给用户显示成功、失败或警告消息
+| 方法 | 参数与行为 |
+| --- | --- |
+| `openMenu(menu)` | 接收路径字符串，或 `{ path, title?, parent?, icon?, showMode? }` |
+| `openTab(fullPath, options?)` | 打开标签页；`options` 支持 `title`、`breadcrumbs`、`icon`、`callback` |
+| `openOrSwitchTab(fullPath, options?)` | 复用匹配的标签页，否则打开新页 |
+| `closeTab(id?, result?)` | 关闭指定标签页；省略 `id` 关闭当前页，可携带返回数据 |
+| `sendToOpenerTab(id, data)` | 向该标签页的打开方回传消息；当前页传 `undefined` |
+| `updateTabTitle(id, title)` | 更新标题；当前页传 `undefined` |
 
-## 快速索引
-
-- 页面导航：`openMenu`、`openTab`、`closeTab`、`openOrSwitchTab`、`sendToOpenerTab`、`updateTabTitle`
-- 弹层与提示：`openDialog`、`openDrawer`、`confirm`、`alert`、`prompt`、`toast`
-
-## openMenu(menuOptions)
-
-打开新菜单。
-
-**参数说明**
-
-| 参数名      | 类型                                  | 必填 | 说明               |
-| ----------- | ------------------------------------- | ---- | ------------------ |
-| menuOptions | string \| [MenuOptions](#menuoptions) | 是   | 菜单地址或菜单对象 |
-
-### MenuOptions
-
-| 参数名   | 类型    | 必填 | 默认值 | 说明                                                                                 |
-| -------- | ------- | ---- | ------ | ------------------------------------------------------------------------------------ |
-| path     | string  | 是   |        | 路径地址                                                                             |
-| title    | string  | 否   |        | 标题                                                                                 |
-| parent   | string  | 否   |        | 父级唯一标识(由菜单标题+路径+当前处于菜单数组位置的下标组成), 影响菜单导航的高亮样式 |
-| icon     | string  | 否   |        | 图标                                                                                 |
-| showMode | boolean | 否   | `tab`  | 页面打开形式，支持 newWindow(新窗口全屏打开), fullScreen(当前窗口全屏打开), tab      |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
+`showMode` 是 `'tab'`、`'newWindow'` 或 `'fullScreen'`，默认 `'tab'`。页面配置会影响是否允许同一路径打开多个标签页。
 
 ```js
-import { openMenu } from 'ouroboros-sdk'
+import { openMenu, openTab, openOrSwitchTab } from 'ouroboros-sdk'
 
-openMenu('地址')
-```
-
-## openTab(fullPath,openTabOptions)
-
-打开新的标签页。
-
-**参数说明**
-
-| 参数名         | 类型                              | 必填 | 说明                         |
-| -------------- | --------------------------------- | ---- | ---------------------------- |
-| fullPath       | string                            | 是   | 带参数的完整路径             |
-| openTabOptions | [OpenTabOptions](#opentaboptions) | 否   | 标签页的其他信息，例如标题等 |
-
-### OpenTabOptions
-
-| 参数名      | 类型     | 必填 | 说明                                      |
-| ----------- | -------- | ---- | ----------------------------------------- |
-| title       | string   | 否   | 标签页标题                                |
-| breadcrumbs | object[] | 否   | 当前标签页路径的层级关系                  |
-| callback    | function | 否   | 通知 openTab 调用者，与之建立界面间的通信 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { openTab } from 'ouroboros-sdk'
-
-openTab('/system-setting/dynamic-form', {
-  title: '动态表单',
-  breadcrumbs: [
-    {
-      key: '系统设置3', // key = 菜单标题 + 路径 + 当前处于菜单数组位置的下标
-      title: '系统设置',
-    },
-    {
-      key: '动态表单管理/system-setting/dynamic-form3',
-      title: '动态表单',
-      path: '/system-setting/dynamic-form',
-    },
-  ],
+await openMenu({ path: '/orders', title: '订单', showMode: 'tab' })
+await openOrSwitchTab('/orders')
+await openTab('/orders/detail?id=order-001', {
+  title: '订单详情',
+  callback(result) {
+    if (result?.saved) console.log('订单已保存', result.id)
+  },
 })
 ```
 
-## closeTab(id,result)
-
-关闭标签页。
-
-**参数说明**
-
-| 参数名 | 类型   | 必填 | 默认值            | 说明              |
-| ------ | ------ | ---- | ----------------- | ----------------- |
-| id     | string | 否   | `当前标签页的 id` | 要关闭的标签页 ID |
-| result | object | 否   |                   | 标签页间通信信息  |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
+详情页保存后，选择“回传并关闭”或“回传后继续编辑”中的一种：
 
 ```js
-import { closeTab } from 'ouroboros-sdk'
+import { closeTab, sendToOpenerTab, updateTabTitle } from 'ouroboros-sdk'
 
-closeTab()
+await updateTabTitle(undefined, '订单 order-001')
+await sendToOpenerTab(undefined, { saved: true, id: 'order-001' })
+// 若要回传并关闭，使用：
+// await closeTab(undefined, { saved: true, id: 'order-001' })
 ```
 
-## openOrSwitchTab(fullPath,switchTabOptions)
+这些方法的异步调用可用 `await` 等待。固定标签页可能拒绝关闭；有配置的国际化标题时，显示标题优先使用翻译。
 
-打开新的标签页，或者切换到已打开的标签页。
+## 对话框与抽屉
 
-**参数说明**
+`openDialog(schema, ctx?)` 和 `openDrawer(schema, ctx?)` 返回 Promise：确认时为各表单值组成的数组，取消时为 `false`。
 
-| 参数名           | 类型                                  | 必填 | 说明             |
-| ---------------- | ------------------------------------- | ---- | ---------------- |
-| fullPath         | string                                | 是   | 带参数的完整路径 |
-| switchTabOptions | [SwitchTabOptions](#switchtaboptions) | 否   | 标签页的其他信息 |
+| 配置 | 类型 / 用途 |
+| --- | --- |
+| `title` | 标题 |
+| `body` | 内联 AMIS Schema |
+| `schemaId` | 已发布 UI Schema 的路径 |
+| `url` | 要加载的页面地址 |
+| `data` | 初始数据 |
+| `size` | `xs`、`sm`、`md`、`lg`、`xl`、`full` |
+| `position` | 抽屉方向：`left`、`right`、`top`、`bottom` |
+| `onConfirm(values)`、`onClose()` | 可选的结果回调 |
 
-### SwitchTabOptions {#switchtaboptions}
-
-| 参数名   | 类型     | 必填 | 说明                                      |
-| -------- | -------- | ---- | ----------------------------------------- |
-| callback | function | 否   | 通知 openTab 调用者，与之建立界面间的通信 |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
+内容按需求选择 `body`、`schemaId` 或 `url`；`ctx` 传递弹层可读取的上下文数据。
 
 ```js
-import { openOrSwitchTab } from 'ouroboros-sdk'
+import { openDialog, toast } from 'ouroboros-sdk'
 
-openOrSwitchTab('/your-tab-path')
-```
-
-## sendToOpenerTab(id,data)
-
-向打开当前标签页的调用者发送消息。
-
-**参数说明**
-
-| 参数名 | 类型   | 必填 | 默认值            | 说明         |
-| ------ | ------ | ---- | ----------------- | ------------ |
-| id     | string | 是   | `当前标签页的 id` | 标签页 ID    |
-| data   | any    | 是   |                   | 要发送的数据 |
-
-**示例**
-
-```js
-import { sendToOpenerTab } from 'ouroboros-sdk'
-
-sendToOpenerTab('通信信息')
-```
-
-## updateTabTitle(id,title)
-
-更新标签页标题。
-
-**参数说明**
-
-| 参数名 | 类型   | 必填 | 默认值            | 说明              |
-| ------ | ------ | ---- | ----------------- | ----------------- |
-| id     | string | 否   | `当前标签页的 id` | 要更新的标签页 ID |
-| title  | string | 是   |                   | 标题              |
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { updateTabTitle } from 'ouroboros-sdk'
-
-updateTabTitle('tab-id', '更新后的标题')
-```
-
-## openDialog(schema, ctx)
-
-打开一个对话框式模态框。
-
-**参数说明**
-
-| 参数名 | 类型                          | 必填 | 说明       |
-| ------ | ----------------------------- | ---- | ---------- |
-| schema | [DialogSchema](#dialogschema) | 是   | 模态框内容 |
-| ctx    | object                        | 否   | 上下文     |
-
-### DialogSchema {#dialogschema}
-
-| 参数名 | 类型       | 默认值 | 说明                                             |
-| ------ | ---------- | ------ | ------------------------------------------------ |
-| title  | SchemaNode |        | 弹出层标题                                       |
-| body   | SchemaNode |        | 往 Dialog 内容区加内容                           |
-| size   | string     |        | 指定 Dialog 大小，支持: xs、sm、md、lg、xl、full |
-
-[点击查看更多属性](https://aisuda.bce.baidu.com/amis/zh-CN/components/dialog?page=1#%E5%B1%9E%E6%80%A7%E8%A1%A8)
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
-
-```js
-import { openDialog } from 'ouroboros-sdk'
-
-const dialogPromise = await openDialog({
+const values = await openDialog({
+  title: '填写订单备注',
+  size: 'md',
   body: {
     type: 'form',
-    body: [
-      {
-        type: 'input-text',
-        name: 'name',
-        label: '姓名：',
-      },
-    ],
+    body: [{ type: 'input-text', name: 'remark', label: '备注' }],
   },
-  title: '测试标题',
 })
-// 点击确定按钮：dialogPromise = [{name: '测试name'}]
-// 点击取消按钮：dialogPromise = false
+if (values !== false) {
+  const remark = values[0]?.remark
+  toast.success(`已确认备注：${remark || '无'}`)
+}
 ```
 
-## openDrawer(schema, ctx)
+同样的表单可以传给 `openDrawer`，另加 `position: 'right'`。弹层内的微前端可用 `onConfirm(params, reload?)` 提交结果，用 `onCancel()` 取消。
 
-打开一个模态框-抽屉。
+## 确认与输入
 
-**参数说明**
+| 方法 | 结果 |
+| --- | --- |
+| `confirm(content, title?, optionsOrConfirmText?, cancelText?)` | Promise，确认 / 取消结果 |
+| `alert(content, title?, className?)` | Promise，等待用户关闭 |
+| `prompt(controls, defaultValue?, title?, confirmText?)` | Promise，输入结果或 `false` |
 
-| 参数名 | 类型                          | 必填 | 说明       |
-| ------ | ----------------------------- | ---- | ---------- |
-| schema | [DrawerSchema](#drawerschema) | 是   | 模态框内容 |
-| ctx    | object                        | 否   | 上下文     |
-
-### DrawerSchema {#drawerschema}
-
-| 参数名   | 类型       | 默认值  | 说明                                             |
-| -------- | ---------- | ------- | ------------------------------------------------ |
-| title    | SchemaNode |         | 弹出层标题                                       |
-| body     | SchemaNode |         | 往 Drawer 内容区加内容                           |
-| size     | string     |         | 指定 Drawer 大小，支持: xs、sm、md、lg、xl       |
-| position | string     | `right` | 指定 Drawer 大小，支持: left、right、top、bottom |
-
-[点击查看更多属性](https://aisuda.bce.baidu.com/amis/zh-CN/components/drawer#%E5%B1%9E%E6%80%A7%E8%A1%A8)
-
-**返回值**
-
-返回一个 Promise 对象。
-
-**示例**
+`confirm` 的第三个参数可以是按钮文本，也可以是配置对象：`confirmText`、`cancelText`、`confirmBtnLevel`、`cancelBtnLevel`、`closeOnEsc`、`size`、`className`。
 
 ```js
-import { openDrawer } from 'ouroboros-sdk'
+import { confirm, prompt } from 'ouroboros-sdk'
 
-const drawerPromise = await openDrawer({
-  body: {
-    type: 'form',
-    body: [
-      {
-        type: 'input-text',
-        name: 'name',
-        label: '姓名：',
-      },
-    ],
-  },
-  title: '测试标题',
-})
-// 点击确定按钮：drawerPromise = [{name: '测试name'}]
-// 点击取消按钮：drawerPromise = false
-```
+if (await confirm('确定取消这张订单？', '取消订单', { confirmText: '确认取消' })) {
+  console.log('用户已确认')
+}
 
-## confirm(content,title,optionsOrConfirmText,content)
-
-确认对话框
-
-**参数说明**
-
-| 参数名               | 类型                                        | 必填 | 说明                 |
-| -------------------- | ------------------------------------------- | ---- | -------------------- |
-| content              | string                                      | 是   | 内容                 |
-| title                | string                                      | 否   | 标题                 |
-| optionsOrConfirmText | string \| [ConfirmOptions](#confirmoptions) | 否   | 确认按钮配置或者文案 |
-| content              | string                                      | 否   | 取消按钮文案         |
-
-### ConfirmOptions {#confirmoptions}
-
-| 参数名          | 类型    | 必填 | 说明                                                                   |
-| --------------- | ------- | ---- | ---------------------------------------------------------------------- |
-| className       | string  | 否   | 指定确认对话框的类名                                                   |
-| closeOnEsc      | boolean | 否   | 是否允许按下 Esc 关闭对话框                                            |
-| size            | string  | 否   | 指定对话框的尺寸，支持： '' ,'xs' , 'sm' , 'md' , 'lg' , 'xl' , 'full' |
-| confirmBtnLevel | string  | 否   | 确认按钮的样式等级                                                     |
-| cancelBtnLevel  | string  | 否   | 取消按钮的样式等级                                                     |
-| confirmText     | string  | 否   | 确认按钮文本                                                           |
-| cancelText      | string  | 否   | 取消按钮文本                                                           |
-
-**返回值**
-
-返回一个 Promise 等待用户确认。
-
-**示例**
-
-```js
-import { confirm } from 'ouroboros-sdk'
-
-const confirmPromise = await confirm('内容区', '标题')
-```
-
-## alert(content,title)
-
-弹窗。
-
-**参数说明**
-
-| 参数名  | 类型   | 必填 | 说明 |
-| ------- | ------ | ---- | ---- |
-| content | string | 是   | 内容 |
-| title   | string | 否   | 标题 |
-
-**返回值**
-
-返回一个 Promise 用于处理异步操作的结果。
-
-**示例**
-
-```js
-import { alert } from 'ouroboros-sdk'
-
-const confirmPromise = await alert('内容区', '标题')
-```
-
-## prompt
-
-显示一个对话框，用于用户输入信息或做出选择。
-
-**参数说明**
-
-| 参数名       | 类型           | 必填 | 说明                                         |
-| ------------ | -------------- | ---- | -------------------------------------------- |
-| controls     | object\| array | 是   | 对话框的控件配置，可以是单个控件或控件数组。 |
-| defaultValue | string         | 否   | 对话框控件的默认值                           |
-| title        | string         | 否   | 对话框的标题                                 |
-| confirmText  | string         | 否   | 确认按钮的文本                               |
-
-**返回值**
-
-返回一个 Promise 用于处理异步操作的结果，点击确认按钮，返回用户输入的内容，点击取消按钮，返回 false。
-
-**示例**
-
-```js
-import { prompt } from 'ouroboros-sdk'
-
-const promptPromise = await prompt({
-  type: 'input-text',
-  name: 'name',
-  label: '姓名：',
-})
-
-或
-
-const promptPromise = await prompt(
-  [
-    {
-      className: 'w-full',
-      type: 'tpl',
-      label: false,
-      tpl: '当前有部分已更改数据因为格式不正确尚未保存，您确认要丢弃这部分更改吗？',
-    },
-    {
-      type: 'switch',
-      label: false,
-      option: '查看更改',
-      name: 'diff',
-      value: false,
-    },
-  ],
-  {
-    diff: true,
-  },
-  '请确认'
+const input = await prompt(
+  [{ type: 'input-text', name: 'reason', label: '原因', required: true }],
+  { reason: '' },
+  '填写取消原因',
 )
+if (input !== false) console.log(input.reason)
 ```
 
-## toast
-
-toast 提示。
-
-**方法说明**
-
-| 函数方法                            | 说明           |
-| ----------------------------------- | -------------- |
-| success、error、info(content, conf) | 显示成功消息   |
-| error(content, conf)                | 显示错误消息   |
-| info(content, conf)                 | 显示信息消息   |
-| warning(content, conf)              | 发显示警告消息 |
-
-**参数说明**
-
-| 参数名  | 类型                                    | 必填 | 说明             |
-| ------- | --------------------------------------- | ---- | ---------------- |
-| content | string                                  | 是   | 要显示的消息内容 |
-| conf    | string \| [ConfigObject](#configobject) | 否   | 配置对象         |
-
-### ConfigObject {#configobject}
-
-| 参数名      | 类型                | 必填 | 默认值 | 说明                 |
-| ----------- | ------------------- | ---- | ------ | -------------------- |
-| closeButton | boolean             | 否   | false  | 是否展示关闭按钮     |
-| showIcon    | boolean             | 否   | true   | 是否展示图标         |
-| timeout     | number              | 否   | 5000   | 持续时间             |
-| title       | string\|HTMLElement | 否   |        | 标题                 |
-| body        | string\|HTMLElement | 否   |        | 内容，会覆盖 content |
-
-**示例**
+## 消息提示
 
 ```js
 import { toast } from 'ouroboros-sdk'
 
-toast.success('操作成功')
-toast.error('操作失败', { timeout: 2000 })
+toast.success('保存成功')
+toast.error('保存失败，请检查输入', { timeout: 5000 })
+toast.info('任务已进入队列')
+toast.warning('请先选择订单')
 ```
+
+四种方法均接收 `content` 和可选配置。常用配置为 `timeout`（毫秒）、`closeButton`、`showIcon` 和 `title`。

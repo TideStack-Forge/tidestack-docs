@@ -7,6 +7,10 @@ const footer = {
       title: '开始浏览',
       items: [
         {
+          label: '平台介绍',
+          to: '/docs/overview',
+        },
+        {
           label: '快速上手',
           to: '/docs/getting-started',
         },
@@ -28,11 +32,7 @@ const footer = {
       title: '理解与查阅',
       items: [
         {
-          label: '平台介绍',
-          to: '/docs/overview',
-        },
-        {
-          label: '核心概念',
+          label: '概念与设计',
           to: '/docs/concepts',
         },
         {

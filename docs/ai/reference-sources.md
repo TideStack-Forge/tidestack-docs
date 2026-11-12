@@ -1,55 +1,63 @@
 ---
-title: 事实源地图
-sidebar_position: 5
+title: 知识来源与工具边界
+sidebar_position: 4
 ---
 
-# 事实源地图
+# 知识来源与工具边界
 
-本页定义 handbook、平台仓库、生成物、Context7 和 MCP Server 的职责边界。
+Handbook 提供公开知识，目标项目提供当前实现，运行环境提供实际状态。AI 应根据要回答的问题选择证据，并说明验证范围。
 
-## Handbook 内事实源
+## 各类问题以什么为依据
 
-| 事实 | 位置 | 用途 |
+| 要确认的问题 | 首选依据 | 能证明什么 |
 | --- | --- | --- |
-| 人类阅读主文档 | `docs/` | 教程、指南、解释、参考 |
-| AI 短入口 | `llms.txt` | 首轮上下文选择 |
-| AI 完整索引 | `llms-full.txt` | Context7/长上下文路由 |
-| AI 路由规则 | `docs/ai/` | Agent 如何读 handbook 和调用 MCP |
-| 公开 metadata schema | `docs/reference/jsonschema/metadata/` | JSON 校验和外部集成 |
-| OpenAPI 归档 | `openapi/` | HTTP API 合同发布位置 |
+| 平台概念、操作路径与公开 API | Handbook 对应专题及其版本声明 | 该版本的公开用法与约定 |
+| 当前项目使用的字段、依赖和扩展机制 | 目标项目的开发约定、构建文件、类型定义、注册文件和测试 | 当前项目实现的契约 |
+| 当前应用是否提交、发布或加载成功 | 应用版本记录、实例状态、日志和实际请求结果 | 目标环境在检查时的状态 |
+| 元数据 JSON 的基础结构 | 类型对应的公开 Schema，结合目标版本定义 | Schema 已描述的结构约束 |
+| HTTP 接口的实际契约 | 目标版本的接口定义或已发布 OpenAPI | 具体接口的路径、参数与响应 |
 
-## Handbook 内自包含资产
+文档与实现不一致时，先检查版本和适用范围。当前行为由项目与运行证据确认；应有行为还需对照公开契约和测试，不能因为某段代码存在就认定它正确。
 
-| 事实 | 位置 | 维护方式 |
+## Handbook 提供的资产
+
+以下路径相对于 Handbook 仓库根目录。站内页面可通过链接阅读；仓库资产按文件路径读取，不假定都有对应的站点下载地址。
+
+| 内容 | 位置或入口 | 使用方式 |
 | --- | --- | --- |
-| 元数据 Schema 索引 | `docs/reference/jsonschema/metadata/index.json` | 随 handbook 提交，不依赖外部仓库路径 |
-| 元数据 JSON Schema | `docs/reference/jsonschema/metadata/*.schema.json` | 作为文档资产发布；更新时从平台主仓库整理后提交结果 |
-| 项目模板契约 | `docs/reference/` 或专题指南 | 以公开文档承载，不引用未发布目录 |
-| 前端 SDK API | `docs/api/frontend/` | 以公开 API 文档承载 |
-| 后端 Java API | `docs/api/backend/` | 以公开 API 文档承载 |
+| 任务与概念文档 | `docs/` | 按[任务路由](./routing-hints.md)选择专题 |
+| AI 简要索引 | `llms.txt`、站点的 [llms.txt](pathname:///llms.txt) | 首轮定位文档 |
+| AI 扩展索引 | `llms-full.txt`、站点的 [llms-full.txt](pathname:///llms-full.txt) | 获取更详细的路由与边界说明；不包含全站正文 |
+| 元数据类型索引 | `docs/reference/jsonschema/metadata/index.json` | 按 `type`、`fileSuffix` 和 `schema` 找到对应文件 |
+| 元数据 JSON Schema | `docs/reference/jsonschema/metadata/*.schema.json` | 配合[JSON Schema 说明](../reference/jsonschema/index.md)检查结构 |
+| API、SDK 与 DSL 文档 | [API 参考](../api/index.md) | 核对专题版本后查阅 |
+| OpenAPI 归档目录 | `openapi/` | 当前仅有维护说明；存在实际规范文件后才可作为接口依据 |
 
-Handbook 开源发布后必须可独立阅读、索引和校验。文档正文可以说明 schema 来自平台实现，但不能要求读者或 AI Agent 访问 handbook 仓库外的项目目录。
+Handbook 作为独立仓库发布时，文档、索引和公开 Schema 必须自包含，不能要求读者访问平台主仓库中的未发布目录。项目实现只在检查目标项目时使用，不作为阅读公开手册的前提。
 
-## Context7 边界
+### Schema 校验的范围
 
-Context7 应索引稳定、公开、版本化的文档和示例。它不负责读取用户当前项目状态，也不执行校验或生成。
+公开 Schema 不等同于目标版本的完整类型定义。例如，当前 `business.schema.json` 允许额外属性，`fields` 等嵌套结构也未完整展开，因此校验通过仍可能包含拼错的字段或不受支持的配置。
 
-适合放入 Context7 的内容：
+结构校验后，还需要核对字段语义、版本兼容、跨资源引用和运行行为。Schema 的 `$id` 用于标识 Schema，不能据此认定该地址已经提供下载服务。
 
-- API reference；
-- SDK 示例；
-- 元数据 schema；
-- 模板契约；
-- 概念解释；
-- 迁移指南和常见错误。
+## 使用已有的 Context7 或 MCP 接入
 
-## MCP 边界
+以下说明接入方式与职责，不代表当前环境已经安装潮汐栈相关服务。
 
-MCP Server 应把 handbook 暴露为 resources，把需要当前环境和副作用的能力暴露为 tools。
-
-| MCP primitive | 应承载 | 不应承载 |
+| 方式 | 适合的任务 | 使用条件与边界 |
 | --- | --- | --- |
-| resources | handbook 文档、schema、OpenAPI、项目索引、模板清单 | 有副作用的操作 |
-| tools | 校验、生成、扫描、启动、平台 UI 控制、运行态查询 | 长篇静态文档 |
+| 直接读取手册或本地文件 | 查概念、指南、API、Schema | 能读取对应页面或仓库文件即可 |
+| Context7 文档检索 | 检索已收录的公开文档和示例 | 先确认有匹配的文档库与版本；不能据此读取当前应用状态或执行校验 |
+| MCP resources | 读取服务已暴露的文档、Schema、项目索引或模板清单 | 以服务实际暴露的资源为准，读取操作不产生业务副作用 |
+| MCP tools 或项目脚本 | 扫描、校验、生成、联调、运行态查询或平台操作 | 以当前环境实际提供的能力和授权范围为准 |
 
-工具必须有输入 JSON Schema；涉及写入、启动、发布、删除或平台控制时，要提供 dry-run、确认、审计和错误恢复方式。
+使用文档检索时，带上目标版本、模型或 API 名称和具体问题，例如 `ouroboros-sdk 请求与认证`。检索结果缺少版本依据时，继续核对专题原文和目标项目。
+
+没有匹配的 Context7 文档库或 MCP 工具时，可以直接读取 Handbook，并使用项目已有的脚本或测试；不要编造服务地址、工具名称、资源 URI 或执行结果。
+
+## 为手册提供 MCP 接入
+
+为 Handbook 或平台开发 MCP Server 时，文档、Schema、已有 OpenAPI 和项目索引通过 resources 提供；需要读取实时状态或执行操作的能力通过 tools 提供。长篇静态文档保留在资源中，工具描述引用对应资源或源文档，避免复制后产生两份事实。
+
+工具必须有输入 JSON Schema。涉及写入、启动、发布、删除或平台控制时，要明确作用对象、权限和副作用，并提供 dry-run、确认、审计和错误恢复方式。这是接入实现的要求，具体调用仍以当前工具契约为准。

@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="backend-startup-lifecycle" name="后端基座启动生命周期">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1480" pageHeight="1480">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="refresh-phases" value="" vertex="1" parent="1" style="rounded=1;arcSize=3;fillColor=#eef5ff;strokeColor=#8eafe0;dashed=0;">
+          <mxGeometry as="geometry" x="40" y="216" width="1400" height="1008" />
+        </mxCell>
+        <mxCell id="refresh-phases-title" value="上下文刷新阶段 · 同步发布事件，模块按监听顺序执行" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#204f86;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="60" y="226" width="1360" height="30" />
+        </mxCell>
+        <mxCell id="edge-0" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="400" />
+            <mxPoint as="targetPoint" x="408" y="424" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-1" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="552" />
+            <mxPoint as="targetPoint" x="408" y="576" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="704" />
+            <mxPoint as="targetPoint" x="408" y="728" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="856" />
+            <mxPoint as="targetPoint" x="408" y="880" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="1008" />
+            <mxPoint as="targetPoint" x="408" y="1032" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="168" />
+            <mxPoint as="targetPoint" x="408" y="272" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="408" y="1160" />
+            <mxPoint as="targetPoint" x="408" y="1288" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#b6746b;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1148" y="1232" />
+            <mxPoint as="targetPoint" x="1148" y="1288" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="process" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f7fa;strokeColor=#b3bfce;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="24" width="1320" height="136" />
+        </mxCell>
+        <mxCell id="process-heading" value="启动进程与装配模块" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="55.0" width="1304" height="32" />
+        </mxCell>
+        <mxCell id="process-line0" value="Spring Boot 创建上下文，装配模块、插件及基础服务" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="84.0" width="1304" height="28" />
+        </mxCell>
+        <mxCell id="process-line1" value="应用运行时准备应用元数据目录、AppContext 与控制消息监听" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="109.0" width="1304" height="28" />
+        </mxCell>
+        <mxCell id="context-refreshing" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="280" width="656" height="112" />
+        </mxCell>
+        <mxCell id="context-refreshing-heading" value="①  开始刷新上下文" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="311.5" width="640" height="32" />
+        </mxCell>
+        <mxCell id="context-refreshing-line0" value="OuroborosContextRefreshingEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="340.5" width="640" height="28" />
+        </mxCell>
+        <mxCell id="metadata-refreshing" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="432" width="656" height="112" />
+        </mxCell>
+        <mxCell id="metadata-refreshing-heading" value="②  刷新元数据" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="463.5" width="640" height="32" />
+        </mxCell>
+        <mxCell id="metadata-refreshing-line0" value="OuroborosMetadataRefreshingEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="492.5" width="640" height="28" />
+        </mxCell>
+        <mxCell id="metadata-refreshed" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="584" width="656" height="112" />
+        </mxCell>
+        <mxCell id="metadata-refreshed-heading" value="③  元数据刷新完成" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="615.5" width="640" height="32" />
+        </mxCell>
+        <mxCell id="metadata-refreshed-line0" value="OuroborosMetadataRefreshedEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="644.5" width="640" height="28" />
+        </mxCell>
+        <mxCell id="model-refreshing" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef9fb;strokeColor=#7fb9c3;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="736" width="656" height="112" />
+        </mxCell>
+        <mxCell id="model-refreshing-heading" value="④  刷新运行时模型" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#245e69;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="767.5" width="640" height="32" />
+        </mxCell>
+        <mxCell id="model-refreshing-line0" value="OuroborosModelRefreshingEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="796.5" width="640" height="28" />
+        </mxCell>
+        <mxCell id="model-refreshed" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="888" width="656" height="112" />
+        </mxCell>
+        <mxCell id="model-refreshed-heading" value="⑤  模型刷新完成" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="919.5" width="640" height="32" />
+        </mxCell>
+        <mxCell id="model-refreshed-line0" value="OuroborosModelRefreshedEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="948.5" width="640" height="28" />
+        </mxCell>
+        <mxCell id="context-refreshed" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="1040" width="656" height="112" />
+        </mxCell>
+        <mxCell id="context-refreshed-heading" value="⑥  上下文刷新完成" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1071.5" width="640" height="32" />
+        </mxCell>
+        <mxCell id="context-refreshed-line0" value="OuroborosContextRefreshedEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1100.5" width="640" height="28" />
+        </mxCell>
+        <mxCell id="ready" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="80" y="1296" width="656" height="112" />
+        </mxCell>
+        <mxCell id="ready-heading" value="READY · 开始服务业务请求" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1315.0" width="640" height="32" />
+        </mxCell>
+        <mxCell id="ready-line0" value="生命周期防护放行请求" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1344.0" width="640" height="28" />
+        </mxCell>
+        <mxCell id="ready-line1" value="受稳定上下文保护的业务执行继续进行" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="88" y="1369.0" width="640" height="28" />
+        </mxCell>
+        <mxCell id="failed" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#fff1ef;strokeColor=#d4a09a;strokeWidth=1.3;dashed=0;">
+          <mxGeometry as="geometry" x="896" y="1296" width="504" height="112" />
+        </mxCell>
+        <mxCell id="failed-heading" value="FAILED · 终止本轮刷新" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#8c453b;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="904" y="1315.0" width="488" height="32" />
+        </mxCell>
+        <mxCell id="failed-line0" value="记录失败阶段及模块，返回 HTTP 500" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="904" y="1344.0" width="488" height="28" />
+        </mxCell>
+        <mxCell id="failed-line1" value="异常继续向上传播" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="904" y="1369.0" width="488" height="28" />
+        </mxCell>
+        <mxCell id="edge-label5" value="ApplicationStartedEvent" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#627ba4;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="552.0" y="174" width="200" height="28" />
+        </mxCell>
+        <mxCell id="edge-label7" value="任一阶段异常" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#b6746b;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="1224.0" y="1248" width="112" height="28" />
+        </mxCell>
+        <mxCell id="note-0" value="准备或清理本轮刷新所需的上下文。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="284" width="304" height="30" />
+        </mxCell>
+        <mxCell id="note-1" value="生命周期防护记录阶段与模块进度。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="314" width="304" height="30" />
+        </mxCell>
+        <mxCell id="note-2" value="各提供者读取或刷新元数据。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="436" width="250" height="30" />
+        </mxCell>
+        <mxCell id="note-3" value="按对应模型的来源和优先级形成定义。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="466" width="322" height="30" />
+        </mxCell>
+        <mxCell id="note-4" value="业务模型更新投射结果。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="588" width="214" height="30" />
+        </mxCell>
+        <mxCell id="note-5" value="数据、页面、接口等定义进入后续装配。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="618" width="340" height="30" />
+        </mxCell>
+        <mxCell id="note-6" value="数据模型等运行时刷新，逻辑流构建候选快照。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="740" width="394" height="30" />
+        </mxCell>
+        <mxCell id="note-7" value="具体处理顺序由模块监听器约定。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="770" width="286" height="30" />
+        </mxCell>
+        <mxCell id="note-8" value="更新业务模型投射、类型化数据映射。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="892" width="322" height="30" />
+        </mxCell>
+        <mxCell id="note-9" value="执行数据初始化，再发布逻辑流运行快照。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="922" width="358" height="30" />
+        </mxCell>
+        <mxCell id="note-10" value="校验业务动作和事件订阅的运行绑定。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="1044" width="322" height="30" />
+        </mxCell>
+        <mxCell id="note-11" value="首次启动时注册计划任务，更新应用信息。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=18;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="816" y="1074" width="358" height="30" />
+        </mxCell>
+        <mxCell id="note-12" value="启动／刷新期间返回 HTTP 503；运行中刷新复用六个阶段，失败后需成功完成一次完整刷新才能恢复受保护的业务执行。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=17;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;">
+          <mxGeometry as="geometry" x="80" y="1433" width="940.8" height="29" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

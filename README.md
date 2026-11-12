@@ -10,7 +10,7 @@ TideStack Handbook 是潮汐栈面向人类读者和 AI Agent 的统一知识源
 | --- | --- | --- |
 | 新用户 | `docs/getting-started/` | 安装、创建应用、交付第一个业务功能 |
 | 低代码实施 | `docs/low-code/` | 从需求拆解到对象、页面、规则、权限、集成和发布 |
-| 融合开发者 | `docs/fusion-development/` | 前端/后端扩展、组件库、认证、实时能力和平台治理 |
+| 融合开发者 | `docs/fusion-development/` | 模型与 AI 协同实施、前后端能力接入、联调和交付验收 |
 | 运维人员 | `docs/operations/` | 部署、升级、备份、监控、排障和专项运行链路 |
 | API 查询者 | `docs/api/`、`docs/reference/` | SDK、Java API、DSL、Web API 规范和能力地图 |
 | AI Agent | `llms.txt`、`llms-full.txt`、`docs/ai/` | 路由任务、选择上下文、避免误改兼容标识 |
@@ -57,13 +57,15 @@ docs/reference/jsonschema/metadata/index.json
 
 更新 schema 时，应先在平台主仓库中从 canonical 元数据类型定义生成或整理，再把结果作为 handbook 文档资产提交到上述目录；发布后的 handbook 校验只读取自身目录。
 
-## AI 与 Context7
+## AI 入口
 
-- `llms.txt` 是短入口，适合首次上下文选择。
-- `llms-full.txt` 是完整路由索引，适合较长上下文或 Context7 索引。
-- `docs/ai/terminology.md` 固化 TideStack 与 Ouroboros 的兼容命名边界。
-- `docs/ai/routing-hints.md` 指导 Agent 在低代码、融合开发、API reference、schema 和 MCP tools 之间切换。
-- `docs/ai/task-recipes.md` 提供常见任务的上下文读取顺序和验收口径。
+- [开始使用](docs/ai/index.md)：提供手册上下文，并填写可复制的任务描述模板。
+- [按任务选择上下文](docs/ai/routing-hints.md)：从业务功能、元数据、扩展、API 或运维任务定位文档。
+- [任务执行与验收](docs/ai/task-recipes.md)：明确任务输入、实施顺序和验收结果。
+- [知识来源与工具边界](docs/ai/reference-sources.md)：区分手册、项目、运行状态、Schema 与已有 Context7/MCP 接入。
+- [术语与兼容命名](docs/ai/terminology.md)：统一产品名称，保留真实运行时标识。
+
+`llms.txt` 和 `llms-full.txt` 分别提供简要与扩展路由索引，均不包含全站正文。其中的路径相对于 Handbook 仓库根目录，仓库资产不一定有对应的站点下载地址。Context7 文档库与 MCP 服务以使用环境实际配置为准。
 
 ## MCP 集成原则
 

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="openness-principle" name="开放性原则">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1200" pageHeight="440">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="edge-0" parent="1" source="source" target="understanding" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.15714285714285714;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" parent="1" source="source" target="extension" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" parent="1" source="source" target="contribution" edge="1" style="edgeStyle=none;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;exitX=0.8428571428571429;exitY=1;entryX=0.5;entryY=0;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="source" value="&lt;b&gt;核心组件全部开源&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;项目依赖的基础能力保持透明&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#edf5ff;strokeColor=#8eb7e9;strokeWidth=1.5;fontColor=#1d4f91;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="40" width="1120" height="112" />
+        </mxCell>
+        <mxCell id="understanding" value="&lt;b&gt;查看实现&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;理解运行机制&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40" y="248" width="352" height="112" />
+        </mxCell>
+        <mxCell id="extension" value="&lt;b&gt;自主验证与扩展&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;围绕实际需求使用核心能力&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#f0fdfa;strokeColor=#73cfc2;strokeWidth=1.5;fontColor=#0f655d;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="424" y="248" width="352" height="112" />
+        </mxCell>
+        <mxCell id="contribution" value="&lt;b&gt;参与改进&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#52657f&quot;&gt;将经验回馈到公共能力&lt;/font&gt;" vertex="1" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#fff8ec;strokeColor=#dfb570;strokeWidth=1.5;fontColor=#7b4c17;fontSize=22;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="808" y="248" width="352" height="112" />
+        </mxCell>
+        <mxCell id="note-0" value="开放的实现与契约，为长期维护保留技术选择" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontColor=#52657f;fontSize=20;align=center;verticalAlign=middle;">
+          <mxGeometry as="geometry" x="40.0" y="392" width="1120" height="28" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
