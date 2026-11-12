@@ -42,6 +42,11 @@ const items = [
     sidebarId: 'aiSidebar',
   },
   {
+    label: '官网',
+    href: process.env.OFFICIAL_SITE_URL || 'https://www.tidestackforge.com',
+    position: 'right',
+  },
+  {
     type: 'search',
     position: 'right',
   },

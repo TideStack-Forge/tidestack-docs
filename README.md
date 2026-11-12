@@ -83,3 +83,18 @@ npm run serve
 ```
 
 构建产物输出到 `build/`，可部署到任意静态文件服务。GitHub Pages 推荐使用 `.github/workflows/deploy.yml`。
+
+导航栏的“官网”默认链接到 `https://www.tidestackforge.com`。国内站和国际站可在构建时通过 `OFFICIAL_SITE_URL` 指定各自的官网地址，例如（将示例地址替换为实际域名）：
+
+```bash
+OFFICIAL_SITE_URL=https://cn.example.com npm run build
+```
+
+Windows PowerShell：
+
+```powershell
+$env:OFFICIAL_SITE_URL = 'https://cn.example.com'
+npm run build
+```
+
+GitHub Pages 部署可设置仓库或 `github-pages` Environment 的同名 Actions 变量 `OFFICIAL_SITE_URL`；未设置或为空时使用默认官网。该地址在构建时写入静态页面，修改后需要重新构建。本地预览也可通过同一环境变量运行 `npm start`。
