@@ -30,6 +30,7 @@ npm start
 ```bash
 npm run check:structure
 npm run check:capabilities
+npm run check:diagrams
 npm run build
 ```
 
@@ -59,6 +60,28 @@ npm run check:capabilities
 `index.json` 从完整目录生成，不能单独编辑。`catalog.schema.json` 定义导入格式。校验会检查 Schema、唯一 ID、能力关系、文档路径及精简索引；在本项目完整检出中还检查源码和模块路径，独立发布手册时会明确提示无法检查源码。通过这些校验不代表能力已在部署实例中启用。
 
 目录采用可复用能力的粒度，不按类、方法或第三方依赖计数。新增能力需要记录真实入口；设计器专用、占位实现和旧兼容别名应在范围说明中交代，避免误列成运行能力。
+
+### 架构图样式与主题
+
+手册图表采用与线上官网协调的冷调多色、微渐变、细边框、小圆角、线性图标与局部点阵。共享样式定义在 `src/css/diagrams.css`，以 `--diagram-<色系>-surface/rule/ink` 分别表示面板、边框与文字。`--diagram-canvas` 表示画布，`--diagram-paper` 表示卡片底色。SVG 根节点使用 `class="ts-diagram"`，图形通过语义类选择颜色和层次，例如：
+
+```xml
+<rect class="diagram-wash-blue diagram-border-blue" ... />
+<rect class="diagram-card" ... />
+<text class="diagram-label-blue" ...>前端基座</text>
+<path class="diagram-line" ... />
+```
+
+修改共享配色后运行：
+
+```bash
+npm run sync:diagrams
+npm run check:diagrams
+```
+
+同步命令把 CSS、渐变定义和点阵定义嵌入 SVG 和配套 HTML，图表离线打开仍能显示；`check:diagrams` 会检查这些内容是否一致。密集架构图以淡色区域承载中性卡片，图标配小底板，点阵只用于少数贯穿全图的侧栏。手册通过 `html[data-theme]` 设置 `color-scheme`，外部 SVG 中的 `prefers-color-scheme` 据此切换亮暗配色；直接打开 SVG 或 HTML 时跟随系统主题。页面 CSS 无法直接选择外部 SVG 的内部节点，新增样式应放在共享文件中再同步。
+
+Markdown 继续以图片方式引用 SVG，现有 `external-svg-images` 插件与 `SvgViewer` 负责原图加载、放大、滚轮缩放和拖拽。维护图表时保留 `viewBox`、内容尺寸及外部图片引用。更新 `.drawio` 编辑源后，导出的 SVG 也需保留语义类并同步主题；`.drawio` 本身使用对应的亮色配色、渐变与图标，不参与网页主题切换。
 
 ### 教程示例工程
 

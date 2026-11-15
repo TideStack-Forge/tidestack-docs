@@ -1,19 +1,188 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>开闭原则</title><style>body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}.diagram-container{max-width:100%;overflow-x:auto}svg{display:block;width:100%;min-width:1200px;height:auto}@media print{.diagram-container{overflow:visible}svg{min-width:0}}</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="open-closed-principle-title open-closed-principle-desc">
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>开闭原则</title><style>body{margin:0;background:#f8fafc;color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}.diagram-container{max-width:100%;overflow-x:auto}svg{display:block;width:100%;min-width:1200px;height:auto}@media print{.diagram-container{overflow:visible}svg{min-width:0}}@media(prefers-color-scheme:dark){body{background:#06080c}}</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="open-closed-principle-title open-closed-principle-desc" id="open-closed-principle-root" class="ts-diagram">
 <title id="open-closed-principle-title">开闭原则</title>
 <desc id="open-closed-principle-desc">保留原有功能定义，以独立定制副本按规则覆盖生效；版本升级更新原定义，定制内容独立保留。</desc>
-<defs><marker id="open-closed-principle-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" fill="#71839a"/></marker></defs>
-<rect width="1200" height="480" fill="#fff"/>
-<path d="M284 176L284 256" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#open-closed-principle-arrow)"/>
-<path d="M916 176L916 256" fill="none" stroke="#71839a" stroke-width="1.5" marker-end="url(#open-closed-principle-arrow)"/>
-<g data-node="original" data-parent="1"><rect x="40" y="56" width="488" height="112" rx="8" fill="#edf5ff" stroke="#8eb7e9" stroke-width="1.5"/>
-<text x="284" y="108" fill="#1d4f91" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">原有功能定义</text>
-<text x="284" y="140" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">随产品版本持续演进</text></g>
-<g data-node="customization" data-parent="1"><rect x="672" y="56" width="488" height="112" rx="8" fill="#fff8ec" stroke="#dfb570" stroke-width="1.5"/>
-<text x="916" y="108" fill="#7b4c17" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">定制副本</text>
-<text x="916" y="140" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">不同阶段的差异独立保存</text></g>
-<g data-node="effective" data-parent="1"><rect x="40" y="264" width="1120" height="112" rx="8" fill="#f0fdfa" stroke="#73cfc2" stroke-width="1.5"/>
-<text x="600" y="316" fill="#0f655d" font-size="22" font-weight="600" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">当前生效功能</text>
-<text x="600" y="348" fill="#52657f" font-size="18" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">定制副本按规则覆盖，未定制部分继续复用</text></g>
-<text x="600" y="444" fill="#52657f" font-size="20" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif">升级更新原定义，定制副本独立保留并继续按覆盖规则生效</text>
+<defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs>
+      <style>#open-closed-principle-root { font-family:var(--diagram-font); }
+      #open-closed-principle-root .diagram-container { max-width:100%;overflow-x:auto }
+      @media print {
+#open-closed-principle-root .diagram-container { overflow:visible }
+}</style><marker id="open-closed-principle-open-closed-principle-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" class="diagram-muted" /></marker></defs>
+<rect width="1200" height="480" class="diagram-canvas" x="0" y="0" />
+<path d="M284 176L284 256" fill="none" stroke-width="1.5" marker-end="url(#open-closed-principle-open-closed-principle-arrow)" class="diagram-line" />
+<path d="M916 176L916 256" fill="none" stroke-width="1.5" marker-end="url(#open-closed-principle-open-closed-principle-arrow)" class="diagram-line" />
+<g data-node="original" data-parent="1"><rect x="40" y="56" width="488" height="112" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="284" y="108" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-blue">原有功能定义</text>
+<text x="284" y="140" font-size="18" text-anchor="middle" class="diagram-muted">随产品版本持续演进</text></g>
+<g data-node="customization" data-parent="1"><rect x="672" y="56" width="488" height="112" rx="8" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<text x="916" y="108" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-orange">定制副本</text>
+<text x="916" y="140" font-size="18" text-anchor="middle" class="diagram-muted">不同阶段的差异独立保存</text></g>
+<g data-node="effective" data-parent="1"><rect x="40" y="264" width="1120" height="112" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="600" y="316" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-teal">当前生效功能</text>
+<text x="600" y="348" font-size="18" text-anchor="middle" class="diagram-muted">定制副本按规则覆盖，未定制部分继续复用</text></g>
+<text x="600" y="444" font-size="20" text-anchor="middle" class="diagram-muted">升级更新原定义，定制副本独立保留并继续按覆盖规则生效</text>
 </svg></main></body></html>

@@ -1,78 +1,285 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1500 1108" width="1500" height="1108" role="img" aria-labelledby="system-collaboration-title system-collaboration-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1500 1108" width="1500" height="1108" role="img" aria-labelledby="system-collaboration-title system-collaboration-desc" class="ts-diagram">
 <title id="system-collaboration-title">系统协作关系</title>
 <desc id="system-collaboration-desc">开发平台通过开发支持连接 IDE 插件与开发助手，通过测试支持管理测试容器，通过在线编辑维护应用元数据；应用元数据交付到应用部署环境，由统一运行时基座装配运行。</desc>
-<defs><style>text{font-family:-apple-system,BlinkMacSystemFont,PingFang SC,Microsoft YaHei,sans-serif}</style>
-<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43818d"/></marker>
-<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#627ba4"/></marker>
-<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#9577b5"/></marker>
-<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#43816c"/></marker>
-<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" fill="#a57b33"/></marker>
-</defs>
-<rect width="1500" height="1180" fill="white"/>
+<defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
 
-<rect x="40" y="368" width="1420" height="760" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
-<text x="60" y="398" font-size="18" font-weight="600" fill="#204f86">开发与验证环境</text>
-<rect x="60" y="832" width="300" height="228" rx="8" fill="#f5f7fa" fill-opacity="0.55" stroke="#b3bfce" stroke-width="1"/>
-<text x="80" y="862" font-size="18" font-weight="600" fill="#43546c">开发者 IDE</text>
-<rect x="460" y="448" width="500" height="632" rx="8" fill="#eef5ff" fill-opacity="0.55" stroke="#8eafe0" stroke-width="1"/>
-<text x="480" y="478" font-size="18" font-weight="600" fill="#204f86">开发平台</text>
-<rect x="40" y="96" width="1420" height="184" rx="8" fill="#effaf5" fill-opacity="0.55" stroke="#78b59a" stroke-width="1"/>
-<text x="60" y="126" font-size="18" font-weight="600" fill="#216149">应用部署环境</text>
-<path d="M348 984L492 984" fill="none" stroke="#43818d" stroke-width="1.5" marker-end="url(#a43818d)" marker-start="url(#a43818d)"/>
-<path d="M928 964L1152 964" fill="none" stroke="#627ba4" stroke-width="1.5" marker-end="url(#a627ba4)"/>
-<path d="M1152 1004L928 1004" fill="none" stroke="#9577b5" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a9577b5)"/>
-<path d="M928 768L1152 768" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
-<path d="M1152 808L928 808" fill="none" stroke="#43816c" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)"/>
-<path d="M928 600L1152 600" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)" marker-start="url(#aa57b33)"/>
-<path d="M1300 660L1300 728" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
-<path d="M1300 540L1300 248" fill="none" stroke="#a57b33" stroke-width="1.5" marker-end="url(#aa57b33)"/>
-<path d="M1152 196L928 196" fill="none" stroke="#43816c" stroke-width="1.5" marker-end="url(#a43816c)"/>
-<g data-node="ide-plugin"><rect x="80" y="932" width="260" height="104" rx="7" fill="#eef9fb" stroke="#7fb9c3" stroke-width="1.3"/>
-<text x="210.0" y="994.5" font-size="21" font-weight="600" fill="#245e69" text-anchor="middle">TideStack 开发插件</text>
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><style>text{font-family:var(--diagram-font)}</style>
+<marker id="a43818d" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" class="diagram-label-sky" /></marker>
+<marker id="a627ba4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" class="diagram-label-blue" /></marker>
+<marker id="a9577b5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" class="diagram-label-violet" /></marker>
+<marker id="a43816c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" class="diagram-label-teal" /></marker>
+<marker id="aa57b33" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M1 1L7 4L1 7Z" class="diagram-label-orange" /></marker>
+<!--
+    Embedded Lucide icon geometry: ISC License
+    Copyright (c) 2026 Lucide Icons and Contributors
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+    Feather-derived icon geometry: The MIT License (MIT)
+    Copyright (c) 2013-present Cole Bemis
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+  --><symbol id="handbook-icon-cloud" viewBox="0 0 24 24">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+          </symbol>
+          <symbol id="handbook-icon-services" viewBox="0 0 24 24">
+            <path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2" />
+            <rect x="14" y="2" width="8" height="8" rx="1" />
+          </symbol>
+          </defs>
+<rect width="1500" height="1108" class="diagram-canvas" x="0" y="72" />
+
+<rect x="40" y="368" width="1420" height="760" rx="10" fill-opacity="1" stroke-width="1" class="diagram-shell" />
+<text x="88" y="398" font-size="18" font-weight="600" class="diagram-label-blue">开发与验证环境</text>
+<rect x="60" y="832" width="300" height="228" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<text x="80" y="862" font-size="18" font-weight="600" class="diagram-muted">开发者 IDE</text>
+<rect x="460" y="448" width="500" height="632" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="508" y="478" font-size="18" font-weight="600" class="diagram-label-blue">开发平台</text>
+<rect x="40" y="96" width="1420" height="184" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="88" y="126" font-size="18" font-weight="600" class="diagram-label-teal">应用部署环境</text>
+<path d="M348 984L492 984" fill="none" stroke-width="1.5" marker-end="url(#a43818d)" marker-start="url(#a43818d)" class="diagram-link-sky" />
+<path d="M928 964L1152 964" fill="none" stroke-width="1.5" marker-end="url(#a627ba4)" class="diagram-link-blue" />
+<path d="M1152 1004L928 1004" fill="none" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a9577b5)" class="diagram-link-violet" />
+<path d="M928 768L1152 768" fill="none" stroke-width="1.5" marker-end="url(#a43816c)" class="diagram-link-teal" />
+<path d="M1152 808L928 808" fill="none" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#a43816c)" class="diagram-link-teal" />
+<path d="M928 600L1152 600" fill="none" stroke-width="1.5" marker-end="url(#aa57b33)" marker-start="url(#aa57b33)" class="diagram-link-orange" />
+<path d="M1300 660L1300 728" fill="none" stroke-width="1.5" marker-end="url(#aa57b33)" class="diagram-link-orange" />
+<path d="M1300 540L1300 248" fill="none" stroke-width="1.5" marker-end="url(#aa57b33)" class="diagram-link-orange" />
+<path d="M1152 196L928 196" fill="none" stroke-width="1.5" marker-end="url(#a43816c)" class="diagram-link-teal" />
+<g data-node="ide-plugin"><rect x="80" y="932" width="260" height="104" rx="8" stroke-width="1" class="diagram-surface-sky diagram-border-sky diagram-wash-sky" />
+<text x="210.0" y="994.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">TideStack 开发插件</text>
 </g>
-<g data-node="development-support"><rect x="500" y="932" width="420" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
-<text x="710.0" y="982.5" font-size="23" font-weight="600" fill="#204f86" text-anchor="middle">开发支持</text>
-<text x="710.0" y="1008.5" font-size="17" fill="#52657f" text-anchor="middle">IDE 协作与元数据发现</text>
+<g data-node="development-support"><rect x="500" y="932" width="420" height="104" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="710.0" y="982.5" font-size="23" font-weight="600" text-anchor="middle" class="diagram-label-blue">开发支持</text>
+<text x="710.0" y="1008.5" font-size="17" text-anchor="middle" class="diagram-muted">IDE 协作与元数据发现</text>
 </g>
-<g data-node="test-support"><rect x="500" y="736" width="420" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
-<text x="710.0" y="786.5" font-size="23" font-weight="600" fill="#204f86" text-anchor="middle">测试支持</text>
-<text x="710.0" y="812.5" font-size="17" fill="#52657f" text-anchor="middle">测试容器管理与联调反馈</text>
+<g data-node="test-support"><rect x="500" y="736" width="420" height="104" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="710.0" y="786.5" font-size="23" font-weight="600" text-anchor="middle" class="diagram-label-blue">测试支持</text>
+<text x="710.0" y="812.5" font-size="17" text-anchor="middle" class="diagram-muted">测试容器管理与联调反馈</text>
 </g>
-<g data-node="online-editor"><rect x="500" y="548" width="420" height="104" rx="7" fill="#eef5ff" stroke="#8eafe0" stroke-width="1.3"/>
-<text x="710.0" y="598.5" font-size="23" font-weight="600" fill="#204f86" text-anchor="middle">在线编辑</text>
-<text x="710.0" y="624.5" font-size="17" fill="#52657f" text-anchor="middle">可视化建模与应用元数据维护</text>
+<g data-node="online-editor"><rect x="500" y="548" width="420" height="104" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="710.0" y="598.5" font-size="23" font-weight="600" text-anchor="middle" class="diagram-label-blue">在线编辑</text>
+<text x="710.0" y="624.5" font-size="17" text-anchor="middle" class="diagram-muted">可视化建模与应用元数据维护</text>
 </g>
-<g data-node="helper"><rect x="1160" y="932" width="280" height="104" rx="7" fill="#f5f1fc" stroke="#b3a0d6" stroke-width="1.3"/>
-<text x="1300.0" y="969.0" font-size="22" font-weight="600" fill="#63448e" text-anchor="middle">开发助手</text>
-<text x="1300.0" y="995.0" font-size="17" fill="#52657f" text-anchor="middle">加载扩展及依赖</text>
-<text x="1300.0" y="1021.0" font-size="17" fill="#52657f" text-anchor="middle">发现元数据</text>
+<g data-node="helper"><rect x="1160" y="932" width="280" height="104" rx="8" stroke-width="1" class="diagram-surface-violet diagram-border-violet diagram-wash-violet" />
+<text x="1300.0" y="969.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-violet">开发助手</text>
+<text x="1300.0" y="995.0" font-size="17" text-anchor="middle" class="diagram-muted">加载扩展及依赖</text>
+<text x="1300.0" y="1021.0" font-size="17" text-anchor="middle" class="diagram-muted">发现元数据</text>
 </g>
-<g data-node="test"><rect x="1160" y="736" width="280" height="104" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
-<text x="1300.0" y="773.0" font-size="22" font-weight="600" fill="#216149" text-anchor="middle">测试容器</text>
-<text x="1300.0" y="799.0" font-size="17" fill="#52657f" text-anchor="middle">统一运行时基座</text>
-<text x="1300.0" y="825.0" font-size="17" fill="#52657f" text-anchor="middle">加载当前应用进行验证</text>
+<g data-node="test"><rect x="1160" y="736" width="280" height="104" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="1300.0" y="773.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-teal">测试容器</text>
+<text x="1300.0" y="799.0" font-size="17" text-anchor="middle" class="diagram-muted">统一运行时基座</text>
+<text x="1300.0" y="825.0" font-size="17" text-anchor="middle" class="diagram-muted">加载当前应用进行验证</text>
 </g>
-<g data-node="metadata"><rect x="1160" y="548" width="280" height="104" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
-<text x="1300.0" y="598.0" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用元数据</text>
-<text x="1300.0" y="624.0" font-size="17" fill="#52657f" text-anchor="middle">模型定义、扩展与界面资源</text>
+<g data-node="metadata"><rect x="1160" y="548" width="280" height="104" rx="8" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<text x="1300.0" y="598.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-orange">应用元数据</text>
+<text x="1300.0" y="624.0" font-size="17" text-anchor="middle" class="diagram-muted">模型定义、扩展与界面资源</text>
 </g>
-<g data-node="runtime"><rect x="80" y="152" width="840" height="88" rx="7" fill="#effaf5" stroke="#78b59a" stroke-width="1.3"/>
-<text x="500.0" y="194.0" font-size="23" font-weight="600" fill="#216149" text-anchor="middle">统一运行时基座</text>
-<text x="500.0" y="221.0" font-size="18" fill="#52657f" text-anchor="middle">前端基座＋后端基座</text>
+<g data-node="runtime"><rect x="80" y="152" width="840" height="88" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="500.0" y="194.0" font-size="23" font-weight="600" text-anchor="middle" class="diagram-label-teal">统一运行时基座</text>
+<text x="500.0" y="221.0" font-size="18" text-anchor="middle" class="diagram-muted">前端基座＋后端基座</text>
 </g>
-<g data-node="deployed-metadata"><rect x="1160" y="152" width="280" height="88" rx="7" fill="#fff7e9" stroke="#d4ad69" stroke-width="1.3"/>
-<text x="1300.0" y="194.0" font-size="22" font-weight="600" fill="#805719" text-anchor="middle">应用元数据</text>
-<text x="1300.0" y="220.0" font-size="17" fill="#52657f" text-anchor="middle">随应用部署到目标环境</text>
+<g data-node="deployed-metadata"><rect x="1160" y="152" width="280" height="88" rx="8" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<text x="1300.0" y="194.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-orange">应用元数据</text>
+<text x="1300.0" y="220.0" font-size="17" text-anchor="middle" class="diagram-muted">随应用部署到目标环境</text>
 </g>
-<rect x="380.0" y="952" width="80" height="25" rx="3" fill="white"/><text x="420" y="970" fill="#43818d" font-size="16" text-anchor="middle">开发协作</text>
-<rect x="992.0" y="932" width="96" height="25" rx="3" fill="white"/><text x="1040" y="950" fill="#627ba4" font-size="16" text-anchor="middle">管理与命令</text>
-<rect x="1008.0" y="972" width="64" height="25" rx="3" fill="white"/><text x="1040" y="990" fill="#9577b5" font-size="16" text-anchor="middle">元数据</text>
-<rect x="992.0" y="736" width="96" height="25" rx="3" fill="white"/><text x="1040" y="754" fill="#43816c" font-size="16" text-anchor="middle">创建与启停</text>
-<rect x="976.0" y="776" width="128" height="25" rx="3" fill="white"/><text x="1040" y="794" fill="#43816c" font-size="16" text-anchor="middle">日志与状态回传</text>
-<rect x="992.0" y="568" width="96" height="25" rx="3" fill="white"/><text x="1040" y="586" fill="#a57b33" font-size="16" text-anchor="middle">读取与保存</text>
-<rect x="1324.0" y="686" width="96" height="25" rx="3" fill="white"/><text x="1372" y="704" fill="#a57b33" font-size="16" text-anchor="middle">加载元数据</text>
-<rect x="1324.0" y="310" width="48" height="25" rx="3" fill="white"/><text x="1348" y="328" fill="#a57b33" font-size="16" text-anchor="middle">交付</text>
-<rect x="992.0" y="164" width="96" height="25" rx="3" fill="white"/><text x="1040" y="182" fill="#43816c" font-size="16" text-anchor="middle">装配与运行</text>
-<text x="210" y="896" font-size="18" fill="#52657f" text-anchor="middle">IDEA／VS Code</text>
-<text x="750" y="1164" font-size="18" fill="#52657f" text-anchor="middle">应用部署环境使用独立配置与业务数据，由统一运行时基座加载应用元数据。</text>
-</svg>
+<rect x="380.0" y="952" width="80" height="25" rx="3" class="diagram-paper" /><text x="420" y="970" font-size="16" text-anchor="middle" class="diagram-label-sky">开发协作</text>
+<rect x="992.0" y="932" width="96" height="25" rx="3" class="diagram-paper" /><text x="1040" y="950" font-size="16" text-anchor="middle" class="diagram-label-blue">管理与命令</text>
+<rect x="1008.0" y="972" width="64" height="25" rx="3" class="diagram-paper" /><text x="1040" y="990" font-size="16" text-anchor="middle" class="diagram-label-violet">元数据</text>
+<rect x="992.0" y="736" width="96" height="25" rx="3" class="diagram-paper" /><text x="1040" y="754" font-size="16" text-anchor="middle" class="diagram-label-teal">创建与启停</text>
+<rect x="976.0" y="776" width="128" height="25" rx="3" class="diagram-paper" /><text x="1040" y="794" font-size="16" text-anchor="middle" class="diagram-label-teal">日志与状态回传</text>
+<rect x="992.0" y="568" width="96" height="25" rx="3" class="diagram-paper" /><text x="1040" y="586" font-size="16" text-anchor="middle" class="diagram-label-orange">读取与保存</text>
+<rect x="1324.0" y="686" width="96" height="25" rx="3" class="diagram-paper" /><text x="1372" y="704" font-size="16" text-anchor="middle" class="diagram-label-orange">加载元数据</text>
+<rect x="1324.0" y="310" width="48" height="25" rx="3" class="diagram-paper" /><text x="1348" y="328" font-size="16" text-anchor="middle" class="diagram-label-orange">交付</text>
+<rect x="992.0" y="164" width="96" height="25" rx="3" class="diagram-paper" /><text x="1040" y="182" font-size="16" text-anchor="middle" class="diagram-label-teal">装配与运行</text>
+<text x="210" y="896" font-size="18" text-anchor="middle" class="diagram-muted">IDEA／VS Code</text>
+<text x="750" y="1164" font-size="18" text-anchor="middle" class="diagram-muted">应用部署环境使用独立配置与业务数据，由统一运行时基座加载应用元数据。</text>
+<rect x="56" y="378" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-cloud" x="60" y="382" width="20" height="20" class="diagram-icon" style="color:var(--diagram-blue-ink)" aria-hidden="true" /><rect x="476" y="458" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-services" x="480" y="462" width="20" height="20" class="diagram-icon" style="color:var(--diagram-blue-ink)" aria-hidden="true" /><rect x="56" y="106" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-cloud" x="60" y="110" width="20" height="20" class="diagram-icon" style="color:var(--diagram-teal-ink)" aria-hidden="true" /></svg>

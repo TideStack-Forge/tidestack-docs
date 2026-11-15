@@ -103,7 +103,7 @@
 .image {
   display: block;
   max-width: none;
-  background: white;
+  background: var(--ifm-background-surface-color);
 }
 
 .loading {

@@ -15,7 +15,7 @@ export default defineConfig({
     environment: 'happy-dom',
     include: ['src/**/*.test.jsx', 'config/**/*.test.mjs', 'scripts/**/*.test.mjs'],
     coverage: {
-      include: ['src/components/SvgViewer/*.jsx', 'src/components/CapabilityMarket/*.jsx', 'src/theme/MDXComponents/index.jsx', 'config/plugins/external-svg-images.js'],
+      include: ['src/components/SvgViewer/*.jsx', 'src/components/CapabilityMarket/*.jsx', 'src/theme/MDXComponents/index.jsx', 'config/plugins/external-svg-images.js', 'scripts/sync-diagram-styles.mjs'],
       exclude: ['**/*.test.jsx'],
       thresholds: {lines: 70, functions: 70, branches: 70, statements: 70},
     },

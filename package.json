@@ -12,6 +12,8 @@
     "serve": "docusaurus serve",
     "check:structure": "node --no-warnings scripts/check-handbook-structure.mjs",
     "check:capabilities": "node scripts/check-capability-catalog.mjs",
+    "check:diagrams": "node scripts/sync-diagram-styles.mjs --check",
+    "sync:diagrams": "node scripts/sync-diagram-styles.mjs",
     "sync:capabilities": "node scripts/check-capability-catalog.mjs --write-index",
     "package:examples": "python3 scripts/package-material-example.py",
     "sync:llms-static": "node scripts/sync-llms-static.mjs",
@@ -35,10 +37,10 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
-    "@vitest/coverage-v8": "^3.2.7",
+    "@vitest/coverage-v8": "^4.1.10",
     "ajv": "^8.18.0",
     "happy-dom": "^20.14.6",
-    "vitest": "^3.2.7"
+    "vitest": "^4.1.10"
   },
   "browserslist": {
     "production": [

@@ -8,9 +8,9 @@ title: 文件上传存储扩展
 
 ## 当前接入条件
 
-`UploadStorageService` 提供存储契约，但当前默认 `UploadController` 内部直接创建 `FileSystemUploadStorageService`，下载控制器也使用文件系统实现。仅新增一个同接口 Bean 或 SPI 文件，不会替换默认 `/api/upload` 与下载链路。
+默认上传和下载共同注入 `uploadStorageService`，由 BlobUploadStorageService 持有独立配置创建的公共 BlobStore。开发接收、文档和资源各自创建实例，设置互不继承。部署引入后端 JAR 后，通过消费者的 `storage.type/options` 选择 filesystem / s3。
 
-因此，已有应用支持的路径、文件名和 URL 策略可以按下一节直接扩展；增加新的存储介质时，应先确认目标版本是否已有正式的存储选择机制。当前实现尚需在平台主装配位置完善选择，并将上传、下载、临时转正式等调用统一接入后，才能作为默认端点的存储插件使用。本教程不将该能力描述为安装 JAR 即可切换。
+公共介质扩展使用 `com.ouroboros.storage.BlobStoreFactory` 与原 Java SPI，不需要重新实现临时文件、业务采用及 URL 规则。配置与迁移见仓库 `docs/guides/content-storage.md`，模块合同见 `libs/storage/README.md`。
 
 ## 1. 只调整命名、路径或访问 URL
 
@@ -35,7 +35,7 @@ title: 文件上传存储扩展
 | `permanentlyTempFile` | 临时文件转正式文件 |
 | 分片 start、add、finish、abort | 会话、分片校验、合并与取消，区分临时和正式文件 |
 
-按接口返回的 `Either` 保留失败，不将存储失败伪装为成功地址。明确流关闭责任、临时清理、重复合并与文件不存在行为。现有文件系统实现可作为契约参照。
+按接口返回的 `Either` 保留失败，不将存储失败伪装为成功地址。明确流关闭责任、临时清理、重复合并与文件不存在行为。上传业务规则由 BlobUploadStorageService 负责，公共后端参照 BlobStore 合同。
 
 ## 3. 验证完整链路
 
