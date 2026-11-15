@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">逻辑流 | 潮汐栈</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" name="twitter:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" property="og:url" content="https://docs.tidestack.dev/docs/low-code/development-platform-menus/logicflow"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="逻辑流 | 潮汐栈"><meta data-rh="true" name="description" content="逻辑流用节点和连线组织一段可执行的业务处理。它可以接收输入、判断条件、转换数据、读写数据模型，并把结果返回给接口、计划任务或消息队列等调用方。"><meta data-rh="true" property="og:description" content="逻辑流用节点和连线组织一段可执行的业务处理。它可以接收输入、判断条件、转换数据、读写数据模型，并把结果返回给接口、计划任务或消息队列等调用方。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/logicflow"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/logicflow" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/logicflow" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"逻辑流","item":"https://docs.tidestack.dev/docs/low-code/development-platform-menus/logicflow"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="潮汐栈 RSS Feed">
-<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.4938d6c4.css">
-<script src="/assets/js/runtime~main.9b242c50.js" defer="defer"></script>
-<script src="/assets/js/main.2555d3d3.js" defer="defer"></script>
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.c6af6d97.css">
+<script src="/assets/js/runtime~main.424a1f63.js" defer="defer"></script>
+<script src="/assets/js/main.4aaaa5f3.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -16,17 +16,17 @@
 <p>逻辑流用节点和连线组织一段可执行的业务处理。它可以接收输入、判断条件、转换数据、读写数据模型，并把结果返回给接口、计划任务或消息队列等调用方。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="打开逻辑流">打开逻辑流<a href="#打开逻辑流" class="hash-link" aria-label="打开逻辑流的直接链接" title="打开逻辑流的直接链接" translate="no">​</a></h2>
 <p>打开应用，在左侧菜单选择“业务逻辑 / 逻辑流”。列表汇总当前应用可见的逻辑流及其版本状态。</p>
-<p><img decoding="async" loading="lazy" alt="逻辑流列表" src="/assets/images/logicflow-overview-b99af5c37db70094e64e46fccc112342.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="逻辑流列表" src="/assets/images/logicflow-overview-dddf546db0149a514b535256d34d6c06.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>列</th><th>说明</th></tr></thead><tbody><tr><td>模型</td><td>逻辑流名称；锁图标表示模型正在被编辑。</td></tr><tr><td>校验状态</td><td>出现警告图标时，表示后端校验发现错误或诊断信息。</td></tr><tr><td>入口节点</td><td>流程接收输入的节点。</td></tr><tr><td>出口节点</td><td>流程返回结果的节点。</td></tr><tr><td>文件大小</td><td>逻辑流定义文件的大小。</td></tr><tr><td>创建时间</td><td>模型首次创建的时间。</td></tr><tr><td>修改时间</td><td>最近一次保存的时间。</td></tr><tr><td>操作</td><td>编辑、查看校验错误、查看变更记录或删除。</td></tr></tbody></table>
 <p>页面上的显示模式开关用于切换列表详情的展示方式，不会修改逻辑流定义。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="新建逻辑流">新建逻辑流<a href="#新建逻辑流" class="hash-link" aria-label="新建逻辑流的直接链接" title="新建逻辑流的直接链接" translate="no">​</a></h2>
 <p>点击“新增”，先填写逻辑流的基本信息。</p>
-<p><img decoding="async" loading="lazy" alt="新建逻辑流" src="/assets/images/create-logicflow-976ded756efc37a4b64bd8c489b6c939.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="新建逻辑流" src="/assets/images/create-logicflow-882a975b9045f160227317035a79d415.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>配置项</th><th>说明</th></tr></thead><tbody><tr><td>模型名</td><td>必填。应用内唯一的逻辑流标识，后续接口、计划任务和消息绑定通过它引用逻辑流。</td></tr><tr><td>模型描述</td><td>说明逻辑流的用途、输入和预期输出。</td></tr></tbody></table>
 <p>保存后打开编辑器，继续配置节点和连线。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用编辑器">使用编辑器<a href="#使用编辑器" class="hash-link" aria-label="使用编辑器的直接链接" title="使用编辑器的直接链接" translate="no">​</a></h2>
 <p>编辑器由左侧节点库、中间画布和右侧属性面板组成。顶部画布工具栏用于控制面板、对齐和吸附，右下角提供缩略图、缩放及定位操作。</p>
-<p><img decoding="async" loading="lazy" alt="逻辑流编辑器和流程属性" src="/assets/images/editor-overview-668dd2e754713025ff255e50b42f5d16.png" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="逻辑流编辑器和流程属性" src="/assets/images/editor-overview-79c7ceb56e5183a530c85d69f4f4b425.png" width="1920" height="1080" class="img_ev3q"></p>
 <p>节点库支持按名称搜索。<strong>保存布局</strong> 用于把画布排布随定义保存，<strong>保存</strong> 保存工作区定义，<strong>提交</strong> 将已完成的修改纳入应用版本。保存和提交都会检查当前定义；存在阻断错误时，先按诊断修正。</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="节点库">节点库<a href="#节点库" class="hash-link" aria-label="节点库的直接链接" title="节点库的直接链接" translate="no">​</a></h3>
 <p>从节点库把需要的节点拖到画布。常见节点包括：</p>
@@ -42,7 +42,7 @@
 <p>具体可用节点取决于当前平台加载的逻辑流扩展。</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="节点基本信息">节点基本信息<a href="#节点基本信息" class="hash-link" aria-label="节点基本信息的直接链接" title="节点基本信息的直接链接" translate="no">​</a></h3>
 <p>选中节点后，属性面板会显示通用字段和该节点的专属配置。</p>
-<p><img decoding="async" loading="lazy" alt="定义常量节点的属性和端口" src="/assets/images/node-properties-001f251cf756fd40a224736c57fdc0c0.png" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="数据校验节点的属性和端口" src="/assets/images/node-properties-7356d5134879ba1d944bb04dcb76f613.png" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>配置项</th><th>说明</th></tr></thead><tbody><tr><td>类型</td><td>节点类型，只读。</td></tr><tr><td>名称</td><td>节点在当前逻辑流中的唯一标识。</td></tr><tr><td>描述</td><td>节点的业务用途或处理说明。</td></tr><tr><td>异步</td><td>开启后按该节点支持的异步方式执行。</td></tr><tr><td>启用</td><td>关闭后节点不参与当前流程执行。</td></tr><tr><td>输入端口</td><td>定义节点接收的数据及端口数量。不同节点允许的最小和最大数量不同。</td></tr><tr><td>输出端口</td><td>定义节点向下游传递的数据。</td></tr></tbody></table>
 <p>节点的专属字段会随类型变化。例如数据操作节点需要选择数据模型并配置查询或写入内容，脚本节点需要填写脚本，分支节点需要配置判断  条件。应逐项完成属性面板中出现的必填字段。</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="连线">连线<a href="#连线" class="hash-link" aria-label="连线的直接链接" title="连线的直接链接" translate="no">​</a></h3>

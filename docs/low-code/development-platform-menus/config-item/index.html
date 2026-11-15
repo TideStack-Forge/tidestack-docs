@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">配置项 | 潮汐栈</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" name="twitter:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" property="og:url" content="https://docs.tidestack.dev/docs/low-code/development-platform-menus/config-item"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="配置项 | 潮汐栈"><meta data-rh="true" name="description" content="配置项用于声明应用运行所需的可变参数，例如外部服务地址、功能开关或凭据引用。应用定义保存配置的结构和默认值，各运行环境再提供实际值。"><meta data-rh="true" property="og:description" content="配置项用于声明应用运行所需的可变参数，例如外部服务地址、功能开关或凭据引用。应用定义保存配置的结构和默认值，各运行环境再提供实际值。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/config-item"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/config-item" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/config-item" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"配置项","item":"https://docs.tidestack.dev/docs/low-code/development-platform-menus/config-item"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="潮汐栈 RSS Feed">
-<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.4938d6c4.css">
-<script src="/assets/js/runtime~main.9b242c50.js" defer="defer"></script>
-<script src="/assets/js/main.2555d3d3.js" defer="defer"></script>
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.c6af6d97.css">
+<script src="/assets/js/runtime~main.424a1f63.js" defer="defer"></script>
+<script src="/assets/js/main.4aaaa5f3.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -16,10 +16,10 @@
 <p>配置  项用于声明应用运行所需的可变参数，例如外部服务地址、功能开关或凭据引用。应用定义保存配置的结构和默认值，各运行环境再提供实际值。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="打开配置项">打开配置项<a href="#打开配置项" class="hash-link" aria-label="打开配置项的直接链接" title="打开配置项的直接链接" translate="no">​</a></h2>
 <p>打开应用，在左侧菜单选择“基础配置 / 配置项”。列表显示配置键、配置名、范围、可修改性、可空性、值类型、默认值、描述和过时状态。</p>
-<p><img decoding="async" loading="lazy" alt="配置项列表" src="/assets/images/config-item-overview-3b5ca50f6eefe635cd079c1fee3f533a.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="配置项列表" src="/assets/images/config-item-overview-33fab1349daf9e79307755e4c4cee074.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="新增配置项">新增配置项<a href="#新增配置项" class="hash-link" aria-label="新增配置项的直接链接" title="新增配置项的直接链接" translate="no">​</a></h2>
 <p>点击“新增”，填写：</p>
-<p><img decoding="async" loading="lazy" alt="新增配置项" src="/assets/images/create-config-item-222c4173a4da98226460a3b0a0a63e4f.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="新增配置项" src="/assets/images/create-config-item-1c47536d5bd9aa6468f18135f17b4ac5.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>配置项</th><th>说明</th></tr></thead><tbody><tr><td>配置键</td><td>必填。应用内唯一的稳定标识，代码和表达式通过它读取配置。</td></tr><tr><td>配置项名称</td><td>必填。管理界面中的可读名称。</td></tr><tr><td>描述</td><td>说明用途、取值范围、示例和安全要求。</td></tr><tr><td>范围</td><td>必填。可选前端或后端。</td></tr><tr><td>是否允许修改</td><td>控制运行环境管理员能否覆盖配置值。</td></tr><tr><td>是否允许为空</td><td>控制实际配置是否可以留空。</td></tr><tr><td>值类型</td><td>选择配置值的数据类型。</td></tr><tr><td>默认值</td><td>没有环境覆盖时使用的值。</td></tr><tr><td>值编辑器</td><td>使用 UI Schema 定义运行环境中编辑该配置的控件和校验。</td></tr></tbody></table>
 <p>前端范围的配置可能被发送到浏览器，不能用于密码、令牌或私钥。敏感配置应使用后端范围，并由受控环境提供实际值。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="配置值编辑器">配置值编辑器<a href="#配置值编辑器" class="hash-link" aria-label="配置值编辑器的直接链接" title="配置值编辑器的直接链接" translate="no">​</a></h2>

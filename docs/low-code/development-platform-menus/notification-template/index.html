@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">通知模板 | 潮汐栈</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" name="twitter:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" property="og:url" content="https://docs.tidestack.dev/docs/low-code/development-platform-menus/notification-template"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="通知模板 | 潮汐栈"><meta data-rh="true" name="description" content="通知模板集中定义一类通知的载荷参数，以及站内信、微信、短信、钉钉、推送、邮件和电话等渠道的内容。业务逻辑发送通知时只需提供模板名、接收人和载荷数据。"><meta data-rh="true" property="og:description" content="通知模板集中定义一类通知的载荷参数，以及站内信、微信、短信、钉钉、推送、邮件和电话等渠道的内容。业务逻辑发送通知时只需提供模板名、接收人和载荷数据。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/notification-template"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/notification-template" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/low-code/development-platform-menus/notification-template" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"通知模板","item":"https://docs.tidestack.dev/docs/low-code/development-platform-menus/notification-template"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="潮汐栈 RSS Feed">
-<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.4938d6c4.css">
-<script src="/assets/js/runtime~main.9b242c50.js" defer="defer"></script>
-<script src="/assets/js/main.2555d3d3.js" defer="defer"></script>
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.c6af6d97.css">
+<script src="/assets/js/runtime~main.424a1f63.js" defer="defer"></script>
+<script src="/assets/js/main.4aaaa5f3.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -16,10 +16,10 @@
 <p>通知模板集中定义一类通知的载荷参数，以及站内信、微信、短信、钉钉、推送、邮件和电话等渠道的内容。业务逻辑发送通知时只需提供模板名、接收人和载荷数据。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="打开通知模板">打开通知模板<a href="#打开通知模板" class="hash-link" aria-label="打开通知模板的直接链接" title="打开通知模板的直接链接" translate="no">​</a></h2>
 <p>打开应用，在左侧菜单选择“系统集成 / 消息通知模版”。列表显示模板名、模板标题和启用状态，并提供新增、详情和编辑操作。</p>
-<p><img decoding="async" loading="lazy" alt="通知模板列表" src="/assets/images/notification-template-overview-0056e3a836b9615a734561fdd7873f91.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="通知模板列表" src="/assets/images/notification-template-overview-e9c40c6b377ea07350ed466ee357a87e.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="新建通知模板">新建通知模板<a href="#新建通知模板" class="hash-link" aria-label="新建通知模板的直接链接" title="新建通知模板的直接链接" translate="no">​</a></h2>
 <p>点击“新增”，先填写：</p>
-<p><img decoding="async" loading="lazy" alt="新增通知模板" src="/assets/images/create-notification-template-6f3adea2d538be1274d8b6c6f7f7ca19.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="新增通知模板" src="/assets/images/create-notification-template-a33190b10f1fb057cd2d00404c7d7839.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>配置项</th><th>说明</th></tr></thead><tbody><tr><td>模板名</td><td>必填。符合变量命名规范且在应用内唯一，供发送逻辑引用。</td></tr><tr><td>模板标题</td><td>必填。开发和管理界面中显示的名称。</td></tr><tr><td>状态</td><td>控制模板是否启用。</td></tr><tr><td>渠道</td><td>为模板新增一个或多个发送渠道，并配置各渠道内容。</td></tr><tr><td>载荷参数</td><td>定义模板允许使用的变量名称、说明和类型。</td></tr></tbody></table>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="定义载荷参数">定义载  荷参数<a href="#定义载荷参数" class="hash-link" aria-label="定义载荷参数的直接链接" title="定义载荷参数的直接链接" translate="no">​</a></h2>
 <p>每个载荷字段包含：</p>
@@ -28,7 +28,7 @@
 <p>每个渠道还提供 <strong>必填项</strong> 配置，用 JSON Schema 描述该渠道模板需要的数据。站内信、钉钉、推送和邮件等渠道可从公共载荷参数中选择并补充；微信、短信和电话渠道需要按第三方模板的变量要求配置。渠道的必填字段应与实际模板占位符保持一致。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="配置渠道">配置渠道<a href="#配置渠道" class="hash-link" aria-label="配置渠道的直接链接" title="配置渠道的直接链接" translate="no">​</a></h2>
 <p>点击“新增渠道”并选择渠道名。同一模板可以配置多个渠道。</p>
-<p><img decoding="async" loading="lazy" alt="新增通知渠道" src="/assets/images/add-notification-channel-4206a6be626754af3f706abdcf1c7a96.jpg" width="1920" height="1080" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="新增通知渠道" src="/assets/images/add-notification-channel-ef6e11243a165c7cd846734e73d8f391.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="站内信">站内信<a href="#站内信" class="hash-link" aria-label="站内信的直接链接" title="站内信的直接链接" translate="no">​</a></h3>
 <table><thead><tr><th>配置项</th><th>说明</th></tr></thead><tbody><tr><td>标题模板</td><td>必填。站内信标题，可引用载荷参数。</td></tr><tr><td>内容模板</td><td>必填。站内信正文，可引用载荷参数。</td></tr><tr><td>动作 / 跳转地址</td><td>点击通知后打开的地 址。</td></tr><tr><td>动作 / 描述</td><td>对跳转动作的说明。</td></tr><tr><td>类型</td><td>站内信业务类型。</td></tr><tr><td>接收终端 / app</td><td>是否发送到 App 端。</td></tr><tr><td>接收终端 / web</td><td>是否发送到 Web 端。</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="微信">微信<a href="#微信" class="hash-link" aria-label="微信的直接链接" title="微信的直接链接" translate="no">​</a></h3>

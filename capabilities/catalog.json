@@ -1,0 +1,3744 @@
+{
+  "$schema": "./catalog.schema.json",
+  "schemaVersion": "1.0.0",
+  "title": "潮汐栈前后端基座能力目录",
+  "source": {
+    "revision": "e757b2d04fc21d784cf778c04d58c7b790eb0a7d",
+    "basis": "working-tree",
+    "verification": "source-reviewed",
+    "runtimeVerified": false
+  },
+  "scope": "前端基座公开 SDK、运行时内建组件，以及后端基座可装配模块与正式扩展点。能力按复用任务归类，不逐个罗列私有类或第三方库。",
+  "selectionRules": [
+    "先按 useWhen 与 limits 匹配业务任务，再检查 requires、modules 和 entryPoints。",
+    "availability 描述接入方式，不证明当前实例已经启用；核对目标版本、依赖、配置和实际请求。",
+    "docs.coverage=guide 表示有对应使用指南，related 只表示有相关上下文，不能据此补造调用契约。",
+    "sources 与 modules 是相对于仓库根的路径；docs.path 相对于 docs/handbook/docs，均不是生产接口 URL。",
+    "related 是组合建议，不是完整依赖图；调用前必须读取目标版本的契约与权限要求。",
+    "此目录不授予权限，也不将条目自动注册为 AI 工具或 MCP 服务。"
+  ],
+  "categories": [
+    {
+      "id": "data",
+      "name": "数据建模与治理"
+    },
+    {
+      "id": "business",
+      "name": "业务语义与行为"
+    },
+    {
+      "id": "execution",
+      "name": "流程与规则执行"
+    },
+    {
+      "id": "page",
+      "name": "页面与交互"
+    },
+    {
+      "id": "integration",
+      "name": "集成、消息与任务"
+    },
+    {
+      "id": "identity",
+      "name": "身份与访问控制"
+    },
+    {
+      "id": "organization",
+      "name": "组织与个人设置"
+    },
+    {
+      "id": "file",
+      "name": "文件与文档"
+    },
+    {
+      "id": "analytics",
+      "name": "统计与看板"
+    },
+    {
+      "id": "ai",
+      "name": "AI 集成"
+    },
+    {
+      "id": "foundation",
+      "name": "公共技术能力"
+    },
+    {
+      "id": "extension",
+      "name": "装配与插件扩展"
+    }
+  ],
+  "accessLabels": {
+    "metadata": "模型 / 元数据",
+    "java": "Java API",
+    "sdk": "前端 SDK",
+    "schema": "页面 Schema",
+    "module": "应用模块",
+    "spi": "插件 / SPI"
+  },
+  "availabilityLabels": {
+    "assembled": "按后端模块装配",
+    "host": "由前端基座提供",
+    "optional": "按需装配 / 配置"
+  },
+  "exclusions": [
+    {
+      "name": "开发平台专用设计组件与工程工具",
+      "reason": "不作为业务运行页面能力。业务行为设计器、统计 SQL 编辑器、模型格式升级、项目脚手架和 IDE / Maven 插件另见融合开发。"
+    },
+    {
+      "name": "人员档案占位渲染器",
+      "reason": "PersonnelProfileField.tsx 当前仅输出占位文本，不列为完整人员档案编辑器。"
+    },
+    {
+      "name": "旧兼容别名与 legacy 模块",
+      "reason": "别名不重复计数；AI legacy starter 不作为优先选用入口。"
+    },
+    {
+      "name": "空接口及实现支撑模块",
+      "reason": "OpenAccessService 当前为空接口，不作为可调用开放授权能力；common-all、ability-all 是聚合模块，common-model、common-service 等按所属契约归入能力。"
+    },
+    {
+      "name": "第三方库与部署产品",
+      "reason": "Spring、Flowable、Quartz、Redis 等作为实现或前提说明，不作为平台独立提供的新能力重复列入。"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "be.data.dynamic",
+      "name": "动态数据模型与查询",
+      "side": "backend",
+      "category": "data",
+      "summary": "按模型定义读写数据，使用查询 DSL 组合筛选、排序、分页和关联查询。",
+      "useWhen": "需要统一的数据访问入口，或模型结构由元数据决定。",
+      "entryPoints": [
+        "DataModelCenter",
+        "DataModel",
+        "DataModelQuery"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配数据运行模块并配置数据源、模型定义。",
+      "limits": "自定义业务入口仍须落实权限与事务；数据访问不等于业务动作执行。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-core"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/model/DataModel.java",
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/model/DataModelCenter.java"
+      ],
+      "docs": [
+        {
+          "path": "api/backend/data-query-dsl/index.mdx",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.typed",
+      "name": "类型化数据模型",
+      "side": "backend",
+      "category": "data",
+      "summary": "将 Java 类型绑定到数据模型，提供类型化访问和查询。",
+      "useWhen": "高代码服务需要类型提示、编译检查和模型注入。",
+      "entryPoints": [
+        "TypedDataModel",
+        "TypedDataModelCenter",
+        "@DataModelScan"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配 typed-runtime，完成类型与运行模型注册；查询元数据生成按工程配置启用。",
+      "limits": "编译期生成查询类型与运行期扫描是两件事。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-typed-core"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-typed-core/src/main/java/com/ouroboros/data/model/TypedDataModel.java",
+        "core/ouroboros-data/ouroboros-data-typed-core/src/main/java/com/ouroboros/data/model/TypedDataModelCenter.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.fields",
+      "name": "字段类型与校验",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过字段类型定义约束、转换和标准页面使用的字段信息。",
+      "useWhen": "字段需要统一校验，或现有类型无法表达业务数据。",
+      "entryPoints": [
+        "FieldType",
+        "字段类型插件"
+      ],
+      "access": [
+        "metadata",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "使用已有字段类型，或按字段类型扩展点注册实现。",
+      "limits": "后端数据类型与前端控件配置需要共同检查，不能仅靠页面校验。",
+      "modules": [
+        "core/ouroboros-field-type"
+      ],
+      "sources": [
+        "core/ouroboros-field-type/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/data-field-types.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.relations",
+      "name": "关联与数据展开",
+      "side": "backend",
+      "category": "data",
+      "summary": "定义模型关联，并按查询需要展开关联数据。",
+      "useWhen": "业务对象存在引用、父子或集合关系。",
+      "entryPoints": [
+        "数据模型关联",
+        "populate"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置关联字段和目标模型，按查询接口声明展开范围。",
+      "limits": "需控制展开深度与数据量，并对关联数据应用访问约束。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-core"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/model/DataModelFieldMeta.java",
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/dsl/query/DataModelQuery.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.uniqueness",
+      "name": "唯一约束与重复检查",
+      "side": "backend",
+      "category": "data",
+      "summary": "声明单字段或组合唯一约束，并用插件检查重复数据。",
+      "useWhen": "编码、名称或字段组合需要保持唯一。",
+      "entryPoints": [
+        "@Unique",
+        "@UniqueConstraint",
+        "DuplicateDataCheckerDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "在模型中声明约束，配置作用域；按需要启用检查插件。",
+      "limits": "业务校验不能替代并发场景中的数据库约束与冲突处理。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-core",
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/model/DataModelUniqueConstraint.java",
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/DuplicateDataCheckerDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.audit",
+      "name": "创建与修改审计字段",
+      "side": "backend",
+      "category": "data",
+      "summary": "自动维护记录创建、修改等审计字段。",
+      "useWhen": "数据需要记录由谁创建、何时修改。",
+      "entryPoints": [
+        "BasicAuditDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "在目标模型启用插件并提供正确的执行身份。",
+      "limits": "后台任务没有天然的交互用户；字段审计不保存完整历史版本。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/BasicAuditDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.logical-delete",
+      "name": "逻辑删除",
+      "side": "backend",
+      "category": "data",
+      "summary": "删除时标记记录，并在相应查询路径应用删除状态。",
+      "useWhen": "记录需要保留，普通列表隐藏已删除数据。",
+      "entryPoints": [
+        "LogicalDeleteDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "模型启用插件并配置删除标志字段。",
+      "limits": "绕过模型直接查询或自行拼接查询时，应重新核对过滤语义。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/LogicalDeleteDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.archive-delete",
+      "name": "归档删除",
+      "side": "backend",
+      "category": "data",
+      "summary": "按插件策略处理删除数据的归档。",
+      "useWhen": "删除前需要将数据转入归档存储。",
+      "entryPoints": [
+        "ArchiveDeleteDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置归档目标及字段，启用模型插件。",
+      "limits": "归档删除与逻辑删除不是同一策略；恢复与保留周期须单独设计。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/ArchiveDeleteDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.history",
+      "name": "数据历史版本",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过 SCD2 插件记录数据变化的历史版本。",
+      "useWhen": "需要追溯对象在不同时点的状态。",
+      "entryPoints": [
+        "Scd2HistoryDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置历史模型及生效区间等字段。",
+      "limits": "历史记录会增长；保存周期、查询和清理需按业务安排。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/Scd2HistoryDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.reference-check",
+      "name": "引用完整性检查",
+      "side": "backend",
+      "category": "data",
+      "summary": "在模型操作中检查引用关系。",
+      "useWhen": "删除或修改记录前需要检查其他模型的引用。",
+      "entryPoints": [
+        "ReferenceCheckerDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "启用引用检查插件并定义关联。",
+      "limits": "需明确禁止删除、级联处理或业务解除引用的责任。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/ReferenceCheckerDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/data-model-plugins.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.derived-update",
+      "name": "关联变化联动更新",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过模型插件在数据变化时联动更新相关数据。",
+      "useWhen": "冗余值或派生字段需要跟随来源数据更新。",
+      "entryPoints": [
+        "UpdateWhenDataChangeDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "声明变化触发条件、目标和更新规则。",
+      "limits": "需检查循环触发、批量更新规模和事务边界。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-plugins"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-plugins/src/main/java/com/ouroboros/data/model/plugins/UpdateWhenDataChangeDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/data-model-plugins.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.primary-key",
+      "name": "主键与业务编码",
+      "side": "backend",
+      "category": "data",
+      "summary": "提供编码主键生成器，按规则生成业务记录标识。",
+      "useWhen": "记录需要稳定标识或规则化业务编码。",
+      "entryPoints": [
+        "CodingPrimaryKeyGenerator"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置主键字段和编码规则。",
+      "limits": "并发、重试和规则变更时应验证唯一性，编码不作为权限凭证。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-pkgen-coding"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-pkgen-coding/src/main/java/com/ouroboros/data/pkgenerator/CodingPrimaryKeyGenerator.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-model-annotations.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.schema-migration",
+      "name": "模型驱动结构演进",
+      "side": "backend",
+      "category": "data",
+      "summary": "比较模型与数据库结构，生成并执行支持范围内的迁移。",
+      "useWhen": "应用升级涉及增加字段、索引或调整结构。",
+      "entryPoints": [
+        "SqlMigrationService"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "备份数据，审查迁移计划，配置目标数据源。",
+      "limits": "结构演进不等于数据回填；破坏性变更和业务数据修复需要独立方案。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-sql-migration"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-sql-migration/src/main/java/com/ouroboros/data/migration/SqlMigrationService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/model-evolution-and-upgrade.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.initialization",
+      "name": "声明式数据初始化",
+      "side": "backend",
+      "category": "data",
+      "summary": "用初始化定义补齐尚不存在的基础数据，并记录执行账本。",
+      "useWhen": "字典、内置角色或应用基础记录需要随应用交付。",
+      "entryPoints": [
+        ".data-init.json",
+        "DataInitializationReconciler"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配初始化运行模块，定义匹配字段和初始化块。",
+      "limits": "采用 insert-if-missing，不覆盖已有记录；事务以初始化块为单位。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-initialization-core",
+        "core/ouroboros-data/ouroboros-data-initialization-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-initialization-core/src/main/java/com/ouroboros/data/initialization/DataInitializationReconciler.java",
+        "core/ouroboros-data/ouroboros-data-initialization-runtime/src/main/java/com/ouroboros/data/initialization/runtime/DataModelInitializationLedger.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/data-initialization.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.business.model",
+      "name": "业务模型标准能力",
+      "side": "backend",
+      "category": "business",
+      "summary": "用业务语义组织数据、标准视图、动作及访问控制。",
+      "useWhen": "对象需要标准列表、表单、详情与业务配置协同。",
+      "entryPoints": [
+        "BusinessModel",
+        "业务模型元数据"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义业务模型及其引用的数据、页面和权限配置。",
+      "limits": "标准页面和模型之间是运行时投射与引用关系，不应假设需手工生成一套副本。",
+      "modules": [
+        "core/ouroboros-business-model/ouroboros-business-model-core"
+      ],
+      "sources": [
+        "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/BusinessModel.java"
+      ],
+      "docs": [
+        {
+          "path": "low-code/development-platform-menus/business-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "be.data.dynamic",
+        "be.page.ui",
+        "be.page.schema",
+        "be.identity.data-control"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.business.actions",
+      "name": "业务动作契约与执行",
+      "side": "backend",
+      "category": "business",
+      "summary": "描述动作输入、检查可用性并在统一业务边界执行动作。",
+      "useWhen": "同一业务操作要被页面、服务或 AI 入口复用。",
+      "entryPoints": [
+        "BusinessActionRuntime.describe",
+        "checkAvailability",
+        "invoke"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义动作身份、实现、权限、前置条件及输入契约。",
+      "limits": "数据写入、事件和审计跟随事务；外层事务决定最终提交，调用失败须传播。",
+      "modules": [
+        "core/ouroboros-business-model/ouroboros-business-model-core"
+      ],
+      "sources": [
+        "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/action/BusinessActionRuntime.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/business-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "be.business.events",
+        "be.identity.rbac",
+        "fe.business-actions"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.business.events",
+      "name": "业务事件与订阅",
+      "side": "backend",
+      "category": "business",
+      "summary": "发布带业务语义的事件，并按订阅定义调用处理逻辑。",
+      "useWhen": "业务动作完成后需要解耦通知、联动和后续处理。",
+      "entryPoints": [
+        "BusinessEventPort",
+        "@BusinessEventSubscription"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义事件和订阅，明确发送时机、输入与执行权限。",
+      "limits": "同步、事务后和持久化投递的语义应按实际配置区分。",
+      "modules": [
+        "core/ouroboros-business-model/ouroboros-business-model-core"
+      ],
+      "sources": [
+        "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/event/BusinessEventPort.java",
+        "core/ouroboros-business-model/ouroboros-business-model-core/src/main/java/com/ouroboros/businessmodel/annotation/BusinessEventSubscription.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/business-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "be.business.event-recovery",
+        "be.integration.notification"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.business.event-recovery",
+      "name": "业务事件持久化与恢复",
+      "side": "backend",
+      "category": "business",
+      "summary": "通过事件发件箱记录投递，提供失败恢复和重放操作。",
+      "useWhen": "事件处理需要跨故障恢复及运维追溯。",
+      "entryPoints": [
+        "BusinessEventOutbox",
+        "BusinessEventOperations"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配事件运行模块，配置持久化模型及操作权限。",
+      "limits": "消费者仍需幂等；不能据此承诺端到端恰好一次。",
+      "modules": [
+        "core/ouroboros-business-model/ouroboros-business-model-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-business-model/ouroboros-business-model-runtime/src/main/java/com/ouroboros/businessmodel/event/store/BusinessEventOutbox.java",
+        "core/ouroboros-business-model/ouroboros-business-model-runtime/src/main/java/com/ouroboros/businessmodel/event/store/BusinessEventOperations.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/business-model.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.execution.logicflow",
+      "name": "逻辑流引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "执行图形化定义的节点与连线，组合数据、表达式、脚本和服务能力。",
+      "useWhen": "业务处理适合显式编排输入、分支与输出。",
+      "entryPoints": [
+        "LogicFlowExecutionFacade"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配逻辑流运行模块，加载定义及所需节点扩展。",
+      "limits": "节点是否可用取决于模块装配；须验证错误分支、事务和外部副作用。",
+      "modules": [
+        "core/ouroboros-logicflow/ouroboros-logicflow-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-logicflow/ouroboros-logicflow-runtime/src/main/java/com/ouroboros/logicflow/LogicFlowExecutionFacade.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/logicflow-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.execution.expression",
+      "name": "表达式引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "编译和计算表达式或条件谓词。",
+      "useWhen": "需要字段计算、动态参数或条件判断。",
+      "entryPoints": [
+        "EL",
+        "ExpressionPlan",
+        "PredicatePlan"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "使用受支持的表达式语法并准备变量上下文。",
+      "limits": "表达式能访问哪些对象由上下文贡献器决定，不应暴露任意敏感 Bean。",
+      "modules": [
+        "libs/common/common-expression"
+      ],
+      "sources": [
+        "libs/common/common-expression/src/main/java/com/ouroboros/expression/EL.java",
+        "libs/common/common-expression/src/main/java/com/ouroboros/expression/ExpressionPlan.java",
+        "libs/common/common-expression/src/main/java/com/ouroboros/expression/PredicatePlan.java"
+      ],
+      "docs": [
+        {
+          "path": "api/backend/expression-context/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.execution.script",
+      "name": "脚本引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "通过统一入口执行脚本，并通过 SPI 接入脚本语言。",
+      "useWhen": "局部规则难以用简单表达式表达。",
+      "entryPoints": [
+        "Scripts",
+        "ScriptRunner"
+      ],
+      "access": [
+        "metadata",
+        "java",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "装配对应语言实现；现有 Groovy、JavaScript 实现按依赖启用。",
+      "limits": "脚本执行权限、资源限制和上下文须核对目标实现；不等同于安全沙箱。",
+      "modules": [
+        "libs/common/common-script"
+      ],
+      "sources": [
+        "libs/common/common-script/src/main/java/com/ouroboros/script/Scripts.java",
+        "libs/common/common-script/src/main/java/com/ouroboros/script/ScriptRunner.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/script-languages.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.execution.template",
+      "name": "模板引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "渲染文本或资源模板，复用统一的变量输入方式。",
+      "useWhen": "通知正文、文档片段或资源文件需要模板化。",
+      "entryPoints": [
+        "TextTemplateEngine.render",
+        "JarTemplateEngine"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "准备模板内容和变量；文本模板使用 FreeMarker 实现。",
+      "limits": "模板能力与任意 Java 代码执行分开；不要假定模板可以实例化任意类。",
+      "modules": [
+        "libs/common/common-template"
+      ],
+      "sources": [
+        "libs/common/common-template/src/main/java/com/ouroboros/template/TextTemplateEngine.java",
+        "libs/common/common-template/src/main/java/com/ouroboros/template/JarTemplateEngine.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/supporting-resources.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.execution.approval",
+      "name": "内建审批流",
+      "side": "backend",
+      "category": "execution",
+      "summary": "管理流程定义、流程实例、人工任务和审批业务状态。",
+      "useWhen": "需要待办、审批、驳回及处理记录。",
+      "entryPoints": [
+        "FlowDefinitionService",
+        "FlowInstanceService",
+        "FlowTaskService",
+        "ApprovalCaseService"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配审批流运行模块并配置流程、表单和候选人。",
+      "limits": "审批流负责人工流程，逻辑流负责自动处理；外部审批是另一接入方式。",
+      "modules": [
+        "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core"
+      ],
+      "sources": [
+        "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/FlowDefinitionService.java",
+        "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/FlowTaskService.java",
+        "core/ouroboros-approval-workflow/ouroboros-approval-workflow-core/src/main/java/com/ouroboros/workflow/approval/lifecycle/ApprovalCaseService.java"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/approval-workflow/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "fe.workflow-timeline",
+        "be.organization.structure"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.execution.external-approval",
+      "name": "外部审批流引擎适配",
+      "side": "backend",
+      "category": "execution",
+      "summary": "以适配器接入钉钉、企业微信、飞书审批。",
+      "useWhen": "审批在企业协作平台完成，应用需要发起与回收结果。",
+      "entryPoints": [
+        "外部审批运行模块",
+        "钉钉 / 企业微信 / 飞书适配器"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "装配目标适配器并配置企业凭据、模板映射和回调。",
+      "limits": "第三方流程状态、签名校验与失败补偿需按各适配器配置。",
+      "modules": [
+        "ability/ouroboros-approval-workflow-external-integration"
+      ],
+      "sources": [
+        "ability/ouroboros-approval-workflow-external-integration/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/integration-automation-and-realtime.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.page.ui",
+      "name": "UI 模型与前端路由",
+      "side": "backend",
+      "category": "page",
+      "summary": "将 UI 定义提供给前端，组织页面路由与资源引用。",
+      "useWhen": "页面需要稳定路径和统一加载方式。",
+      "entryPoints": [
+        "UIModel",
+        "UI 模型运行模块"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "加载 UI 模型定义及对应页面资源。",
+      "limits": "UI 模型承载路由和页面描述，不等同于数据模型。",
+      "modules": [
+        "core/ouroboros-ui-model/ouroboros-ui-model-core"
+      ],
+      "sources": [
+        "core/ouroboros-ui-model/ouroboros-ui-model-core/src/main/java/com/ouroboros/uimodel/UIModel.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/ui-model/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.page.schema",
+      "name": "UI Schema 资源",
+      "side": "backend",
+      "category": "page",
+      "summary": "从应用或插件资源中加载声明式页面定义。",
+      "useWhen": "标准页面需要自定义布局、交互或新增页面。",
+      "entryPoints": [
+        "UI Schema 运行模块"
+      ],
+      "access": [
+        "metadata"
+      ],
+      "availability": "assembled",
+      "requires": "提供合法 Schema 并配置引用。",
+      "limits": "页面隐藏不构成后端授权；自定义接口需独立验证权限。",
+      "modules": [
+        "core/ouroboros-ui-model/ouroboros-ui-model-schema-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-ui-model/ouroboros-ui-model-schema-runtime/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "low-code/development-platform-menus/ui-schema.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.page.schema-management",
+      "name": "UI Schema 实时管理",
+      "side": "backend",
+      "category": "page",
+      "summary": "通过数据库中的页面定义覆盖或维护运行时 UI Schema。",
+      "useWhen": "部署后需要在授权范围内维护页面。",
+      "entryPoints": [
+        "ui-schema-in-db-management-runtime"
+      ],
+      "access": [
+        "module"
+      ],
+      "availability": "optional",
+      "requires": "装配管理模块，授予管理权限并确认覆盖来源。",
+      "limits": "运行时修改需要纳入备份和发布策略，文件资源与覆盖层应区分。",
+      "modules": [
+        "app-module/ui-schema-management"
+      ],
+      "sources": [
+        "app-module/ui-schema-management/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "low-code/page-delivery-with-dynamic-forms-and-ui-schema.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.page.menu",
+      "name": "菜单与导航",
+      "side": "backend",
+      "category": "page",
+      "summary": "提供菜单定义和运行时导航资源。",
+      "useWhen": "应用需要按权限展示入口和层级。",
+      "entryPoints": [
+        "菜单模型运行模块"
+      ],
+      "access": [
+        "metadata"
+      ],
+      "availability": "assembled",
+      "requires": "加载菜单定义并关联路由及权限。",
+      "limits": "菜单可见性不替代接口和数据权限。",
+      "modules": [
+        "core/ouroboros-menu-model"
+      ],
+      "sources": [
+        "core/ouroboros-menu-model/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "concepts/menu-model/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.page.microfrontend",
+      "name": "微前端资源服务",
+      "side": "backend",
+      "category": "page",
+      "summary": "加载微前端定义并为前端提供扩展资源入口。",
+      "useWhen": "独立前端工程需要挂载到统一应用。",
+      "entryPoints": [
+        "MicroWebModel",
+        "微前端运行模块"
+      ],
+      "access": [
+        "metadata"
+      ],
+      "availability": "assembled",
+      "requires": "发布资源并配置入口、路径及跨域或代理。",
+      "limits": "资源发布和宿主兼容性需要共同验证。",
+      "modules": [
+        "core/ouroboros-ui-model/ouroboros-ui-model-microweb"
+      ],
+      "sources": [
+        "core/ouroboros-ui-model/ouroboros-ui-model-microweb/src/main/java/com/ouroboros/uimodel/microweb/MicroWebModel.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/frontend-extension-paths.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.page.dynamic-form",
+      "name": "动态表单",
+      "side": "backend",
+      "category": "page",
+      "summary": "为问卷、登记等轻量场景管理表单定义与提交。",
+      "useWhen": "数据结构与交互以单个表单为主。",
+      "entryPoints": [
+        "dynamic-form-runtime"
+      ],
+      "access": [
+        "module"
+      ],
+      "availability": "optional",
+      "requires": "按需装配动态表单应用模块，配置表单及访问权限。",
+      "limits": "复杂关联与长期业务行为宜采用业务模型；不能假定所有实例已装配。",
+      "modules": [
+        "app-module/dynamic-form"
+      ],
+      "sources": [
+        "app-module/dynamic-form/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "low-code/page-delivery-with-dynamic-forms-and-ui-schema.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.webapi",
+      "name": "模型化 HTTP 接口",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按 WebAPI 定义发布接口并衔接业务实现。",
+      "useWhen": "需要向前端或其他系统提供应用接口。",
+      "entryPoints": [
+        "WebAPIModelProvider",
+        "WebAPI 运行模块"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义路由、参数、实现和权限。",
+      "limits": "WebAPI 不直接代表数据模型，数据访问由其业务实现完成。",
+      "modules": [
+        "core/ouroboros-webapi-model/ouroboros-webapi-model-core"
+      ],
+      "sources": [
+        "core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/WebAPIModelProvider.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/webapi-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.openapi",
+      "name": "OpenAPI 接口文档",
+      "side": "backend",
+      "category": "integration",
+      "summary": "为接口提供 OpenAPI 描述及文档入口。",
+      "useWhen": "联调、客户端生成或 API 检索需要接口契约。",
+      "entryPoints": [
+        "OpenAPIDocumentController"
+      ],
+      "access": [
+        "module"
+      ],
+      "availability": "assembled",
+      "requires": "装配 WebAPI 文档运行能力并允许相应访问。",
+      "limits": "文档存在不代表接口可匿名调用；具体输出以目标实例为准。",
+      "modules": [
+        "core/ouroboros-webapi-model/ouroboros-webapi-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-webapi-model/ouroboros-webapi-runtime/src/main/java/com/ouroboros/webapi/controller/OpenAPIDocumentController.java"
+      ],
+      "docs": [
+        {
+          "path": "api/web-api-spec/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.rpc",
+      "name": "外部接口调用",
+      "side": "backend",
+      "category": "integration",
+      "summary": "用 RPC 模型统一外部接口定义、协议调用与凭据。",
+      "useWhen": "重复调用外部服务，希望集中维护接口契约。",
+      "entryPoints": [
+        "RpcInvocationExecutor",
+        "RpcProtocolInvoker"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配 RPC 运行模块与协议适配器，定义接口及凭据。",
+      "limits": "超时、重试与幂等需要按业务配置；RPC 名称不表示任意协议都内建。",
+      "modules": [
+        "ability/ouroboros-rpc-model/ouroboros-rpc-model-runtime",
+        "ability/ouroboros-rpc-model/ouroboros-rpc-model-core"
+      ],
+      "sources": [
+        "ability/ouroboros-rpc-model/ouroboros-rpc-model-runtime/src/main/java/com/ouroboros/rpc/execution/RpcInvocationExecutor.java",
+        "ability/ouroboros-rpc-model/ouroboros-rpc-model-core/src/main/java/com/ouroboros/rpc/execution/RpcProtocolInvoker.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/rpc-model.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.mq",
+      "name": "消息队列",
+      "side": "backend",
+      "category": "integration",
+      "summary": "统一声明消息绑定，并生产或消费消息。",
+      "useWhen": "需要异步解耦、削峰或跨服务事件传递。",
+      "entryPoints": [
+        "MQBridge",
+        "MQProducer",
+        "MQConsumer"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配消息队列运行模块、RabbitMQ 适配器及连接配置。",
+      "limits": "确认、重投和顺序按适配器语义；消费业务需要幂等。",
+      "modules": [
+        "ability/ouroboros-message-queue/ouroboros-message-queue-core"
+      ],
+      "sources": [
+        "ability/ouroboros-message-queue/ouroboros-message-queue-core/src/main/java/com/ouroboros/mq/MQBridge.java",
+        "ability/ouroboros-message-queue/ouroboros-message-queue-core/src/main/java/com/ouroboros/mq/MQProducer.java",
+        "ability/ouroboros-message-queue/ouroboros-message-queue-core/src/main/java/com/ouroboros/mq/MQConsumer.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/message-queue.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.cron",
+      "name": "计划任务",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按 Cron 周期调度业务处理。",
+      "useWhen": "需要定时同步、统计或清理。",
+      "entryPoints": [
+        "Scheduler.scheduleCron"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配调度运行模块及 Quartz 实现，定义处理器和时区。",
+      "limits": "周期触发不自动保证业务互斥与幂等；失败恢复需单独验证。",
+      "modules": [
+        "ability/ouroboros-scheduler/ouroboros-scheduler-core"
+      ],
+      "sources": [
+        "ability/ouroboros-scheduler/ouroboros-scheduler-core/src/main/java/com/ouroboros/scheduler/Scheduler.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/scheduled-tasks.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.delayed",
+      "name": "延迟与一次性任务",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按时间点或相对延迟创建一次性任务。",
+      "useWhen": "稍后执行提醒、超时处理或补偿。",
+      "entryPoints": [
+        "Scheduler.scheduleOnce",
+        "cancel",
+        "isScheduled"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配调度实现并确定任务标识、触发时间和处理器。",
+      "limits": "取消、实例重启和重复调度的语义以具体实现为准。",
+      "modules": [
+        "ability/ouroboros-scheduler/ouroboros-scheduler-core"
+      ],
+      "sources": [
+        "ability/ouroboros-scheduler/ouroboros-scheduler-core/src/main/java/com/ouroboros/scheduler/Scheduler.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/scheduled-tasks.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "be.integration.cron"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.websocket",
+      "name": "WebSocket / STOMP",
+      "side": "backend",
+      "category": "integration",
+      "summary": "提供主题、队列和用户维度的实时消息链路。",
+      "useWhen": "服务端变化需要及时到达页面。",
+      "entryPoints": [
+        "WebSocket starter",
+        "STOMP broker"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置端点、鉴权及所选 broker；Redis / RabbitMQ 方案依赖外部服务。",
+      "limits": "WebSocket 连接不替代业务权限；跨实例推送取决于 broker 方案。",
+      "modules": [
+        "ability/ouroboros-websocket"
+      ],
+      "sources": [
+        "ability/ouroboros-websocket/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/integration-automation-and-realtime.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "fe.stomp"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.integration.notification",
+      "name": "消息通知与模板",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按通知模板向站内信、邮件、短信及企业渠道发送通知。",
+      "useWhen": "业务事件或任务需要向人发送消息。",
+      "entryPoints": [
+        "NotificationService",
+        "通知模板"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置接收人、模板和渠道；邮件、微信、钉钉、极光、阿里云短信与呼叫等按渠道装配。",
+      "limits": "模块依赖不代表凭据可用；渠道回执和失败补偿需单独处理。",
+      "modules": [
+        "ability/ouroboros-notification/ouroboros-notification-runtime",
+        "ability/ouroboros-notification"
+      ],
+      "sources": [
+        "ability/ouroboros-notification/ouroboros-notification-runtime/src/main/java/com/ouroboros/notification/service/NotificationService.java",
+        "ability/ouroboros-notification/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/notification/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.authentication",
+      "name": "登录与会话认证",
+      "side": "backend",
+      "category": "identity",
+      "summary": "提供用户登录、令牌与认证上下文。",
+      "useWhen": "应用需要统一识别调用者。",
+      "entryPoints": [
+        "Web Security 运行模块",
+        "CurrentSecurityContextHolder"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置账号来源、会话或令牌策略和访问入口。",
+      "limits": "身份识别、认证状态与授权结果分别判断。",
+      "modules": [
+        "security/ouroboros-web-security/ouroboros-web-security-core",
+        "security/ouroboros-web-security"
+      ],
+      "sources": [
+        "security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/context/CurrentSecurityContextHolder.java",
+        "security/ouroboros-web-security/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/authentication-integration.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.external",
+      "name": "外部身份接入",
+      "side": "backend",
+      "category": "identity",
+      "summary": "通过 LDAP / AD、OIDC / OAuth2、CAS 及企业身份适配接入登录。",
+      "useWhen": "希望沿用现有身份系统或企业账号。",
+      "entryPoints": [
+        "外部认证配置",
+        "账号绑定",
+        "登录码交换"
+      ],
+      "access": [
+        "module",
+        "spi"
+      ],
+      "availability": "optional",
+      "requires": "装配对应适配器，配置回调、身份映射和账号绑定。",
+      "limits": "静态认证来源与企业连接配置不同，不应假设都从同一列表返回。",
+      "modules": [
+        "ability/ouroboros-external-auth-configuration"
+      ],
+      "sources": [
+        "ability/ouroboros-external-auth-configuration/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/authentication-integration.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.oidc-provider",
+      "name": "OIDC 身份服务",
+      "side": "backend",
+      "category": "identity",
+      "summary": "由平台作为身份提供方支持 OIDC 相关服务。",
+      "useWhen": "其他客户端需要使用平台身份登录。",
+      "entryPoints": [
+        "OIDC Server 模块"
+      ],
+      "access": [
+        "module"
+      ],
+      "availability": "optional",
+      "requires": "装配 OIDC 服务并配置客户端、密钥和回调。",
+      "limits": "与平台使用外部 OIDC 登录的客户端角色不同。",
+      "modules": [
+        "ability/ouroboros-oidc-server"
+      ],
+      "sources": [
+        "ability/ouroboros-oidc-server/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/authentication-integration.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.rbac",
+      "name": "角色与权限项",
+      "side": "backend",
+      "category": "identity",
+      "summary": "用角色和权限项控制业务入口与功能访问。",
+      "useWhen": "不同岗位需要不同操作权限。",
+      "entryPoints": [
+        "RBAC",
+        "权限模型"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义权限项、角色、主体及授予关系。",
+      "limits": "前端权限显示和后端执行检查都需要配置。",
+      "modules": [
+        "security/ouroboros-web-security/ouroboros-web-security-rbac-manage"
+      ],
+      "sources": [
+        "security/ouroboros-web-security/ouroboros-web-security-rbac-manage/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/rbac/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.data-control",
+      "name": "行级与字段访问控制",
+      "side": "backend",
+      "category": "identity",
+      "summary": "解析访问控制参数，为数据查询和业务操作提供约束。",
+      "useWhen": "用户只能访问部分记录或字段。",
+      "entryPoints": [
+        "AccessControlParams",
+        "AccessControlFilterBuilder"
+      ],
+      "access": [
+        "metadata",
+        "java",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "定义权限参数、配置界面与解析器；自定义入口消费约束。",
+      "limits": "自定义 Controller、Service、逻辑流不会因拿到当前用户而自动安全。",
+      "modules": [
+        "security/ouroboros-web-security/ouroboros-web-security-core"
+      ],
+      "sources": [
+        "security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/authority/accesscontrol/AccessControlParams.java",
+        "security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/authority/accesscontrol/filter/AccessControlFilterBuilder.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/data-access-control-parameters.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "be.identity.scoped-context",
+        "be.identity.subject"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.subject",
+      "name": "自定义权限主体",
+      "side": "backend",
+      "category": "identity",
+      "summary": "把用户、角色及业务主体接入权限判定。",
+      "useWhen": "授权对象超出内建主体种类。",
+      "entryPoints": [
+        "SubjectProvider",
+        "UserSubjectProvider"
+      ],
+      "access": [
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "通过官方 SPI 注册主体定义与解析。",
+      "limits": "主体身份与授予关系需保持一致，不能只增加显示选项。",
+      "modules": [
+        "security/ouroboros-web-security/ouroboros-web-security-core"
+      ],
+      "sources": [
+        "security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/rbac/SubjectProvider.java",
+        "security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/rbac/UserSubjectProvider.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/authority-subject-and-access-control-design.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.identity.scoped-context",
+      "name": "后台执行身份与上下文",
+      "side": "backend",
+      "category": "identity",
+      "summary": "在限定作用域内切换安全上下文，并恢复原上下文。",
+      "useWhen": "计划任务、消息消费或后台工作需要明确执行身份。",
+      "entryPoints": [
+        "CurrentSecurityContextHolder.withIdentity",
+        "withContext"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "显式确定所需身份、认证状态和授权来源。",
+      "limits": "withIdentity 不自动授予管理员权限；跨线程上下文需显式处理。",
+      "modules": [
+        "security/ouroboros-web-security/ouroboros-web-security-core"
+      ],
+      "sources": [
+        "security/ouroboros-web-security/ouroboros-web-security-core/src/main/java/com/ouroboros/security/context/CurrentSecurityContextHolder.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/transactions-and-execution-context.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.organization.structure",
+      "name": "组织架构与任职",
+      "side": "backend",
+      "category": "organization",
+      "summary": "维护公司、部门、员工、职位和任职，并提供查询服务。",
+      "useWhen": "审批候选人、数据范围或通讯录依赖组织关系。",
+      "entryPoints": [
+        "OrganizationQueryFacade",
+        "StructureManageService",
+        "AppointmentManageService"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配组织架构运行模块并准备组织数据。",
+      "limits": "组织关系不天然等于业务权限，授权需另行配置。",
+      "modules": [
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/service/OrganizationQueryFacade.java",
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/service/StructureManageService.java",
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/service/AppointmentManageService.java"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/organization/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.organization.profile",
+      "name": "用户与人员资料",
+      "side": "backend",
+      "category": "organization",
+      "summary": "按资料方案管理人员档案和动态资料字段。",
+      "useWhen": "标准账号字段不足以表达人员资料。",
+      "entryPoints": [
+        "PersonnelProfileFormSchemeService",
+        "PersonnelProfileRuntimeConfigService"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置表单方案、字段及资料访问权限。",
+      "limits": "前端占位的 personnel-profile-field 不能作为完整编辑器选用。",
+      "modules": [
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/profile/service/PersonnelProfileFormSchemeService.java",
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/profile/service/PersonnelProfileRuntimeConfigService.java"
+      ],
+      "docs": [
+        {
+          "path": "low-code/development-platform-menus/personnel-profile-form.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.organization.preferences",
+      "name": "用户偏好设置",
+      "side": "backend",
+      "category": "organization",
+      "summary": "按用户保存个人设置。",
+      "useWhen": "应用需要保存个人布局或偏好值。",
+      "entryPoints": [
+        "UserSettingService"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配用户设置模块并确定设置键、默认值和数据格式。",
+      "limits": "用户偏好与全局统一配置分开，避免保存凭据等敏感信息。",
+      "modules": [
+        "ability/ouroboros-user-setting/ouroboros-user-setting-core"
+      ],
+      "sources": [
+        "ability/ouroboros-user-setting/ouroboros-user-setting-core/src/main/java/com/ouroboros/usersetting/service/UserSettingService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/supporting-resources.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.file.upload",
+      "name": "文件上传与存储适配",
+      "side": "backend",
+      "category": "file",
+      "summary": "统一上传入口、存储管理和文件引用。",
+      "useWhen": "表单附件需要落到本地或自定义存储。",
+      "entryPoints": [
+        "UploadStorageService",
+        "StorageManagerService"
+      ],
+      "access": [
+        "module",
+        "java",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "装配上传模块并配置存储方案与访问地址。",
+      "limits": "存储插件、上传字段和下载权限需一起验证；扩展存储需要正式注册。",
+      "modules": [
+        "ability/ouroboros-file-upload/ouroboros-file-upload-core"
+      ],
+      "sources": [
+        "ability/ouroboros-file-upload/ouroboros-file-upload-core/src/main/java/com/ouroboros/upload/UploadStorageService.java",
+        "ability/ouroboros-file-upload/ouroboros-file-upload-core/src/main/java/com/ouroboros/upload/StorageManagerService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/upload-storage.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.file.document-library",
+      "name": "文档库与访问控制",
+      "side": "backend",
+      "category": "file",
+      "summary": "管理文档库内容、文件存储和访问权限。",
+      "useWhen": "需要共享资料库及受控文件管理。",
+      "entryPoints": [
+        "DocumentLibraryContentFacade",
+        "文档管理模块"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "装配文档管理模块，配置存储和 ACL。",
+      "limits": "与单个表单附件不同；下载与管理权限需分别验证。",
+      "modules": [
+        "app-module/document-management/document-management-service"
+      ],
+      "sources": [
+        "app-module/document-management/document-management-service/src/main/java/com/ouroboros/documentmanagement/service/DocumentLibraryContentFacade.java"
+      ],
+      "docs": [
+        {
+          "path": "low-code/forms-attachments-and-documents.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.file.excel",
+      "name": "Excel 读写",
+      "side": "backend",
+      "category": "file",
+      "summary": "用平台工具读取和写出 Excel 数据。",
+      "useWhen": "批量导入导出需要在 Java 中定制字段映射。",
+      "entryPoints": [
+        "ExcelReader",
+        "ExcelWriter"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "引入 util-excel 并定义行列映射及错误处理。",
+      "limits": "数据模型校验、批量事务和导入权限仍由业务实现负责。",
+      "modules": [
+        "libs/util/ouroboros-util-excel"
+      ],
+      "sources": [
+        "libs/util/ouroboros-util-excel/src/main/java/com/ouroboros/util/excel/ExcelReader.java",
+        "libs/util/ouroboros-util-excel/src/main/java/com/ouroboros/util/excel/ExcelWriter.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/development-practices.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.file.zip",
+      "name": "ZIP 打包与受限解压",
+      "side": "backend",
+      "category": "file",
+      "summary": "创建和读取 ZIP，并提供解压限制等工具。",
+      "useWhen": "应用资源或批量文件需要打包交付。",
+      "entryPoints": [
+        "ZipReader",
+        "ZipWriter",
+        "ZipLimits"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "引入 util-zip，并设置适当的解压限制。",
+      "limits": "处理外部压缩包需核对路径和大小限制，不能无限制解压。",
+      "modules": [
+        "libs/util/ouroboros-util-zip"
+      ],
+      "sources": [
+        "libs/util/ouroboros-util-zip/src/main/java/com/ouroboros/util/ZipReader.java",
+        "libs/util/ouroboros-util-zip/src/main/java/com/ouroboros/util/ZipWriter.java",
+        "libs/util/ouroboros-util-zip/src/main/java/com/ouroboros/util/ZipLimits.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/development-practices.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.analytics.dataset",
+      "name": "统计数据集与查询视图",
+      "side": "backend",
+      "category": "analytics",
+      "summary": "按统计定义执行数据集和查询视图。",
+      "useWhen": "页面指标与报表需要统一的数据查询契约。",
+      "entryPoints": [
+        "DatasetExecutionService",
+        "DatasetExecutor"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配统计运行模块并发布数据集及查询定义。",
+      "limits": "设计器预览成功不等于运行实例已有已发布定义。",
+      "modules": [
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/execution/DatasetExecutionService.java",
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/executor/DatasetExecutor.java"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/statistics-analysis/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.analytics.report",
+      "name": "报表视图与统计看板",
+      "side": "backend",
+      "category": "analytics",
+      "summary": "为统计视图和看板提供运行时执行接口。",
+      "useWhen": "多个图表需要复用已发布的统计资产。",
+      "entryPoints": [
+        "统计运行模块",
+        "报表视图执行接口"
+      ],
+      "access": [
+        "metadata",
+        "module"
+      ],
+      "availability": "assembled",
+      "requires": "发布报表视图及其引用的数据集，配置读取权限。",
+      "limits": "需要同时验证查询结果、权限和前端参数映射。",
+      "modules": [
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/statistics-analysis/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "be.analytics.dataset",
+        "fe.report-runtime"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.analytics.widget",
+      "name": "看板与小组件",
+      "side": "backend",
+      "category": "analytics",
+      "summary": "加载小组件定义，维护用户看板和看板模板。",
+      "useWhen": "用户工作台需要可组合和个性化栏目。",
+      "entryPoints": [
+        "WidgetDefinitionService",
+        "UserDashboardService",
+        "UserDashboardTemplateService"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配小组件和用户看板模块，提供组件定义。",
+      "limits": "小组件定义、组件实现与用户布局分别管理。",
+      "modules": [
+        "ability/ouroboros-widget/ouroboros-widget-runtime",
+        "ability/ouroboros-widget/ouroboros-widget-user-dashboard"
+      ],
+      "sources": [
+        "ability/ouroboros-widget/ouroboros-widget-runtime/src/main/java/com/ouroboros/widget/service/WidgetDefinitionService.java",
+        "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/service/UserDashboardService.java",
+        "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/service/UserDashboardTemplateService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/workbench-widgets-and-component-libraries.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "fe.dashboard"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.ai.invocation",
+      "name": "AI 对话与向量调用",
+      "side": "backend",
+      "category": "ai",
+      "summary": "通过统一服务调用模型的对话或向量能力。",
+      "useWhen": "应用需要接入模型，又希望集中维护连接和调用策略。",
+      "entryPoints": [
+        "AiInvocationService.chat",
+        "AiInvocationService.embed"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "装配 AI 运行模块与提供方适配器，配置连接、模型及凭据。",
+      "limits": "OpenAI 适配支持对话和向量；Anthropic 适配的能力须按实现核对。",
+      "modules": [
+        "ability/ouroboros-ai/ouroboros-ai-runtime",
+        "ability/ouroboros-ai/ouroboros-ai-starter-spring-ai"
+      ],
+      "sources": [
+        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/service/AiInvocationService.java",
+        "ability/ouroboros-ai/ouroboros-ai-starter-spring-ai/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/ai-assisted-development.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [
+        "be.ai.retrieval",
+        "be.ai.mcp"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.ai.retrieval",
+      "name": "知识检索与 RAG 接入",
+      "side": "backend",
+      "category": "ai",
+      "summary": "按知识库和检索器定义获得相关内容。",
+      "useWhen": "对话需要引用业务知识或外部向量库内容。",
+      "entryPoints": [
+        "AiRetriever",
+        "SpringAiVectorStoreRetriever"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "额外装配 RAG 模块，配置向量存储、知识库和内容导入。",
+      "limits": "默认空内存回退不代表已有知识；需要验证召回结果和文档权限。",
+      "modules": [
+        "ability/ouroboros-ai/ouroboros-ai-rag-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-ai/ouroboros-ai-rag-runtime/src/main/java/com/ouroboros/ai/rag/AiRetriever.java",
+        "ability/ouroboros-ai/ouroboros-ai-rag-runtime/src/main/java/com/ouroboros/ai/rag/SpringAiVectorStoreRetriever.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/ai-assisted-development.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.ai.mcp",
+      "name": "MCP 工具接入",
+      "side": "backend",
+      "category": "ai",
+      "summary": "从配置的 MCP 客户端发现工具并桥接到 AI 工具注册。",
+      "useWhen": "AI 调用需要使用外部 MCP 工具。",
+      "entryPoints": [
+        "AiMcpBridgeService"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "额外装配 MCP 模块，配置客户端和可访问端点。",
+      "limits": "不是把所有平台能力自动发布成 MCP Server；工具权限和副作用须单独确认。",
+      "modules": [
+        "ability/ouroboros-ai/ouroboros-ai-mcp-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-ai/ouroboros-ai-mcp-runtime/src/main/java/com/ouroboros/ai/mcp/AiMcpBridgeService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/ai-assisted-development.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.configuration",
+      "name": "统一配置",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "集中定义配置项并读取运行值。",
+      "useWhen": "应用参数需要按配置模型管理和调整。",
+      "entryPoints": [
+        "ConfigurationService",
+        "ConfigurationValueService"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配配置运行模块，定义配置项、分组和默认值。",
+      "limits": "系统启动参数仍按 Spring 配置管理；凭据等敏感值需限制读取。",
+      "modules": [
+        "ability/ouroboros-configuration/ouroboros-configuration-core",
+        "ability/ouroboros-configuration/ouroboros-configuration-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-configuration/ouroboros-configuration-core/src/main/java/com/ouroboros/configuration/ConfigurationService.java",
+        "ability/ouroboros-configuration/ouroboros-configuration-runtime/src/main/java/com/ouroboros/configuration/service/ConfigurationValueService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/supporting-resources.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.dictionary",
+      "name": "数据字典",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "提供统一的枚举值、标签和字典数据。",
+      "useWhen": "表单选项和业务状态需要复用。",
+      "entryPoints": [
+        "DataDictService"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义字典及字典项，装配字典运行模块。",
+      "limits": "字典标签与持久化值不同；值变更需考虑历史数据。",
+      "modules": [
+        "ability/ouroboros-data-dict/ouroboros-data-dict-core"
+      ],
+      "sources": [
+        "ability/ouroboros-data-dict/ouroboros-data-dict-core/src/main/java/com/ouroboros/data/dict/DataDictService.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/supporting-resources.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.i18n",
+      "name": "后端多语言资源",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "从文件、插件和数据库读取语言资源。",
+      "useWhen": "消息和界面文本需要多语言。",
+      "entryPoints": [
+        "I18nLocaleService",
+        "I18nLocaleProvider"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配多语言运行模块，提供语言资源和语言选择。",
+      "limits": "资源覆盖顺序与前端语言状态需一致。",
+      "modules": [
+        "core/ouroboros-i18n/ouroboros-i18n-runtime",
+        "core/ouroboros-i18n/ouroboros-i18n-core"
+      ],
+      "sources": [
+        "core/ouroboros-i18n/ouroboros-i18n-runtime/src/main/java/com/ouroboros/i18n/runtime/service/I18nLocaleService.java",
+        "core/ouroboros-i18n/ouroboros-i18n-core/src/main/java/com/ouroboros/i18n/provider/I18nLocaleProvider.java"
+      ],
+      "docs": [
+        {
+          "path": "low-code/development-platform-menus/i18n.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.cache",
+      "name": "统一缓存",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "通过统一缓存接口读写缓存，并接入运行时实现。",
+      "useWhen": "热点数据或计算结果需要缓存。",
+      "entryPoints": [
+        "CacheManager"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置缓存实现、命名、过期时间和失效策略。",
+      "limits": "统一接口不意味着所有缓存都跨实例共享。",
+      "modules": [
+        "libs/common/common-cache"
+      ],
+      "sources": [
+        "libs/common/common-cache/src/main/java/com/ouroboros/cache/CacheManager.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/other-extension-points.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.lock",
+      "name": "自适应分布式锁",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按可用实现选择锁管理器，提供统一锁入口。",
+      "useWhen": "并发操作需要互斥。",
+      "entryPoints": [
+        "DistributedLockManager.getLockManager"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配符合部署拓扑的锁实现；多实例须验证分布式后端。",
+      "limits": "没有分布式实现时可回退本地锁，本地互斥不能保证跨实例互斥。",
+      "modules": [
+        "libs/common/common-lock"
+      ],
+      "sources": [
+        "libs/common/common-lock/src/main/java/com/ouroboros/lock/DistributedLockManager.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/other-extension-points.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.business-log",
+      "name": "业务日志与操作追溯",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按模板记录业务操作与上下文。",
+      "useWhen": "需要让运维和业务人员追查具体操作。",
+      "entryPoints": [
+        "业务日志模板",
+        "业务日志运行模块"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "定义模板、记录触发点及查询权限。",
+      "limits": "技术日志、字段审计、业务动作审计和业务日志职责不同。",
+      "modules": [
+        "ability/ouroboros-business-log"
+      ],
+      "sources": [
+        "ability/ouroboros-business-log/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "operations/business-logs-and-audit-traceability.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.errors",
+      "name": "异常与响应映射",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "统一业务异常和 Web 响应结构，并映射可识别错误。",
+      "useWhen": "自定义接口需要与平台前端保持一致的结果语义。",
+      "entryPoints": [
+        "WebApiResult",
+        "异常映射模块"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "使用平台异常与响应契约，注册所需映射。",
+      "limits": "捕获异常后返回成功会破坏事务和调用方判断；不要吞掉失败。",
+      "modules": [
+        "libs/common/common-web",
+        "libs/common/common-exception-mapper"
+      ],
+      "sources": [
+        "libs/common/common-web/src/main/java/com/ouroboros/web/WebApiResult.java",
+        "libs/common/common-exception-mapper/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/transactions-and-execution-context.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.error-definitions",
+      "name": "错误码定义资源",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "从应用和插件资源加载错误码定义。",
+      "useWhen": "错误需要稳定标识及统一说明。",
+      "entryPoints": [
+        "ErrorCodeDefinitionProvider"
+      ],
+      "access": [
+        "metadata",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "提供错误码资源并遵循命名与覆盖约定。",
+      "limits": "定义资源本身不实现异常处理；需与实际抛出和响应映射衔接。",
+      "modules": [
+        "core/ouroboros-error-code/ouroboros-error-code-core",
+        "core/ouroboros-error-code/ouroboros-error-code-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-error-code/ouroboros-error-code-core/src/main/java/com/ouroboros/errorcode/provider/ErrorCodeDefinitionProvider.java",
+        "core/ouroboros-error-code/ouroboros-error-code-runtime/src/main/java/com/ouroboros/errorcode/runtime/provider/ResourceErrorCodeDefinitionProvider.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/other-extension-points.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.metadata",
+      "name": "元数据发现与目录",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按资源类型收集元数据，为模型装配提供统一目录。",
+      "useWhen": "应用、插件与运行覆盖层需要共同提供模型定义。",
+      "entryPoints": [
+        "TypedMetadataCatalog"
+      ],
+      "access": [
+        "metadata",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "通过正式资源与模型提供机制接入定义。",
+      "limits": "同名覆盖、优先级与生命周期需按目标模型机制核对，不另建隐藏目录。",
+      "modules": [
+        "libs/common/common-metadata"
+      ],
+      "sources": [
+        "libs/common/common-metadata/src/main/java/com/ouroboros/metadata/resource/TypedMetadataCatalog.java"
+      ],
+      "docs": [
+        {
+          "path": "guide/advance/authoring-metadata-conventions/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.resources",
+      "name": "应用资源与运行覆盖",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "组合资源提供器，并支持运行时资源覆盖层。",
+      "useWhen": "应用文件资源需要统一读取或受控覆盖。",
+      "entryPoints": [
+        "ResourceService",
+        "CompositeResourceProvider",
+        "RuntimeOverrideFileResourceProvider"
+      ],
+      "access": [
+        "metadata",
+        "java",
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "装配资源模块，配置资源位置与覆盖层。",
+      "limits": "资源路径、优先级与写入权限须明确；覆盖资源需要独立备份。",
+      "modules": [
+        "core/ouroboros-resource/ouroboros-resource-core",
+        "core/ouroboros-resource/ouroboros-resource-runtime"
+      ],
+      "sources": [
+        "core/ouroboros-resource/ouroboros-resource-core/src/main/java/com/ouroboros/resource/spi/ResourceService.java",
+        "core/ouroboros-resource/ouroboros-resource-runtime/src/main/java/com/ouroboros/resource/runtime/provider/CompositeResourceProvider.java",
+        "core/ouroboros-resource/ouroboros-resource-runtime/src/main/java/com/ouroboros/resource/runtime/provider/RuntimeOverrideFileResourceProvider.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/supporting-resources/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.lifecycle",
+      "name": "应用装配与生命周期",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按应用上下文刷新和模型生命周期组织初始化。",
+      "useWhen": "插件需要在正确阶段加载资源或衔接业务初始化。",
+      "entryPoints": [
+        "OuroborosContextRefreshLifecycle"
+      ],
+      "access": [
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "使用平台生命周期扩展与正式注册。",
+      "limits": "生命周期顺序是装配约束，不能用任意启动钩子绕开。",
+      "modules": [
+        "libs/common/common-app"
+      ],
+      "sources": [
+        "libs/common/common-app/src/main/java/com/ouroboros/lifecycle/OuroborosContextRefreshLifecycle.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/extension-points.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.extension.data-plugin",
+      "name": "数据模型插件",
+      "side": "backend",
+      "category": "extension",
+      "summary": "在模型生命周期和数据操作上复用可插拔行为。",
+      "useWhen": "多个模型需要一致的校验、审计或数据行为。",
+      "entryPoints": [
+        "DataModelPluginBuilder",
+        "DataModelMetaDecorator"
+      ],
+      "access": [
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "遵循插件与装饰器机制，注册并应用到目标模型。",
+      "limits": "字段声明、模型元数据装饰和运行操作钩子职责不同。",
+      "modules": [
+        "core/ouroboros-data/ouroboros-data-core"
+      ],
+      "sources": [
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/model/DataModelPluginBuilder.java",
+        "core/ouroboros-data/ouroboros-data-core/src/main/java/com/ouroboros/data/model/DataModelMetaDecorator.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/data-model-plugins.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.extension.business-plugin",
+      "name": "业务模型扩展",
+      "side": "backend",
+      "category": "extension",
+      "summary": "按业务模型扩展点接入可复用行为和模型配置。",
+      "useWhen": "标准业务能力需要对多个模型统一扩展。",
+      "entryPoints": [
+        "业务模型插件",
+        "元数据装饰器"
+      ],
+      "access": [
+        "spi"
+      ],
+      "availability": "assembled",
+      "requires": "选择正式扩展点，注册实现并声明适用范围。",
+      "limits": "扩展应复用业务动作与权限边界，避免旁路数据操作。",
+      "modules": [
+        "core/ouroboros-business-model"
+      ],
+      "sources": [
+        "core/ouroboros-business-model/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/business-model-plugins.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.extension.app-module",
+      "name": "应用模块与高代码装配",
+      "side": "backend",
+      "category": "extension",
+      "summary": "把应用模块定义和高代码实现接入统一运行时基座。",
+      "useWhen": "需要以模块交付可复用业务实现。",
+      "entryPoints": [
+        "应用模块模型",
+        "Procode 模块"
+      ],
+      "access": [
+        "metadata",
+        "module"
+      ],
+      "availability": "assembled",
+      "requires": "按应用模块约定组织资源、依赖和自动配置。",
+      "limits": "开发平台设计模块与运行模块不同，不应将开发态依赖混入业务运行包。",
+      "modules": [
+        "core/ouroboros-app-module-model"
+      ],
+      "sources": [
+        "core/ouroboros-app-module-model/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-extension-packages.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.extension.component-assets",
+      "name": "平台组件库资源",
+      "side": "backend",
+      "category": "extension",
+      "summary": "维护可供应用引用的前端组件库资源与定义。",
+      "useWhen": "多个应用需要共享声明式组件及扩展。",
+      "entryPoints": [
+        "平台组件库模块"
+      ],
+      "access": [
+        "metadata",
+        "module"
+      ],
+      "availability": "assembled",
+      "requires": "按组件库清单和资源约定发布，并配置应用引用。",
+      "limits": "普通 npm 组件包不会自动成为平台组件库。",
+      "modules": [
+        "ability/ouroboros-platform-component-lib"
+      ],
+      "sources": [
+        "ability/ouroboros-platform-component-lib/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/workbench-widgets-and-component-libraries.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.app-runtime",
+      "name": "应用运行装配",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "汇集应用元数据、配置、前端资源与运行生命周期保护。",
+      "useWhen": "应用需要以标准基座启动并向前端提供运行信息。",
+      "entryPoints": [
+        "AppRuntimeAutoConfiguration",
+        "AppMetadataController",
+        "FrontendResourceViewController"
+      ],
+      "access": [
+        "module"
+      ],
+      "availability": "assembled",
+      "requires": "按标准运行入口装配应用运行模块并配置应用资源目录。",
+      "limits": "应用未完成初始化时的入口保护应保留，不绕过生命周期直接开放接口。",
+      "modules": [
+        "ability/ouroboros-app-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/AppRuntimeAutoConfiguration.java",
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/controller/AppMetadataController.java",
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/controller/FrontendResourceViewController.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/architecture/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.access-plugin",
+      "name": "数据访问控制插件",
+      "side": "backend",
+      "category": "identity",
+      "summary": "在模型读写路径应用行约束、字段约束与写入检查。",
+      "useWhen": "模型需要在数据操作层落实访问范围。",
+      "entryPoints": [
+        "AccessControlDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "给模型启用插件并配置读、写、删等权限项。",
+      "limits": "未配置权限项与已启用约束的行为不同；自定义访问不能绕开模型插件链。",
+      "modules": [
+        "ability/ouroboros-app-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/datamodel/plugin/AccessControlDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/data-access-control-parameters.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.data.organization-defaults",
+      "name": "组织与人员自动赋值",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过模型插件为记录填入公司、部门和员工等身份信息。",
+      "useWhen": "记录需要带上当前组织归属。",
+      "entryPoints": [
+        "CompanySetterDataModelPlugin",
+        "DepartmentSetterDataModelPlugin",
+        "EmployeeSetterDataModelPlugin"
+      ],
+      "access": [
+        "metadata",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "启用相应插件，配置目标字段并提供执行身份。",
+      "limits": "自动赋值不等于数据权限，后台身份没有组织信息时需明确处理。",
+      "modules": [
+        "ability/ouroboros-app-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/datamodel/plugin/CompanySetterDataModelPlugin.java",
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/datamodel/plugin/DepartmentSetterDataModelPlugin.java",
+        "ability/ouroboros-app-runtime/src/main/java/com/ouroboros/app/datamodel/plugin/EmployeeSetterDataModelPlugin.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/plugin-extensions/backend/data-model-plugins.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.model-service",
+      "name": "通用模型服务契约",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "提供模型增删改查和软删除的服务接口与基础实现。",
+      "useWhen": "Java 服务需要复用通用模型操作契约。",
+      "entryPoints": [
+        "ModelService",
+        "SoftDeleteModelService"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "复用工程已有服务实现并接入平台数据访问。",
+      "limits": "基础服务接口不自动包含完整业务动作、审计或权限语义。",
+      "modules": [
+        "libs/common/common-service",
+        "libs/common/common-model"
+      ],
+      "sources": [
+        "libs/common/common-service/src/main/java/com/ouroboros/common/service/ModelService.java",
+        "libs/common/common-service/src/main/java/com/ouroboros/common/service/SoftDeleteModelService.java",
+        "libs/common/common-model/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/development-practices.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.foundation.utilities",
+      "name": "JSON、时间与 SPI 工具",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "复用平台 JSON、数据结构、时间处理和 SPI 加载工具。",
+      "useWhen": "后端实现需要与基座保持相同的数据与扩展约定。",
+      "entryPoints": [
+        "Json",
+        "JsonBag",
+        "JsonSchemas",
+        "Dates",
+        "SPI"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "引入 ouroboros-util，按对应 Java API 契约使用。",
+      "limits": "这是开发库；具体方法与类型请读取目标版本 API，不凭名称猜签名。",
+      "modules": [
+        "libs/util/ouroboros-util"
+      ],
+      "sources": [
+        "libs/util/ouroboros-util/pom.xml"
+      ],
+      "docs": [
+        {
+          "path": "api/backend/java-api/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.ai.tools-policy",
+      "name": "AI 工具定义与调用策略",
+      "side": "backend",
+      "category": "ai",
+      "summary": "维护模型、工具和策略的运行时定义与解析入口。",
+      "useWhen": "AI 调用需要统一选择模型、限制工具或应用策略。",
+      "entryPoints": [
+        "AiToolRegistry",
+        "AiPolicyRegistry",
+        "AiRuntimeSnapshotResolver"
+      ],
+      "access": [
+        "java"
+      ],
+      "availability": "optional",
+      "requires": "装配 AI 运行模块，提供模型、工具描述和策略定义。",
+      "limits": "注册工具描述不等于已实现业务工具；副作用、授权和确认机制需由具体工具落实。",
+      "modules": [
+        "ability/ouroboros-ai/ouroboros-ai-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/registry/AiToolRegistry.java",
+        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/registry/AiPolicyRegistry.java",
+        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/resolution/AiRuntimeSnapshotResolver.java"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/ai-assisted-development.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.micro-app",
+      "name": "微前端与布局生命周期",
+      "side": "frontend",
+      "category": "extension",
+      "summary": "初始化微前端、单组件、布局及组件库，并处理挂载、更新和卸载。",
+      "useWhen": "页面或布局需要独立前端工程。",
+      "entryPoints": [
+        "initMicroApp",
+        "initSingleComponent",
+        "initLayoutComponent",
+        "initAmisComponentLib"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "beforeMount 早于运行能力注入；卸载时清理自行创建的资源。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/initialization-methods/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "fe.navigation",
+        "fe.request",
+        "fe.component-extension"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.navigation",
+      "name": "标签页与导航",
+      "side": "frontend",
+      "category": "page",
+      "summary": "打开或复用标签页、跳转菜单、修改标题并向来源页回传结果。",
+      "useWhen": "跨页面操作需要与宿主导航协同。",
+      "entryPoints": [
+        "openTab",
+        "openOrSwitchTab",
+        "openMenu",
+        "closeTab",
+        "sendToOpenerTab",
+        "updateTabTitle"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "目标路径与权限由应用定义；不要自行维护第二套宿主标签页状态。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/navigation-and-tabs-and-dialogs.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.dialogs",
+      "name": "弹窗、抽屉与反馈",
+      "side": "frontend",
+      "category": "page",
+      "summary": "使用宿主弹窗、抽屉、确认框和消息反馈。",
+      "useWhen": "需要统一交互，并把确认或取消结果返回调用方。",
+      "entryPoints": [
+        "openDialog",
+        "openDrawer",
+        "onConfirm",
+        "onCancel",
+        "toast",
+        "confirm",
+        "alert",
+        "prompt"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "应处理确认、取消与关闭路径，不能只关注成功回调。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/navigation-and-tabs-and-dialogs.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.request",
+      "name": "统一请求",
+      "side": "frontend",
+      "category": "integration",
+      "summary": "通过宿主请求适配调用后端。",
+      "useWhen": "微前端需要沿用宿主的请求与认证约定。",
+      "entryPoints": [
+        "request"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "接口权限仍由后端判断；错误与取消按 SDK 契约处理。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/request-and-authentication.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.business-actions",
+      "name": "业务动作调用",
+      "side": "frontend",
+      "category": "business",
+      "summary": "检查动作可用性并调用后端业务动作，使用契约信息匹配输入。",
+      "useWhen": "页面希望复用统一业务动作。",
+      "entryPoints": [
+        "businessActions.checkAvailability",
+        "businessActions.invoke"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。 后端需要对应动作定义。",
+      "limits": "EXECUTABLE、BLOCKED、NEEDS_INPUT 是可用性结果；前端检查不能替代执行时权限检查。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/business-actions.ts"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/backend-development/business-model.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.events",
+      "name": "页面事件与会话回放",
+      "side": "frontend",
+      "category": "integration",
+      "summary": "在页面间发布、订阅事件，并使用会话事件回放机制。",
+      "useWhen": "多个微前端或组件需要协作。",
+      "entryPoints": [
+        "EventBus.subscribe",
+        "subscribeOnce",
+        "publish",
+        "unsubscribe"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "卸载时解除订阅；页面内事件不等于持久化业务事件或跨服务消息。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/events-schema-and-component-registration.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.stomp",
+      "name": "实时订阅与初始快照",
+      "side": "frontend",
+      "category": "integration",
+      "summary": "订阅主题、队列和用户消息，支持初始数据与实时变化衔接。",
+      "useWhen": "页面需要持续接收状态和增量结果。",
+      "entryPoints": [
+        "Stomp.subscribeWithInitial",
+        "subscribe",
+        "send",
+        "unsubscribe"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。 后端配置 WebSocket / STOMP。",
+      "limits": "初始数据获取与订阅顺序需遵守 API；页面离开时清理句柄和订阅。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/stomp-and-realtime.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.auth",
+      "name": "登录、身份与权限显示",
+      "side": "frontend",
+      "category": "identity",
+      "summary": "登录、退出、获取当前用户或令牌，并判断权限显示。",
+      "useWhen": "需要统一账号体验或按权限调整界面。",
+      "entryPoints": [
+        "login",
+        "logout",
+        "getUserInfo",
+        "getToken",
+        "hasAuth"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "hasAuth 仅用于界面；不能作为后端授权依据，也不要把令牌写入日志。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/request-and-authentication.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.external-login",
+      "name": "多认证方式登录",
+      "side": "frontend",
+      "category": "identity",
+      "summary": "发现认证来源、跳转登录、LDAP 登录、交换登录码和绑定账号。",
+      "useWhen": "自定义登录页需要兼容外部认证。",
+      "entryPoints": [
+        "listExternalProviders",
+        "startRedirectLogin",
+        "loginWithLdap",
+        "exchangeLoginCode",
+        "bindExternalAccount",
+        "mapAuthError"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。 配置后端认证来源和回调。",
+      "limits": "企业连接与静态 provider 的发现方式不同，需按认证指南配置。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/custom-login-page-and-auth-integration.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.menus",
+      "name": "菜单树与徽标",
+      "side": "frontend",
+      "category": "page",
+      "summary": "读取或调整宿主菜单，维护菜单徽标。",
+      "useWhen": "应用需要动态入口或未读数量。",
+      "entryPoints": [
+        "menu",
+        "菜单树",
+        "菜单徽标"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "临时菜单变更不替代后端菜单和权限定义。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/menu-extension/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.user-menu",
+      "name": "用户菜单扩展",
+      "side": "frontend",
+      "category": "page",
+      "summary": "注册和移除用户菜单项，并按所属微前端清理。",
+      "useWhen": "用户区域需要增加应用功能入口。",
+      "entryPoints": [
+        "userMenu.register",
+        "unregister",
+        "unregisterAll"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "注册项应有稳定标识和所有者；卸载及重复挂载要避免残留。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/menu-extension/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.theme",
+      "name": "主题切换",
+      "side": "frontend",
+      "category": "page",
+      "summary": "读取和切换宿主主题。",
+      "useWhen": "微前端需要跟随应用整体外观。",
+      "entryPoints": [
+        "getTheme",
+        "setTheme"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。",
+      "limits": "可用主题取决于宿主配置；组件样式应同时验证明暗主题。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/events-schema-and-component-registration.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.i18n",
+      "name": "前端多语言",
+      "side": "frontend",
+      "category": "foundation",
+      "summary": "切换语言，按命名空间取词，并订阅语言变化。",
+      "useWhen": "微前端与宿主需要使用相同语言。",
+      "entryPoints": [
+        "i18n.switchLanguage",
+        "t",
+        "tn",
+        "useNamespace",
+        "onLocaleChange"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。 提供对应语言资源。",
+      "limits": "语言变化订阅需清理；文本回退不表示翻译资源已经完整。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/events-schema-and-component-registration.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.schema-render",
+      "name": "PrismUI 页面渲染",
+      "side": "frontend",
+      "category": "page",
+      "summary": "在指定容器中渲染声明式页面，并复用宿主组件与请求环境。",
+      "useWhen": "自定义页面仍希望组合标准页面组件。",
+      "entryPoints": [
+        "renderAmisSchema",
+        "type: amis-schema / ui-schema"
+      ],
+      "access": [
+        "sdk",
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "先由前端基座挂载并注入 SDK；在 render 或 afterMount 阶段调用运行能力。 使用合法 Schema。",
+      "limits": "PrismUI 为产品用语，现有 amis 类型名与 SDK 标识保留。",
+      "modules": [
+        "frontends/web/ouroboros-sdk",
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts",
+        "frontends/web/main-app/src/components/amis/renderers/AmisSchema.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/schema-and-editor-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [
+        "fe.schema-actions",
+        "fe.schema-functions",
+        "fe.micro-component"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.schema-editor",
+      "name": "页面 Schema 编辑与预览",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供 Schema 编辑和预览组件。",
+      "useWhen": "管理页面需要嵌入声明式页面配置。",
+      "entryPoints": [
+        "amis-schema-editor",
+        "ui-schema-editor",
+        "amis-schema-preview",
+        "ui-schema-preview"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "使用宿主注册的组件；涉及可视化编辑器时按需加载编辑预设。",
+      "limits": "完整设计器和高级设计组件并非普通运行页面的默认依赖。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/AmisSchemaEditor.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/AmisSchemaPreview.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/schema-and-editor-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.micro-component",
+      "name": "微组件与嵌入页面",
+      "side": "frontend",
+      "category": "page",
+      "summary": "在 Schema 页面嵌入微组件、表单组件或微前端页面。",
+      "useWhen": "局部交互需要自定义代码，其余页面仍声明式构建。",
+      "entryPoints": [
+        "micro-component",
+        "micro-form-component",
+        "embed-micro-app",
+        "embed-internal"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "发布并配置对应微前端或内部页面。",
+      "limits": "需要检查加载路径、属性契约和组件卸载。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/MicroComponent.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/EmbedMicroApp.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/EmbedInternal.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/business-pickers-and-micro-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.organization-picker",
+      "name": "组织与人员选择",
+      "side": "frontend",
+      "category": "organization",
+      "summary": "提供组织、员工、用户选择器及关联字段展示。",
+      "useWhen": "表单需要从组织架构选取对象。",
+      "entryPoints": [
+        "organization-picker",
+        "employee-picker",
+        "user-picker",
+        "company-ref",
+        "department-ref",
+        "employee-ref",
+        "user-ref"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "后端组织服务可用，配置选择范围及回填字段。",
+      "limits": "显示字段、返回值与实际授权范围需要分别核对。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/OrganizationPicker.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/OrganizationPeoplePicker.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/EmployeeRef.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/business-pickers-and-micro-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.dict-picker",
+      "name": "字典选择器",
+      "side": "frontend",
+      "category": "foundation",
+      "summary": "按字典定义展示可选值与标签。",
+      "useWhen": "表单枚举需要与后端字典一致。",
+      "entryPoints": [
+        "data-dict-picker"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "后端字典服务可用，指定字典名称。",
+      "limits": "保存值与展示标签不同，联动筛选需检查数据格式。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/DataDictPicker.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/business-pickers-and-micro-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.tree-editor",
+      "name": "树编辑与穿梭选择",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供树编辑、树形穿梭和集合选择组件。",
+      "useWhen": "分层数据需要编辑或在两组集合间选择。",
+      "entryPoints": [
+        "tree-editor",
+        "tabs-transfer",
+        "tabs-transfer-editor",
+        "dynamic-tree-transfer-picker",
+        "selection-editor"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "配置数据、标识字段及服务端命令接口。",
+      "limits": "本地树修改与服务端持久化不是同一个步骤；明确保存和失败回退。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/TreeEditor.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/TabsTransferEditor.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/DynamicTreeTransferPicker.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/SelectionEditor.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/advanced-editor-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.config-editors",
+      "name": "脚本、JSON 与图标配置",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供脚本编辑、JSON 数据编辑和图标选择。",
+      "useWhen": "应用管理页面需要维护结构化配置。",
+      "entryPoints": [
+        "script-editor",
+        "json-data-editor",
+        "ouroboros-icon-picker"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "使用已注册组件并配置值格式、语言或 Schema。",
+      "limits": "编辑器只负责输入，保存、执行权限和后端校验需另行实现。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/ScriptEditor.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/JsonDataEditor.tsx",
+        "frontends/web/main-app/src/components/amis/renderers/IconPicker.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/advanced-editor-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.workflow-timeline",
+      "name": "审批时间线",
+      "side": "frontend",
+      "category": "execution",
+      "summary": "按审批实例显示流程处理记录。",
+      "useWhen": "详情页需要展示审批进度与历史。",
+      "entryPoints": [
+        "workflow-timeline"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "后端审批服务可用，提供有效流程实例 ID。",
+      "limits": "时间线是展示入口，不能替代审批任务处理与授权。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/WorkflowTimeline.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/business-pickers-and-micro-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.report-runtime",
+      "name": "报表视图运行组件",
+      "side": "frontend",
+      "category": "analytics",
+      "summary": "调用报表运行接口并展示已发布视图。",
+      "useWhen": "页面需要嵌入统计资产。",
+      "entryPoints": [
+        "report-view-runtime"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "发布对应报表视图，准备参数并配置数据权限。",
+      "limits": "设计器中的预览定义不等于运行时可读定义。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/report-view-runtime/index.ts"
+      ],
+      "docs": [
+        {
+          "path": "guide/module/statistics-analysis/index.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.dashboard",
+      "name": "看板、小组件与图表",
+      "side": "frontend",
+      "category": "analytics",
+      "summary": "以小组件组合看板，并渲染图表。",
+      "useWhen": "用户工作台需要组合指标和业务内容。",
+      "entryPoints": [
+        "dashboard",
+        "widget",
+        "Chart"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "后端提供看板与小组件定义；图表数据接口可访问。",
+      "limits": "布局、图表配置和数据授权分别验证。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/dashboard/index.ts",
+        "frontends/web/main-app/src/components/amis/renderers/index.ts"
+      ],
+      "docs": [
+        {
+          "path": "fusion-development/workbench-widgets-and-component-libraries.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.excel-template",
+      "name": "Excel 模板下载",
+      "side": "frontend",
+      "category": "file",
+      "summary": "在页面提供 Excel 模板下载入口。",
+      "useWhen": "批量导入前需要分发固定格式模板。",
+      "entryPoints": [
+        "export-excel-template"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "配置模板及下载接口。",
+      "limits": "模板下载不包含数据导入校验或后端导入流程。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/renderers/ExportExcelTemplate.tsx"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/business-pickers-and-micro-components.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.schema-actions",
+      "name": "页面动作",
+      "side": "frontend",
+      "category": "page",
+      "summary": "在 Schema 中调用事件、导航、徽标、节流、防抖与 Beacon 动作。",
+      "useWhen": "声明式页面需要跨组件交互或控制频繁触发。",
+      "entryPoints": [
+        "PublishEvent",
+        "OpenTab",
+        "CloseCurrentTab",
+        "SetMenuBadge",
+        "Debounce",
+        "Throttle",
+        "Beacon"
+      ],
+      "access": [
+        "schema"
+      ],
+      "availability": "host",
+      "requires": "使用运行时已注册动作，并按实际 actionType 编写配置。",
+      "limits": "源文件类名不一定等于 actionType；Beacon 不适合承担必须可靠完成的业务提交。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/actions/index.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/actions-filters-and-expression-functions.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.schema-functions",
+      "name": "公式、过滤器与规则",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供权限判断、对象处理、数据转换及输入规则。",
+      "useWhen": "Schema 中需要轻量计算与格式转换。",
+      "entryPoints": [
+        "hasAuth",
+        "hasRole",
+        "omit",
+        "pick",
+        "merge",
+        "createObject",
+        "reduce",
+        "addRule"
+      ],
+      "access": [
+        "schema",
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "使用已注册的公式、过滤器及校验规则。",
+      "limits": "前端权限公式和校验都不能替代后端检查。",
+      "modules": [
+        "frontends/web/main-app"
+      ],
+      "sources": [
+        "frontends/web/main-app/src/components/amis/formulas/index.ts",
+        "frontends/web/main-app/src/components/amis/filters/index.ts",
+        "frontends/web/main-app/src/components/amis/rules/index.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/buildin-comps/actions-filters-and-expression-functions.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.component-extension",
+      "name": "组件、动作与公式扩展",
+      "side": "frontend",
+      "category": "extension",
+      "summary": "注册自定义渲染器、表单项、动作、公式、校验器和图标。",
+      "useWhen": "内建页面组件需要可复用扩展。",
+      "entryPoints": [
+        "Renderer",
+        "FormItem",
+        "OptionsControl",
+        "registerAction",
+        "registerFormula",
+        "registerValidator",
+        "registerIcon"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "host",
+      "requires": "通过组件库初始化或宿主允许的注册入口接入。",
+      "limits": "使用官方注册和生命周期；不要直接导入 main-app 私有实现。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/events-schema-and-component-registration.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.editor-extension",
+      "name": "设计器插件与动作面板",
+      "side": "frontend",
+      "category": "extension",
+      "summary": "在编辑环境注册组件设计插件和动作配置面板。",
+      "useWhen": "新增组件需要支持可视化配置。",
+      "entryPoints": [
+        "registerEditorPlugin",
+        "registerActionPanel"
+      ],
+      "access": [
+        "sdk"
+      ],
+      "availability": "optional",
+      "requires": "加载编辑器相关模块；对应运行组件须另行注册。",
+      "limits": "这是编辑环境扩展，不代表普通运行页面已携带完整设计器。",
+      "modules": [
+        "frontends/web/ouroboros-sdk"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-sdk/src/main.ts"
+      ],
+      "docs": [
+        {
+          "path": "api/frontend/sdk/completion-methods/events-schema-and-component-registration.md",
+          "coverage": "guide"
+        }
+      ],
+      "related": [],
+      "verification": "source-reviewed"
+    }
+  ]
+}

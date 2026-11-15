@@ -1,0 +1,1300 @@
+{
+  "schemaVersion": "1.0.0",
+  "source": {
+    "revision": "e757b2d04fc21d784cf778c04d58c7b790eb0a7d",
+    "basis": "working-tree",
+    "verification": "source-reviewed",
+    "runtimeVerified": false
+  },
+  "catalog": "catalog.json",
+  "categories": [
+    {
+      "id": "data",
+      "name": "数据建模与治理"
+    },
+    {
+      "id": "business",
+      "name": "业务语义与行为"
+    },
+    {
+      "id": "execution",
+      "name": "流程与规则执行"
+    },
+    {
+      "id": "page",
+      "name": "页面与交互"
+    },
+    {
+      "id": "integration",
+      "name": "集成、消息与任务"
+    },
+    {
+      "id": "identity",
+      "name": "身份与访问控制"
+    },
+    {
+      "id": "organization",
+      "name": "组织与个人设置"
+    },
+    {
+      "id": "file",
+      "name": "文件与文档"
+    },
+    {
+      "id": "analytics",
+      "name": "统计与看板"
+    },
+    {
+      "id": "ai",
+      "name": "AI 集成"
+    },
+    {
+      "id": "foundation",
+      "name": "公共技术能力"
+    },
+    {
+      "id": "extension",
+      "name": "装配与插件扩展"
+    }
+  ],
+  "selectionRules": [
+    "先按 useWhen 与 limits 匹配业务任务，再检查 requires、modules 和 entryPoints。",
+    "availability 描述接入方式，不证明当前实例已经启用；核对目标版本、依赖、配置和实际请求。",
+    "docs.coverage=guide 表示有对应使用指南，related 只表示有相关上下文，不能据此补造调用契约。",
+    "sources 与 modules 是相对于仓库根的路径；docs.path 相对于 docs/handbook/docs，均不是生产接口 URL。",
+    "related 是组合建议，不是完整依赖图；调用前必须读取目标版本的契约与权限要求。",
+    "此目录不授予权限，也不将条目自动注册为 AI 工具或 MCP 服务。"
+  ],
+  "capabilities": [
+    {
+      "id": "be.data.dynamic",
+      "name": "动态数据模型与查询",
+      "side": "backend",
+      "category": "data",
+      "summary": "按模型定义读写数据，使用查询 DSL 组合筛选、排序、分页和关联查询。",
+      "useWhen": "需要统一的数据访问入口，或模型结构由元数据决定。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.typed",
+      "name": "类型化数据模型",
+      "side": "backend",
+      "category": "data",
+      "summary": "将 Java 类型绑定到数据模型，提供类型化访问和查询。",
+      "useWhen": "高代码服务需要类型提示、编译检查和模型注入。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.fields",
+      "name": "字段类型与校验",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过字段类型定义约束、转换和标准页面使用的字段信息。",
+      "useWhen": "字段需要统一校验，或现有类型无法表达业务数据。",
+      "access": [
+        "metadata",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.data.relations",
+      "name": "关联与数据展开",
+      "side": "backend",
+      "category": "data",
+      "summary": "定义模型关联，并按查询需要展开关联数据。",
+      "useWhen": "业务对象存在引用、父子或集合关系。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.uniqueness",
+      "name": "唯一约束与重复检查",
+      "side": "backend",
+      "category": "data",
+      "summary": "声明单字段或组合唯一约束，并用插件检查重复数据。",
+      "useWhen": "编码、名称或字段组合需要保持唯一。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.audit",
+      "name": "创建与修改审计字段",
+      "side": "backend",
+      "category": "data",
+      "summary": "自动维护记录创建、修改等审计字段。",
+      "useWhen": "数据需要记录由谁创建、何时修改。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.logical-delete",
+      "name": "逻辑删除",
+      "side": "backend",
+      "category": "data",
+      "summary": "删除时标记记录，并在相应查询路径应用删除状态。",
+      "useWhen": "记录需要保留，普通列表隐藏已删除数据。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.archive-delete",
+      "name": "归档删除",
+      "side": "backend",
+      "category": "data",
+      "summary": "按插件策略处理删除数据的归档。",
+      "useWhen": "删除前需要将数据转入归档存储。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.history",
+      "name": "数据历史版本",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过 SCD2 插件记录数据变化的历史版本。",
+      "useWhen": "需要追溯对象在不同时点的状态。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.reference-check",
+      "name": "引用完整性检查",
+      "side": "backend",
+      "category": "data",
+      "summary": "在模型操作中检查引用关系。",
+      "useWhen": "删除或修改记录前需要检查其他模型的引用。",
+      "access": [
+        "metadata",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.data.derived-update",
+      "name": "关联变化联动更新",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过模型插件在数据变化时联动更新相关数据。",
+      "useWhen": "冗余值或派生字段需要跟随来源数据更新。",
+      "access": [
+        "metadata",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.data.primary-key",
+      "name": "主键与业务编码",
+      "side": "backend",
+      "category": "data",
+      "summary": "提供编码主键生成器，按规则生成业务记录标识。",
+      "useWhen": "记录需要稳定标识或规则化业务编码。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.schema-migration",
+      "name": "模型驱动结构演进",
+      "side": "backend",
+      "category": "data",
+      "summary": "比较模型与数据库结构，生成并执行支持范围内的迁移。",
+      "useWhen": "应用升级涉及增加字段、索引或调整结构。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.initialization",
+      "name": "声明式数据初始化",
+      "side": "backend",
+      "category": "data",
+      "summary": "用初始化定义补齐尚不存在的基础数据，并记录执行账本。",
+      "useWhen": "字典、内置角色或应用基础记录需要随应用交付。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.business.model",
+      "name": "业务模型标准能力",
+      "side": "backend",
+      "category": "business",
+      "summary": "用业务语义组织数据、标准视图、动作及访问控制。",
+      "useWhen": "对象需要标准列表、表单、详情与业务配置协同。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.business.actions",
+      "name": "业务动作契约与执行",
+      "side": "backend",
+      "category": "business",
+      "summary": "描述动作输入、检查可用性并在统一业务边界执行动作。",
+      "useWhen": "同一业务操作要被页面、服务或 AI 入口复用。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.business.events",
+      "name": "业务事件与订阅",
+      "side": "backend",
+      "category": "business",
+      "summary": "发布带业务语义的事件，并按订阅定义调用处理逻辑。",
+      "useWhen": "业务动作完成后需要解耦通知、联动和后续处理。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.business.event-recovery",
+      "name": "业务事件持久化与恢复",
+      "side": "backend",
+      "category": "business",
+      "summary": "通过事件发件箱记录投递，提供失败恢复和重放操作。",
+      "useWhen": "事件处理需要跨故障恢复及运维追溯。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.execution.logicflow",
+      "name": "逻辑流引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "执行图形化定义的节点与连线，组合数据、表达式、脚本和服务能力。",
+      "useWhen": "业务处理适合显式编排输入、分支与输出。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.execution.expression",
+      "name": "表达式引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "编译和计算表达式或条件谓词。",
+      "useWhen": "需要字段计算、动态参数或条件判断。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.execution.script",
+      "name": "脚本引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "通过统一入口执行脚本，并通过 SPI 接入脚本语言。",
+      "useWhen": "局部规则难以用简单表达式表达。",
+      "access": [
+        "metadata",
+        "java",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.execution.template",
+      "name": "模板引擎",
+      "side": "backend",
+      "category": "execution",
+      "summary": "渲染文本或资源模板，复用统一的变量输入方式。",
+      "useWhen": "通知正文、文档片段或资源文件需要模板化。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.execution.approval",
+      "name": "内建审批流",
+      "side": "backend",
+      "category": "execution",
+      "summary": "管理流程定义、流程实例、人工任务和审批业务状态。",
+      "useWhen": "需要待办、审批、驳回及处理记录。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.execution.external-approval",
+      "name": "外部审批流引擎适配",
+      "side": "backend",
+      "category": "execution",
+      "summary": "以适配器接入钉钉、企业微信、飞书审批。",
+      "useWhen": "审批在企业协作平台完成，应用需要发起与回收结果。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.page.ui",
+      "name": "UI 模型与前端路由",
+      "side": "backend",
+      "category": "page",
+      "summary": "将 UI 定义提供给前端，组织页面路由与资源引用。",
+      "useWhen": "页面需要稳定路径和统一加载方式。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.page.schema",
+      "name": "UI Schema 资源",
+      "side": "backend",
+      "category": "page",
+      "summary": "从应用或插件资源中加载声明式页面定义。",
+      "useWhen": "标准页面需要自定义布局、交互或新增页面。",
+      "access": [
+        "metadata"
+      ]
+    },
+    {
+      "id": "be.page.schema-management",
+      "name": "UI Schema 实时管理",
+      "side": "backend",
+      "category": "page",
+      "summary": "通过数据库中的页面定义覆盖或维护运行时 UI Schema。",
+      "useWhen": "部署后需要在授权范围内维护页面。",
+      "access": [
+        "module"
+      ]
+    },
+    {
+      "id": "be.page.menu",
+      "name": "菜单与导航",
+      "side": "backend",
+      "category": "page",
+      "summary": "提供菜单定义和运行时导航资源。",
+      "useWhen": "应用需要按权限展示入口和层级。",
+      "access": [
+        "metadata"
+      ]
+    },
+    {
+      "id": "be.page.microfrontend",
+      "name": "微前端资源服务",
+      "side": "backend",
+      "category": "page",
+      "summary": "加载微前端定义并为前端提供扩展资源入口。",
+      "useWhen": "独立前端工程需要挂载到统一应用。",
+      "access": [
+        "metadata"
+      ]
+    },
+    {
+      "id": "be.page.dynamic-form",
+      "name": "动态表单",
+      "side": "backend",
+      "category": "page",
+      "summary": "为问卷、登记等轻量场景管理表单定义与提交。",
+      "useWhen": "数据结构与交互以单个表单为主。",
+      "access": [
+        "module"
+      ]
+    },
+    {
+      "id": "be.integration.webapi",
+      "name": "模型化 HTTP 接口",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按 WebAPI 定义发布接口并衔接业务实现。",
+      "useWhen": "需要向前端或其他系统提供应用接口。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.integration.openapi",
+      "name": "OpenAPI 接口文档",
+      "side": "backend",
+      "category": "integration",
+      "summary": "为接口提供 OpenAPI 描述及文档入口。",
+      "useWhen": "联调、客户端生成或 API 检索需要接口契约。",
+      "access": [
+        "module"
+      ]
+    },
+    {
+      "id": "be.integration.rpc",
+      "name": "外部接口调用",
+      "side": "backend",
+      "category": "integration",
+      "summary": "用 RPC 模型统一外部接口定义、协议调用与凭据。",
+      "useWhen": "重复调用外部服务，希望集中维护接口契约。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.integration.mq",
+      "name": "消息队列",
+      "side": "backend",
+      "category": "integration",
+      "summary": "统一声明消息绑定，并生产或消费消息。",
+      "useWhen": "需要异步解耦、削峰或跨服务事件传递。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.integration.cron",
+      "name": "计划任务",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按 Cron 周期调度业务处理。",
+      "useWhen": "需要定时同步、统计或清理。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.integration.delayed",
+      "name": "延迟与一次性任务",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按时间点或相对延迟创建一次性任务。",
+      "useWhen": "稍后执行提醒、超时处理或补偿。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.integration.websocket",
+      "name": "WebSocket / STOMP",
+      "side": "backend",
+      "category": "integration",
+      "summary": "提供主题、队列和用户维度的实时消息链路。",
+      "useWhen": "服务端变化需要及时到达页面。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.integration.notification",
+      "name": "消息通知与模板",
+      "side": "backend",
+      "category": "integration",
+      "summary": "按通知模板向站内信、邮件、短信及企业渠道发送通知。",
+      "useWhen": "业务事件或任务需要向人发送消息。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.identity.authentication",
+      "name": "登录与会话认证",
+      "side": "backend",
+      "category": "identity",
+      "summary": "提供用户登录、令牌与认证上下文。",
+      "useWhen": "应用需要统一识别调用者。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.identity.external",
+      "name": "外部身份接入",
+      "side": "backend",
+      "category": "identity",
+      "summary": "通过 LDAP / AD、OIDC / OAuth2、CAS 及企业身份适配接入登录。",
+      "useWhen": "希望沿用现有身份系统或企业账号。",
+      "access": [
+        "module",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.identity.oidc-provider",
+      "name": "OIDC 身份服务",
+      "side": "backend",
+      "category": "identity",
+      "summary": "由平台作为身份提供方支持 OIDC 相关服务。",
+      "useWhen": "其他客户端需要使用平台身份登录。",
+      "access": [
+        "module"
+      ]
+    },
+    {
+      "id": "be.identity.rbac",
+      "name": "角色与权限项",
+      "side": "backend",
+      "category": "identity",
+      "summary": "用角色和权限项控制业务入口与功能访问。",
+      "useWhen": "不同岗位需要不同操作权限。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.identity.data-control",
+      "name": "行级与字段访问控制",
+      "side": "backend",
+      "category": "identity",
+      "summary": "解析访问控制参数，为数据查询和业务操作提供约束。",
+      "useWhen": "用户只能访问部分记录或字段。",
+      "access": [
+        "metadata",
+        "java",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.identity.subject",
+      "name": "自定义权限主体",
+      "side": "backend",
+      "category": "identity",
+      "summary": "把用户、角色及业务主体接入权限判定。",
+      "useWhen": "授权对象超出内建主体种类。",
+      "access": [
+        "spi"
+      ]
+    },
+    {
+      "id": "be.identity.scoped-context",
+      "name": "后台执行身份与上下文",
+      "side": "backend",
+      "category": "identity",
+      "summary": "在限定作用域内切换安全上下文，并恢复原上下文。",
+      "useWhen": "计划任务、消息消费或后台工作需要明确执行身份。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.organization.structure",
+      "name": "组织架构与任职",
+      "side": "backend",
+      "category": "organization",
+      "summary": "维护公司、部门、员工、职位和任职，并提供查询服务。",
+      "useWhen": "审批候选人、数据范围或通讯录依赖组织关系。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.organization.profile",
+      "name": "用户与人员资料",
+      "side": "backend",
+      "category": "organization",
+      "summary": "按资料方案管理人员档案和动态资料字段。",
+      "useWhen": "标准账号字段不足以表达人员资料。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.organization.preferences",
+      "name": "用户偏好设置",
+      "side": "backend",
+      "category": "organization",
+      "summary": "按用户保存个人设置。",
+      "useWhen": "应用需要保存个人布局或偏好值。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.file.upload",
+      "name": "文件上传与存储适配",
+      "side": "backend",
+      "category": "file",
+      "summary": "统一上传入口、存储管理和文件引用。",
+      "useWhen": "表单附件需要落到本地或自定义存储。",
+      "access": [
+        "module",
+        "java",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.file.document-library",
+      "name": "文档库与访问控制",
+      "side": "backend",
+      "category": "file",
+      "summary": "管理文档库内容、文件存储和访问权限。",
+      "useWhen": "需要共享资料库及受控文件管理。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.file.excel",
+      "name": "Excel 读写",
+      "side": "backend",
+      "category": "file",
+      "summary": "用平台工具读取和写出 Excel 数据。",
+      "useWhen": "批量导入导出需要在 Java 中定制字段映射。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.file.zip",
+      "name": "ZIP 打包与受限解压",
+      "side": "backend",
+      "category": "file",
+      "summary": "创建和读取 ZIP，并提供解压限制等工具。",
+      "useWhen": "应用资源或批量文件需要打包交付。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.analytics.dataset",
+      "name": "统计数据集与查询视图",
+      "side": "backend",
+      "category": "analytics",
+      "summary": "按统计定义执行数据集和查询视图。",
+      "useWhen": "页面指标与报表需要统一的数据查询契约。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.analytics.report",
+      "name": "报表视图与统计看板",
+      "side": "backend",
+      "category": "analytics",
+      "summary": "为统计视图和看板提供运行时执行接口。",
+      "useWhen": "多个图表需要复用已发布的统计资产。",
+      "access": [
+        "metadata",
+        "module"
+      ]
+    },
+    {
+      "id": "be.analytics.widget",
+      "name": "看板与小组件",
+      "side": "backend",
+      "category": "analytics",
+      "summary": "加载小组件定义，维护用户看板和看板模板。",
+      "useWhen": "用户工作台需要可组合和个性化栏目。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.ai.invocation",
+      "name": "AI 对话与向量调用",
+      "side": "backend",
+      "category": "ai",
+      "summary": "通过统一服务调用模型的对话或向量能力。",
+      "useWhen": "应用需要接入模型，又希望集中维护连接和调用策略。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.ai.retrieval",
+      "name": "知识检索与 RAG 接入",
+      "side": "backend",
+      "category": "ai",
+      "summary": "按知识库和检索器定义获得相关内容。",
+      "useWhen": "对话需要引用业务知识或外部向量库内容。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.ai.mcp",
+      "name": "MCP 工具接入",
+      "side": "backend",
+      "category": "ai",
+      "summary": "从配置的 MCP 客户端发现工具并桥接到 AI 工具注册。",
+      "useWhen": "AI 调用需要使用外部 MCP 工具。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.configuration",
+      "name": "统一配置",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "集中定义配置项并读取运行值。",
+      "useWhen": "应用参数需要按配置模型管理和调整。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.dictionary",
+      "name": "数据字典",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "提供统一的枚举值、标签和字典数据。",
+      "useWhen": "表单选项和业务状态需要复用。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.i18n",
+      "name": "后端多语言资源",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "从文件、插件和数据库读取语言资源。",
+      "useWhen": "消息和界面文本需要多语言。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.cache",
+      "name": "统一缓存",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "通过统一缓存接口读写缓存，并接入运行时实现。",
+      "useWhen": "热点数据或计算结果需要缓存。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.lock",
+      "name": "自适应分布式锁",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按可用实现选择锁管理器，提供统一锁入口。",
+      "useWhen": "并发操作需要互斥。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.business-log",
+      "name": "业务日志与操作追溯",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按模板记录业务操作与上下文。",
+      "useWhen": "需要让运维和业务人员追查具体操作。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.errors",
+      "name": "异常与响应映射",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "统一业务异常和 Web 响应结构，并映射可识别错误。",
+      "useWhen": "自定义接口需要与平台前端保持一致的结果语义。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.error-definitions",
+      "name": "错误码定义资源",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "从应用和插件资源加载错误码定义。",
+      "useWhen": "错误需要稳定标识及统一说明。",
+      "access": [
+        "metadata",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.foundation.metadata",
+      "name": "元数据发现与目录",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按资源类型收集元数据，为模型装配提供统一目录。",
+      "useWhen": "应用、插件与运行覆盖层需要共同提供模型定义。",
+      "access": [
+        "metadata",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.foundation.resources",
+      "name": "应用资源与运行覆盖",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "组合资源提供器，并支持运行时资源覆盖层。",
+      "useWhen": "应用文件资源需要统一读取或受控覆盖。",
+      "access": [
+        "metadata",
+        "java",
+        "spi"
+      ]
+    },
+    {
+      "id": "be.foundation.lifecycle",
+      "name": "应用装配与生命周期",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "按应用上下文刷新和模型生命周期组织初始化。",
+      "useWhen": "插件需要在正确阶段加载资源或衔接业务初始化。",
+      "access": [
+        "spi"
+      ]
+    },
+    {
+      "id": "be.extension.data-plugin",
+      "name": "数据模型插件",
+      "side": "backend",
+      "category": "extension",
+      "summary": "在模型生命周期和数据操作上复用可插拔行为。",
+      "useWhen": "多个模型需要一致的校验、审计或数据行为。",
+      "access": [
+        "spi"
+      ]
+    },
+    {
+      "id": "be.extension.business-plugin",
+      "name": "业务模型扩展",
+      "side": "backend",
+      "category": "extension",
+      "summary": "按业务模型扩展点接入可复用行为和模型配置。",
+      "useWhen": "标准业务能力需要对多个模型统一扩展。",
+      "access": [
+        "spi"
+      ]
+    },
+    {
+      "id": "be.extension.app-module",
+      "name": "应用模块与高代码装配",
+      "side": "backend",
+      "category": "extension",
+      "summary": "把应用模块定义和高代码实现接入统一运行时基座。",
+      "useWhen": "需要以模块交付可复用业务实现。",
+      "access": [
+        "metadata",
+        "module"
+      ]
+    },
+    {
+      "id": "be.extension.component-assets",
+      "name": "平台组件库资源",
+      "side": "backend",
+      "category": "extension",
+      "summary": "维护可供应用引用的前端组件库资源与定义。",
+      "useWhen": "多个应用需要共享声明式组件及扩展。",
+      "access": [
+        "metadata",
+        "module"
+      ]
+    },
+    {
+      "id": "be.foundation.app-runtime",
+      "name": "应用运行装配",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "汇集应用元数据、配置、前端资源与运行生命周期保护。",
+      "useWhen": "应用需要以标准基座启动并向前端提供运行信息。",
+      "access": [
+        "module"
+      ]
+    },
+    {
+      "id": "be.data.access-plugin",
+      "name": "数据访问控制插件",
+      "side": "backend",
+      "category": "identity",
+      "summary": "在模型读写路径应用行约束、字段约束与写入检查。",
+      "useWhen": "模型需要在数据操作层落实访问范围。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.data.organization-defaults",
+      "name": "组织与人员自动赋值",
+      "side": "backend",
+      "category": "data",
+      "summary": "通过模型插件为记录填入公司、部门和员工等身份信息。",
+      "useWhen": "记录需要带上当前组织归属。",
+      "access": [
+        "metadata",
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.model-service",
+      "name": "通用模型服务契约",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "提供模型增删改查和软删除的服务接口与基础实现。",
+      "useWhen": "Java 服务需要复用通用模型操作契约。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.foundation.utilities",
+      "name": "JSON、时间与 SPI 工具",
+      "side": "backend",
+      "category": "foundation",
+      "summary": "复用平台 JSON、数据结构、时间处理和 SPI 加载工具。",
+      "useWhen": "后端实现需要与基座保持相同的数据与扩展约定。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "be.ai.tools-policy",
+      "name": "AI 工具定义与调用策略",
+      "side": "backend",
+      "category": "ai",
+      "summary": "维护模型、工具和策略的运行时定义与解析入口。",
+      "useWhen": "AI 调用需要统一选择模型、限制工具或应用策略。",
+      "access": [
+        "java"
+      ]
+    },
+    {
+      "id": "fe.micro-app",
+      "name": "微前端与布局生命周期",
+      "side": "frontend",
+      "category": "extension",
+      "summary": "初始化微前端、单组件、布局及组件库，并处理挂载、更新和卸载。",
+      "useWhen": "页面或布局需要独立前端工程。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.navigation",
+      "name": "标签页与导航",
+      "side": "frontend",
+      "category": "page",
+      "summary": "打开或复用标签页、跳转菜单、修改标题并向来源页回传结果。",
+      "useWhen": "跨页面操作需要与宿主导航协同。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.dialogs",
+      "name": "弹窗、抽屉与反馈",
+      "side": "frontend",
+      "category": "page",
+      "summary": "使用宿主弹窗、抽屉、确认框和消息反馈。",
+      "useWhen": "需要统一交互，并把确认或取消结果返回调用方。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.request",
+      "name": "统一请求",
+      "side": "frontend",
+      "category": "integration",
+      "summary": "通过宿主请求适配调用后端。",
+      "useWhen": "微前端需要沿用宿主的请求与认证约定。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.business-actions",
+      "name": "业务动作调用",
+      "side": "frontend",
+      "category": "business",
+      "summary": "检查动作可用性并调用后端业务动作，使用契约信息匹配输入。",
+      "useWhen": "页面希望复用统一业务动作。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.events",
+      "name": "页面事件与会话回放",
+      "side": "frontend",
+      "category": "integration",
+      "summary": "在页面间发布、订阅事件，并使用会话事件回放机制。",
+      "useWhen": "多个微前端或组件需要协作。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.stomp",
+      "name": "实时订阅与初始快照",
+      "side": "frontend",
+      "category": "integration",
+      "summary": "订阅主题、队列和用户消息，支持初始数据与实时变化衔接。",
+      "useWhen": "页面需要持续接收状态和增量结果。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.auth",
+      "name": "登录、身份与权限显示",
+      "side": "frontend",
+      "category": "identity",
+      "summary": "登录、退出、获取当前用户或令牌，并判断权限显示。",
+      "useWhen": "需要统一账号体验或按权限调整界面。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.external-login",
+      "name": "多认证方式登录",
+      "side": "frontend",
+      "category": "identity",
+      "summary": "发现认证来源、跳转登录、LDAP 登录、交换登录码和绑定账号。",
+      "useWhen": "自定义登录页需要兼容外部认证。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.menus",
+      "name": "菜单树与徽标",
+      "side": "frontend",
+      "category": "page",
+      "summary": "读取或调整宿主菜单，维护菜单徽标。",
+      "useWhen": "应用需要动态入口或未读数量。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.user-menu",
+      "name": "用户菜单扩展",
+      "side": "frontend",
+      "category": "page",
+      "summary": "注册和移除用户菜单项，并按所属微前端清理。",
+      "useWhen": "用户区域需要增加应用功能入口。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.theme",
+      "name": "主题切换",
+      "side": "frontend",
+      "category": "page",
+      "summary": "读取和切换宿主主题。",
+      "useWhen": "微前端需要跟随应用整体外观。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.i18n",
+      "name": "前端多语言",
+      "side": "frontend",
+      "category": "foundation",
+      "summary": "切换语言，按命名空间取词，并订阅语言变化。",
+      "useWhen": "微前端与宿主需要使用相同语言。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.schema-render",
+      "name": "PrismUI 页面渲染",
+      "side": "frontend",
+      "category": "page",
+      "summary": "在指定容器中渲染声明式页面，并复用宿主组件与请求环境。",
+      "useWhen": "自定义页面仍希望组合标准页面组件。",
+      "access": [
+        "sdk",
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.schema-editor",
+      "name": "页面 Schema 编辑与预览",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供 Schema 编辑和预览组件。",
+      "useWhen": "管理页面需要嵌入声明式页面配置。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.micro-component",
+      "name": "微组件与嵌入页面",
+      "side": "frontend",
+      "category": "page",
+      "summary": "在 Schema 页面嵌入微组件、表单组件或微前端页面。",
+      "useWhen": "局部交互需要自定义代码，其余页面仍声明式构建。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.organization-picker",
+      "name": "组织与人员选择",
+      "side": "frontend",
+      "category": "organization",
+      "summary": "提供组织、员工、用户选择器及关联字段展示。",
+      "useWhen": "表单需要从组织架构选取对象。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.dict-picker",
+      "name": "字典选择器",
+      "side": "frontend",
+      "category": "foundation",
+      "summary": "按字典定义展示可选值与标签。",
+      "useWhen": "表单枚举需要与后端字典一致。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.tree-editor",
+      "name": "树编辑与穿梭选择",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供树编辑、树形穿梭和集合选择组件。",
+      "useWhen": "分层数据需要编辑或在两组集合间选择。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.config-editors",
+      "name": "脚本、JSON 与图标配置",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供脚本编辑、JSON 数据编辑和图标选择。",
+      "useWhen": "应用管理页面需要维护结构化配置。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.workflow-timeline",
+      "name": "审批时间线",
+      "side": "frontend",
+      "category": "execution",
+      "summary": "按审批实例显示流程处理记录。",
+      "useWhen": "详情页需要展示审批进度与历史。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.report-runtime",
+      "name": "报表视图运行组件",
+      "side": "frontend",
+      "category": "analytics",
+      "summary": "调用报表运行接口并展示已发布视图。",
+      "useWhen": "页面需要嵌入统计资产。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.dashboard",
+      "name": "看板、小组件与图表",
+      "side": "frontend",
+      "category": "analytics",
+      "summary": "以小组件组合看板，并渲染图表。",
+      "useWhen": "用户工作台需要组合指标和业务内容。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.excel-template",
+      "name": "Excel 模板下载",
+      "side": "frontend",
+      "category": "file",
+      "summary": "在页面提供 Excel 模板下载入口。",
+      "useWhen": "批量导入前需要分发固定格式模板。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.schema-actions",
+      "name": "页面动作",
+      "side": "frontend",
+      "category": "page",
+      "summary": "在 Schema 中调用事件、导航、徽标、节流、防抖与 Beacon 动作。",
+      "useWhen": "声明式页面需要跨组件交互或控制频繁触发。",
+      "access": [
+        "schema"
+      ]
+    },
+    {
+      "id": "fe.schema-functions",
+      "name": "公式、过滤器与规则",
+      "side": "frontend",
+      "category": "page",
+      "summary": "提供权限判断、对象处理、数据转换及输入规则。",
+      "useWhen": "Schema 中需要轻量计算与格式转换。",
+      "access": [
+        "schema",
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.component-extension",
+      "name": "组件、动作与公式扩展",
+      "side": "frontend",
+      "category": "extension",
+      "summary": "注册自定义渲染器、表单项、动作、公式、校验器和图标。",
+      "useWhen": "内建页面组件需要可复用扩展。",
+      "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "fe.editor-extension",
+      "name": "设计器插件与动作面板",
+      "side": "frontend",
+      "category": "extension",
+      "summary": "在编辑环境注册组件设计插件和动作配置面板。",
+      "useWhen": "新增组件需要支持可视化配置。",
+      "access": [
+        "sdk"
+      ]
+    }
+  ]
+}

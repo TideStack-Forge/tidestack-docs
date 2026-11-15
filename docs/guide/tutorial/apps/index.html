@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">开发应用 | 潮汐栈</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" name="twitter:image" content="https://docs.tidestack.dev/img/ouroboros-social-card.png"><meta data-rh="true" property="og:url" content="https://docs.tidestack.dev/docs/guide/tutorial/apps/"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="开发应用 | 潮汐栈"><meta data-rh="true" name="description" content="潮汐栈支持多人在线同时开发多个应用，因此平台提供了应用管理功能，用于创建和管理应用。"><meta data-rh="true" property="og:description" content="潮汐栈支持多人在线同时开发多个应用，因此平台提供了应用管理功能，用于创建和管理应用。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.tidestack.dev/docs/guide/tutorial/apps/"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/guide/tutorial/apps/" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://docs.tidestack.dev/docs/guide/tutorial/apps/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"开发应用","item":"https://docs.tidestack.dev/docs/guide/tutorial/apps/"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="潮汐栈 RSS Feed">
-<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.4938d6c4.css">
-<script src="/assets/js/runtime~main.9b242c50.js" defer="defer"></script>
-<script src="/assets/js/main.2555d3d3.js" defer="defer"></script>
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="潮汐栈 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.c6af6d97.css">
+<script src="/assets/js/runtime~main.424a1f63.js" defer="defer"></script>
+<script src="/assets/js/main.4aaaa5f3.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -23,22 +23,21 @@
 <li class="">为后续页面、流程、权限和前端扩展准备应用级容器</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="应用管理入口">应用管理入口<a href="#应用管理入口" class="hash-link" aria-label="应用管理入口的直接链接" title="应用管理入口的直接链接" translate="no">​</a></h2>
-<p><img decoding="async" loading="lazy" alt="打开应用页面" src="/assets/images/create-app-1-1e8156448b77296966ae83ff0febc0d2.png" width="1361" height="871" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="打开应用页面" src="/assets/images/open-apps-overview-1b6d3fa499f25e95f58ee8c7e6f3ddc3.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <p>登录开发平台后，默认打开的通常就是 <code>打开应用</code> 页面。这里既是应用管理入口，也是进入具体应用开发的起点。</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="常见任务">常见任务<a href="#常见任务" class="hash-link" aria-label="常见任务的直接链接" title="常见任务的直接链接" translate="no">​</a></h2>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="创建应用">创建应用<a href="#创建应用" class="hash-link" aria-label="创建应用的直接链接" title="创建应用的直接链  接" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="创建应用">创建应用<a href="#创建应用" class="hash-link" aria-label="创建应用的直接链接" title="创建应用的直 接链接" translate="no">​</a></h3>
 <p>创建应用时，最关键的是先把应用标识和显示名称定稳定，后续模型、页面和菜单都会围绕它展开。</p>
-<p><img decoding="async" loading="lazy" alt="创建应用" src="/assets/images/create-app-2-0e440b8ed270a709284300a7aef72619.png" width="545" height="419" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="创建应用" src="/assets/images/create-application-695c13de68fee0c85f982e73d9c4e6c3.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>属性</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td><strong>应用名</strong></td><td>是</td><td>应用的名称标识 <strong>不可重复</strong></td></tr><tr><td><strong>应用标题</strong></td><td>是</td><td>应用的显示名</td></tr><tr><td>图标</td><td>否</td><td>在应用管理界面显示的图标</td></tr><tr><td>描述</td><td>否</td><td>应用的描述信息</td></tr></tbody></table>
 <p>创建完成后，通常下一步会进入 <a class="" href="/docs/guide/tutorial/business-model/">业务模型</a> 或直接查看 <a class="" href="/docs/guide/tutorial/business-model/develop-business-model/">开发业务模型</a>。</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="打开应用并进入业务模型">打开应用并进入业务模型<a href="#打开应用并进入业务模型" class="hash-link" aria-label="打开应用并进入业务模型的直接链接" title="打开应用并进入业务模型的直接链接" translate="no">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="打开应用" src="/assets/images/open-app-1-927b170ebca9635da1a2e7e3222475a3.png" width="1356" height="757" class="img_ev3q"></p>
-<p>打开应用后，默认会进入 <strong>应用开发看板</strong>（<code>/dev/{appName}/dashboard</code>，菜单 <code>order</code> 0；<code>业务模型</code> 的 order 为 20，排在其后）：</p>
-<p><img decoding="async" loading="lazy" alt="进入应用" src="/assets/images/open-app-2-d3bbb082686ef0f3ec99e9a05402b3d5.png" width="1433" height="899" class="img_ev3q"></p>
-<p>业务模型是应用的核心模块，用于定义实体、关系、属性、操作等主要业务结 构。</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="调整应用配置">调整应用配置<a href="#调整应用配置" class="hash-link" aria-label="调整应用配置的直接链接" title="调整应用配置的直接链接" translate="no">​</a></h3>
+<p>点击应用卡片上的 <strong>打开</strong>，进入 <strong>应用开发看板</strong>。从左侧 <strong>业务模型</strong> 开始建模，或从看板进入对应功能。</p>
+<p><img decoding="async" loading="lazy" alt="进入应用" src="/assets/images/app-dashboard-8c885b34c5a1f89cf713f0983192a4ab.png" width="1920" height="1080" class="img_ev3q"></p>
+<p>业务模型是应用的核心模块，用于定义实体、关系、属性、操作等主要业务结构。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="调整应用配置">调整应用配置<a href="#调整应用配置" class="hash-link" aria-label="调整应用配置 的直接链接" title="调整应用配置的直接链接" translate="no">​</a></h3>
 <p>通过左侧菜单打开 <code>应用配置</code> 后，可以继续调整应用的展示信息和运行时入口。</p>
-<p><img decoding="async" loading="lazy" alt="应用配置" src="/assets/images/app-setting-1663512f303af3f84a828daa65055a9a.png" width="1440" height="955" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="应用配置" src="/assets/images/app-configuration-overview-f2545c81e83389aae7b100104e5461e9.jpg" width="1920" height="1080" class="img_ev3q"></p>
 <table><thead><tr><th>属性</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>Logo</td><td>否</td><td>应用运行时界面中显示的应用 Logo</td></tr><tr><td>标题</td><td>是</td><td>应用的显示名</td></tr><tr><td>图标</td><td>否</td><td>应用管理界面显示的图标</td></tr><tr><td>描述</td><td>否</td><td>应用的描述信息</td></tr><tr><td>默认主题</td><td>否</td><td>应用的默认主题</td></tr><tr><td>首页地址</td><td>否</td><td>应用登录后的默认打开页面</td></tr><tr><td>自定义布局</td><td>-</td><td>应用布局的一些布局选项，详见下表</td></tr></tbody></table>
 <p><strong>自定义布局</strong></p>
 <table><thead><tr><th>属性</th><th>说明</th></tr></thead><tbody><tr><td>自定义登录页</td><td>自定义登录页，需要先在<a class="" href="/docs/guide/advance/extend-frontend/">微前端管理</a>中定义或上传微前端应用类型的微前端</td></tr><tr><td>自定义顶栏</td><td>自定义顶栏，需要先在<a class="" href="/docs/guide/advance/extend-frontend/">微前端管理</a>中定义或上传布局组件（管理界面类型名为“微前端组件”）</td></tr><tr><td>自定义侧边栏</td><td>自定义侧边栏，需要先在<a class="" href="/docs/guide/advance/extend-frontend/">微前端管理</a>中定义或上传布局组件（管理界面类型名为“微前端组件”）</td></tr></tbody></table>

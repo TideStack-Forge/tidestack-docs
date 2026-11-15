@@ -29,15 +29,23 @@ This file is the expanded AI routing index for TideStack Handbook. It points to 
 
 ## Fusion Development Routes
 
+- For a new project, start with `docs/fusion-development/project-modes/index.md`, choose the standard-runtime or embedded-runtime guide, then use `docs/fusion-development/development-tools.md`, `docs/fusion-development/backend-extension-packages.md`, and `docs/guide/advance/authoring-metadata-conventions/index.md` to prepare the build and resource loading.
 - Use `docs/fusion-development/when-to-use-code.md` to map business behavior to existing models and define the implementation scope. The historical filename is retained for stable links.
+- Use `docs/fusion-development/first-feature.md` for a complete material-registration tutorial with a downloadable Maven example connecting an annotated data model, Java Service and Controller, UI Schema, menu, permissions, debugging, and packaging.
+- Use `docs/fusion-development/automated-testing.md` for runnable unit, SQL-model integration, transaction rollback, schema evolution, and real-runtime HTTP permission checks. Local tests do not prove deployed authorization behavior.
+- Use `docs/fusion-development/backend-development/transactions-and-execution-context.md` for transaction boundaries, failed Try propagation, action execution, and scoped background identity/authentication.
+- Use `docs/fusion-development/backend-development/data-initialization.md` for declarative insert-if-missing seeds, source paths, matching, block transactions, and ledger diagnostics. Seeds do not update existing rows.
+- Use `docs/fusion-development/model-evolution-and-upgrade.md` for schema plans, optional-field rollout, controlled data backfill, constraint tightening, and upgrade/rollback with existing data.
 - Use `docs/fusion-development/ai-assisted-development.md` for context preparation, coordinated model/page/flow/code changes, layered verification, and feedback.
 - Use `docs/fusion-development/high-low-code-collaboration.md` for task responsibilities, review, acceptance, and delivery records.
 - Use `docs/fusion-development/extension-points.md` to locate model/configuration entry points and official frontend/backend extensions.
-- Use `docs/guide/advance/index.md` for task-based tutorial selection and `docs/fusion-development/local-ide-and-platform-debugging.md` for runtime debugging.
+- Use `docs/guide/advance/index.md` for task-based tutorial selection.
+- Choose debugging by runtime: `docs/fusion-development/local-ide-and-platform-debugging.md` for platform-managed test instances, `docs/fusion-development/local-runtime-container-debugging.md` for local standard-runtime containers, or `docs/fusion-development/embedded-runtime-debugging.md` for an application started from the IDE.
 - AI can assist with models and configuration as well as code. Keep generated assets in the project's existing model, metadata, registration, permission, and lifecycle mechanisms.
 
 ## Version And Evidence
 
+- For capability selection, use `docs/reference/platform-capability-map.md` and `docs/reference/capability-catalog.md`. Shortlist from `static/capabilities/index.json`, then read selected records in `static/capabilities/catalog.json`; published JSON paths omit `static/`. Check prerequisites, limits, documentation coverage, target-version contracts, and actual module assembly. Source-reviewed records do not prove deployment availability or expose callable MCP tools.
 - Confirm the target platform version and each relevant page's version statement; different handbook sections may describe different versions.
 - Read the target project's development instructions, existing definitions, dependencies, registration mechanisms, and tests before making changes.
 - Use application version records, logs, instance state, and actual requests to confirm runtime behavior. Documentation retrieval alone cannot verify the current application.
@@ -48,7 +56,9 @@ This file is the expanded AI routing index for TideStack Handbook. It points to 
 - Use `docs/guide/advance/index.md` to choose a tutorial by task.
 - Use `docs/fusion-development/frontend-extension-paths.md` for pages, layouts, micro-apps, and Widget development.
 - Use `docs/fusion-development/backend-development/index.md` for Java/model integration, Controller and Service Beans, MQ, and Java or flow scheduling.
+- Use `docs/fusion-development/backend-development/data-model-annotations.md` for Java model declarations, field parameters and types, primary keys, relationships, uniqueness, auditing, deletion, history, and runtime scanning. Compile-time query metadata generation is separate from runtime registration.
 - Use `docs/fusion-development/plugin-extensions/index.md` for reusable frontend and backend extensions. Distinguish platform component libraries with manifests from ordinary component packages.
+- Use `docs/fusion-development/authentication-integration.md` to choose an identity source and understand static providers, enterprise connections, callbacks, and account binding. Use `docs/fusion-development/custom-login-page-and-auth-integration.md` for frontend login customization, multiple authentication methods, and language switching.
 - Use `docs/fusion-development/oidc-auth-adaptation-guide.md` for built-in OIDC configuration and binding; custom protocol plugins have separate registration requirements.
 - Use `docs/fusion-development/cas-auth-adaptation-guide.md` for CAS service registration, ticket validation, identity mapping, and account binding.
 - Use `docs/fusion-development/dingtalk-auth-adaptation-guide.md`, `docs/fusion-development/wecom-auth-adaptation-guide.md`, and `docs/fusion-development/feishu-auth-adaptation-guide.md` for connection-scoped enterprise login. These profiles are not automatically listed as static providers.
