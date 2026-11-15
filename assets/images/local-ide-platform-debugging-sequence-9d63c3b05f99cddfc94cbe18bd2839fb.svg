@@ -1,0 +1,257 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="900" viewBox="0 0 1180 900" role="img" aria-labelledby="title desc" class="ts-diagram">
+<title id="title">本地 IDE 与平台测试实例联调</title>
+<desc id="desc">本地打包后，IDE 向平台授权、上传扩展；平台重启实例并创建调试会话，IDE 经调试通道附加 JVM。浏览器触发业务后，断点信息返回 IDE，继续执行后实例响应业务请求。</desc>
+<defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><style>text{font-family:var(--diagram-font)}</style>
+<marker id="a547ba7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke-width="1.5" class="diagram-link-blue" /></marker>
+<marker id="a7b67a8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke-width="1.5" class="diagram-link-violet" /></marker>
+<marker id="a3e8b76" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke-width="1.5" class="diagram-link-teal" /></marker>
+<!--
+    Embedded Lucide icon geometry: ISC License
+    Copyright (c) 2026 Lucide Icons and Contributors
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+    Feather-derived icon geometry: The MIT License (MIT)
+    Copyright (c) 2013-present Cole Bemis
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+  --><symbol id="handbook-icon-cloud" viewBox="0 0 24 24">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+          </symbol>
+          <symbol id="handbook-icon-services" viewBox="0 0 24 24">
+            <path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2" />
+            <rect x="14" y="2" width="8" height="8" rx="1" />
+          </symbol>
+          </defs>
+<rect width="1180" height="900" class="diagram-canvas" x="0" y="0" />
+<text x="30" y="33.0" font-size="26" font-weight="600" text-anchor="start" dominant-baseline="central" class="diagram-ink">本地 IDE 与平台测试实例联调</text>
+<rect x="22" y="140" width="1136" height="210" rx="8" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="66" y="160.0" font-size="17" font-weight="600" text-anchor="start" dominant-baseline="central" class="diagram-label-blue">部署与装配</text>
+<rect x="22" y="370" width="1136" height="210" rx="8" class="diagram-surface-violet diagram-border-violet diagram-wash-violet" />
+<text x="66" y="390.0" font-size="17" font-weight="600" text-anchor="start" dominant-baseline="central" class="diagram-label-violet">建立调试连接</text>
+<rect x="22" y="600" width="1136" height="230" rx="8" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="66" y="620.0" font-size="17" font-weight="600" text-anchor="start" dominant-baseline="central" class="diagram-label-teal">触发业务与断点</text>
+<line x1="150" y1="120" x2="150" y2="830" stroke-width="1.5" stroke-dasharray="5 5" class="diagram-line" />
+<rect x="42" y="65" width="216" height="55" rx="8" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="150.0" y="92.0" font-size="20" font-weight="600" text-anchor="middle" dominant-baseline="central" class="diagram-ink">本地 IDE</text>
+<line x1="450" y1="120" x2="450" y2="830" stroke-width="1.5" stroke-dasharray="5 5" class="diagram-line" />
+<rect x="342" y="65" width="216" height="55" rx="8" class="diagram-surface-violet diagram-border-violet diagram-wash-violet" />
+<text x="450.0" y="92.0" font-size="20" font-weight="600" text-anchor="middle" dominant-baseline="central" class="diagram-ink">开发平台</text>
+<line x1="750" y1="120" x2="750" y2="830" stroke-width="1.5" stroke-dasharray="5 5" class="diagram-line" />
+<rect x="642" y="65" width="216" height="55" rx="8" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="750.0" y="92.0" font-size="20" font-weight="600" text-anchor="middle" dominant-baseline="central" class="diagram-ink">测试运行实例</text>
+<line x1="1050" y1="120" x2="1050" y2="830" stroke-width="1.5" stroke-dasharray="5 5" class="diagram-line" />
+<rect x="942" y="65" width="216" height="55" rx="8" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<text x="1050.0" y="92.0" font-size="20" font-weight="600" text-anchor="middle" dominant-baseline="central" class="diagram-ink">浏览器 / API 客户端</text>
+<rect x="55" y="176" width="190" height="38" rx="8" class="diagram-paper diagram-border-neutral" />
+<text x="150.0" y="194.0" font-size="18" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-ink">本地打包当前扩展</text>
+<line x1="150" y1="242" x2="450" y2="242" stroke-width="1.5" marker-end="url(#a547ba7)" class="diagram-link-blue" />
+<text x="300.0" y="221.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-blue">授权并定位测试实例</text>
+<line x1="150" y1="290" x2="450" y2="290" stroke-width="1.5" marker-end="url(#a547ba7)" class="diagram-link-blue" />
+<text x="300.0" y="269.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-blue">上传扩展 JAR</text>
+<line x1="450" y1="338" x2="750" y2="338" stroke-width="1.5" marker-end="url(#a547ba7)" class="diagram-link-blue" />
+<text x="600.0" y="317.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-blue">重启并加载扩展与元数据</text>
+<line x1="150" y1="420" x2="450" y2="420" stroke-width="1.5" marker-end="url(#a7b67a8)" class="diagram-link-violet" />
+<text x="300.0" y="399.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-violet">创建调试会话</text>
+<line x1="450" y1="472" x2="150" y2="472" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#a7b67a8)" class="diagram-link-violet" />
+<text x="300.0" y="451.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-violet">返回调试入口 host:port</text>
+<line x1="150" y1="548" x2="750" y2="548" stroke-width="1.5" marker-end="url(#a7b67a8)" class="diagram-link-violet" />
+<text x="450.0" y="527.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-violet">JDWP 附加（开发平台调试通道转发）</text>
+<line x1="1050" y1="668" x2="750" y2="668" stroke-width="1.5" marker-end="url(#a3e8b76)" class="diagram-link-teal" />
+<text x="900.0" y="647.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-teal">发起页面操作或 API 请求</text>
+<line x1="750" y1="729" x2="150" y2="729" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#a7b67a8)" class="diagram-link-violet" />
+<text x="450.0" y="708.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-violet">断点、变量与单步（经 JDWP 通道）</text>
+<line x1="750" y1="794" x2="1050" y2="794" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#a3e8b76)" class="diagram-link-teal" />
+<text x="900.0" y="773.0" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central" class="diagram-label-teal">继续执行后返回业务响应</text>
+<text x="30" y="867.0" font-size="17" font-weight="400" text-anchor="start" dominant-baseline="central" class="diagram-muted">管理入口、业务入口和 JDWP 入口分别连接；本地源码须与测试实例中的扩展 JAR 一致。</text>
+<rect x="34" y="140" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-cloud" x="38" y="144" width="20" height="20" class="diagram-icon" style="color:var(--diagram-blue-ink)" aria-hidden="true" /><rect x="34" y="370" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-services" x="38" y="374" width="20" height="20" class="diagram-icon" style="color:var(--diagram-violet-ink)" aria-hidden="true" /><rect x="34" y="600" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-services" x="38" y="604" width="20" height="20" class="diagram-icon" style="color:var(--diagram-teal-ink)" aria-hidden="true" /></svg>

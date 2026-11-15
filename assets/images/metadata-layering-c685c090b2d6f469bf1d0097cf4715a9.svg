@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc" class="ts-diagram">
+  <title id="title">元数据分层加载</title>
+  <desc id="desc">基座层、插件层、低代码层和运行层都可以定义元数据。平台按标识和优先级叠加四层定义，形成当前环境中的最终生效定义。</desc>
+  <defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" class="diagram-label-blue" /></marker>
+    <style>
+      text{font-family:var(--diagram-font)}
+      .title{font-size:20px;font-weight:600;fill:var(--diagram-ink)}
+      .sub{font-size:15px;fill:var(--diagram-muted)}
+      .tag{font-size:14px;font-weight:600;text-anchor:middle}
+      .side{font-size:15px;font-weight:600;fill:var(--diagram-blue-ink);text-anchor:middle}
+    </style>
+  </defs>
+  <rect width="1200" height="700" class="diagram-canvas" x="0" y="0" />
+
+  <rect x="80" y="565" width="800" height="90" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+  <text x="120" y="600" class="title">基座层</text>
+  <text x="120" y="630" class="sub">平台内置的默认模型、页面、菜单与基础能力</text>
+  <rect x="680" y="586" width="155" height="46" rx="8" class="diagram-paper diagram-border-blue" />
+  <text x="758" y="614" class="tag diagram-label-blue">默认定义</text>
+
+  <rect x="80" y="455" width="800" height="90" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+  <text x="120" y="490" class="title">插件层</text>
+  <text x="120" y="520" class="sub">追加字段类型、组件、流程节点与系统适配能力</text>
+  <rect x="680" y="476" width="155" height="46" rx="8" class="diagram-paper diagram-border-teal" />
+  <text x="758" y="504" class="tag diagram-label-teal">可复用扩展</text>
+
+  <rect x="80" y="345" width="800" height="90" rx="8" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+  <text x="120" y="380" class="title">低代码层</text>
+  <text x="120" y="410" class="sub">保存应用建模和配置产生的新增与调整内容</text>
+  <rect x="680" y="366" width="155" height="46" rx="8" class="diagram-paper diagram-border-orange" />
+  <text x="758" y="394" class="tag diagram-label-orange">应用差异</text>
+
+  <rect x="80" y="235" width="800" height="90" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+  <text x="120" y="270" class="title">运行层</text>
+  <text x="120" y="300" class="sub">补充或覆盖与运行环境、实例相关的元数据</text>
+  <rect x="680" y="256" width="155" height="46" rx="8" stroke-width="1" class="diagram-paper diagram-border-blue" />
+  <text x="758" y="284" class="tag diagram-label-blue">运行时定义</text>
+
+  <path d="M965 620V72" fill="none" stroke-width="1.5" marker-end="url(#arrow)" class="diagram-link-blue" />
+  <circle cx="965" cy="610" r="5" class="diagram-label-blue" />
+  <circle cx="965" cy="500" r="5" class="diagram-label-blue" />
+  <circle cx="965" cy="390" r="5" class="diagram-label-blue" />
+  <circle cx="965" cy="280" r="5" class="diagram-label-blue" />
+  <text x="1020" y="270" class="side">
+    <tspan x="1020" dy="0">按</tspan><tspan x="1020" dy="20">标</tspan><tspan x="1020" dy="20">识</tspan><tspan x="1020" dy="20">与</tspan><tspan x="1020" dy="20">优</tspan><tspan x="1020" dy="20">先</tspan><tspan x="1020" dy="20">级</tspan><tspan x="1020" dy="20">逐</tspan><tspan x="1020" dy="20">层</tspan><tspan x="1020" dy="20">叠</tspan><tspan x="1020" dy="20">加</tspan>
+  </text>
+
+  <rect x="80" y="30" width="800" height="150" rx="8" stroke-width="1" stroke-dasharray="8 6" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+  <text x="120" y="68" class="title">最终生效模型</text>
+  <path d="M430 105H540M600 85H650M600 125H650" fill="none" stroke-width="1.5" class="diagram-line" />
+  <rect x="280" y="72" width="150" height="66" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+  <text x="355" y="112" class="tag diagram-ink">业务模型</text>
+  <rect x="540" y="54" width="60" height="54" rx="8" class="diagram-paper diagram-border-blue" />
+  <text x="570" y="86" class="tag diagram-label-blue">数据</text>
+  <rect x="650" y="54" width="60" height="54" rx="8" class="diagram-paper diagram-border-teal" />
+  <text x="680" y="86" class="tag diagram-label-teal">页面</text>
+  <rect x="540" y="112" width="60" height="54" rx="8" class="diagram-paper diagram-border-blue" />
+  <text x="570" y="144" class="tag diagram-label-blue">接口</text>
+  <rect x="650" y="112" width="60" height="54" rx="8" class="diagram-paper diagram-border-teal" />
+  <text x="680" y="144" class="tag diagram-label-teal">逻辑</text>
+  <path d="M710 81H770V139H710M770 110H820" fill="none" stroke-width="1.5" class="diagram-line" />
+  <circle cx="820" cy="110" r="20" stroke-width="2" class="diagram-surface-orange diagram-border-orange" />
+  <path d="M810 110L818 118L832 100" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="diagram-link-orange" />
+  <text x="480" y="686" class="sub" text-anchor="middle">下层提供稳定基础，上层只记录新增或覆盖的定义</text>
+</svg>

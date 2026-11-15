@@ -1,0 +1,305 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1520" width="1600" height="1520" role="img" aria-labelledby="deployment-platform-kubernetes-title deployment-platform-kubernetes-desc" id="deployment-platform-kubernetes-root" class="ts-diagram">
+<title id="deployment-platform-kubernetes-title">Kubernetes · 平台与运行实例部署主图</title>
+<desc id="deployment-platform-kubernetes-desc">自行编排示例：平台单副本；运行实例由现有后端创建；集群节点数与资源规格按实施方案确定；包含部署位置、数量、网络连接、挂载及单点说明。</desc>
+<defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs>
+      <style>#deployment-platform-kubernetes-root { font-family:var(--diagram-font); }
+      #deployment-platform-kubernetes-root .diagram-container { width:100%;overflow-x:auto }
+      #deployment-platform-kubernetes-root .diagram-container svg { display:block;width:100%;min-width:1600px;height:auto }
+      @media print {
+#deployment-platform-kubernetes-root .diagram-container { overflow-x:visible }
+      #deployment-platform-kubernetes-root .diagram-container svg { min-width:0 }
+}
+      #deployment-platform-kubernetes-root text { font-family:var(--diagram-font)}</style><style>text{font-family:var(--diagram-font)}</style>
+<marker id="deployment-platform-kubernetes-deployment-platform-kubernetes-traffic" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" class="diagram-label-neutral" /></marker>
+<marker id="deployment-platform-kubernetes-deployment-platform-kubernetes-control" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" class="diagram-label-blue" /></marker>
+<marker id="deployment-platform-kubernetes-deployment-platform-kubernetes-storage" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7Z" class="diagram-label-teal" /></marker>
+</defs><rect width="1600" height="1520" class="diagram-canvas" x="0" y="0" />
+<text x="40" y="52" font-size="28" font-weight="600" class="diagram-ink">Kubernetes · 平台与运行实例部署主图</text>
+<text x="40" y="84" font-size="14" font-weight="400" class="diagram-muted">自行编排示例：平台单副本；运行实例由现有后端创建；集群节点数与资源规格按实施方案确定</text>
+<rect x="40" y="104" width="16" height="16" rx="8" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<text x="64" y="117" font-size="12" font-weight="400" class="diagram-ink">平台 / 应用</text>
+<rect x="260" y="104" width="16" height="16" rx="8" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="284" y="117" font-size="12" font-weight="400" class="diagram-ink">运行实例</text>
+<rect x="480" y="104" width="16" height="16" rx="8" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<text x="504" y="117" font-size="12" font-weight="400" class="diagram-ink">数据 / 存储</text>
+<rect x="700" y="104" width="16" height="16" rx="8" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<text x="724" y="117" font-size="12" font-weight="400" class="diagram-ink">网关 / 中间件</text>
+<rect x="920" y="104" width="16" height="16" rx="8" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<text x="944" y="117" font-size="12" font-weight="400" class="diagram-ink">外部 / 基础设施</text>
+<g data-zone="cluster"><rect x="328" y="152" width="1232" height="740" rx="10" stroke-width="1" class="diagram-shell" />
+<text x="352" y="184" font-size="14" font-weight="600" class="diagram-ink">Kubernetes 集群 · 控制平面与工作节点由实施方维护</text>
+<text x="352" y="208" font-size="12" font-weight="400" class="diagram-muted">工作节点池 ×M：M 未预设；Pod 由调度器分配，不固定绑定某台节点</text>
+</g>
+<g data-zone="namespace"><rect x="352" y="432" width="1184" height="432" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-neutral diagram-wash-blue" />
+<text x="1512" y="464" font-size="14" font-weight="600" text-anchor="end" class="diagram-ink">运行命名空间 · 示例 tidestack-dev</text>
+<text x="1512" y="488" font-size="12" font-weight="400" text-anchor="end" class="diagram-muted">平台与实例同命名空间（示例）；RBAC / 网络策略另配</text>
+</g>
+<g data-zone="deps"><rect x="328" y="920" width="1232" height="188" rx="8" stroke-width="1" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<text x="352" y="952" font-size="14" font-weight="600" class="diagram-ink">集群外基础服务 · 本图采用外置依赖与共享文件存储</text>
+</g>
+<path data-edge="0" d="M280 304 L376 304" fill="none" stroke-width="1.5" marker-end="url(#deployment-platform-kubernetes-deployment-platform-kubernetes-traffic)" class="diagram-line" />
+<path data-edge="1" d="M488 380 L488 532" fill="none" stroke-width="1.5" marker-end="url(#deployment-platform-kubernetes-deployment-platform-kubernetes-traffic)" class="diagram-line" />
+<path data-edge="2" d="M704 336 L936 336 Q944 336 944 344 L944 532" fill="none" stroke-width="1.5" marker-end="url(#deployment-platform-kubernetes-deployment-platform-kubernetes-traffic)" class="diagram-line" />
+<path data-edge="3" d="M704 624 L728 624 Q736 624 736 632 L736 700 Q736 708 744 708 L1536 708 Q1544 708 1544 700 L1544 452 Q1544 444 1536 444 L1448 444 Q1440 444 1440 436 L1440 380" fill="none" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#deployment-platform-kubernetes-deployment-platform-kubernetes-control)" class="diagram-link-blue" />
+<g data-edge-label="0"><rect x="302.5" y="264" width="51" height="24" rx="3" class="diagram-paper" /><text x="328" y="280" font-size="12" font-weight="400" text-anchor="middle" class="diagram-muted">HTTPS</text></g>
+<g data-edge-label="1"><rect x="505" y="448" width="126" height="24" rx="3" class="diagram-paper" /><text x="568" y="464" font-size="12" font-weight="400" text-anchor="middle" class="diagram-muted">平台 Service :80</text></g>
+<g data-edge-label="2"><rect x="873" y="292" width="126" height="24" rx="3" class="diagram-paper" /><text x="936" y="308" font-size="12" font-weight="400" text-anchor="middle" class="diagram-muted">应用 Service :80</text></g>
+<g data-edge-label="3"><rect x="939" y="720" width="138" height="24" rx="3" class="diagram-paper" /><text x="1008" y="736" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-blue">HTTPS API 管理资源</text></g>
+<g data-node="browser"><rect x="40" y="224" width="240" height="128" rx="8" stroke-width="1" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<rect x="40" y="248" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="192" y="244" width="64" height="22" rx="6" class="diagram-card" /><text x="224.0" y="260" font-size="12" font-weight="400" text-anchor="middle" class="diagram-muted">用户网络</text>
+<text x="64" y="264" font-size="16" font-weight="600" class="diagram-muted">用户浏览器</text>
+<text x="64" y="300" font-size="12" font-weight="400" class="diagram-muted">平台域名 / 测试应用域名</text>
+</g>
+<g data-node="entry"><rect x="376" y="252" width="328" height="128" rx="8" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<rect x="376" y="276" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="626" y="272" width="54" height="22" rx="6" class="diagram-card" /><text x="653.0" y="288" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-orange">G 待定</text>
+<text x="400" y="292" font-size="16" font-weight="600" class="diagram-label-orange">用户流量入口</text>
+<text x="400" y="328" font-size="12" font-weight="400" class="diagram-muted">Ingress Controller ×G（自备）</text>
+<text x="400" y="352" font-size="12" font-weight="400" class="diagram-muted">平台 / 测试应用：两组路由</text>
+</g>
+<g data-node="api"><rect x="1144" y="252" width="368" height="128" rx="8" stroke-width="1" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<rect x="1144" y="276" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="1436" y="272" width="52" height="22" rx="6" class="diagram-card" /><text x="1462.0" y="288" font-size="12" font-weight="400" text-anchor="middle" class="diagram-muted">按集群</text>
+<text x="1168" y="292" font-size="16" font-weight="600" class="diagram-muted">控制平面 / API Server</text>
+<text x="1168" y="328" font-size="12" font-weight="400" class="diagram-muted">HTTPS：按集群 API Endpoint</text>
+<text x="1168" y="352" font-size="12" font-weight="400" class="diagram-muted">平台 KubernetesClient + RBAC</text>
+</g>
+<g data-node="platform"><rect x="376" y="532" width="328" height="128" rx="8" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<rect x="376" y="556" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="645" y="552" width="35" height="22" rx="6" class="diagram-card" /><text x="662.5" y="568" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-blue">×1</text>
+<text x="400" y="572" font-size="16" font-weight="600" class="diagram-label-blue">开发平台 Pod</text>
+<text x="400" y="608" font-size="12" font-weight="400" class="diagram-muted">ouroboros-develop:&lt;v&gt;</text>
+<text x="400" y="632" font-size="12" font-weight="400" class="diagram-muted">平台 Service → Nginx :80</text>
+</g>
+<g data-node="apps"><rect x="776" y="532" width="336" height="128" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<rect x="776" y="556" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="1010" y="552" width="78" height="22" rx="6" class="diagram-card" /><text x="1049.0" y="568" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-teal">每实例 ×1</text>
+<text x="800" y="572" font-size="16" font-weight="600" class="diagram-label-teal">测试应用 Pod</text>
+<text x="800" y="608" font-size="12" font-weight="400" class="diagram-muted">ouroboros-mothership:&lt;v&gt;</text>
+<text x="800" y="632" font-size="12" font-weight="400" class="diagram-muted">Deployment + Service / Pod :80</text>
+</g>
+<g data-node="helper"><rect x="1176" y="532" width="336" height="128" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<rect x="1176" y="556" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="1410" y="552" width="78" height="22" rx="6" class="diagram-card" /><text x="1449.0" y="568" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-teal">每实例 ×1</text>
+<text x="1200" y="572" font-size="16" font-weight="600" class="diagram-label-teal">开发助手 Pod</text>
+<text x="1200" y="608" font-size="12" font-weight="400" class="diagram-muted">ouroboros-mothership:&lt;v&gt;</text>
+<text x="1200" y="632" font-size="12" font-weight="400" class="diagram-muted">Deployment / INTERNAL_ONLY</text>
+</g>
+<g data-node="pvc"><rect x="376" y="744" width="1136" height="96" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<rect x="376" y="768" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="1400" y="764" width="88" height="22" rx="6" class="diagram-card" /><text x="1444.0" y="780" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-teal">逻辑存储资源</text>
+<text x="400" y="784" font-size="16" font-weight="600" class="diagram-label-teal">持久卷声明与目录映射</text>
+<text x="400" y="812" font-size="12" font-weight="400" class="diagram-muted">平台原始工作区 / 文件卷 与 实例共享 PVC 分别规划；PVC 关联底层 PV / 存储后端</text>
+</g>
+<g data-node="mysql"><rect x="360" y="988" width="360" height="96" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<rect x="360" y="1012" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="632" y="1008" width="64" height="22" rx="6" class="diagram-card" /><text x="664.0" y="1024" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-teal">拓扑自定</text>
+<text x="384" y="1028" font-size="16" font-weight="600" class="diagram-label-teal">MySQL 服务</text>
+<text x="384" y="1056" font-size="12" font-weight="400" class="diagram-muted">平台库 / 业务库 · TCP :3306</text>
+</g>
+<g data-node="mq"><rect x="744" y="988" width="360" height="96" rx="8" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<rect x="744" y="1012" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="1016" y="1008" width="64" height="22" rx="6" class="diagram-card" /><text x="1048.0" y="1024" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-orange">拓扑自定</text>
+<text x="768" y="1028" font-size="16" font-weight="600" class="diagram-label-orange">RabbitMQ 服务</text>
+<text x="768" y="1056" font-size="12" font-weight="400" class="diagram-muted">AMQP :5672</text>
+</g>
+<g data-node="storage"><rect x="1128" y="988" width="408" height="96" rx="8" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<rect x="1128" y="1012" width="4" height="24" class="diagram-card" rx="6" />
+<rect x="1472" y="1008" width="40" height="22" rx="6" class="diagram-card" /><text x="1492.0" y="1024" font-size="12" font-weight="400" text-anchor="middle" class="diagram-label-teal">自备</text>
+<text x="1152" y="1028" font-size="16" font-weight="600" class="diagram-label-teal">共享文件存储</text>
+<text x="1152" y="1056" font-size="12" font-weight="400" class="diagram-muted">容量 / 访问模式 / 冗余自定</text>
+</g>
+<rect x="40" y="1160" width="976" height="248" rx="8" class="diagram-paper diagram-border-neutral" />
+<text x="64" y="1196" font-size="14" font-weight="600" class="diagram-ink">连接与挂载清单</text>
+<text x="64" y="1236" font-size="12" font-weight="600" class="diagram-ink">平台 → Kubernetes API Server</text>
+<text x="368" y="1236" font-size="12" font-weight="400" class="diagram-muted">HTTPS / 集群端点；创建 Deployment、Service、Ingress，读取状态</text>
+<line x1="64" y1="1246" x2="992" y2="1246" class="diagram-line" />
+<text x="64" y="1268" font-size="12" font-weight="600" class="diagram-ink">平台 / 实例 → MySQL、RabbitMQ</text>
+<text x="368" y="1268" font-size="12" font-weight="400" class="diagram-muted">使用集群可达地址：TCP :3306 / AMQP :5672</text>
+<line x1="64" y1="1278" x2="992" y2="1278" class="diagram-line" />
+<text x="64" y="1300" font-size="12" font-weight="600" class="diagram-ink">平台 → 共享文件存储</text>
+<text x="368" y="1300" font-size="12" font-weight="400" class="diagram-muted">在 mounted-workspace-root 挂载实例 PVC 对应的底层存储</text>
+<line x1="64" y1="1310" x2="992" y2="1310" class="diagram-line" />
+<text x="64" y="1332" font-size="12" font-weight="600" class="diagram-ink">实例 PVC → 底层存储 → Pod</text>
+<text x="368" y="1332" font-size="12" font-weight="400" class="diagram-muted">测试应用使用 metadata / extend subPath；助手使用实例根 subPath</text>
+<line x1="64" y1="1342" x2="992" y2="1342" class="diagram-line" />
+<text x="64" y="1364" font-size="12" font-weight="600" class="diagram-ink">公网 / 内网访问入口</text>
+<text x="368" y="1364" font-size="12" font-weight="400" class="diagram-muted">Controller + DNS + TLS 自备；NodePort 与 Ingress 细节见局部图</text>
+<rect x="1040" y="1160" width="520" height="248" rx="8" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<text x="1064" y="1196" font-size="14" font-weight="600" class="diagram-ink">数量、规格与故障域</text>
+<text x="1064" y="1236" font-size="12" font-weight="400" class="diagram-label-orange">图示平台 Pod ×1；每个运行实例 Pod ×1</text>
+<text x="1064" y="1268" font-size="12" font-weight="400" class="diagram-label-orange">Service / Ingress 是逻辑资源，不是服务器</text>
+<text x="1064" y="1300" font-size="12" font-weight="400" class="diagram-label-orange">集群 M、入口 G、DB / MQ 副本数未预设</text>
+<text x="1064" y="1332" font-size="12" font-weight="400" class="diagram-label-orange">平台 ×1 为单点；多副本协调尚未验证</text>
+<text x="1064" y="1364" font-size="12" font-weight="400" class="diagram-label-orange">requests / limits、PVC 容量与访问模式需明确</text>
+<line x1="40" y1="1444" x2="1560" y2="1444" class="diagram-line" />
+<line x1="40" y1="1468" x2="80" y2="1468" stroke-width="2" class="diagram-line" /><text x="92" y="1473" font-size="12" font-weight="400" class="diagram-ink">用户 / 业务流量</text>
+<line x1="320" y1="1468" x2="360" y2="1468" stroke-width="2" stroke-dasharray="6 5" class="diagram-link-blue" /><text x="372" y="1473" font-size="12" font-weight="400" class="diagram-ink">管理调用</text>
+<line x1="568" y1="1468" x2="608" y2="1468" stroke-width="2" stroke-dasharray="6 5" class="diagram-link-teal" /><text x="620" y="1473" font-size="12" font-weight="400" class="diagram-ink">文件读写 / 挂载</text>
+<text x="920" y="1473" font-size="12" font-weight="400" class="diagram-muted">v = 配套发行版本；所有图均为有明确假设的部署示例</text>
+</svg>

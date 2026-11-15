@@ -1,0 +1,551 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 72 1920 2508" width="1920" height="2508" role="img" aria-labelledby="backend-technical-architecture-title backend-technical-architecture-desc" class="ts-diagram">
+<title id="backend-technical-architecture-title">后端基座技术架构</title>
+<desc id="backend-technical-architecture-desc">后端以接入与协议、公共应用、业务能力、模型与执行引擎、公共技术和运行框架分层。独立运行时、业务服务和通用技术各自成节点；安全机制贯穿调用，数据库、中间件和外部服务位于进程外。</desc>
+<defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><!--
+    Embedded Lucide icon geometry: ISC License
+    Copyright (c) 2026 Lucide Icons and Contributors
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+    Feather-derived icon geometry: The MIT License (MIT)
+    Copyright (c) 2013-present Cole Bemis
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+  -->
+<symbol id="handbook-icon-blue" viewBox="0 0 24 24">
+            <rect width="18" height="18" x="3" y="3" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </symbol>
+<symbol id="handbook-icon-teal" viewBox="0 0 24 24">
+            <path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <circle cx="17.5" cy="17.5" r="3.5" />
+          </symbol>
+<symbol id="handbook-icon-sky" viewBox="0 0 24 24">
+            <path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2" />
+            <rect x="14" y="2" width="8" height="8" rx="1" />
+          </symbol>
+<symbol id="handbook-icon-violet" viewBox="0 0 24 24">
+            <path d="M14 17H5M19 7h-9" />
+            <circle cx="17" cy="17" r="3" />
+            <circle cx="7" cy="7" r="3" />
+          </symbol>
+<symbol id="handbook-icon-indigo" viewBox="0 0 24 24">
+            <path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z" />
+          </symbol>
+<symbol id="handbook-icon-rose" viewBox="0 0 24 24">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+          </symbol>
+<symbol id="handbook-icon-orange" viewBox="0 0 24 24">
+            <path d="M12 22v-9" />
+            <path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z" />
+            <path d="M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13" />
+            <path d="M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z" />
+          </symbol>
+<symbol id="handbook-icon-neutral" viewBox="0 0 24 24">
+            <rect width="20" height="8" x="2" y="2" rx="2" />
+            <rect width="20" height="8" x="2" y="14" rx="2" />
+            <path d="M6 6h.01M6 18h.01" />
+          </symbol><style>text{font-family:var(--diagram-font)}</style>
+</defs>
+<rect width="1920" height="2508" class="diagram-canvas" y="72" />
+
+<rect x="40" y="96" width="1840" height="2176" rx="10" fill-opacity="1" stroke-width="1" class="diagram-shell" />
+<rect x="56" y="105" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-blue" x="60" y="109" width="20" height="20" class="diagram-icon" style="color:var(--diagram-blue-ink)" aria-hidden="true" /><text x="88" y="126" font-size="18" font-weight="600" class="diagram-label-blue">后端运行进程：按模块依赖、自动配置与 SPI 契约装配</text>
+<rect x="64" y="152" width="1432" height="168" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-blue diagram-border-blue diagram-wash-blue" />
+<rect x="80" y="161" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-blue" x="84" y="165" width="20" height="20" class="diagram-icon" style="color:var(--diagram-blue-ink)" aria-hidden="true" /><text x="112" y="182" font-size="18" font-weight="600" class="diagram-label-blue">接入与协议层</text>
+<rect x="64" y="344" width="1432" height="280" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-sky diagram-border-sky diagram-wash-sky" />
+<rect x="80" y="353" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-sky" x="84" y="357" width="20" height="20" class="diagram-icon" style="color:var(--diagram-sky-ink)" aria-hidden="true" /><text x="112" y="374" font-size="18" font-weight="600" class="diagram-label-sky">应用层：公共应用功能</text>
+<rect x="64" y="648" width="1432" height="464" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-teal diagram-border-teal diagram-wash-teal" />
+<rect x="80" y="657" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-teal" x="84" y="661" width="20" height="20" class="diagram-icon" style="color:var(--diagram-teal-ink)" aria-hidden="true" /><text x="112" y="678" font-size="18" font-weight="600" class="diagram-label-teal">能力层：业务服务与外部系统适配</text>
+<rect x="64" y="1136" width="1432" height="552" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-violet diagram-border-violet diagram-wash-violet" />
+<rect x="80" y="1145" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-violet" x="84" y="1149" width="20" height="20" class="diagram-icon" style="color:var(--diagram-violet-ink)" aria-hidden="true" /><text x="112" y="1166" font-size="18" font-weight="600" class="diagram-label-violet">核心层：模型运行时与业务执行引擎</text>
+<rect x="80" y="1480" width="1400" height="184" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-violet diagram-border-violet diagram-wash-violet" />
+<rect x="96" y="1489" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-violet" x="100" y="1493" width="20" height="20" class="diagram-icon" style="color:var(--diagram-violet-ink)" aria-hidden="true" /><text x="128" y="1510" font-size="18" font-weight="600" class="diagram-label-violet">数据访问、结构演进与初始化</text>
+<rect x="1520" y="152" width="336" height="1536" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<rect x="1520" y="152" width="336" height="1536" rx="8" class="diagram-texture" aria-hidden="true" /><rect x="1536" y="161" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-rose" x="1540" y="165" width="20" height="20" class="diagram-icon" style="color:var(--diagram-rose-ink)" aria-hidden="true" /><text x="1568" y="182" font-size="18" font-weight="600" class="diagram-label-rose">安全体系：贯穿各层</text>
+<rect x="64" y="1712" width="1792" height="328" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-sky diagram-border-sky diagram-wash-sky" />
+<rect x="80" y="1721" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-sky" x="84" y="1725" width="20" height="20" class="diagram-icon" style="color:var(--diagram-sky-ink)" aria-hidden="true" /><text x="112" y="1742" font-size="18" font-weight="600" class="diagram-label-sky">公共能力：执行引擎、数据处理与通用支撑</text>
+<rect x="64" y="2064" width="1792" height="184" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-neutral diagram-border-neutral diagram-wash-neutral" />
+<text x="84" y="2094" font-size="18" font-weight="600" class="diagram-muted">基础设施：进程内运行框架</text>
+<rect x="40" y="2320" width="1840" height="192" rx="8" fill-opacity="1" stroke-width="1" class="diagram-surface-orange diagram-border-orange diagram-wash-orange" />
+<rect x="56" y="2329" width="28" height="28" rx="6" class="diagram-icon-plate" aria-hidden="true" /><use href="#handbook-icon-orange" x="60" y="2333" width="20" height="20" class="diagram-icon" style="color:var(--diagram-orange-ink)" aria-hidden="true" /><text x="88" y="2350" font-size="18" font-weight="600" class="diagram-label-orange">进程外设施与服务：按已装配能力和环境配置接入</text>
+<g data-node="webapi"><rect x="80" y="208" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="300.0" y="238.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-blue">WebAPI 路由</text>
+<text x="300.0" y="263.0" font-size="16" text-anchor="middle" class="diagram-muted">Spring MVC／RouterFunction</text>
+<text x="300.0" y="288.0" font-size="16" text-anchor="middle" class="diagram-muted">按接口定义分派业务执行</text>
+</g>
+<g data-node="websocket"><rect x="560" y="208" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="780.0" y="238.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-blue">实时通信端点</text>
+<text x="780.0" y="263.0" font-size="16" text-anchor="middle" class="diagram-muted">Spring WebSocket／STOMP</text>
+<text x="780.0" y="288.0" font-size="16" text-anchor="middle" class="diagram-muted">本地 Broker、Redis Pub/Sub 或 STOMP Relay</text>
+</g>
+<g data-node="openapi"><rect x="1040" y="208" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1260.0" y="238.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-blue">接口文档</text>
+<text x="1260.0" y="263.0" font-size="16" text-anchor="middle" class="diagram-muted">平台 OpenAPI 文档构建器</text>
+<text x="1260.0" y="288.0" font-size="16" text-anchor="middle" class="diagram-muted">汇总动态接口，导出 OpenAPI 3.1.0</text>
+</g>
+<g data-node="ui-schema"><rect x="80" y="400" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="300.0" y="442.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-sky">UI Schema 实时管理</text>
+<text x="300.0" y="468.0" font-size="17" text-anchor="middle" class="diagram-muted">运行时 Schema 覆盖与管理</text>
+</g>
+<g data-node="user-profile"><rect x="560" y="400" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="780.0" y="442.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-sky">用户资料管理</text>
+<text x="780.0" y="468.0" font-size="17" text-anchor="middle" class="diagram-muted">资料动态定义与联系方式管理</text>
+</g>
+<g data-node="dynamic-form"><rect x="1040" y="400" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1260.0" y="442.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-sky">动态表单</text>
+<text x="1260.0" y="468.0" font-size="17" text-anchor="middle" class="diagram-muted">表单方案、字段与校验定义</text>
+</g>
+<g data-node="document"><rect x="80" y="512" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="300.0" y="554.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-sky">文档管理</text>
+<text x="300.0" y="580.0" font-size="17" text-anchor="middle" class="diagram-muted">文档内容、持久化与存储服务</text>
+</g>
+<g data-node="dashboard"><rect x="560" y="512" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="780.0" y="554.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-sky">看板</text>
+<text x="780.0" y="580.0" font-size="17" text-anchor="middle" class="diagram-muted">用户看板与小组件编排</text>
+</g>
+<g data-node="widget"><rect x="1040" y="512" width="440" height="88" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1260.0" y="554.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-sky">小组件</text>
+<text x="1260.0" y="580.0" font-size="17" text-anchor="middle" class="diagram-muted">小组件定义与运行服务</text>
+</g>
+<g data-node="organization"><rect x="80" y="704" width="440" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="300.0" y="758.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-teal">组织架构</text>
+<text x="300.0" y="784.0" font-size="17" text-anchor="middle" class="diagram-muted">组织、岗位、员工等组织服务</text>
+</g>
+<g data-node="configuration"><rect x="560" y="704" width="440" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="780.0" y="758.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-teal">统一配置</text>
+<text x="780.0" y="784.0" font-size="17" text-anchor="middle" class="diagram-muted">配置定义、取值与运行时访问</text>
+</g>
+<g data-node="file-upload"><rect x="1040" y="704" width="440" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1260.0" y="758.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-label-teal">文件上传与存储</text>
+<text x="1260.0" y="784.0" font-size="17" text-anchor="middle" class="diagram-muted">存储 SPI／本地文件系统实现</text>
+</g>
+<g data-node="notification"><rect x="80" y="840" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="246.0" y="881.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">消息通知</text>
+<text x="246.0" y="906.5" font-size="16" text-anchor="middle" class="diagram-muted">平台模板、收件人与渠道分发</text>
+<text x="246.0" y="931.5" font-size="16" text-anchor="middle" class="diagram-muted">发送状态、发送尝试与回执</text>
+</g>
+<g data-node="scheduler"><rect x="436" y="840" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="602.0" y="881.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">任务调度</text>
+<text x="602.0" y="906.5" font-size="16" text-anchor="middle" class="diagram-muted">Quartz</text>
+<text x="602.0" y="931.5" font-size="16" text-anchor="middle" class="diagram-muted">Cron 计划任务／一次性与延迟任务</text>
+</g>
+<g data-node="rpc"><rect x="792" y="840" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="958.0" y="881.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">RPC／OpenAPI 调用</text>
+<text x="958.0" y="906.5" font-size="16" text-anchor="middle" class="diagram-muted">Spring WebClient</text>
+<text x="958.0" y="931.5" font-size="16" text-anchor="middle" class="diagram-muted">参数、认证、超时与重试策略</text>
+</g>
+<g data-node="message-queue"><rect x="1148" y="840" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1314.0" y="881.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">消息队列</text>
+<text x="1314.0" y="906.5" font-size="16" text-anchor="middle" class="diagram-muted">Spring Cloud Stream</text>
+<text x="1314.0" y="931.5" font-size="16" text-anchor="middle" class="diagram-muted">RabbitMQ Binder／消息绑定</text>
+</g>
+<g data-node="ai-model"><rect x="80" y="976" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="246.0" y="1017.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">AI 模型调用</text>
+<text x="246.0" y="1042.5" font-size="16" text-anchor="middle" class="diagram-muted">Spring AI</text>
+<text x="246.0" y="1067.5" font-size="16" text-anchor="middle" class="diagram-muted">OpenAI／Anthropic 模型适配</text>
+</g>
+<g data-node="rag"><rect x="436" y="976" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="602.0" y="1017.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">知识检索</text>
+<text x="602.0" y="1042.5" font-size="16" text-anchor="middle" class="diagram-muted">Spring AI VectorStore</text>
+<text x="602.0" y="1067.5" font-size="16" text-anchor="middle" class="diagram-muted">检索增强与上下文组织</text>
+</g>
+<g data-node="mcp"><rect x="792" y="976" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="958.0" y="1017.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">MCP 工具接入</text>
+<text x="958.0" y="1042.5" font-size="16" text-anchor="middle" class="diagram-muted">MCP Java SDK</text>
+<text x="958.0" y="1067.5" font-size="16" text-anchor="middle" class="diagram-muted">MCP 客户端与工具调用</text>
+</g>
+<g data-node="external-approval"><rect x="1148" y="976" width="332" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1314.0" y="1030.0" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-teal">外部审批流引擎适配</text>
+<text x="1314.0" y="1055.0" font-size="16" text-anchor="middle" class="diagram-muted">外部流程、实例与任务对接</text>
+</g>
+<g data-node="model-runtime"><rect x="80" y="1192" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="246.0" y="1237.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">模型运行时</text>
+<text x="246.0" y="1262.5" font-size="16" text-anchor="middle" class="diagram-muted">Catalog／Provider／Builder</text>
+<text x="246.0" y="1287.5" font-size="16" text-anchor="middle" class="diagram-muted">模型构建、投射与生命周期</text>
+</g>
+<g data-node="resource-service"><rect x="436" y="1192" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="602.0" y="1237.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">应用资源服务</text>
+<text x="602.0" y="1262.5" font-size="16" text-anchor="middle" class="diagram-muted">应用文件与运行时覆盖解析</text>
+<text x="602.0" y="1287.5" font-size="16" text-anchor="middle" class="diagram-muted">资源来源与读取</text>
+</g>
+<g data-node="action-runtime"><rect x="792" y="1192" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="958.0" y="1237.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">业务动作运行时</text>
+<text x="958.0" y="1262.5" font-size="16" text-anchor="middle" class="diagram-muted">动作契约、输入与输出校验</text>
+<text x="958.0" y="1287.5" font-size="16" text-anchor="middle" class="diagram-muted">事务与执行审计</text>
+</g>
+<g data-node="event-runtime"><rect x="1148" y="1192" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1314.0" y="1237.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">业务事件运行时</text>
+<text x="1314.0" y="1262.5" font-size="16" text-anchor="middle" class="diagram-muted">事件事实与逐订阅投递记录</text>
+<text x="1314.0" y="1287.5" font-size="16" text-anchor="middle" class="diagram-muted">租约、确认与 Outbox 恢复</text>
+</g>
+<g data-node="data-runtime"><rect x="80" y="1336" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="246.0" y="1381.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">动态数据模型</text>
+<text x="246.0" y="1406.5" font-size="16" text-anchor="middle" class="diagram-muted">平台数据模型与查询语义</text>
+<text x="246.0" y="1431.5" font-size="16" text-anchor="middle" class="diagram-muted">动态查询、写入与事务接入</text>
+</g>
+<g data-node="logicflow"><rect x="436" y="1336" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="602.0" y="1381.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">逻辑流引擎</text>
+<text x="602.0" y="1406.5" font-size="16" text-anchor="middle" class="diagram-muted">节点类型定义、逻辑流编译</text>
+<text x="602.0" y="1431.5" font-size="16" text-anchor="middle" class="diagram-muted">脚本、表达式能力接入</text>
+</g>
+<g data-node="approval"><rect x="792" y="1336" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="958.0" y="1381.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">审批流引擎</text>
+<text x="958.0" y="1406.5" font-size="16" text-anchor="middle" class="diagram-muted">Flowable／BPMN</text>
+<text x="958.0" y="1431.5" font-size="16" text-anchor="middle" class="diagram-muted">流程实例、任务与历史</text>
+</g>
+<g data-node="report"><rect x="1148" y="1336" width="332" height="120" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1314.0" y="1381.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-violet">统计报表运行时</text>
+<text x="1314.0" y="1406.5" font-size="16" text-anchor="middle" class="diagram-muted">平台数据集与视图运行时</text>
+<text x="1314.0" y="1431.5" font-size="16" text-anchor="middle" class="diagram-muted">查询计划与结果处理</text>
+</g>
+<g data-node="querydsl"><rect x="112" y="1536" width="248" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="236.0" y="1586.0" font-size="20" font-weight="600" text-anchor="middle" class="diagram-label-violet">QueryDSL SQL</text>
+<text x="236.0" y="1610.0" font-size="15" text-anchor="middle" class="diagram-muted">动态 SQL 构建</text>
+</g>
+<g data-node="jdbc"><rect x="384" y="1536" width="248" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="508.0" y="1586.0" font-size="20" font-weight="600" text-anchor="middle" class="diagram-label-violet">Spring JDBC</text>
+<text x="508.0" y="1610.0" font-size="15" text-anchor="middle" class="diagram-muted">参数绑定与 SQL 执行</text>
+</g>
+<g data-node="druid"><rect x="656" y="1536" width="248" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="780.0" y="1586.0" font-size="20" font-weight="600" text-anchor="middle" class="diagram-label-violet">Druid</text>
+<text x="780.0" y="1610.0" font-size="15" text-anchor="middle" class="diagram-muted">数据源构建与连接池</text>
+</g>
+<g data-node="liquibase"><rect x="928" y="1536" width="248" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1052.0" y="1586.0" font-size="20" font-weight="600" text-anchor="middle" class="diagram-label-violet">Liquibase</text>
+<text x="1052.0" y="1610.0" font-size="15" text-anchor="middle" class="diagram-muted">结构快照、比较与迁移</text>
+</g>
+<g data-node="data-init"><rect x="1200" y="1536" width="248" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1324.0" y="1586.0" font-size="20" font-weight="600" text-anchor="middle" class="diagram-label-violet">数据初始化</text>
+<text x="1324.0" y="1610.0" font-size="15" text-anchor="middle" class="diagram-muted">初始化计划与记录协调</text>
+</g>
+<g data-node="oidc"><rect x="1544" y="208" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="262.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">OIDC 服务</text>
+<text x="1688.0" y="286.5" font-size="15" text-anchor="middle" class="diagram-muted">Spring Authorization Server</text>
+<text x="1688.0" y="310.5" font-size="15" text-anchor="middle" class="diagram-muted">Nimbus JOSE＋JWT</text>
+<text x="1688.0" y="334.5" font-size="15" text-anchor="middle" class="diagram-muted">OAuth 2.0／OpenID Connect</text>
+</g>
+<g data-node="identity"><rect x="1544" y="392" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="458.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">身份认证</text>
+<text x="1688.0" y="482.5" font-size="15" text-anchor="middle" class="diagram-muted">平台身份认证</text>
+<text x="1688.0" y="506.5" font-size="15" text-anchor="middle" class="diagram-muted">Spring Security 适配</text>
+</g>
+<g data-node="token"><rect x="1544" y="576" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="642.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">令牌服务</text>
+<text x="1688.0" y="666.5" font-size="15" text-anchor="middle" class="diagram-muted">JJWT</text>
+<text x="1688.0" y="690.5" font-size="15" text-anchor="middle" class="diagram-muted">平台令牌签发与校验</text>
+</g>
+<g data-node="session"><rect x="1544" y="760" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="826.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">平台会话</text>
+<text x="1688.0" y="850.5" font-size="15" text-anchor="middle" class="diagram-muted">会话绑定、刷新与撤销</text>
+<text x="1688.0" y="874.5" font-size="15" text-anchor="middle" class="diagram-muted">会话关联的令牌生命周期</text>
+</g>
+<g data-node="credential"><rect x="1544" y="944" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="1010.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">委托凭据</text>
+<text x="1688.0" y="1034.5" font-size="15" text-anchor="middle" class="diagram-muted">目标资源与委托范围</text>
+<text x="1688.0" y="1058.5" font-size="15" text-anchor="middle" class="diagram-muted">范围受用户自身权限限制</text>
+</g>
+<g data-node="context"><rect x="1544" y="1128" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="1194.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">安全上下文</text>
+<text x="1688.0" y="1218.5" font-size="15" text-anchor="middle" class="diagram-muted">身份、角色与凭据上下文</text>
+<text x="1688.0" y="1242.5" font-size="15" text-anchor="middle" class="diagram-muted">执行过程中的上下文传递</text>
+</g>
+<g data-node="authorization"><rect x="1544" y="1312" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="1378.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">授权判定</text>
+<text x="1688.0" y="1402.5" font-size="15" text-anchor="middle" class="diagram-muted">角色与凭据联合判定</text>
+<text x="1688.0" y="1426.5" font-size="15" text-anchor="middle" class="diagram-muted">接口及业务操作访问控制</text>
+</g>
+<g data-node="data-security"><rect x="1544" y="1496" width="288" height="160" rx="8" stroke-width="1" class="diagram-surface-rose diagram-border-rose diagram-wash-rose" />
+<text x="1688.0" y="1562.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-rose">数据访问控制</text>
+<text x="1688.0" y="1586.5" font-size="15" text-anchor="middle" class="diagram-muted">行级过滤与列级字段权限</text>
+<text x="1688.0" y="1610.5" font-size="15" text-anchor="middle" class="diagram-muted">查询、写入与输出控制</text>
+</g>
+<g data-node="groovy"><rect x="84" y="1768" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="248.0" y="1810.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">Groovy 脚本引擎</text>
+<text x="248.0" y="1834.5" font-size="15" text-anchor="middle" class="diagram-muted">Groovy</text>
+<text x="248.0" y="1858.5" font-size="15" text-anchor="middle" class="diagram-muted">脚本编译、执行与上下文接入</text>
+</g>
+<g data-node="javascript"><rect x="440" y="1768" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="604.0" y="1810.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">JavaScript 脚本引擎</text>
+<text x="604.0" y="1834.5" font-size="15" text-anchor="middle" class="diagram-muted">GraalVM JavaScript</text>
+<text x="604.0" y="1858.5" font-size="15" text-anchor="middle" class="diagram-muted">脚本执行与平台 API 接入</text>
+</g>
+<g data-node="expression"><rect x="796" y="1768" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="960.0" y="1810.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">表达式引擎</text>
+<text x="960.0" y="1834.5" font-size="15" text-anchor="middle" class="diagram-muted">Spring Expression Language</text>
+<text x="960.0" y="1858.5" font-size="15" text-anchor="middle" class="diagram-muted">SpEL 解析与求值</text>
+</g>
+<g data-node="template"><rect x="1152" y="1768" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1316.0" y="1810.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">模板引擎</text>
+<text x="1316.0" y="1834.5" font-size="15" text-anchor="middle" class="diagram-muted">FreeMarker</text>
+<text x="1316.0" y="1858.5" font-size="15" text-anchor="middle" class="diagram-muted">文本与资源模板渲染</text>
+</g>
+<g data-node="cache"><rect x="1508" y="1768" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1672.0" y="1810.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">统一缓存</text>
+<text x="1672.0" y="1834.5" font-size="15" text-anchor="middle" class="diagram-muted">Spring Cache</text>
+<text x="1672.0" y="1858.5" font-size="15" text-anchor="middle" class="diagram-muted">Redis 或内存缓存实现</text>
+</g>
+<g data-node="json"><rect x="84" y="1904" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="248.0" y="1946.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">JSON 读写</text>
+<text x="248.0" y="1970.5" font-size="15" text-anchor="middle" class="diagram-muted">Jackson</text>
+<text x="248.0" y="1994.5" font-size="15" text-anchor="middle" class="diagram-muted">序列化、反序列化与数据转换</text>
+</g>
+<g data-node="schema"><rect x="440" y="1904" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="604.0" y="1946.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">JSON Schema 校验</text>
+<text x="604.0" y="1970.5" font-size="15" text-anchor="middle" class="diagram-muted">networknt JSON Schema Validator</text>
+<text x="604.0" y="1994.5" font-size="15" text-anchor="middle" class="diagram-muted">数据结构与载荷校验</text>
+</g>
+<g data-node="utilities"><rect x="796" y="1904" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="960.0" y="1946.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">通用函数</text>
+<text x="960.0" y="1970.5" font-size="15" text-anchor="middle" class="diagram-muted">Apache Commons</text>
+<text x="960.0" y="1994.5" font-size="15" text-anchor="middle" class="diagram-muted">字符串、集合等通用工具</text>
+</g>
+<g data-node="locks"><rect x="1152" y="1904" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1316.0" y="1946.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">自适应分布式锁</text>
+<text x="1316.0" y="1970.5" font-size="15" text-anchor="middle" class="diagram-muted">Redisson／本地锁</text>
+<text x="1316.0" y="1994.5" font-size="15" text-anchor="middle" class="diagram-muted">按运行环境选择实现</text>
+</g>
+<g data-node="result"><rect x="1508" y="1904" width="328" height="112" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1672.0" y="1946.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-sky">函数式结果处理</text>
+<text x="1672.0" y="1970.5" font-size="15" text-anchor="middle" class="diagram-muted">Vavr Try／Either</text>
+<text x="1672.0" y="1994.5" font-size="15" text-anchor="middle" class="diagram-muted">成功与失败结果的组合</text>
+</g>
+<g data-node="jvm"><rect x="92" y="2120" width="416" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="300.0" y="2170.5" font-size="22" font-weight="600" text-anchor="middle" class="diagram-muted">Java 21／JVM</text>
+<text x="300.0" y="2195.5" font-size="16" text-anchor="middle" class="diagram-muted">模块与插件代码的运行环境</text>
+</g>
+<g data-node="spring"><rect x="532" y="2120" width="416" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="740.0" y="2170.5" font-size="22" font-weight="600" text-anchor="middle" class="diagram-muted">Spring Framework</text>
+<text x="740.0" y="2195.5" font-size="16" text-anchor="middle" class="diagram-muted">依赖注入、事务与生命周期</text>
+</g>
+<g data-node="boot"><rect x="972" y="2120" width="416" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1180.0" y="2170.5" font-size="22" font-weight="600" text-anchor="middle" class="diagram-muted">Spring Boot 3.5.11</text>
+<text x="1180.0" y="2195.5" font-size="16" text-anchor="middle" class="diagram-muted">应用启动、自动配置与条件装配</text>
+</g>
+<g data-node="spi"><rect x="1412" y="2120" width="416" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1620.0" y="2158.0" font-size="22" font-weight="600" text-anchor="middle" class="diagram-muted">Java SPI</text>
+<text x="1620.0" y="2183.0" font-size="16" text-anchor="middle" class="diagram-muted">META-INF/services</text>
+<text x="1620.0" y="2208.0" font-size="16" text-anchor="middle" class="diagram-muted">接口实现发现与插件扩展</text>
+</g>
+<g data-node="database"><rect x="72" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="192.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">关系数据库</text>
+<text x="192.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">MySQL 等数据库</text>
+</g>
+<g data-node="redis"><rect x="328" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="448.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">Redis</text>
+<text x="448.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">统一缓存／锁／Pub/Sub</text>
+</g>
+<g data-node="rabbit"><rect x="584" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="704.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">消息队列服务</text>
+<text x="704.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">RabbitMQ／STOMP Relay</text>
+</g>
+<g data-node="files"><rect x="840" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="960.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">文件系统</text>
+<text x="960.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">上传目录与持久卷</text>
+</g>
+<g data-node="model-api"><rect x="1096" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1216.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">模型服务</text>
+<text x="1216.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">OpenAI／Anthropic</text>
+</g>
+<g data-node="notification-channel"><rect x="1352" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1472.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">通知渠道</text>
+<text x="1472.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">邮件／短信／IM 服务</text>
+</g>
+<g data-node="business-api"><rect x="1608" y="2376" width="240" height="104" rx="6" stroke-width="1" class="diagram-card" />
+<text x="1728.0" y="2426.5" font-size="21" font-weight="600" text-anchor="middle" class="diagram-label-orange">外部业务服务</text>
+<text x="1728.0" y="2450.5" font-size="15" text-anchor="middle" class="diagram-muted">HTTP／OpenAPI 接口</text>
+</g>
+<text x="960" y="2552" font-size="18" text-anchor="middle" class="diagram-muted">同一能力可按契约接入不同实现；数据库、Redis 和消息队列等依赖由所选模块与配置确定。</text>
+</svg>
