@@ -232,7 +232,7 @@ Linux 或 macOS 命令的退出码应为 `0`；Windows 命令应输出 `tcp://ho
 1. 登录开发平台，在左侧菜单打开 **打开应用**。
 2. 点击页面右上角的 **创建应用**。
 
-   ![打开应用页面](../low-code/.assets/current-system/app-open-apps.png)
+   ![打开应用页面](../low-code/development-platform-menus/.assets/open-apps/open-apps-overview.jpg)
 
 3. 按下表填写表单：
 
@@ -259,7 +259,7 @@ Linux 或 macOS 命令的退出码应为 `0`；Windows 命令应输出 `tcp://ho
 1. 在应用开发工作区打开 **业务模型**。
 2. 点击右上角的 **新建**。
 
-   ![业务模型列表](../low-code/.assets/current-system/app-business-model.png)
+   ![业务模型列表](../low-code/development-platform-menus/.assets/business-model/business-model-list.png)
 
 3. 保持模型类型和模块的默认值，填写以下内容：
 
@@ -270,14 +270,14 @@ Linux 或 macOS 命令的退出码应为 `0`；Windows 命令应输出 `tcp://ho
    | 图标 | 留空 |
    | 模型描述 | `客户基本资料` |
 
-4. 点击 **确认**，然后打开新建的 `Customer` 模型进入编辑器。
+4. 点击 **提交**，然后打开新建的 `Customer` 模型进入编辑器。
 
 模型名必须以字母开头且只能包含字母和数字。它会参与生成数据模型、接口和页面地址；模型标题则显示在菜单和页面中。
 
 ### 2. 配置字段和页面
 
-1. 在 **基本信息** 中打开 **启用模型**。新建模型默认未启用，未启用的模型不会生成可用的业务入口。
-2. 打开 **业务字段**。保留系统生成的主键，点击 **新增**，依次添加以下字段：
+1. 点击 **基本信息** 右侧的 **展开**，打开 **启用模型**。新建模型默认未启用，未启用的模型不会生成可用的业务入口。
+2. 在 **字段与关联** 中找到 **业务字段**。保留系统生成的主键，点击 **新增**，依次添加以下字段：
 
    | 字段名 | 显示名 | 类型 | 必填 | 其他设置 |
    | --- | --- | --- | --- | --- |
@@ -285,7 +285,7 @@ Linux 或 macOS 命令的退出码应为 `0`；Windows 命令应输出 `tcp://ho
    | `phone` | 联系电话 | 单行文本 | 否 | 保持默认 |
    | `remark` | 备注 | 多行文本 | 否 | 保持默认 |
 
-   ![业务字段配置](../guide/tutorial/business-model/develop-business-model/.assets/edit-business-model-02-fields.png)
+   ![业务字段配置](.assets/customer-fields.png)
 
 3. 打开 **视图配置**，确认索引页、新建表单、编辑表单和详情页均已启用，并保持自动生成。
 4. 点击 **保存并提交**，提交说明填写 `创建客户模型`。

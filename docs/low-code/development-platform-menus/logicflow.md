@@ -65,7 +65,7 @@ sidebar_position: 10
 
 选中节点后，属性面板会显示通用字段和该节点的专属配置。
 
-![定义常量节点的属性和端口](.assets/logicflow/node-properties.png)
+![数据校验节点的属性和端口](.assets/logicflow/node-properties.png)
 
 | 配置项 | 说明 |
 | --- | --- |

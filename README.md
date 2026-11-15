@@ -29,6 +29,7 @@ npm start
 
 ```bash
 npm run check:structure
+npm run check:capabilities
 npm run build
 ```
 
@@ -45,6 +46,29 @@ npm run build
 ```bash
 npm run sync:llms-static
 ```
+
+### 能力目录
+
+`static/capabilities/catalog.json` 是能力地图和机器目录共用的数据源。更新条目时核对源码、接入条件、限制和指南覆盖程度，保留稳定 ID，然后运行：
+
+```bash
+npm run sync:capabilities
+npm run check:capabilities
+```
+
+`index.json` 从完整目录生成，不能单独编辑。`catalog.schema.json` 定义导入格式。校验会检查 Schema、唯一 ID、能力关系、文档路径及精简索引；在本项目完整检出中还检查源码和模块路径，独立发布手册时会明确提示无法检查源码。通过这些校验不代表能力已在部署实例中启用。
+
+目录采用可复用能力的粒度，不按类、方法或第三方依赖计数。新增能力需要记录真实入口；设计器专用、占位实现和旧兼容别名应在范围说明中交代，避免误列成运行能力。
+
+### 教程示例工程
+
+`examples/material-registration/` 是融合开发入门教程使用的独立 Maven 工程。修改示例后，先在该目录运行 `mvn verify`，再回到手册根目录重新生成下载包：
+
+```bash
+npm run package:examples
+```
+
+下载包写入 `static/examples/material-registration.zip`，只包含源码与说明，不包含 `target/`。真实基座权限检查需要另行装配测试应用、准备普通测试账号，按“自动化测试”页面执行。
 
 ## 元数据 JSON Schema
 

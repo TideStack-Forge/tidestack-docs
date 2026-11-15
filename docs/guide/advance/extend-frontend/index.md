@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # 微前端包管理
 
-应用开发界面的 **高级 → 微前端** 管理前端记录和构建 ZIP。记录决定平台如何引用产物，构建包提供实际脚本、样式和页面资源；创建记录、上传包和配置业务引用需要分别完成。
+应用开发界面的 **高级功能 / 微前端** 管理前端记录和构建 ZIP。记录决定平台如何引用产物，构建包提供实际脚本、样式和页面资源；创建记录、上传包和配置业务引用需要分别完成。
 
 ## 上传前准备
 
@@ -17,7 +17,7 @@ sidebar_position: 2
 
 ### 微前端管理
 
-![微前端管理](.assets/configuration.png)
+![微前端管理](../../../low-code/development-platform-menus/.assets/micro-frontend/micro-frontend-overview.jpg)
 
 列表用于创建记录、修改描述或资源路径、上传新包，以及删除不再使用的记录。
 
@@ -25,7 +25,7 @@ sidebar_position: 2
 
 点击 **新建**，按下表填写并上传构建包。
 
-![创建微前端](.assets/create.png)
+![创建微前端](../../../low-code/development-platform-menus/.assets/micro-frontend/create-micro-frontend.jpg)
 
 | 属性 | 必填 | 核对内容 |
 | --- | --- | --- |
@@ -56,8 +56,6 @@ module.exports = {
   publicPath: '/custom-login/',
 }
 ```
-
-![微前端路径](.assets/publicPath.jpg)
 
 使用自动或相对 publicPath 的工程，核对浏览器实际请求的脚本、样式和异步资源地址。路径填写正确还需由安装后的请求结果确认。
 

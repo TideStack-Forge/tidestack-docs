@@ -69,7 +69,7 @@ export async function loginWithCas() {
 }
 ```
 
-平台登录入口是 `/api/auth/cas/corporate-cas/login`，不是 OAuth2 authorize 路径。SDK 根据 provider 构建入口。CAS 回到后端 callback 后，由基座 `/login/callback` 或 `/login/bind` 完成平台登录与首次账号绑定，见 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)。
+平台登录入口是 `/api/auth/cas/corporate-cas/login`，不是 OAuth2 authorize 路径。SDK 根据 provider 构建入口。CAS 回到后端 callback 后，由基座 `/login/callback` 或 `/login/bind` 完成平台登录与首次账号绑定，见 [自定义登录页](./custom-login-page-and-auth-integration)。
 
 平台账号的启用状态、角色及数据权限单独生效。接通 CAS 登录也不代表已实现企业级单点登出，退出范围需要按实际部署另行验收。
 

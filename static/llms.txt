@@ -27,6 +27,8 @@ Paths below are relative to the Handbook repository root. This file and `llms-fu
 
 ## Machine-Readable Assets
 
+- Capability shortlist: `capabilities/index.json` on the published site; source: `static/capabilities/index.json`.
+- Full capability records: `capabilities/catalog.json`; use `docs/reference/capability-catalog.md` for selection rules, conditions, and evidence limits.
 - Metadata schemas: `docs/reference/jsonschema/metadata/`
 - OpenAPI publication directory: `openapi/` (currently contains maintenance instructions only)
 - Expanded AI routing index: `llms-full.txt`

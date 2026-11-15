@@ -16,9 +16,9 @@ sidebar_position: 3
 
 ## 如何使用
 
-在开发平台左侧导航进入 `模块编排` 页面：
+在开发平台左侧导航进入 **应用管理 / 模块树编排** 页面：
 
-![模块编排页面](.assets/module-arrange.png)
+![模块编排页面](../../../low-code/development-platform-menus/.assets/module-arrangement/module-arrangement-overview.jpg)
 
 你可以通过拖拽方式调整模块顺序和层级，然后提交当前编排结果。
 

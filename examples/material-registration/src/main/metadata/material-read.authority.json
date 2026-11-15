@@ -1,0 +1,7 @@
+{
+  "fullName": "sample.Material.read",
+  "title": "查看物料",
+  "apis": ["GET /api/custom/materials"],
+  "uiViews": ["/sample/materials"],
+  "menuItems": ["sample.materials"]
+}

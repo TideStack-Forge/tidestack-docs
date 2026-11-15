@@ -20,7 +20,7 @@ sidebar_position: 6
 | 完整复杂页面、独立子应用或一组路由 | 微前端应用 | [微前端应用](../guide/advance/extend-frontend/micro-app/) |
 | 顶栏、侧栏、导航等平台框架区域 | 布局组件 | [布局组件](../guide/advance/extend-frontend/layout-component/) |
 | 低代码页面中的可复用控件 | 组件库 | [组件库](../guide/advance/extend-frontend/amis-component/) |
-| 企业品牌登录页、多种认证入口组织 | 登录页微前端 | [自定义登录页与认证接入](./custom-login-page-and-auth-integration) |
+| 企业品牌登录页、多种认证入口组织 | 登录页微前端 | [自定义登录页](./custom-login-page-and-auth-integration) |
 | 工作台、看板和首页入口拼装 | Widget 与仪表盘 | [工作台与 Widget](./workbench-widgets-and-component-libraries) |
 | 向多个应用分发前端能力并管理版本 | 平台组件库 | [组件库制作与安装](./plugin-extensions/frontend/platform-component-library) |
 
@@ -41,7 +41,7 @@ sidebar_position: 6
 
 给表单补一个控件时，使用组件库并让 Schema 页面引用；需要多应用共享、独立安装和版本治理时，再增加平台组件库分发。工作台需求先评估 Widget 和仪表盘，独立子系统再使用微前端。
 
-登录页只替换 `/login` 的展示和发起登录逻辑，回调与绑定继续由基座处理，详细边界见 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)。
+登录页只替换 `/login` 的展示和发起登录逻辑，回调与绑定继续由基座处理，详细边界见 [自定义登录页](./custom-login-page-and-auth-integration)。
 
 ## 接入验证
 

@@ -7,6 +7,8 @@ sidebar_position: 100
 
 按要完成的业务任务选择起点，再补齐实现、注册与运行验证。无需按目录顺序读完所有技术文档。
 
+第一次接入模型与代码时，从 [物料登记教程](../../fusion-development/first-feature)开始，完成一个可以登记、查询和授权的页面。
+
 ## 我要改页面或交互
 
 | 当前问题 | 先做什么 | 继续阅读 |
@@ -22,13 +24,15 @@ sidebar_position: 100
 | 当前问题 | 先做什么 | 继续阅读 |
 | --- | --- | --- |
 | Java 中要查询平台数据 | 确认模型全名和权限，使用数据模型 API | [数据模型](../../fusion-development/backend-development/data-model) |
-| 扩展包需要声明自己的数据模型 | 用注解声明并注册扫描，避免重复声明投影模型 | [注解注册](../../fusion-development/backend-development/data-model#2-用注解声明新模型) |
+| 扩展包需要声明自己的数据模型 | 声明字段、主键、关联与约束，配置模型扫描 | [用注解定义数据模型](../../fusion-development/backend-development/data-model-annotations) |
 | 平台页面调用我的 Java 业务方法 | 确认业务动作契约并绑定实现 | [业务模型](../../fusion-development/backend-development/business-model) |
 | 订单提交后由 Java 处理业务事件 | 声明订阅、消费身份及同步监听实现 | [业务事件监听](../../fusion-development/backend-development/business-model#5-监听业务事件) |
 | Java 使用配置、字典、通知或文件能力 | 装配正式服务，准备资源后逐项调用 | [平台支撑能力](../../fusion-development/backend-development/supporting-resources) |
 | 代码需要执行已有可视化流程 | 明确输入顺序，通过执行 Facade 调用 | [逻辑流模型](../../fusion-development/backend-development/logicflow-model) |
 | Java 与流程共用外部服务配置 | 定义 RPC、参数与凭据，再从各自入口调用 | [RPC 模型](../../fusion-development/backend-development/rpc-model) |
 | 要提供一个普通 HTTP 接口 | 注册 Controller 与 Service，并绑定权限项 | [Controller 与 Service](../../fusion-development/backend-development/spring-beans-and-controllers) |
+| 多次写入需要共同回滚，或后台缺少当前用户 | 确认事务资源、异常传播和执行身份 | [事务、异常与后台身份](../../fusion-development/backend-development/transactions-and-execution-context) |
+| 模块首次安装需要基础记录 | 声明匹配字段和初始记录，检查重复执行行为 | [数据初始化](../../fusion-development/backend-development/data-initialization) |
 | 要把动作或流程暴露给页面 | 显式配置 WebAPI 绑定及输入映射 | [WebAPI 模型](../../fusion-development/backend-development/webapi-model) |
 | 要异步处理或定时运行 Java 业务 | 使用 Java 消息消费、发送或定时任务 | [MQ](../../fusion-development/backend-development/message-queue)、[计划任务](../../fusion-development/backend-development/scheduled-tasks) |
 
@@ -46,14 +50,17 @@ sidebar_position: 100
 
 | 身份来源或任务 | 指南 |
 | --- | --- |
+| 选择认证方式、了解配置与账号绑定流程 | [认证接入](../../fusion-development/authentication-integration) |
 | 企业目录 | [AD 接入](../../fusion-development/ad-domain-auth-adaptation-guide) |
 | 统一认证协议 | [OIDC](../../fusion-development/oidc-auth-adaptation-guide)、[CAS](../../fusion-development/cas-auth-adaptation-guide) |
 | 企业协作平台 | [钉钉](../../fusion-development/dingtalk-auth-adaptation-guide)、[企业微信](../../fusion-development/wecom-auth-adaptation-guide)、[飞书](../../fusion-development/feishu-auth-adaptation-guide) |
-| 修改登录体验、增加认证按钮 | [自定义登录页与认证接入](../../fusion-development/custom-login-page-and-auth-integration) |
+| 修改登录体验、增加认证按钮与语言切换 | [自定义登录页](../../fusion-development/custom-login-page-and-auth-integration) |
 | 登录成功但业务访问受限 | [权限与访问控制](../../fusion-development/authority-subject-and-access-control-design) |
 
 ## 我要构建、联调和交付
 
-先按 [后端扩展包](../../fusion-development/backend-extension-packages)或 [微前端包管理](./extend-frontend/)检查产物，再按 [本地 IDE 联调](../../fusion-development/local-ide-and-platform-debugging)观察目标实例。模型资源目录、后缀及引用问题查 [模型资源与打包](./authoring-metadata-conventions/)。
+本地行为与数据测试见 [自动化测试](../../fusion-development/automated-testing)。已有数据的模型调整，先按 [模型变更与应用升级](../../fusion-development/model-evolution-and-upgrade)预演结构变化、回填和回退。
+
+先按 [后端扩展包](../../fusion-development/backend-extension-packages)或 [微前端包管理](./extend-frontend/)检查产物，再按 [平台测试实例调试](../../fusion-development/local-ide-and-platform-debugging)观察目标实例。模型资源目录、后缀及引用问题查 [模型资源与打包](./authoring-metadata-conventions/)。
 
 交付至少核对实现结果、打包与发现、真实业务入口三层。需要 AI 协助时提供版本、已有实现、输入输出、失败证据与验收场景，见 [用 AI 完成功能开发](../../fusion-development/ai-assisted-development)。

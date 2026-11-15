@@ -16,7 +16,7 @@ toc_max_heading_level: 4
 2. [从需求到交付](../../../low-code/from-requirement-to-delivery)
 3. [开发业务模型](./develop-business-model)
 
-本专题说明业务模型管理入口和常见操作。完整建模步骤见 [开发业务模型](./develop-business-model)。
+本页介绍模型管理操作。配置字段、视图、接口与行为契约时，可查阅 [业务模型配置手册](/docs/low-code/development-platform-menus/business-model/)。
 
 ## 你通常会在这里完成什么
 
@@ -29,7 +29,7 @@ toc_max_heading_level: 4
 
 通过菜单进入 `业务模型` 后，会看到业务模型管理界面：
 
-![业务模型列表](.assets/business-model-list.png)
+![业务模型列表](../../../low-code/development-platform-menus/.assets/business-model/business-model-list.png)
 
 - 左侧是**模块树**，模块树是业务模型的组织结构，类似于文件夹，主要用于对业务模型进行分类管理。
 - 右侧是**业务模型列表**，展示了当前模块下的业务模型，以便与对业务模型进行查看、编辑、删除等操作。
@@ -38,9 +38,9 @@ toc_max_heading_level: 4
 
 ### 创建业务模型
 
-创建模型时，最关键的是先把模型标识、标题和大致业务边界定清楚。
+点击列表右上角 **新建**，选择模型类型和模块，填写模型名、模型标题后点击 **提交**。标准业务建模使用 **默认** 类型。
 
-![新建业务模型](.assets/create-business-model.png)
+![新建业务模型](../../../low-code/development-platform-menus/.assets/business-model/create-business-model.png)
 
 | 属性名   | 必填 | 说明                                                                                                 |
 | -------- | ---- | ---------------------------------------------------------------------------------------------------- |
@@ -52,13 +52,9 @@ toc_max_heading_level: 4
 
 ### 打开并编辑业务模型
 
-:::info
-编辑器界面细节可能与截图略有差异，但整体流程和字段含义仍可作为参考。
-:::
-
 打开模型后会进入业务模型编辑器：
 
-![编辑业务模型](.assets/edit-business-model.png)
+![编辑业务模型](../../../low-code/development-platform-menus/.assets/business-model/editor-overview.png)
 
 详细的编辑操作，请参考 [开发业务模型](./develop-business-model)。
 
@@ -66,47 +62,39 @@ toc_max_heading_level: 4
 
 业务模型具备版本管理能力。编辑过程中可以先保存草稿，再决定是否提交到版本库。
 
-![保存、提交](.assets/save-n-commit.png)
-
 只有执行 `保存并提交` 并填写提交信息后，当前修改才会真正进入版本库。
-
-![输入修改说明](.assets/commit-message.png)
 
 提交后，可以查看模型的[变更记录](#查看变更记录)。
 
 如果当前修改需要放弃，可以通过 `放弃变更并解锁` 回滚到上一次提交的版本。
 
-![放弃变更并解锁](.assets/rollback.png)
-
 ### 重命名、移动和删除
 
 处于非编辑状态下的模型，通常可以在列表中进行重命名、移动或删除。
 
-![重命名、移动或删除](.assets/rename-move-delete.png)
+![重命名、移动或删除](../../../low-code/development-platform-menus/.assets/business-model/model-actions.png)
 
 ### 查看业务模型详情
 
-列表中也可以直接打开模型详情弹窗查看当前定义。
+点击列表中的模型标题，打开详情窗口。**基本信息** 展示模型身份、锁定状态和提交记录；**模型详情** 展示字段、关联和配置；**投射模型** 展示由当前定义投射的各类模型。
 
 #### 基本信息
 
-![查看模型 - 基本信息](.assets/show-model-01.png)
+![查看模型 - 基本信息](../../../low-code/development-platform-menus/.assets/business-model/model-detail.png)
 
 #### 模型详情
 
-![查看模型 - 模型详情](.assets/show-model-02.png)
+![查看模型 - 模型详情](../../../low-code/development-platform-menus/.assets/business-model/model-metadata.png)
 
 #### 投射模型
 
 关于业务模型的投射模型概念，请参考 **概念与设计** 中的 [业务模型](/docs/concepts/business-model/)。
 
-![查看模型 - 投射模型](.assets/show-model-03.png)
+![查看模型 - 投射模型](../../../low-code/development-platform-menus/.assets/business-model/model-projections.png)
 
 ### 查看变更记录
 
-![查看变更记录](.assets/show-history.png)
-
-![变更记录](.assets/commit-history.png)
+![变更记录](../../../low-code/development-platform-menus/.assets/business-model/change-history.png)
 
 ## 使用建议
 

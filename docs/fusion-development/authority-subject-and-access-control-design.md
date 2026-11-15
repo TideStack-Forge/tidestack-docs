@@ -43,7 +43,7 @@ sidebar_position: 11
 
 同一权限项可聚合多个 API、视图与菜单。仍需让权限定义进入 `AuthorityCenter` 并配置角色授权，注解本身不会给用户授予权限。`@Anonymous` 用于明确的匿名接口，不应作为排查鉴权失败的临时绕过。
 
-业务模型动作和低代码 WebAPI 通过各自正式绑定与权限配置接入。自定义登录页只替换登录展示，见 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)。
+业务模型动作和低代码 WebAPI 通过各自正式绑定与权限配置接入。自定义登录页只替换登录展示，见 [自定义登录页](./custom-login-page-and-auth-integration)。
 
 ## 4. 在业务执行中落实数据范围
 
@@ -66,8 +66,10 @@ sidebar_position: 11
 | 员工、设备或外部成员等主体 | `SubjectProvider`、`UserSubjectProvider` |
 | 当前用户的扩展身份信息 | `ClaimsProvider`，由 `ClaimsAggregator` 聚合 |
 | 可复用的数据范围规则解析 | `AccessControlFilterBuilder` 与行约束 |
+| 授权界面的参数控件 | `ACFilterSettingSchemaGenerator`；简单控件可直接放入 `settingSchema` |
+| 权限级字段控制等配置区域 | `ACSettingSchemaGenerator` |
 
-按接口实际装配机制增加实现；行约束解析、SPI、参数消费和拒绝语义见 [数据权限扩展插件](./plugin-extensions/backend/data-permissions)。已有角色配置足够时直接配置，不增加一套平行权限表。
+参数声明、角色配置、界面生成和数据操作的完整接入见 [数据权限参数的定义与使用](./data-access-control-parameters)。按接口实际装配机制增加实现；已有角色配置足够时直接配置，不增加一套平行权限表。
 
 ## 6. 验证与交付
 

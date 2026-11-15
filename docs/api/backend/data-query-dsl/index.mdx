@@ -7,7 +7,105 @@ toc_max_heading_level: 3
 
 # 数据查询 DSL
 
-使用 Map/List 描述字段、条件、排序、分页和关联。业务代码通常把语句传给 `DataModel.query(statement)`；Java 也可以使用 `model.query()` 构建语句并执行。
+Java 代码优先通过 `DataModel.query()` 或 `TypedDataModel.query()` 链式构造查询。构造器产出下文介绍的 Map/List DSL，并复用模型现有的查询执行链。脚本和前端仍可直接使用 Map/List。
+
+## Java 链式查询
+
+### 从模型构造并执行
+
+```java
+import static com.ouroboros.data.dsl.query.Query.field;
+import static com.ouroboros.data.dsl.query.Query.populate;
+
+var result = dataModel.query()
+    .select(field("id"), field("name"))
+    .where(field("status").eq("ENABLED"), field("age").gte(18))
+    .populate(populate("department").select("id", "name"))
+    .clause("ORDER", Map.of("name", "asc"))
+    .clause("OFFSET", 0)
+    .clause("LIMIT", 20)
+    .execute();
+
+if (result.isFailure()) {
+  throw new IllegalStateException("查询用户失败", result.getCause());
+}
+var records = result.get();
+```
+
+无参 `query()` 创建构造器，`execute()` 才执行查询。`DataModel` 返回 `Try<RecordList>`；`TypedDataModel<PK, M>` 使用相同的链式方法，返回 `Try<List<M>>`。
+
+| 方法 | 用途 |
+| ---- | ---- |
+| `select(...)` | 接受字段表达式、字符串、集合、数组、Map 或 `SExpression` |
+| `where(...)` | 设置过滤条件；多个 `QueryCondition` 默认 AND，再次调用会替换原条件 |
+| `andWhere(...)` / `orWhere(...)` | 向已有条件追加 AND / OR 条件 |
+| `populate(...)` | 填充关联字段，支持字符串、集合、Map 和嵌套 `PopulateSpec` |
+| `clause(name, value)` / `clauses(map)` | 设置 ORDER、OFFSET、LIMIT、OMIT、JOIN、GROUP 等现有查询子句 |
+| `build()` | 返回查询 Map，不执行查询 |
+| `execute()` | 在绑定的模型视图上执行查询 |
+
+`where(...)` 也接受原始 Map/List 条件。动态条件可以收集为 `List<QueryCondition>` 后传给 `where(conditions)`；空集合表示不设置 WHERE，`null` 会报错。`field("age").in(18, 21)` 接受可变参数；已有值列表应先转成数组，例如 `field("age").in(ages.toArray())`。
+
+`Query.field` 提供 `eq`、`ne`、`gt`、`gte`、`lt`、`lte`、`in`、`contains`、`startsWith`、`endsWith` 和 `between`。需要其他已有操作符时，使用原始 WHERE DSL；例如 `.where(Map.of("name", Map.of("$like", "A%")))` 保留 SQL LIKE 模式语义。
+
+### 只构造查询语句
+
+调用服务接口需要传递 Map 时，使用 `Query.from(modelName)`：
+
+```java
+import com.ouroboros.data.dsl.query.Query;
+
+Map<String, Object> statement = Query.from("User")
+    .select(List.of("id", "name"))
+    .where(field("status").eq("ENABLED"))
+    .clause("LIMIT", 20)
+    .build();
+
+var result = dataModel.query(statement);
+```
+
+`Query.from(...)` 没有绑定运行时模型，只能构造语句，不能直接 `execute()` 或切换插件。需要执行时，优先从目标模型的 `query()` 开始。
+
+### 配合插件视图使用
+
+在模型上切换插件后再调用 `query()`，以及在构造器内切换插件，都会通过模型已有的插件视图机制执行：
+
+```java
+var result = dataModel.query()
+    .withoutPlugins("Probe")
+    .withPlugins(new PluginDescriptor("BasicAudit"))
+    .where(field("status").eq("ENABLED"))
+    .execute();
+
+var resultWithoutPlugins = dataModel.withoutPlugins()
+    .query()
+    .where(field("status").eq("ENABLED"))
+    .execute();
+```
+
+`withoutPlugins("名称")` 移除指定插件，`withoutPlugins()` 移除全部插件。两种入口对 `TypedDataModel` 也适用。`withPlugins(...)` 追加插件的顺序、同名插件处理等规则沿用模型自身的约定。
+
+插件切换只作用于当前构造器所持有的模型视图，不会修改原模型或其他查询。构造器本身会随链式调用改变状态，每次查询应重新调用 `query()`。执行仍进入 `query(Map)`，经规范化后进入插件链。
+
+`build()` 只返回查询子句，**不携带插件视图**。如果先切换插件再 `build()`，随后交给另一个模型的 `query(map)`，实际使用的是接收模型的插件。需要保留构造器选择的插件时，直接调用其 `execute()`。
+
+### 从旧 builders 迁移
+
+`ouroboros-data-builders` 中的 `QueryBuilder`、`WhereBuilder`、`ModelMetaBuilder` 及其嵌套构造器均已弃用。查询构造能力在 `ouroboros-data-core`，类型化入口在 `ouroboros-data-typed-core`，无需依赖旧 builders 模块。
+
+| 旧写法 | 当前写法 |
+| ------ | -------- |
+| `QueryBuilder.create("User")` | `Query.from("User")`，或已持有模型时使用 `dataModel.query()` |
+| `.select("id", "name")` | `.select(field("id"), field("name"))` 或 `.select(List.of("id", "name"))` |
+| `WhereBuilder.create().and().eq("name", name).end().build()` | `field("name").eq(name).toRawCondition()`；传给 `where` 时可直接使用条件对象 |
+| `.orderBy("name", "desc")` | `.clause("ORDER", Map.of("name", "desc"))` |
+| `.offset(20).limit(10)` | `.clause("OFFSET", 20).clause("LIMIT", 10)` |
+
+`ModelMetaBuilder` 用于定义模型元数据，迁移时直接使用 `DataModelMeta`、`DataModelFieldMeta` 的属性接口，或用 `DataMaps.tryToBean(DataModelMeta.class, metadataMap)` 解析模型定义；查询构造器不承担模型定义职责。
+
+## Map/List 查询结构
+
+使用 Map/List 描述字段、条件、排序、分页和关联，把语句传给 `DataModel.query(statement)`。
 
 以下示例假设已定义 `crm.Order` 模型，包含 `id`、`status`、`amount`、`createdAt` 等字段。关联示例还要求模型中定义了对应关系。模型查询使用模型字段名，不使用数据库列名。
 

@@ -17,7 +17,7 @@
 | `count(Map<String, Object> where)` | `Try<Long>` | 统计符合条件的记录 |
 | `query(List<?> ids)` | `Try<RecordList>` | 按主键列表查询 |
 | `query(Map<String, Object> statement)` | `Try<RecordList>` | 按完整 DSL 查询 |
-| `query()` | `DataModelQuery` | 创建 Java 查询构建器 |
+| `query()` | `DataModelQuery` | 创建链式查询构造器，通过 `execute()` 执行 |
 
 `where` 表示条件本身，例如 `Map.of("status", "OPEN")`；`statement` 表示包含 `where/select/order/skip/limit` 等键的查询语句。二者不能混用。
 
@@ -64,5 +64,7 @@ long updated = orders.update("order-001", Map.of("status", "CLOSED")).get();
 ## 插件
 
 `withPlugins(...)` 返回附加插件后的模型，`hasPlugin(name)` 检查插件。`withoutPlugins(...)` 和无参 `withoutPlugins()` 分别移除指定或全部插件；移除校验、权限或删除策略插件会改变读写行为，仅在明确了解影响的扩展场景使用。
+
+插件方法返回新的模型视图，不会修改原模型。也可在 `query()` 返回的构造器中调用 `withPlugins(...)`、`withoutPlugins("名称")` 或无参 `withoutPlugins()`。构造器的 `execute()` 使用所选视图，`build()` 返回的 Map 只包含查询子句，不携带插件配置。示例见 [Java 链式查询](../../data-query-dsl/#java-链式查询)。
 
 插件声明见 [PluginDescriptor](../plugin-descriptor/)，强类型读写见 [TypedDataModel](../typed-data-model/)。

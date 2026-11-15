@@ -1,0 +1,39 @@
+{
+  "name": "/sample/materials",
+  "schema": {
+    "type": "page",
+    "title": "物料登记",
+    "body": {
+      "type": "crud",
+      "id": "materialList",
+      "api": "get:/api/custom/materials",
+      "syncLocation": false,
+      "headerToolbar": [
+        "reload",
+        {
+          "type": "button",
+          "label": "登记物料",
+          "level": "primary",
+          "actionType": "dialog",
+          "dialog": {
+            "title": "登记物料",
+            "body": {
+              "type": "form",
+              "api": "post:/api/custom/materials",
+              "body": [
+                {"type": "input-text", "name": "code", "label": "编码", "required": true, "maxLength": 64},
+                {"type": "input-text", "name": "name", "label": "名称", "required": true, "maxLength": 200}
+              ]
+            }
+          },
+          "reload": "materialList"
+        }
+      ],
+      "columns": [
+        {"name": "code", "label": "编码"},
+        {"name": "name", "label": "名称"}
+      ],
+      "footerToolbar": []
+    }
+  }
+}

@@ -24,7 +24,7 @@ sidebar_position: 2
 1. 在现有工程或兼容模板中实现页面。AI 生成时同时提供加载、空数据、失败、只读及无权限状态。
 2. 按 [应用改造](../application-transformation) 处理生命周期、容器和资源路径。
 3. 执行工程测试和构建，将构建目录打包成 ZIP。
-4. 在 **高级 → 微前端** 新建或更新记录，类型选择 **微前端应用**，上传构建包。字段说明见 [微前端包管理](../index.md#configuration)。
+4. 在 **高级功能 / 微前端** 新建或更新记录，类型选择 **微前端应用**，上传构建包。字段说明见 [微前端包管理](../index.md#configuration)。
 
 安装后仍需完成下面一种引用，上传本身不会替换业务页面。
 
@@ -65,9 +65,9 @@ sidebar_position: 2
 
 登录页优先使用单组件模式，完成工程接入后，在“应用配置”中设置对应微前端入口。
 
-![自定义登录页](.assets/custom-login.jpg)
+![自定义登录页](../../../../low-code/development-platform-menus/.assets/app-configuration/custom-layout-configuration.jpg)
 
-认证 SDK、provider、首次绑定、token 和国际化统一见 [自定义登录页与认证接入](../../../../fusion-development/custom-login-page-and-auth-integration)。自定义页面只替换 `/login`；`/login/callback` 和 `/login/bind` 继续由基座处理。
+认证 SDK、provider、首次绑定、token 和国际化统一见 [自定义登录页](../../../../fusion-development/custom-login-page-and-auth-integration)。自定义页面只替换 `/login`；`/login/callback` 和 `/login/bind` 继续由基座处理。
 
 ## 验证与交付
 

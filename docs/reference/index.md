@@ -11,7 +11,8 @@ sidebar_position: 1
 
 | 要查的内容 | 入口 | 收录范围 |
 | --- | --- | --- |
-| 平台有哪些现成能力 | [平台能力地图](./platform-capability-map) | 业务需求、内建能力、操作入口与扩展边界 |
+| 平台有哪些现成能力 | [平台能力地图](./platform-capability-map) | 按前后端、领域与接入方式筛选，查看适用场景、接入条件和源码依据 |
+| 给 AI 检索和选择能力 | [能力目录用法](./capability-catalog) | 精简索引、完整 JSON、能力 ID 和组合选型步骤 |
 | 运行时对象和方法 | [API 参考](../api/) | 后端 API、前端 SDK 与基座内建组件 |
 | HTTP 接口约定 | [WebAPI 规范](../api/web-api-spec/) | URL、HTTP 动词、状态码与响应结构 |
 | 元数据文件结构 | [JSON Schema](./jsonschema/) | 资源类型、文件后缀与 Schema 文件索引 |

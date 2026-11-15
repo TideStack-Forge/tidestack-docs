@@ -26,7 +26,7 @@ sidebar_position: 3
 
 #### 字典属性
 
-![新增字典](.assets/add.png)
+![新增字典](../../../low-code/development-platform-menus/.assets/data-dictionary/create-data-dictionary.jpg)
 
 | 属性       | 说明                                                                                     |
 | ---------- | ---------------------------------------------------------------------------------------- |
@@ -38,13 +38,13 @@ sidebar_position: 3
 
 树形模式示例如下：
 
-当树形模式值为`开`，“农行分类”树形字典项:
+当树形模式值为`开`，“任务分类”的父子选项:
 
 ![树形模式](.assets/dict-item-tree-mode.png)
 
-当树形模式值为`关`，“性别”的字典项:
+当树形模式值为`关`，“任务状态”的平铺字典项:
 
-![树形模式](.assets/dict-item-no-tree-mode.png)
+![树形模式](.assets/dictionary-items.png)
 
 #### 字典类型
 
@@ -73,15 +73,15 @@ sidebar_position: 3
 
 扩展配置示例如下：
 
-一个“颜色”字典，字典项即是不同的颜色，红色字典项可具有的以下属性：
+字典项可以附加颜色等属性，供页面或逻辑读取：
 
-![红色字典项](.assets/dict-item-extra-props.png)
+![字典项扩展配置](.assets/dict-item-extra-props.png)
 
 #### 状态转移表
 
 当字典类型为状态表时，可以为每个字典项（状态）配置状态转移信息：
 
-![状态转移配置](.assets/dict-item-state-trasfer-config.png)
+![状态转移配置](.assets/state-transition.png)
 
 在这里可以查看状态转移表：
 
@@ -89,15 +89,9 @@ sidebar_position: 3
 
 ### 查看、编辑和删除字典
 
-![字典项详情](.assets/detail.png)
-
 查看字典详情时，通常会看到字典属性和字典项配置，适合核对当前字典的结构是否正确。
 
-![编辑字典](.assets/edit.png)
-
 编辑时，重点关注字典类型、是否可编辑和字典项结构是否仍符合当前业务。
-
-![删除字典](.assets/delete.png)
 
 删除前，建议先确认当前字典是否已经被表单、模型字段或流程配置引用。
 
@@ -105,12 +99,10 @@ sidebar_position: 3
 
 可以通过数据字典对选项进行集中管理和维护，可以提高数据的一致性和准确性。
 
-![使用字典](.assets/use-dict.png)
-
 典型使用方式是：
 
 1. 先定义好数据字典。
-2. 在表单或模型字段里把字段类型设置为 `数据字典`，再选择对应字典名称。
+2. 在业务模型的 **字段与关联 / 业务字段** 中打开字段属性，将字段类型设置为 **数据字典**，选择字典名称；保存后预览表单中的选项。
 
 ## 使用建议
 

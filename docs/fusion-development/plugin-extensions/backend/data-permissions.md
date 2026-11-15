@@ -6,6 +6,8 @@ title: 数据权限扩展插件
 
 数据权限扩展将可配置的数据范围规则解析为行约束，再由查询和响应链路落实。用户、角色、主体和接口权限的整体关系见 [权限与访问控制](../../authority-subject-and-access-control-design)。
 
+从参数定义、角色授权界面到运行时生效的完整示例见 [数据权限参数的定义与使用](../../data-access-control-parameters)。本页集中说明行约束解析器的接入契约。
+
 ## 1. 选择扩展层
 
 | 需求 | 入口 |
@@ -13,6 +15,8 @@ title: 数据权限扩展插件
 | 新的业务主体或用户绑定来源 | `SubjectProvider`、`UserSubjectProvider` |
 | 当前用户的新 Claims 来源 | `ClaimsProvider` |
 | 新权限定义来源 | `AuthorityProvider` |
+| 单项数据范围的授权控件 | `ACFilterSettingSchemaGenerator` 或参数内嵌 `settingSchema` |
+| 权限级字段等配置区域 | `ACSettingSchemaGenerator` |
 | 自定义数据范围规则解析 | `AccessControlFilterBuilder`，可实现 `RowScopeResolver` 语义别名 |
 
 已有部门或员工范围先复用组织模块解析器，不在每个 Controller 内重复拼接权限逻辑。

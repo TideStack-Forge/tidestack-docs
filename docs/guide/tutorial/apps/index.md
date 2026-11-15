@@ -17,7 +17,7 @@ sidebar_position: 1
 
 ## 应用管理入口
 
-![打开应用页面](.assets/create-app-1.png)
+![打开应用页面](../../../low-code/development-platform-menus/.assets/open-apps/open-apps-overview.jpg)
 
 登录开发平台后，默认打开的通常就是 `打开应用` 页面。这里既是应用管理入口，也是进入具体应用开发的起点。
 
@@ -27,7 +27,7 @@ sidebar_position: 1
 
 创建应用时，最关键的是先把应用标识和显示名称定稳定，后续模型、页面和菜单都会围绕它展开。
 
-![创建应用](.assets/create-app-2.png)
+![创建应用](../../../low-code/development-platform-menus/.assets/open-apps/create-application.jpg)
 
 | 属性         | 必填 | 说明                        |
 | ------------ | ---- | --------------------------- |
@@ -40,11 +40,9 @@ sidebar_position: 1
 
 ### 打开应用并进入业务模型
 
-![打开应用](.assets/open-app-1.png)
+点击应用卡片上的 **打开**，进入 **应用开发看板**。从左侧 **业务模型** 开始建模，或从看板进入对应功能。
 
-打开应用后，默认会进入 **应用开发看板**（`/dev/{appName}/dashboard`，菜单 `order` 0；`业务模型` 的 order 为 20，排在其后）：
-
-![进入应用](.assets/open-app-2.png)
+![进入应用](../../../low-code/.assets/current-system/app-dashboard.png)
 
 业务模型是应用的核心模块，用于定义实体、关系、属性、操作等主要业务结构。
 
@@ -52,7 +50,7 @@ sidebar_position: 1
 
 通过左侧菜单打开 `应用配置` 后，可以继续调整应用的展示信息和运行时入口。
 
-![应用配置](.assets/app-setting.png)
+![应用配置](../../../low-code/development-platform-menus/.assets/app-configuration/app-configuration-overview.jpg)
 
 | 属性       | 必填 | 说明                             |
 | ---------- | ---- | -------------------------------- |

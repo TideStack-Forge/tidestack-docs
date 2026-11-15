@@ -90,7 +90,7 @@ ouroboros:
 3. 身份提供方回到后端 callback，后端认证后进入基座登录回调或账号绑定页面。
 4. 外部身份未绑定时，由 `/login/bind` 完成平台账号绑定，再验证同一用户后续正常登录。
 
-SDK、错误映射、国际化和完整页面实现见 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)。登录页不自行交换授权码、验证 ID Token 或重新实现回调。
+SDK、错误映射、国际化和完整页面实现见 [自定义登录页](./custom-login-page-and-auth-integration)。登录页不自行交换授权码、验证 ID Token 或重新实现回调。
 
 ## 5. 按链路验证
 

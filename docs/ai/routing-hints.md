@@ -13,21 +13,30 @@ sidebar_position: 2
 
 | 用户任务 | 先读 | 按需补充 |
 | --- | --- | --- |
+| 盘点现成能力、选择可复用实现 | [平台能力地图](../reference/platform-capability-map.md) | [能力目录用法](../reference/capability-catalog.md)，先筛精简索引，再查完整条目的条件与指南 |
 | 安装平台、演示第一个应用 | [快速上手](../getting-started/index.md) | [Docker Compose 部署](../operations/deployment-methods/docker-compose.md)、[部署架构](../operations/deployment-architecture.md) |
 | 用内建能力交付业务功能 | [从需求到交付](../low-code/from-requirement-to-delivery.md) | [业务模型操作](../low-code/development-platform-menus/business-model.md)、[业务模型概念](../concepts/business-model/index.md) |
 | 设计页面或定位页面问题 | [前端页面](../low-code/development-platform-menus/frontend-page.md) | [UI 模型](../concepts/ui-model/index.md)、[UI Schema](../concepts/ui-schema/index.md) |
 | 实现自动业务动作或人工审批 | [流程、规则与自动化](../low-code/workflow-rules-and-automation.md) | [逻辑流](../concepts/logicflow-model/index.md)、[审批流](../concepts/approval-workflow-model/index.md) |
 | 配置角色和访问范围 | [组织、权限、配置与通知](../low-code/organization-permissions-configuration-and-notification.md) | [权限模型](../concepts/authority-model/index.md)、[权限、主体与访问控制](../fusion-development/authority-subject-and-access-control-design.md) |
+| 首次建立融合开发工程 | [选择工程模式](../fusion-development/project-modes/index.md) | 所选模式的初始化指南、[开发工具](../fusion-development/development-tools.md)、[模型资源与打包](../guide/advance/authoring-metadata-conventions/index.md) |
+| 从工程准备走到第一个可操作功能 | [完成第一个融合开发功能](../fusion-development/first-feature.md) | 示例工程中的模型、Service、接口、页面、菜单与权限 |
+| 编写行为、事务和权限测试 | [自动化测试](../fusion-development/automated-testing.md) | 区分本地模型集成测试与真实基座 HTTP 权限测试 |
+| 处理事务回滚、异常和后台用户上下文 | [事务、异常与后台身份](../fusion-development/backend-development/transactions-and-execution-context.md) | 业务动作边界、作用域身份及线程间上下文 |
+| 为应用补齐基础数据 | [数据初始化](../fusion-development/backend-development/data-initialization.md) | 文件位置、匹配语义、账本和重复执行 |
+| 有旧数据的模型变更和应用升级 | [模型变更与应用升级](../fusion-development/model-evolution-and-upgrade.md) | 结构计划、数据回填、兼容期和恢复验证 |
 | 拆解业务需求与实现范围 | [从需求确定实现范围](../fusion-development/when-to-use-code.md) | [平台扩展点总表](../fusion-development/extension-points.md) |
 | 让 AI 协同修改模型、页面、流程与实现 | [用 AI 完成功能开发](../fusion-development/ai-assisted-development.md) | [任务协作与交付验收](../fusion-development/high-low-code-collaboration.md)、当前任务的技术专题 |
 | 开发微前端、布局或组件 | [前端开发](../fusion-development/frontend-extension-paths.md) | [前端 API](../api/frontend/index.md)、[SDK](../api/frontend/sdk/index.md) |
+| 接入外部身份或定制登录体验 | [认证接入](../fusion-development/authentication-integration.md) | 对应身份来源的适配指南、[自定义登录页](../fusion-development/custom-login-page-and-auth-integration.md) |
 | 创建后端扩展或开发态模块 | [创建后端扩展包](../fusion-development/backend-extension-packages.md) | [平台扩展点总表](../fusion-development/extension-points.md)、[开发模块与 Maven 脚手架](../fusion-development/development-module-scaffold-and-maven-skeleton.md) |
-| 在本地 IDE 调试平台测试实例 | [本地 IDE 与线上平台联调](../fusion-development/local-ide-and-platform-debugging.md) | [运行实例](../low-code/development-platform-menus/runtime-instance.md)、[环境与版本准备](../fusion-development/development-platform-support-capabilities.md) |
+| 在本地 IDE 调试平台测试实例 | [平台测试实例调试](../fusion-development/local-ide-and-platform-debugging.md) | [运行实例](../low-code/development-platform-menus/runtime-instance.md)、[工程模式](../fusion-development/project-modes/index.md) |
 | 编写或校验元数据文件 | [模型资源与打包](../guide/advance/authoring-metadata-conventions/index.md) | [JSON Schema](../reference/jsonschema/index.md)、对应模型概念页 |
 | 查 SDK、Java API、DSL 或脚本用法 | [API 参考](../api/index.md) | 对应 API 子页；不要用其他版本的示例替代目标版本契约 |
 | 判断模型职责与关系 | [建模体系](../concepts/modeling/index.md) | [架构设计](../concepts/architecture/index.md)、[支撑资源](../concepts/supporting-resources/index.md) |
 | 部署、发布、升级或排障 | [运维管理](../operations/index.md) | [应用发布与回滚](../operations/application-release-and-rollback.md)、[故障排查](../operations/troubleshooting.md) |
 | 在 Java 中注册或调用平台模型，编写 Controller、Service、MQ 和定时任务 | [后端开发](../fusion-development/backend-development/) | 按数据、业务动作、流程、RPC 或普通 Spring 教程选择入口 |
+| 用 Java 注解定义字段、关联、唯一约束及审计和删除行为 | [用注解定义数据模型](../fusion-development/backend-development/data-model-annotations.md) | [数据模型访问](../fusion-development/backend-development/data-model.md)、[数据模型 API](../api/backend/data-model/) |
 | 增加可复用组件、字段、节点、上下文和适配器 | [插件扩展](../fusion-development/plugin-extensions/) | 前端区分平台组件库与普通组件包；后端按扩展点确定装配机制 |
 
 ## 补齐当前任务的上下文

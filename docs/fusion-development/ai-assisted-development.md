@@ -62,10 +62,10 @@ sidebar_position: 4
 
 检查未通过时，提供复现步骤、输入、实际响应、日志和当前产物版本。先判断偏差发生在定义、打包、加载还是调用阶段，再修正对应位置并重跑受影响的检查。
 
-例如，页面没有展示风险结果时，先核对请求与数据域；节点未被发现时，核对注册和装配；实例运行的 JAR 与源码不一致时，重新构建上传并联调。后端断点调试见 [本地 IDE 与线上平台联调](./local-ide-and-platform-debugging)。
+例如，页面没有展示风险结果时，先核对请求与数据域；节点未被发现时，核对注册和装配；实例运行的 JAR 与源码不一致时，重新构建上传并联调。后端断点调试见 [平台测试实例调试](./local-ide-and-platform-debugging)。
 
 ## 6. 评审和交付
 
 最终评审需求对应的变更与实际证据，记录模型、配置、前后端产物及平台版本。操作过程中的任务描述用于解释意图，交付后以项目文件、测试与版本记录保存可维护的结果。
 
-团队分工、交接与验收见 [任务协作与交付验收](./high-low-code-collaboration)，环境和版本准备见 [开发平台辅助能力](./development-platform-support-capabilities)。
+团队分工、交接与验收见 [任务协作与交付验收](./high-low-code-collaboration)，断点调试按运行方式选择 [平台测试实例](./local-ide-and-platform-debugging)、[本地基座容器](./local-runtime-container-debugging) 或 [内嵌基座](./embedded-runtime-debugging)。

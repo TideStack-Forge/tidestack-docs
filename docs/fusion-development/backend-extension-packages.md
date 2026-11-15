@@ -7,7 +7,7 @@ sidebar_position: 7
 
 后端扩展包是由平台加载的普通 Maven JAR，用于交付业务实现、Spring Bean、SPI 和元数据。平台基座提供运行环境；扩展包通过已有模型、流程或接口被消费。
 
-本页按工程创建、实现注册、构建交付和平台验证组织。具体能力契约见 [后端插件扩展](../guide/advance/extend-backend/)。
+需要自己提供启动入口并装配基座时，使用 [内嵌基座模式](./project-modes/embedded-runtime)。扩展包与基座的运行关系见 [标准基座扩展模式](./project-modes/standard-runtime)，具体能力契约见 [后端插件扩展](../guide/advance/extend-backend/)。
 
 ## 准备工程与能力契约
 
@@ -397,9 +397,9 @@ jar tf target/example-backend-extension-1.0.0-SNAPSHOT.jar
 
 确认实例加载目标版本，再从模型、页面、表达式、脚本或流程完成真实调用。验证结果应包括平台发现能力、业务输入输出、失败场景和权限。
 
-## 本地 IDE 与线上平台联调
+## 平台测试实例调试
 
-使用 IntelliJ IDEA 的 TideStack Develop 插件，将本地产物上传到平台测试实例并附加远程调试器。先核对应用、profile、源码与产物，再通过真实请求触发断点。具体连接、更新和结束会话的步骤见 [本地 IDE 与线上平台联调](./local-ide-and-platform-debugging)。
+使用 IntelliJ IDEA 的 TideStack Develop 插件，将本地产物上传到平台测试实例并附加远程调试器。先核对应用、profile、源码与产物，再通过真实请求触发断点。具体连接、更新和结束会话的步骤见 [平台测试实例调试](./local-ide-and-platform-debugging)。
 
 ## 排查装配或调用失败
 
@@ -415,6 +415,6 @@ jar tf target/example-backend-extension-1.0.0-SNAPSHOT.jar
 
 ## 交付与后续维护
 
-交付实现、行为测试、JAR、运行依赖及配套资源，记录实际验证和恢复步骤。环境与版本准备见 [开发平台辅助能力](./development-platform-support-capabilities)，验收见 [任务协作与交付验收](./high-low-code-collaboration)。
+交付实现、行为测试、JAR、运行依赖及配套资源，记录实际验证和恢复步骤。安装和回退见 [应用发布与回滚](../operations/application-release-and-rollback)，验收见 [任务协作与交付验收](./high-low-code-collaboration)。
 
 需要新增可管理模型及开发态 CRUD、VCS 锁定、提交、回滚和页面时，继续使用 [开发模块脚手架](./development-module-scaffold-and-maven-skeleton)。

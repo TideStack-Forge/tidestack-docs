@@ -258,3 +258,18 @@ ouroboros:
 5. 完成登录、查询、一次写入，以及受影响的调试、模板生成或网关访问验证。
 
 已有实例的更新、重建和数据保留见 [业务应用发布与回退](./application-release-and-rollback)。
+
+
+## RPC 模型测试
+
+开发平台在自身网络出口执行已保存 RPC 工作区模型，使用当前应用快照；无需启动业务运行容器。以下为 Spring 系统属性，读取于每次测试，不写入统一业务配置，也不接受页面临时覆盖。
+
+| Spring 配置键 | 容器环境变量 | 默认值 | 作用 |
+| --- | --- | --- | --- |
+| `ouroboros.rpc.developer-test.max-duration-ms` | `OUROBOROS_RPC_DEVELOPERTEST_MAXDURATIONMS` | `120000` ms | 同一次测试的主请求、令牌子调用及重试共用总时限 |
+| `ouroboros.rpc.developer-test.max-request-bytes` | `OUROBOROS_RPC_DEVELOPERTEST_MAXREQUESTBYTES` | `1048576` bytes | 每个实际序列化请求正文上限，超限在发送前失败 |
+| `ouroboros.rpc.developer-test.max-preview-bytes` | `OUROBOROS_RPC_DEVELOPERTEST_MAXPREVIEWBYTES` | `262144` bytes | 脱敏 JSON 的展示上限，按 UTF-8 边界截断，不修改实际发送字节 |
+
+三个值均须大于零。每次发送的超时取模型超时与剩余总预算的较小值；重试按模型配置。响应仍受原 WebClient 的解码缓冲限制，超限返回 `RESPONSE_LIMIT`，不能把预览上限当作传输上限。代理和入口超时应覆盖总预算；超时或关闭抽屉不保证撤销远端操作。
+
+页面配置覆盖仅作用本次调用，显式空字符串与未覆盖不同。平台默认值按 `ConfigurationService → Environment` 查找且不回显。接口定义与认证参数见 [外部接口](../low-code/development-platform-menus/external-api)。

@@ -43,6 +43,7 @@ sidebar_position: 4
 | 增加字段、节点、上下文与语言 | [后端插件目录](../guide/advance/extend-backend/) | 各自 Registry、SPI 和宿主配置 |
 | 增加数据类型、模型行为和元数据装饰 | [后端插件目录](../guide/advance/extend-backend/) | 值转换、操作链、元数据装饰和业务模型投影 |
 | 增加数据范围、认证和存储适配 | [后端插件目录](../guide/advance/extend-backend/) | 具体接口与目标版本正式装配；文件存储需核对当前接入条件 |
+| 定义数据权限参数与授权控件 | [数据权限参数的定义与使用](./data-access-control-parameters) | `AuthorityProvider`、Schema 生成器、参数解析 SPI 与数据操作插件 |
 | 新增 RPC 协议、调度来源等复用能力 | [其他扩展入口](./plugin-extensions/backend/other-extension-points) | 既有执行链、来源聚合与适配机制 |
 | 为新模型增加管理界面与版本管理 | [开发模块](./development-module-scaffold-and-maven-skeleton) | 现有开发态与运行态边界 |
 

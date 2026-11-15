@@ -34,7 +34,7 @@ WebAPI 定义 HTTP 接口契约，其绑定的业务动作、逻辑流或代码�
 | 来源 | 如何定义 | 修改位置 |
 | --- | --- | --- |
 | 业务模型投影 | 从业务模型的数据字段、关联和存储配置投影数据模型，也可按启用的能力补充历史、归档等配套模型。 | 修改对应业务模型。 |
-| Java 类型定义 | 通过 `@Model`、`@Field`、`@PrimaryKey`、`@Related`、`@UniqueConstraint` 等注解声明，再编译为数据模型元数据。 | 修改 Java 模型定义并更新相应模块或插件。 |
+| Java 类型定义 | 通过 `@Model`、`@Field`、`@PrimaryKey`、`@Related`、`@UniqueConstraint` 等注解声明，由运行时扫描转换为模型元数据。 | 按 [注解定义指南](../../fusion-development/backend-development/data-model-annotations)维护 Java 模型并更新相应模块或插件。 |
 | 扩展提供 | 通过已注册的 `DataModelMetaProvider` 提供元数据。 | 修改该扩展的正式定义来源。 |
 
 这些来源描述的是定义如何进入平台。动态访问与类型化访问则描述如何使用运行时模型：前者处理 `Map`、`Record`，后者处理 Java 对象。它们不构成互斥的数据模型类型，具体用法见[数据读写与查询](#数据读写与查询)。

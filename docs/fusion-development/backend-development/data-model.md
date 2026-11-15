@@ -56,6 +56,8 @@ public class PointRecord {
 
 `@Model.fullName` 是运行时模型名，`rawName` 用于存储名称，`dataStation` 默认 `default`。`@Field` 控制类型、长度、可空及默认值等元数据。`@PrimaryKey` 默认 `generator="disabled"`，本例写入时由调用方提供 ID；需要平台生成时配置实际存在的主键策略。
 
+字段参数、类型推断、关联、唯一约束、审计、删除和历史记录的完整用法见 [用注解定义数据模型](./data-model-annotations)。
+
 ## 3. 注册扫描与类型化访问
 
 在扩展包自动配置中声明扫描包：
@@ -131,6 +133,22 @@ public PointRecordService(TypedDataModel<String, PointRecord> points) {
 | 刷新后仍不存在目标模型 | 代理进入失败状态，应检查扫描、模型加载与全名，而不是无限等待 |
 
 类型化只改变 Java 的调用形式，权限、事务和数据模型插件仍需按实际入口配置。更多查询与写入方法见 [类型化模型 API](../../api/backend/data-model/typed-data-model/)。
+
+## 使用生成的类型化查询字段
+
+前面的 `PointRecord` 可以在编译时生成同包的 `PointRecordMeta`。在声明此模型的模块启用 `typed-data-model` profile，配置方式见 [类型化数据模型编译](../development-tools#类型化数据模型编译)。
+
+```java
+import static com.example.reward.model.PointRecordMeta.pointRecord;
+import com.ouroboros.data.dsl.query.Query;
+
+var statement = Query.from(pointRecord)
+    .where(pointRecord.ownerId.eq("member-1"))
+    .select(pointRecord.id, pointRecord.ownerId)
+    .build();
+```
+
+处理器生成类型化字段，查询仍进入同一 Query DSL 和数据模型执行链。`PointRecordMeta` 不执行数据库访问，也不替代前文的运行时扫描和权限控制。生成文件保留在 `target/generated-sources/annotations/`，模型变更后重新编译，不复制到手写源码目录。
 
 ## 验证
 

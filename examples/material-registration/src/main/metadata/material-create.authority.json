@@ -1,0 +1,5 @@
+{
+  "fullName": "sample.Material.create",
+  "title": "登记物料",
+  "apis": ["POST /api/custom/materials"]
+}

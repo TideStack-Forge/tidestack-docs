@@ -45,8 +45,6 @@ JSON 结构和引用的通用检查步骤见 [任务执行与验收](../../../ai
 | 逻辑流节点 | `src/main/metadata/**/*.flow-node.json` | `META-INF/ouroboros/metadata/**/*.flow-node.json` |
 | 微前端 | `src/main/metadata/**/*.micro-web.json` | `META-INF/ouroboros/metadata/**/*.micro-web.json` |
 | 岗位定义 | `src/main/metadata/**/*.position.json` | `META-INF/ouroboros/metadata/**/*.position.json` |
-| 配置项 | `src/main/metadata/**/*.config.json` | `META-INF/ouroboros/metadata/**/*.config.json` |
-| 配置分组 | `src/main/metadata/**/*.config-group.json` | `META-INF/ouroboros/metadata/**/*.config-group.json` |
 
 固定文件与固定目录单独处理：
 
@@ -55,8 +53,11 @@ JSON 结构和引用的通用检查步骤见 [任务执行与验收](../../../ai
 | 应用元数据 | `src/main/metadata/app.metadata.json` | `META-INF/ouroboros/metadata/app.metadata.json` |
 | 模块树 diff | `src/main/metadata/modules.diff.json` | `META-INF/ouroboros/metadata/modules.diff.json` |
 | 应用模块 | `src/main/metadata/app-modules.json` | `META-INF/ouroboros/metadata/app-modules.json` |
-| 配置元数据 | `src/main/metadata/configurations.json` | `META-INF/ouroboros/metadata/configurations.json` |
+| 配置项集合 | `src/main/metadata/configurations.json` | `META-INF/ouroboros/metadata/configurations.json` |
+| 配置分组集合 | `src/main/metadata/configuration-groups.json` | `META-INF/ouroboros/metadata/configuration-groups.json` |
 | 自定义样式 | `src/main/metadata/style.css` | `META-INF/ouroboros/metadata/style.css` |
+
+JAR 的配置 Provider 读取上述两个固定数组文件。IDE 也能编辑 `.config.json` 和 `.config-group.json` 单项文件，它们对应应用元数据目录的配置文件；将单项文件打进 JAR，不会使它们自动成为 JAR 配置定义。
 
 仓库中的真实例子：
 

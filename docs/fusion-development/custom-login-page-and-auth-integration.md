@@ -1,31 +1,21 @@
 ---
-title: 自定义登录页与认证接入
+title: 自定义登录页
 ---
 
-# 自定义登录页与认证接入
+# 自定义登录页
 
-自定义登录页通过应用的 `loginEntry` 引用微前端，负责 `/login` 的展示、认证方式选择和发起登录。`/login/callback` 与 `/login/bind` 由基座处理，登录页不再实现一套回调和绑定流程。
+自定义登录页可以调整应用的品牌、布局和交互，在同一个页面中提供本地账号、企业目录或单点登录入口，并随用户选择切换语言。应用通过 `loginEntry` 引用登录页微前端，由它接管 `/login` 的展示和登录操作；`/login/callback` 与 `/login/bind` 继续由基座处理。
 
-本指南覆盖登录页工程、宿主接入、认证调用、国际化和上线验证。认证后的角色、主体和数据范围见 [权限与访问控制](./authority-subject-and-access-control-design)。
+开始接入前，先完成后端认证配置，确认目标环境启用了哪些登录方式。各身份来源的配置与适配指南见 [认证接入](./authentication-integration)。
 
-## 准备工程与认证样例
+## 准备并接入登录页工程
 
-1. 创建单组件微前端，按 [应用改造](../guide/advance/extend-frontend/application-transformation) 接入生命周期，不注入独立路由。
-2. 提供目标基座与 SDK 版本、实际 provider 列表、本地登录开关、品牌与语言要求。
-3. 为 AI 提供成功、首次绑定、凭据错误及外部服务不可用的返回样例，明确相应交互。
-4. 通过 [微前端包管理](../guide/advance/extend-frontend/index.md#configuration) 上传构建包，并在应用配置中设置自定义登录入口。
+1. 创建单组件微前端，使用 `initSingleComponent` 接入挂载、更新和卸载生命周期。工程入口与构建配置见 [应用改造](../guide/advance/extend-frontend/application-transformation)，登录页不注入独立路由。
+2. 对齐目标基座和 `ouroboros-sdk` 版本，确定品牌素材、支持的语言与认证入口。
+3. 构建工程，通过 [微前端包管理](../guide/advance/extend-frontend/index.md#configuration) 上传构建包，在应用配置中设置自定义登录入口 `loginEntry`。
+4. 从应用 `/login` 进入，确认页面、脚本和样式加载正常，挂载参数中可取得宿主能力，再测试真实登录。
 
-按身份来源配置认证：
-
-| 身份来源 | 适配指南 |
-| --- | --- |
-| 企业目录 | [AD](./ad-domain-auth-adaptation-guide) |
-| 统一认证服务 | [OIDC](./oidc-auth-adaptation-guide)、[CAS](./cas-auth-adaptation-guide) |
-| 企业协作连接 | [钉钉](./dingtalk-auth-adaptation-guide)、[企业微信](./wecom-auth-adaptation-guide)、[飞书](./feishu-auth-adaptation-guide) |
-
-静态 provider 通过 SDK 列表组织入口；企业协作连接使用下文的连接级登录入口。
-
-先在宿主中确认页面加载与 SDK 注入，再接入真实认证。独立预览缺少宿主上下文时，应使用工程已有测试方式提供样例，不据此认定平台登录可用。
+独立预览可用于调整布局；认证、账号绑定、回跳和语言切换需要在宿主中验证。重复进入页面时，检查组件是否正确卸载，避免事件和订阅重复注册。
 
 ## 读取宿主能力
 
@@ -44,9 +34,11 @@ title: 自定义登录页与认证接入
 
 provider 类型和 SDK 签名以目标版本为准。对 LDAP 使用凭据表单，不能按跳转式 provider 处理；LDAP 的 `loginUrl` 为空不代表不可用。
 
-## 组织认证入口
+## 适配多种认证方式
 
-将本地账号与 LDAP 放在凭据登录区，CAS / OAuth2 / OIDC 放在跳转区。两类入口使用各自的 SDK 方法。
+### 组织登录入口
+
+先用 `listExternalProviders()` 读取静态 provider，再用 `isLocalPasswordLoginEnabled()` 判断是否提供本地账号入口。将本地账号与 LDAP 放在凭据登录区，CAS / OAuth2 / OIDC 放在单点登录区；企业协作连接单独增加按钮。
 
 | 当前可用方式 | 页面行为 |
 | --- | --- |
@@ -54,11 +46,14 @@ provider 类型和 SDK 签名以目标版本为准。对 LDAP 使用凭据表单
 | 只有一个 LDAP | 直接显示该目录的用户名密码表单 |
 | 多个 LDAP | 按 provider 展示名称并明确选中项 |
 | 只有跳转式认证 | 展示可用的单点登录按钮 |
+| 已启用企业协作连接 | 按已配置的连接标识增加钉钉、企业微信或飞书按钮 |
 | provider 不可用 | 说明状态并限制该入口，保留其他可用方式 |
+
+provider 的 `key` 用于提交，`displayName` 用于展示；`availability` 为 `healthy` 时可用。静态列表不会返回被停用或启动时构建失败的 provider，也不能用它判断企业协作连接是否启用。
 
 提交期间显示加载态并防止重复提交，失败后恢复操作。用户切换模式时，处理旧错误与凭据状态，避免将同一组凭据提交给错误 provider。
 
-## 接入认证调用
+### 使用 SDK 发起登录
 
 下面的 TypeScript 片段提取主要调用，页面状态和事件处理按工程框架补齐。示例类型用于说明结构，落地时核对目标 SDK 的导出类型。
 
@@ -135,9 +130,9 @@ export function submitEnterpriseLogin(connectionId: string) {
 // 例如：submitEnterpriseLogin('dingtalk-main')
 ```
 
-登录页只需要连接标识及展示名称，不读取 `credentialRef` 或凭据内容。后端完成 state 校验、按连接版本派生认证配置、交换授权码及身份绑定。钉钉和企业微信使用各自的认证桥，飞书使用派生的 OAuth2 配置；前端无需识别内部桥类型或重写回调。
+登录页只需要连接标识及展示名称，不读取 `credentialRef` 或凭据内容。连接配置、凭据和后端适配见 [认证接入](./authentication-integration#企业协作连接)。
 
-`auth.enabled: false` 停用该连接登录。认证过程中连接改变或被停用时，旧结果应被拒绝，重新发起。前端 `/login/callback`、`/login/bind` 继续由基座处理。
+连接停用后同步隐藏或禁用相应按钮。连接配置在认证途中改变时，旧结果会被拒绝，页面应允许重新发起。前端 `/login/callback`、`/login/bind` 继续由基座处理。
 
 ### 绑定与错误结果
 
@@ -162,11 +157,43 @@ LDAP 首次认证成功但尚未绑定时，SDK 可返回：
 
 异常通过页面统一错误处理展示，既处理 SDK 返回的业务结果，也按项目请求层约定处理抛出的错误。登录页不保存 AD 密码，也不把平台访问 token 拼接到 URL。
 
-## 国际化与资源释放
+## 适配多语言
 
-`/login` 用于登录页文案，`common` 用于通用按钮和加载提示。以下 key 可作为语言资源的起点，实际新增文案同步补齐各语言。
+登录页尚未取得用户身份，应从宿主的 `props.i18n` 读取可用语言和当前语言。语言选择器使用 `getLanguages()` 返回的列表，以语言项的 `value` 调用 `switchLanguage(locale)`，切换后重新渲染文案。
 
-### `/login` Key
+### 准备语言资源
+
+在应用的 **基础配置 / 多语言** 中维护各语言的登录文案，启用所需语言并确定默认语言。管理操作见 [多语言](../low-code/development-platform-menus/i18n)。把登录表单标签、占位符、按钮、校验提示、加载和错误提示都纳入语言资源；新增认证方式时，同步补充相关文案。
+
+`/login` 用于登录页文案，`common` 用于通用按钮和加载提示。语言文件的 `messages` 可以采用以下结构，各语言保留相同的键，只翻译值：
+
+```json
+{
+  "/login": {
+    "welcome": "欢迎使用",
+    "button.submit": "登录",
+    "error.40104": "平台账号或密码错误",
+    "credential.ldapHint": "请输入 {{provider}} 的账号密码进行目录认证"
+  },
+  "common": { "loading": "加载中..." }
+}
+```
+
+对应的英文文案：
+
+```json
+{
+  "/login": {
+    "welcome": "Welcome",
+    "button.submit": "Sign in",
+    "error.40104": "Incorrect platform username or password",
+    "credential.ldapHint": "Enter your {{provider}} username and password"
+  },
+  "common": { "loading": "Loading..." }
+}
+```
+
+### 登录页文案键
 
 | Key                    | 默认值                                                | 用途                            |
 | ---------------------- | ----------------------------------------------------- | ------------------------------- |
@@ -188,7 +215,7 @@ LDAP 首次认证成功但尚未绑定时，SDK 可返回：
 | `validation.required`  | `请输入{{field}}`                                     | 必填校验                        |
 | `validation.invalid`   | `请输入有效的{{field}}`                               | 格式校验                        |
 
-### 推荐的 `common` Key
+### 通用文案键
 
 | Key           | 默认值    | 用途         |
 | ------------- | --------- | ------------ |
@@ -198,7 +225,7 @@ LDAP 首次认证成功但尚未绑定时，SDK 可返回：
 | `loading`     | 加载中... | 加载态       |
 | `error`       | 操作失败  | 通用错误提示 |
 
-### 读取和更新文案
+### 读取文案与切换语言
 
 ```ts
 export function bindLoginI18n(props: any, onLocaleChange: () => void) {
@@ -207,29 +234,33 @@ export function bindLoginI18n(props: any, onLocaleChange: () => void) {
   const dispose = props.i18n.onLocaleChange(onLocaleChange)
 
   return {
-    readTexts: () => ({
+    readTexts: (providerName: string) => ({
       welcome: tLogin('welcome', '欢迎使用'),
       submit: tLogin('button.submit', '登录'),
       loading: tCommon('loading', '加载中...'),
+      ldapHint: tLogin(
+        'credential.ldapHint',
+        '请输入 {{provider}} 的账号密码进行目录认证',
+        { provider: providerName }
+      ),
     }),
+    readError: (code?: string | number) =>
+      tLogin(`error.${code || 'unknown'}`, mapAuthError(code)),
     languages: props.i18n.getLanguages(),
-    locale: props.i18n.getLocale(),
+    getLocale: () => props.i18n.getLocale(),
     switchLanguage: (locale: string) => props.i18n.switchLanguage(locale),
     dispose,
   }
 }
 ```
 
-语言变化后重新读取文案并触发组件更新；只在挂载时生成一次字符串，不能保证后续自动刷新。组件卸载时调用 `dispose`，释放订阅。
+页面挂载时调用 `bindLoginI18n()`，用 `languages` 渲染语言选择器，用 `getLocale()` 取得当前选中值。用户选择后等待 `switchLanguage(locale)` 完成；加载失败时显示错误并恢复选择器操作。
 
-语言资源的结构示例：
+`onLocaleChange` 回调中重新调用 `readTexts(providerName)` 并更新组件，同时重新读取当前语言。组件卸载时调用 `dispose()` 取消订阅。字段校验提示和已经显示的错误也应随语言变化重新取值，避免页面中混用两种语言。
 
-```json
-{
-  "/login": { "welcome": "欢迎使用", "button.submit": "登录" },
-  "common": { "loading": "加载中..." }
-}
-```
+`mapAuthError(code)` 当前返回中文提示，不会自动随语言切换。多语言页面应保留错误码，在 `/login` 中维护 `error.40104` 等翻译，再用 `readError(code)` 取值；示例以 SDK 提示作为缺少翻译时的回退。为实际可能出现的错误码补齐各语言文案，切换语言时重新读取。
+
+`{{provider}}` 等插值保留在翻译文本中，由参数替换，避免把固定中文和 provider 名称直接拼接。provider 展示名称如需翻译，可按稳定的 provider key 维护文案，提交时仍使用原 key。
 
 ## 上线前验证
 
@@ -244,7 +275,9 @@ export function bindLoginI18n(props: any, onLocaleChange: () => void) {
 | 凭据错误或外部服务不可用 | 错误可理解，加载态恢复，可以重试或选择其他入口 |
 | 带 `redirect` 或 `returnUrl` | 参数已处理，登录与绑定后到达目标业务页面 |
 | token 刷新后读取 | 需要使用 token 的操作调用 `getToken()`，不依赖旧快照 |
-| 切换语言、离开再进入 | 文案更新，卸载后无重复订阅 |
+| 未登录时切换语言 | 表单、登录方式、校验和错误文案更新，语言选择与宿主一致 |
+| 切换语言后离开再进入 | 当前语言正确，卸载后无重复订阅 |
+| 长翻译文本或 RTL 语言 | 按钮与提示不被截断，布局与文本方向可用 |
 | 新包安装与恢复 | 资源路径和版本正确，基座回调及绑定页可访问 |
 
-交付代码、语言资源、入口配置和实际验证记录。失败时把触发步骤、provider key、错误码、脱敏响应和版本反馈给 AI，先定位加载、调用、认证或回调阶段，再复验。
+认证成功但业务页面或数据不可访问时，继续检查 [权限与访问控制](./authority-subject-and-access-control-design)中的账号、主体和授权配置。

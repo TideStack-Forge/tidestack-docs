@@ -310,7 +310,7 @@ openssl s_client -connect dc01.corp.example.com:636 -showcerts
 | provider 不可用 | 展示状态并限制该入口，提示管理员处理 |
 | 首次绑定 | 进入基座 `/login/bind`，保留已处理的业务回跳目标 |
 
-使用 `listExternalProviders()`、`isLocalPasswordLoginEnabled()`、`loginWithLdap()` 和 `mapAuthError()`；SDK 代码与 i18n 实现统一见 [自定义登录页与认证接入](./custom-login-page-and-auth-integration)。LDAP 的 `loginUrl` 为空是正常的，不应按单点登录按钮跳转。
+使用 `listExternalProviders()`、`isLocalPasswordLoginEnabled()`、`loginWithLdap()` 和 `mapAuthError()`；SDK 代码与 i18n 实现统一见 [自定义登录页](./custom-login-page-and-auth-integration)。LDAP 的 `loginUrl` 为空是正常的，不应按单点登录按钮跳转。
 
 页面只替换 `/login`。`/login/callback` 与 `/login/bind` 继续由基座负责，页面不保存 AD 密码或自行把平台访问 token 加到 URL。
 
@@ -465,6 +465,6 @@ provider 列表正常不能单独证明用户搜索和绑定正确；`openssl` �
 
 ## 相关文档
 
-- [自定义登录页与认证接入](./custom-login-page-and-auth-integration)
+- [自定义登录页](./custom-login-page-and-auth-integration)
 - [权限与访问控制](./authority-subject-and-access-control-design)
-- [本地 IDE 与线上平台联调](./local-ide-and-platform-debugging)
+- [平台测试实例调试](./local-ide-and-platform-debugging)

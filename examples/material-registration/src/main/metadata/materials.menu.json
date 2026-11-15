@@ -1,0 +1,8 @@
+{
+  "fullName": "sample.materials",
+  "title": "物料登记",
+  "url": "/sample/materials",
+  "icon": "fa fa-cubes",
+  "placement": "main",
+  "order": 50
+}

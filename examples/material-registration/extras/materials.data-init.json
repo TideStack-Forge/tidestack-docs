@@ -1,0 +1,14 @@
+{
+  "id": "sample-material-catalog",
+  "version": "v1",
+  "blocks": [
+    {
+      "id": "materials",
+      "targetModel": "sample.Material",
+      "matchFields": ["code"],
+      "records": [
+        {"id": "demo-material-1", "code": "MAT-DEMO-001", "name": "示例物料"}
+      ]
+    }
+  ]
+}

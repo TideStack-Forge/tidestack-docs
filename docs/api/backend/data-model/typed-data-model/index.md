@@ -12,13 +12,15 @@
 | `get(PK id)` / `get(PK id, Map<String, Object> statement)` | `Try<M>` |
 | `query(Collection<PK> ids)` | `Try<List<M>>` |
 | `query(Map<String, Object> statement)` | `Try<List<M>>` |
-| `query()` | `TypedDataModelQuery<PK, M>` |
+| `query()` | `TypedDataModelQuery<PK, M>`，`execute()` 返回 `Try<List<M>>` |
 | `count(Map<String, Object> where)` | `Try<Long>` |
 | `update(PK id, M data)` | `Try<Long>` |
 | `update(id / ids / where, Map<String, Object> patch)` | `Try<Long>` |
 | `delete(id / ids / where)` | `Try<Long>` |
 
 支持 `query(select, where[, orderBy[, offset, limit]])`：`select` 为 `Collection<String>`，`where` 为 Map，`orderBy` 为字符串，例如 `"id ASC"`。这与 `DataModel` 便捷重载使用 Map 排序的形式不同。
+
+Java 代码可使用 `query().where(...).clause("ORDER", Map.of("name", "asc")).execute()`。完整写法见 [Java 链式查询](../../data-query-dsl/#java-链式查询)。
 
 ## Spring 注入
 
@@ -57,5 +59,7 @@ public class OrderService {
 读写操作返回 `Try`。示例使用 `.get()`，失败时抛出原异常；需要自行处理失败时保留错误原因。字段局部修改使用 Map patch，避免把无意变更的对象字段一起提交。
 
 `withPlugins(...)`、`withoutPlugins(...)`、`withoutPlugins()` 和 `hasPlugin(name)` 与 [DataModel](../data-model/) 对应；插件会影响校验和读写策略，不能仅为绕过错误而移除。
+
+插件方法返回新的模型视图，原模型保持不变。也可以在 `query()` 返回的构造器内切换插件；`execute()` 使用所选视图，`build()` 返回的查询 Map 不携带插件配置。
 
 在非 Spring 代码中按类获取模型，见 [TypedDataModelCenter](../typed-data-model-center/)；动态结构访问见 [DataModel](../data-model/)。

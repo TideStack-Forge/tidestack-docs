@@ -8,6 +8,8 @@ title: 插件扩展
 
 “扩展”描述复用目的，不意味着所有能力都使用 Java SPI。前端有组件注册与清单，后端有 SPI、Spring Bean、模型描述符及其他正式装配入口。
 
+先通过 [平台扩展点总表](../extension-points)确定能力的实现位置。需要为开发平台增加新的模型编辑与管理功能时，使用 [开发模块与 Maven 脚手架](../development-module-scaffold-and-maven-skeleton)。
+
 | 方向 | 内容 |
 | --- | --- |
 | [前端](./frontend/) | 带 manifest 的平台组件库、普通组件包 |

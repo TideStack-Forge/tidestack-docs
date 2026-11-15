@@ -41,17 +41,28 @@ sidebar_position: 3
 
 ## 完成一次融合开发任务
 
-需要提供：业务行为、现有模型与实现、目标版本及工作区、允许修改的范围和验收数据。完整示例见 [用 AI 完成功能开发](../fusion-development/ai-assisted-development.md)。
+需要提供：业务行为、现有模型与实现、目标版本及工作区、允许修改的范围和验收数据。连续操作示例见 [物料登记教程](../fusion-development/first-feature.md)，AI 协作方式见 [用 AI 完成功能开发](../fusion-development/ai-assisted-development.md)。
 
 1. 按 [从需求确定实现范围](../fusion-development/when-to-use-code.md) 读取已有业务模型、动作、页面、流程和接口，列出可复用能力及必要改动。
 2. 根据业务契约修改模型、配置、Schema 或流程，核对下游投影和跨资源引用。
 3. 需要新增程序能力时，在 [平台扩展点总表](../fusion-development/extension-points.md) 选择正式入口。前端按 [前端开发](../fusion-development/frontend-extension-paths.md) 实现；后端按 [创建后端扩展包](../fusion-development/backend-extension-packages.md) 实现并注册。
-4. 根据变更执行结构与引用检查、相关行为测试、构建和加载验证，再通过真实页面、业务动作及直接 API 请求验证结果。
+4. 根据变更执行结构与引用检查、[行为和权限测试](../fusion-development/automated-testing.md)、构建和加载验证，再通过真实页面、业务动作及直接 API 请求验证结果。
 5. 将失败步骤、输入、响应和日志反馈给 AI，修正对应资产后复验，交付实际改动和检查记录。
 
-后端需要远程断点调试时，按 [本地 IDE 与线上平台联调](../fusion-development/local-ide-and-platform-debugging.md) 核对应用、profile、实例和产物。交付前按 [开发平台辅助能力](../fusion-development/development-platform-support-capabilities.md) 确认环境、数据源及配套版本。
+后端需要远程断点调试时，按 [平台测试实例调试](../fusion-development/local-ide-and-platform-debugging.md) 核对应用、profile、实例和产物。交付前按 [应用发布与回滚](../operations/application-release-and-rollback.md) 确认环境、数据源及配套版本。
 
 验收：模型与实现共同完成约定业务，正常、失败和无权限场景均有实际结果；新增扩展在目标应用中被发现和使用。交接要求见 [任务协作与交付验收](../fusion-development/high-low-code-collaboration.md)。
+
+## 调整已有数据的模型
+
+需要提供：旧模型、旧资产版本、目标数据库、代表性数据、变更规则和允许的恢复窗口。
+
+1. 按 [模型变更与应用升级](../fusion-development/model-evolution-and-upgrade.md)区分模型定义、结构、数据和标识变化，确认自动迁移或团队变更流程的边界。
+2. 在旧数据副本上生成并审核结构计划，先扩大兼容范围，再按确定规则回填，核对记录数、主键和业务结果。
+3. 需要收紧约束时，先确认数据与所有写入入口已满足要求，再执行相应结构变更。
+4. 验证重复执行和上一版程序恢复；记录应用、基座、数据库和回填批次的配套版本。
+
+验收：旧数据保留、新旧入口符合兼容安排、回填可核对且可重跑，恢复方式经过演练。[数据初始化](../fusion-development/backend-development/data-initialization.md)仅补缺失记录，不用于覆盖已有数据。
 
 ## 查询 API 或编写调用示例
 

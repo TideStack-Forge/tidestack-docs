@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.9" type="device">
+  <diagram id="data-access-control-flow" name="数据权限参数的生效过程">
+    <mxGraphModel grid="1" gridSize="4" page="1" pageWidth="1120" pageHeight="800">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="数据权限参数的生效过程" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=24;fontColor=#273e59;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="40" y="12" width="1040" height="32" />
+        </mxCell>
+        <mxCell id="configure" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f8fafc;strokeColor=#dce4ed;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="32" y="72" width="1056" height="172" />
+        </mxCell>
+        <mxCell id="configure-label" value="01  定义与授权" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="48" y="79" width="240" height="24" />
+        </mxCell>
+        <mxCell id="authorize" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f8fafc;strokeColor=#dce4ed;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="32" y="336" width="1056" height="176" />
+        </mxCell>
+        <mxCell id="authorize-label" value="02  授权求值" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="48" y="343" width="240" height="24" />
+        </mxCell>
+        <mxCell id="execute" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f8fafc;strokeColor=#dce4ed;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="32" y="592" width="1056" height="172" />
+        </mxCell>
+        <mxCell id="execute-label" value="03  数据执行" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=left;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="48" y="599" width="240" height="24" />
+        </mxCell>
+        <mxCell id="define-controls" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="336" y="168" />
+            <mxPoint as="targetPoint" x="424" y="168" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="save-values" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="696" y="168" />
+            <mxPoint as="targetPoint" x="784" y="168" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="definition-input" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="192" y="228" />
+            <mxPoint as="targetPoint" x="860" y="372" />
+            <Array as="points">
+              <mxPoint x="192" y="288" />
+              <mxPoint x="860" y="288" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="values-input" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#627ba4;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="928" y="228" />
+            <mxPoint as="targetPoint" x="928" y="372" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-input" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="336" y="434" />
+            <mxPoint as="targetPoint" x="424" y="434" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="resolve-range" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="784" y="434" />
+            <mxPoint as="targetPoint" x="696" y="434" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="apply-authorization" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#9577b5;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="560" y="496" />
+            <mxPoint as="targetPoint" x="560" y="628" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="apply-business" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#71839a;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="336" y="688" />
+            <mxPoint as="targetPoint" x="424" y="688" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="output" edge="1" parent="1" style="edgeStyle=none;rounded=1;strokeColor=#43816c;strokeWidth=1.5;endArrow=block;startArrow=none;dashed=0;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="696" y="688" />
+            <mxPoint as="targetPoint" x="784" y="688" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="definition-label" value="参数定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#667b94;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="536" y="259" width="96" height="23" />
+        </mxCell>
+        <mxCell id="values-label" value="保存值" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#667b94;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="944" y="275" width="88" height="23" />
+        </mxCell>
+        <mxCell id="authorization-label" value="最终行范围与字段范围" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#667b94;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="576" y="545" width="240" height="23" />
+        </mxCell>
+        <mxCell id="definition" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="56" y="116" width="272" height="104" />
+        </mxCell>
+        <mxCell id="definition-title" value="权限参数定义" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="125" width="248" height="28" />
+        </mxCell>
+        <mxCell id="definition-line-0" value="字段、范围参数与授权控件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="159" width="248" height="24" />
+        </mxCell>
+        <mxCell id="definition-line-1" value="AccessControlDefine" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="183" width="248" height="24" />
+        </mxCell>
+        <mxCell id="editor" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="432" y="116" width="256" height="104" />
+        </mxCell>
+        <mxCell id="editor-title" value="角色授权界面" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="125" width="232" height="28" />
+        </mxCell>
+        <mxCell id="editor-line-0" value="根据定义显示配置控件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="159" width="232" height="24" />
+        </mxCell>
+        <mxCell id="editor-line-1" value="管理员选择数据范围" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="183" width="232" height="24" />
+        </mxCell>
+        <mxCell id="values" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#eef5ff;strokeColor=#8eafe0;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="792" y="116" width="272" height="104" />
+        </mxCell>
+        <mxCell id="values-title" value="角色参数值" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#204f86;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="125" width="248" height="28" />
+        </mxCell>
+        <mxCell id="values-line-0" value="regionCode = A" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="159" width="248" height="24" />
+        </mxCell>
+        <mxCell id="values-line-1" value="amount.$gte = 100" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="183" width="248" height="24" />
+        </mxCell>
+        <mxCell id="identity" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#ffffff;strokeColor=#b3bfce;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="56" y="380" width="272" height="108" />
+        </mxCell>
+        <mxCell id="identity-title" value="当前执行身份" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="389" width="248" height="28" />
+        </mxCell>
+        <mxCell id="identity-line-0" value="角色与权限" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="423" width="248" height="24" />
+        </mxCell>
+        <mxCell id="identity-line-1" value="携带的授权边界" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="447" width="248" height="24" />
+        </mxCell>
+        <mxCell id="evaluation" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#f5f1fc;strokeColor=#b3a0d6;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="432" y="380" width="256" height="108" />
+        </mxCell>
+        <mxCell id="evaluation-title" value="统一授权求值" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#63448e;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="389" width="232" height="28" />
+        </mxCell>
+        <mxCell id="evaluation-line-0" value="角色授予取并集（OR）" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="423" width="232" height="24" />
+        </mxCell>
+        <mxCell id="evaluation-line-1" value="与执行边界求交（AND）" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="447" width="232" height="24" />
+        </mxCell>
+        <mxCell id="resolver" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="792" y="380" width="272" height="108" />
+        </mxCell>
+        <mxCell id="resolver-title" value="行范围解析" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="389" width="248" height="28" />
+        </mxCell>
+        <mxCell id="resolver-line-0" value="普通字段 → 默认解析器" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="423" width="248" height="24" />
+        </mxCell>
+        <mxCell id="resolver-line-1" value="$业务参数 → 对应插件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="447" width="248" height="24" />
+        </mxCell>
+        <mxCell id="business" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#ffffff;strokeColor=#b3bfce;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="56" y="636" width="272" height="104" />
+        </mxCell>
+        <mxCell id="business-title" value="业务查询条件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="645" width="248" height="28" />
+        </mxCell>
+        <mxCell id="business-line-0" value="例如状态、时间等筛选" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="679" width="248" height="24" />
+        </mxCell>
+        <mxCell id="business-line-1" value="与权限范围共同生效" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="68.0" y="703" width="248" height="24" />
+        </mxCell>
+        <mxCell id="plugin" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#effaf5;strokeColor=#78b59a;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="432" y="636" width="256" height="104" />
+        </mxCell>
+        <mxCell id="plugin-title" value="数据操作插件" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#216149;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="645" width="232" height="28" />
+        </mxCell>
+        <mxCell id="plugin-line-0" value="业务条件 AND 行范围" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="679" width="232" height="24" />
+        </mxCell>
+        <mxCell id="plugin-line-1" value="按字段范围限制读写" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="444.0" y="703" width="232" height="24" />
+        </mxCell>
+        <mxCell id="result" value="" vertex="1" parent="1" style="rounded=1;arcSize=5;fillColor=#ffffff;strokeColor=#b3bfce;strokeWidth=1.2;">
+          <mxGeometry as="geometry" x="792" y="636" width="272" height="104" />
+        </mxCell>
+        <mxCell id="result-title" value="允许操作的数据" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=20;fontColor=#43546c;align=center;verticalAlign=middle;fontStyle=1;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="645" width="248" height="28" />
+        </mxCell>
+        <mxCell id="result-line-0" value="范围内的记录" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="679" width="248" height="24" />
+        </mxCell>
+        <mxCell id="result-line-1" value="允许读写的字段" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=16;fontColor=#52657f;align=center;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="804.0" y="703" width="248" height="24" />
+        </mxCell>
+        <mxCell id="footer" value="权限绑定在数据操作链中生效；自定义数据路径也须执行相同的行、字段约束。" vertex="1" parent="1" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=PingFang SC;fontSize=15;fontColor=#667b94;align=left;verticalAlign=middle;fontStyle=0;whiteSpace=wrap;spacing=0;">
+          <mxGeometry as="geometry" x="40" y="773" width="1040" height="23" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

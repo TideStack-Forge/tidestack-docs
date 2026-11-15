@@ -52,7 +52,7 @@ HTTP 错误还需通过 `try/catch` 处理。`login` 返回的则是登录结果
 
 通常无需自行实现。平台将 `/login` 交给自定义页面，`/login/callback` 和 `/login/bind` 继续由基座处理。自定义页面负责展示登录方式、发起登录并传递清洗后的回跳地址。
 
-长期运行时使用 `getToken()` 获取最新令牌，`props.token` 是挂载时快照。接入流程见 [自定义登录页与认证接入](../fusion-development/custom-login-page-and-auth-integration)。
+长期运行时使用 `getToken()` 获取最新令牌，`props.token` 是挂载时快照。接入流程见 [自定义登录页](../fusion-development/custom-login-page-and-auth-integration)。
 
 ## 表单选择器为什么返回字符串，而不是对象？
 
