@@ -127,6 +127,41 @@
         }
       ],
       "description": "该接口的外部文档说明和链接。"
+    },
+    "businessModel": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "\\S",
+      "description": "BusinessAction 接口绑定的业务模型完整名称。"
+    },
+    "action": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "\\S",
+      "description": "BusinessAction 接口绑定的动作名称。"
+    },
+    "formatVersion": {
+      "description": "动作 HTTP 输入映射使用 2.0 时采用平台 EL；缺省时沿用历史映射语法。"
+    },
+    "actionInputMapping": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "propertyNames": {
+        "pattern": "^(params|data)(\\.[A-Za-z_$][A-Za-z0-9_$]*(\\[\\])?)*$",
+        "not": {
+          "pattern": "\\[\\]$"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "将 HTTP 请求映射到动作 params/data 的表达式表；无输入时显式使用空对象。2.0 使用平台 EL，可访问 request.params、request.body 等；表达式编译、目标重叠及路径变量检查由正式 HTTP 契约执行。"
     }
   },
   "$defs": {
@@ -857,5 +892,67 @@
       "description": "描述参数或消息的数据结构，兼容当前 SchemaModel 支持的 OpenAPI 与 JSON Schema 关键字；该对象是接口契约中的数据定义。"
     }
   },
-  "$comment": "Source: core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/SimpleWebAPIModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/HandlerType.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/ParameterModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/SchemaModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/RequestBodyModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/ResponseModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/SecurityRequirementModel.java"
+  "$comment": "Source: core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/SimpleWebAPIModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/HandlerType.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/ParameterModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/SchemaModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/RequestBodyModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/ResponseModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/openapi/SecurityRequirementModel.java; core/ouroboros-webapi-model/ouroboros-webapi-model-core/src/main/java/com/ouroboros/webapi/BusinessActionWebApiContract.java",
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "handlerType"
+        ],
+        "properties": {
+          "handlerType": {
+            "const": "BusinessAction"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "businessModel",
+          "action",
+          "actionInputMapping"
+        ],
+        "properties": {
+          "businessModel": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "actionInputMapping": {
+            "type": "object"
+          },
+          "formatVersion": {
+            "type": "string",
+            "const": "2.0"
+          },
+          "logicFlow": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "businessModel": {
+            "type": "null"
+          },
+          "action": {
+            "type": "null"
+          },
+          "actionInputMapping": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "businessActionModelFullName": {
+          "type": "null"
+        },
+        "businessActionName": {
+          "type": "null"
+        }
+      }
+    }
+  ]
 }

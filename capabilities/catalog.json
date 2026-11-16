@@ -728,10 +728,11 @@
       "requires": "装配逻辑流运行模块，加载定义及所需节点扩展。",
       "limits": "节点是否可用取决于模块装配；须验证错误分支、事务和外部副作用。",
       "modules": [
-        "core/ouroboros-logicflow/ouroboros-logicflow-runtime"
+        "core/ouroboros-logicflow/ouroboros-logicflow-runtime",
+        "core/ouroboros-logicflow/ouroboros-logicflow-core"
       ],
       "sources": [
-        "core/ouroboros-logicflow/ouroboros-logicflow-runtime/src/main/java/com/ouroboros/logicflow/LogicFlowExecutionFacade.java"
+        "core/ouroboros-logicflow/ouroboros-logicflow-core/src/main/java/com/ouroboros/logicflow/LogicFlowExecutionFacade.java"
       ],
       "docs": [
         {
@@ -1635,10 +1636,11 @@
       "requires": "装配组织架构运行模块并准备组织数据。",
       "limits": "组织关系不天然等于业务权限，授权需另行配置。",
       "modules": [
-        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime"
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime",
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-core"
       ],
       "sources": [
-        "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/service/OrganizationQueryFacade.java",
+        "ability/ouroboros-organization-structure/ouroboros-organization-structure-core/src/main/java/com/ouroboros/organizationstructure/service/OrganizationQueryFacade.java",
         "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/service/StructureManageService.java",
         "ability/ouroboros-organization-structure/ouroboros-organization-structure-runtime/src/main/java/com/ouroboros/organizationstructure/service/AppointmentManageService.java"
       ],
@@ -1871,11 +1873,12 @@
       "requires": "装配统计运行模块并发布数据集及查询定义。",
       "limits": "设计器预览成功不等于运行实例已有已发布定义。",
       "modules": [
-        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime"
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime",
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core"
       ],
       "sources": [
-        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/execution/DatasetExecutionService.java",
-        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/executor/DatasetExecutor.java"
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/runtime/execution/DatasetExecutionService.java",
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core/src/main/java/com/ouroboros/statistics/reporting/runtime/executor/DatasetExecutor.java"
       ],
       "docs": [
         {
@@ -1943,10 +1946,11 @@
       "limits": "小组件定义、组件实现与用户布局分别管理。",
       "modules": [
         "ability/ouroboros-widget/ouroboros-widget-runtime",
-        "ability/ouroboros-widget/ouroboros-widget-user-dashboard"
+        "ability/ouroboros-widget/ouroboros-widget-user-dashboard",
+        "ability/ouroboros-widget/ouroboros-widget-core"
       ],
       "sources": [
-        "ability/ouroboros-widget/ouroboros-widget-runtime/src/main/java/com/ouroboros/widget/service/WidgetDefinitionService.java",
+        "ability/ouroboros-widget/ouroboros-widget-core/src/main/java/com/ouroboros/widget/service/WidgetDefinitionService.java",
         "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/service/UserDashboardService.java",
         "ability/ouroboros-widget/ouroboros-widget-user-dashboard/src/main/java/com/ouroboros/widget/dashboard/service/UserDashboardTemplateService.java"
       ],
@@ -1980,10 +1984,11 @@
       "limits": "OpenAI 适配支持对话和向量；Anthropic 适配的能力须按实现核对。",
       "modules": [
         "ability/ouroboros-ai/ouroboros-ai-runtime",
-        "ability/ouroboros-ai/ouroboros-ai-starter-spring-ai"
+        "ability/ouroboros-ai/ouroboros-ai-starter-spring-ai",
+        "ability/ouroboros-ai/ouroboros-ai-core"
       ],
       "sources": [
-        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/service/AiInvocationService.java",
+        "ability/ouroboros-ai/ouroboros-ai-core/src/main/java/com/ouroboros/ai/runtime/service/AiInvocationService.java",
         "ability/ouroboros-ai/ouroboros-ai-starter-spring-ai/pom.xml"
       ],
       "docs": [
@@ -2750,12 +2755,13 @@
       "requires": "装配 AI 运行模块，提供模型、工具描述和策略定义。",
       "limits": "注册工具描述不等于已实现业务工具；副作用、授权和确认机制需由具体工具落实。",
       "modules": [
-        "ability/ouroboros-ai/ouroboros-ai-runtime"
+        "ability/ouroboros-ai/ouroboros-ai-runtime",
+        "ability/ouroboros-ai/ouroboros-ai-core"
       ],
       "sources": [
-        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/registry/AiToolRegistry.java",
-        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/registry/AiPolicyRegistry.java",
-        "ability/ouroboros-ai/ouroboros-ai-runtime/src/main/java/com/ouroboros/ai/runtime/resolution/AiRuntimeSnapshotResolver.java"
+        "ability/ouroboros-ai/ouroboros-ai-core/src/main/java/com/ouroboros/ai/runtime/registry/AiToolRegistry.java",
+        "ability/ouroboros-ai/ouroboros-ai-core/src/main/java/com/ouroboros/ai/runtime/registry/AiPolicyRegistry.java",
+        "ability/ouroboros-ai/ouroboros-ai-core/src/main/java/com/ouroboros/ai/runtime/resolution/AiRuntimeSnapshotResolver.java"
       ],
       "docs": [
         {
@@ -3233,11 +3239,11 @@
       "limits": "PrismUI 为产品用语，现有 amis 类型名与 SDK 标识保留。",
       "modules": [
         "frontends/web/ouroboros-sdk",
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
         "frontends/web/ouroboros-sdk/src/main.ts",
-        "frontends/web/main-app/src/components/amis/renderers/AmisSchema.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/AmisSchema.tsx"
       ],
       "docs": [
         {
@@ -3272,11 +3278,11 @@
       "requires": "使用宿主注册的组件；涉及可视化编辑器时按需加载编辑预设。",
       "limits": "完整设计器和高级设计组件并非普通运行页面的默认依赖。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/AmisSchemaEditor.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/AmisSchemaPreview.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/AmisSchemaEditor.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/AmisSchemaPreview.tsx"
       ],
       "docs": [
         {
@@ -3307,12 +3313,12 @@
       "requires": "发布并配置对应微前端或内部页面。",
       "limits": "需要检查加载路径、属性契约和组件卸载。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/MicroComponent.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/EmbedMicroApp.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/EmbedInternal.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/MicroComponent.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/EmbedMicroApp.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/EmbedInternal.tsx"
       ],
       "docs": [
         {
@@ -3346,12 +3352,12 @@
       "requires": "后端组织服务可用，配置选择范围及回填字段。",
       "limits": "显示字段、返回值与实际授权范围需要分别核对。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/OrganizationPicker.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/OrganizationPeoplePicker.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/EmployeeRef.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/OrganizationPicker.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/OrganizationPeoplePicker.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/EmployeeRef.tsx"
       ],
       "docs": [
         {
@@ -3379,10 +3385,10 @@
       "requires": "后端字典服务可用，指定字典名称。",
       "limits": "保存值与展示标签不同，联动筛选需检查数据格式。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/DataDictPicker.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/DataDictPicker.tsx"
       ],
       "docs": [
         {
@@ -3414,13 +3420,13 @@
       "requires": "配置数据、标识字段及服务端命令接口。",
       "limits": "本地树修改与服务端持久化不是同一个步骤；明确保存和失败回退。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/TreeEditor.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/TabsTransferEditor.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/DynamicTreeTransferPicker.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/SelectionEditor.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/TreeEditor.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/TabsTransferEditor.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/DynamicTreeTransferPicker.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/SelectionEditor.tsx"
       ],
       "docs": [
         {
@@ -3450,12 +3456,12 @@
       "requires": "使用已注册组件并配置值格式、语言或 Schema。",
       "limits": "编辑器只负责输入，保存、执行权限和后端校验需另行实现。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/ScriptEditor.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/JsonDataEditor.tsx",
-        "frontends/web/main-app/src/components/amis/renderers/IconPicker.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/ScriptEditor.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/JsonDataEditor.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/IconPicker.tsx"
       ],
       "docs": [
         {
@@ -3483,10 +3489,10 @@
       "requires": "后端审批服务可用，提供有效流程实例 ID。",
       "limits": "时间线是展示入口，不能替代审批任务处理与授权。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/WorkflowTimeline.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/WorkflowTimeline.tsx"
       ],
       "docs": [
         {
@@ -3514,10 +3520,10 @@
       "requires": "发布对应报表视图，准备参数并配置数据权限。",
       "limits": "设计器中的预览定义不等于运行时可读定义。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/report-view-runtime/index.ts"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/report-view-runtime/index.ts"
       ],
       "docs": [
         {
@@ -3547,11 +3553,11 @@
       "requires": "后端提供看板与小组件定义；图表数据接口可访问。",
       "limits": "布局、图表配置和数据授权分别验证。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/dashboard/index.ts",
-        "frontends/web/main-app/src/components/amis/renderers/index.ts"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/dashboard/index.ts",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/index.ts"
       ],
       "docs": [
         {
@@ -3579,10 +3585,10 @@
       "requires": "配置模板及下载接口。",
       "limits": "模板下载不包含数据导入校验或后端导入流程。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/renderers/ExportExcelTemplate.tsx"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/ExportExcelTemplate.tsx"
       ],
       "docs": [
         {
@@ -3616,10 +3622,10 @@
       "requires": "使用运行时已注册动作，并按实际 actionType 编写配置。",
       "limits": "源文件类名不一定等于 actionType；Beacon 不适合承担必须可靠完成的业务提交。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/actions/index.ts"
+        "frontends/web/ouroboros-amis-runtime/src/actions/index.ts"
       ],
       "docs": [
         {
@@ -3655,12 +3661,12 @@
       "requires": "使用已注册的公式、过滤器及校验规则。",
       "limits": "前端权限公式和校验都不能替代后端检查。",
       "modules": [
-        "frontends/web/main-app"
+        "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/main-app/src/components/amis/formulas/index.ts",
-        "frontends/web/main-app/src/components/amis/filters/index.ts",
-        "frontends/web/main-app/src/components/amis/rules/index.ts"
+        "frontends/web/ouroboros-amis-runtime/src/formulas/index.ts",
+        "frontends/web/ouroboros-amis-runtime/src/filters/index.ts",
+        "frontends/web/ouroboros-amis-runtime/src/rules/index.ts"
       ],
       "docs": [
         {

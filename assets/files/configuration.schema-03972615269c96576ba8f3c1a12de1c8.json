@@ -29,12 +29,18 @@
         "description": "说明该定义的用途、业务含义或使用条件。"
       },
       "modifiable": {
-        "type": "boolean",
+        "type": [
+          "boolean",
+          "null"
+        ],
         "default": false,
         "description": "是否允许通过配置管理机制修改该项，缺省 false。"
       },
       "nullable": {
-        "type": "boolean",
+        "type": [
+          "boolean",
+          "null"
+        ],
         "default": false,
         "description": "配置值是否允许为空，缺省 false。"
       },
@@ -80,16 +86,23 @@
         "description": "用于同类条目排序的数值。"
       },
       "scope": {
-        "type": "string",
+        "type": [
+          "string",
+          "null"
+        ],
         "enum": [
           "frontend",
-          "backend"
+          "backend",
+          null
         ],
         "default": "backend",
-        "description": "配置生效范围：frontend 为前端，backend 为后端；未设置时为 backend。"
+        "description": "配置生效范围：frontend 为前端，backend 为后端；缺省或 null 按 backend 处理，空字符串无效。"
       },
       "obsolete": {
-        "type": "boolean",
+        "type": [
+          "boolean",
+          "null"
+        ],
         "default": false,
         "description": "是否已废弃该配置项，缺省 false。"
       },

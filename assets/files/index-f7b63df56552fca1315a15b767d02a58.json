@@ -1,6 +1,6 @@
 {
-  "source": "bundled-handbook-docs",
-  "count": 31,
+  "source": "metadata-schema",
+  "count": 32,
   "entries": [
     {
       "type": "authority",
@@ -57,6 +57,13 @@
       "fileSuffix": ".workflow.json",
       "schema": "approval-workflow.schema.json",
       "path": "docs/reference/jsonschema/metadata/approval-workflow.schema.json"
+    },
+    {
+      "type": "approval-form",
+      "displayName": "自定义表单描述",
+      "fileSuffix": ".approval-form.json",
+      "schema": "approval-form.schema.json",
+      "path": "docs/reference/jsonschema/metadata/approval-form.schema.json"
     },
     {
       "type": "field-type",
@@ -168,61 +175,42 @@
       "displayName": "错误码",
       "fileSuffix": null,
       "schema": "error-code.schema.json",
-      "path": "docs/reference/jsonschema/metadata/error-code.schema.json",
-      "fileNames": [
-        "error-codes.error.json"
-      ]
+      "path": "docs/reference/jsonschema/metadata/error-code.schema.json"
     },
     {
       "type": "app-metadata",
       "displayName": "应用元数据",
       "fileSuffix": null,
       "schema": "app-metadata.schema.json",
-      "path": "docs/reference/jsonschema/metadata/app-metadata.schema.json",
-      "fileNames": [
-        "app.metadata.json"
-      ]
+      "path": "docs/reference/jsonschema/metadata/app-metadata.schema.json"
     },
     {
       "type": "modules-diff",
       "displayName": "模块树 Diff",
       "fileSuffix": null,
       "schema": "modules-diff.schema.json",
-      "path": "docs/reference/jsonschema/metadata/modules-diff.schema.json",
-      "fileNames": [
-        "modules.diff.json"
-      ]
+      "path": "docs/reference/jsonschema/metadata/modules-diff.schema.json"
     },
     {
       "type": "app-module",
       "displayName": "应用模块",
       "fileSuffix": null,
       "schema": "app-module.schema.json",
-      "path": "docs/reference/jsonschema/metadata/app-module.schema.json",
-      "fileNames": [
-        "app-modules.json"
-      ]
+      "path": "docs/reference/jsonschema/metadata/app-module.schema.json"
     },
     {
       "type": "configuration",
       "displayName": "配置项",
       "fileSuffix": null,
       "schema": "configuration.schema.json",
-      "path": "docs/reference/jsonschema/metadata/configuration.schema.json",
-      "fileNames": [
-        "configurations.json",
-        "configuration.json"
-      ]
+      "path": "docs/reference/jsonschema/metadata/configuration.schema.json"
     },
     {
       "type": "configuration-group",
       "displayName": "配置分组",
       "fileSuffix": null,
       "schema": "configuration-group.schema.json",
-      "path": "docs/reference/jsonschema/metadata/configuration-group.schema.json",
-      "fileNames": [
-        "configuration-groups.json"
-      ]
+      "path": "docs/reference/jsonschema/metadata/configuration-group.schema.json"
     },
     {
       "type": "configuration-item",
@@ -238,5 +226,8 @@
       "schema": "configuration-group-item.schema.json",
       "path": "docs/reference/jsonschema/metadata/configuration-group-item.schema.json"
     }
+  ],
+  "supportingSchemas": [
+    "ui-schema-content.schema.json"
   ]
 }

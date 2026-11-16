@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/ui-schema.schema.json",
-  "title": "UI Schema",
+  "$id": "https://tidestack.dev/docs/reference/jsonschema/metadata/ui-schema-content.schema.json",
+  "title": "UI 组件内容",
   "description": "直接交给前端渲染的组件 JSON，可为对象或数组，无需 name/schema 外层包装。组件专有属性和动态表达式由前端组件解释。",
   "additionalProperties": true,
   "properties": {
@@ -54,5 +54,9 @@
       "description": "决定组件隐藏状态的前端表达式。"
     }
   },
-  "$comment": "Source: core/ouroboros-ui-model/ouroboros-ui-model-schema/src/main/java/com/ouroboros/uischema/JarUISchemaProvider.java; core/ouroboros-ui-model/ouroboros-ui-model-schema/src/main/java/com/ouroboros/uischema/schema/SchemaNode.java"
+  "$comment": "Source: core/ouroboros-ui-model/ouroboros-ui-model-schema/src/main/java/com/ouroboros/uischema/JarUISchemaProvider.java; core/ouroboros-ui-model/ouroboros-ui-model-schema/src/main/java/com/ouroboros/uischema/schema/SchemaNode.java",
+  "type": [
+    "object",
+    "array"
+  ]
 }
