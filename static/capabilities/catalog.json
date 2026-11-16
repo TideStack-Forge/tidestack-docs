@@ -2369,7 +2369,7 @@
       "entryPoints": [
         "ResourceService",
         "CompositeResourceProvider",
-        "RuntimeOverrideFileResourceProvider"
+        "RuntimeOverrideResourceProvider"
       ],
       "access": [
         "metadata",
@@ -2386,7 +2386,7 @@
       "sources": [
         "core/ouroboros-resource/ouroboros-resource-core/src/main/java/com/ouroboros/resource/spi/ResourceService.java",
         "core/ouroboros-resource/ouroboros-resource-runtime/src/main/java/com/ouroboros/resource/runtime/provider/CompositeResourceProvider.java",
-        "core/ouroboros-resource/ouroboros-resource-runtime/src/main/java/com/ouroboros/resource/runtime/provider/RuntimeOverrideFileResourceProvider.java"
+        "core/ouroboros-resource/ouroboros-resource-runtime/src/main/java/com/ouroboros/resource/runtime/provider/RuntimeOverrideResourceProvider.java"
       ],
       "docs": [
         {
