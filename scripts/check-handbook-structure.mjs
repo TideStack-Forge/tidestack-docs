@@ -88,13 +88,15 @@ if (!fs.existsSync(metadataSchemaIndexPath)) {
   const schemaFiles = fs
     .readdirSync(metadataSchemaDir)
     .filter((fileName) => fileName.endsWith('.schema.json'))
-  if (entries.length !== schemaFiles.length) {
-    errors.push(`metadata schema count mismatch: index=${entries.length}, files=${schemaFiles.length}`)
+  const indexedFiles = [...entries.map((entry) => entry.schema), ...(metadataSchemaIndex.supportingSchemas || [])]
+  if (entries.length !== metadataSchemaIndex.count || new Set(indexedFiles).size !== indexedFiles.length ||
+      indexedFiles.length !== schemaFiles.length || schemaFiles.some((file) => !indexedFiles.includes(file))) {
+    errors.push(`metadata schema count mismatch: index=${entries.length}, supporting=${indexedFiles.length - entries.length}, files=${schemaFiles.length}`)
   }
-  for (const entry of entries) {
-    const schemaPath = path.join(metadataSchemaDir, entry.schema)
+  for (const file of indexedFiles) {
+    const schemaPath = path.join(metadataSchemaDir, file)
     if (!fs.existsSync(schemaPath)) {
-      errors.push(`missing metadata schema file: ${entry.schema}`)
+      errors.push(`missing metadata schema file: ${file}`)
     } else {
       JSON.parse(fs.readFileSync(schemaPath, 'utf8'))
     }

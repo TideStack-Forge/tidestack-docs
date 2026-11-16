@@ -69,7 +69,7 @@ This file is the expanded AI routing index for TideStack Handbook. It points to 
 - Metadata source convention: `src/main/metadata/` packaged to `META-INF/ouroboros/metadata/` unless a specific runtime contract states otherwise.
 - Public bundled schemas: `docs/reference/jsonschema/metadata/*.schema.json`.
 - Schema index: `docs/reference/jsonschema/metadata/index.json`; match `type`, `fileSuffix`, and `schema`, including fixed-name resources.
-- Bundled schemas provide partial structural checks. For example, `business.schema.json` allows additional properties and does not fully describe nested fields. Check target-version definitions, cross-resource references, packaging, registration, and runtime behavior separately.
+- Bundled schemas validate declared structures, including nested business actions, events and subscriptions; extensible models retain additional properties. Check target-version definitions, cross-resource references, packaging, registration, and runtime behavior separately.
 - Schema `$id` values identify schemas; they do not prove a download endpoint exists.
 - Handbook must be self-contained after publication; do not rely on monorepo paths outside this repository.
 - `openapi/` is a publication directory that currently contains maintenance instructions only; do not treat it as an available API specification.
@@ -93,5 +93,5 @@ This file is the expanded AI routing index for TideStack Handbook. It points to 
 
 - For handbook structure changes: run `npm run check:structure`.
 - For site publication: run `npm run build`.
-- For metadata schema changes: update `docs/reference/jsonschema/metadata/`, then rerun `npm run check:structure`.
+- For metadata schema changes: update the platform repository’s public `metadata-schema/`, run `python3 scripts/skills/sync_distribution.py`, then run handbook `npm run check:structure`. The handbook includes offline copies, including referenced supporting schemas.
 - For implementation tasks: use the target project's tests, build, and relevant runtime checks; report each check's actual result and any work that remains unverified.

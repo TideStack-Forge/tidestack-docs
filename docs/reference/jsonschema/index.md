@@ -9,7 +9,7 @@ sidebar_position: 3
 
 ## 下载与选择
 
-按下表下载 Schema，校验工具需支持 **Draft 2020-12**。每份文件包含其引用的嵌套定义，可单独保存使用；机器可读映射见 [Schema 索引](./metadata/index.json)。
+按下表下载 Schema，校验工具需支持 **Draft 2020-12**。文件中的本地引用需要配套文件，例如 UI 资源还需下载 [ui-schema-content.schema.json](./metadata/ui-schema-content.schema.json)；机器可读映射见 [Schema 索引](./metadata/index.json)。
 
 带点前缀的规则表示文件后缀，其余是固定文件名。配置项与配置分组分别提供数组文件和单项文件的 Schema，注意与输入形态匹配。
 
@@ -25,6 +25,7 @@ sidebar_position: 3
 | `business` | 业务模型 | `.business.json` | [business.schema.json](./metadata/business.schema.json) |
 | `logicflow` | 逻辑流模型 | `.logicflow.json` | [logicflow.schema.json](./metadata/logicflow.schema.json) |
 | `approval-workflow` | 审批流 | `.workflow.json` | [approval-workflow.schema.json](./metadata/approval-workflow.schema.json) |
+| `approval-form` | 自定义审批表单描述 | `.approval-form.json` | [approval-form.schema.json](./metadata/approval-form.schema.json) |
 | `field-type` | 字段类型 | `.field-type.json` | [field-type.schema.json](./metadata/field-type.schema.json) |
 | `flow-node` | 逻辑流节点 | `.flow-node.json` | [flow-node.schema.json](./metadata/flow-node.schema.json) |
 | `widget` | 组件定义 | `.widget.json` | [widget.schema.json](./metadata/widget.schema.json) |
@@ -150,7 +151,7 @@ JSON Schema 标准支持在根定义、嵌套定义和每个字段的子 Schema 
 | --- | --- |
 | 业务模型 | 默认模型 `formatVersion` 为字符串，当前使用 `"2.0"`，兼容 `"0.1"`、`"1.0"` 或省略；扩展模型类型按自身约定 |
 | 审批流 | 静态定义的 `formatVersion` 和 `version` 为整数，默认 `1`；`enabled` 默认 `true`；支持 `flowDefinition` 外层包装 |
-| UI Schema | 直接使用组件对象或数组，无需增加 `name/schema` 外层包装 |
+| UI Schema | typed `.ui-schema.json` 使用 `name/schema` 包装，`schema` 可为组件对象或数组；旧 `ui-schema/` 目录和内嵌组件使用组件内容契约 |
 | 配置项 | `defaultValue` 接受任意 JSON 值；选择单项或数组 Schema 匹配文件形态 |
 | 微前端 | 类型使用 `app`、`parcels`、`library` 等标准值 |
 
@@ -163,3 +164,7 @@ Schema 检查静态结构，不确认引用资源是否存在，也不执行表�
 这些文件面向平台资源编写格式。部署不同平台版本时，使用与其匹配的定义；旧格式迁移和扩展模型的专有语义以对应功能文档为准。
 
 资源打包方式见 [元数据编写规范](../../guide/advance/authoring-metadata-conventions/)，模型职责见 [概念与设计](../../concepts/)，运行时读写见 [数据模型 API](../../api/backend/data-model/)。
+
+## 维护来源
+
+平台公共 `metadata-schema/` 是维护源；本目录是可离线使用的分发副本，包含 32 类资源和 UI 组件内容辅助契约。在平台仓库修改公共源后运行 `python3 scripts/skills/sync_distribution.py`，同步手册、IDE、Skills 与模板；`--check` 检查副本是否漂移。独立手册仓库的校验和构建只读取本仓库内的 Schema。

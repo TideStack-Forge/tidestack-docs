@@ -81,7 +81,7 @@ npm run check:diagrams
 
 同步命令把 CSS、渐变定义和点阵定义嵌入 SVG 和配套 HTML，图表离线打开仍能显示；`check:diagrams` 会检查这些内容是否一致。密集架构图以淡色区域承载中性卡片，图标配小底板，点阵只用于少数贯穿全图的侧栏。手册通过 `html[data-theme]` 设置 `color-scheme`，外部 SVG 中的 `prefers-color-scheme` 据此切换亮暗配色；直接打开 SVG 或 HTML 时跟随系统主题。页面 CSS 无法直接选择外部 SVG 的内部节点，新增样式应放在共享文件中再同步。
 
-企业级应用基座总览使用独立图稿 [`docs/concepts/architecture/.assets/tidestack-foundation-architecture.svg`](docs/concepts/architecture/.assets/tidestack-foundation-architecture.svg)。架构设计页与宣传资料共用这一份 SVG，图中的文字、专用样式、图标与许可证均保存在文件内；共享配色继续由同步命令维护。宣传介绍和能力对照保存在平台主仓库的 `docs/marketing/tidestack-foundation-architecture.md`，不随本仓库发布；图稿不依赖 HTML 容器。
+企业级应用基座总览使用独立图稿 [`docs/concepts/architecture/.assets/tidestack-foundation-architecture.svg`](docs/concepts/architecture/.assets/tidestack-foundation-architecture.svg)。架构设计页与宣传资料共用这一份 SVG，图中的文字、专用样式、图标与许可证均保存在文件内；共享配色继续由同步命令维护。宣传介绍和能力对照保存在 [`../marketing/tidestack-foundation-architecture.md`](../marketing/tidestack-foundation-architecture.md)，不依赖 HTML 容器。
 
 Markdown 继续以图片方式引用 SVG，现有 `external-svg-images` 插件与 `SvgViewer` 负责原图加载、放大、滚轮缩放和拖拽。维护图表时保留 `viewBox`、内容尺寸及外部图片引用。更新 `.drawio` 编辑源后，导出的 SVG 也需保留语义类并同步主题；`.drawio` 本身使用对应的亮色配色、渐变与图标，不参与网页主题切换。
 
@@ -104,7 +104,7 @@ docs/reference/jsonschema/metadata/<type>.schema.json
 docs/reference/jsonschema/metadata/index.json
 ```
 
-更新 schema 时，应先在平台主仓库中从 canonical 元数据类型定义生成或整理，再把结果作为 handbook 文档资产提交到上述目录；发布后的 handbook 校验只读取自身目录。
+更新 Schema 时，在平台仓库维护公共 `metadata-schema/`，运行 `python3 scripts/skills/sync_distribution.py` 生成本目录及 IDE、Skills 和模板副本，添加 `--check` 检查漂移。发布后的 handbook 校验只读取自身目录；引用文件也随包分发。
 
 ## AI 入口
 

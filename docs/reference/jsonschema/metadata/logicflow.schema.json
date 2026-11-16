@@ -112,6 +112,14 @@
       ],
       "readOnly": true,
       "description": "由校验摘要、错误和时间计算的状态：VALID 或 INVALID；尚未校验时为空。"
+    },
+    "inputSchema": {
+      "type": "object",
+      "description": "输入结构的可选 JSON Schema，用于静态代码提示，不改变运行时校验。"
+    },
+    "outputSchema": {
+      "type": "object",
+      "description": "输出结构的可选 JSON Schema，用于静态代码提示，不改变运行时校验。"
     }
   },
   "$defs": {

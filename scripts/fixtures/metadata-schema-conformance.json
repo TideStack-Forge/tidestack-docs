@@ -1,0 +1,566 @@
+[
+  {
+    "id": "business-extension",
+    "type": "business",
+    "valid": true,
+    "document": {
+      "modelType": "vendor-model",
+      "name": "order",
+      "title": "订单",
+      "pluginOption": {
+        "mode": "auto"
+      }
+    }
+  },
+  {
+    "id": "action-binding",
+    "type": "business",
+    "valid": false,
+    "document": {
+      "modelType": "default",
+      "name": "order",
+      "title": "订单",
+      "actions": [
+        {
+          "name": "approve",
+          "binding": {
+            "kind": "unknown"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "event-subject",
+    "type": "business",
+    "valid": false,
+    "document": {
+      "modelType": "default",
+      "name": "order",
+      "title": "订单",
+      "events": [
+        {
+          "name": "changed",
+          "occurrenceCondition": "变更完成",
+          "subject": "unknown",
+          "allowedProducerKinds": [
+            "action"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "subscription-target-xor",
+    "type": "business",
+    "valid": false,
+    "document": {
+      "modelType": "default",
+      "name": "order",
+      "title": "订单",
+      "eventSubscriptions": [
+        {
+          "name": "notify",
+          "sourceEventModelFullName": "order",
+          "sourceEventName": "changed",
+          "executionPrincipalRef": "system",
+          "targetActionModelFullName": "order",
+          "targetActionName": "approve",
+          "listenerName": "notify"
+        }
+      ]
+    }
+  },
+  {
+    "id": "action-http",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      }
+    }
+  },
+  {
+    "id": "action-http-no-input",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {}
+    }
+  },
+  {
+    "id": "action-http-legacy",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "actionInputMapping": {
+        "params.id": "$.query.id",
+        "data": "$.body"
+      }
+    }
+  },
+  {
+    "id": "action-http-missing-binding",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction"
+    }
+  },
+  {
+    "id": "action-http-wrong-mapping",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": []
+    }
+  },
+  {
+    "id": "action-http-wrong-destination",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {
+        "payload": "${ request.body }"
+      }
+    }
+  },
+  {
+    "id": "action-http-wrong-version",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "3.0",
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      }
+    }
+  },
+  {
+    "id": "action-http-conflicting-flow",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      },
+      "logicFlow": "approve"
+    }
+  },
+  {
+    "id": "ordinary-http-action-fields",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "RequestMapping",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      }
+    }
+  },
+  {
+    "id": "ordinary-http",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "GET",
+      "path": "/orders",
+      "handlerType": "RequestMapping"
+    }
+  },
+  {
+    "id": "approval-defaults",
+    "type": "approval-workflow",
+    "valid": true,
+    "document": {
+      "name": "purchase",
+      "title": "采购审批",
+      "form": {
+        "formType": "custom",
+        "formId": "purchase"
+      }
+    }
+  },
+  {
+    "id": "approval-aliases",
+    "type": "approval-workflow",
+    "valid": true,
+    "document": {
+      "flowDefinition": {
+        "name": "purchase",
+        "label": "采购审批",
+        "form": {
+          "formType": "custom",
+          "formKey": "purchase"
+        }
+      }
+    }
+  },
+  {
+    "id": "approval-form",
+    "type": "approval-form",
+    "valid": true,
+    "document": {
+      "formatVersion": 1,
+      "name": "purchase",
+      "title": "采购表单",
+      "fields": [
+        {
+          "name": "amount",
+          "label": "金额",
+          "type": "decimal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "approval-form-field-ref",
+    "type": "approval-form",
+    "valid": false,
+    "document": {
+      "formatVersion": 1,
+      "name": "purchase",
+      "title": "采购表单",
+      "fields": [
+        {
+          "name": "amount",
+          "label": "金额",
+          "type": 123
+        }
+      ]
+    }
+  },
+  {
+    "id": "approval-form-version",
+    "type": "approval-form",
+    "valid": false,
+    "document": {
+      "formatVersion": 2,
+      "name": "purchase",
+      "title": "采购表单",
+      "fields": [
+        {
+          "name": "amount",
+          "label": "金额",
+          "type": "decimal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "approval-form-name",
+    "type": "approval-form",
+    "valid": false,
+    "document": {
+      "formatVersion": 1,
+      "name": " ",
+      "title": "采购表单",
+      "fields": [
+        {
+          "name": "amount",
+          "label": "金额",
+          "type": "decimal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "approval-form-extra-property",
+    "type": "approval-form",
+    "valid": false,
+    "document": {
+      "formatVersion": 1,
+      "name": "purchase",
+      "title": "采购表单",
+      "fields": [
+        {
+          "name": "amount",
+          "label": "金额",
+          "type": "decimal"
+        }
+      ],
+      "instanceData": {}
+    }
+  },
+  {
+    "id": "rpc-schema",
+    "type": "rpc",
+    "valid": false,
+    "document": {
+      "name": "echo",
+      "title": "Echo",
+      "type": "http",
+      "inputSchema": []
+    }
+  },
+  {
+    "id": "rpc-configuration",
+    "type": "rpc",
+    "valid": true,
+    "document": {
+      "name": "echo",
+      "title": "Echo",
+      "type": "http",
+      "timeout": "#{external.timeout}",
+      "inputSchema": {
+        "type": "object"
+      }
+    }
+  },
+  {
+    "id": "logicflow-ports",
+    "type": "logicflow",
+    "valid": false,
+    "document": {
+      "name": "flow",
+      "nodes": [
+        {
+          "inputPorts": {}
+        }
+      ]
+    }
+  },
+  {
+    "id": "ui-resource-array",
+    "type": "ui-schema",
+    "valid": true,
+    "document": {
+      "name": "orders",
+      "schema": [
+        {
+          "type": "input-text",
+          "name": "title"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ui-resource-object",
+    "type": "ui-schema",
+    "valid": true,
+    "document": {
+      "name": "orders",
+      "schema": {
+        "type": "page",
+        "body": []
+      }
+    }
+  },
+  {
+    "id": "ui-unwrapped-resource",
+    "type": "ui-schema",
+    "valid": false,
+    "document": {
+      "type": "page",
+      "body": []
+    }
+  },
+  {
+    "id": "ui-component-content",
+    "type": "ui-schema-content",
+    "valid": true,
+    "document": {
+      "type": "page",
+      "body": []
+    }
+  },
+  {
+    "id": "configuration-empty-optionals",
+    "type": "configuration",
+    "valid": true,
+    "document": [
+      {
+        "key": "app.enabled",
+        "label": "启用",
+        "valueType": "boolean",
+        "scope": null,
+        "obsolete": null,
+        "modifiable": null,
+        "nullable": null
+      }
+    ]
+  },
+  {
+    "id": "configuration-null-scope",
+    "type": "configuration-item",
+    "valid": true,
+    "document": {
+      "key": "app.enabled",
+      "label": "启用",
+      "valueType": "boolean",
+      "scope": null
+    }
+  },
+  {
+    "id": "configuration-wrong-scope",
+    "type": "configuration-item",
+    "valid": false,
+    "document": {
+      "key": "app.enabled",
+      "label": "启用",
+      "valueType": "boolean",
+      "scope": "wrong"
+    }
+  },
+  {
+    "id": "ui-legacy-content",
+    "type": "ui-schema",
+    "path": "/repo/src/main/resources/META-INF/ouroboros/ui-schema/orders.json",
+    "valid": true,
+    "document": {
+      "type": "page",
+      "body": []
+    }
+  },
+  {
+    "id": "ui-legacy-content-invalid",
+    "type": "ui-schema",
+    "path": "/repo/src/main/resources/META-INF/ouroboros/ui-schema/orders.json",
+    "valid": false,
+    "document": {
+      "type": 12,
+      "body": []
+    }
+  },
+  {
+    "id": "configuration-empty-scope",
+    "type": "configuration-item",
+    "valid": false,
+    "document": {
+      "key": "app.enabled",
+      "label": "启用",
+      "valueType": "boolean",
+      "scope": ""
+    }
+  },
+  {
+    "id": "ordinary-http-extension-version",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "GET",
+      "path": "/orders",
+      "handlerType": "RequestMapping",
+      "formatVersion": 99
+    }
+  },
+  {
+    "id": "ordinary-http-unset-action-fields",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "GET",
+      "path": "/orders",
+      "handlerType": "RequestMapping",
+      "businessModel": null,
+      "action": null,
+      "actionInputMapping": null
+    }
+  },
+  {
+    "id": "action-http-unset-flow",
+    "type": "webapi",
+    "valid": true,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      },
+      "logicFlow": null,
+      "businessActionName": null
+    }
+  },
+  {
+    "id": "action-http-null-version",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": null,
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      }
+    }
+  },
+  {
+    "id": "action-http-legacy-binding",
+    "type": "webapi",
+    "valid": false,
+    "document": {
+      "method": "POST",
+      "path": "/orders/approve",
+      "handlerType": "BusinessAction",
+      "businessModel": "sales.Order",
+      "action": "approve",
+      "formatVersion": "2.0",
+      "actionInputMapping": {
+        "params": "${ request.params }",
+        "data": "${ request.body }"
+      },
+      "businessActionName": "approve"
+    }
+  }
+]

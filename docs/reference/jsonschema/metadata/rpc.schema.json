@@ -38,11 +38,33 @@
     },
     "authCredential": {
       "type": "string",
-      "description": "独立 RPC 认证资源的名称，由凭据机制提供认证能力。"
+      "description": "凭据名称或 #{key} 配置引用；运行时解析后查找凭据。"
     },
     "request": {
       "type": "object",
-      "description": "协议专有请求配置；HTTP 类型通常包含地址、方法和参数，其他协议由对应实现解释。"
+      "description": "执行配置项支持 #{key}；URL 与参数值额外支持 ${...} 和旧式 $path；先解析结构配置再转换类型。"
+    },
+    "inputSchema": {
+      "type": "object",
+      "description": "输入结构的可选 JSON Schema，用于静态代码提示，不改变运行时校验。"
+    },
+    "outputSchema": {
+      "type": "object",
+      "description": "输出结构的可选 JSON Schema，用于静态代码提示，不改变运行时校验。"
+    },
+    "timeout": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "超时毫秒数，允许 #{key} 配置引用，解析结果必须为整数。"
+    },
+    "retry": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "重试次数，允许 #{key} 配置引用，解析结果必须为整数。"
     }
   },
   "$comment": "Source: ability/ouroboros-rpc-model/ouroboros-rpc-model-core/src/main/java/com/ouroboros/rpc/metadata/RPCModelMetadata.java"

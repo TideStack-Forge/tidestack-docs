@@ -5,10 +5,14 @@ import Ajv2020 from 'ajv/dist/2020.js'
 
 const schemaDirectory = new URL('../docs/reference/jsonschema/metadata/', import.meta.url)
 const index = JSON.parse(readFileSync(new URL('index.json', schemaDirectory), 'utf8'))
-const ajv = new Ajv2020({allErrors: true, strictTypes: false})
+const ajv = new Ajv2020({allErrors: true, strict: false})
+for (const file of [...index.entries.map(({schema}) => schema), ...(index.supportingSchemas || [])]) {
+  ajv.addSchema(JSON.parse(readFileSync(new URL(file, schemaDirectory), 'utf8')))
+}
 const validators = new Map(index.entries.map(({type, schema}) => [
-  type, ajv.compile(JSON.parse(readFileSync(new URL(schema, schemaDirectory), 'utf8'))),
+  type, ajv.getSchema(JSON.parse(readFileSync(new URL(schema, schemaDirectory), 'utf8')).$id),
 ]))
+validators.set('ui-schema-content', ajv.getSchema(JSON.parse(readFileSync(new URL('ui-schema-content.schema.json', schemaDirectory), 'utf8')).$id))
 
 const configuration = {key: 'app.pageSize', label: '每页条数', valueType: 'int', defaultValue: 20, managementEntry: '/settings'}
 const group = {path: 'app', title: '应用设置'}
@@ -30,7 +34,7 @@ const validResources = [
   ['menu', {fullName: 'orders', title: '订单', scope: 'secondary', showMode: 'tab', customBadge: 'new'}],
   ['dev-menu', {fullName: 'models', title: '模型', children: [{fullName: 'models.order', title: '订单', icon: 'table', showMode: 'newWindow', children: [{fullName: 'models.order.edit', title: '编辑'}]}]}],
   ['ui-model', {path: '/orders', type: 'schema', title: '订单', schemaPath: '/orders'}],
-  ['ui-schema', {type: 'page', title: {type: 'tpl', tpl: '订单'}, className: {'p-4': true}, body: [{type: 'input-text', name: 'title'}]}],
+  ['ui-schema-content', {type: 'page', title: {type: 'tpl', tpl: '订单'}, className: {'p-4': true}, body: [{type: 'input-text', name: 'title'}]}],
   ['business', business],
   ['logicflow', {name: 'submitOrder', nodes: [{name: 'start', type: 'Start', outputPorts: [{name: 'out', dataType: 'any'}], pluginProperty: {enabled: true}}], connections: [{sourceNode: 'start', sourceOutputPort: 0, targetNode: 'end', targetInputPort: 0}], nodePositions: {start: {x: 1.5, y: 2}}, validationDiagnostics: [{diagnosticKind: 'port', portIndex: 0}], validationState: 'INVALID'}],
   ['approval-workflow', workflow],
@@ -40,7 +44,7 @@ const validResources = [
   ['micro-web', {name: 'app-shell', type: 'app', entry: '/shell/'}],
   ['rpc', {name: 'orders', title: '订单服务', type: 'custom-http', request: {url: '/orders'}, pluginOption: 1}],
   ['rpc-auth', {name: 'orders', title: '订单认证', type: 'custom-token', tokenSource: 'configuration'}],
-  ['webapi', {method: 'POST', path: '/orders', handlerType: 'BusinessAction', parameters: [{name: 'id', in: 'query', schema: {type: ['string', 'null'], default: null}}], requestBody: {content: {'application/json': {schema: {type: 'object', properties: {amount: {type: 'number', minimum: 0}}}}}}, responses: {'200': {description: '成功', content: {'application/json': {schema: {$ref: '#/components/schemas/Order'}}}}}, security: [{bearer: []}], servers: [{url: 'https://{host}', variables: {host: {default: 'example.com', enum: ['example.com']}}}]}],
+  ['webapi', {method: 'POST', path: '/orders', handlerType: 'BusinessAction', businessModel: 'sales.Order', action: 'create', formatVersion: '2.0', actionInputMapping: {params: '${ request.params }', data: '${ request.body }'}, parameters: [{name: 'id', in: 'query', schema: {type: ['string', 'null'], default: null}}], requestBody: {content: {'application/json': {schema: {type: 'object', properties: {amount: {type: 'number', minimum: 0}}}}}}, responses: {'200': {description: '成功', content: {'application/json': {schema: {$ref: '#/components/schemas/Order'}}}}}, security: [{bearer: []}], servers: [{url: 'https://{host}', variables: {host: {default: 'example.com', enum: ['example.com']}}}]}],
   ['notification', {name: 'orderCreated', title: '订单已创建', channel: {sms: {templateId: 'order'}}, payloadSchema: {type: 'object'}}],
   ['business-log', {name: 'createOrder', httpMethod: 'POST', url: '/orders', sensitiveFields: ['token'], shouldSaveResponseBody: null}],
   ['data-init', {id: 'seed', blocks: [{id: 'orders', targetModel: 'order', matchFields: ['id'], records: [{id: '1', amount: 20}]}]}],
@@ -84,7 +88,7 @@ describe('metadata resource contracts', () => {
     ['configuration-item', {...configuration, defaultValue: {pageSize: 20}}],
     ['configuration-item', {...configuration, defaultValue: null}],
     ['data-init', {id: 'seed', version: null, blocks: [{id: 'orders', targetModel: 'order', version: null, matchFields: ['id', 'id']}]}],
-    ['ui-schema', [{type: 'input-text', name: 'name'}]],
+    ['ui-schema-content', [{type: 'input-text', name: 'name'}]],
   ])('%s preserves defaults, aliases and extension formats', (type, resource) => {
     const result = validate(type, resource)
     expect(result.valid, JSON.stringify(result.errors)).toBe(true)
@@ -129,5 +133,16 @@ describe('metadata resource contracts', () => {
     ['configuration-item', 'single object root', [configuration]],
   ])('%s rejects invalid %s', (type, _case, resource) => {
     expect(validate(type, resource).valid).toBe(false)
+  })
+})
+
+
+const conformanceCases = JSON.parse(readFileSync(new URL('./fixtures/metadata-schema-conformance.json', import.meta.url), 'utf8'))
+describe('shared public schema conformance', () => {
+  test.each(conformanceCases)('$id', (example) => {
+    const type = example.path?.includes('/ui-schema/') ? 'ui-schema-content' : example.type
+    const validator = validators.get(type)
+    expect(validator, `Missing validator: ${type}`).toBeDefined()
+    expect(validator(example.document), JSON.stringify(validator.errors)).toBe(example.valid)
   })
 })
