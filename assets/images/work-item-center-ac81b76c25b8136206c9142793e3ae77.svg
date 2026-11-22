@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="diagram-work-item-center" class="drawio ts-diagram" width="1816" height="1284" viewBox="6 14 1816 1284" role="img" aria-labelledby="diagram-work-item-center-title" style="max-width:100%;height:auto" data-source="docs/diagrams/architecture/work-item-center.drawio"><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs></defs><rect x="6" y="14" width="1816" height="1284" fill="var(--diagram-canvas)"/><title id="diagram-work-item-center-title">待办中心与业务来源协作</title><style>#diagram-work-item-center{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-work-item-center text{white-space:pre}#diagram-work-item-center a{cursor:pointer}</style><rect x="6" y="14" width="1816" height="1284" fill="var(--diagram-canvas)"/><g class="drawio-vertex" data-cell-id="title" id="title"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="24" width="1720" height="48"/><g class="drawio-label"><text text-anchor="middle" font-size="34" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="59.42">待办中心与业务来源协作</tspan></text></g></g><g class="drawio-vertex" data-cell-id="browser" id="browser"><rect fill="var(--diagram-blue-surface)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="104" width="1720" height="120" rx="7.2"/></g><g class="drawio-vertex" data-cell-id="browser-title" id="browser-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="120" width="1688" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="900" y="146.06">浏览器：待办中心页面与会话常驻扩展</tspan></text></g></g><g class="drawio-vertex" data-cell-id="browser-line0" id="browser-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="168" width="1688" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="188.72">原菜单与页签 · 全局数字 · 详情抽屉 · 来源页面办理</tspan></text></g></g><g class="drawio-vertex" data-cell-id="source" id="source"><rect fill="var(--diagram-orange-surface)" stroke="var(--diagram-orange-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="328" width="520" height="216" rx="12.96"/></g><g class="drawio-vertex" data-cell-id="source-title" id="source-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="344" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-orange-ink)"><tspan x="300" y="370.06">来源业务：状态、权限与动作的权威</tspan></text></g></g><g class="drawio-vertex" data-cell-id="source-line0" id="source-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="392" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="412.72">审批任务：原审批动作与任务事实</tspan></text></g></g><g class="drawio-vertex" data-cell-id="source-line1" id="source-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="424" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="444.72">业务模型：workItem 特性与实际 Action</tspan></text></g></g><g class="drawio-vertex" data-cell-id="source-line2" id="source-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="456" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="476.72">中心通过来源页面进入办理</tspan></text></g></g><g class="drawio-vertex" data-cell-id="adapter" id="adapter"><rect fill="var(--diagram-teal-surface)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="640" y="328" width="520" height="216" rx="12.96"/></g><g class="drawio-vertex" data-cell-id="adapter-title" id="adapter-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="344" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="900" y="370.06">来源适配 WorkItemSource</tspan></text></g></g><g class="drawio-vertex" data-cell-id="adapter-line0" id="adapter-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="392" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="412.72">快照与参与关系 · 实际办理事实</tspan></text></g></g><g class="drawio-vertex" data-cell-id="adapter-line1" id="adapter-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="424" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="444.72">当前读权限 · 可处理资格 · entry</tspan></text></g></g><g class="drawio-vertex" data-cell-id="adapter-line2" id="adapter-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="456" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="476.72">保留策略 · 扫描与重放范围</tspan></text></g></g><g class="drawio-vertex" data-cell-id="query" id="query"><rect fill="var(--diagram-blue-surface)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="1240" y="328" width="520" height="216" rx="12.96"/></g><g class="drawio-vertex" data-cell-id="query-title" id="query-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="344" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="1500" y="370.06">中心查询与入口</tspan></text></g></g><g class="drawio-vertex" data-cell-id="query-line0" id="query-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="392" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1500" y="412.72">查询投影候选，再逐来源核权</tspan></text></g></g><g class="drawio-vertex" data-cell-id="query-line1" id="query-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="424" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1500" y="444.72">分页、计数与导出共用核验结果</tspan></text></g></g><g class="drawio-vertex" data-cell-id="query-line2" id="query-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="456" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1500" y="476.72">通知关联打开事项也重新核权</tspan></text></g></g><g class="drawio-vertex" data-cell-id="events" id="events"><rect fill="var(--diagram-orange-surface)" stroke="var(--diagram-orange-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="712" width="520" height="200" rx="12"/></g><g class="drawio-vertex" data-cell-id="events-title" id="events-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="728" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-orange-ink)"><tspan x="300" y="754.06">来源可靠事实</tspan></text></g></g><g class="drawio-vertex" data-cell-id="events-line0" id="events-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="776" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="796.72">审批源事务＋FlowEventOutbox</tspan></text></g></g><g class="drawio-vertex" data-cell-id="events-line1" id="events-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="808" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="828.72">业务事务＋BusinessEvent 订阅</tspan></text></g></g><g class="drawio-vertex" data-cell-id="events-line2" id="events-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="840" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="860.72">业务状态与事实沿原事务提交</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ingestion" id="ingestion"><rect fill="var(--diagram-teal-surface)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="640" y="712" width="520" height="200" rx="12"/></g><g class="drawio-vertex" data-cell-id="ingestion-title" id="ingestion-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="728" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="900" y="754.06">可靠接入与交付</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ingestion-line0" id="ingestion-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="776" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="796.72">审批事件先保存独立 PENDING 回执</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ingestion-line1" id="ingestion-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="808" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="828.72">修复工作器读取当前来源快照</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ingestion-line2" id="ingestion-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="840" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="860.72">业务事件原子交付中更新投影</tspan></text></g></g><g class="drawio-vertex" data-cell-id="projection" id="projection"><rect fill="var(--diagram-violet-surface)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="1240" y="712" width="520" height="200" rx="12"/></g><g class="drawio-vertex" data-cell-id="projection-title" id="projection-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="728" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="1500" y="754.06">持久化查询投影</tspan></text></g></g><g class="drawio-vertex" data-cell-id="projection-line0" id="projection-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="776" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1500" y="796.72">工作项 · 参与关系 · 办理事实</tspan></text></g></g><g class="drawio-vertex" data-cell-id="projection-line1" id="projection-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="808" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1500" y="828.72">回执 · checkpoint · 修复审计</tspan></text></g></g><g class="drawio-vertex" data-cell-id="projection-line2" id="projection-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="1256" y="840" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1500" y="860.72">TypedModel / QueryDSL</tspan></text></g></g><g class="drawio-vertex" data-cell-id="push" id="push"><rect fill="var(--diagram-violet-surface)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="1064" width="520" height="152" rx="9.12"/></g><g class="drawio-vertex" data-cell-id="push-title" id="push-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="1080" width="488" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="300" y="1106.06">提交后失效提示</tspan></text></g></g><g class="drawio-vertex" data-cell-id="push-line0" id="push-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="1128" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="1148.72">STOMP 用户主题＋补偿刷新</tspan></text></g></g><g class="drawio-vertex" data-cell-id="push-line1" id="push-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="56" y="1160" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="300" y="1180.72">常驻扩展重新查询全局计数</tspan></text></g></g><g class="drawio-vertex" data-cell-id="maintenance" id="maintenance"><rect fill="var(--diagram-rose-surface)" stroke="var(--diagram-rose-rule)" stroke-width="1" stroke-linejoin="round" x="640" y="1064" width="1120" height="152" rx="9.12"/></g><g class="drawio-vertex" data-cell-id="maintenance-title" id="maintenance-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="1080" width="1088" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-rose-ink)"><tspan x="1200" y="1106.06">补齐、修复与生命周期</tspan></text></g></g><g class="drawio-vertex" data-cell-id="maintenance-line0" id="maintenance-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="1128" width="1088" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1200" y="1148.72">首次自动补齐；后续重建与对账按需发起，完成后停止来源扫描</tspan></text></g></g><g class="drawio-vertex" data-cell-id="maintenance-line1" id="maintenance-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="656" y="1160" width="1088" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1200" y="1180.72">来源失效与退役、历史保留、失败重驱和人工修复沿独立运维权限执行</tspan></text></g></g><g class="drawio-edge" data-cell-id="ui-query" id="ui-query"><path d="M1500,232 L1500,311.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1500,320 L1495.8,310.4 L1504.2,310.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="ui-query-label" id="ui-query-label"><rect fill="none" stroke="none" stroke-linejoin="round" x="1512" y="256" width="300" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1662" y="276.05">查询、计数与进入</tspan></text></g></g><g class="drawio-edge" data-cell-id="ui-source" id="ui-source"><path d="M300,232 L300,311.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M300,320 L295.8,310.4 L304.2,310.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="ui-source-label" id="ui-source-label"><rect fill="none" stroke="none" stroke-linejoin="round" x="312" y="256" width="300" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="462" y="276.05">执行原业务动作</tspan></text></g></g><g class="drawio-edge" data-cell-id="source-adapter" id="source-adapter"><path d="M568,436 L623.36,436" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M632,436 L622.4,440.2 L622.4,431.8 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="query-access" id="query-access"><path d="M1232,436 L1176.64,436" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1168,436 L1177.6,431.8 L1177.6,440.2 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="query-candidates" id="query-candidates"><path d="M1500,552 L1500,695.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1500,704 L1495.8,694.4 L1504.2,694.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="query-candidates-label" id="query-candidates-label"><rect fill="none" stroke="none" stroke-linejoin="round" x="1512" y="600" width="300" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="1662" y="620.05">读取候选</tspan></text></g></g><g class="drawio-edge" data-cell-id="source-events" id="source-events"><path d="M300,552 L300,695.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M300,704 L295.8,694.4 L304.2,694.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="source-events-label" id="source-events-label"><rect fill="none" stroke="none" stroke-linejoin="round" x="312" y="600" width="300" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="462" y="620.05">提交事实</tspan></text></g></g><g class="drawio-edge" data-cell-id="events-ingest" id="events-ingest"><path d="M568,812 L623.36,812" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M632,812 L622.4,816.2 L622.4,807.8 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="ingest-projection" id="ingest-projection"><path d="M1168,812 L1223.36,812" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1232,812 L1222.4,816.2 L1222.4,807.8 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="maintenance-source" id="maintenance-source"><path d="M900,1056 L900,994 Q900,984 890,984 L610,984 Q600,984 600,974 L600,598 Q600,588 610,588 L650,588 Q660,588 660,578 L660,560.64" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M660,552 L664.2,561.6 L655.8,561.6 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="projection-push" id="projection-push"><path d="M1500,920 L1500,998 Q1500,1008 1490,1008 L310,1008 Q300,1008 300,1018 L300,1047.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M300,1056 L295.8,1046.4 L304.2,1046.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="push-refresh" id="push-refresh"><path d="M32,1136 L24,1136 Q16,1136 16,1128 L16,179.68 Q16,176 19.68,176 L23.36,176" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M32,176 L22.4,180.2 L22.4,171.8 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="note" id="note"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="1256" width="1720" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-ink)"><tspan x="900" y="1278.38">来源保留业务办理权威；中心提供最终一致的聚合查询，并在每次查询和进入页面时核验当前来源权限。</tspan></text></g></g></svg>

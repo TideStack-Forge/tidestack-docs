@@ -65,6 +65,10 @@
     {
       "id": "extension",
       "name": "装配与插件扩展"
+    },
+    {
+      "id": "work-management",
+      "name": "待办与工作管理"
     }
   ],
   "accessLabels": {
@@ -1350,7 +1354,7 @@
       "name": "消息通知与模板",
       "side": "backend",
       "category": "integration",
-      "summary": "按通知模板向站内信、邮件、短信及企业渠道发送通知。",
+      "summary": "按通知模板向站内信、邮件、短信及企业渠道发送通知，可携带关联工作项引用。",
       "useWhen": "业务事件或任务需要向人发送消息。",
       "entryPoints": [
         "NotificationService",
@@ -1362,7 +1366,7 @@
       ],
       "availability": "assembled",
       "requires": "配置接收人、模板和渠道；邮件、微信、钉钉、极光、阿里云短信与呼叫等按渠道装配。",
-      "limits": "模块依赖不代表凭据可用；渠道回执和失败补偿需单独处理。",
+      "limits": "模块依赖不代表凭据可用；渠道回执和失败补偿需单独处理。 关联工作项的查看与跳转仍须核验当前来源权限。",
       "modules": [
         "ability/ouroboros-notification/ouroboros-notification-runtime",
         "ability/ouroboros-notification"
@@ -1856,11 +1860,11 @@
     },
     {
       "id": "be.analytics.dataset",
-      "name": "统计数据集与查询视图",
+      "name": "统计数据集执行",
       "side": "backend",
       "category": "analytics",
-      "summary": "按统计定义执行数据集和查询视图。",
-      "useWhen": "页面指标与报表需要统一的数据查询契约。",
+      "summary": "按数据集定义执行只读 SQL 查询，统一处理参数、数据权限和执行限制。",
+      "useWhen": "图表或复合业务视图需要复用查询口径。",
       "entryPoints": [
         "DatasetExecutionService",
         "DatasetExecutor"
@@ -1870,8 +1874,8 @@
         "java"
       ],
       "availability": "assembled",
-      "requires": "装配统计运行模块并发布数据集及查询定义。",
-      "limits": "设计器预览成功不等于运行实例已有已发布定义。",
+      "requires": "装配统计运行模块，加载已启用的数据集，配置应用数据源绑定。",
+      "limits": "当前 V1 只支持 SQL 查询；开发态连接与预览设置不随应用元数据交付。",
       "modules": [
         "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime",
         "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-core"
@@ -1891,27 +1895,28 @@
     },
     {
       "id": "be.analytics.report",
-      "name": "报表视图与统计看板",
+      "name": "图表与复合业务视图执行",
       "side": "backend",
       "category": "analytics",
-      "summary": "为统计视图和看板提供运行时执行接口。",
-      "useWhen": "多个图表需要复用已发布的统计资产。",
+      "summary": "按图表定义或复合业务视图配置执行查询并返回展示结果。",
+      "useWhen": "图表、仪表板或综合查询页面需要复用数据集。",
       "entryPoints": [
-        "统计运行模块",
-        "报表视图执行接口"
+        "ChartExecutionService",
+        "CompositeViewQueryService"
       ],
       "access": [
         "metadata",
         "module"
       ],
       "availability": "assembled",
-      "requires": "发布报表视图及其引用的数据集，配置读取权限。",
-      "limits": "需要同时验证查询结果、权限和前端参数映射。",
+      "requires": "装配统计运行模块，按入口准备图表与数据集或复合视图业务模型。",
+      "limits": "各定义和数据权限分别生效；预览不等于运行环境已加载相同资产。",
       "modules": [
         "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime"
       ],
       "sources": [
-        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/pom.xml"
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/service/ChartExecutionService.java",
+        "core/ouroboros-statistics-reporting/ouroboros-statistics-reporting-runtime/src/main/java/com/ouroboros/statistics/reporting/runtime/service/CompositeViewQueryService.java"
       ],
       "docs": [
         {
@@ -3505,25 +3510,26 @@
     },
     {
       "id": "fe.report-runtime",
-      "name": "报表视图运行组件",
+      "name": "图表运行组件",
       "side": "frontend",
       "category": "analytics",
-      "summary": "调用报表运行接口并展示已发布视图。",
-      "useWhen": "页面需要嵌入统计资产。",
+      "summary": "加载图表定义与数据，通过运行时组件渲染只读图表。",
+      "useWhen": "在页面或仪表板中复用统计图表。",
       "entryPoints": [
-        "report-view-runtime"
+        "ChartRuntime"
       ],
       "access": [
         "schema"
       ],
       "availability": "host",
-      "requires": "发布对应报表视图，准备参数并配置数据权限。",
-      "limits": "设计器中的预览定义不等于运行时可读定义。",
+      "requires": "准备已启用的图表、数据集及其运行参数，配置查询权限。",
+      "limits": "组件渲染不替代后端的数据权限和执行限制；开发预览与运行态分别使用各自的数据源配置。",
       "modules": [
         "frontends/web/ouroboros-amis-runtime"
       ],
       "sources": [
-        "frontends/web/ouroboros-amis-runtime/src/renderers/report-view-runtime/index.ts"
+        "frontends/web/ouroboros-amis-runtime/src/renderers/chart-runtime/ChartRuntime.tsx",
+        "frontends/web/ouroboros-amis-runtime/src/renderers/chart-runtime/chartVisualization.ts"
       ],
       "docs": [
         {
@@ -3744,6 +3750,197 @@
         }
       ],
       "related": [],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.work.source",
+      "name": "统一待办来源协议",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "以来源快照、参与关系、办理事实及 entry 契约接入不同业务的工作项。",
+      "useWhen": "审批或自定义业务需要汇集到同一待办中心。",
+      "entryPoints": [
+        "WorkItemSource",
+        "WorkItemSourceProvider"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配工作项运行模块并注册来源，来源保留业务状态、权限和办理动作。",
+      "limits": "来源必须提供当前权限及进入页面的合同；中心不会代替来源执行业务动作。",
+      "modules": [
+        "ability/ouroboros-work-item/ouroboros-work-item-core"
+      ],
+      "sources": [
+        "ability/ouroboros-work-item/ouroboros-work-item-core/src/main/java/com/ouroboros/workitem/source/WorkItemSource.java",
+        "ability/ouroboros-work-item/ouroboros-work-item-core/src/main/java/com/ouroboros/workitem/source/WorkItemSourceProvider.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/architecture/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [
+        "be.work.query",
+        "be.work.feature"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.work.feature",
+      "name": "业务模型工作项特性",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "用 workItem 特性声明任务字段、动作、权限、页面及历史策略，并组合来源适配和变化事实。",
+      "useWhen": "已发布低代码业务需要直接接入待办中心。",
+      "entryPoints": [
+        "WorkItemFeaturePlugin",
+        "workItem"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "配置模型特性及实际业务动作，准备运行时与发布后的模型。",
+      "limits": "自动 add/update 使用生成事实节点；自定义逻辑流需显式接入同一节点，事实与业务变化须在同一规范事务中提交。",
+      "modules": [
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime/src/main/java/com/ouroboros/workitem/businessmodel/WorkItemFeaturePlugin.java",
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime/src/main/java/com/ouroboros/workitem/businessmodel/WorkItemFeatureConfiguration.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/architecture/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [
+        "be.work.source",
+        "be.business.events"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.work.query",
+      "name": "待办中心与来源核权查询",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "提供待处理、暂停、办理历史、个人已关闭、事项动态、通知与筛选导出。",
+      "useWhen": "用户需要从统一入口查看工作并进入原业务页面办理。",
+      "entryPoints": [
+        "WorkItemQueryPort",
+        "WorkItemCenterController"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "装配来源和中心模块，安装并导入中心组件库，按部署要求迁移角色权限。",
+      "limits": "投影最终一致；查询、计数、导出和进入页面均核验当前来源授权，核验不完整时不冒充完整结果。",
+      "modules": [
+        "ability/ouroboros-work-item/ouroboros-work-item-core",
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime",
+        "app-module/work-item-center",
+        "app-module/work-item-workflow"
+      ],
+      "sources": [
+        "ability/ouroboros-work-item/ouroboros-work-item-core/src/main/java/com/ouroboros/workitem/port/WorkItemQueryPort.java",
+        "app-module/work-item-center/src/main/java/com/ouroboros/workitemcenter/web/WorkItemCenterController.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/architecture/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [
+        "be.work.source",
+        "fe.work-center"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "be.work.recovery",
+      "name": "待办投影修复与生命周期",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "通过可靠回执、补齐对账、重驱、人工修复及保留策略维护待办投影。",
+      "useWhen": "来源变化投递失败或接入后需要补齐、核对与受控修复。",
+      "entryPoints": [
+        "WorkItemRecoveryPort",
+        "WorkItemOperationsPort"
+      ],
+      "access": [
+        "module",
+        "java"
+      ],
+      "availability": "assembled",
+      "requires": "为管理员授予独立同步与修复权限，来源提供规范事件和保留范围。",
+      "limits": "首次接入自动补齐，日常沿可靠来源事件更新；后续扫描按管理员发起运行，完成后停止，不持续全库轮询。",
+      "modules": [
+        "ability/ouroboros-work-item/ouroboros-work-item-core",
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime"
+      ],
+      "sources": [
+        "ability/ouroboros-work-item/ouroboros-work-item-core/src/main/java/com/ouroboros/workitem/port/WorkItemRecoveryPort.java",
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime/src/main/java/com/ouroboros/workitem/service/WorkItemManualRepairService.java",
+        "ability/ouroboros-work-item/ouroboros-work-item-runtime/src/main/java/com/ouroboros/workitem/service/WorkItemReconciliationService.java"
+      ],
+      "docs": [
+        {
+          "path": "concepts/architecture/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [
+        "be.work.query",
+        "be.business.event-recovery"
+      ],
+      "verification": "source-reviewed"
+    },
+    {
+      "id": "fe.work-center",
+      "name": "待办入口与全局实时计数",
+      "side": "frontend",
+      "category": "work-management",
+      "summary": "通过会话常驻组件库维护待办快捷入口、菜单计数和页面失效刷新。",
+      "useWhen": "待办数字需要在离开中心页面后持续更新。",
+      "entryPoints": [
+        "work-item-live-region",
+        "initAmisComponentLib"
+      ],
+      "access": [
+        "module",
+        "sdk"
+      ],
+      "availability": "assembled",
+      "requires": "构建并安装待办中心组件库，导入目标应用，准备工作项作用域和访问权限。",
+      "limits": "复用原菜单、页签、权限与 STOMP；前端计数不能代替后端来源授权和来源业务动作。",
+      "modules": [
+        "frontends/web/ouroboros-work-item-center-extension"
+      ],
+      "sources": [
+        "frontends/web/ouroboros-work-item-center-extension/src/main.js",
+        "frontends/web/ouroboros-work-item-center-extension/src/workItemSession.js"
+      ],
+      "docs": [
+        {
+          "path": "concepts/architecture/index.md",
+          "coverage": "related"
+        }
+      ],
+      "related": [
+        "be.work.query",
+        "fe.menus",
+        "fe.stomp"
+      ],
       "verification": "source-reviewed"
     }
   ]

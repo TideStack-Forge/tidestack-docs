@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="diagram-modeling-business-elements" class="drawio ts-diagram" width="708" height="780" viewBox="126 10 708 780" role="img" aria-labelledby="diagram-modeling-business-elements-title" style="max-width:100%;height:auto" data-source="docs/diagrams/modeling/modeling-business-elements.drawio"><rect x="126" y="10" width="708" height="780" fill="var(--diagram-canvas)"/><title id="diagram-modeling-business-elements-title">业务模型表达哪些业务含义</title><style>#diagram-modeling-business-elements{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-modeling-business-elements text{white-space:pre}#diagram-modeling-business-elements a{cursor:pointer}</style><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><linearGradient id="diagram-modeling-business-elements-g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-modeling-business-elements-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-modeling-business-elements-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-modeling-business-elements-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-modeling-business-elements-g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-modeling-business-elements-g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-modeling-business-elements-g6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient></defs><rect x="126" y="10" width="708" height="780" fill="var(--diagram-canvas)"/><g class="drawio-edge" data-cell-id="edge-attributes" id="edge-attributes"><path d="M480,284 L480,232" fill="none" stroke="var(--diagram-muted)" stroke-width="1.3" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-relations" id="edge-relations"><path d="M580.61,342.27 L626.85,315.74" fill="none" stroke="var(--diagram-muted)" stroke-width="1.3" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-actions" id="edge-actions"><path d="M580.61,457.73 L626.85,484.26" fill="none" stroke="var(--diagram-muted)" stroke-width="1.3" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-events" id="edge-events"><path d="M480,516 L480,568" fill="none" stroke="var(--diagram-muted)" stroke-width="1.3" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-views" id="edge-views"><path d="M379.39,457.73 L333.15,484.26" fill="none" stroke="var(--diagram-muted)" stroke-width="1.3" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-permissions" id="edge-permissions"><path d="M379.39,342.27 L333.15,315.74" fill="none" stroke="var(--diagram-muted)" stroke-width="1.3" stroke-linejoin="round"/></g><g class="drawio-vertex" data-cell-id="business-model" id="business-model"><ellipse fill="url(#diagram-modeling-business-elements-g0)" stroke="var(--diagram-blue-ink)" stroke-width="1" stroke-linejoin="round" cx="480" cy="400" rx="104" ry="104"/></g><g class="drawio-vertex" data-cell-id="text-2" id="text-2"><rect fill="none" stroke="none" stroke-linejoin="round" x="380" y="358" width="200" height="36"/><g class="drawio-label"><text text-anchor="middle" font-size="28" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="480" y="385.41">业务模型</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-3" id="text-3"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="405" width="184" height="25"/><g class="drawio-label"><text text-anchor="middle" font-size="17" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="423.21">名称与命名空间</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-4" id="text-4"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="431" width="184" height="25"/><g class="drawio-label"><text text-anchor="middle" font-size="17" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="449.21">标题与说明</tspan></text></g></g><g class="drawio-vertex" data-cell-id="attributes" id="attributes"><ellipse fill="url(#diagram-modeling-business-elements-g1)" stroke="var(--diagram-blue-ink)" stroke-width="1.3" stroke-linejoin="round" cx="480" cy="120" rx="100" ry="100"/></g><g class="drawio-vertex" data-cell-id="text-5" id="text-5"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="70" width="184" height="30"/><g class="drawio-label"><text text-anchor="middle" font-size="22" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="480" y="92.39">属性</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-6" id="text-6"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="110" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="127.38">记录什么信息</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-7" id="text-7"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="136" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="153.38">类型、值域与校验约束</tspan></text></g></g><g class="drawio-vertex" data-cell-id="relations" id="relations"><ellipse fill="url(#diagram-modeling-business-elements-g2)" stroke="var(--diagram-blue-ink)" stroke-width="1.3" stroke-linejoin="round" cx="724" cy="260" rx="100" ry="100"/></g><g class="drawio-vertex" data-cell-id="text-8" id="text-8"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="210" width="184" height="30"/><g class="drawio-label"><text text-anchor="middle" font-size="22" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="724" y="232.39">关系</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-9" id="text-9"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="250" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="724" y="267.38">与哪些对象关联</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-10" id="text-10"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="276" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="724" y="293.38">关联方式与引用规则</tspan></text></g></g><g class="drawio-vertex" data-cell-id="actions" id="actions"><ellipse fill="url(#diagram-modeling-business-elements-g3)" stroke="var(--diagram-orange-ink)" stroke-width="1.3" stroke-linejoin="round" cx="724" cy="540" rx="100" ry="100"/></g><g class="drawio-vertex" data-cell-id="text-11" id="text-11"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="478" width="184" height="30"/><g class="drawio-label"><text text-anchor="middle" font-size="22" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-orange-ink)"><tspan x="724" y="500.39">动作</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-12" id="text-12"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="518" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="724" y="535.38">允许执行哪些操作</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-13" id="text-13"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="544" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="724" y="561.38">输入、前置条件</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-14" id="text-14"><rect fill="none" stroke="none" stroke-linejoin="round" x="632" y="570" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="724" y="587.38">与实现绑定</tspan></text></g></g><g class="drawio-vertex" data-cell-id="events" id="events"><ellipse fill="url(#diagram-modeling-business-elements-g4)" stroke="var(--diagram-orange-ink)" stroke-width="1.3" stroke-linejoin="round" cx="480" cy="680" rx="100" ry="100"/></g><g class="drawio-vertex" data-cell-id="text-15" id="text-15"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="630" width="184" height="30"/><g class="drawio-label"><text text-anchor="middle" font-size="22" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-orange-ink)"><tspan x="480" y="652.39">事件</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-16" id="text-16"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="670" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="687.38">哪些业务事实已经发生</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-17" id="text-17"><rect fill="none" stroke="none" stroke-linejoin="round" x="388" y="696" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="713.38">事件内容与订阅响应</tspan></text></g></g><g class="drawio-vertex" data-cell-id="views" id="views"><ellipse fill="url(#diagram-modeling-business-elements-g5)" stroke="var(--diagram-teal-ink)" stroke-width="1.3" stroke-linejoin="round" cx="236" cy="540" rx="100" ry="100"/></g><g class="drawio-vertex" data-cell-id="text-18" id="text-18"><rect fill="none" stroke="none" stroke-linejoin="round" x="144" y="490" width="184" height="30"/><g class="drawio-label"><text text-anchor="middle" font-size="22" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="236" y="512.39">视图</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-19" id="text-19"><rect fill="none" stroke="none" stroke-linejoin="round" x="144" y="530" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="236" y="547.38">如何查看和维护对象</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-20" id="text-20"><rect fill="none" stroke="none" stroke-linejoin="round" x="144" y="556" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="236" y="573.38">列表、表单与展示规则</tspan></text></g></g><g class="drawio-vertex" data-cell-id="permissions" id="permissions"><ellipse fill="url(#diagram-modeling-business-elements-g6)" stroke="var(--diagram-teal-ink)" stroke-width="1.3" stroke-linejoin="round" cx="236" cy="260" rx="100" ry="100"/></g><g class="drawio-vertex" data-cell-id="text-21" id="text-21"><rect fill="none" stroke="none" stroke-linejoin="round" x="144" y="210" width="184" height="30"/><g class="drawio-label"><text text-anchor="middle" font-size="22" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="236" y="232.39">访问权限</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-22" id="text-22"><rect fill="none" stroke="none" stroke-linejoin="round" x="144" y="250" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="236" y="267.38">谁可以访问或操作</tspan></text></g></g><g class="drawio-vertex" data-cell-id="text-23" id="text-23"><rect fill="none" stroke="none" stroke-linejoin="round" x="144" y="276" width="184" height="24"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="236" y="293.38">操作权限与数据范围</tspan></text></g></g></svg>
