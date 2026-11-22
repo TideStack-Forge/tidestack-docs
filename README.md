@@ -75,15 +75,19 @@ npm run check:capabilities
 修改共享配色后运行：
 
 ```bash
-npm run sync:diagrams
+npm run build:diagrams
 npm run check:diagrams
 ```
 
 同步命令把 CSS、渐变定义和点阵定义嵌入 SVG 和配套 HTML，图表离线打开仍能显示；`check:diagrams` 会检查这些内容是否一致。密集架构图以淡色区域承载中性卡片，图标配小底板，点阵只用于少数贯穿全图的侧栏。手册通过 `html[data-theme]` 设置 `color-scheme`，外部 SVG 中的 `prefers-color-scheme` 据此切换亮暗配色；直接打开 SVG 或 HTML 时跟随系统主题。页面 CSS 无法直接选择外部 SVG 的内部节点，新增样式应放在共享文件中再同步。
 
-企业级应用基座总览使用独立图稿 [`docs/concepts/architecture/.assets/tidestack-foundation-architecture.svg`](docs/concepts/architecture/.assets/tidestack-foundation-architecture.svg)。架构设计页与宣传资料共用这一份 SVG，图中的文字、专用样式、图标与许可证均保存在文件内；共享配色继续由同步命令维护。宣传介绍和能力对照保存在 [`../marketing/tidestack-foundation-architecture.md`](../marketing/tidestack-foundation-architecture.md)，不依赖 HTML 容器。
+可编辑的 `.drawio` 图稿集中在项目级 `docs/diagrams/`，按架构、模型、理念和开发指南分组。运行 `npm run build:diagrams` 会生成 `docs/.assets/diagrams/` 下的 SVG、独立预览 HTML 和校验清单。架构设计页与宣传资料共用生成结果。图稿维护流程见项目级说明，宣传介绍和能力对照保存在市场文档中。[图稿维护](../diagrams/README.md) · [市场文档](../marketing/tidestack-foundation-architecture.md)
 
-Markdown 继续以图片方式引用 SVG，现有 `external-svg-images` 插件与 `SvgViewer` 负责原图加载、放大、滚轮缩放和拖拽。维护图表时保留 `viewBox`、内容尺寸及外部图片引用。更新 `.drawio` 编辑源后，导出的 SVG 也需保留语义类并同步主题；`.drawio` 本身使用对应的亮色配色、渐变与图标，不参与网页主题切换。
+平台介绍中的功能全景以 `docs/diagrams/architecture/platform-functional-architecture.drawio` 为编辑源，配套 SVG 用于手册展示，HTML 用于独立预览。图按开发平台、配套工具、前端基座、后端基座和插件部署支持组织功能。draw.io 节点的 `capabilityIds` 对应能力目录中的稳定 ID，分组的 `sourceRefs` 指向功能依据，更新时保留这些属性并重新生成产物。[功能架构图](docs/.assets/diagrams/architecture/platform-functional-architecture.svg)
+
+Markdown 继续以图片方式引用 SVG，现有 `external-svg-images` 插件与 `SvgViewer` 负责原图加载、放大、滚轮缩放和拖拽。维护图表时修改 `docs/diagrams/` 下的 `.drawio` 源文件，然后运行 `npm run build:diagrams`。生成脚本负责导出 SVG、保留语义锚点并写入独立预览 HTML，随后同步共享主题；`npm run check:diagrams` 会检查源文件和生成产物是否一致。
+
+普通手册构建会先生成图稿。独立发布 handbook 时携带 `docs/.assets/diagrams/` 的全部生成产物，构建命令会按 `manifest.json` 校验文件完整性，可以在没有项目级图稿目录的环境中完成打包。渲染器固定为 `@dskripchenko/drawio@0.1.0`，由 npm 锁文件安装，运行时离线生成。
 
 ### 教程示例工程
 

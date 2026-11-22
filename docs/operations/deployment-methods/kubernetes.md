@@ -16,7 +16,7 @@ Kubernetes 后端用于承载测试应用和内部开发助手。开发平台可
 
 ## 部署架构
 
-![Kubernetes 部署主图：集群控制平面与节点池、命名空间内的平台和实例，以及外置 MySQL、RabbitMQ 与底层共享文件存储](../.assets/deployment-platform-kubernetes.svg)
+![Kubernetes 部署主图：集群控制平面与节点池、命名空间内的平台和实例，以及外置 MySQL、RabbitMQ 与底层共享文件存储](../../.assets/diagrams/deployment/deployment-platform-kubernetes.svg)
 
 主图采用平台与运行实例在同一集群、同一示例命名空间，MySQL、RabbitMQ 和共享文件服务外置的自行编排方案。平台 Pod 为单副本，每个测试应用和助手也为单副本；集群节点数、Controller 副本数、资源规格与数据服务冗余由实施方确定。已有集群或外部服务不应被默认视为高可用。
 
@@ -91,7 +91,7 @@ Compose 放入平台服务的 `environment`，Kubernetes 放入平台容器的 `
 
 选择 `KUBERNETES` / `TEMP_PORT`，平台创建单副本 Deployment 和 NodePort Service，流量经 Service 进入 Pod 的 `80` 端口，拓扑见 [NodePort 架构](../deployment-architecture#kubernetes-nodeport)。
 
-![Kubernetes NodePort 部署：平台调用 Kubernetes API 管理应用，浏览器经节点端口进入 Pod，平台与实例共享存储](../.assets/deployment-kubernetes-nodeport.svg)
+![Kubernetes NodePort 部署：平台调用 Kubernetes API 管理应用，浏览器经节点端口进入 Pod，平台与实例共享存储](../../.assets/diagrams/deployment/deployment-kubernetes-nodeport.svg)
 
 确认实际使用的 NodePort、用户可访问的节点地址及网络放行规则。当前实现根据应用、环境与实例类型计算 NodePort，并在 Service 中显式指定；需要核对集群允许的端口范围与占用情况，不沿用 Docker 的 `8000-9000` 配置范围。
 
@@ -101,7 +101,7 @@ Compose 放入平台服务的 `environment`，Kubernetes 放入平台容器的 `
 
 选择 `KUBERNETES` / `STABLE_DOMAIN`，并配置 `ingress-host-suffix`，平台创建单副本 Deployment、ClusterIP Service 和 Ingress，拓扑见 [Ingress 架构](../deployment-architecture#kubernetes-ingress)。
 
-![Kubernetes Ingress 部署：浏览器经 Ingress Controller 与 Service 访问应用 Pod，平台通过 Kubernetes API 管理资源并写入共享存储](../.assets/deployment-kubernetes-ingress.svg)
+![Kubernetes Ingress 部署：浏览器经 Ingress Controller 与 Service 访问应用 Pod，平台通过 Kubernetes API 管理资源并写入共享存储](../../.assets/diagrams/deployment/deployment-kubernetes-ingress.svg)
 
 部署前完成以下准备：
 
@@ -127,7 +127,7 @@ Pod 能启动不代表域名、Ingress 或调试端点能从用户网络访问�
 
 Kubernetes 开发助手使用 `INTERNAL_ONLY`。平台通过 Kubernetes API 管理助手 Deployment，助手读取共享 PVC，通过 RabbitMQ 的内部命令链路与平台配合，拓扑见 [Kubernetes 开发助手架构](../deployment-architecture#kubernetes-helper)。
 
-![Kubernetes 内部开发助手：平台通过 Kubernetes API 管理助手 Pod，通过 RabbitMQ 发送内部命令，平台与助手共享存储](../.assets/deployment-kubernetes-helper.svg)
+![Kubernetes 内部开发助手：平台通过 Kubernetes API 管理助手 Pod，通过 RabbitMQ 发送内部命令，平台与助手共享存储](../../.assets/diagrams/deployment/deployment-kubernetes-helper.svg)
 
 助手不需要测试应用的 NodePort 或 Ingress。确认客户端、权限、镜像、共享目录和消息连接后，用一次真实助手命令验证准备、执行与结果返回；调试会话另行验证生命周期和访问提示。
 

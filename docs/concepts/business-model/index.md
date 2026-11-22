@@ -46,7 +46,7 @@ toc_max_heading_level: 4
 
 ### 从业务定义到运行能力
 
-![标准业务模型的组成与投影](.assets/business-model-projection.svg)
+![标准业务模型的组成与投影](../../.assets/diagrams/modeling/business-model-projection.svg)
 
 图中上半部分是标准业务模型中的定义，下半部分是平台据此投影的模型与业务行为契约。投影随模型加载和构建完成，无需逐个手工新建这些下游定义。具体参与投影的内容取决于模型是否启用，以及视图、接口和标准能力的配置。
 

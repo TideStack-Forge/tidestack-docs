@@ -1,0 +1,231 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>功能归属、组织架构与权限约束</title><style>html,body{margin:0}.diagram-container{width:100%;overflow:auto}.diagram-container>svg{display:block;width:100%;height:auto;min-width:0}html[data-theme="light"] .ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+html[data-theme="dark"] .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" id="diagram-model-relations-authorization" class="drawio ts-diagram" width="916" height="484" viewBox="22 14 916 484" role="img" aria-labelledby="diagram-model-relations-authorization-title" style="max-width:100%;height:auto" data-source="docs/diagrams/modeling/model-relations-authorization.drawio"><rect x="22" y="14" width="916" height="484" fill="var(--diagram-canvas)"/><title id="diagram-model-relations-authorization-title">功能归属、组织架构与权限约束</title><style>#diagram-model-relations-authorization{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-model-relations-authorization text{white-space:pre}#diagram-model-relations-authorization a{cursor:pointer}</style><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><linearGradient id="diagram-model-relations-authorization-g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-model-relations-authorization-g8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient></defs><rect x="22" y="14" width="916" height="484" fill="var(--diagram-canvas)"/><g class="drawio-edge" data-cell-id="e07" id="e07"><path d="M256,72 L359.36,72" fill="none" stroke="var(--diagram-orange-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M368,72 L358.4,76.2 L358.4,67.8 Z" fill="var(--diagram-orange-ink)" stroke="var(--diagram-orange-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e06" id="e06"><path d="M592,72 L695.36,72" fill="none" stroke="var(--diagram-muted)" stroke-width="1.4" stroke-linejoin="round"/><path d="M704,72 L694.4,76.2 L694.4,67.8 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e09" id="e09"><path d="M208,120 L208,150 Q208,160 218,160 L390,160 Q400,160 400,170 L400,199.36" fill="none" stroke="var(--diagram-orange-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M400,208 L395.8,198.4 L404.2,198.4 Z" fill="var(--diagram-orange-ink)" stroke="var(--diagram-orange-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e32" id="e32"><path d="M80,208 L80,128.64" fill="none" stroke="var(--diagram-orange-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M80,120 L84.2,129.6 L75.8,129.6 Z" fill="var(--diagram-orange-ink)" stroke="var(--diagram-orange-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e11" id="e11"><path d="M144,304 L144,383.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.4" stroke-linejoin="round"/><path d="M144,392 L139.8,382.4 L148.2,382.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e10" id="e10"><path d="M480,392 L480,312.64" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M480,304 L484.2,313.6 L475.8,313.6 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e64" id="e64"><path d="M480,208 L480,128.64" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M480,120 L484.2,129.6 L475.8,129.6 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e65" id="e65"><path d="M592,232 L622,232 Q632,232 632,222 L632,170 Q632,160 642,160 L806,160 Q816,160 816,150 L816,128.64" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M816,120 L820.2,129.6 L811.8,129.6 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e66" id="e66"><path d="M592,256 L695.36,256" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M704,256 L694.4,260.2 L694.4,251.8 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="e67" id="e67"><path d="M592,280 L638,280 Q648,280 648,290 L648,430 Q648,440 658,440 L695.36,440" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M704,440 L694.4,444.2 L694.4,435.8 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="e07-label" id="e07-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="272" y="38" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-orange-ink)"><tspan x="312" y="56.38">组织菜单</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e06-label" id="e06-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="608" y="38" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="648" y="56.38">指向页面</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e09-label" id="e09-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="264" y="126" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-orange-ink)"><tspan x="304" y="144.38">归集权限</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e32-label" id="e32-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="92" y="158" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-orange-ink)"><tspan x="132" y="176.38">功能归属</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e11-label" id="e11-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="160" y="338" width="112" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="216" y="356.38">组织字段引用</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e10-label" id="e10-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="496" y="338" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="536" y="356.38">授予权限</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e64-label" id="e64-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="496" y="158" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="536" y="176.38">入口可见</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e65-label" id="e65-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="680" y="126" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="720" y="144.38">页面访问</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e66-label" id="e66-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="608" y="222" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="648" y="240.38">接口权限</tspan></text></g></g><g class="drawio-vertex" data-cell-id="e67-label" id="e67-label"><rect fill="var(--diagram-paper)" stroke="none" stroke-linejoin="round" x="672" y="346" width="80" height="26"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="Helvetica, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="712" y="364.38">数据权限</tspan></text></g></g><g class="drawio-vertex" data-cell-id="module" id="module"><rect fill="url(#diagram-model-relations-authorization-g0)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="32" y="24" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-violet-ink)"><tspan x="50" y="65.14"><tspan font-weight="bold">模块树</tspan></tspan><tspan x="50" y="96.34"><tspan font-size="17">功能归属、菜单与权限</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="menu" id="menu"><rect fill="url(#diagram-model-relations-authorization-g1)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-dasharray="3 3" stroke-linejoin="round" x="368" y="24" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-teal-ink)"><tspan x="386" y="65.14"><tspan font-weight="bold">菜单模型</tspan></tspan><tspan x="386" y="96.34"><tspan font-size="17">运行态导航入口</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="ui" id="ui"><rect fill="url(#diagram-model-relations-authorization-g2)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="704" y="24" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-teal-ink)"><tspan x="722" y="65.14"><tspan font-weight="bold">UI 模型</tspan></tspan><tspan x="722" y="96.34"><tspan font-size="17">页面入口与实现方式</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="business" id="business"><rect fill="url(#diagram-model-relations-authorization-g3)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="32" y="208" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-blue-ink)"><tspan x="50" y="249.14"><tspan font-weight="bold">业务模型</tspan></tspan><tspan x="50" y="280.34"><tspan font-size="17">属性、关系、视图与行为</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="authority" id="authority"><rect fill="url(#diagram-model-relations-authorization-g4)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-dasharray="3 3" stroke-linejoin="round" x="368" y="208" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-violet-ink)"><tspan x="386" y="249.14"><tspan font-weight="bold">权限模型</tspan></tspan><tspan x="386" y="280.34"><tspan font-size="17">页面、接口与数据权限</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="webapi" id="webapi"><rect fill="url(#diagram-model-relations-authorization-g5)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="704" y="208" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-blue-ink)"><tspan x="722" y="249.14"><tspan font-weight="bold">WebAPI 模型</tspan></tspan><tspan x="722" y="280.34"><tspan font-size="17">HTTP 契约与处理绑定</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="organization" id="organization"><rect fill="url(#diagram-model-relations-authorization-g6)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="32" y="392" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-violet-ink)"><tspan x="50" y="433.14"><tspan font-weight="bold">组织模型</tspan></tspan><tspan x="50" y="464.34"><tspan font-size="17">公司、部门、员工与任职</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="role" id="role"><rect fill="url(#diagram-model-relations-authorization-g7)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="368" y="392" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-violet-ink)"><tspan x="386" y="433.14"><tspan font-weight="bold">角色定义</tspan></tspan><tspan x="386" y="464.34"><tspan font-size="17">关联用户主体与权限</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="data" id="data"><rect fill="url(#diagram-model-relations-authorization-g8)" stroke="var(--diagram-sky-rule)" stroke-width="1" stroke-linejoin="round" x="704" y="392" width="224" height="96" rx="8"/><g class="drawio-label"><text text-anchor="start" font-size="26" fill="var(--diagram-sky-ink)"><tspan x="722" y="433.14"><tspan font-weight="bold">数据模型</tspan></tspan><tspan x="722" y="464.34"><tspan font-size="17">字段、关系与查询语义</tspan></tspan></text></g></g></svg></main></body></html>

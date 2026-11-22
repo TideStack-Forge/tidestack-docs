@@ -5,14 +5,15 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "npm run build:diagrams && docusaurus build",
+    "build:diagrams": "node scripts/build-diagrams.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "check:structure": "node --no-warnings scripts/check-handbook-structure.mjs",
     "check:capabilities": "node scripts/check-capability-catalog.mjs",
-    "check:diagrams": "node scripts/sync-diagram-styles.mjs --check",
+    "check:diagrams": "node scripts/build-diagrams.mjs --check && node scripts/sync-diagram-styles.mjs --check",
     "sync:diagrams": "node scripts/sync-diagram-styles.mjs",
     "sync:capabilities": "node scripts/check-capability-catalog.mjs --write-index",
     "package:examples": "python3 scripts/package-material-example.py",
@@ -35,6 +36,7 @@
     "react-zoom-pan-pinch": "^4.2.0"
   },
   "devDependencies": {
+    "@dskripchenko/drawio": "0.1.0",
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
     "@vitest/coverage-v8": "^4.1.10",

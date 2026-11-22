@@ -1,0 +1,511 @@
+{
+  "renderer": "@dskripchenko/drawio@0.1.0",
+  "generatorHash": "4d32c6dc23d005f7030f50767c686bb3817165609ae08223997a184e48fa07a2",
+  "themeHash": "7924546c11836f0ac929c3353c49d470c5738bf56ad37d21fb2e29143be96307",
+  "diagrams": [
+    {
+      "name": "architecture/application-request-sequence.drawio",
+      "sourceHash": "f06e1c076e9f400fc9329267189991edc7a74f5931d77be5644eb3e3520fc760",
+      "outputs": {
+        "svg": "c00e8cc8ed239ccca3a8ad880c600be018e30faaefc47dc7a18d03b4d84c915d",
+        "html": "2697233ff699f66d49b935884c17bdf8ccd2fc182ce1a5d79ffc79913f601a94"
+      }
+    },
+    {
+      "name": "architecture/authorization-path.drawio",
+      "sourceHash": "8464e630d181c431584c931d384b35747daf9dd991a67373982613ba75b43df3",
+      "outputs": {
+        "svg": "be787c96d9f41c2aa8a6736607d26e10abf1d8d89a6bc5fbf8d3db6324fc9016",
+        "html": "6707eae186c7a7fd7ac6870232c0ece48cd731c774e682d2ee798aa82d472b35"
+      }
+    },
+    {
+      "name": "architecture/backend-startup-lifecycle.drawio",
+      "sourceHash": "8d3369e3c2ba017650199b8e3bf2186596f21a359d03fe4bc43e6d96b976268b",
+      "outputs": {
+        "svg": "48fde23eb37197000f8e8f5c9271f357b2bf00ba15b12129b322eaf21b024235",
+        "html": "5b8e8ba66e60eafd06b35a97496fe302b859a94ea564f2e335789f4dc455742d"
+      }
+    },
+    {
+      "name": "architecture/backend-technical-architecture.drawio",
+      "sourceHash": "2dc08406bf049613ff853dd7ca301d12b04c0d856f9655779420771c469853d8",
+      "outputs": {
+        "svg": "a6ed1abca534a87b55b4eb2eb757d7f8a9642f34e9641b34f49cc05a316c0fda",
+        "html": "36569dbef2b16dfc25d08f98388dcdd02052670e6b8d5bee2206923f31503266"
+      }
+    },
+    {
+      "name": "architecture/business-event-delivery.drawio",
+      "sourceHash": "5101d42f5a140c03e7d931e0e1bd38537652250de6967c8a3f1fbbaf1dc9cb9b",
+      "outputs": {
+        "svg": "ad9924ac02d682d0b80c7d26c321483ee5bb64abb46375c4e9655c0cf6396000",
+        "html": "8da028c242acf391f6c44502496e9894beb02ec0748e79719ddcf1b36a951f73"
+      }
+    },
+    {
+      "name": "architecture/deployment-and-isolation.drawio",
+      "sourceHash": "fe6e479944287e2918e1b4c8a992ce89e52c715d6f77d0c423907ac9dfc00b8f",
+      "outputs": {
+        "svg": "9ff33263655ad9d38a9ac799f75b40bc43d3a0e37daf944cd8a24bd77d4a7cc0",
+        "html": "f27f9cb79a6371b99b16a71d37bf829d7397d49d6237ca360bfe643e414da56e"
+      }
+    },
+    {
+      "name": "architecture/development-debug-sequence.drawio",
+      "sourceHash": "5ab196aee0ea757562c73a4fcafbcd8f6ec206e115c04750e464874897fbd3a1",
+      "outputs": {
+        "svg": "6a5a2ff55c29c47f7f7a619801b77b31ea01d5b6200eadcde2fbc115e12955e2",
+        "html": "ffd22770b1e6ca22257e477b5e3db0e5aa8286067deb462abb3aae24533dd07e"
+      }
+    },
+    {
+      "name": "architecture/frontend-startup-lifecycle.drawio",
+      "sourceHash": "fa73af78d64c322a2514f4e724d59e667b3be066a4ff423dfcab6bbb3d070678",
+      "outputs": {
+        "svg": "73e4d5194abd2ea623733867912393d38b6987384920dac517804323eaff5507",
+        "html": "335df30b9e82f4e9377d5992be9f361a20cd8c74d4854e920e1210c4d31ad2f5"
+      }
+    },
+    {
+      "name": "architecture/frontend-technical-architecture.drawio",
+      "sourceHash": "ee681bf293edac1b890891c68b53c618599df2c3200251bd0bcf34c34f0dbf98",
+      "outputs": {
+        "svg": "28f2f2279832e523b77d21e953a9aec43af670f94b23a77b1cdc83d481f1fb46",
+        "html": "6b733ac0fa33de7cc5db4e267c2db5de7da4d33d4db3a62dca3a55439a3a9e4d"
+      }
+    },
+    {
+      "name": "architecture/ide-platform-collaboration.drawio",
+      "sourceHash": "81f9c04c6805ac958e4a88f09d4b78f064c459d6494d07131647b954b64c6203",
+      "outputs": {
+        "svg": "8ebe804bad83db4b2110c5ead1d0a74191a4207eba4ef7b2591882d98c259f12",
+        "html": "46246896df29a653fa2452892952b9065607900cc919dc5048f404cdd2ff098a"
+      }
+    },
+    {
+      "name": "architecture/message-notification.drawio",
+      "sourceHash": "68b70c1dab824bac78397a1c10d8107ff0ab30b979125349ae30c016c7d76139",
+      "outputs": {
+        "svg": "5109cca7bf7222d6f6babea35b013b7ceec4c066f8a10e57fbaaab85b5982fd8",
+        "html": "37457df5b9b9aeb5abc2d44e53a0d577d2ee1d41ca1f34c6016a5dec41a713bd"
+      }
+    },
+    {
+      "name": "architecture/metadata-assembly.drawio",
+      "sourceHash": "ac8116396f005ec6abc4d7d5b17d827caf8ec3e559bc1a9b4e8e9a79342167ea",
+      "outputs": {
+        "svg": "d2d3d9efc8d1fe019fc84ee16b0a11be9d64c8206309e514e95718e44c61e6bc",
+        "html": "145e07d950336a77135072168410b7c130246b5e0d618c5d968ec5aaa20892a2"
+      }
+    },
+    {
+      "name": "architecture/metadata-resolution.drawio",
+      "sourceHash": "3a1df6c4c9bc47d48962e73504446ce2d83fd03211cac94cf797af4562a01eba",
+      "outputs": {
+        "svg": "59a6cbef219f9cd144f09ba0c3505755927ff8b2438205a9de3446cb45986374",
+        "html": "8850f69587305791d91d5636b7b3935b91ea3955360274226bdb4f35f1ce2683"
+      }
+    },
+    {
+      "name": "architecture/platform-functional-architecture.drawio",
+      "sourceHash": "8b007ffd61fc8e3b1c3ddea62ad3d0b94859b2eb439675139bcc4364a5edceda",
+      "outputs": {
+        "svg": "e2ed7b20581607e13bc271816010e5fae3e3cf6dfc920e181feb0649ea74ce82",
+        "html": "6e535e56076ba45369bba3a01b143c88bff97e6ca43a21ddc2b069db97d29e6f"
+      }
+    },
+    {
+      "name": "architecture/platform-overall-architecture.drawio",
+      "sourceHash": "28eaf87a68250e47bb06bab5eaf1e42a2aa90d9c8896e621dc04b16a5fa9a451",
+      "outputs": {
+        "svg": "53b64ef68e0a93f74134681ccb10cf73529a1728f5abca9d91507dfb3f13012c",
+        "html": "167e15af9ecbd10d354a71fd4db1cbce4bc30feb0dbb23aaf9f3efee97ccd19b"
+      }
+    },
+    {
+      "name": "architecture/plugin-and-module-assembly.drawio",
+      "sourceHash": "32eed3d9cc6886939a611f447ef7f8e969a3427715a8c5609c658452f403db9a",
+      "outputs": {
+        "svg": "bbb0184c4939f0f7f8935334e262f136132d1dd3dfa319d9807b9ab66a3cf8b7",
+        "html": "8a444d58204c12c1fa289b001100e4c60ae628529d7f6ccf630a3ac4fcfdab75"
+      }
+    },
+    {
+      "name": "architecture/row-and-column-access-control.drawio",
+      "sourceHash": "29eacb684ca59abfc3c3e5891d171339ee09e3955cde74314282b807813d760b",
+      "outputs": {
+        "svg": "1f01b79d8595e41f818e0218a760aab7d9502a085a543617af98980201920039",
+        "html": "3b09ca5c792e0fc66d8d7e998d91ebece60baca2b5f61580363a4c7315667cf5"
+      }
+    },
+    {
+      "name": "architecture/runtime-base-overall-architecture.drawio",
+      "sourceHash": "78b565df7e3a3d8a1d490a54f2a3f31f8ff3e5b2417bedf08aa978ced89448a7",
+      "outputs": {
+        "svg": "8a0a4833a9deab3887afb5f651a13e0263a4934abb0fd6cfc8e9e7c01c9ed294",
+        "html": "ffb68252a37905cd865f858457d68c0d4c24c56a545711be9a83714aa433995d"
+      }
+    },
+    {
+      "name": "architecture/system-collaboration.drawio",
+      "sourceHash": "6fbebbe00587ac4a75119207c0e0e4b843b4630b75e8f68a18beda83e840a584",
+      "outputs": {
+        "svg": "31b12e845416db10391dee7dd0a748f6ab7c428e6fbe4e53bdd763221a88573f",
+        "html": "4576a76c7795515f6369d7b260024061931317f216b6091f909eb07777025da5"
+      }
+    },
+    {
+      "name": "architecture/task-scheduling.drawio",
+      "sourceHash": "ee68d5d7ad2b4774bb97af297a4a8ffb847d5543d4ec4e7a6f52f1c62eab373d",
+      "outputs": {
+        "svg": "746120b731be4f843020ea17e18b231f4f9229249ca1b50ae6b51709d8a7e1a4",
+        "html": "e694b2a88df31ca47a6c545d0b7cd9f56676965995d1693115cc8eb5e34d7364"
+      }
+    },
+    {
+      "name": "architecture/tidestack-foundation-architecture.drawio",
+      "sourceHash": "8fec2ed9517903e991b0a6fa9e1f62072e4a19f71d5d066df7b6887fca0fedc5",
+      "outputs": {
+        "svg": "0e50162f09bd98f4bef5b4b904d3ddcc605de1a67187466b3bec06235503ac87",
+        "html": "efc41bfe97d91ed170e52894495e6fb040d07dfbde072186cee0353194006899"
+      }
+    },
+    {
+      "name": "architecture/work-item-center.drawio",
+      "sourceHash": "baaf2e215e514250d79b6abb96f752c5e58241c7f89a84a0370336d2cf71fedb",
+      "outputs": {
+        "svg": "b701d842ac787ece8afb818b841d0d00a3ec51857778354f8a5815bcaa4d63bb",
+        "html": "1b36ca82a9a3e1a5d67dee90ccae95428c19a2942295e9ad920d7d5ae8f4d5eb"
+      }
+    },
+    {
+      "name": "deployment/deployment-docker-apisix.html",
+      "sourceHash": "b6bed49924d287db45eaebe778fbdb7d860e48cfab59a9520e11eead54bd1cc8",
+      "outputs": {
+        "svg": "13d38141e4776b97eebbf609bd29d533a73f384dd7ae359b5d7547fa708edfb9",
+        "html": "3f336dc602aa8fb5fec6c14d596a5ec6b4204c2e9bb6c6f62304a57bf19cc635"
+      }
+    },
+    {
+      "name": "deployment/deployment-docker-helper.html",
+      "sourceHash": "51e00d873ce88dfc5b0fddd081947ac1244c3f61075c63a7a327d3666458bfaf",
+      "outputs": {
+        "svg": "362f509a78a2319c8b9945c23805d6ca6ac7dbc122f179904ac2286e257e7259",
+        "html": "ea9e250c8e41cd3ec3eb36ecd50d4ccc744a58f68e661cd3e7885900ac6265a8"
+      }
+    },
+    {
+      "name": "deployment/deployment-docker-port.html",
+      "sourceHash": "c4e68ab8a9d2979878d7fd96047e11e496bae0bca6f637b1076bc953d10d79bb",
+      "outputs": {
+        "svg": "79fcd8b64dfe0f529e58f8ed636414cab252bac728ecd73bef22ca783687154e",
+        "html": "1a3fa4ef0df62ea735121a841e44d8950e22b957f68a6945b1a11bd3e3c9c3aa"
+      }
+    },
+    {
+      "name": "deployment/deployment-kubernetes-helper.html",
+      "sourceHash": "3f93e2a7afe39a19d8cc88c51ced042f101957cfdfe5bbfef584957964ad439e",
+      "outputs": {
+        "svg": "9c352e847e051981ffeb3c263d81c2d35349b5d98314a0ed1fa83e11c6c98b15",
+        "html": "cfbfe52ea1f15307e24214299db60df55ef76c567a8a441ed5ba1a7032fb3844"
+      }
+    },
+    {
+      "name": "deployment/deployment-kubernetes-ingress.html",
+      "sourceHash": "d1a09513883ef91031d773a11d10925248bb9107a52fb8ba8a65a0d247769e66",
+      "outputs": {
+        "svg": "1fc98d5a10949681b9b61cdde5343dd383d84dad9cbf5d34b568f53807b8225a",
+        "html": "a602a4e8ab0bd000d056e15a3aa54eb1e0a243e07639cf33db09fd0bdb148d63"
+      }
+    },
+    {
+      "name": "deployment/deployment-kubernetes-nodeport.html",
+      "sourceHash": "114662bc82bd834beb31fe4437bcad7c09b9915d8e2b14a598ca8ec68cb4c55a",
+      "outputs": {
+        "svg": "9b7bb3345c12bf8822e63f28513213bbe6a3aa0e33610e02eddca6595704c04f",
+        "html": "a4d8252537e7fb5ade919906cfd3923e42657b28845cf92d790634c8647d4d35"
+      }
+    },
+    {
+      "name": "deployment/deployment-platform-kubernetes.html",
+      "sourceHash": "f25574bd64de805b66e167d6cef82059d224976a94729a34f5606981cebaa757",
+      "outputs": {
+        "svg": "991401384400bad7e2447e17b902620a4209d6dd07cf11d2d4c325295a758c06",
+        "html": "68d2a63eaf6083b28197143335c2b1ac0d0070f900a024a08946e4fad1c19d58"
+      }
+    },
+    {
+      "name": "deployment/deployment-remote-docker.html",
+      "sourceHash": "654e7e8d8d5f9868adfcaa7b08a8e50ae515e2c674c9a6a0a89990174e74a48b",
+      "outputs": {
+        "svg": "1e75c33c5a4ba30572aff507a1a345b4ff07f83bb312dd294a560d68612f7c8e",
+        "html": "a43ab5628c36946dda39c5d5e86d8f1aa387ce0694e811d50f4ad8c9864e5885"
+      }
+    },
+    {
+      "name": "fusion-development/data-access-control-flow.drawio",
+      "sourceHash": "767d557c99ff0d5bc5acb0b57a8b82191016ac2e8d76089b1f73d237803c8854",
+      "outputs": {
+        "svg": "7493c0a8d400bf78191c4491fea9bb174f06773789f11c213ce6c4b93044334d",
+        "html": "a82440b7a807bca5cf8de445605183c70fa3cd742230129176d567aa04deb024"
+      }
+    },
+    {
+      "name": "fusion-development/local-ide-platform-debugging-sequence.drawio",
+      "sourceHash": "44cd279a587892045b266af9c39b9059aee6e6218bbad942ae080721690a396b",
+      "outputs": {
+        "svg": "ce95ea683c96b06e98cf3d0662f8659623fda87311a5202da580aa49b8a8a28c",
+        "html": "1189a0fb5a651dfc5b785dde09f1e66f4e7046bd20935df14a4e077e6e46fa73"
+      }
+    },
+    {
+      "name": "low-code/business-model-topology.drawio",
+      "sourceHash": "5a26e4044cc3bd7019273e5f0f5df0d5350d17ed6847e0ef938765bd5d6596c7",
+      "outputs": {
+        "svg": "46dafa1c9fb1e4c08d78d3708384124988e49894d6a1e925a944c6ac99c27fed",
+        "html": "8e88ce8e0f6427a7ca8a0f79a07d190b0e3b69e356f2453027b01f415211afd3"
+      }
+    },
+    {
+      "name": "modeling/ai-development-fusion.drawio",
+      "sourceHash": "885de7e8adc84c954e593e3b0cf16eda3f9eea1f3e4c79f03665637070f2d2f6",
+      "outputs": {
+        "svg": "4cdd2c5348df60c33e69ab508186f49d827856c989a26bafdbd3ddf37d2ee614",
+        "html": "6ba843af535630e8f1b2dc9d51d750656fe4ed90dd75b1c55ed985ad7d1839a2"
+      }
+    },
+    {
+      "name": "modeling/business-model-projection.drawio",
+      "sourceHash": "017fe56ddef7cd3456bec70cc37c820a85c568d8e7559f3762bf6c2f78759c65",
+      "outputs": {
+        "svg": "fa084942bf4e1c6cf68065338d49128a524aacdaa1057877475f744fac3a1acf",
+        "html": "b273102a8327f2db56a9946f968fb07f6968e2d96b1332d1560ba27ab848cc41"
+      }
+    },
+    {
+      "name": "modeling/business-semantics-lifecycle.drawio",
+      "sourceHash": "aa9cd2e60aea2995fdab4c6ffcd1df153c14214c1f17958cbd2ab98dfde29bff",
+      "outputs": {
+        "svg": "506f7aabf17463dccb24f1eefbd30732c0b2178b6b8caf3ea23401fbd9597b30",
+        "html": "1b70e1d3e52fa66abedead324dd05e72d10ae54bac2784b41f5f157d6a15f3d9"
+      }
+    },
+    {
+      "name": "modeling/complete-model-topology.drawio",
+      "sourceHash": "a448242081b016ad95064e1f1016971f12ce9b6f246cef84bbe2ab76083b89f4",
+      "outputs": {
+        "svg": "2bf21896b9b6c28d5d69c7ddf7adcb4041286581968a842675b4e1752779624d",
+        "html": "ab668600f5cf8dd2d3dfb4c935e570f074957b03b3ada7317d9b9e8d17fdf7a0"
+      }
+    },
+    {
+      "name": "modeling/data-model-relations.drawio",
+      "sourceHash": "c78d495c2af50260bea1497ab4aa2fcc2eb368ebdb1b056326c5f1194ba0ccc3",
+      "outputs": {
+        "svg": "3f9cc3467378aeebe0ce4347dc350213357021e566baa2de967d96bf71161892",
+        "html": "f9c830f5902ba98b8a472d86e1ca713cc7b0d57a119c8db5b5fb3993e63fd9ab"
+      }
+    },
+    {
+      "name": "modeling/data-model-runtime.drawio",
+      "sourceHash": "85b1f33e575c55aed7fbc2e6b0bf716382118c94327abda84d97770887300652",
+      "outputs": {
+        "svg": "269ea52928c266396e35a9c77de952e9b614eceabd1002ed4ce7945d2035e3bd",
+        "html": "66618471bee69415fce4d6e6fbebb7ffd2ad7304a73cd2baeafa51f52224155f"
+      }
+    },
+    {
+      "name": "modeling/low-high-code-fusion.drawio",
+      "sourceHash": "440d69c048a7c343ab959be681210319e0fe14b436f7b4efd899217facd00297",
+      "outputs": {
+        "svg": "7fc4003b2d1505ad2a79b2c36f741fde2e8f2cb7fdc7607a5e5a4600303788f6",
+        "html": "0b3a4059e8712fa2496dafd93dfc4ee509d07647dc6a8f93e15de25ce7a5eaa1"
+      }
+    },
+    {
+      "name": "modeling/metadata-layering.drawio",
+      "sourceHash": "6fa87f23b11bfefc90effc6d8031d90266ca80b4aad90aa580f77110c5b086b1",
+      "outputs": {
+        "svg": "b698edb636450492c30a844a23e9e276d4f3e0ceff9d1c5c80b16f02e9eaba04",
+        "html": "ab047b0ca402c19f2082abce939648b75c0c8fca6d58a1a4389472d0854daa0d"
+      }
+    },
+    {
+      "name": "modeling/model-relations-analytics.drawio",
+      "sourceHash": "1bbd8dac613b593421f8806e6a36430696181a91af4dd299c9c4efeb48d69eac",
+      "outputs": {
+        "svg": "ab0a9f17af90fca96b7a780c2d73fd8c09069f130fe989d41090fb9ff780bccb",
+        "html": "29a12d658bbec4e1777fe76a911e6684c1f891f9f540db27f7eb9e78a736fc56"
+      }
+    },
+    {
+      "name": "modeling/model-relations-approval.drawio",
+      "sourceHash": "608f0b9dd587e58455b65f7210600c733c3a994ffaf75adc29d1c671ffae44f7",
+      "outputs": {
+        "svg": "eec763bc6bacb6b1ca80440aae84b72230ed7adce64b930b3ab25722f800b561",
+        "html": "6eabc9906e65606780c2c21eb3c8b630e539e968ac9d01716bf7b289e6cab014"
+      }
+    },
+    {
+      "name": "modeling/model-relations-authorization.drawio",
+      "sourceHash": "51e37221af0b36f3cd801b396052ae69a31b3ec768525acbf6b8c42bb3b42937",
+      "outputs": {
+        "svg": "33f151fe3d6769e848b7588102cd30cc6b6a5d0796e254d8bf60869560914d4d",
+        "html": "0a6a153f13a8254a5a7cec221664bfdd22fc8f17f80b190e3761a3c19b499229"
+      }
+    },
+    {
+      "name": "modeling/model-relations-events.drawio",
+      "sourceHash": "edac46683e26d45010be739ff0fd9187cdacc3586c792c542c7b3ca45f020b52",
+      "outputs": {
+        "svg": "bf81cd5f0b28fda43613480118bcdd1a46c4ca5bd91ac10d40ba17c4366315a7",
+        "html": "5c3efa5ac5b1e022e611118ade44dc46cebafe45d944c95dc0b651a9f41a6568"
+      }
+    },
+    {
+      "name": "modeling/model-relations-execution.drawio",
+      "sourceHash": "a9e56f43e7a260c932bdf5febc9c34bae2367e933e89280f91d9a4dcd7345450",
+      "outputs": {
+        "svg": "9ba2d5e9712689f0e760f2e71f2ed2b65201e0e00ac9744944458eb2e8939e0f",
+        "html": "e957cee0cbc1ab57544a80dd74e9b8665b04a160ed16b7f09ae532a3c37d47c5"
+      }
+    },
+    {
+      "name": "modeling/model-relations-pages.drawio",
+      "sourceHash": "f1a401b7edb3013bf759468ff7d66601978fb0abedc97e4fd728caccce0d14b6",
+      "outputs": {
+        "svg": "24b8c480b54f9dcabba148cd8a11d0a01a655f97cb6bf08e34c799522e0fa501",
+        "html": "a96232bfb808f4018e137d61d9f4477ecc3916eccb69109f782cc48759f8b146"
+      }
+    },
+    {
+      "name": "modeling/model-relations-webapi.drawio",
+      "sourceHash": "e08131f6b67ab7565b62eb42798694d76176b472678811ec9de61eeed0ff5411",
+      "outputs": {
+        "svg": "56753f280e4a9a1ba1da6de52c57ef4f391b5c1a951dcd7e3f0f509d5e449ac1",
+        "html": "b06233a3a6447229b51eb0be7a65dd8fb526eaefc3191971a7959d733610069f"
+      }
+    },
+    {
+      "name": "modeling/model-relations-widgets.drawio",
+      "sourceHash": "438e41a2654a5e66477ca7b37aefe6e480b577120c5d5a7468100932c109b686",
+      "outputs": {
+        "svg": "4179021cb2b1f0b96c4118db40a95944e079f9fbbab43d93d3684e58546d8fd2",
+        "html": "d97a33cf12f81bceb5b07beac481649b570b0dc15c14e997dbe4daefac847ac8"
+      }
+    },
+    {
+      "name": "modeling/model-sources-and-lifecycle.drawio",
+      "sourceHash": "c674ef7f033284f497d153e3d2e6ae773d50d4141e1f3cbd882f27c42834b0b0",
+      "outputs": {
+        "svg": "6646bdfc4b028782971d9e8b9876b4aa7d799169c91b5cfe3f75ba4a5641ce9d",
+        "html": "e779a2d88f18886eb71d1c0a7fd7d1e9eff9793bf193c6876718fa6e72c2cf20"
+      }
+    },
+    {
+      "name": "modeling/modeling-business-elements.drawio",
+      "sourceHash": "78cb6bb99ea75ee13b0f84aa1ae8c581c8cfa76ae008f66a9dd6993b8820601b",
+      "outputs": {
+        "svg": "98b5597349f411812a03eec7066ed48a6b2742dc9d550dbbb5d0bae89eedd778",
+        "html": "7675d85f0b4226db34c30b5dde181248f7edcec4bbcd4130de76e245035ccca1"
+      }
+    },
+    {
+      "name": "modeling/modeling-definition-execution.drawio",
+      "sourceHash": "3fb4ce33d36e2c6513633ec0a44dc3e964bdf5d96cab2fdf80473a30b163b372",
+      "outputs": {
+        "svg": "13183a7d029a090ad09a416c24980de432a8d173a50dcbb198c0dd920f7df0fa",
+        "html": "ded154cfab3714eff44d7e0f748298166a629ccb730dba23da88984c8387f507"
+      }
+    },
+    {
+      "name": "modeling/modeling-design-analysis.drawio",
+      "sourceHash": "39173e78fc3d89e2fd4990d9863dcefa8acbd3371c9e768d65857e8b25c2ded0",
+      "outputs": {
+        "svg": "6837fba0ccb37bdd11c5f9229fa8339334ffcd16038303b681c35e5a2e1456ab",
+        "html": "3f3533f2b20c4ef2c581326cfb4ec289c0861a327184f6d65812eaaf6d5118b1"
+      }
+    },
+    {
+      "name": "modeling/modeling-evolution.drawio",
+      "sourceHash": "253bf7cccd1f8808f60502239d274549357c5ab344c8800665aa7902f4f699bd",
+      "outputs": {
+        "svg": "5f24940a8bff9e8548d00c854318723d20fe1009da2c4dc6d0eef17d474e5fb7",
+        "html": "60950f0c10cee5fddd6010a559c0f85244532d795b3f6ef5c18565bd05f740f1"
+      }
+    },
+    {
+      "name": "principles/advanced-productivity-principle.drawio",
+      "sourceHash": "7dfade06caa4db6795f6cf5d144e964ac46ce627df359fd2b79c1f746a29668b",
+      "outputs": {
+        "svg": "93540a37f6f5f06f9670439f47bd8066c50d0053d88214fa311f1dbfdb3afbae",
+        "html": "0b19475cff4d77a2011e4b5796a070a0e8b42d1e1959e79443ac074dd8aecfc0"
+      }
+    },
+    {
+      "name": "principles/business-semantics-centered.drawio",
+      "sourceHash": "5f83f900d97bc5d8f4d61f03d1487b65927aa78ea5ca27f2b3656bc991e51b01",
+      "outputs": {
+        "svg": "4f135d4242a3312b9bd06639275c0182421aabadd7e9db38426fa42cec352228",
+        "html": "b34ed1b86b3b7d5e76d9fc74e0070c75464420cbb366f8f4c4d429e4bcfd6e63"
+      }
+    },
+    {
+      "name": "principles/declarative-building.drawio",
+      "sourceHash": "7962f8eff543e1c39680c25f449755412c10e532a4ab2a9db9922fbfc002049e",
+      "outputs": {
+        "svg": "210366a146b4c80774490e0de9e46223436854a3213ec70142760392a56908d2",
+        "html": "105b2f96ebe8ed81d7f955c9d49950044b609394708a1ddedfc9894492b32327"
+      }
+    },
+    {
+      "name": "principles/experience-reuse-principle.drawio",
+      "sourceHash": "89f4a21f5505715b66297ec008cea171adb969ffded00c2a4fca9d4586102d38",
+      "outputs": {
+        "svg": "cd8e782260114cfc24c5f879807052e8ecd1b5bd96602536f5eecdc4ee6baae6",
+        "html": "77bddc389373772e3d0d5d3dfb10436e24d7649fb0424ee9f75e734c04779706"
+      }
+    },
+    {
+      "name": "principles/microkernel-plugin-principle.drawio",
+      "sourceHash": "13ac072fffdf8bf055a7ff2bda1ab7a231d3a27b331e3b0b4dd4f874d40b1836",
+      "outputs": {
+        "svg": "d0744af84da160cda08a56c0c3342e4674d77272aca97a0011ba436e172dcad3",
+        "html": "53cf50fc5b607fc279a656df02425ae23b959a585f63da24474ebe82bbb545e7"
+      }
+    },
+    {
+      "name": "principles/open-closed-principle.drawio",
+      "sourceHash": "c8bf457908d179fc5cb4d42ba6650fd506e3f7e521b97c01f2af0e4329f91dfc",
+      "outputs": {
+        "svg": "4839334e22105cafbf7433c045544a813f4341b29c731ee91eab216dd146c7b7",
+        "html": "87a4fe1f2b2692c1f9a8b58f5aaf107165a1a00cc620a0619a4f14b2b29b17f1"
+      }
+    },
+    {
+      "name": "principles/openness-principle.drawio",
+      "sourceHash": "50b5ef556cac411b30a7694a4df347d970ce601ae19105a62a6ba75620a34064",
+      "outputs": {
+        "svg": "eda8af41c646f4751d43a380e3b635e5807dc55d0a5964427fa89cb0f3d5c439",
+        "html": "3832fd45d1b3e7e771bb39199e8579de209d363c5d4f8209ffa348441399d518"
+      }
+    },
+    {
+      "name": "principles/pareto-principle.drawio",
+      "sourceHash": "411a82f00e0837c9efd59ebd2e067d5c0856d067fff5a782f110b91d1211c13c",
+      "outputs": {
+        "svg": "60628fdb69b77d89f687e10b9fc5570211b62dc5da83295f1d08605ee077e260",
+        "html": "bba89a2c48972ecd463623bc9010dcddf77f48db7d9e5cbd8cb327abcb4d6659"
+      }
+    },
+    {
+      "name": "principles/standards-first-principle.drawio",
+      "sourceHash": "f614fa2f92a37378bb2b4e481ccc5cb3c8a8868c3d2dd1c97fd87a28159bd5a3",
+      "outputs": {
+        "svg": "e3eab4bd216f3b350518f30e630862e1207d1f0a768b965b7e7aa84f47935e11",
+        "html": "fda5b9428f29865440a8d3cc2220b66df95de191e86a2f255c7215882c49b2e6"
+      }
+    }
+  ]
+}

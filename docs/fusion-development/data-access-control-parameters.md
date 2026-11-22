@@ -10,7 +10,7 @@ title: 数据权限参数的定义与使用
 
 ## 数据权限怎样生效
 
-![数据权限参数从权限定义、角色授权到数据操作生效的过程](.assets/data-access-control-flow.svg)
+![数据权限参数从权限定义、角色授权到数据操作生效的过程](../.assets/diagrams/fusion-development/data-access-control-flow.svg)
 
 权限定义决定授权界面能配置什么；管理员为角色保存的参数决定该角色的具体范围。执行数据操作时，后端解析这些参数，合并角色授予的范围，再与当前执行身份的授权边界求交，得到最终的行、字段约束。数据模型的 `AccessControl` 插件负责在查询和写入中执行约束。
 

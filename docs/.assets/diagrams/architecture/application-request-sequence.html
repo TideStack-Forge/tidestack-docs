@@ -1,0 +1,279 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>页面加载与业务请求协作</title><style>html,body{margin:0}.diagram-container{width:100%;overflow:auto}.diagram-container>svg{display:block;width:100%;height:auto;min-width:0}html[data-theme="light"] .ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+html[data-theme="dark"] .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" id="diagram-application-request-sequence" class="drawio ts-diagram" width="1356" height="1344" viewBox="22 14 1356 1344" role="img" aria-labelledby="diagram-application-request-sequence-title" style="max-width:100%;height:auto" data-source="docs/diagrams/architecture/application-request-sequence.drawio"><!--Lucide and Feather icon geometry. ISC and MIT licenses reproduced in generated SVG.
+
+    Embedded Lucide icon geometry: ISC License
+    Copyright (c) 2026 Lucide Icons and Contributors
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+    Feather-derived icon geometry: The MIT License (MIT)
+    Copyright (c) 2013-present Cole Bemis
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+  --><rect x="22" y="14" width="1356" height="1344" fill="var(--diagram-canvas)"/><title id="diagram-application-request-sequence-title">页面加载与业务请求协作</title><style>#diagram-application-request-sequence{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-application-request-sequence text{white-space:pre}#diagram-application-request-sequence a{cursor:pointer}</style><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><linearGradient id="diagram-application-request-sequence-g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-application-request-sequence-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-application-request-sequence-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-application-request-sequence-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-application-request-sequence-g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-application-request-sequence-g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient></defs><rect x="22" y="14" width="1356" height="1344" fill="var(--diagram-canvas)"/><g class="drawio-vertex" data-cell-id="branches" id="branches"><rect fill="url(#diagram-application-request-sequence-g0)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="312" y="448" width="1044" height="760" rx="8"/></g><g class="drawio-vertex" data-cell-id="branches-title" id="branches-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="332" y="458" width="1004" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-neutral-ink)"><tspan x="334" y="479.05">按接口契约选择执行路径</tspan></text></g></g><g class="drawio-edge" data-cell-id="edge-0" id="edge-0"><path d="M140,108 L140,1288" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-1" id="edge-1"><path d="M420,108 L420,1288" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-2" id="edge-2"><path d="M700,108 L700,1288" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-3" id="edge-3"><path d="M980,108 L980,1288" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-4" id="edge-4"><path d="M1260,108 L1260,1288" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-5" id="edge-5"><path d="M148,180 L403.36,180" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M412,180 L402.4,184.2 L402.4,175.8 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-6" id="edge-6"><path d="M412,244 L156.64,244" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M148,244 L157.6,239.8 L157.6,248.2 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-7" id="edge-7"><path d="M148,300 L222,300 Q232,300 232,310 L232,330 Q232,340 222,340 L156.64,340" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M148,340 L157.6,335.8 L157.6,344.2 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-8" id="edge-8"><path d="M148,420 L403.36,420" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M412,420 L402.4,424.2 L402.4,415.8 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-9" id="edge-9"><path d="M428,560 L683.36,560" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M692,560 L682.4,564.2 L682.4,555.8 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-10" id="edge-10"><path d="M708,624 L963.36,624" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M972,624 L962.4,628.2 L962.4,619.8 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-11" id="edge-11"><path d="M988,688 L1243.36,688" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1252,688 L1242.4,692.2 L1242.4,683.8 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-12" id="edge-12"><path d="M1252,752 L996.64,752" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M988,752 L997.6,747.8 L997.6,756.2 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-13" id="edge-13"><path d="M972,816 L716.64,816" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M708,816 L717.6,811.8 L717.6,820.2 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-14" id="edge-14"><path d="M692,880 L436.64,880" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M428,880 L437.6,875.8 L437.6,884.2 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-15" id="edge-15"><path d="M328,920 L1340,920" fill="none" stroke="var(--diagram-neutral-rule)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-16" id="edge-16"><path d="M428,1008 L963.36,1008" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M972,1008 L962.4,1012.2 L962.4,1003.8 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-17" id="edge-17"><path d="M988,1068 L1243.36,1068" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1252,1068 L1242.4,1072.2 L1242.4,1063.8 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-18" id="edge-18"><path d="M1252,1128 L996.64,1128" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M988,1128 L997.6,1123.8 L997.6,1132.2 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-19" id="edge-19"><path d="M972,1188 L436.64,1188" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M428,1188 L437.6,1183.8 L437.6,1192.2 Z" fill="var(--diagram-violet-ink)" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-20" id="edge-20"><path d="M412,1268 L156.64,1268" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M148,1268 L157.6,1263.8 L157.6,1272.2 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="a0" id="a0"><rect fill="url(#diagram-application-request-sequence-g1)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="32" y="24" width="216" height="76" rx="8"/></g><g class="drawio-vertex" data-cell-id="a0-heading" id="a0-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="38.5" width="200" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="140" y="60.38">前端基座</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a0-line0" id="a0-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="66.5" width="200" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="140" y="85.04">页面容器与交互</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a1" id="a1"><rect fill="url(#diagram-application-request-sequence-g2)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="312" y="24" width="216" height="76" rx="8"/></g><g class="drawio-vertex" data-cell-id="a1-heading" id="a1-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="320" y="38.5" width="200" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="420" y="60.38">接入与页面服务</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a1-line0" id="a1-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="320" y="66.5" width="200" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="420" y="85.04">接口分派与授权</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a2" id="a2"><rect fill="url(#diagram-application-request-sequence-g3)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="592" y="24" width="216" height="76" rx="8"/></g><g class="drawio-vertex" data-cell-id="a2-heading" id="a2-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="600" y="38.5" width="200" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-violet-ink)"><tspan x="700" y="60.38">业务动作运行时</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a2-line0" id="a2-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="600" y="66.5" width="200" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="700" y="85.04">契约／权限／事务</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a3" id="a3"><rect fill="url(#diagram-application-request-sequence-g4)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="872" y="24" width="216" height="76" rx="8"/></g><g class="drawio-vertex" data-cell-id="a3-heading" id="a3-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="880" y="38.5" width="200" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="980" y="60.38">逻辑流或代码</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a3-line0" id="a3-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="880" y="66.5" width="200" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="980" y="85.04">具体业务实现</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a4" id="a4"><rect fill="url(#diagram-application-request-sequence-g5)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="1152" y="24" width="216" height="76" rx="8"/></g><g class="drawio-vertex" data-cell-id="a4-heading" id="a4-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="1160" y="38.5" width="200" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="1260" y="60.38">数据访问服务</tspan></text></g></g><g class="drawio-vertex" data-cell-id="a4-line0" id="a4-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="1160" y="66.5" width="200" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="1260" y="85.04">动态数据模型</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label5" id="edge-label5"><rect fill="none" stroke="none" stroke-linejoin="round" x="176" y="146" width="208" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="280" y="165.38">取得菜单、路由与页面定义</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label6" id="edge-label6"><rect fill="none" stroke="none" stroke-linejoin="round" x="200" y="210" width="160" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="280" y="229.38">返回定义与资源入口</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label7" id="edge-label7"><rect fill="none" stroke="none" stroke-linejoin="round" x="240" y="296" width="200" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="340" y="305.78">Schema</tspan><tspan x="340" y="324.98">渲染／微前端加载</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label8" id="edge-label8"><rect fill="none" stroke="none" stroke-linejoin="round" x="196" y="386" width="168" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="280" y="395.78">HTTP</tspan><tspan x="280" y="414.98">请求与身份凭据</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label9" id="edge-label9"><rect fill="none" stroke="none" stroke-linejoin="round" x="480" y="526" width="160" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="560" y="545.38">进入业务动作运行时</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label10" id="edge-label10"><rect fill="none" stroke="none" stroke-linejoin="round" x="760" y="590" width="160" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="840" y="609.38">校验后调用绑定实现</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label11" id="edge-label11"><rect fill="none" stroke="none" stroke-linejoin="round" x="1040" y="654" width="160" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="1120" y="673.38">按模型契约读写数据</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label12" id="edge-label12"><rect fill="none" stroke="none" stroke-linejoin="round" x="1040" y="718" width="160" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="1120" y="737.38">返回数据与执行结果</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label13" id="edge-label13"><rect fill="none" stroke="none" stroke-linejoin="round" x="784" y="782" width="112" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="840" y="801.38">返回动作输出</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label14" id="edge-label14"><rect fill="none" stroke="none" stroke-linejoin="round" x="456" y="846" width="208" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="560" y="865.38">输出校验与事务／审计处理</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label16" id="edge-label16"><rect fill="none" stroke="none" stroke-linejoin="round" x="588" y="974" width="224" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="700" y="993.38">直接调用逻辑流或代码处理器</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label17" id="edge-label17"><rect fill="none" stroke="none" stroke-linejoin="round" x="1024" y="1034" width="192" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="1120" y="1053.38">按实现需要调用数据服务</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label18" id="edge-label18"><rect fill="none" stroke="none" stroke-linejoin="round" x="1080" y="1094" width="80" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="1120" y="1113.38">返回数据</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label19" id="edge-label19"><rect fill="none" stroke="none" stroke-linejoin="round" x="644" y="1154" width="112" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-violet-ink)"><tspan x="700" y="1173.38">返回处理结果</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label20" id="edge-label20"><rect fill="none" stroke="none" stroke-linejoin="round" x="200" y="1234" width="160" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="280" y="1253.38">返回响应并更新页面</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-0" id="note-0"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="126" width="88" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-muted)"><tspan x="42" y="147.05">打开页面</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-1" id="note-1"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="366" width="124" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-muted)"><tspan x="42" y="387.05">执行业务操作</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-2" id="note-2"><rect fill="none" stroke="none" stroke-linejoin="round" x="336" y="501" width="118" height="29"/><g class="drawio-label"><text text-anchor="start" font-size="17" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-muted)"><tspan x="338" y="521.21">业务动作接口</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-3" id="note-3"><rect fill="none" stroke="none" stroke-linejoin="round" x="336" y="941" width="186" height="29"/><g class="drawio-label"><text text-anchor="start" font-size="17" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-muted)"><tspan x="338" y="961.21">逻辑流接口／代码接口</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-4" id="note-4"><rect fill="none" stroke="none" stroke-linejoin="round" x="341.8" y="1313" width="716.4" height="29"/><g class="drawio-label"><text text-anchor="middle" font-size="17" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="700" y="1323.01">业务动作和普通接口保留不同入口；WebAPI</tspan><tspan x="700" y="1343.41">通过实现调用数据服务，不直接连接数据模型。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="diagram-style-icon-1" id="diagram-style-icon-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" x="44" y="40" width="28" height="28" preserveAspectRatio="none"><rect width="28" height="28" rx="6" fill="var(--diagram-paper)" stroke="var(--diagram-rule)" /><g transform="translate(4 4) scale(.833333)" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </g></svg></g><g class="drawio-vertex" data-cell-id="diagram-style-icon-2" id="diagram-style-icon-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" x="324" y="40" width="28" height="28" preserveAspectRatio="none"><rect width="28" height="28" rx="6" fill="var(--diagram-paper)" stroke="var(--diagram-rule)" /><g transform="translate(4 4) scale(.833333)" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2" />
+            <rect x="14" y="2" width="8" height="8" rx="1" />
+          </g></svg></g><g class="drawio-vertex" data-cell-id="diagram-style-icon-3" id="diagram-style-icon-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" x="604" y="40" width="28" height="28" preserveAspectRatio="none"><rect width="28" height="28" rx="6" fill="var(--diagram-paper)" stroke="var(--diagram-rule)" /><g transform="translate(4 4) scale(.833333)" fill="none" stroke="var(--diagram-violet-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 17H5M19 7h-9" />
+            <circle cx="17" cy="17" r="3" />
+            <circle cx="7" cy="7" r="3" />
+          </g></svg></g><g class="drawio-vertex" data-cell-id="diagram-style-icon-4" id="diagram-style-icon-4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" x="884" y="40" width="28" height="28" preserveAspectRatio="none"><rect width="28" height="28" rx="6" fill="var(--diagram-paper)" stroke="var(--diagram-rule)" /><g transform="translate(4 4) scale(.833333)" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z" />
+          </g></svg></g><g class="drawio-vertex" data-cell-id="diagram-style-icon-5" id="diagram-style-icon-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" x="1164" y="40" width="28" height="28" preserveAspectRatio="none"><rect width="28" height="28" rx="6" fill="var(--diagram-paper)" stroke="var(--diagram-rule)" /><g transform="translate(4 4) scale(.833333)" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" />
+            <rect width="20" height="8" x="2" y="14" rx="2" />
+            <path d="M6 6h.01M6 18h.01" />
+          </g></svg></g></svg></main></body></html>

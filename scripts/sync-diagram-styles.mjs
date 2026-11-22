@@ -7,6 +7,15 @@ const fills = '<defs id="handbook-diagram-fills">' + families.map(family =>
   `<linearGradient id="handbook-wash-${family}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-${family}-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient>`,
 ).join('') + '<pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs>'
 
+export function embedDiagramTheme(source, css) {
+  const theme = `<style id="handbook-diagram-theme">${css}</style>${fills}`
+  const withoutFills = source.replace(/<defs id="handbook-diagram-fills">[\s\S]*?<\/defs>/, '')
+  const previousTheme = /<style id="handbook-diagram-theme">[\s\S]*?<\/style>/
+  if (previousTheme.test(withoutFills)) return withoutFills.replace(previousTheme, () => theme)
+  if (/<defs\b[^>]*>/.test(withoutFills)) return withoutFills.replace(/<defs\b[^>]*>/, defs => defs + theme)
+  return withoutFills.replace(/<svg\b[^>]*>/, svg => `${svg}<defs>${theme}</defs>`)
+}
+
 async function diagramFiles(directory) {
   const entries = await readdir(directory, {withFileTypes: true})
   const nested = await Promise.all(entries.map(async (entry) => {
@@ -20,18 +29,11 @@ async function diagramFiles(directory) {
 /** Embed the canonical theme in opted-in SVGs and their HTML editing sources. */
 export async function syncDiagramStyles(handbookRoot, {check = false} = {}) {
   const css = await readFile(path.join(handbookRoot, 'src/css/diagrams.css'), 'utf8')
-  const theme = `<style id="handbook-diagram-theme">${css}</style>${fills}`
   const changed = []
   for (const file of await diagramFiles(path.join(handbookRoot, 'docs'))) {
     const source = await readFile(file, 'utf8')
     if (!/<svg\b[^>]*class="[^"]*\bts-diagram\b/.test(source)) continue
-    const withoutFills = source.replace(/<defs id="handbook-diagram-fills">[\s\S]*?<\/defs>/, '')
-    const previousTheme = /<style id="handbook-diagram-theme">[\s\S]*?<\/style>/
-    const next = previousTheme.test(withoutFills)
-      ? withoutFills.replace(previousTheme, () => theme)
-      : /<defs\b[^>]*>/.test(withoutFills)
-        ? withoutFills.replace(/<defs\b[^>]*>/, (defs) => defs + theme)
-        : withoutFills.replace(/<svg\b[^>]*>/, (svg) => `${svg}<defs>${theme}</defs>`)
+    const next = embedDiagramTheme(source, css)
     if (source === next) continue
     changed.push(path.relative(handbookRoot, file))
     if (!check) await writeFile(file, next)

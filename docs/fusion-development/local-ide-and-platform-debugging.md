@@ -11,7 +11,7 @@ IntelliJ IDEA 的 **TideStack Develop** 插件可以完成扩展上传和调试�
 
 ## 调试链路
 
-![本地 IDE、开发平台与测试实例的调试时序](.assets/local-ide-platform-debugging-sequence.svg)
+![本地 IDE、开发平台与测试实例的调试时序](../.assets/diagrams/fusion-development/local-ide-platform-debugging-sequence.svg)
 
 开发平台负责接收扩展包、控制测试实例和创建调试通道。浏览器发出的业务请求进入测试实例；实例执行到断点时暂停，经 JDWP 通道把调试信息传回 IDE。继续执行后，浏览器才会收到业务响应。
 

@@ -11,7 +11,7 @@ sidebar_position: 2
 
 ## 部署架构
 
-![Docker 与 APISIX 完整部署主图：同一宿主机上的共享网络、网关、配置存储、平台、测试应用、数据库、消息与持久化](../.assets/deployment-docker-apisix.svg)
+![Docker 与 APISIX 完整部署主图：同一宿主机上的共享网络、网关、配置存储、平台、测试应用、数据库、消息与持久化](../../.assets/diagrams/deployment/deployment-docker-apisix.svg)
 
 图中采用同一 Docker 宿主机和共享网络，平台、APISIX、MySQL、RabbitMQ 各一个实例；这种落位存在主机与单网关故障点。APISIX 所需配置存储及其副本、持久化由实施方准备，图示不承诺网关或数据库高可用。
 

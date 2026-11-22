@@ -1,0 +1,231 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关联键与关联填充</title><style>html,body{margin:0}.diagram-container{width:100%;overflow:auto}.diagram-container>svg{display:block;width:100%;height:auto;min-width:0}html[data-theme="light"] .ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+html[data-theme="dark"] .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" id="diagram-data-model-relations" class="drawio ts-diagram" width="900" height="684" viewBox="30 4 900 684" role="img" aria-labelledby="diagram-data-model-relations-title" style="max-width:100%;height:auto" data-source="docs/diagrams/modeling/data-model-relations.drawio"><rect x="30" y="4" width="900" height="684" fill="var(--diagram-canvas)"/><title id="diagram-data-model-relations-title">关联键与关联填充</title><style>#diagram-data-model-relations{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-data-model-relations text{white-space:pre}#diagram-data-model-relations a{cursor:pointer}</style><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><linearGradient id="diagram-data-model-relations-g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-data-model-relations-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-data-model-relations-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-data-model-relations-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient></defs><rect x="30" y="4" width="900" height="684" fill="var(--diagram-canvas)"/><g class="drawio-edge" data-cell-id="edge-0" id="edge-0"><path d="M376,224 L584,224" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/></g><g class="drawio-edge" data-cell-id="edge-1" id="edge-1"><path d="M208,336 L208,439.36" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M208,448 L203.8,438.4 L212.2,438.4 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-2" id="edge-2"><path d="M752,336 L752,439.36" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M752,448 L747.8,438.4 L756.2,438.4 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="asset" id="asset"><rect fill="url(#diagram-data-model-relations-g0)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="112" width="336" height="224" rx="8"/></g><g class="drawio-vertex" data-cell-id="asset-heading" id="asset-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="162" width="320" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="208" y="184.72">inventory.Asset</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-line0" id="asset-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="191" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="210.38">id: String</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-line1" id="asset-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="216" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="235.38">code: String</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-line2" id="asset-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="241" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="260.38">departmentId: String</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-line3" id="asset-line3"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="266" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="285.38">department: Model（虚拟）</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department" id="department"><rect fill="url(#diagram-data-model-relations-g1)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="584" y="112" width="336" height="224" rx="8"/></g><g class="drawio-vertex" data-cell-id="department-heading" id="department-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="174.5" width="320" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="752" y="197.22">organization.Department</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-line0" id="department-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="203.5" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="752" y="222.88">id: String</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-line1" id="department-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="228.5" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="752" y="247.88">name: String</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-line2" id="department-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="253.5" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="752" y="272.88">assets: Collection（虚拟）</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-result" id="asset-result"><rect fill="url(#diagram-data-model-relations-g2)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="448" width="336" height="152" rx="8"/></g><g class="drawio-vertex" data-cell-id="asset-result-heading" id="asset-result-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="475" width="320" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="208" y="496.88">资产查询结果</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-result-line0" id="asset-result-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="503" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="522.38">code: "A001"</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-result-line1" id="asset-result-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="528" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="547.38">department: { id: "D01",</tspan></text></g></g><g class="drawio-vertex" data-cell-id="asset-result-line2" id="asset-result-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="48" y="553" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="208" y="572.38">name: "研发部" }</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-result" id="department-result"><rect fill="url(#diagram-data-model-relations-g3)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="584" y="448" width="336" height="152" rx="8"/></g><g class="drawio-vertex" data-cell-id="department-result-heading" id="department-result-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="475" width="320" height="31"/><g class="drawio-label"><text text-anchor="middle" font-size="19" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="752" y="496.88">部门查询结果</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-result-line0" id="department-result-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="503" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="752" y="522.38">name: "研发部"</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-result-line1" id="department-result-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="528" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="752" y="547.38">assets: [ { code: "A001" },</tspan></text></g></g><g class="drawio-vertex" data-cell-id="department-result-line2" id="department-result-line2"><rect fill="none" stroke="none" stroke-linejoin="round" x="592" y="553" width="320" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="752" y="572.38">{ code: "A002" } ]</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label0" id="edge-label0"><rect fill="none" stroke="none" stroke-linejoin="round" x="432" y="180" width="96" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="199.38">关联键匹配</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-0" id="note-0"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="14" width="208" height="36"/><g class="drawio-label"><text text-anchor="start" font-size="24" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="42" y="40.06">关联键与关联填充</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-1" id="note-1"><rect fill="none" stroke="none" stroke-linejoin="round" x="40" y="54" width="416" height="28"/><g class="drawio-label"><text text-anchor="start" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="42" y="73.38">示例：资产属于一个部门，一个部门可以包含多项资产。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-2" id="note-2"><rect fill="none" stroke="none" stroke-linejoin="round" x="387.2" y="230" width="25.6" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-neutral-ink)"><tspan x="400" y="249.38">N</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-3" id="note-3"><rect fill="none" stroke="none" stroke-linejoin="round" x="547.2" y="230" width="25.6" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-neutral-ink)"><tspan x="560" y="249.38">1</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-4" id="note-4"><rect fill="none" stroke="none" stroke-linejoin="round" x="395.5" y="259" width="169" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-neutral-ink)"><tspan x="480" y="277.54">departmentId = id</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-5" id="note-5"><rect fill="none" stroke="none" stroke-linejoin="round" x="232" y="371" width="145" height="27"/><g class="drawio-label"><text text-anchor="start" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="234" y="389.54">填充 department</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-6" id="note-6"><rect fill="none" stroke="none" stroke-linejoin="round" x="619" y="371" width="109" height="27"/><g class="drawio-label"><text text-anchor="end" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-teal-ink)"><tspan x="726" y="389.54">填充 assets</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-7" id="note-7"><rect fill="none" stroke="none" stroke-linejoin="round" x="246.4" y="622" width="467.2" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-neutral-ink)"><tspan x="480" y="641.38">Model 返回单个关联对象；Collection 返回关联记录集合。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-8" id="note-8"><rect fill="none" stroke="none" stroke-linejoin="round" x="239.5" y="651" width="481" height="27"/><g class="drawio-label"><text text-anchor="middle" font-size="15" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="480" y="669.54">关联定义描述匹配方式，查询时通过 populate 选择要填充的内容。</tspan></text></g></g></svg></main></body></html>

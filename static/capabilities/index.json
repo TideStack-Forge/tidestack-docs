@@ -55,6 +55,10 @@
     {
       "id": "extension",
       "name": "装配与插件扩展"
+    },
+    {
+      "id": "work-management",
+      "name": "待办与工作管理"
     }
   ],
   "selectionRules": [
@@ -503,7 +507,7 @@
       "name": "消息通知与模板",
       "side": "backend",
       "category": "integration",
-      "summary": "按通知模板向站内信、邮件、短信及企业渠道发送通知。",
+      "summary": "按通知模板向站内信、邮件、短信及企业渠道发送通知，可携带关联工作项引用。",
       "useWhen": "业务事件或任务需要向人发送消息。",
       "access": [
         "metadata",
@@ -676,11 +680,11 @@
     },
     {
       "id": "be.analytics.dataset",
-      "name": "统计数据集与查询视图",
+      "name": "统计数据集执行",
       "side": "backend",
       "category": "analytics",
-      "summary": "按统计定义执行数据集和查询视图。",
-      "useWhen": "页面指标与报表需要统一的数据查询契约。",
+      "summary": "按数据集定义执行只读 SQL 查询，统一处理参数、数据权限和执行限制。",
+      "useWhen": "图表或复合业务视图需要复用查询口径。",
       "access": [
         "metadata",
         "java"
@@ -688,11 +692,11 @@
     },
     {
       "id": "be.analytics.report",
-      "name": "报表视图与统计看板",
+      "name": "图表与复合业务视图执行",
       "side": "backend",
       "category": "analytics",
-      "summary": "为统计视图和看板提供运行时执行接口。",
-      "useWhen": "多个图表需要复用已发布的统计资产。",
+      "summary": "按图表定义或复合业务视图配置执行查询并返回展示结果。",
+      "useWhen": "图表、仪表板或综合查询页面需要复用数据集。",
       "access": [
         "metadata",
         "module"
@@ -1220,11 +1224,11 @@
     },
     {
       "id": "fe.report-runtime",
-      "name": "报表视图运行组件",
+      "name": "图表运行组件",
       "side": "frontend",
       "category": "analytics",
-      "summary": "调用报表运行接口并展示已发布视图。",
-      "useWhen": "页面需要嵌入统计资产。",
+      "summary": "加载图表定义与数据，通过运行时组件渲染只读图表。",
+      "useWhen": "在页面或仪表板中复用统计图表。",
       "access": [
         "schema"
       ]
@@ -1293,6 +1297,66 @@
       "summary": "在编辑环境注册组件设计插件和动作配置面板。",
       "useWhen": "新增组件需要支持可视化配置。",
       "access": [
+        "sdk"
+      ]
+    },
+    {
+      "id": "be.work.source",
+      "name": "统一待办来源协议",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "以来源快照、参与关系、办理事实及 entry 契约接入不同业务的工作项。",
+      "useWhen": "审批或自定义业务需要汇集到同一待办中心。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.work.feature",
+      "name": "业务模型工作项特性",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "用 workItem 特性声明任务字段、动作、权限、页面及历史策略，并组合来源适配和变化事实。",
+      "useWhen": "已发布低代码业务需要直接接入待办中心。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.work.query",
+      "name": "待办中心与来源核权查询",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "提供待处理、暂停、办理历史、个人已关闭、事项动态、通知与筛选导出。",
+      "useWhen": "用户需要从统一入口查看工作并进入原业务页面办理。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "be.work.recovery",
+      "name": "待办投影修复与生命周期",
+      "side": "backend",
+      "category": "work-management",
+      "summary": "通过可靠回执、补齐对账、重驱、人工修复及保留策略维护待办投影。",
+      "useWhen": "来源变化投递失败或接入后需要补齐、核对与受控修复。",
+      "access": [
+        "module",
+        "java"
+      ]
+    },
+    {
+      "id": "fe.work-center",
+      "name": "待办入口与全局实时计数",
+      "side": "frontend",
+      "category": "work-management",
+      "summary": "通过会话常驻组件库维护待办快捷入口、菜单计数和页面失效刷新。",
+      "useWhen": "待办数字需要在离开中心页面后持续更新。",
+      "access": [
+        "module",
         "sdk"
       ]
     }

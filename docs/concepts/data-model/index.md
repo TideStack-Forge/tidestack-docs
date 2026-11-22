@@ -13,7 +13,7 @@ toc_max_heading_level: 3
 
 ## 从模型定义到数据访问
 
-![数据模型的定义来源与运行时访问](.assets/data-model-runtime.svg)
+![数据模型的定义来源与运行时访问](../../.assets/diagrams/modeling/data-model-runtime.svg)
 
 理解数据模型，需要区分三个对象：
 
@@ -187,7 +187,7 @@ WebAPI 定义 HTTP 接口契约，其绑定的业务动作、逻辑流或代码�
 
 ### 关联字段和关联键
 
-![数据模型关联键与关联填充](.assets/data-model-relations.svg)
+![数据模型关联键与关联填充](../../.assets/diagrams/modeling/data-model-relations.svg)
 
 数据模型使用关联值类型表达记录之间的联系。`Model` 面向一条关联记录，`Collection` 面向一组关联记录。业务模型中的主表、子表、引用等关系投影到数据层后，由这些字段和关联键承接数据访问。
 

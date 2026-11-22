@@ -11,7 +11,7 @@ sidebar_position: 3
 
 ## 部署架构
 
-![远程 Docker 双主机完整部署图：A 运行平台与 MySQL、RabbitMQ，B 运行测试应用和助手，两端挂载同一份共享文件存储](../.assets/deployment-remote-docker.svg)
+![远程 Docker 双主机完整部署图：A 运行平台与 MySQL、RabbitMQ，B 运行测试应用和助手，两端挂载同一份共享文件存储](../../.assets/diagrams/deployment/deployment-remote-docker.svg)
 
 图中明确采用平台、MySQL 与 RabbitMQ 位于主机 A，目标 Engine、测试应用和助手位于主机 B，共享文件服务单独准备的落位。数据库与消息也可外置；无论放在哪里，均需使用两端可达地址并识别单点。
 

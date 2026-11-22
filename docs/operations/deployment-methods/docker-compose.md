@@ -13,7 +13,7 @@ sidebar_position: 1
 
 ## 部署架构
 
-![Docker Compose 单机部署主图：平台、测试应用、内部助手、MySQL 与 RabbitMQ 同机，展示端口映射、持久化和单点](../.assets/deployment-docker-port.svg)
+![Docker Compose 单机部署主图：平台、测试应用、内部助手、MySQL 与 RabbitMQ 同机，展示端口映射、持久化和单点](../../.assets/diagrams/deployment/deployment-docker-port.svg)
 
 图中以一个宿主机承载平台、数据库、消息队列和按需实例，宿主机与本机磁盘是共同故障域。平台、MySQL 和 RabbitMQ 各为单实例；每个测试应用或助手也为单实例。Compose 模板没有统一设置 CPU、内存上限，需按容量规划配置。
 
@@ -241,4 +241,4 @@ docker compose exec -T ouroboros-develop sh -c 'test -w /app/deploy && test -d /
 
 标准 Docker 开发助手使用 `INTERNAL_ONLY`，与平台共享工作区，通过 RabbitMQ 完成内部命令，不作为公开的测试应用入口。镜像、消息凭据与连接地址应与平台配套，拓扑见 [Docker 开发助手架构](../deployment-architecture#docker-helper)。启用后用一次真实助手命令验证准备、执行和结果返回；调试与后端 API 会话按各自生命周期另行验证。
 
-![Docker 内部开发助手：平台通过 Docker API 管理助手，经 RabbitMQ 发送内部命令，平台与助手共享工作区](../.assets/deployment-docker-helper.svg)
+![Docker 内部开发助手：平台通过 Docker API 管理助手，经 RabbitMQ 发送内部命令，平台与助手共享工作区](../../.assets/diagrams/deployment/deployment-docker-helper.svg)

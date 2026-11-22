@@ -10,6 +10,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 开发一个功能时，可以先从这里找已有能力。前端基座提供页面渲染、导航、交互、认证和实时通信等入口；后端基座提供数据、业务行为、流程、集成及公共技术能力。选中能力后，展开接入条件，确认所需模块和配置，再进入对应指南。
 
+开发平台与基座分别提供哪些功能，可先查看 [平台功能全景](../overview#平台功能全景)。
+
 ## 从需求找入口
 
 | 要完成的事 | 优先查看 | 需要一起考虑 |
@@ -20,7 +22,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 | 调用外部系统并异步处理结果 | [外部接口](#be.integration.rpc)、[消息队列](#be.integration.mq)、[业务事件](#be.business.events) | 幂等、超时、重试及失败恢复 |
 | 定时或稍后执行处理 | [计划任务](#be.integration.cron)、[延迟任务](#be.integration.delayed) | 执行身份、互斥、取消和重复执行 |
 | 限制可见记录与可改字段 | [数据访问控制](#be.identity.data-control)、[数据权限插件](#be.data.access-plugin) | 自定义接口对约束的使用、后台身份 |
-| 搭建指标与用户工作台 | [统计数据集](#be.analytics.dataset)、[报表视图](#be.analytics.report)、[看板与小组件](#be.analytics.widget) | 资产发布、查询权限、前端展示 |
+| 搭建指标与用户工作台 | [统计数据集](#be.analytics.dataset)、[图表与复合业务视图](#be.analytics.report)、[看板与小组件](#be.analytics.widget) | 资产加载、查询权限、前端展示 |
+| 汇集审批与业务待办 | [待办来源协议](#be.work.source)、[业务模型工作项特性](#be.work.feature)、[待办中心](#be.work.query) | 来源核权、原业务页面办理、可靠投影与修复 |
 | 为应用增加 AI 功能 | [对话与向量](#be.ai.invocation)、[知识检索](#be.ai.retrieval)、[工具与策略](#be.ai.tools-policy) | 提供方凭据、知识内容、工具权限与副作用 |
 
 ## 能力目录

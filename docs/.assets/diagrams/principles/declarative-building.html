@@ -1,0 +1,231 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>声明式开发</title><style>html,body{margin:0}.diagram-container{width:100%;overflow:auto}.diagram-container>svg{display:block;width:100%;height:auto;min-width:0}html[data-theme="light"] .ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+html[data-theme="dark"] .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" id="diagram-declarative-building" class="drawio ts-diagram" width="1120" height="410" viewBox="40 60 1120 410" role="img" aria-labelledby="diagram-declarative-building-title" style="max-width:100%;height:auto" data-source="docs/diagrams/principles/declarative-building.drawio"><rect x="40" y="60" width="1120" height="410" fill="var(--diagram-canvas)"/><title id="diagram-declarative-building-title">声明式开发</title><style>#diagram-declarative-building{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-declarative-building text{white-space:pre}#diagram-declarative-building a{cursor:pointer}</style><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><linearGradient id="diagram-declarative-building-g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-declarative-building-g9" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient></defs><rect x="40" y="60" width="1120" height="410" fill="var(--diagram-canvas)"/><g class="drawio-vertex" data-cell-id="imperative-panel" id="imperative-panel"><rect fill="url(#diagram-declarative-building-g0)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="50" y="70" width="470" height="390" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="22" fill="var(--diagram-ink)"><tspan x="285" y="117.59"><tspan font-weight="bold">命令式编程</tspan></tspan><tspan x="285" y="143.99"><tspan fill="var(--diagram-muted)">关注“怎么做”</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="step-1" id="step-1"><rect fill="url(#diagram-declarative-building-g1)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="105" y="175" width="360" height="52" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="285" y="206.38"><tspan font-weight="bold">1　读取数据</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="step-2" id="step-2"><rect fill="url(#diagram-declarative-building-g2)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="105" y="247" width="360" height="52" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="285" y="278.38"><tspan font-weight="bold">2　判断条件</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="step-3" id="step-3"><rect fill="url(#diagram-declarative-building-g3)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="105" y="319" width="360" height="52" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="285" y="350.38"><tspan font-weight="bold">3　调用处理</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="step-4" id="step-4"><rect fill="url(#diagram-declarative-building-g4)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="105" y="391" width="360" height="52" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="285" y="422.38"><tspan font-weight="bold">4　检查权限</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="declarative-panel" id="declarative-panel"><rect fill="url(#diagram-declarative-building-g5)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="670" y="70" width="480" height="390" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="22" fill="var(--diagram-ink)"><tspan x="910" y="117.59"><tspan font-weight="bold">声明式开发</tspan></tspan><tspan x="910" y="143.99"><tspan fill="var(--diagram-blue-ink)">关注“做什么”</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="object" id="object"><rect fill="url(#diagram-declarative-building-g6)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="715" y="177" width="120" height="82" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="775" y="213.78"><tspan font-weight="bold">业务对象</tspan></tspan><tspan x="775" y="232.98"><tspan fill="var(--diagram-muted)" font-size="14">属性与关系</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="rule" id="rule"><rect fill="url(#diagram-declarative-building-g7)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="850" y="177" width="120" height="82" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="910" y="213.78"><tspan font-weight="bold">业务规则</tspan></tspan><tspan x="910" y="232.98"><tspan fill="var(--diagram-muted)" font-size="14">条件与约束</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="capability" id="capability"><rect fill="url(#diagram-declarative-building-g8)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="985" y="177" width="120" height="82" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-blue-ink)"><tspan x="1045" y="213.78"><tspan font-weight="bold">能力目标</tspan></tspan><tspan x="1045" y="232.98"><tspan fill="var(--diagram-muted)" font-size="14">页面与流程</tspan></tspan></text></g></g><g class="drawio-vertex" data-cell-id="platform" id="platform"><rect fill="url(#diagram-declarative-building-g9)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="745" y="330" width="330" height="94" rx="8"/><g class="drawio-label"><text text-anchor="middle" font-size="16" fill="var(--diagram-teal-ink)"><tspan x="910" y="372.78"><tspan font-weight="bold">平台解释结构化模型</tspan></tspan><tspan x="910" y="391.98"><tspan fill="var(--diagram-muted)" font-size="14">完成通用的数据、页面、接口、流程与权限实现</tspan></tspan></text></g></g><g class="drawio-edge" data-cell-id="step-edge-1" id="step-edge-1"><path d="M285,227 L285,238.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M285,247 L280.8,237.4 L289.2,237.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="step-edge-2" id="step-edge-2"><path d="M285,299 L285,310.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M285,319 L280.8,309.4 L289.2,309.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="step-edge-3" id="step-edge-3"><path d="M285,371 L285,382.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M285,391 L280.8,381.4 L289.2,381.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="focus-shift" id="focus-shift"><path d="M520,265 L661.36,265" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M670,265 L660.4,269.2 L660.4,260.8 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><g class="drawio-label"><rect x="511.38" y="247.2" width="167.24" height="35.6" fill="var(--diagram-paper)"/><text text-anchor="middle" font-size="14" fill="var(--diagram-blue-ink)"><tspan x="595" y="261.3">关注点上移</tspan><tspan x="595" y="278.1"><tspan fill="var(--diagram-muted)">从技术步骤回到业务意图</tspan></tspan></text></g></g><g class="drawio-edge" data-cell-id="object-platform" id="object-platform"><path d="M775,259 L775,321.36" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M775,330 L770.8,320.4 L779.2,320.4 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="rule-platform" id="rule-platform"><path d="M910,259 L910,321.36" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M910,330 L905.8,320.4 L914.2,320.4 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="capability-platform" id="capability-platform"><path d="M1045,259 L1045,321.36" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M1045,330 L1040.8,320.4 L1049.2,320.4 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g></svg></main></body></html>

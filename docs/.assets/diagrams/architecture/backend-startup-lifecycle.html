@@ -1,0 +1,271 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>后端基座启动生命周期</title><style>html,body{margin:0}.diagram-container{width:100%;overflow:auto}.diagram-container>svg{display:block;width:100%;height:auto;min-width:0}html[data-theme="light"] .ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+html[data-theme="dark"] .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }</style></head><body><main class="diagram-container"><svg xmlns="http://www.w3.org/2000/svg" id="diagram-backend-startup-lifecycle" class="drawio ts-diagram" width="1420" height="1464" viewBox="30 14 1420 1464" role="img" aria-labelledby="diagram-backend-startup-lifecycle-title" style="max-width:100%;height:auto" data-source="docs/diagrams/architecture/backend-startup-lifecycle.drawio"><!--Lucide and Feather icon geometry. ISC and MIT licenses reproduced in generated SVG.
+
+    Embedded Lucide icon geometry: ISC License
+    Copyright (c) 2026 Lucide Icons and Contributors
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+    Feather-derived icon geometry: The MIT License (MIT)
+    Copyright (c) 2013-present Cole Bemis
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+  --><rect x="30" y="14" width="1420" height="1464" fill="var(--diagram-canvas)"/><title id="diagram-backend-startup-lifecycle-title">后端基座启动生命周期</title><style>#diagram-backend-startup-lifecycle{font-family:var(--drawio-font-family, Helvetica, Arial, sans-serif);background:var(--drawio-background, transparent)}#diagram-backend-startup-lifecycle text{white-space:pre}#diagram-backend-startup-lifecycle a{cursor:pointer}</style><defs><style id="handbook-diagram-theme">/* TideStack diagram theme: approved against the live site's colors and style samples.
+ * Embedded with gradients by scripts/sync-diagram-styles.mjs for offline images.
+ * External SVGs follow the embedding image's color-scheme preference.
+ */
+.ts-diagram {
+  --diagram-canvas: #f8fafc;
+  --diagram-paper: #ffffff;
+  --diagram-ink: #0f172a;
+  --diagram-muted: #526176;
+  --diagram-rule: #e2e8f0;
+  --diagram-on-solid: #ffffff;
+  --diagram-neutral-surface: #f3f6fa;
+  --diagram-neutral-rule: #d5dee9;
+  --diagram-neutral-ink: #475569;
+  --diagram-blue-surface: #f1f6fc;
+  --diagram-blue-rule: #ceddec;
+  --diagram-blue-ink: #285988;
+  --diagram-teal-surface: #eff9f7;
+  --diagram-teal-rule: #c0ded7;
+  --diagram-teal-ink: #176b65;
+  --diagram-sky-surface: #f0f8fc;
+  --diagram-sky-rule: #c8e0eb;
+  --diagram-sky-ink: #28667e;
+  --diagram-violet-surface: #f7f4fb;
+  --diagram-violet-rule: #ddd3eb;
+  --diagram-violet-ink: #6b548c;
+  --diagram-indigo-surface: #f5f5fb;
+  --diagram-indigo-rule: #d6d8eb;
+  --diagram-indigo-ink: #565d8a;
+  --diagram-rose-surface: #fcf4f7;
+  --diagram-rose-rule: #ead2dd;
+  --diagram-rose-ink: #91546f;
+  --diagram-orange-surface: #fcf8f0;
+  --diagram-orange-rule: #e8dac0;
+  --diagram-orange-ink: #896336;
+  --diagram-font: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  fill: var(--diagram-ink);
+  background: var(--diagram-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ts-diagram {
+    --diagram-canvas: #06080c;
+    --diagram-paper: #0b0f17;
+    --diagram-ink: #f8fafc;
+    --diagram-muted: #a4b1c3;
+    --diagram-rule: #273344;
+    --diagram-on-solid: #0b0f17;
+    --diagram-neutral-surface: #111827;
+    --diagram-neutral-rule: #2b3749;
+    --diagram-neutral-ink: #becada;
+    --diagram-blue-surface: #121f30;
+    --diagram-blue-rule: #2d435d;
+    --diagram-blue-ink: #a9c9ee;
+    --diagram-teal-surface: #102725;
+    --diagram-teal-rule: #2c504a;
+    --diagram-teal-ink: #94d6c9;
+    --diagram-sky-surface: #11232e;
+    --diagram-sky-rule: #2b4c5e;
+    --diagram-sky-ink: #a1d0e3;
+    --diagram-violet-surface: #221c30;
+    --diagram-violet-rule: #473957;
+    --diagram-violet-ink: #cdb8e5;
+    --diagram-indigo-surface: #1e2032;
+    --diagram-indigo-rule: #3e425f;
+    --diagram-indigo-ink: #bfc3e9;
+    --diagram-rose-surface: #2b1c27;
+    --diagram-rose-rule: #573a4b;
+    --diagram-rose-ink: #e1b1c6;
+    --diagram-orange-surface: #2b2318;
+    --diagram-orange-rule: #574732;
+    --diagram-orange-ink: #e3c495;
+  }
+}
+
+.ts-diagram text { font-family: var(--diagram-font); }
+.ts-diagram .diagram-paper { fill: var(--diagram-paper); }
+.ts-diagram .diagram-ink { fill: var(--diagram-ink); }
+.ts-diagram .diagram-muted { fill: var(--diagram-muted); }
+.ts-diagram .diagram-on-solid { fill: var(--diagram-on-solid); }
+.ts-diagram .diagram-border { stroke: var(--diagram-rule); }
+.ts-diagram .diagram-paper-border { stroke: var(--diagram-paper); }
+.ts-diagram .diagram-line { stroke: var(--diagram-muted); }
+
+.ts-diagram .diagram-surface-neutral { fill: var(--diagram-neutral-surface); }
+.ts-diagram .diagram-border-neutral { stroke: var(--diagram-neutral-rule); }
+.ts-diagram .diagram-label-neutral { fill: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-link-neutral { stroke: var(--diagram-neutral-ink); }
+.ts-diagram .diagram-stop-neutral { stop-color: var(--diagram-neutral-surface); }
+
+.ts-diagram .diagram-surface-blue { fill: var(--diagram-blue-surface); }
+.ts-diagram .diagram-border-blue { stroke: var(--diagram-blue-rule); }
+.ts-diagram .diagram-label-blue { fill: var(--diagram-blue-ink); }
+.ts-diagram .diagram-link-blue { stroke: var(--diagram-blue-ink); }
+.ts-diagram .diagram-stop-blue { stop-color: var(--diagram-blue-surface); }
+
+.ts-diagram .diagram-surface-teal { fill: var(--diagram-teal-surface); }
+.ts-diagram .diagram-border-teal { stroke: var(--diagram-teal-rule); }
+.ts-diagram .diagram-label-teal { fill: var(--diagram-teal-ink); }
+.ts-diagram .diagram-link-teal { stroke: var(--diagram-teal-ink); }
+.ts-diagram .diagram-stop-teal { stop-color: var(--diagram-teal-surface); }
+
+.ts-diagram .diagram-surface-sky { fill: var(--diagram-sky-surface); }
+.ts-diagram .diagram-border-sky { stroke: var(--diagram-sky-rule); }
+.ts-diagram .diagram-label-sky { fill: var(--diagram-sky-ink); }
+.ts-diagram .diagram-link-sky { stroke: var(--diagram-sky-ink); }
+.ts-diagram .diagram-stop-sky { stop-color: var(--diagram-sky-surface); }
+
+.ts-diagram .diagram-surface-violet { fill: var(--diagram-violet-surface); }
+.ts-diagram .diagram-border-violet { stroke: var(--diagram-violet-rule); }
+.ts-diagram .diagram-label-violet { fill: var(--diagram-violet-ink); }
+.ts-diagram .diagram-link-violet { stroke: var(--diagram-violet-ink); }
+.ts-diagram .diagram-stop-violet { stop-color: var(--diagram-violet-surface); }
+
+.ts-diagram .diagram-surface-indigo { fill: var(--diagram-indigo-surface); }
+.ts-diagram .diagram-border-indigo { stroke: var(--diagram-indigo-rule); }
+.ts-diagram .diagram-label-indigo { fill: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-link-indigo { stroke: var(--diagram-indigo-ink); }
+.ts-diagram .diagram-stop-indigo { stop-color: var(--diagram-indigo-surface); }
+
+.ts-diagram .diagram-surface-rose { fill: var(--diagram-rose-surface); }
+.ts-diagram .diagram-border-rose { stroke: var(--diagram-rose-rule); }
+.ts-diagram .diagram-label-rose { fill: var(--diagram-rose-ink); }
+.ts-diagram .diagram-link-rose { stroke: var(--diagram-rose-ink); }
+.ts-diagram .diagram-stop-rose { stop-color: var(--diagram-rose-surface); }
+
+.ts-diagram .diagram-surface-orange { fill: var(--diagram-orange-surface); }
+.ts-diagram .diagram-border-orange { stroke: var(--diagram-orange-rule); }
+.ts-diagram .diagram-label-orange { fill: var(--diagram-orange-ink); }
+.ts-diagram .diagram-link-orange { stroke: var(--diagram-orange-ink); }
+.ts-diagram .diagram-stop-orange { stop-color: var(--diagram-orange-surface); }
+
+.ts-diagram .diagram-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.ts-diagram .diagram-canvas { fill: var(--diagram-canvas); }
+.ts-diagram .diagram-shell,
+.ts-diagram .diagram-card { fill: var(--diagram-paper); stroke: var(--diagram-rule); }
+.ts-diagram .diagram-icon-plate {
+  fill: var(--diagram-paper);
+  stroke: var(--diagram-rule);
+  stroke-width: 1;
+}
+.ts-diagram .diagram-texture {
+  fill: url(#handbook-rail-dots);
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+.ts-diagram .diagram-lifeline { opacity: .5; }
+.ts-diagram .diagram-wash-neutral { fill: url(#handbook-wash-neutral); }
+.ts-diagram .diagram-wash-blue { fill: url(#handbook-wash-blue); }
+.ts-diagram .diagram-wash-teal { fill: url(#handbook-wash-teal); }
+.ts-diagram .diagram-wash-sky { fill: url(#handbook-wash-sky); }
+.ts-diagram .diagram-wash-violet { fill: url(#handbook-wash-violet); }
+.ts-diagram .diagram-wash-indigo { fill: url(#handbook-wash-indigo); }
+.ts-diagram .diagram-wash-rose { fill: url(#handbook-wash-rose); }
+.ts-diagram .diagram-wash-orange { fill: url(#handbook-wash-orange); }
+</style><defs id="handbook-diagram-fills"><linearGradient id="handbook-wash-neutral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-violet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-indigo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-indigo-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="handbook-wash-orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--diagram-orange-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><pattern id="handbook-rail-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="var(--diagram-muted)"/></pattern></defs><linearGradient id="diagram-backend-startup-lifecycle-g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-neutral-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-blue-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-violet-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-sky-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-teal-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient><linearGradient id="diagram-backend-startup-lifecycle-g8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--diagram-rose-surface)"/><stop offset="1" stop-color="var(--diagram-paper)"/></linearGradient></defs><rect x="30" y="14" width="1420" height="1464" fill="var(--diagram-canvas)"/><g class="drawio-vertex" data-cell-id="refresh-phases" id="refresh-phases"><rect fill="var(--diagram-paper)" stroke="var(--diagram-rule)" stroke-width="1" stroke-linejoin="round" x="40" y="216" width="1400" height="1008" rx="10"/></g><g class="drawio-vertex" data-cell-id="refresh-phases-title" id="refresh-phases-title"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="226" width="1332" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="90" y="247.05">上下文刷新阶段 · 同步发布事件，模块按监听顺序执行</tspan></text></g></g><g class="drawio-edge" data-cell-id="edge-0" id="edge-0"><path d="M408,400 L408,415.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,424 L403.8,414.4 L412.2,414.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-1" id="edge-1"><path d="M408,552 L408,567.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,576 L403.8,566.4 L412.2,566.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-2" id="edge-2"><path d="M408,704 L408,719.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,728 L403.8,718.4 L412.2,718.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-3" id="edge-3"><path d="M408,856 L408,871.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,880 L403.8,870.4 L412.2,870.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-4" id="edge-4"><path d="M408,1008 L408,1023.36" fill="none" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,1032 L403.8,1022.4 L412.2,1022.4 Z" fill="var(--diagram-muted)" stroke="var(--diagram-muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-5" id="edge-5"><path d="M408,168 L408,263.36" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,272 L403.8,262.4 L412.2,262.4 Z" fill="var(--diagram-blue-ink)" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-6" id="edge-6"><path d="M408,1160 L408,1279.36" fill="none" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round"/><path d="M408,1288 L403.8,1278.4 L412.2,1278.4 Z" fill="var(--diagram-teal-ink)" stroke="var(--diagram-teal-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-edge" data-cell-id="edge-7" id="edge-7"><path d="M1148,1232 L1148,1279.36" fill="none" stroke="var(--diagram-rose-ink)" stroke-width="1.5" stroke-dasharray="4.5 4.5" stroke-linejoin="round"/><path d="M1148,1288 L1143.8,1278.4 L1152.2,1278.4 Z" fill="var(--diagram-rose-ink)" stroke="var(--diagram-rose-ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></g><g class="drawio-vertex" data-cell-id="process" id="process"><rect fill="url(#diagram-backend-startup-lifecycle-g0)" stroke="var(--diagram-neutral-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="24" width="1320" height="136" rx="8"/></g><g class="drawio-vertex" data-cell-id="process-heading" id="process-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="55" width="1304" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-neutral-ink)"><tspan x="740" y="77.72">启动进程与装配模块</tspan></text></g></g><g class="drawio-vertex" data-cell-id="process-line0" id="process-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="84" width="1304" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="740" y="103.38">Spring Boot 创建上下文，装配模块、插件及基础服务</tspan></text></g></g><g class="drawio-vertex" data-cell-id="process-line1" id="process-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="109" width="1304" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="740" y="128.38">应用运行时准备应用元数据目录、AppContext 与控制消息监听</tspan></text></g></g><g class="drawio-vertex" data-cell-id="context-refreshing" id="context-refreshing"><rect fill="url(#diagram-backend-startup-lifecycle-g1)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="280" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="context-refreshing-heading" id="context-refreshing-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="311.5" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="408" y="334.22">①  开始刷新上下文</tspan></text></g></g><g class="drawio-vertex" data-cell-id="context-refreshing-line0" id="context-refreshing-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="340.5" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="359.88">OuroborosContextRefreshingEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="metadata-refreshing" id="metadata-refreshing"><rect fill="url(#diagram-backend-startup-lifecycle-g2)" stroke="var(--diagram-blue-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="432" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="metadata-refreshing-heading" id="metadata-refreshing-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="463.5" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-blue-ink)"><tspan x="408" y="486.22">②  刷新元数据</tspan></text></g></g><g class="drawio-vertex" data-cell-id="metadata-refreshing-line0" id="metadata-refreshing-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="492.5" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="511.88">OuroborosMetadataRefreshingEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="metadata-refreshed" id="metadata-refreshed"><rect fill="url(#diagram-backend-startup-lifecycle-g3)" stroke="var(--diagram-violet-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="584" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="metadata-refreshed-heading" id="metadata-refreshed-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="615.5" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-violet-ink)"><tspan x="408" y="638.22">③  元数据刷新完成</tspan></text></g></g><g class="drawio-vertex" data-cell-id="metadata-refreshed-line0" id="metadata-refreshed-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="644.5" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="663.88">OuroborosMetadataRefreshedEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="model-refreshing" id="model-refreshing"><rect fill="url(#diagram-backend-startup-lifecycle-g4)" stroke="var(--diagram-sky-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="736" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="model-refreshing-heading" id="model-refreshing-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="767.5" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-sky-ink)"><tspan x="408" y="790.22">④  刷新运行时模型</tspan></text></g></g><g class="drawio-vertex" data-cell-id="model-refreshing-line0" id="model-refreshing-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="796.5" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="815.88">OuroborosModelRefreshingEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="model-refreshed" id="model-refreshed"><rect fill="url(#diagram-backend-startup-lifecycle-g5)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="888" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="model-refreshed-heading" id="model-refreshed-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="919.5" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="408" y="942.22">⑤  模型刷新完成</tspan></text></g></g><g class="drawio-vertex" data-cell-id="model-refreshed-line0" id="model-refreshed-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="948.5" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="967.88">OuroborosModelRefreshedEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="context-refreshed" id="context-refreshed"><rect fill="url(#diagram-backend-startup-lifecycle-g6)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="1040" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="context-refreshed-heading" id="context-refreshed-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="1071.5" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="408" y="1094.22">⑥  上下文刷新完成</tspan></text></g></g><g class="drawio-vertex" data-cell-id="context-refreshed-line0" id="context-refreshed-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="1100.5" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="1119.88">OuroborosContextRefreshedEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ready" id="ready"><rect fill="url(#diagram-backend-startup-lifecycle-g7)" stroke="var(--diagram-teal-rule)" stroke-width="1" stroke-linejoin="round" x="80" y="1296" width="656" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="ready-heading" id="ready-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="1315" width="640" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-teal-ink)"><tspan x="408" y="1337.72">READY · 开始服务业务请求</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ready-line0" id="ready-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="1344" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="1363.38">生命周期防护放行请求</tspan></text></g></g><g class="drawio-vertex" data-cell-id="ready-line1" id="ready-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="88" y="1369" width="640" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="408" y="1388.38">受稳定上下文保护的业务执行继续进行</tspan></text></g></g><g class="drawio-vertex" data-cell-id="failed" id="failed"><rect fill="url(#diagram-backend-startup-lifecycle-g8)" stroke="var(--diagram-rose-rule)" stroke-width="1" stroke-linejoin="round" x="896" y="1296" width="504" height="112" rx="8"/></g><g class="drawio-vertex" data-cell-id="failed-heading" id="failed-heading"><rect fill="none" stroke="none" stroke-linejoin="round" x="904" y="1315" width="488" height="32"/><g class="drawio-label"><text text-anchor="middle" font-size="20" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-weight="bold" fill="var(--diagram-rose-ink)"><tspan x="1148" y="1337.72">FAILED · 终止本轮刷新</tspan></text></g></g><g class="drawio-vertex" data-cell-id="failed-line0" id="failed-line0"><rect fill="none" stroke="none" stroke-linejoin="round" x="904" y="1344" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="1148" y="1363.38">记录失败阶段及模块，返回 HTTP 500</tspan></text></g></g><g class="drawio-vertex" data-cell-id="failed-line1" id="failed-line1"><rect fill="none" stroke="none" stroke-linejoin="round" x="904" y="1369" width="488" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="1148" y="1388.38">异常继续向上传播</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label5" id="edge-label5"><rect fill="none" stroke="none" stroke-linejoin="round" x="552" y="174" width="200" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-blue-ink)"><tspan x="652" y="193.38">ApplicationStartedEvent</tspan></text></g></g><g class="drawio-vertex" data-cell-id="edge-label7" id="edge-label7"><rect fill="none" stroke="none" stroke-linejoin="round" x="1224" y="1248" width="112" height="28"/><g class="drawio-label"><text text-anchor="middle" font-size="16" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-rose-ink)"><tspan x="1280" y="1267.38">任一阶段异常</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-0" id="note-0"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="284" width="304" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="305.05">准备或清理本轮刷新所需的上下文。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-1" id="note-1"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="314" width="304" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="335.05">生命周期防护记录阶段与模块进度。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-2" id="note-2"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="436" width="250" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="457.05">各提供者读取或刷新元数据。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-3" id="note-3"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="466" width="322" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="487.05">按对应模型的来源和优先级形成定义。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-4" id="note-4"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="588" width="214" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="609.05">业务模型更新投射结果。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-5" id="note-5"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="618" width="340" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="639.05">数据、页面、接口等定义进入后续装配。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-6" id="note-6"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="740" width="394" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="761.05">数据模型等运行时刷新，逻辑流构建候选快照。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-7" id="note-7"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="770" width="286" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="791.05">具体处理顺序由模块监听器约定。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-8" id="note-8"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="892" width="322" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="913.05">更新业务模型投射、类型化数据映射。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-9" id="note-9"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="922" width="358" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="943.05">执行数据初始化，再发布逻辑流运行快照。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-10" id="note-10"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="1044" width="322" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="1065.05">校验业务动作和事件订阅的运行绑定。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-11" id="note-11"><rect fill="none" stroke="none" stroke-linejoin="round" x="816" y="1074" width="358" height="30"/><g class="drawio-label"><text text-anchor="start" font-size="18" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="818" y="1095.05">首次启动时注册计划任务，更新应用信息。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="note-12" id="note-12"><rect fill="none" stroke="none" stroke-linejoin="round" x="80" y="1433" width="940.8" height="29"/><g class="drawio-label"><text text-anchor="start" font-size="17" font-family="PingFang SC, Helvetica, Arial, sans-serif" fill="var(--diagram-muted)"><tspan x="82" y="1443.01">启动／刷新期间返回 HTTP</tspan><tspan x="82" y="1463.41">503；运行中刷新复用六个阶段，失败后需成功完成一次完整刷新才能恢复受保护的业务执行。</tspan></text></g></g><g class="drawio-vertex" data-cell-id="diagram-style-icon-1" id="diagram-style-icon-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" x="56" y="226" width="28" height="28" preserveAspectRatio="none"><rect width="28" height="28" rx="6" fill="var(--diagram-paper)" stroke="var(--diagram-rule)" /><g transform="translate(4 4) scale(.833333)" fill="none" stroke="var(--diagram-blue-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 17H5M19 7h-9" />
+            <circle cx="17" cy="17" r="3" />
+            <circle cx="7" cy="7" r="3" />
+          </g></svg></g></svg></main></body></html>

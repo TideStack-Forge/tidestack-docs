@@ -44,7 +44,7 @@ sidebar_position: 2
 
 适合个人体验、团队开发和需要直接通过主机端口访问的测试环境。配套 Compose 启动开发平台、MySQL 和 RabbitMQ；测试应用容器由平台按需创建。
 
-![Docker Compose 单机部署主图：平台、测试应用、助手、MySQL 与 RabbitMQ 位于同一宿主机，标明端口映射、持久化和单点](./.assets/deployment-docker-port.svg)
+![Docker Compose 单机部署主图：平台、测试应用、助手、MySQL 与 RabbitMQ 位于同一宿主机，标明端口映射、持久化和单点](../.assets/diagrams/deployment/deployment-docker-port.svg)
 
 平台通过 Docker Engine API 创建容器，将测试应用的 Web `80` 端口映射到宿主机所选端口。业务应用入口与开发平台入口分别维护，不能用平台的 `PLATFORM_PORT` 代替应用端口。
 
@@ -56,7 +56,7 @@ sidebar_position: 2
 
 适合为多个测试应用提供固定域名的共享环境。当前仓库已提供 Docker 测试应用到 APISIX 的路由同步实现。
 
-![Docker 与 APISIX 部署主图：网关、可写配置存储、平台和测试应用的落位，及数据库、消息、共享文件和单点说明](./.assets/deployment-docker-apisix.svg)
+![Docker 与 APISIX 部署主图：网关、可写配置存储、平台和测试应用的落位，及数据库、消息、共享文件和单点说明](../.assets/diagrams/deployment/deployment-docker-apisix.svg)
 
 测试应用使用 `STABLE_DOMAIN`，不按 `TEMP_PORT` 发布宿主机应用端口。平台在实例运行、停止或删除时，通过 APISIX Admin API 更新或删除对应路由；浏览器请求通过 APISIX 的流量入口进入应用。
 
@@ -75,7 +75,7 @@ sidebar_position: 2
 
 适合已有 Kubernetes 集群、需要通过节点端口访问测试应用的环境。这是平台位于集群外的入口局部图，数据库、消息和存储的完整落位沿用所选主图；平台放入集群后的变化见 [平台集群部署](#platform-kubernetes)。
 
-![Kubernetes NodePort 部署：平台调用 Kubernetes API 创建应用，浏览器通过节点端口进入 Pod，平台与实例使用同一份共享存储](./.assets/deployment-kubernetes-nodeport.svg)
+![Kubernetes NodePort 部署：平台调用 Kubernetes API 创建应用，浏览器通过节点端口进入 Pod，平台与实例使用同一份共享存储](../.assets/diagrams/deployment/deployment-kubernetes-nodeport.svg)
 
 选择 `KUBERNETES` 与 `TEMP_PORT` 后，后端创建单副本 Deployment 和 NodePort Service，Web 流量进入容器 `80`。该入口使用 Kubernetes 节点端口，不沿用 Docker 的应用端口分配范围。
 
@@ -89,7 +89,7 @@ sidebar_position: 2
 
 适合使用统一域名入口的集群环境。选择 `KUBERNETES` 与 `STABLE_DOMAIN`，并配置 `ingress-host-suffix` 后，平台为测试应用创建 Ingress、ClusterIP Service 和单副本 Deployment。
 
-![Kubernetes Ingress 部署：浏览器经 Ingress Controller 和 Service 访问 Pod，平台通过 Kubernetes API 管理资源并写入共享存储](./.assets/deployment-kubernetes-ingress.svg)
+![Kubernetes Ingress 部署：浏览器经 Ingress Controller 和 Service 访问 Pod，平台通过 Kubernetes API 管理资源并写入共享存储](../.assets/diagrams/deployment/deployment-kubernetes-ingress.svg)
 
 与 NodePort 模式相比，工作区、客户端和权限要求相同，入口改由集群的 Ingress Controller 处理。平台创建的规则按应用和环境拼出域名，并将 `/` 前缀流量转发到应用 Service 的 `80` 端口。未配置域名后缀时不会创建 Ingress，不能只选择 `STABLE_DOMAIN` 就认为已有域名入口。
 
@@ -103,7 +103,7 @@ Ingress Controller、默认 IngressClass、DNS 和证书由集群部署负责。
 
 开发助手用于开发态能力，不作为测试应用的公开访问入口。标准流程使用 `DOCKER` 与 `INTERNAL_ONLY`，平台通过 Docker API 管理容器生命周期，通过内部命令链路使用助手能力。
 
-![Docker 内部开发助手：平台通过 Docker API 管理助手，经 RabbitMQ 发送内部命令，平台和助手共享工作区](./.assets/deployment-docker-helper.svg)
+![Docker 内部开发助手：平台通过 Docker API 管理助手，经 RabbitMQ 发送内部命令，平台和助手共享工作区](../.assets/diagrams/deployment/deployment-docker-helper.svg)
 
 助手与平台使用配套镜像、工作区和可达的消息连接。图中的 RabbitMQ 可与平台位于同一 Docker 网络，也可使用外部服务。无需为助手配置测试应用的宿主机 Web 端口或 APISIX 稳定域名。
 
@@ -113,7 +113,7 @@ Ingress Controller、默认 IngressClass、DNS 和证书由集群部署负责。
 
 开发助手也可由 Kubernetes 后端创建，标准流程仍使用 `INTERNAL_ONLY`。平台通过 Kubernetes API 管理助手 Deployment，助手通过 PVC 挂载共享文件存储，并经 RabbitMQ 的内部命令链路与平台配合。图中 API Server 位于控制平面，PVC 是命名空间内的逻辑存储资源。
 
-![Kubernetes 内部开发助手：平台通过 Kubernetes API 管理助手 Pod，使用共享 PVC 和 RabbitMQ 完成内部开发命令](./.assets/deployment-kubernetes-helper.svg)
+![Kubernetes 内部开发助手：平台通过 Kubernetes API 管理助手 Pod，使用共享 PVC 和 RabbitMQ 完成内部开发命令](../.assets/diagrams/deployment/deployment-kubernetes-helper.svg)
 
 该形态不依赖测试应用的 NodePort 或 Ingress 入口。需要可用客户端、助手所需的资源与连接权限、消息链路和共享存储。平台写入的目录必须与助手挂载的 PVC 内容一致。
 
@@ -123,7 +123,7 @@ Ingress Controller、默认 IngressClass、DNS 和证书由集群部署负责。
 
 开发平台与 Docker Engine 可以位于不同主机。平台仍使用 Docker 后端，访问策略继续选择临时端口或 APISIX 稳定域名。下图以临时端口为例，明确假设平台与 MySQL、RabbitMQ 位于主机 A，运行实例位于主机 B，共享文件服务另行准备；依赖也可外置，但需重新核对地址与访问范围。
 
-![远程 Docker 双主机部署主图：A 承载平台与依赖，B 承载运行实例，两端挂载同一份共享文件系统并标注访问端口及故障域](./.assets/deployment-remote-docker.svg)
+![远程 Docker 双主机部署主图：A 承载平台与依赖，B 承载运行实例，两端挂载同一份共享文件系统并标注访问端口及故障域](../.assets/diagrams/deployment/deployment-remote-docker.svg)
 
 这个变体需要同时满足两条链路：
 
@@ -138,7 +138,7 @@ Ingress Controller、默认 IngressClass、DNS 和证书由集群部署负责。
 
 将开发平台自身放到 Kubernetes，需要自行编排平台 Deployment、Service、入口、配置和持久化存储。当前仓库提供平台镜像和 Kubernetes 运行后端，没有配套的平台 Helm chart 或完整安装清单。编排要求和首次初始化见 [Kubernetes 部署 / 开发平台自身部署到集群](./deployment-methods/kubernetes#platform)。
 
-![Kubernetes 部署主图：控制平面、工作节点池、命名空间、单副本平台与实例，及外置数据库、消息和底层共享存储](./.assets/deployment-platform-kubernetes.svg)
+![Kubernetes 部署主图：控制平面、工作节点池、命名空间、单副本平台与实例，及外置数据库、消息和底层共享存储](../.assets/diagrams/deployment/deployment-platform-kubernetes.svg)
 
 主图采用平台与运行实例位于同一集群、同一示例命名空间，MySQL、RabbitMQ 和共享文件服务外置的落位；这是一种自行编排示例，并非仓库预设安装。工作节点数和 Controller 副本数由集群方案确定，Pod 不固定绑定图中的某台物理节点。测试应用可继续选择前文的 NodePort 或 Ingress。平台入口与测试应用入口是两组资源，分别管理域名、Service、证书和访问范围。
 
